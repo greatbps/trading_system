@@ -1,0 +1,111 @@
+{
+  "timestamp": "2025-07-15T11:35:36.733505",
+  "total_count": 5,
+  "results": [
+    {
+      "symbol": "005830",
+      "name": "DB손해보험",
+      "score": 76.57532110091742,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T11:35:20.783338"
+      },
+      "analysis_time": "2025-07-15T11:35:20.783349",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "LOW",
+      "entry_price": 144400.0,
+      "stop_loss": 137180.0,
+      "take_profit": 158840.0
+    },
+    {
+      "symbol": "001040",
+      "name": "종목001040",
+      "score": 75.40831395348837,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T11:35:12.755774"
+      },
+      "analysis_time": "2025-07-15T11:35:12.755782",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "LOW",
+      "entry_price": 175100.0,
+      "stop_loss": 166345.0,
+      "take_profit": 192610.00000000003
+    },
+    {
+      "symbol": "282330",
+      "name": "BGF리테일",
+      "score": 71.66942622950819,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T11:35:28.615901"
+      },
+      "analysis_time": "2025-07-15T11:35:28.615908",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 122800.0,
+      "stop_loss": 116660.0,
+      "take_profit": 135080.0
+    },
+    {
+      "symbol": "000120",
+      "name": "CJ대한통운",
+      "score": 62.5325358422939,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T11:35:36.623254"
+      },
+      "analysis_time": "2025-07-15T11:35:36.623266",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 94500.0,
+      "stop_loss": 89775.0,
+      "take_profit": 103950.00000000001
+    },
+    {
+      "symbol": "097950",
+      "name": "CJ제일제당",
+      "score": 61.035000000000004,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T11:35:05.103664"
+      },
+      "analysis_time": "2025-07-15T11:35:05.103672",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 256500.0,
+      "stop_loss": 243675.0,
+      "take_profit": 282150.0
+    }
+  ]
+}

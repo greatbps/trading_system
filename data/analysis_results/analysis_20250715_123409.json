@@ -1,0 +1,69 @@
+{
+  "timestamp": "2025-07-15T12:34:09.954483",
+  "total_count": 3,
+  "results": [
+    {
+      "symbol": "005830",
+      "name": "DB손해보험",
+      "score": 70.68173913043479,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T12:33:54.277607"
+      },
+      "analysis_time": "2025-07-15T12:33:54.277615",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "LOW",
+      "entry_price": 143000.0,
+      "stop_loss": 135850.0,
+      "take_profit": 157300.0
+    },
+    {
+      "symbol": "001040",
+      "name": "종목001040",
+      "score": 66.32081395348837,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T12:33:46.380158"
+      },
+      "analysis_time": "2025-07-15T12:33:46.380168",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 175100.0,
+      "stop_loss": 166345.0,
+      "take_profit": 192610.00000000003
+    },
+    {
+      "symbol": "282330",
+      "name": "BGF리테일",
+      "score": 62.844426229508194,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T12:34:02.015481"
+      },
+      "analysis_time": "2025-07-15T12:34:02.015489",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 123000.0,
+      "stop_loss": 116850.0,
+      "take_profit": 135300.0
+    }
+  ]
+}

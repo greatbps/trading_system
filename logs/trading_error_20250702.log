@@ -1,0 +1,495 @@
+2025-07-02 13:20:39 | Main         | ERROR    | run_test_mode   | ❌ 테스트 모드 실행 실패: expected 'except' or 'finally' block (momentum_strategy.py, line 579)
+2025-07-02 13:20:39 | Main         | ERROR    | main            | ❌ 프로그램 실행 실패: expected 'except' or 'finally' block (momentum_strategy.py, line 579)
+2025-07-02 13:29:27 | Main         | ERROR    | run_test_mode   | ❌ 테스트 모드 실행 실패: expected 'except' or 'finally' block (momentum_strategy.py, line 579)
+2025-07-02 13:29:27 | Main         | ERROR    | main            | ❌ 프로그램 실행 실패: expected 'except' or 'finally' block (momentum_strategy.py, line 579)
+2025-07-02 14:36:34 | Main         | ERROR    | run_test_mode   | ❌ 테스트 모드 실행 실패: expected 'except' or 'finally' block (momentum_strategy.py, line 579)
+2025-07-02 14:36:34 | Main         | ERROR    | main            | ❌ 프로그램 실행 실패: expected 'except' or 'finally' block (momentum_strategy.py, line 579)
+2025-07-02 14:49:48 | DatabaseManager | ERROR    | create_tables   | ❌ 테이블 생성 실패: (sqlite3.OperationalError) index idx_position_id already exists
+[SQL: CREATE INDEX idx_position_id ON trades (position_id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:49:48 | InitDB       | ERROR    | init_database   | ❌ 데이터베이스 초기화 실패: (sqlite3.OperationalError) index idx_position_id already exists
+[SQL: CREATE INDEX idx_position_id ON trades (position_id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:53:23 | DatabaseManager | ERROR    | create_tables   | ❌ 테이블 생성 실패: (sqlite3.OperationalError) index idx_position_id already exists
+[SQL: CREATE INDEX idx_position_id ON trades (position_id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:53:23 | ResetDB      | ERROR    | reset_database  | ❌ 데이터베이스 리셋 실패: (sqlite3.OperationalError) index idx_position_id already exists
+[SQL: CREATE INDEX idx_position_id ON trades (position_id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:54:38 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('삼성전자', 50000, 300000000, 12.5, 1.2, '005930')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:54:38 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('SK하이닉스', 80000, 60000000, 8.5, 1.0, '000660')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:54:38 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('카카오', 45000, 20000000, 15.0, 2.5, '035720')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:54:38 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('NAVER', 180000, 30000000, 18.0, 2.0, '035420')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:54:38 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('LG화학', 400000, 28000000, 11.0, 1.5, '051910')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:57:37 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('삼성전자', 50000, 300000000, 12.5, 1.2, '005930')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:57:37 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('SK하이닉스', 80000, 60000000, 8.5, 1.0, '000660')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:57:37 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('카카오', 45000, 20000000, 15.0, 2.5, '035720')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:57:37 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('NAVER', 180000, 30000000, 18.0, 2.0, '035420')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 14:57:37 | DatabaseManager | ERROR    | save_stock      | ❌ 종목 저장 실패: (sqlite3.OperationalError) no such function: NOW
+[SQL: 
+                        UPDATE stocks SET 
+                            name = ?,
+                            current_price = ?,
+                            market_cap = ?,
+                            pe_ratio = ?,
+                            pbr = ?,
+                            updated_at = NOW()
+                        WHERE symbol = ?
+                        ]
+[parameters: ('LG화학', 400000, 28000000, 11.0, 1.5, '051910')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 15:01:12 | TestDB       | ERROR    | test_connection_only | ❌ 데이터베이스 연결 실패: connection was closed in the middle of operation
+2025-07-02 15:03:06 | DatabaseManager | ERROR    | create_tables   | ❌ 테이블 생성 실패: (sqlite3.OperationalError) index idx_position_id already exists
+[SQL: CREATE INDEX idx_position_id ON trades (position_id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 15:03:06 | ResetDB      | ERROR    | reset_database  | ❌ 데이터베이스 리셋 실패: (sqlite3.OperationalError) index idx_position_id already exists
+[SQL: CREATE INDEX idx_position_id ON trades (position_id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-02 15:26:52 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:26:52 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:26:55 | Main         | ERROR    | main            | ❌ 프로그램 실행 중 오류 발생
+2025-07-02 15:31:59 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:31:59 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:32:02 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (1, datetime.datetime(2025, 7, 2, 15, 32, 2, 252876), 'momentum', 59.9, 'WEAK_BUY', np.float64(0.36), 33.92958987595886, 80.67181987415645, 50.31158847128366, 66.6, 'BUY', 'HOLD', 'MEDIUM', 76975.0, {'overall_score': 33.92958987595886, 'signal_strength': 71.0593279194292, 'confidence': 0.8244524363253716, 'momentum_strong': np.True_, 'volume_break ... (9 characters truncated) ... False_, 'ma_alignment': np.True_, 'volatility': 0.027978375581490238, 'avg_volume': 1500000, 'rsi': 54.58166214542816, 'macd_signal': np.str_('SELL')}, {'overall_score': 80.67181987415645, 'signal_strength': 76.42194106424128, 'confidence': 0.7208310170601596, 'earnings_growth': 17.61078115668779, 're ... (11 characters truncated) ... h': 3.613795618021312, 'pe_ratio': 14.49, 'pbr': 1.51, 'debt_ratio': 50.70412639481579, 'roe': 8.053810142916806, 'financial_health': np.str_('GOOD')}, {'overall_score': 50.31158847128366, 'signal_strength': 40.9181871635773, 'confidence': 0.5979054420614562, 'news_sentiment': np.str_('very_negative') ... (17 characters truncated) ... , 'positive_ratio': 0.5629065872045744, 'negative_ratio': 0.23555844006757273, 'sentiment_score': -0.41233397026332197, 'trend': np.str_('DECLINING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:02 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (2, datetime.datetime(2025, 7, 2, 15, 32, 2, 640425), 'momentum', 63.1, 'WEAK_BUY', np.float64(0.28), 32.834549792512256, 79.7096103491991, 76.96830099849232, 68.0, 'BUY', 'HOLD', 'MEDIUM', 39840.0, {'overall_score': 32.834549792512256, 'signal_strength': 62.72753487105096, 'confidence': 0.7001616204409324, 'momentum_strong': np.False_, 'volume_br ... (13 characters truncated) ... alse_, 'ma_alignment': np.False_, 'volatility': 0.05834671685862004, 'avg_volume': 1500000, 'rsi': 50.017049600148624, 'macd_signal': np.str_('HOLD')}, {'overall_score': 79.7096103491991, 'signal_strength': 74.82281303901317, 'confidence': 0.7381858169350455, 'earnings_growth': 6.338544176361939, 'rev ... (9 characters truncated) ... th': 22.405672753552814, 'pe_ratio': 9.6, 'pbr': 1.56, 'debt_ratio': 49.9258491284358, 'roe': 13.128159395623863, 'financial_health': np.str_('FAIR')}, {'overall_score': 76.96830099849232, 'signal_strength': 71.19085640792892, 'confidence': 0.4091170160137786, 'news_sentiment': np.str_('negative'), 'n ... (12 characters truncated) ... 25, 'positive_ratio': 0.7433958760624036, 'negative_ratio': 0.3759981192488674, 'sentiment_score': -0.6903074866718772, 'trend': np.str_('DECLINING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:03 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (3, datetime.datetime(2025, 7, 2, 15, 32, 3, 59276), 'momentum', 76.5, 'WEAK_BUY', np.float64(0.46), 74.63267090609506, 48.65609576413863, 66.92159293292377, 50.2, 'HOLD', 'HOLD', 'MEDIUM', 96556.0, {'overall_score': 74.63267090609506, 'signal_strength': 44.49388045039919, 'confidence': 0.8093531222602487, 'momentum_strong': np.False_, 'volume_bre ... (9 characters truncated) ... p.False_, 'ma_alignment': np.True_, 'volatility': 0.0758238331000452, 'avg_volume': 1500000, 'rsi': 31.872485556904948, 'macd_signal': np.str_('BUY')}, {'overall_score': 48.65609576413863, 'signal_strength': 54.62252411143567, 'confidence': 0.7022765225699438, 'earnings_growth': -9.14630872929536, 're ... (11 characters truncated) ... h': -4.205824236845396, 'pe_ratio': 20.0, 'pbr': 2.04, 'debt_ratio': 48.37025483426363, 'roe': 16.68570102718028, 'financial_health': np.str_('POOR')}, {'overall_score': 66.92159293292377, 'signal_strength': 57.70808036631536, 'confidence': 0.649872171234285, 'news_sentiment': np.str_('very_positive') ... (15 characters truncated) ...  13, 'positive_ratio': 0.48298871544767524, 'negative_ratio': 0.19900644881377752, 'sentiment_score': -0.5092325598796528, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:03 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (6, datetime.datetime(2025, 7, 2, 15, 32, 3, 448056), 'momentum', 74.1, 'WEAK_BUY', np.float64(0.37), 79.06672933254055, 47.51386214765381, 77.3495576131726, 51.0, 'HOLD', 'HOLD', 'MEDIUM', 51790.0, {'overall_score': 79.06672933254055, 'signal_strength': 63.62442166651758, 'confidence': 0.6463940121542296, 'momentum_strong': np.False_, 'volume_bre ... (10 characters truncated) ... .False_, 'ma_alignment': np.True_, 'volatility': 0.02635869312289875, 'avg_volume': 1500000, 'rsi': 60.87585358233191, 'macd_signal': np.str_('HOLD')}, {'overall_score': 47.51386214765381, 'signal_strength': 38.11928815241876, 'confidence': 0.7009838955014042, 'earnings_growth': -4.324001768411256, 'r ... (14 characters truncated) ... : 17.013600301679023, 'pe_ratio': 20.85, 'pbr': 0.65, 'debt_ratio': 53.168732746309445, 'roe': 5.825047817816243, 'financial_health': np.str_('FAIR')}, {'overall_score': 77.3495576131726, 'signal_strength': 38.598168362785636, 'confidence': 0.6359287636674922, 'news_sentiment': np.str_('negative'), 'n ... (13 characters truncated) ... , 'positive_ratio': 0.5290668344517229, 'negative_ratio': 0.16659362076829182, 'sentiment_score': -0.45531439430782905, 'trend': np.str_('IMPROVING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:03 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (5, datetime.datetime(2025, 7, 2, 15, 32, 3, 849224), 'momentum', 76.2, 'BUY', np.float64(0.41), 73.17540260419065, 51.365982693288174, 55.18852981266923, 63.5, 'BUY', 'HOLD', 'MEDIUM', 24588.0, {'overall_score': 73.17540260419065, 'signal_strength': 71.64219706100968, 'confidence': 0.8206108116824065, 'momentum_strong': np.True_, 'volume_brea ... (8 characters truncated) ... p.True_, 'ma_alignment': np.True_, 'volatility': 0.06693652755715616, 'avg_volume': 1500000, 'rsi': 41.01524217299474, 'macd_signal': np.str_('SELL')}, {'overall_score': 51.365982693288174, 'signal_strength': 48.46639935233012, 'confidence': 0.5287052425435114, 'earnings_growth': 24.918155249012656, ' ... (16 characters truncated) ...  12.344435833590442, 'pe_ratio': 23.87, 'pbr': 1.59, 'debt_ratio': 43.048289678882014, 'roe': 15.702164835237465, 'financial_health': np.str_('FAIR')}, {'overall_score': 55.18852981266923, 'signal_strength': 65.80241782928994, 'confidence': 0.49383468228477606, 'news_sentiment': np.str_('neutral'), 'n ... (9 characters truncated) ... ': 6, 'positive_ratio': 0.32353843313935277, 'negative_ratio': 0.29494736881807937, 'sentiment_score': 0.6234420270140617, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:04 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (4, datetime.datetime(2025, 7, 2, 15, 32, 4, 249280), 'momentum', 61.7, 'WEAK_BUY', np.float64(0.4), 34.910345788494105, 49.846215370514855, 35.8202038010845, 61.3, 'BUY', 'HOLD', 'MEDIUM', 42098.0, {'overall_score': 34.910345788494105, 'signal_strength': 62.97376943467849, 'confidence': 0.6387069306042324, 'momentum_strong': np.True_, 'volume_bre ... (11 characters truncated) ... False_, 'ma_alignment': np.True_, 'volatility': 0.026103338912930672, 'avg_volume': 1500000, 'rsi': 37.25706281692504, 'macd_signal': np.str_('HOLD')}, {'overall_score': 49.846215370514855, 'signal_strength': 76.16742850796824, 'confidence': 0.5011932246515585, 'earnings_growth': 23.98054334947721, 'r ... (15 characters truncated) ...  -3.7438149620942838, 'pe_ratio': 11.67, 'pbr': 2.99, 'debt_ratio': 42.068905990445685, 'roe': 8.385079921202083, 'financial_health': np.str_('POOR')}, {'overall_score': 35.8202038010845, 'signal_strength': 34.58019886566691, 'confidence': 0.5791887069796273, 'news_sentiment': np.str_('very_positive') ... (12 characters truncated) ... t': 20, 'positive_ratio': 0.319236246506976, 'negative_ratio': 0.26681277860320907, 'sentiment_score': 0.8085390061216506, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:04 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (7, datetime.datetime(2025, 7, 2, 15, 32, 4, 621483), 'momentum', 65.8, 'HOLD', np.float64(0.47), 65.02918090499817, 68.84516416568931, 47.161691998965026, 44.2, 'HOLD', 'HOLD', 'MEDIUM', 33809.0, {'overall_score': 65.02918090499817, 'signal_strength': 40.7627708408942, 'confidence': 0.8746618043455712, 'momentum_strong': np.True_, 'volume_break ... (10 characters truncated) ... alse_, 'ma_alignment': np.False_, 'volatility': 0.03148621504882761, 'avg_volume': 1500000, 'rsi': 63.935022769446846, 'macd_signal': np.str_('SELL')}, {'overall_score': 68.84516416568931, 'signal_strength': 57.587152170462765, 'confidence': 0.7639718894101053, 'earnings_growth': -4.269498820614537, ' ... (16 characters truncated) ...  0.07802088806012542, 'pe_ratio': 6.42, 'pbr': 1.07, 'debt_ratio': 56.979389816966055, 'roe': 11.092239789082551, 'financial_health': np.str_('GOOD')}, {'overall_score': 47.161691998965026, 'signal_strength': 32.49157568440528, 'confidence': 0.5007932596030117, 'news_sentiment': np.str_('neutral'), 'n ... (10 characters truncated) ... : 30, 'positive_ratio': 0.6100204582392892, 'negative_ratio': 0.33995521318787314, 'sentiment_score': 0.04558540709907155, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:05 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (8, datetime.datetime(2025, 7, 2, 15, 32, 5, 22706), 'momentum', 87.5, 'BUY', np.float64(0.37), 85.79798025071383, 51.60577071005913, 52.20874812799579, 65.0, 'BUY', 'HOLD', 'MEDIUM', 45267.0, {'overall_score': 85.79798025071383, 'signal_strength': 71.76102299810356, 'confidence': 0.8615242636194956, 'momentum_strong': np.True_, 'volume_brea ... (7 characters truncated) ... np.False_, 'ma_alignment': np.True_, 'volatility': 0.0690192646480683, 'avg_volume': 1500000, 'rsi': 68.56278336285298, 'macd_signal': np.str_('BUY')}, {'overall_score': 51.60577071005913, 'signal_strength': 51.04632011426838, 'confidence': 0.5351150292711824, 'earnings_growth': 25.850627026421535, 'r ... (11 characters truncated) ... th': 14.760408607170074, 'pe_ratio': 5.33, 'pbr': 1.31, 'debt_ratio': 55.62877789331912, 'roe': 9.73784779399974, 'financial_health': np.str_('FAIR')}, {'overall_score': 52.20874812799579, 'signal_strength': 69.235359528754, 'confidence': 0.5957078732531886, 'news_sentiment': np.str_('very_positive'), ... (16 characters truncated) ... 7, 'positive_ratio': 0.7649923756192096, 'negative_ratio': 0.12398818825803534, 'sentiment_score': 0.13645584142911793, 'trend': np.str_('DECLINING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:05 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (9, datetime.datetime(2025, 7, 2, 15, 32, 5, 413786), 'momentum', 71.3, 'BUY', np.float64(0.33), 41.63265066453967, 83.2971291420269, 72.28261402105274, 68.1, 'BUY', 'HOLD', 'MEDIUM', 56759.0, {'overall_score': 41.63265066453967, 'signal_strength': 64.99175422385758, 'confidence': 0.7650780378155938, 'momentum_strong': np.False_, 'volume_bre ... (9 characters truncated) ... p.False_, 'ma_alignment': np.False_, 'volatility': 0.0708714639169276, 'avg_volume': 1500000, 'rsi': 50.94241208673027, 'macd_signal': np.str_('BUY')}, {'overall_score': 83.2971291420269, 'signal_strength': 78.178841538804, 'confidence': 0.5391398050018317, 'earnings_growth': 22.60153969300287, 'reven ... (8 characters truncated) ... h': 21.57076624421738, 'pe_ratio': 12.62, 'pbr': 1.66, 'debt_ratio': 31.60143812143955, 'roe': 16.07473752956331, 'financial_health': np.str_('POOR')}, {'overall_score': 72.28261402105274, 'signal_strength': 60.84390477129825, 'confidence': 0.5559600542036254, 'news_sentiment': np.str_('negative'), 'n ... (12 characters truncated) ... 48, 'positive_ratio': 0.3925382340331668, 'negative_ratio': 0.30944000161085006, 'sentiment_score': 0.8368893109250597, 'trend': np.str_('IMPROVING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:32:05 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (10, datetime.datetime(2025, 7, 2, 15, 32, 5, 817396), 'momentum', 62.5, 'WEAK_BUY', np.float64(0.53), 52.53459050496066, 55.14956037998383, 56.37418427998161, 60.6, 'BUY', 'HOLD', 'MEDIUM', 12000.0, {'overall_score': 52.53459050496066, 'signal_strength': 66.99678741915062, 'confidence': 0.7830111586366192, 'momentum_strong': np.False_, 'volume_bre ... (11 characters truncated) ... True_, 'ma_alignment': np.False_, 'volatility': 0.020249566489522745, 'avg_volume': 1500000, 'rsi': 58.08155246432048, 'macd_signal': np.str_('HOLD')}, {'overall_score': 55.14956037998383, 'signal_strength': 62.72133842833243, 'confidence': 0.7291098580011957, 'earnings_growth': 22.989494276360773, 'r ... (14 characters truncated) ... : 14.092618311902331, 'pe_ratio': 13.52, 'pbr': 1.04, 'debt_ratio': 45.69083490563739, 'roe': 14.836205732829008, 'financial_health': np.str_('GOOD')}, {'overall_score': 56.37418427998161, 'signal_strength': 41.526872450523484, 'confidence': 0.4929126271830881, 'news_sentiment': np.str_('negative'), ' ... (11 characters truncated) ... : 49, 'positive_ratio': 0.7565923755536363, 'negative_ratio': 0.16082671753869626, 'sentiment_score': 0.49640397351209575, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:23 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:35:23 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:35:26 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (1, datetime.datetime(2025, 7, 2, 15, 35, 26, 909803), 'momentum', 93.1, 'STRONG_BUY', np.float64(0.4), 84.23978745790596, 56.233653312593624, 71.69825311966315, 72.8, 'BUY', 'HOLD', 'MEDIUM', 23820.0, {'overall_score': 84.23978745790596, 'signal_strength': 80.77183806972674, 'confidence': 0.7383667310182143, 'momentum_strong': np.True_, 'volume_brea ... (11 characters truncated) ... rue_, 'ma_alignment': np.False_, 'volatility': 0.029620201327081007, 'avg_volume': 1500000, 'rsi': 41.254798538662165, 'macd_signal': np.str_('HOLD')}, {'overall_score': 56.233653312593624, 'signal_strength': 77.60148932666935, 'confidence': 0.5594091657631832, 'earnings_growth': 26.171625715963145, ' ... (14 characters truncated) ... ': 18.100741423415656, 'pe_ratio': 14.3, 'pbr': 1.08, 'debt_ratio': 40.69093935177931, 'roe': 18.167169040790373, 'financial_health': np.str_('FAIR')}, {'overall_score': 71.69825311966315, 'signal_strength': 45.675029832747185, 'confidence': 0.6376791225666189, 'news_sentiment': np.str_('positive'), ' ... (15 characters truncated) ... , 'positive_ratio': 0.39276748359066876, 'negative_ratio': 0.38548872848502747, 'sentiment_score': -0.9066954022126539, 'trend': np.str_('IMPROVING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:27 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (2, datetime.datetime(2025, 7, 2, 15, 35, 27, 314402), 'momentum', 68.8, 'WEAK_BUY', np.float64(0.37), 88.6589851780619, 44.952970833206166, 56.06685864544377, 61.3, 'BUY', 'HOLD', 'MEDIUM', 29706.0, {'overall_score': 88.6589851780619, 'signal_strength': 67.2087446321388, 'confidence': 0.8283818894093847, 'momentum_strong': np.False_, 'volume_break ... (7 characters truncated) ... p.True_, 'ma_alignment': np.False_, 'volatility': 0.07908648267024918, 'avg_volume': 1500000, 'rsi': 44.15275043991939, 'macd_signal': np.str_('BUY')}, {'overall_score': 44.952970833206166, 'signal_strength': 49.86913706699444, 'confidence': 0.7734160557807216, 'earnings_growth': 2.674185624228569, 'r ... (12 characters truncated) ... h': 6.729859627655543, 'pe_ratio': 17.58, 'pbr': 0.78, 'debt_ratio': 36.29158705149884, 'roe': 8.402833697119284, 'financial_health': np.str_('GOOD')}, {'overall_score': 56.06685864544377, 'signal_strength': 63.7975286199679, 'confidence': 0.5702426387455762, 'news_sentiment': np.str_('very_negative') ... (14 characters truncated) ... : 39, 'positive_ratio': 0.36904046943681523, 'negative_ratio': 0.2278465210174147, 'sentiment_score': 0.23260614263813584, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:27 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (3, datetime.datetime(2025, 7, 2, 15, 35, 27, 686220), 'momentum', 82.1, 'BUY', np.float64(0.41), 51.74424714397938, 59.66321074162191, 78.36672958356971, 74.9, 'BUY', 'HOLD', 'MEDIUM', 70234.0, {'overall_score': 51.74424714397938, 'signal_strength': 81.51012532997498, 'confidence': 0.8975036347753518, 'momentum_strong': np.True_, 'volume_brea ... (8 characters truncated) ... p.True_, 'ma_alignment': np.True_, 'volatility': 0.04552737344951607, 'avg_volume': 1500000, 'rsi': 40.07477389897774, 'macd_signal': np.str_('SELL')}, {'overall_score': 59.66321074162191, 'signal_strength': 79.16117059913364, 'confidence': 0.566067514324446, 'earnings_growth': -1.8340045715600581, 'r ... (13 characters truncated) ... ': 1.889172652226783, 'pe_ratio': 10.27, 'pbr': 2.61, 'debt_ratio': 29.524849536704707, 'roe': 9.081580506211377, 'financial_health': np.str_('GOOD')}, {'overall_score': 78.36672958356971, 'signal_strength': 51.889542349273995, 'confidence': 0.4502276019118454, 'news_sentiment': np.str_('very_positive ... (20 characters truncated) ... , 'positive_ratio': 0.6887253152511328, 'negative_ratio': 0.19972122179415935, 'sentiment_score': -0.03442402276334544, 'trend': np.str_('IMPROVING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:28 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (6, datetime.datetime(2025, 7, 2, 15, 35, 28, 75700), 'momentum', 73.3, 'BUY', np.float64(0.47), 58.51279955988128, 58.69307303303832, 47.77762758376485, 68.7, 'BUY', 'HOLD', 'MEDIUM', 37885.0, {'overall_score': 58.51279955988128, 'signal_strength': 71.87170211176056, 'confidence': 0.7573366096453777, 'momentum_strong': np.False_, 'volume_bre ... (9 characters truncated) ... p.True_, 'ma_alignment': np.True_, 'volatility': 0.07909334136148738, 'avg_volume': 1500000, 'rsi': 54.35323091747877, 'macd_signal': np.str_('HOLD')}, {'overall_score': 58.69307303303832, 'signal_strength': 73.22324557158888, 'confidence': 0.7173606954491852, 'earnings_growth': 19.90776467688725, 're ... (13 characters truncated) ... : 22.396403880714697, 'pe_ratio': 19.45, 'pbr': 1.68, 'debt_ratio': 28.60422252837489, 'roe': 13.613107002419241, 'financial_health': np.str_('GOOD')}, {'overall_score': 47.77762758376485, 'signal_strength': 54.101901205441195, 'confidence': 0.4384064195651985, 'news_sentiment': np.str_('very_positive ... (18 characters truncated) ... 32, 'positive_ratio': 0.7513683986604247, 'negative_ratio': 0.3001568260935332, 'sentiment_score': -0.6769457279467546, 'trend': np.str_('DECLINING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:28 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (5, datetime.datetime(2025, 7, 2, 15, 35, 28, 446360), 'momentum', 82.0, 'BUY', np.float64(0.46), 62.74836216409485, 78.03085698143279, 68.47048657046332, 44.2, 'HOLD', 'HOLD', 'MEDIUM', 36281.0, {'overall_score': 62.74836216409485, 'signal_strength': 41.19748446220231, 'confidence': 0.7011630336112549, 'momentum_strong': np.False_, 'volume_bre ... (11 characters truncated) ... False_, 'ma_alignment': np.False_, 'volatility': 0.025489217717818702, 'avg_volume': 1500000, 'rsi': 31.7282263077189, 'macd_signal': np.str_('HOLD')}, {'overall_score': 78.03085698143279, 'signal_strength': 44.228690682764004, 'confidence': 0.5430758187755942, 'earnings_growth': 17.872035840614448, ' ... (13 characters truncated) ... h': 17.402305305891154, 'pe_ratio': 8.56, 'pbr': 1.39, 'debt_ratio': 56.82934207027879, 'roe': 5.116450074323995, 'financial_health': np.str_('GOOD')}, {'overall_score': 68.47048657046332, 'signal_strength': 51.53142841346794, 'confidence': 0.6958196616668292, 'news_sentiment': np.str_('very_positive' ... (16 characters truncated) ...  14, 'positive_ratio': 0.5896971336800781, 'negative_ratio': 0.3273293199039228, 'sentiment_score': 0.5129328731126297, 'trend': np.str_('DECLINING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:28 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (4, datetime.datetime(2025, 7, 2, 15, 35, 28, 834708), 'momentum', 69.8, 'WEAK_BUY', np.float64(0.37), 60.16566580875329, 75.15690957045325, 77.30830130568202, 46.8, 'HOLD', 'HOLD', 'MEDIUM', 91739.0, {'overall_score': 60.16566580875329, 'signal_strength': 43.02590823592427, 'confidence': 0.6560451404556057, 'momentum_strong': np.False_, 'volume_bre ... (9 characters truncated) ... p.False_, 'ma_alignment': np.False_, 'volatility': 0.0675921090083616, 'avg_volume': 1500000, 'rsi': 37.65440157116665, 'macd_signal': np.str_('BUY')}, {'overall_score': 75.15690957045325, 'signal_strength': 42.783052487776914, 'confidence': 0.5476350756029821, 'earnings_growth': 3.3507799333266775, ' ... (16 characters truncated) ...  14.297812544869533, 'pe_ratio': 18.81, 'pbr': 2.86, 'debt_ratio': 28.581663095695852, 'roe': 10.319804145914318, 'financial_health': np.str_('GOOD')}, {'overall_score': 77.30830130568202, 'signal_strength': 62.33812276775786, 'confidence': 0.40375193468773035, 'news_sentiment': np.str_('neutral'), 'n ... (12 characters truncated) ... 25, 'positive_ratio': 0.3018728684792458, 'negative_ratio': 0.2794327594832189, 'sentiment_score': -0.4669930745076889, 'trend': np.str_('IMPROVING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:29 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (7, datetime.datetime(2025, 7, 2, 15, 35, 29, 237280), 'momentum', 91.9, 'BUY', np.float64(0.45), 76.14240009738268, 83.27971512646359, 78.19615615237046, 51.4, 'HOLD', 'HOLD', 'MEDIUM', 42384.0, {'overall_score': 76.14240009738268, 'signal_strength': 44.708192959408315, 'confidence': 0.6742876412645581, 'momentum_strong': np.False_, 'volume_br ... (12 characters truncated) ... False_, 'ma_alignment': np.False_, 'volatility': 0.03364477790494059, 'avg_volume': 1500000, 'rsi': 47.034119814772176, 'macd_signal': np.str_('BUY')}, {'overall_score': 83.27971512646359, 'signal_strength': 58.664610776161496, 'confidence': 0.5777881553275286, 'earnings_growth': 6.153320733070945, 'r ... (14 characters truncated) ... : 20.46268350397629, 'pe_ratio': 22.94, 'pbr': 2.48, 'debt_ratio': 55.230399891953034, 'roe': 19.447661048143452, 'financial_health': np.str_('GOOD')}, {'overall_score': 78.19615615237046, 'signal_strength': 57.213615451924184, 'confidence': 0.5351869280740258, 'news_sentiment': np.str_('very_positive ... (15 characters truncated) ... ': 24, 'positive_ratio': 0.5655229341128867, 'negative_ratio': 0.3652363024811205, 'sentiment_score': -0.7445446473415926, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:29 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (8, datetime.datetime(2025, 7, 2, 15, 35, 29, 652465), 'momentum', 80.2, 'BUY', np.float64(0.4), 89.27395629222295, 49.87254664253916, 71.8118039049262, 67.0, 'BUY', 'HOLD', 'MEDIUM', 39550.0, {'overall_score': 89.27395629222295, 'signal_strength': 72.66369862116514, 'confidence': 0.892760881609232, 'momentum_strong': np.False_, 'volume_brea ... (7 characters truncated) ... np.True_, 'ma_alignment': np.True_, 'volatility': 0.0592511876474473, 'avg_volume': 1500000, 'rsi': 35.46030038290673, 'macd_signal': np.str_('HOLD')}, {'overall_score': 49.87254664253916, 'signal_strength': 61.926714714817344, 'confidence': 0.6137641222915756, 'earnings_growth': 9.449307892156874, 'r ... (12 characters truncated) ... h': 15.122524908639082, 'pe_ratio': 17.77, 'pbr': 1.22, 'debt_ratio': 54.771747560679, 'roe': 14.761826038887397, 'financial_health': np.str_('GOOD')}, {'overall_score': 71.8118039049262, 'signal_strength': 60.30791751057984, 'confidence': 0.6398837107163164, 'news_sentiment': np.str_('very_negative') ... (13 characters truncated) ... ': 41, 'positive_ratio': 0.7753452052195727, 'negative_ratio': 0.2167209843037455, 'sentiment_score': -0.5904812674995092, 'trend': np.str_('STABLE')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:30 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (9, datetime.datetime(2025, 7, 2, 15, 35, 30, 53394), 'momentum', 70.3, 'WEAK_BUY', np.float64(0.46), 52.34043965156587, 49.606019047898556, 58.398588479558995, 52.4, 'HOLD', 'HOLD', 'MEDIUM', 69388.0, {'overall_score': 52.34043965156587, 'signal_strength': 50.41767781599394, 'confidence': 0.6162203872784566, 'momentum_strong': np.True_, 'volume_brea ... (10 characters truncated) ... False_, 'ma_alignment': np.True_, 'volatility': 0.03443463742151409, 'avg_volume': 1500000, 'rsi': 54.247118730828106, 'macd_signal': np.str_('HOLD')}, {'overall_score': 49.606019047898556, 'signal_strength': 69.50498629683383, 'confidence': 0.6068785818531404, 'earnings_growth': 26.637912779531533, ' ... (15 characters truncated) ... : 1.5386073699636293, 'pe_ratio': 6.28, 'pbr': 2.52, 'debt_ratio': 42.756529179089014, 'roe': 15.610962669994127, 'financial_health': np.str_('FAIR')}, {'overall_score': 58.398588479558995, 'signal_strength': 31.65388144829791, 'confidence': 0.6510995552162805, 'news_sentiment': np.str_('positive'), ' ... (14 characters truncated) ... 0, 'positive_ratio': 0.6084532867418988, 'negative_ratio': 0.39120578596884825, 'sentiment_score': -0.6043201690006241, 'trend': np.str_('IMPROVING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:35:30 | DatabaseManager | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패: (sqlite3.InterfaceError) Error binding parameter 14 - probably unsupported type.
+[SQL: 
+                    INSERT INTO analysis_results 
+                    (stock_id, analysis_date, strategy, comprehensive_score, recommendation, 
+                     confidence, technical_score, fundamental_score, sentiment_score,
+                     signal_strength, signal_type, action, risk_level, price_at_analysis,
+                     technical_details, fundamental_details, sentiment_details)
+                    VALUES (?, ?, ?, ?, ?,
+                            ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
+                    RETURNING id
+                    ]
+[parameters: (10, datetime.datetime(2025, 7, 2, 15, 35, 30, 413372), 'momentum', 71.9, 'WEAK_BUY', np.float64(0.45), 65.44013694204452, 47.91098010879679, 61.22816189235972, 59.8, 'HOLD', 'HOLD', 'MEDIUM', 35227.0, {'overall_score': 65.44013694204452, 'signal_strength': 50.95176839637669, 'confidence': 0.6457592475461372, 'momentum_strong': np.True_, 'volume_brea ... (8 characters truncated) ... p.True_, 'ma_alignment': np.True_, 'volatility': 0.028115878209014948, 'avg_volume': 1500000, 'rsi': 61.80783909643442, 'macd_signal': np.str_('BUY')}, {'overall_score': 47.91098010879679, 'signal_strength': 65.99614251001265, 'confidence': 0.6692931401793238, 'earnings_growth': 12.256076441427947, 'r ... (14 characters truncated) ... : 23.798565701559205, 'pe_ratio': 10.53, 'pbr': 0.92, 'debt_ratio': 49.61343968625488, 'roe': 18.178926275731353, 'financial_health': np.str_('FAIR')}, {'overall_score': 61.22816189235972, 'signal_strength': 72.59723296095937, 'confidence': 0.6976419032052826, 'news_sentiment': np.str_('neutral'), 'ne ... (13 characters truncated) ... , 'positive_ratio': 0.47886634877412587, 'negative_ratio': 0.32015177556103624, 'sentiment_score': -0.1619581274843196, 'trend': np.str_('IMPROVING')})]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-07-02 15:37:25 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:37:25 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:46:28 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 15:46:28 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 18:26:23 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 18:26:23 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 20:04:02 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 20:04:02 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, message='Forbidden', url='https://openapi.koreainvestment.com:9443/oauth2/tokenP'
+2025-07-02 20:06:47 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-02 20:07:38 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-02 20:07:38 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-02 20:09:27 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-02 20:10:26 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-02 20:11:22 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-02 21:07:27 | KISCollector | ERROR    | _parse_stock_list | ❌ 종목 리스트 파싱 오류: API 응답 오류:  - 
+2025-07-02 21:07:27 | KISCollector | ERROR    | _get_market_stocks | ❌ J 시장 종목 조회 오류: API 응답 오류:  - 
+2025-07-02 21:07:27 | KISCollector | ERROR    | get_stock_list  | ❌ KOSPI 종목 조회 실패: API 응답 오류:  - 
+2025-07-02 21:07:27 | KISCollector | ERROR    | get_stock_list  | ❌ 종목 리스트 조회 실패: KOSPI 종목 리스트 조회 실패: API 응답 오류:  - 
+2025-07-02 21:07:27 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: KOSPI 종목 리스트 조회 실패: API 응답 오류:  - 
+2025-07-02 21:15:24 | KISCollector | ERROR    | _get_market_stocks | ❌ J 시장 종목 조회 오류: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:15:24 | KISCollector | ERROR    | _get_stock_list_direct_api | ❌ 직접 API - KOSPI 종목 조회 실패: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:15:24 | KISCollector | ERROR    | _get_stock_list_direct_api | ❌ 직접 API 종목 리스트 조회 실패: 직접 API KOSPI 종목 리스트 조회 실패: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:15:24 | KISCollector | ERROR    | get_stock_list  | ❌ 직접 KIS API 호출 실패: 직접 API KOSPI 종목 리스트 조회 실패: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:15:24 | KISCollector | ERROR    | get_stock_list  | ❌ 종목 리스트 조회 실패: 모든 종목 리스트 조회 방법이 실패했습니다.
+2025-07-02 21:15:24 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: 모든 종목 리스트 조회 방법이 실패했습니다.
+2025-07-02 21:18:19 | KISCollector | ERROR    | _get_market_stocks | ❌ J 시장 종목 조회 오류: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:18:19 | KISCollector | ERROR    | _get_stock_list_direct_api | ❌ 직접 API - KOSPI 종목 조회 실패: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:18:19 | KISCollector | ERROR    | _get_stock_list_direct_api | ❌ 직접 API 종목 리스트 조회 실패: 직접 API KOSPI 종목 리스트 조회 실패: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:18:19 | KISCollector | ERROR    | get_stock_list  | ❌ 직접 KIS API 호출 실패: 직접 API KOSPI 종목 리스트 조회 실패: 모든 종목 리스트 API 엔드포인트 실패. 마지막 오류: API 오류:  - 
+2025-07-02 21:18:19 | KISCollector | ERROR    | get_stock_list  | ❌ 종목 리스트 조회 실패: 모든 종목 리스트 조회 방법이 실패했습니다.
+2025-07-02 21:18:19 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: 모든 종목 리스트 조회 방법이 실패했습니다.
+2025-07-02 21:33:45 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: 필터링 조건을 만족하는 종목이 없습니다. 조건을 완화하거나 확인해주세요.
+2025-07-02 21:50:36 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: 필터링 조건을 만족하는 종목이 없습니다. 조건을 완화하거나 확인해주세요.

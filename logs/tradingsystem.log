@@ -1,0 +1,2093 @@
+18:01:46 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+18:01:48 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+18:01:48 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+18:01:48 | TradingSystem | INFO | ✅ 설정 로드 완료
+18:01:48 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+18:01:49 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+18:01:49 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+18:01:49 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+18:01:49 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+18:01:49 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+18:01:49 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+18:01:49 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+18:01:49 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+18:02:56 | TradingSystem | INFO |    필터링 결과: 50개 종목
+18:02:56 | TradingSystem | INFO | 🔬 043710 (서울리거) 분석 시작...
+18:02:56 | TradingSystem | WARNING | ⚠️ 043710 데이터 수집 실패
+18:02:56 | TradingSystem | INFO | ❌ 043710 분석 결과 없음
+18:02:56 | TradingSystem | INFO | 🔬 161890 (한국콜마) 분석 시작...
+18:02:56 | TradingSystem | WARNING | ⚠️ 161890 데이터 수집 실패
+18:02:56 | TradingSystem | INFO | ❌ 161890 분석 결과 없음
+18:02:56 | TradingSystem | INFO | 🔬 001200 (유진투자증권) 분석 시작...
+18:02:56 | TradingSystem | WARNING | ⚠️ 001200 데이터 수집 실패
+18:02:56 | TradingSystem | INFO | ❌ 001200 분석 결과 없음
+18:02:56 | TradingSystem | INFO | 🔬 023600 (삼보판지) 분석 시작...
+18:02:56 | TradingSystem | WARNING | ⚠️ 023600 데이터 수집 실패
+18:02:56 | TradingSystem | INFO | ❌ 023600 분석 결과 없음
+18:02:56 | TradingSystem | INFO | 🔬 189980 (흥국에프엔비) 분석 시작...
+18:02:56 | TradingSystem | WARNING | ⚠️ 189980 데이터 수집 실패
+18:02:56 | TradingSystem | INFO | ❌ 189980 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 219750 (한국비티비) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 219750 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 219750 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 008500 (일정실업) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 008500 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 008500 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 131290 (티에스이) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 131290 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 131290 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 332570 (PS일렉트로닉스) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 332570 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 332570 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 189690 (포시에스) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 189690 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 189690 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 101170 (우림피티에스) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 101170 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 101170 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 281740 (레이크머티리얼즈) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 281740 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 281740 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 142280 (녹십자엠에스) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 142280 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 142280 분석 결과 없음
+18:02:57 | TradingSystem | INFO | 🔬 141080 (리가켐바이오) 분석 시작...
+18:02:57 | TradingSystem | WARNING | ⚠️ 141080 데이터 수집 실패
+18:02:57 | TradingSystem | INFO | ❌ 141080 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 043260 (성호전자) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 043260 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 043260 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 115500 (케이씨에스) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 115500 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 115500 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 108490 (로보티즈) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 108490 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 108490 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 001460 (BYC) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 001460 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 001460 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 107640 (한중엔시에스) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 107640 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 107640 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 007820 (에스엠코어) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 007820 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 007820 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 036090 (위지트) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 036090 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 036090 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 024120 (KB오토시스) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 024120 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 024120 분석 결과 없음
+18:02:58 | TradingSystem | INFO | 🔬 066670 (디티씨) 분석 시작...
+18:02:58 | TradingSystem | WARNING | ⚠️ 066670 데이터 수집 실패
+18:02:58 | TradingSystem | INFO | ❌ 066670 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 351320 (넥사다이내믹스) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 351320 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 351320 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 034020 (두산에너빌리티) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 034020 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 034020 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 038290 (마크로젠) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 038290 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 038290 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 122640 (예스티) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 122640 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 122640 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 004650 (창해에탄올) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 004650 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 004650 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 179290 (엠아이텍) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 179290 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 179290 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 088260 (이리츠코크렙) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 088260 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 088260 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 322180 (LS티라유텍) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 322180 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 322180 분석 결과 없음
+18:02:59 | TradingSystem | INFO | 🔬 005257 (녹십자홀딩스2우) 분석 시작...
+18:02:59 | TradingSystem | WARNING | ⚠️ 005257 데이터 수집 실패
+18:02:59 | TradingSystem | INFO | ❌ 005257 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 160190 (하이젠알앤엠) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 160190 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 160190 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 001540 (안국약품) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 001540 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 001540 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 425420 (티에프이) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 425420 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 425420 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 021040 (대호특수강) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 021040 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 021040 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 038110 (에코플라스틱) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 038110 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 038110 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 039560 (다산네트웍스) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 039560 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 039560 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 074600 (원익QnC) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 074600 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 074600 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 280360 (롯데웰푸드) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 280360 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 280360 분석 결과 없음
+18:03:00 | TradingSystem | INFO | 🔬 015360 (INVENI) 분석 시작...
+18:03:00 | TradingSystem | WARNING | ⚠️ 015360 데이터 수집 실패
+18:03:00 | TradingSystem | INFO | ❌ 015360 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 097870 (효성오앤비) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 097870 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 097870 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 120030 (조선선재) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 120030 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 120030 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 023910 (대한약품) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 023910 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 023910 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 082800 (비보존 제약) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 082800 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 082800 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 468760 (유진스팩10호) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 468760 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 468760 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 025950 (동신건설) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 025950 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 025950 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 005810 (풍산홀딩스) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 005810 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 005810 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 191410 (육일씨엔에쓰) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 191410 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 191410 분석 결과 없음
+18:03:01 | TradingSystem | INFO | 🔬 033500 (동성화인텍) 분석 시작...
+18:03:01 | TradingSystem | WARNING | ⚠️ 033500 데이터 수집 실패
+18:03:01 | TradingSystem | INFO | ❌ 033500 분석 결과 없음
+18:03:02 | TradingSystem | INFO | 💾 저장할 분석 결과가 없습니다
+18:03:02 | TradingSystem | INFO | ✅ 시장 분석 완료: 0개 신호 발견
+18:05:52 | TradingSystem | INFO | ✅ 리소스 정리 완료
+18:31:01 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+18:31:03 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+18:31:03 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+18:31:03 | TradingSystem | INFO | ✅ 설정 로드 완료
+18:31:03 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+18:31:05 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+18:31:05 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+18:31:05 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+18:31:05 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+18:31:05 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+18:31:05 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+18:31:05 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+18:31:05 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+18:31:19 | TradingSystem | INFO | ✅ 리소스 정리 완료
+18:35:37 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+18:35:39 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+18:35:39 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+18:35:39 | TradingSystem | INFO | ✅ 설정 로드 완료
+18:35:40 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+18:35:40 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+18:35:40 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+18:35:40 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+18:35:40 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+18:35:40 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+18:35:40 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+18:35:40 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+18:35:40 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+18:36:11 | TradingSystem | INFO | ✅ 리소스 정리 완료
+18:46:38 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+18:46:38 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+18:46:38 | TradingSystem | INFO | ✅ 설정 로드 완료
+18:46:39 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+18:46:43 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+18:46:43 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+18:46:43 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+18:46:43 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+18:46:44 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+18:46:44 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+18:46:44 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+18:46:44 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+18:46:44 | TradingSystem | INFO | 🔬 005930 (삼성전자) 분석 시작...
+18:46:53 | TradingSystem | INFO | ✅ 005930 분석 완료 - 점수: 85.3, 추천: BUY
+18:46:53 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+18:46:53 | TradingSystem | INFO | ✅ 리소스 정리 완료
+18:47:18 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+18:47:18 | TradingSystem | INFO | 🎯 특정 종목 분석: 1개 (전략: momentum)
+18:47:18 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+18:47:18 | TradingSystem | INFO | ✅ 설정 로드 완료
+18:47:18 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+18:47:18 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+18:47:18 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+18:47:18 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+18:47:18 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+18:47:19 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+18:47:19 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+18:47:19 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+18:47:19 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+18:47:19 | TradingSystem | INFO | 🔬 005930 (종목005930) 분석 시작...
+18:47:26 | TradingSystem | INFO | ✅ 005930 분석 완료 - 점수: 78.0, 추천: BUY
+18:47:26 | TradingSystem | INFO | ✅ 특정 종목 분석 완료: 1개 결과
+18:47:26 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+18:47:26 | TradingSystem | INFO | ✅ 리소스 정리 완료
+18:47:44 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+18:47:46 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+18:47:46 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+18:47:46 | TradingSystem | INFO | ✅ 설정 로드 완료
+18:47:46 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+18:47:47 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+18:47:47 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+18:47:47 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+18:47:47 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+18:47:47 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+18:47:47 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+18:47:47 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+18:47:47 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+18:48:09 | TradingSystem | INFO |    필터링 결과: 50개 종목
+18:48:09 | TradingSystem | INFO | 🔬 329180 (종목329180) 분석 시작...
+18:48:18 | TradingSystem | INFO | ✅ 329180 분석 완료 - 점수: 53.6, 추천: HOLD
+18:48:18 | TradingSystem | INFO | 🎯 329180 분석 완료: 점수 53.589999999999996, 추천 HOLD
+18:48:18 | TradingSystem | INFO | ❌ 329180 점수 부족: 53.589999999999996 < 60
+18:48:18 | TradingSystem | INFO | 🔬 000660 (종목000660) 분석 시작...
+18:48:26 | TradingSystem | INFO | ✅ 000660 분석 완료 - 점수: 79.4, 추천: BUY
+18:48:26 | TradingSystem | INFO | 🎯 000660 분석 완료: 점수 79.42224999999999, 추천 BUY
+18:48:26 | TradingSystem | INFO | ✅ 000660 신호 추가됨
+18:48:26 | TradingSystem | INFO | 🔬 097950 (종목097950) 분석 시작...
+18:48:35 | TradingSystem | INFO | ✅ 097950 분석 완료 - 점수: 55.7, 추천: WEAK_BUY
+18:48:35 | TradingSystem | INFO | 🎯 097950 분석 완료: 점수 55.71649289099526, 추천 WEAK_BUY
+18:48:35 | TradingSystem | INFO | ❌ 097950 점수 부족: 55.71649289099526 < 60
+18:48:35 | TradingSystem | INFO | 🔬 086900 (종목086900) 분석 시작...
+18:48:44 | TradingSystem | INFO | ✅ 086900 분석 완료 - 점수: 61.8, 추천: WEAK_BUY
+18:48:44 | TradingSystem | INFO | 🎯 086900 분석 완료: 점수 61.842851562499995, 추천 WEAK_BUY
+18:48:44 | TradingSystem | INFO | ✅ 086900 신호 추가됨
+18:48:44 | TradingSystem | INFO | 🔬 402340 (종목402340) 분석 시작...
+18:48:52 | TradingSystem | INFO | ✅ 402340 분석 완료 - 점수: 67.6, 추천: BUY
+18:48:52 | TradingSystem | INFO | 🎯 402340 분석 완료: 점수 67.57252252252252, 추천 BUY
+18:48:52 | TradingSystem | INFO | ✅ 402340 신호 추가됨
+18:48:52 | TradingSystem | INFO | 🔬 011070 (종목011070) 분석 시작...
+18:49:00 | TradingSystem | INFO | ✅ 011070 분석 완료 - 점수: 64.4, 추천: WEAK_BUY
+18:49:00 | TradingSystem | INFO | 🎯 011070 분석 완료: 점수 64.39, 추천 WEAK_BUY
+18:49:00 | TradingSystem | INFO | ✅ 011070 신호 추가됨
+18:49:00 | TradingSystem | INFO | 🔬 000250 (종목000250) 분석 시작...
+18:49:09 | TradingSystem | INFO | ✅ 000250 분석 완료 - 점수: 64.9, 추천: WEAK_BUY
+18:49:09 | TradingSystem | INFO | 🎯 000250 분석 완료: 점수 64.89737373737373, 추천 WEAK_BUY
+18:49:09 | TradingSystem | INFO | ✅ 000250 신호 추가됨
+18:49:09 | TradingSystem | INFO | 🔬 484870 (종목484870) 분석 시작...
+18:49:17 | TradingSystem | INFO | ✅ 484870 분석 완료 - 점수: 48.0, 추천: HOLD
+18:49:17 | TradingSystem | INFO | 🎯 484870 분석 완료: 점수 47.979827586206895, 추천 HOLD
+18:49:17 | TradingSystem | INFO | ❌ 484870 점수 부족: 47.979827586206895 < 60
+18:49:17 | TradingSystem | INFO | 🔬 041510 (종목041510) 분석 시작...
+18:49:26 | TradingSystem | INFO | ✅ 041510 분석 완료 - 점수: 61.3, 추천: WEAK_BUY
+18:49:26 | TradingSystem | INFO | 🎯 041510 분석 완료: 점수 61.28575757575758, 추천 WEAK_BUY
+18:49:26 | TradingSystem | INFO | ✅ 041510 신호 추가됨
+18:49:26 | TradingSystem | INFO | 🔬 033780 (종목033780) 분석 시작...
+18:49:34 | TradingSystem | INFO | ✅ 033780 분석 완료 - 점수: 79.5, 추천: BUY
+18:49:34 | TradingSystem | INFO | 🎯 033780 분석 완료: 점수 79.51443786982249, 추천 BUY
+18:49:34 | TradingSystem | INFO | ✅ 033780 신호 추가됨
+18:49:34 | TradingSystem | INFO | 🔬 005830 (종목005830) 분석 시작...
+18:49:42 | TradingSystem | INFO | ✅ 005830 분석 완료 - 점수: 64.9, 추천: WEAK_BUY
+18:49:42 | TradingSystem | INFO | 🎯 005830 분석 완료: 점수 64.93747326203209, 추천 WEAK_BUY
+18:49:42 | TradingSystem | INFO | ✅ 005830 신호 추가됨
+18:49:42 | TradingSystem | INFO | 🔬 267250 (종목267250) 분석 시작...
+18:49:51 | TradingSystem | INFO | ✅ 267250 분석 완료 - 점수: 53.8, 추천: HOLD
+18:49:51 | TradingSystem | INFO | 🎯 267250 분석 완료: 점수 53.77243781094527, 추천 HOLD
+18:49:51 | TradingSystem | INFO | ❌ 267250 점수 부족: 53.77243781094527 < 60
+18:49:51 | TradingSystem | INFO | 🔬 141080 (종목141080) 분석 시작...
+18:50:00 | TradingSystem | INFO | ✅ 141080 분석 완료 - 점수: 58.4, 추천: WEAK_BUY
+18:50:00 | TradingSystem | INFO | 🎯 141080 분석 완료: 점수 58.38108108108108, 추천 WEAK_BUY
+18:50:00 | TradingSystem | INFO | ❌ 141080 점수 부족: 58.38108108108108 < 60
+18:50:00 | TradingSystem | INFO | 🔬 180640 (종목180640) 분석 시작...
+18:50:09 | TradingSystem | INFO | ✅ 180640 분석 완료 - 점수: 68.3, 추천: BUY
+18:50:09 | TradingSystem | INFO | 🎯 180640 분석 완료: 점수 68.28092391304347, 추천 BUY
+18:50:09 | TradingSystem | INFO | ✅ 180640 신호 추가됨
+18:50:09 | TradingSystem | INFO | 🔬 011780 (종목011780) 분석 시작...
+18:50:18 | TradingSystem | INFO | ✅ 011780 분석 완료 - 점수: 75.9, 추천: BUY
+18:50:18 | TradingSystem | INFO | 🎯 011780 분석 완료: 점수 75.93857142857142, 추천 BUY
+18:50:18 | TradingSystem | INFO | ✅ 011780 신호 추가됨
+18:50:18 | TradingSystem | INFO | 🔬 001720 (종목001720) 분석 시작...
+18:50:27 | TradingSystem | INFO | ✅ 001720 분석 완료 - 점수: 61.2, 추천: WEAK_BUY
+18:50:27 | TradingSystem | INFO | 🎯 001720 분석 완료: 점수 61.2240350877193, 추천 WEAK_BUY
+18:50:27 | TradingSystem | INFO | ✅ 001720 신호 추가됨
+18:50:27 | TradingSystem | INFO | 🔬 271560 (종목271560) 분석 시작...
+18:50:36 | TradingSystem | INFO | ✅ 271560 분석 완료 - 점수: 59.6, 추천: WEAK_BUY
+18:50:36 | TradingSystem | INFO | 🎯 271560 분석 완료: 점수 59.644999999999996, 추천 WEAK_BUY
+18:50:36 | TradingSystem | INFO | ❌ 271560 점수 부족: 59.644999999999996 < 60
+18:50:36 | TradingSystem | INFO | 🔬 096770 (종목096770) 분석 시작...
+18:50:44 | TradingSystem | INFO | ✅ 096770 분석 완료 - 점수: 53.6, 추천: HOLD
+18:50:44 | TradingSystem | INFO | 🎯 096770 분석 완료: 점수 53.6436690647482, 추천 HOLD
+18:50:44 | TradingSystem | INFO | ❌ 096770 점수 부족: 53.6436690647482 < 60
+18:50:44 | TradingSystem | INFO | 🔬 138040 (종목138040) 분석 시작...
+18:50:52 | TradingSystem | INFO | ✅ 138040 분석 완료 - 점수: 54.1, 추천: HOLD
+18:50:52 | TradingSystem | INFO | 🎯 138040 분석 완료: 점수 54.08041899441341, 추천 HOLD
+18:50:52 | TradingSystem | INFO | ❌ 138040 점수 부족: 54.08041899441341 < 60
+18:50:52 | TradingSystem | INFO | 🔬 064760 (종목064760) 분석 시작...
+18:51:01 | TradingSystem | INFO | ✅ 064760 분석 완료 - 점수: 56.9, 추천: WEAK_BUY
+18:51:01 | TradingSystem | INFO | 🎯 064760 분석 완료: 점수 56.904364640883976, 추천 WEAK_BUY
+18:51:01 | TradingSystem | INFO | ❌ 064760 점수 부족: 56.904364640883976 < 60
+18:51:01 | TradingSystem | INFO | 🔬 052690 (종목052690) 분석 시작...
+18:51:10 | TradingSystem | INFO | ✅ 052690 분석 완료 - 점수: 48.5, 추천: HOLD
+18:51:10 | TradingSystem | INFO | 🎯 052690 분석 완료: 점수 48.4524427480916, 추천 HOLD
+18:51:10 | TradingSystem | INFO | ❌ 052690 점수 부족: 48.4524427480916 < 60
+18:51:10 | TradingSystem | INFO | 🔬 067160 (종목067160) 분석 시작...
+18:51:19 | TradingSystem | INFO | ✅ 067160 분석 완료 - 점수: 52.2, 추천: HOLD
+18:51:19 | TradingSystem | INFO | 🎯 067160 분석 완료: 점수 52.178717948717946, 추천 HOLD
+18:51:19 | TradingSystem | INFO | ❌ 067160 점수 부족: 52.178717948717946 < 60
+18:51:19 | TradingSystem | INFO | 🔬 003550 (종목003550) 분석 시작...
+18:51:28 | TradingSystem | INFO | ✅ 003550 분석 완료 - 점수: 68.4, 추천: BUY
+18:51:28 | TradingSystem | INFO | 🎯 003550 분석 완료: 점수 68.3612962962963, 추천 BUY
+18:51:28 | TradingSystem | INFO | ✅ 003550 신호 추가됨
+18:51:28 | TradingSystem | INFO | 🔬 069960 (종목069960) 분석 시작...
+18:51:37 | TradingSystem | INFO | ✅ 069960 분석 완료 - 점수: 70.5, 추천: BUY
+18:51:37 | TradingSystem | INFO | 🎯 069960 분석 완료: 점수 70.523, 추천 BUY
+18:51:37 | TradingSystem | INFO | ✅ 069960 신호 추가됨
+18:51:37 | TradingSystem | INFO | 🔬 035900 (종목035900) 분석 시작...
+18:51:46 | TradingSystem | INFO | ✅ 035900 분석 완료 - 점수: 67.7, 추천: BUY
+18:51:46 | TradingSystem | INFO | 🎯 035900 분석 완료: 점수 67.7, 추천 BUY
+18:51:46 | TradingSystem | INFO | ✅ 035900 신호 추가됨
+18:51:46 | TradingSystem | INFO | 🔬 030200 (종목030200) 분석 시작...
+18:51:55 | TradingSystem | INFO | ✅ 030200 분석 완료 - 점수: 75.6, 추천: BUY
+18:51:55 | TradingSystem | INFO | 🎯 030200 분석 완료: 점수 75.62878923766816, 추천 BUY
+18:51:55 | TradingSystem | INFO | ✅ 030200 신호 추가됨
+18:51:55 | TradingSystem | INFO | 🔬 192080 (종목192080) 분석 시작...
+18:52:04 | TradingSystem | INFO | ✅ 192080 분석 완료 - 점수: 61.8, 추천: WEAK_BUY
+18:52:04 | TradingSystem | INFO | 🎯 192080 분석 완료: 점수 61.840270270270274, 추천 WEAK_BUY
+18:52:04 | TradingSystem | INFO | ✅ 192080 신호 추가됨
+18:52:04 | TradingSystem | INFO | 🔬 241560 (종목241560) 분석 시작...
+18:52:13 | TradingSystem | INFO | ✅ 241560 분석 완료 - 점수: 61.2, 추천: WEAK_BUY
+18:52:13 | TradingSystem | INFO | 🎯 241560 분석 완료: 점수 61.165, 추천 WEAK_BUY
+18:52:13 | TradingSystem | INFO | ✅ 241560 신호 추가됨
+18:52:13 | TradingSystem | INFO | 🔬 047050 (종목047050) 분석 시작...
+18:52:22 | TradingSystem | INFO | ✅ 047050 분석 완료 - 점수: 59.3, 추천: WEAK_BUY
+18:52:22 | TradingSystem | INFO | 🎯 047050 분석 완료: 점수 59.26436305732484, 추천 WEAK_BUY
+18:52:22 | TradingSystem | INFO | ❌ 047050 점수 부족: 59.26436305732484 < 60
+18:52:22 | TradingSystem | INFO | 🔬 000210 (종목000210) 분석 시작...
+18:52:31 | TradingSystem | INFO | ✅ 000210 분석 완료 - 점수: 63.1, 추천: WEAK_BUY
+18:52:31 | TradingSystem | INFO | 🎯 000210 분석 완료: 점수 63.15, 추천 WEAK_BUY
+18:52:31 | TradingSystem | INFO | ✅ 000210 신호 추가됨
+18:52:31 | TradingSystem | INFO | 🔬 036460 (종목036460) 분석 시작...
+18:52:40 | TradingSystem | INFO | ✅ 036460 분석 완료 - 점수: 77.7, 추천: BUY
+18:52:40 | TradingSystem | INFO | 🎯 036460 분석 완료: 점수 77.72208333333333, 추천 BUY
+18:52:40 | TradingSystem | INFO | ✅ 036460 신호 추가됨
+18:52:40 | TradingSystem | INFO | 🔬 000990 (종목000990) 분석 시작...
+18:52:49 | TradingSystem | INFO | ✅ 000990 분석 완료 - 점수: 63.9, 추천: WEAK_BUY
+18:52:49 | TradingSystem | INFO | 🎯 000990 분석 완료: 점수 63.897192118226606, 추천 WEAK_BUY
+18:52:49 | TradingSystem | INFO | ✅ 000990 신호 추가됨
+18:52:49 | TradingSystem | INFO | 🔬 042000 (종목042000) 분석 시작...
+18:52:58 | TradingSystem | INFO | ✅ 042000 분석 완료 - 점수: 53.1, 추천: HOLD
+18:52:58 | TradingSystem | INFO | 🎯 042000 분석 완료: 점수 53.07979999999999, 추천 HOLD
+18:52:58 | TradingSystem | INFO | ❌ 042000 점수 부족: 53.07979999999999 < 60
+18:52:58 | TradingSystem | INFO | 🔬 120110 (종목120110) 분석 시작...
+18:53:07 | TradingSystem | INFO | ✅ 120110 분석 완료 - 점수: 73.3, 추천: BUY
+18:53:07 | TradingSystem | INFO | 🎯 120110 분석 완료: 점수 73.25703910614524, 추천 BUY
+18:53:07 | TradingSystem | INFO | ✅ 120110 신호 추가됨
+18:53:08 | TradingSystem | INFO | 🔬 457190 (종목457190) 분석 시작...
+18:53:17 | TradingSystem | INFO | ✅ 457190 분석 완료 - 점수: 60.3, 추천: WEAK_BUY
+18:53:17 | TradingSystem | INFO | 🎯 457190 분석 완료: 점수 60.33684210526316, 추천 WEAK_BUY
+18:53:17 | TradingSystem | INFO | ✅ 457190 신호 추가됨
+18:53:17 | TradingSystem | INFO | 🔬 071970 (종목071970) 분석 시작...
+18:53:26 | TradingSystem | INFO | ✅ 071970 분석 완료 - 점수: 47.8, 추천: HOLD
+18:53:26 | TradingSystem | INFO | 🎯 071970 분석 완료: 점수 47.82107142857142, 추천 HOLD
+18:53:26 | TradingSystem | INFO | ❌ 071970 점수 부족: 47.82107142857142 < 60
+18:53:26 | TradingSystem | INFO | 🔬 083650 (종목083650) 분석 시작...
+18:53:35 | TradingSystem | INFO | ✅ 083650 분석 완료 - 점수: 44.5, 추천: WEAK_SELL
+18:53:35 | TradingSystem | INFO | 🎯 083650 분석 완료: 점수 44.507708333333326, 추천 WEAK_SELL
+18:53:35 | TradingSystem | INFO | ❌ 083650 점수 부족: 44.507708333333326 < 60
+18:53:35 | TradingSystem | INFO | 🔬 015760 (종목015760) 분석 시작...
+18:53:44 | TradingSystem | INFO | ✅ 015760 분석 완료 - 점수: 82.1, 추천: BUY
+18:53:44 | TradingSystem | INFO | 🎯 015760 분석 완료: 점수 82.14483870967743, 추천 BUY
+18:53:44 | TradingSystem | INFO | ✅ 015760 신호 추가됨
+18:53:44 | TradingSystem | INFO | 🔬 004020 (종목004020) 분석 시작...
+18:53:53 | TradingSystem | INFO | ✅ 004020 분석 완료 - 점수: 71.0, 추천: BUY
+18:53:53 | TradingSystem | INFO | 🎯 004020 분석 완료: 점수 71.00386363636363, 추천 BUY
+18:53:53 | TradingSystem | INFO | ✅ 004020 신호 추가됨
+18:53:53 | TradingSystem | INFO | 🔬 204320 (종목204320) 분석 시작...
+18:54:02 | TradingSystem | INFO | ✅ 204320 분석 완료 - 점수: 60.3, 추천: WEAK_BUY
+18:54:02 | TradingSystem | INFO | 🎯 204320 분석 완료: 점수 60.315, 추천 WEAK_BUY
+18:54:02 | TradingSystem | INFO | ✅ 204320 신호 추가됨
+18:54:02 | TradingSystem | INFO | 🔬 005850 (종목005850) 분석 시작...
+18:54:11 | TradingSystem | INFO | ✅ 005850 분석 완료 - 점수: 55.5, 추천: WEAK_BUY
+18:54:11 | TradingSystem | INFO | 🎯 005850 분석 완료: 점수 55.46991124260355, 추천 WEAK_BUY
+18:54:11 | TradingSystem | INFO | ❌ 005850 점수 부족: 55.46991124260355 < 60
+18:54:11 | TradingSystem | INFO | 🔬 089030 (종목089030) 분석 시작...
+18:54:20 | TradingSystem | INFO | ✅ 089030 분석 완료 - 점수: 53.0, 추천: HOLD
+18:54:20 | TradingSystem | INFO | 🎯 089030 분석 완료: 점수 53.00935643564356, 추천 HOLD
+18:54:20 | TradingSystem | INFO | ❌ 089030 점수 부족: 53.00935643564356 < 60
+18:54:20 | TradingSystem | INFO | 🔬 001430 (종목001430) 분석 시작...
+18:54:29 | TradingSystem | INFO | ✅ 001430 분석 완료 - 점수: 59.0, 추천: WEAK_BUY
+18:54:29 | TradingSystem | INFO | 🎯 001430 분석 완료: 점수 58.967666666666666, 추천 WEAK_BUY
+18:54:29 | TradingSystem | INFO | ❌ 001430 점수 부족: 58.967666666666666 < 60
+18:54:29 | TradingSystem | INFO | 🔬 001450 (종목001450) 분석 시작...
+18:54:38 | TradingSystem | INFO | ✅ 001450 분석 완료 - 점수: 57.7, 추천: WEAK_BUY
+18:54:38 | TradingSystem | INFO | 🎯 001450 분석 완료: 점수 57.72884615384615, 추천 WEAK_BUY
+18:54:38 | TradingSystem | INFO | ❌ 001450 점수 부족: 57.72884615384615 < 60
+18:54:38 | TradingSystem | INFO | 🔬 003490 (종목003490) 분석 시작...
+18:54:47 | TradingSystem | INFO | ✅ 003490 분석 완료 - 점수: 75.1, 추천: BUY
+18:54:47 | TradingSystem | INFO | 🎯 003490 분석 완료: 점수 75.11118721461187, 추천 BUY
+18:54:47 | TradingSystem | INFO | ✅ 003490 신호 추가됨
+18:54:47 | TradingSystem | INFO | 🔬 007340 (종목007340) 분석 시작...
+18:54:56 | TradingSystem | INFO | ✅ 007340 분석 완료 - 점수: 62.7, 추천: WEAK_BUY
+18:54:56 | TradingSystem | INFO | 🎯 007340 분석 완료: 점수 62.74, 추천 WEAK_BUY
+18:54:56 | TradingSystem | INFO | ✅ 007340 신호 추가됨
+18:54:56 | TradingSystem | INFO | 🔬 294870 (종목294870) 분석 시작...
+18:55:05 | TradingSystem | INFO | ✅ 294870 분석 완료 - 점수: 57.4, 추천: WEAK_BUY
+18:55:05 | TradingSystem | INFO | 🎯 294870 분석 완료: 점수 57.37, 추천 WEAK_BUY
+18:55:05 | TradingSystem | INFO | ❌ 294870 점수 부족: 57.37 < 60
+18:55:05 | TradingSystem | INFO | 🔬 175330 (종목175330) 분석 시작...
+18:55:14 | TradingSystem | INFO | ✅ 175330 분석 완료 - 점수: 68.5, 추천: BUY
+18:55:14 | TradingSystem | INFO | 🎯 175330 분석 완료: 점수 68.48443113772456, 추천 BUY
+18:55:14 | TradingSystem | INFO | ✅ 175330 신호 추가됨
+18:55:14 | TradingSystem | INFO | 🔬 082640 (종목082640) 분석 시작...
+18:55:23 | TradingSystem | INFO | ✅ 082640 분석 완료 - 점수: 58.1, 추천: WEAK_BUY
+18:55:23 | TradingSystem | INFO | 🎯 082640 분석 완료: 점수 58.06, 추천 WEAK_BUY
+18:55:23 | TradingSystem | INFO | ❌ 082640 점수 부족: 58.06 < 60
+18:55:23 | TradingSystem | INFO | 🔬 330590 (종목330590) 분석 시작...
+18:55:32 | TradingSystem | INFO | ✅ 330590 분석 완료 - 점수: 68.5, 추천: BUY
+18:55:32 | TradingSystem | INFO | 🎯 330590 분석 완료: 점수 68.4961111111111, 추천 BUY
+18:55:32 | TradingSystem | INFO | ✅ 330590 신호 추가됨
+18:55:32 | TradingSystem | INFO | 💾 분석 결과 저장 중... (29개 결과)
+18:55:32 | TradingSystem | WARNING | ⚠️ DB 저장 실패: 'DatabaseManager' object has no attribute 'save_analysis_results'
+18:55:32 | TradingSystem | INFO | 📢 분석 결과 알림 발송 중... (10개 결과)
+18:55:32 | TradingSystem | INFO | ✅ 분석 결과 알림 발송 완료
+18:55:32 | TradingSystem | INFO | ✅ 시장 분석 완료: 29개 신호 발견
+19:45:12 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+19:45:14 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+19:45:14 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+19:45:14 | TradingSystem | INFO | ✅ 설정 로드 완료
+19:45:16 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: SmartKISCollector() takes no arguments
+19:45:16 | TradingSystem | ERROR | ❌ 핵심 컴포넌트 초기화 실패: SmartKISCollector() takes no arguments
+19:45:16 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: SmartKISCollector() takes no arguments
+19:47:24 | TradingSystem | INFO | ✅ 리소스 정리 완료
+19:47:27 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+19:47:29 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+19:47:29 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+19:47:29 | TradingSystem | INFO | ✅ 설정 로드 완료
+19:47:29 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+19:47:32 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+19:47:32 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+19:47:32 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+19:47:32 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+19:47:33 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+19:47:33 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+19:47:33 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+19:47:33 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+19:47:33 | TradingSystem | INFO |    필터링 결과: 50개 종목
+19:47:33 | TradingSystem | INFO | 🔬 329180 (종목329180) 분석 시작...
+19:47:42 | TradingSystem | INFO | ✅ 329180 분석 완료 - 점수: 55.6, 추천: WEAK_BUY
+19:47:42 | TradingSystem | INFO | 🎯 329180 분석 완료: 점수 55.589999999999996, 추천 WEAK_BUY
+19:47:42 | TradingSystem | INFO | ❌ 329180 점수 부족: 55.589999999999996 < 60
+19:47:42 | TradingSystem | INFO | 🔬 000660 (종목000660) 분석 시작...
+19:47:50 | TradingSystem | INFO | ✅ 000660 분석 완료 - 점수: 78.9, 추천: BUY
+19:47:50 | TradingSystem | INFO | 🎯 000660 분석 완료: 점수 78.90567980295566, 추천 BUY
+19:47:50 | TradingSystem | INFO | ✅ 000660 신호 추가됨
+19:47:50 | TradingSystem | INFO | 🔬 097950 (종목097950) 분석 시작...
+19:47:58 | TradingSystem | INFO | ✅ 097950 분석 완료 - 점수: 58.6, 추천: WEAK_BUY
+19:47:58 | TradingSystem | INFO | 🎯 097950 분석 완료: 점수 58.62612716763005, 추천 WEAK_BUY
+19:47:58 | TradingSystem | INFO | ❌ 097950 점수 부족: 58.62612716763005 < 60
+19:47:59 | TradingSystem | INFO | 🔬 086900 (종목086900) 분석 시작...
+19:48:07 | TradingSystem | INFO | ✅ 086900 분석 완료 - 점수: 61.3, 추천: WEAK_BUY
+19:48:07 | TradingSystem | INFO | 🎯 086900 분석 완료: 점수 61.342851562499995, 추천 WEAK_BUY
+19:48:07 | TradingSystem | INFO | ✅ 086900 신호 추가됨
+19:48:08 | TradingSystem | INFO | 🔬 402340 (종목402340) 분석 시작...
+19:48:16 | TradingSystem | INFO | ✅ 402340 분석 완료 - 점수: 71.4, 추천: BUY
+19:48:16 | TradingSystem | INFO | 🎯 402340 분석 완료: 점수 71.38752252252252, 추천 BUY
+19:48:16 | TradingSystem | INFO | ✅ 402340 신호 추가됨
+19:48:16 | TradingSystem | INFO | 🔬 011070 (종목011070) 분석 시작...
+19:48:25 | TradingSystem | INFO | ✅ 011070 분석 완료 - 점수: 66.1, 추천: BUY
+19:48:25 | TradingSystem | INFO | 🎯 011070 분석 완료: 점수 66.13499999999999, 추천 BUY
+19:48:25 | TradingSystem | INFO | ✅ 011070 신호 추가됨
+19:48:25 | TradingSystem | INFO | 🔬 000250 (종목000250) 분석 시작...
+19:48:33 | TradingSystem | INFO | ✅ 000250 분석 완료 - 점수: 65.5, 추천: BUY
+19:48:33 | TradingSystem | INFO | 🎯 000250 분석 완료: 점수 65.52737373737374, 추천 BUY
+19:48:33 | TradingSystem | INFO | ✅ 000250 신호 추가됨
+19:48:34 | TradingSystem | INFO | 🔬 484870 (종목484870) 분석 시작...
+19:48:42 | TradingSystem | INFO | ✅ 484870 분석 완료 - 점수: 47.8, 추천: HOLD
+19:48:42 | TradingSystem | INFO | 🎯 484870 분석 완료: 점수 47.75482758620689, 추천 HOLD
+19:48:42 | TradingSystem | INFO | ❌ 484870 점수 부족: 47.75482758620689 < 60
+19:48:42 | TradingSystem | INFO | 🔬 041510 (종목041510) 분석 시작...
+19:48:50 | TradingSystem | INFO | ✅ 041510 분석 완료 - 점수: 62.5, 추천: WEAK_BUY
+19:48:50 | TradingSystem | INFO | 🎯 041510 분석 완료: 점수 62.515757575757576, 추천 WEAK_BUY
+19:48:50 | TradingSystem | INFO | ✅ 041510 신호 추가됨
+19:48:51 | TradingSystem | INFO | 🔬 033780 (종목033780) 분석 시작...
+19:48:59 | TradingSystem | INFO | ✅ 033780 분석 완료 - 점수: 77.5, 추천: BUY
+19:48:59 | TradingSystem | INFO | 🎯 033780 분석 완료: 점수 77.51943786982248, 추천 BUY
+19:48:59 | TradingSystem | INFO | ✅ 033780 신호 추가됨
+19:48:59 | TradingSystem | INFO | 🔬 005830 (종목005830) 분석 시작...
+19:49:07 | TradingSystem | INFO | ✅ 005830 분석 완료 - 점수: 64.1, 추천: WEAK_BUY
+19:49:07 | TradingSystem | INFO | 🎯 005830 분석 완료: 점수 64.07092105263158, 추천 WEAK_BUY
+19:49:07 | TradingSystem | INFO | ✅ 005830 신호 추가됨
+19:49:07 | TradingSystem | INFO | 🔬 267250 (종목267250) 분석 시작...
+19:49:15 | TradingSystem | INFO | ✅ 267250 분석 완료 - 점수: 54.4, 추천: HOLD
+19:49:15 | TradingSystem | INFO | 🎯 267250 분석 완료: 점수 54.374204545454546, 추천 HOLD
+19:49:15 | TradingSystem | INFO | ❌ 267250 점수 부족: 54.374204545454546 < 60
+19:49:15 | TradingSystem | INFO | 🔬 141080 (종목141080) 분석 시작...
+19:49:23 | TradingSystem | INFO | ✅ 141080 분석 완료 - 점수: 60.0, 추천: WEAK_BUY
+19:49:23 | TradingSystem | INFO | 🎯 141080 분석 완료: 점수 59.97108108108108, 추천 WEAK_BUY
+19:49:23 | TradingSystem | INFO | ❌ 141080 점수 부족: 59.97108108108108 < 60
+19:49:23 | TradingSystem | INFO | 🔬 180640 (종목180640) 분석 시작...
+19:49:32 | TradingSystem | INFO | ✅ 180640 분석 완료 - 점수: 68.3, 추천: BUY
+19:49:32 | TradingSystem | INFO | 🎯 180640 분석 완료: 점수 68.28092391304347, 추천 BUY
+19:49:32 | TradingSystem | INFO | ✅ 180640 신호 추가됨
+19:49:32 | TradingSystem | INFO | 🔬 011780 (종목011780) 분석 시작...
+19:49:41 | TradingSystem | INFO | ✅ 011780 분석 완료 - 점수: 73.8, 추천: BUY
+19:49:41 | TradingSystem | INFO | 🎯 011780 분석 완료: 점수 73.81857142857143, 추천 BUY
+19:49:41 | TradingSystem | INFO | ✅ 011780 신호 추가됨
+19:49:41 | TradingSystem | INFO | 🔬 001720 (종목001720) 분석 시작...
+19:49:49 | TradingSystem | INFO | ✅ 001720 분석 완료 - 점수: 64.8, 추천: WEAK_BUY
+19:49:49 | TradingSystem | INFO | 🎯 001720 분석 완료: 점수 64.82903508771929, 추천 WEAK_BUY
+19:49:49 | TradingSystem | INFO | ✅ 001720 신호 추가됨
+19:49:49 | TradingSystem | INFO | 🔬 271560 (종목271560) 분석 시작...
+19:49:57 | TradingSystem | INFO | ✅ 271560 분석 완료 - 점수: 59.6, 추천: WEAK_BUY
+19:49:57 | TradingSystem | INFO | 🎯 271560 분석 완료: 점수 59.644999999999996, 추천 WEAK_BUY
+19:49:57 | TradingSystem | INFO | ❌ 271560 점수 부족: 59.644999999999996 < 60
+19:49:57 | TradingSystem | INFO | 🔬 096770 (종목096770) 분석 시작...
+19:50:06 | TradingSystem | INFO | ✅ 096770 분석 완료 - 점수: 55.7, 추천: WEAK_BUY
+19:50:06 | TradingSystem | INFO | 🎯 096770 분석 완료: 점수 55.6586690647482, 추천 WEAK_BUY
+19:50:06 | TradingSystem | INFO | ❌ 096770 점수 부족: 55.6586690647482 < 60
+19:50:06 | TradingSystem | INFO | 🔬 138040 (종목138040) 분석 시작...
+19:50:14 | TradingSystem | INFO | ✅ 138040 분석 완료 - 점수: 54.6, 추천: HOLD
+19:50:14 | TradingSystem | INFO | 🎯 138040 분석 완료: 점수 54.552499999999995, 추천 HOLD
+19:50:14 | TradingSystem | INFO | ❌ 138040 점수 부족: 54.552499999999995 < 60
+19:50:14 | TradingSystem | INFO | 🔬 064760 (종목064760) 분석 시작...
+19:50:23 | TradingSystem | INFO | ✅ 064760 분석 완료 - 점수: 56.5, 추천: WEAK_BUY
+19:50:23 | TradingSystem | INFO | 🎯 064760 분석 완료: 점수 56.529364640883976, 추천 WEAK_BUY
+19:50:23 | TradingSystem | INFO | ❌ 064760 점수 부족: 56.529364640883976 < 60
+19:50:23 | TradingSystem | INFO | 🔬 052690 (종목052690) 분석 시작...
+19:50:31 | TradingSystem | INFO | ✅ 052690 분석 완료 - 점수: 47.7, 추천: HOLD
+19:50:31 | TradingSystem | INFO | 🎯 052690 분석 완료: 점수 47.6724427480916, 추천 HOLD
+19:50:31 | TradingSystem | INFO | ❌ 052690 점수 부족: 47.6724427480916 < 60
+19:50:31 | TradingSystem | INFO | 🔬 067160 (종목067160) 분석 시작...
+19:50:40 | TradingSystem | INFO | ✅ 067160 분석 완료 - 점수: 53.4, 추천: HOLD
+19:50:40 | TradingSystem | INFO | 🎯 067160 분석 완료: 점수 53.43871794871795, 추천 HOLD
+19:50:40 | TradingSystem | INFO | ❌ 067160 점수 부족: 53.43871794871795 < 60
+19:50:40 | TradingSystem | INFO | 🔬 003550 (종목003550) 분석 시작...
+19:50:49 | TradingSystem | INFO | ✅ 003550 분석 완료 - 점수: 67.4, 추천: BUY
+19:50:49 | TradingSystem | INFO | 🎯 003550 분석 완료: 점수 67.4162962962963, 추천 BUY
+19:50:49 | TradingSystem | INFO | ✅ 003550 신호 추가됨
+19:50:49 | TradingSystem | INFO | 🔬 069960 (종목069960) 분석 시작...
+19:50:58 | TradingSystem | INFO | ✅ 069960 분석 완료 - 점수: 68.2, 추천: BUY
+19:50:58 | TradingSystem | INFO | 🎯 069960 분석 완료: 점수 68.15299999999999, 추천 BUY
+19:50:58 | TradingSystem | INFO | ✅ 069960 신호 추가됨
+19:50:58 | TradingSystem | INFO | 🔬 035900 (종목035900) 분석 시작...
+19:51:07 | TradingSystem | INFO | ✅ 035900 분석 완료 - 점수: 68.0, 추천: BUY
+19:51:07 | TradingSystem | INFO | 🎯 035900 분석 완료: 점수 67.985, 추천 BUY
+19:51:07 | TradingSystem | INFO | ✅ 035900 신호 추가됨
+19:51:07 | TradingSystem | INFO | 🔬 030200 (종목030200) 분석 시작...
+19:51:15 | TradingSystem | INFO | ✅ 030200 분석 완료 - 점수: 77.4, 추천: BUY
+19:51:15 | TradingSystem | INFO | 🎯 030200 분석 완료: 점수 77.40378923766815, 추천 BUY
+19:51:15 | TradingSystem | INFO | ✅ 030200 신호 추가됨
+19:51:15 | TradingSystem | INFO | 🔬 192080 (종목192080) 분석 시작...
+19:51:24 | TradingSystem | INFO | ✅ 192080 분석 완료 - 점수: 61.3, 추천: WEAK_BUY
+19:51:24 | TradingSystem | INFO | 🎯 192080 분석 완료: 점수 61.270270270270274, 추천 WEAK_BUY
+19:51:24 | TradingSystem | INFO | ✅ 192080 신호 추가됨
+19:51:24 | TradingSystem | INFO | 🔬 241560 (종목241560) 분석 시작...
+19:51:33 | TradingSystem | INFO | ✅ 241560 분석 완료 - 점수: 56.9, 추천: WEAK_BUY
+19:51:33 | TradingSystem | INFO | 🎯 241560 분석 완료: 점수 56.87, 추천 WEAK_BUY
+19:51:33 | TradingSystem | INFO | ❌ 241560 점수 부족: 56.87 < 60
+19:51:33 | TradingSystem | INFO | 🔬 047050 (종목047050) 분석 시작...
+19:51:42 | TradingSystem | INFO | ✅ 047050 분석 완료 - 점수: 61.1, 추천: WEAK_BUY
+19:51:42 | TradingSystem | INFO | 🎯 047050 분석 완료: 점수 61.10936305732484, 추천 WEAK_BUY
+19:51:42 | TradingSystem | INFO | ✅ 047050 신호 추가됨
+19:51:42 | TradingSystem | INFO | 🔬 000210 (종목000210) 분석 시작...
+19:51:51 | TradingSystem | INFO | ✅ 000210 분석 완료 - 점수: 66.3, 추천: BUY
+19:51:51 | TradingSystem | INFO | 🎯 000210 분석 완료: 점수 66.28999999999999, 추천 BUY
+19:51:51 | TradingSystem | INFO | ✅ 000210 신호 추가됨
+19:51:51 | TradingSystem | INFO | 🔬 036460 (종목036460) 분석 시작...
+19:52:00 | TradingSystem | INFO | ✅ 036460 분석 완료 - 점수: 77.5, 추천: BUY
+19:52:00 | TradingSystem | INFO | 🎯 036460 분석 완료: 점수 77.49708333333334, 추천 BUY
+19:52:00 | TradingSystem | INFO | ✅ 036460 신호 추가됨
+19:52:00 | TradingSystem | INFO | 🔬 000990 (종목000990) 분석 시작...
+19:52:09 | TradingSystem | INFO | ✅ 000990 분석 완료 - 점수: 61.9, 추천: WEAK_BUY
+19:52:09 | TradingSystem | INFO | 🎯 000990 분석 완료: 점수 61.9471921182266, 추천 WEAK_BUY
+19:52:09 | TradingSystem | INFO | ✅ 000990 신호 추가됨
+19:52:09 | TradingSystem | INFO | 🔬 042000 (종목042000) 분석 시작...
+19:52:18 | TradingSystem | INFO | ✅ 042000 분석 완료 - 점수: 49.9, 추천: HOLD
+19:52:18 | TradingSystem | INFO | 🎯 042000 분석 완료: 점수 49.9098, 추천 HOLD
+19:52:18 | TradingSystem | INFO | ❌ 042000 점수 부족: 49.9098 < 60
+19:52:19 | TradingSystem | INFO | 🔬 120110 (종목120110) 분석 시작...
+19:52:27 | TradingSystem | INFO | ✅ 120110 분석 완료 - 점수: 70.4, 추천: BUY
+19:52:27 | TradingSystem | INFO | 🎯 120110 분석 완료: 점수 70.35703910614525, 추천 BUY
+19:52:27 | TradingSystem | INFO | ✅ 120110 신호 추가됨
+19:52:27 | TradingSystem | INFO | 🔬 457190 (종목457190) 분석 시작...
+19:52:36 | TradingSystem | INFO | ✅ 457190 분석 완료 - 점수: 60.2, 추천: WEAK_BUY
+19:52:36 | TradingSystem | INFO | 🎯 457190 분석 완료: 점수 60.18684210526316, 추천 WEAK_BUY
+19:52:36 | TradingSystem | INFO | ✅ 457190 신호 추가됨
+19:52:36 | TradingSystem | INFO | 🔬 071970 (종목071970) 분석 시작...
+19:52:45 | TradingSystem | INFO | ✅ 071970 분석 완료 - 점수: 49.5, 추천: HOLD
+19:52:45 | TradingSystem | INFO | 🎯 071970 분석 완료: 점수 49.521071428571425, 추천 HOLD
+19:52:45 | TradingSystem | INFO | ❌ 071970 점수 부족: 49.521071428571425 < 60
+19:52:45 | TradingSystem | INFO | 🔬 083650 (종목083650) 분석 시작...
+19:52:55 | TradingSystem | INFO | ✅ 083650 분석 완료 - 점수: 47.2, 추천: HOLD
+19:52:55 | TradingSystem | INFO | 🎯 083650 분석 완료: 점수 47.17770833333333, 추천 HOLD
+19:52:55 | TradingSystem | INFO | ❌ 083650 점수 부족: 47.17770833333333 < 60
+19:52:55 | TradingSystem | INFO | 🔬 015760 (종목015760) 분석 시작...
+19:53:03 | TradingSystem | INFO | ✅ 015760 분석 완료 - 점수: 81.3, 추천: BUY
+19:53:03 | TradingSystem | INFO | 🎯 015760 분석 완료: 점수 81.31483870967742, 추천 BUY
+19:53:03 | TradingSystem | INFO | ✅ 015760 신호 추가됨
+19:53:04 | TradingSystem | INFO | 🔬 004020 (종목004020) 분석 시작...
+19:53:12 | TradingSystem | INFO | ✅ 004020 분석 완료 - 점수: 69.2, 추천: BUY
+19:53:12 | TradingSystem | INFO | 🎯 004020 분석 완료: 점수 69.24386363636364, 추천 BUY
+19:53:12 | TradingSystem | INFO | ✅ 004020 신호 추가됨
+19:53:12 | TradingSystem | INFO | 🔬 204320 (종목204320) 분석 시작...
+19:53:21 | TradingSystem | INFO | ✅ 204320 분석 완료 - 점수: 60.7, 추천: WEAK_BUY
+19:53:21 | TradingSystem | INFO | 🎯 204320 분석 완료: 점수 60.66, 추천 WEAK_BUY
+19:53:21 | TradingSystem | INFO | ✅ 204320 신호 추가됨
+19:53:21 | TradingSystem | INFO | 🔬 005850 (종목005850) 분석 시작...
+19:53:30 | TradingSystem | INFO | ✅ 005850 분석 완료 - 점수: 55.5, 추천: WEAK_BUY
+19:53:30 | TradingSystem | INFO | 🎯 005850 분석 완료: 점수 55.544911242603554, 추천 WEAK_BUY
+19:53:30 | TradingSystem | INFO | ❌ 005850 점수 부족: 55.544911242603554 < 60
+19:53:30 | TradingSystem | INFO | 🔬 089030 (종목089030) 분석 시작...
+19:53:39 | TradingSystem | INFO | ✅ 089030 분석 완료 - 점수: 51.9, 추천: HOLD
+19:53:39 | TradingSystem | INFO | 🎯 089030 분석 완료: 점수 51.91, 추천 HOLD
+19:53:39 | TradingSystem | INFO | ❌ 089030 점수 부족: 51.91 < 60
+19:53:39 | TradingSystem | INFO | 🔬 001430 (종목001430) 분석 시작...
+19:53:48 | TradingSystem | INFO | ✅ 001430 분석 완료 - 점수: 59.0, 추천: WEAK_BUY
+19:53:48 | TradingSystem | INFO | 🎯 001430 분석 완료: 점수 58.967666666666666, 추천 WEAK_BUY
+19:53:48 | TradingSystem | INFO | ❌ 001430 점수 부족: 58.967666666666666 < 60
+19:53:49 | TradingSystem | INFO | 🔬 001450 (종목001450) 분석 시작...
+19:53:58 | TradingSystem | INFO | ✅ 001450 분석 완료 - 점수: 61.2, 추천: WEAK_BUY
+19:53:58 | TradingSystem | INFO | 🎯 001450 분석 완료: 점수 61.22884615384615, 추천 WEAK_BUY
+19:53:58 | TradingSystem | INFO | ✅ 001450 신호 추가됨
+19:53:58 | TradingSystem | INFO | 🔬 003490 (종목003490) 분석 시작...
+19:54:06 | TradingSystem | INFO | ✅ 003490 분석 완료 - 점수: 73.2, 추천: BUY
+19:54:06 | TradingSystem | INFO | 🎯 003490 분석 완료: 점수 73.24618721461187, 추천 BUY
+19:54:06 | TradingSystem | INFO | ✅ 003490 신호 추가됨
+19:54:06 | TradingSystem | INFO | 🔬 007340 (종목007340) 분석 시작...
+19:54:15 | TradingSystem | INFO | ✅ 007340 분석 완료 - 점수: 63.2, 추천: WEAK_BUY
+19:54:15 | TradingSystem | INFO | 🎯 007340 분석 완료: 점수 63.24, 추천 WEAK_BUY
+19:54:15 | TradingSystem | INFO | ✅ 007340 신호 추가됨
+19:54:15 | TradingSystem | INFO | 🔬 294870 (종목294870) 분석 시작...
+19:54:24 | TradingSystem | INFO | ✅ 294870 분석 완료 - 점수: 56.4, 추천: WEAK_BUY
+19:54:24 | TradingSystem | INFO | 🎯 294870 분석 완료: 점수 56.42, 추천 WEAK_BUY
+19:54:24 | TradingSystem | INFO | ❌ 294870 점수 부족: 56.42 < 60
+19:54:24 | TradingSystem | INFO | 🔬 175330 (종목175330) 분석 시작...
+19:54:33 | TradingSystem | INFO | ✅ 175330 분석 완료 - 점수: 70.7, 추천: BUY
+19:54:33 | TradingSystem | INFO | 🎯 175330 분석 완료: 점수 70.71943113772454, 추천 BUY
+19:54:33 | TradingSystem | INFO | ✅ 175330 신호 추가됨
+19:54:33 | TradingSystem | INFO | 🔬 082640 (종목082640) 분석 시작...
+19:54:42 | TradingSystem | INFO | ✅ 082640 분석 완료 - 점수: 57.5, 추천: WEAK_BUY
+19:54:42 | TradingSystem | INFO | 🎯 082640 분석 완료: 점수 57.49, 추천 WEAK_BUY
+19:54:42 | TradingSystem | INFO | ❌ 082640 점수 부족: 57.49 < 60
+19:54:42 | TradingSystem | INFO | 🔬 330590 (종목330590) 분석 시작...
+19:54:50 | TradingSystem | INFO | ✅ 330590 분석 완료 - 점수: 68.5, 추천: BUY
+19:54:50 | TradingSystem | INFO | 🎯 330590 분석 완료: 점수 68.4961111111111, 추천 BUY
+19:54:50 | TradingSystem | INFO | ✅ 330590 신호 추가됨
+19:54:50 | TradingSystem | INFO | 💾 분석 결과 저장 중... (30개 결과)
+19:54:50 | TradingSystem | WARNING | ⚠️ DB 저장 실패: 'DatabaseManager' object has no attribute 'save_analysis_results'
+19:54:50 | TradingSystem | INFO | 📢 분석 결과 알림 발송 중... (10개 결과)
+19:54:50 | TradingSystem | INFO | ✅ 분석 결과 알림 발송 완료
+19:54:50 | TradingSystem | INFO | ✅ 시장 분석 완료: 30개 신호 발견
+19:55:59 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+19:56:26 | TradingSystem | INFO |    필터링 결과: 51개 종목
+19:56:26 | TradingSystem | INFO | 🔬 267260 (종목267260) 분석 시작...
+19:56:35 | TradingSystem | INFO | ✅ 267260 분석 완료 - 점수: 61.3, 추천: WEAK_BUY
+19:56:35 | TradingSystem | INFO | 🎯 267260 분석 완료: 점수 61.262941176470584, 추천 WEAK_BUY
+19:56:35 | TradingSystem | INFO | ✅ 267260 신호 추가됨
+19:56:35 | TradingSystem | INFO | 🔬 329180 (종목329180) 분석 시작...
+19:56:41 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+19:56:41 | TradingSystem | INFO | ✅ 리소스 정리 완료
+19:58:13 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+19:58:16 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+19:58:16 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+19:58:16 | TradingSystem | INFO | ✅ 설정 로드 완료
+19:58:16 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+19:58:17 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+19:58:17 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+19:58:17 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+19:58:17 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+19:58:17 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+19:58:17 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+19:58:17 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+19:58:17 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+19:58:17 | TradingSystem | INFO |    필터링 결과: 50개 종목
+19:58:17 | TradingSystem | INFO | 🔬 267260 (종목267260) 분석 시작...
+19:58:25 | TradingSystem | INFO | ✅ 267260 분석 완료 - 점수: 60.7, 추천: WEAK_BUY
+19:58:25 | TradingSystem | INFO | 🎯 267260 분석 완료: 점수 60.66294117647059, 추천 WEAK_BUY
+19:58:25 | TradingSystem | INFO | ✅ 267260 신호 추가됨
+19:58:26 | TradingSystem | INFO | 🔬 329180 (종목329180) 분석 시작...
+19:58:33 | TradingSystem | INFO | ✅ 329180 분석 완료 - 점수: 55.5, 추천: WEAK_BUY
+19:58:33 | TradingSystem | INFO | 🎯 329180 분석 완료: 점수 55.53, 추천 WEAK_BUY
+19:58:33 | TradingSystem | INFO | ❌ 329180 점수 부족: 55.53 < 60
+19:58:34 | TradingSystem | INFO | 🔬 373220 (종목373220) 분석 시작...
+19:58:41 | TradingSystem | INFO | ✅ 373220 분석 완료 - 점수: 66.1, 추천: BUY
+19:58:41 | TradingSystem | INFO | 🎯 373220 분석 완료: 점수 66.12829004329004, 추천 BUY
+19:58:41 | TradingSystem | INFO | ✅ 373220 신호 추가됨
+19:58:42 | TradingSystem | INFO | 🔬 277810 (종목277810) 분석 시작...
+19:58:50 | TradingSystem | INFO | ✅ 277810 분석 완료 - 점수: 60.2, 추천: WEAK_BUY
+19:58:50 | TradingSystem | INFO | 🎯 277810 분석 완료: 점수 60.195064935064934, 추천 WEAK_BUY
+19:58:50 | TradingSystem | INFO | ✅ 277810 신호 추가됨
+19:58:50 | TradingSystem | INFO | 🔬 034730 (종목034730) 분석 시작...
+19:58:58 | TradingSystem | INFO | ✅ 034730 분석 완료 - 점수: 62.5, 추천: WEAK_BUY
+19:58:58 | TradingSystem | INFO | 🎯 034730 분석 완료: 점수 62.50178571428572, 추천 WEAK_BUY
+19:58:58 | TradingSystem | INFO | ✅ 034730 신호 추가됨
+19:58:59 | TradingSystem | INFO | 🔬 006260 (종목006260) 분석 시작...
+19:59:07 | TradingSystem | INFO | ✅ 006260 분석 완료 - 점수: 64.3, 추천: WEAK_BUY
+19:59:07 | TradingSystem | INFO | 🎯 006260 분석 완료: 점수 64.32889570552148, 추천 WEAK_BUY
+19:59:07 | TradingSystem | INFO | ✅ 006260 신호 추가됨
+19:59:07 | TradingSystem | INFO | 🔬 010620 (종목010620) 분석 시작...
+19:59:16 | TradingSystem | INFO | ✅ 010620 분석 완료 - 점수: 47.2, 추천: HOLD
+19:59:16 | TradingSystem | INFO | 🎯 010620 분석 완료: 점수 47.18879999999999, 추천 HOLD
+19:59:16 | TradingSystem | INFO | ❌ 010620 점수 부족: 47.18879999999999 < 60
+19:59:16 | TradingSystem | INFO | 🔬 402340 (종목402340) 분석 시작...
+19:59:24 | TradingSystem | INFO | ✅ 402340 분석 완료 - 점수: 67.9, 추천: BUY
+19:59:24 | TradingSystem | INFO | 🎯 402340 분석 완료: 점수 67.93252252252252, 추천 BUY
+19:59:24 | TradingSystem | INFO | ✅ 402340 신호 추가됨
+19:59:24 | TradingSystem | INFO | 🔬 011070 (종목011070) 분석 시작...
+19:59:32 | TradingSystem | INFO | ✅ 011070 분석 완료 - 점수: 65.0, 추천: WEAK_BUY
+19:59:32 | TradingSystem | INFO | 🎯 011070 분석 완료: 점수 64.99000000000001, 추천 WEAK_BUY
+19:59:32 | TradingSystem | INFO | ✅ 011070 신호 추가됨
+19:59:32 | TradingSystem | INFO | 🔬 086280 (종목086280) 분석 시작...
+19:59:41 | TradingSystem | INFO | ✅ 086280 분석 완료 - 점수: 73.6, 추천: BUY
+19:59:41 | TradingSystem | INFO | 🎯 086280 분석 완료: 점수 73.63915458937198, 추천 BUY
+19:59:41 | TradingSystem | INFO | ✅ 086280 신호 추가됨
+19:59:41 | TradingSystem | INFO | 🔬 041510 (종목041510) 분석 시작...
+19:59:49 | TradingSystem | INFO | ✅ 041510 분석 완료 - 점수: 61.1, 추천: WEAK_BUY
+19:59:49 | TradingSystem | INFO | 🎯 041510 분석 완료: 점수 61.11575757575758, 추천 WEAK_BUY
+19:59:49 | TradingSystem | INFO | ✅ 041510 신호 추가됨
+19:59:49 | TradingSystem | INFO | 🔬 033780 (종목033780) 분석 시작...
+19:59:57 | TradingSystem | INFO | ✅ 033780 분석 완료 - 점수: 77.0, 추천: BUY
+19:59:57 | TradingSystem | INFO | 🎯 033780 분석 완료: 점수 77.01943786982248, 추천 BUY
+19:59:57 | TradingSystem | INFO | ✅ 033780 신호 추가됨
+19:59:57 | TradingSystem | INFO | 🔬 141080 (종목141080) 분석 시작...
+20:00:06 | TradingSystem | INFO | ✅ 141080 분석 완료 - 점수: 60.6, 추천: WEAK_BUY
+20:00:06 | TradingSystem | INFO | 🎯 141080 분석 완료: 점수 60.61608108108108, 추천 WEAK_BUY
+20:00:06 | TradingSystem | INFO | ✅ 141080 신호 추가됨
+20:00:06 | TradingSystem | INFO | 🔬 064760 (종목064760) 분석 시작...
+20:00:14 | TradingSystem | INFO | ✅ 064760 분석 완료 - 점수: 56.4, 추천: WEAK_BUY
+20:00:14 | TradingSystem | INFO | 🎯 064760 분석 완료: 점수 56.37936464088398, 추천 WEAK_BUY
+20:00:14 | TradingSystem | INFO | ❌ 064760 점수 부족: 56.37936464088398 < 60
+20:00:15 | TradingSystem | INFO | 🔬 021240 (종목021240) 분석 시작...
+20:00:23 | TradingSystem | INFO | ✅ 021240 분석 완료 - 점수: 62.0, 추천: WEAK_BUY
+20:00:23 | TradingSystem | INFO | 🎯 021240 분석 완료: 점수 62.015352112676055, 추천 WEAK_BUY
+20:00:23 | TradingSystem | INFO | ✅ 021240 신호 추가됨
+20:00:23 | TradingSystem | INFO | 🔬 000120 (종목000120) 분석 시작...
+20:00:32 | TradingSystem | INFO | ✅ 000120 분석 완료 - 점수: 73.2, 추천: BUY
+20:00:32 | TradingSystem | INFO | 🎯 000120 분석 완료: 점수 73.20410256410256, 추천 BUY
+20:00:32 | TradingSystem | INFO | ✅ 000120 신호 추가됨
+20:00:32 | TradingSystem | INFO | 🔬 067160 (종목067160) 분석 시작...
+20:00:41 | TradingSystem | INFO | ✅ 067160 분석 완료 - 점수: 53.6, 추천: HOLD
+20:00:41 | TradingSystem | INFO | 🎯 067160 분석 완료: 점수 53.61871794871794, 추천 HOLD
+20:00:41 | TradingSystem | INFO | ❌ 067160 점수 부족: 53.61871794871794 < 60
+20:00:42 | TradingSystem | INFO | 🔬 000880 (종목000880) 분석 시작...
+20:00:50 | TradingSystem | INFO | ✅ 000880 분석 완료 - 점수: 58.1, 추천: WEAK_BUY
+20:00:50 | TradingSystem | INFO | 🎯 000880 분석 완료: 점수 58.10310344827586, 추천 WEAK_BUY
+20:00:50 | TradingSystem | INFO | ❌ 000880 점수 부족: 58.10310344827586 < 60
+20:00:50 | TradingSystem | INFO | 🔬 003550 (종목003550) 분석 시작...
+20:00:59 | TradingSystem | INFO | ✅ 003550 분석 완료 - 점수: 70.1, 추천: BUY
+20:00:59 | TradingSystem | INFO | 🎯 003550 분석 완료: 점수 70.0862962962963, 추천 BUY
+20:00:59 | TradingSystem | INFO | ✅ 003550 신호 추가됨
+20:00:59 | TradingSystem | INFO | 🔬 064400 (종목064400) 분석 시작...
+20:01:07 | TradingSystem | INFO | ✅ 064400 분석 완료 - 점수: 72.8, 추천: BUY
+20:01:07 | TradingSystem | INFO | 🎯 064400 분석 완료: 점수 72.76366863905326, 추천 BUY
+20:01:07 | TradingSystem | INFO | ✅ 064400 신호 추가됨
+20:01:07 | TradingSystem | INFO | 🔬 066570 (종목066570) 분석 시작...
+20:01:16 | TradingSystem | INFO | ✅ 066570 분석 완료 - 점수: 71.8, 추천: BUY
+20:01:16 | TradingSystem | INFO | 🎯 066570 분석 완료: 점수 71.83317073170733, 추천 BUY
+20:01:16 | TradingSystem | INFO | ✅ 066570 신호 추가됨
+20:01:16 | TradingSystem | INFO | 🔬 108320 (종목108320) 분석 시작...
+20:01:25 | TradingSystem | INFO | ✅ 108320 분석 완료 - 점수: 69.7, 추천: BUY
+20:01:25 | TradingSystem | INFO | 🎯 108320 분석 완료: 점수 69.70654761904763, 추천 BUY
+20:01:25 | TradingSystem | INFO | ✅ 108320 신호 추가됨
+20:01:25 | TradingSystem | INFO | 🔬 065350 (종목065350) 분석 시작...
+20:01:34 | TradingSystem | INFO | ✅ 065350 분석 완료 - 점수: 60.2, 추천: WEAK_BUY
+20:01:34 | TradingSystem | INFO | 🎯 065350 분석 완료: 점수 60.209650349650346, 추천 WEAK_BUY
+20:01:34 | TradingSystem | INFO | ✅ 065350 신호 추가됨
+20:01:34 | TradingSystem | INFO | 🔬 192080 (종목192080) 분석 시작...
+20:01:42 | TradingSystem | INFO | ✅ 192080 분석 완료 - 점수: 58.6, 추천: WEAK_BUY
+20:01:42 | TradingSystem | INFO | 🎯 192080 분석 완료: 점수 58.59876811594203, 추천 WEAK_BUY
+20:01:42 | TradingSystem | INFO | ❌ 192080 점수 부족: 58.59876811594203 < 60
+20:01:42 | TradingSystem | INFO | 🔬 051600 (종목051600) 분석 시작...
+20:01:48 | TradingSystem | INFO | ✅ 051600 분석 완료 - 점수: 52.5, 추천: HOLD
+20:01:48 | TradingSystem | INFO | 🎯 051600 분석 완료: 점수 52.54, 추천 HOLD
+20:01:48 | TradingSystem | INFO | ❌ 051600 점수 부족: 52.54 < 60
+20:01:48 | TradingSystem | INFO | 🔬 017670 (종목017670) 분석 시작...
+20:01:54 | TradingSystem | INFO | ✅ 017670 분석 완료 - 점수: 55.8, 추천: WEAK_BUY
+20:01:54 | TradingSystem | INFO | 🎯 017670 분석 완료: 점수 55.765, 추천 WEAK_BUY
+20:01:54 | TradingSystem | INFO | ❌ 017670 점수 부족: 55.765 < 60
+20:01:54 | TradingSystem | INFO | 🔬 007660 (종목007660) 분석 시작...
+20:02:00 | TradingSystem | INFO | ✅ 007660 분석 완료 - 점수: 52.2, 추천: HOLD
+20:02:00 | TradingSystem | INFO | 🎯 007660 분석 완료: 점수 52.24, 추천 HOLD
+20:02:00 | TradingSystem | INFO | ❌ 007660 점수 부족: 52.24 < 60
+20:02:00 | TradingSystem | INFO | 🔬 450080 (종목450080) 분석 시작...
+20:02:05 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+20:02:05 | TradingSystem | INFO | ✅ 리소스 정리 완료
+20:04:38 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+20:04:46 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+20:05:00 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+20:05:00 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+20:05:00 | TradingSystem | INFO | ✅ 설정 로드 완료
+20:05:01 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+20:05:01 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+20:05:01 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+20:05:01 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+20:05:01 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+20:05:01 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+20:05:01 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+20:05:01 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+20:05:01 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+20:05:01 | TradingSystem | INFO |    필터링 결과: 50개 종목
+20:05:01 | TradingSystem | INFO | 🔬 267260 (종목267260) 분석 시작...
+20:05:08 | TradingSystem | INFO | ✅ 267260 분석 완료 - 점수: 39.8, 추천: WEAK_SELL
+20:05:08 | TradingSystem | INFO | 🎯 267260 분석 완료: 점수 39.831304347826084, 추천 WEAK_SELL
+20:05:08 | TradingSystem | INFO | ❌ 267260 점수 부족: 39.831304347826084 < 60
+20:05:08 | TradingSystem | INFO | 🔬 329180 (종목329180) 분석 시작...
+20:05:13 | TradingSystem | INFO | ✅ 329180 분석 완료 - 점수: 38.0, 추천: WEAK_SELL
+20:05:13 | TradingSystem | INFO | 🎯 329180 분석 완료: 점수 38.04, 추천 WEAK_SELL
+20:05:13 | TradingSystem | INFO | ❌ 329180 점수 부족: 38.04 < 60
+20:05:13 | TradingSystem | INFO | 🔬 373220 (종목373220) 분석 시작...
+20:05:19 | TradingSystem | INFO | ✅ 373220 분석 완료 - 점수: 48.7, 추천: HOLD
+20:05:19 | TradingSystem | INFO | 🎯 373220 분석 완료: 점수 48.71, 추천 HOLD
+20:05:19 | TradingSystem | INFO | ❌ 373220 점수 부족: 48.71 < 60
+20:05:19 | TradingSystem | INFO | 🔬 277810 (종목277810) 분석 시작...
+20:05:25 | TradingSystem | INFO | ✅ 277810 분석 완료 - 점수: 45.0, 추천: WEAK_SELL
+20:05:25 | TradingSystem | INFO | 🎯 277810 분석 완료: 점수 44.96, 추천 WEAK_SELL
+20:05:25 | TradingSystem | INFO | ❌ 277810 점수 부족: 44.96 < 60
+20:05:25 | TradingSystem | INFO | 🔬 034730 (종목034730) 분석 시작...
+20:05:31 | TradingSystem | INFO | ✅ 034730 분석 완료 - 점수: 52.0, 추천: HOLD
+20:05:31 | TradingSystem | INFO | 🎯 034730 분석 완료: 점수 52.04, 추천 HOLD
+20:05:31 | TradingSystem | INFO | ❌ 034730 점수 부족: 52.04 < 60
+20:05:31 | TradingSystem | INFO | 🔬 006260 (종목006260) 분석 시작...
+20:05:36 | TradingSystem | INFO | ✅ 006260 분석 완료 - 점수: 48.4, 추천: HOLD
+20:05:36 | TradingSystem | INFO | 🎯 006260 분석 완료: 점수 48.415, 추천 HOLD
+20:05:36 | TradingSystem | INFO | ❌ 006260 점수 부족: 48.415 < 60
+20:05:36 | TradingSystem | INFO | 🔬 010620 (종목010620) 분석 시작...
+20:05:42 | TradingSystem | INFO | ✅ 010620 분석 완료 - 점수: 37.3, 추천: WEAK_SELL
+20:05:42 | TradingSystem | INFO | 🎯 010620 분석 완료: 점수 37.32, 추천 WEAK_SELL
+20:05:42 | TradingSystem | INFO | ❌ 010620 점수 부족: 37.32 < 60
+20:05:42 | TradingSystem | INFO | 🔬 402340 (종목402340) 분석 시작...
+20:05:48 | TradingSystem | INFO | ✅ 402340 분석 완료 - 점수: 49.9, 추천: HOLD
+20:05:48 | TradingSystem | INFO | 🎯 402340 분석 완료: 점수 49.94, 추천 HOLD
+20:05:48 | TradingSystem | INFO | ❌ 402340 점수 부족: 49.94 < 60
+20:05:48 | TradingSystem | INFO | 🔬 011070 (종목011070) 분석 시작...
+20:05:53 | TradingSystem | INFO | ✅ 011070 분석 완료 - 점수: 50.6, 추천: HOLD
+20:05:53 | TradingSystem | INFO | 🎯 011070 분석 완료: 점수 50.615, 추천 HOLD
+20:05:53 | TradingSystem | INFO | ❌ 011070 점수 부족: 50.615 < 60
+20:05:54 | TradingSystem | INFO | 🔬 086280 (종목086280) 분석 시작...
+20:05:59 | TradingSystem | INFO | ✅ 086280 분석 완료 - 점수: 55.0, 추천: WEAK_BUY
+20:05:59 | TradingSystem | INFO | 🎯 086280 분석 완료: 점수 55.04, 추천 WEAK_BUY
+20:05:59 | TradingSystem | INFO | ❌ 086280 점수 부족: 55.04 < 60
+20:05:59 | TradingSystem | INFO | 🔬 041510 (종목041510) 분석 시작...
+20:06:05 | TradingSystem | INFO | ✅ 041510 분석 완료 - 점수: 43.8, 추천: WEAK_SELL
+20:06:05 | TradingSystem | INFO | 🎯 041510 분석 완료: 점수 43.76, 추천 WEAK_SELL
+20:06:05 | TradingSystem | INFO | ❌ 041510 점수 부족: 43.76 < 60
+20:06:05 | TradingSystem | INFO | 🔬 033780 (종목033780) 분석 시작...
+20:06:11 | TradingSystem | INFO | ✅ 033780 분석 완료 - 점수: 58.8, 추천: WEAK_BUY
+20:06:11 | TradingSystem | INFO | 🎯 033780 분석 완료: 점수 58.765, 추천 WEAK_BUY
+20:06:11 | TradingSystem | INFO | ❌ 033780 점수 부족: 58.765 < 60
+20:06:11 | TradingSystem | INFO | 🔬 141080 (종목141080) 분석 시작...
+20:06:18 | TradingSystem | INFO | ✅ 141080 분석 완료 - 점수: 58.6, 추천: WEAK_BUY
+20:06:18 | TradingSystem | INFO | 🎯 141080 분석 완료: 점수 58.563125, 추천 WEAK_BUY
+20:06:18 | TradingSystem | INFO | ❌ 141080 점수 부족: 58.563125 < 60
+20:06:18 | TradingSystem | INFO | 🔬 064760 (종목064760) 분석 시작...
+20:06:26 | TradingSystem | INFO | ✅ 064760 분석 완료 - 점수: 53.2, 추천: HOLD
+20:06:26 | TradingSystem | INFO | 🎯 064760 분석 완료: 점수 53.23936464088398, 추천 HOLD
+20:06:26 | TradingSystem | INFO | ❌ 064760 점수 부족: 53.23936464088398 < 60
+20:06:26 | TradingSystem | INFO | 🔬 021240 (종목021240) 분석 시작...
+20:06:34 | TradingSystem | INFO | ✅ 021240 분석 완료 - 점수: 58.7, 추천: WEAK_BUY
+20:06:34 | TradingSystem | INFO | 🎯 021240 분석 완료: 점수 58.695352112676055, 추천 WEAK_BUY
+20:06:34 | TradingSystem | INFO | ❌ 021240 점수 부족: 58.695352112676055 < 60
+20:06:34 | TradingSystem | INFO | 🔬 000120 (종목000120) 분석 시작...
+20:06:42 | TradingSystem | INFO | ✅ 000120 분석 완료 - 점수: 72.7, 추천: BUY
+20:06:42 | TradingSystem | INFO | 🎯 000120 분석 완료: 점수 72.67910256410255, 추천 BUY
+20:06:42 | TradingSystem | INFO | ✅ 000120 신호 추가됨
+20:06:42 | TradingSystem | INFO | 🔬 067160 (종목067160) 분석 시작...
+20:06:51 | TradingSystem | INFO | ✅ 067160 분석 완료 - 점수: 55.7, 추천: WEAK_BUY
+20:06:51 | TradingSystem | INFO | 🎯 067160 분석 완료: 점수 55.693717948717946, 추천 WEAK_BUY
+20:06:51 | TradingSystem | INFO | ❌ 067160 점수 부족: 55.693717948717946 < 60
+20:06:51 | TradingSystem | INFO | 🔬 000880 (종목000880) 분석 시작...
+20:06:59 | TradingSystem | INFO | ✅ 000880 분석 완료 - 점수: 59.1, 추천: WEAK_BUY
+20:06:59 | TradingSystem | INFO | 🎯 000880 분석 완료: 점수 59.05310344827586, 추천 WEAK_BUY
+20:06:59 | TradingSystem | INFO | ❌ 000880 점수 부족: 59.05310344827586 < 60
+20:06:59 | TradingSystem | INFO | 🔬 003550 (종목003550) 분석 시작...
+20:07:08 | TradingSystem | INFO | ✅ 003550 분석 완료 - 점수: 67.6, 추천: BUY
+20:07:08 | TradingSystem | INFO | 🎯 003550 분석 완료: 점수 67.56629629629629, 추천 BUY
+20:07:08 | TradingSystem | INFO | ✅ 003550 신호 추가됨
+20:07:08 | TradingSystem | INFO | 🔬 064400 (종목064400) 분석 시작...
+20:07:16 | TradingSystem | INFO | ✅ 064400 분석 완료 - 점수: 73.0, 추천: BUY
+20:07:16 | TradingSystem | INFO | 🎯 064400 분석 완료: 점수 73.03366863905325, 추천 BUY
+20:07:16 | TradingSystem | INFO | ✅ 064400 신호 추가됨
+20:07:16 | TradingSystem | INFO | 🔬 066570 (종목066570) 분석 시작...
+20:07:24 | TradingSystem | INFO | ✅ 066570 분석 완료 - 점수: 67.7, 추천: BUY
+20:07:24 | TradingSystem | INFO | 🎯 066570 분석 완료: 점수 67.73317073170732, 추천 BUY
+20:07:24 | TradingSystem | INFO | ✅ 066570 신호 추가됨
+20:07:24 | TradingSystem | INFO | 🔬 108320 (종목108320) 분석 시작...
+20:07:32 | TradingSystem | INFO | ✅ 108320 분석 완료 - 점수: 72.1, 추천: BUY
+20:07:32 | TradingSystem | INFO | 🎯 108320 분석 완료: 점수 72.06654761904761, 추천 BUY
+20:07:32 | TradingSystem | INFO | ✅ 108320 신호 추가됨
+20:07:32 | TradingSystem | INFO | 🔬 065350 (종목065350) 분석 시작...
+20:07:41 | TradingSystem | INFO | ✅ 065350 분석 완료 - 점수: 57.3, 추천: WEAK_BUY
+20:07:41 | TradingSystem | INFO | 🎯 065350 분석 완료: 점수 57.33965034965035, 추천 WEAK_BUY
+20:07:41 | TradingSystem | INFO | ❌ 065350 점수 부족: 57.33965034965035 < 60
+20:07:41 | TradingSystem | INFO | 🔬 192080 (종목192080) 분석 시작...
+20:07:49 | TradingSystem | INFO | ✅ 192080 분석 완료 - 점수: 62.3, 추천: WEAK_BUY
+20:07:49 | TradingSystem | INFO | 🎯 192080 분석 완료: 점수 62.32027027027027, 추천 WEAK_BUY
+20:07:49 | TradingSystem | INFO | ✅ 192080 신호 추가됨
+20:07:49 | TradingSystem | INFO | 🔬 051600 (종목051600) 분석 시작...
+20:07:58 | TradingSystem | INFO | ✅ 051600 분석 완료 - 점수: 68.6, 추천: BUY
+20:07:58 | TradingSystem | INFO | 🎯 051600 분석 완료: 점수 68.61751677852348, 추천 BUY
+20:07:58 | TradingSystem | INFO | ✅ 051600 신호 추가됨
+20:07:59 | TradingSystem | INFO | 🔬 017670 (종목017670) 분석 시작...
+20:08:07 | TradingSystem | INFO | ✅ 017670 분석 완료 - 점수: 68.0, 추천: BUY
+20:08:07 | TradingSystem | INFO | 🎯 017670 분석 완료: 점수 67.9980303030303, 추천 BUY
+20:08:07 | TradingSystem | INFO | ✅ 017670 신호 추가됨
+20:08:08 | TradingSystem | INFO | 🔬 007660 (종목007660) 분석 시작...
+20:08:16 | TradingSystem | INFO | ✅ 007660 분석 완료 - 점수: 66.4, 추천: BUY
+20:08:16 | TradingSystem | INFO | 🎯 007660 분석 완료: 점수 66.40234939759037, 추천 BUY
+20:08:16 | TradingSystem | INFO | ✅ 007660 신호 추가됨
+20:08:16 | TradingSystem | INFO | 🔬 450080 (종목450080) 분석 시작...
+20:08:24 | TradingSystem | INFO | ✅ 450080 분석 완료 - 점수: 60.9, 추천: WEAK_BUY
+20:08:24 | TradingSystem | INFO | 🎯 450080 분석 완료: 점수 60.8763829787234, 추천 WEAK_BUY
+20:08:24 | TradingSystem | INFO | ✅ 450080 신호 추가됨
+20:08:24 | TradingSystem | INFO | 🔬 375500 (종목375500) 분석 시작...
+20:08:33 | TradingSystem | INFO | ✅ 375500 분석 완료 - 점수: 50.8, 추천: HOLD
+20:08:33 | TradingSystem | INFO | 🎯 375500 분석 완료: 점수 50.77707482993197, 추천 HOLD
+20:08:33 | TradingSystem | INFO | ❌ 375500 점수 부족: 50.77707482993197 < 60
+20:08:33 | TradingSystem | INFO | 🔬 112610 (종목112610) 분석 시작...
+20:08:41 | TradingSystem | INFO | ✅ 112610 분석 완료 - 점수: 67.4, 추천: BUY
+20:08:41 | TradingSystem | INFO | 🎯 112610 분석 완료: 점수 67.36835570469799, 추천 BUY
+20:08:41 | TradingSystem | INFO | ✅ 112610 신호 추가됨
+20:08:41 | TradingSystem | INFO | 🔬 036460 (종목036460) 분석 시작...
+20:08:49 | TradingSystem | INFO | ✅ 036460 분석 완료 - 점수: 76.9, 추천: BUY
+20:08:49 | TradingSystem | INFO | 🎯 036460 분석 완료: 점수 76.86708333333333, 추천 BUY
+20:08:49 | TradingSystem | INFO | ✅ 036460 신호 추가됨
+20:08:49 | TradingSystem | INFO | 🔬 003570 (종목003570) 분석 시작...
+20:08:58 | TradingSystem | INFO | ✅ 003570 분석 완료 - 점수: 53.8, 추천: HOLD
+20:08:58 | TradingSystem | INFO | 🎯 003570 분석 완료: 점수 53.825087719298246, 추천 HOLD
+20:08:58 | TradingSystem | INFO | ❌ 003570 점수 부족: 53.825087719298246 < 60
+20:08:58 | TradingSystem | INFO | 🔬 000990 (종목000990) 분석 시작...
+20:09:07 | TradingSystem | INFO | ✅ 000990 분석 완료 - 점수: 61.4, 추천: WEAK_BUY
+20:09:07 | TradingSystem | INFO | 🎯 000990 분석 완료: 점수 61.4471921182266, 추천 WEAK_BUY
+20:09:07 | TradingSystem | INFO | ✅ 000990 신호 추가됨
+20:09:07 | TradingSystem | INFO | 🔬 263750 (종목263750) 분석 시작...
+20:09:16 | TradingSystem | INFO | ✅ 263750 분석 완료 - 점수: 65.2, 추천: BUY
+20:09:16 | TradingSystem | INFO | 🎯 263750 분석 완료: 점수 65.22179245283019, 추천 BUY
+20:09:16 | TradingSystem | INFO | ✅ 263750 신호 추가됨
+20:09:16 | TradingSystem | INFO | 🔬 031210 (종목031210) 분석 시작...
+20:09:24 | TradingSystem | INFO | ✅ 031210 분석 완료 - 점수: 65.7, 추천: BUY
+20:09:24 | TradingSystem | INFO | 🎯 031210 분석 완료: 점수 65.73393162393162, 추천 BUY
+20:09:24 | TradingSystem | INFO | ✅ 031210 신호 추가됨
+20:09:24 | TradingSystem | INFO | 🔬 160190 (종목160190) 분석 시작...
+20:09:33 | TradingSystem | INFO | ✅ 160190 분석 완료 - 점수: 61.7, 추천: WEAK_BUY
+20:09:33 | TradingSystem | INFO | 🎯 160190 분석 완료: 점수 61.71090909090909, 추천 WEAK_BUY
+20:09:33 | TradingSystem | INFO | ✅ 160190 신호 추가됨
+20:09:34 | TradingSystem | INFO | 🔬 023590 (종목023590) 분석 시작...
+20:09:42 | TradingSystem | INFO | ✅ 023590 분석 완료 - 점수: 66.3, 추천: BUY
+20:09:42 | TradingSystem | INFO | 🎯 023590 분석 완료: 점수 66.29298507462687, 추천 BUY
+20:09:42 | TradingSystem | INFO | ✅ 023590 신호 추가됨
+20:09:42 | TradingSystem | INFO | 🔬 004020 (종목004020) 분석 시작...
+20:09:51 | TradingSystem | INFO | ✅ 004020 분석 완료 - 점수: 70.0, 추천: BUY
+20:09:51 | TradingSystem | INFO | 🎯 004020 분석 완료: 점수 69.98386363636365, 추천 BUY
+20:09:51 | TradingSystem | INFO | ✅ 004020 신호 추가됨
+20:09:51 | TradingSystem | INFO | 🔬 096530 (종목096530) 분석 시작...
+20:09:59 | TradingSystem | INFO | ✅ 096530 분석 완료 - 점수: 68.3, 추천: BUY
+20:09:59 | TradingSystem | INFO | 🎯 096530 분석 완료: 점수 68.28, 추천 BUY
+20:09:59 | TradingSystem | INFO | ✅ 096530 신호 추가됨
+20:10:00 | TradingSystem | INFO | 🔬 036930 (종목036930) 분석 시작...
+20:10:08 | TradingSystem | INFO | ✅ 036930 분석 완료 - 점수: 71.4, 추천: BUY
+20:10:08 | TradingSystem | INFO | 🎯 036930 분석 완료: 점수 71.395, 추천 BUY
+20:10:08 | TradingSystem | INFO | ✅ 036930 신호 추가됨
+20:10:08 | TradingSystem | INFO | 🔬 361610 (종목361610) 분석 시작...
+20:10:19 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+20:10:19 | TradingSystem | INFO | ✅ 리소스 정리 완료
+20:11:01 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+20:11:04 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+20:11:04 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+20:11:04 | TradingSystem | INFO | ✅ 설정 로드 완료
+20:11:04 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: cannot import name 'SmartKISCollector' from 'data_collectors.kis_collector' (d:\trading_system\data_collectors\kis_collector.py)
+20:11:04 | TradingSystem | ERROR | ❌ 핵심 컴포넌트 초기화 실패: cannot import name 'SmartKISCollector' from 'data_collectors.kis_collector' (d:\trading_system\data_collectors\kis_collector.py)
+20:11:04 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: cannot import name 'SmartKISCollector' from 'data_collectors.kis_collector' (d:\trading_system\data_collectors\kis_collector.py)
+20:18:15 | TradingSystem | INFO | ✅ 리소스 정리 완료
+20:18:19 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+20:18:21 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+20:18:21 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+20:18:21 | TradingSystem | INFO | ✅ 설정 로드 완료
+20:18:22 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: cannot import name 'SmartKISCollector' from 'data_collectors.kis_collector' (d:\trading_system\data_collectors\kis_collector.py)
+20:18:22 | TradingSystem | ERROR | ❌ 핵심 컴포넌트 초기화 실패: cannot import name 'SmartKISCollector' from 'data_collectors.kis_collector' (d:\trading_system\data_collectors\kis_collector.py)
+20:18:22 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: cannot import name 'SmartKISCollector' from 'data_collectors.kis_collector' (d:\trading_system\data_collectors\kis_collector.py)
+20:19:07 | TradingSystem | INFO | ✅ 리소스 정리 완료
+20:19:10 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+20:19:12 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+20:19:12 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+20:19:12 | TradingSystem | INFO | ✅ 설정 로드 완료
+20:19:13 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+20:19:13 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+20:19:13 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+20:19:13 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+20:19:13 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+20:19:13 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+20:19:13 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+20:19:13 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+20:19:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+20:19:13 | TradingSystem | INFO |    필터링 결과: 50개 종목
+20:19:13 | TradingSystem | INFO | 🔬 267260 (종목267260) 분석 시작...
+20:19:22 | TradingSystem | INFO | ✅ 267260 분석 완료 - 점수: 61.0, 추천: WEAK_BUY
+20:19:22 | TradingSystem | INFO | 🎯 267260 분석 완료: 점수 61.042941176470585, 추천 WEAK_BUY
+20:19:22 | TradingSystem | INFO | ✅ 267260 신호 추가됨
+20:19:22 | TradingSystem | INFO | 🔬 329180 (종목329180) 분석 시작...
+20:19:30 | TradingSystem | INFO | ✅ 329180 분석 완료 - 점수: 52.5, 추천: HOLD
+20:19:30 | TradingSystem | INFO | 🎯 329180 분석 완료: 점수 52.54, 추천 HOLD
+20:19:30 | TradingSystem | INFO | ❌ 329180 점수 부족: 52.54 < 60
+20:19:30 | TradingSystem | INFO | 🔬 373220 (종목373220) 분석 시작...
+20:19:38 | TradingSystem | INFO | ✅ 373220 분석 완료 - 점수: 67.3, 추천: BUY
+20:19:38 | TradingSystem | INFO | 🎯 373220 분석 완료: 점수 67.28329004329004, 추천 BUY
+20:19:38 | TradingSystem | INFO | ✅ 373220 신호 추가됨
+20:19:38 | TradingSystem | INFO | 🔬 277810 (종목277810) 분석 시작...
+20:19:46 | TradingSystem | INFO | ✅ 277810 분석 완료 - 점수: 61.0, 추천: WEAK_BUY
+20:19:46 | TradingSystem | INFO | 🎯 277810 분석 완료: 점수 60.975064935064935, 추천 WEAK_BUY
+20:19:46 | TradingSystem | INFO | ✅ 277810 신호 추가됨
+20:19:46 | TradingSystem | INFO | 🔬 034730 (종목034730) 분석 시작...
+20:19:55 | TradingSystem | INFO | ✅ 034730 분석 완료 - 점수: 63.3, 추천: WEAK_BUY
+20:19:55 | TradingSystem | INFO | 🎯 034730 분석 완료: 점수 63.32678571428571, 추천 WEAK_BUY
+20:19:55 | TradingSystem | INFO | ✅ 034730 신호 추가됨
+20:19:55 | TradingSystem | INFO | 🔬 006260 (종목006260) 분석 시작...
+20:20:03 | TradingSystem | INFO | ✅ 006260 분석 완료 - 점수: 60.2, 추천: WEAK_BUY
+20:20:03 | TradingSystem | INFO | 🎯 006260 분석 완료: 점수 60.228895705521474, 추천 WEAK_BUY
+20:20:03 | TradingSystem | INFO | ✅ 006260 신호 추가됨
+20:20:03 | TradingSystem | INFO | 🔬 010620 (종목010620) 분석 시작...
+20:20:12 | TradingSystem | INFO | ✅ 010620 분석 완료 - 점수: 43.0, 추천: WEAK_SELL
+20:20:12 | TradingSystem | INFO | 🎯 010620 분석 완료: 점수 42.968799999999995, 추천 WEAK_SELL
+20:20:12 | TradingSystem | INFO | ❌ 010620 점수 부족: 42.968799999999995 < 60
+20:20:12 | TradingSystem | INFO | 🔬 402340 (종목402340) 분석 시작...
+20:20:20 | TradingSystem | INFO | ✅ 402340 분석 완료 - 점수: 70.8, 추천: BUY
+20:20:20 | TradingSystem | INFO | 🎯 402340 분석 완료: 점수 70.78752252252252, 추천 BUY
+20:20:20 | TradingSystem | INFO | ✅ 402340 신호 추가됨
+20:20:20 | TradingSystem | INFO | 🔬 011070 (종목011070) 분석 시작...
+20:20:29 | TradingSystem | INFO | ✅ 011070 분석 완료 - 점수: 67.3, 추천: BUY
+20:20:29 | TradingSystem | INFO | 🎯 011070 분석 완료: 점수 67.25999999999999, 추천 BUY
+20:20:29 | TradingSystem | INFO | ✅ 011070 신호 추가됨
+20:20:29 | TradingSystem | INFO | 🔬 086280 (종목086280) 분석 시작...
+20:20:37 | TradingSystem | INFO | ✅ 086280 분석 완료 - 점수: 71.3, 추천: BUY
+20:20:37 | TradingSystem | INFO | 🎯 086280 분석 완료: 점수 71.26415458937198, 추천 BUY
+20:20:37 | TradingSystem | INFO | ✅ 086280 신호 추가됨
+20:20:37 | TradingSystem | INFO | 🔬 041510 (종목041510) 분석 시작...
+20:20:46 | TradingSystem | INFO | ✅ 041510 분석 완료 - 점수: 59.0, 추천: WEAK_BUY
+20:20:46 | TradingSystem | INFO | 🎯 041510 분석 완료: 점수 59.015757575757576, 추천 WEAK_BUY
+20:20:46 | TradingSystem | INFO | ❌ 041510 점수 부족: 59.015757575757576 < 60
+20:20:46 | TradingSystem | INFO | 🔬 033780 (종목033780) 분석 시작...
+20:20:54 | TradingSystem | INFO | ✅ 033780 분석 완료 - 점수: 79.2, 추천: BUY
+20:20:54 | TradingSystem | INFO | 🎯 033780 분석 완료: 점수 79.24443786982249, 추천 BUY
+20:20:54 | TradingSystem | INFO | ✅ 033780 신호 추가됨
+20:20:54 | TradingSystem | INFO | 🔬 141080 (종목141080) 분석 시작...
+20:21:02 | TradingSystem | INFO | ✅ 141080 분석 완료 - 점수: 59.5, 추천: WEAK_BUY
+20:21:02 | TradingSystem | INFO | 🎯 141080 분석 완료: 점수 59.52108108108108, 추천 WEAK_BUY
+20:21:02 | TradingSystem | INFO | ❌ 141080 점수 부족: 59.52108108108108 < 60
+20:21:02 | TradingSystem | INFO | 🔬 064760 (종목064760) 분석 시작...
+20:21:10 | TradingSystem | INFO | ✅ 064760 분석 완료 - 점수: 53.5, 추천: HOLD
+20:21:10 | TradingSystem | INFO | 🎯 064760 분석 완료: 점수 53.524364640883974, 추천 HOLD
+20:21:10 | TradingSystem | INFO | ❌ 064760 점수 부족: 53.524364640883974 < 60
+20:21:11 | TradingSystem | INFO | 🔬 021240 (종목021240) 분석 시작...
+20:21:19 | TradingSystem | INFO | ✅ 021240 분석 완료 - 점수: 60.7, 추천: WEAK_BUY
+20:21:19 | TradingSystem | INFO | 🎯 021240 분석 완료: 점수 60.695352112676055, 추천 WEAK_BUY
+20:21:19 | TradingSystem | INFO | ✅ 021240 신호 추가됨
+20:21:19 | TradingSystem | INFO | 🔬 000120 (종목000120) 분석 시작...
+20:21:27 | TradingSystem | INFO | ✅ 000120 분석 완료 - 점수: 71.8, 추천: BUY
+20:21:27 | TradingSystem | INFO | 🎯 000120 분석 완료: 점수 71.77910256410256, 추천 BUY
+20:21:27 | TradingSystem | INFO | ✅ 000120 신호 추가됨
+20:21:28 | TradingSystem | INFO | 🔬 067160 (종목067160) 분석 시작...
+20:21:36 | TradingSystem | INFO | ✅ 067160 분석 완료 - 점수: 53.9, 추천: HOLD
+20:21:36 | TradingSystem | INFO | 🎯 067160 분석 완료: 점수 53.88871794871795, 추천 HOLD
+20:21:36 | TradingSystem | INFO | ❌ 067160 점수 부족: 53.88871794871795 < 60
+20:21:36 | TradingSystem | INFO | 🔬 000880 (종목000880) 분석 시작...
+20:21:44 | TradingSystem | INFO | ✅ 000880 분석 완료 - 점수: 58.3, 추천: WEAK_BUY
+20:21:44 | TradingSystem | INFO | 🎯 000880 분석 완료: 점수 58.333103448275864, 추천 WEAK_BUY
+20:21:44 | TradingSystem | INFO | ❌ 000880 점수 부족: 58.333103448275864 < 60
+20:21:45 | TradingSystem | INFO | 🔬 003550 (종목003550) 분석 시작...
+20:21:53 | TradingSystem | INFO | ✅ 003550 분석 완료 - 점수: 69.9, 추천: BUY
+20:21:53 | TradingSystem | INFO | 🎯 003550 분석 완료: 점수 69.93629629629629, 추천 BUY
+20:21:53 | TradingSystem | INFO | ✅ 003550 신호 추가됨
+20:21:53 | TradingSystem | INFO | 🔬 064400 (종목064400) 분석 시작...
+20:22:01 | TradingSystem | INFO | ✅ 064400 분석 완료 - 점수: 73.1, 추천: BUY
+20:22:01 | TradingSystem | INFO | 🎯 064400 분석 완료: 점수 73.12366863905325, 추천 BUY
+20:22:01 | TradingSystem | INFO | ✅ 064400 신호 추가됨
+20:22:01 | TradingSystem | INFO | 🔬 066570 (종목066570) 분석 시작...
+20:22:09 | TradingSystem | INFO | ✅ 066570 분석 완료 - 점수: 68.3, 추천: BUY
+20:22:09 | TradingSystem | INFO | 🎯 066570 분석 완료: 점수 68.28817073170732, 추천 BUY
+20:22:09 | TradingSystem | INFO | ✅ 066570 신호 추가됨
+20:22:09 | TradingSystem | INFO | 🔬 108320 (종목108320) 분석 시작...
+20:22:18 | TradingSystem | INFO | ✅ 108320 분석 완료 - 점수: 71.9, 추천: BUY
+20:22:18 | TradingSystem | INFO | 🎯 108320 분석 완료: 점수 71.91654761904762, 추천 BUY
+20:22:18 | TradingSystem | INFO | ✅ 108320 신호 추가됨
+20:22:18 | TradingSystem | INFO | 🔬 065350 (종목065350) 분석 시작...
+20:22:26 | TradingSystem | INFO | ✅ 065350 분석 완료 - 점수: 60.1, 추천: WEAK_BUY
+20:22:26 | TradingSystem | INFO | 🎯 065350 분석 완료: 점수 60.05965034965035, 추천 WEAK_BUY
+20:22:26 | TradingSystem | INFO | ✅ 065350 신호 추가됨
+20:22:27 | TradingSystem | INFO | 🔬 192080 (종목192080) 분석 시작...
+20:22:35 | TradingSystem | INFO | ✅ 192080 분석 완료 - 점수: 62.3, 추천: WEAK_BUY
+20:22:35 | TradingSystem | INFO | 🎯 192080 분석 완료: 점수 62.32027027027027, 추천 WEAK_BUY
+20:22:35 | TradingSystem | INFO | ✅ 192080 신호 추가됨
+20:22:35 | TradingSystem | INFO | 🔬 051600 (종목051600) 분석 시작...
+20:22:44 | TradingSystem | INFO | ✅ 051600 분석 완료 - 점수: 68.7, 추천: BUY
+20:22:44 | TradingSystem | INFO | 🎯 051600 분석 완료: 점수 68.6925167785235, 추천 BUY
+20:22:44 | TradingSystem | INFO | ✅ 051600 신호 추가됨
+20:22:44 | TradingSystem | INFO | 🔬 017670 (종목017670) 분석 시작...
+20:22:53 | TradingSystem | INFO | ✅ 017670 분석 완료 - 점수: 68.4, 추천: BUY
+20:22:53 | TradingSystem | INFO | 🎯 017670 분석 완료: 점수 68.3730303030303, 추천 BUY
+20:22:53 | TradingSystem | INFO | ✅ 017670 신호 추가됨
+20:22:53 | TradingSystem | INFO | 🔬 007660 (종목007660) 분석 시작...
+20:23:01 | TradingSystem | INFO | ✅ 007660 분석 완료 - 점수: 67.8, 추천: BUY
+20:23:01 | TradingSystem | INFO | 🎯 007660 분석 완료: 점수 67.81234939759037, 추천 BUY
+20:23:01 | TradingSystem | INFO | ✅ 007660 신호 추가됨
+20:23:01 | TradingSystem | INFO | 🔬 450080 (종목450080) 분석 시작...
+20:23:09 | TradingSystem | INFO | ✅ 450080 분석 완료 - 점수: 61.3, 추천: WEAK_BUY
+20:23:09 | TradingSystem | INFO | 🎯 450080 분석 완료: 점수 61.3113829787234, 추천 WEAK_BUY
+20:23:09 | TradingSystem | INFO | ✅ 450080 신호 추가됨
+20:23:09 | TradingSystem | INFO | 🔬 375500 (종목375500) 분석 시작...
+20:23:17 | TradingSystem | INFO | ✅ 375500 분석 완료 - 점수: 54.2, 추천: HOLD
+20:23:17 | TradingSystem | INFO | 🎯 375500 분석 완료: 점수 54.232074829931975, 추천 HOLD
+20:23:17 | TradingSystem | INFO | ❌ 375500 점수 부족: 54.232074829931975 < 60
+20:23:18 | TradingSystem | INFO | 🔬 112610 (종목112610) 분석 시작...
+20:23:26 | TradingSystem | INFO | ✅ 112610 분석 완료 - 점수: 67.3, 추천: BUY
+20:23:26 | TradingSystem | INFO | 🎯 112610 분석 완료: 점수 67.33835570469799, 추천 BUY
+20:23:26 | TradingSystem | INFO | ✅ 112610 신호 추가됨
+20:23:26 | TradingSystem | INFO | 🔬 036460 (종목036460) 분석 시작...
+20:23:34 | TradingSystem | INFO | ✅ 036460 분석 완료 - 점수: 76.5, 추천: BUY
+20:23:34 | TradingSystem | INFO | 🎯 036460 분석 완료: 점수 76.49208333333333, 추천 BUY
+20:23:34 | TradingSystem | INFO | ✅ 036460 신호 추가됨
+20:23:35 | TradingSystem | INFO | 🔬 003570 (종목003570) 분석 시작...
+20:23:43 | TradingSystem | INFO | ✅ 003570 분석 완료 - 점수: 53.3, 추천: HOLD
+20:23:43 | TradingSystem | INFO | 🎯 003570 분석 완료: 점수 53.34508771929824, 추천 HOLD
+20:23:43 | TradingSystem | INFO | ❌ 003570 점수 부족: 53.34508771929824 < 60
+20:23:43 | TradingSystem | INFO | 🔬 000990 (종목000990) 분석 시작...
+20:23:52 | TradingSystem | INFO | ✅ 000990 분석 완료 - 점수: 61.9, 추천: WEAK_BUY
+20:23:52 | TradingSystem | INFO | 🎯 000990 분석 완료: 점수 61.9471921182266, 추천 WEAK_BUY
+20:23:52 | TradingSystem | INFO | ✅ 000990 신호 추가됨
+20:23:52 | TradingSystem | INFO | 🔬 263750 (종목263750) 분석 시작...
+20:24:00 | TradingSystem | INFO | ✅ 263750 분석 완료 - 점수: 66.2, 추천: BUY
+20:24:00 | TradingSystem | INFO | 🎯 263750 분석 완료: 점수 66.17179245283019, 추천 BUY
+20:24:00 | TradingSystem | INFO | ✅ 263750 신호 추가됨
+20:24:01 | TradingSystem | INFO | 🔬 031210 (종목031210) 분석 시작...
+20:24:08 | TradingSystem | INFO | ✅ 031210 분석 완료 - 점수: 64.6, 추천: WEAK_BUY
+20:24:08 | TradingSystem | INFO | 🎯 031210 분석 완료: 점수 64.56393162393162, 추천 WEAK_BUY
+20:24:08 | TradingSystem | INFO | ✅ 031210 신호 추가됨
+20:24:09 | TradingSystem | INFO | 🔬 160190 (종목160190) 분석 시작...
+20:24:17 | TradingSystem | INFO | ✅ 160190 분석 완료 - 점수: 60.8, 추천: WEAK_BUY
+20:24:17 | TradingSystem | INFO | 🎯 160190 분석 완료: 점수 60.78090909090909, 추천 WEAK_BUY
+20:24:17 | TradingSystem | INFO | ✅ 160190 신호 추가됨
+20:24:18 | TradingSystem | INFO | 🔬 023590 (종목023590) 분석 시작...
+20:24:26 | TradingSystem | INFO | ✅ 023590 분석 완료 - 점수: 65.6, 추천: BUY
+20:24:26 | TradingSystem | INFO | 🎯 023590 분석 완료: 점수 65.58798507462686, 추천 BUY
+20:24:26 | TradingSystem | INFO | ✅ 023590 신호 추가됨
+20:24:26 | TradingSystem | INFO | 🔬 004020 (종목004020) 분석 시작...
+20:24:34 | TradingSystem | INFO | ✅ 004020 분석 완료 - 점수: 69.5, 추천: BUY
+20:24:34 | TradingSystem | INFO | 🎯 004020 분석 완료: 점수 69.53386363636363, 추천 BUY
+20:24:34 | TradingSystem | INFO | ✅ 004020 신호 추가됨
+20:24:34 | TradingSystem | INFO | 🔬 096530 (종목096530) 분석 시작...
+20:24:42 | TradingSystem | INFO | ✅ 096530 분석 완료 - 점수: 68.2, 추천: BUY
+20:24:42 | TradingSystem | INFO | 🎯 096530 분석 완료: 점수 68.22, 추천 BUY
+20:24:42 | TradingSystem | INFO | ✅ 096530 신호 추가됨
+20:24:43 | TradingSystem | INFO | 🔬 036930 (종목036930) 분석 시작...
+20:24:51 | TradingSystem | INFO | ✅ 036930 분석 완료 - 점수: 71.4, 추천: BUY
+20:24:51 | TradingSystem | INFO | 🎯 036930 분석 완료: 점수 71.395, 추천 BUY
+20:24:51 | TradingSystem | INFO | ✅ 036930 신호 추가됨
+20:24:51 | TradingSystem | INFO | 🔬 361610 (종목361610) 분석 시작...
+20:24:59 | TradingSystem | INFO | ✅ 361610 분석 완료 - 점수: 72.8, 추천: BUY
+20:24:59 | TradingSystem | INFO | 🎯 361610 분석 완료: 점수 72.80388686131387, 추천 BUY
+20:24:59 | TradingSystem | INFO | ✅ 361610 신호 추가됨
+20:25:00 | TradingSystem | INFO | 🔬 022100 (종목022100) 분석 시작...
+20:25:08 | TradingSystem | INFO | ✅ 022100 분석 완료 - 점수: 66.9, 추천: BUY
+20:25:08 | TradingSystem | INFO | 🎯 022100 분석 완료: 점수 66.89688118811881, 추천 BUY
+20:25:08 | TradingSystem | INFO | ✅ 022100 신호 추가됨
+20:25:08 | TradingSystem | INFO | 🔬 003490 (종목003490) 분석 시작...
+20:25:16 | TradingSystem | INFO | ✅ 003490 분석 완료 - 점수: 75.0, 추천: BUY
+20:25:16 | TradingSystem | INFO | 🎯 003490 분석 완료: 점수 74.97618721461188, 추천 BUY
+20:25:16 | TradingSystem | INFO | ✅ 003490 신호 추가됨
+20:25:16 | TradingSystem | INFO | 🔬 020150 (종목020150) 분석 시작...
+20:25:25 | TradingSystem | INFO | ✅ 020150 분석 완료 - 점수: 65.4, 추천: BUY
+20:25:25 | TradingSystem | INFO | 🎯 020150 분석 완료: 점수 65.44705128205128, 추천 BUY
+20:25:25 | TradingSystem | INFO | ✅ 020150 신호 추가됨
+20:25:25 | TradingSystem | INFO | 🔬 035250 (종목035250) 분석 시작...
+20:25:34 | TradingSystem | INFO | ✅ 035250 분석 완료 - 점수: 80.8, 추천: BUY
+20:25:34 | TradingSystem | INFO | 🎯 035250 분석 완료: 점수 80.83606761565837, 추천 BUY
+20:25:34 | TradingSystem | INFO | ✅ 035250 신호 추가됨
+20:25:34 | TradingSystem | INFO | 🔬 300720 (종목300720) 분석 시작...
+20:25:43 | TradingSystem | INFO | ✅ 300720 분석 완료 - 점수: 63.8, 추천: WEAK_BUY
+20:25:43 | TradingSystem | INFO | 🎯 300720 분석 완료: 점수 63.789659685863874, 추천 WEAK_BUY
+20:25:43 | TradingSystem | INFO | ✅ 300720 신호 추가됨
+20:25:43 | TradingSystem | INFO | 🔬 007070 (종목007070) 분석 시작...
+20:25:52 | TradingSystem | INFO | ✅ 007070 분석 완료 - 점수: 57.9, 추천: WEAK_BUY
+20:25:52 | TradingSystem | INFO | 🎯 007070 분석 완료: 점수 57.9414371257485, 추천 WEAK_BUY
+20:25:52 | TradingSystem | INFO | ❌ 007070 점수 부족: 57.9414371257485 < 60
+20:25:52 | TradingSystem | INFO | 🔬 034230 (종목034230) 분석 시작...
+20:26:01 | TradingSystem | INFO | ✅ 034230 분석 완료 - 점수: 79.7, 추천: BUY
+20:26:01 | TradingSystem | INFO | 🎯 034230 분석 완료: 점수 79.658, 추천 BUY
+20:26:01 | TradingSystem | INFO | ✅ 034230 신호 추가됨
+20:26:01 | TradingSystem | INFO | 🔬 003530 (종목003530) 분석 시작...
+20:26:09 | TradingSystem | INFO | ✅ 003530 분석 완료 - 점수: 55.8, 추천: WEAK_BUY
+20:26:09 | TradingSystem | INFO | 🎯 003530 분석 완료: 점수 55.80857575757576, 추천 WEAK_BUY
+20:26:09 | TradingSystem | INFO | ❌ 003530 점수 부족: 55.80857575757576 < 60
+20:26:10 | TradingSystem | INFO | 🔬 330590 (종목330590) 분석 시작...
+20:26:18 | TradingSystem | INFO | ✅ 330590 분석 완료 - 점수: 65.8, 추천: BUY
+20:26:18 | TradingSystem | INFO | 🎯 330590 분석 완료: 점수 65.82611111111112, 추천 BUY
+20:26:18 | TradingSystem | INFO | ✅ 330590 신호 추가됨
+20:26:18 | TradingSystem | INFO | 💾 분석 결과 저장 중... (39개 결과)
+20:26:18 | TradingSystem | WARNING | ⚠️ DB 저장 실패: 'DatabaseManager' object has no attribute 'save_analysis_results'
+20:26:18 | TradingSystem | INFO | 📢 분석 결과 알림 발송 중... (10개 결과)
+20:26:18 | TradingSystem | INFO | ✅ 분석 결과 알림 발송 완료
+20:26:18 | TradingSystem | INFO | ✅ 시장 분석 완료: 39개 신호 발견
+20:37:45 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+20:37:45 | TradingSystem | INFO | ✅ 리소스 정리 완료
+20:37:51 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+20:38:13 | TradingSystem | INFO | 🎯 특정 종목 분석: 1개 (전략: momentum)
+20:38:13 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+20:38:13 | TradingSystem | INFO | ✅ 설정 로드 완료
+20:38:13 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+20:38:14 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+20:38:14 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+20:38:14 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+20:38:14 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+20:38:14 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+20:38:14 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+20:38:14 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+20:38:14 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+20:38:14 | TradingSystem | INFO | 🔬 005930 (종목005930) 분석 시작...
+20:38:20 | TradingSystem | INFO | ✅ 005930 분석 완료 - 점수: 73.4, 추천: BUY
+20:38:20 | TradingSystem | INFO | ✅ 특정 종목 분석 완료: 1개 결과
+20:47:14 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+20:47:14 | TradingSystem | INFO | ✅ 리소스 정리 완료
+20:47:19 | TradingSystem | INFO | ✅ TradingSystem 로거 초기화 완료
+20:47:28 | TradingSystem | INFO | 🎯 특정 종목 분석: 1개 (전략: momentum)
+20:47:28 | TradingSystem | INFO | 🚀 시스템 컴포넌트 초기화 시작...
+20:47:28 | TradingSystem | INFO | ✅ 설정 로드 완료
+20:47:33 | TradingSystem | INFO | ✅ Smart 데이터 수집기 초기화 완료
+20:47:33 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+20:47:33 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+20:47:33 | TradingSystem | INFO | ✅ 모멘텀 전략 초기화 완료
+20:47:33 | TradingSystem | INFO | 🔧 지원 컴포넌트 초기화 중...
+20:47:34 | TradingSystem | INFO | ✅ 데이터베이스 매니저 초기화 완료
+20:47:34 | TradingSystem | INFO | ✅ 간단 알림 서비스 초기화 완료
+20:47:34 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+20:47:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+20:47:34 | TradingSystem | INFO | 🔬 005930 (삼성전자) 분석 시작...
+20:47:42 | TradingSystem | INFO | ✅ 005930 분석 완료 - 점수: 78.8, 추천: BUY
+20:47:42 | TradingSystem | INFO | ✅ 특정 종목 분석 완료: 1개 결과
+20:47:59 | TradingSystem | INFO | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+20:47:59 | TradingSystem | INFO |    필터링 결과: 50개 종목
+20:47:59 | TradingSystem | INFO | 🔬 267260 (종목267260) 분석 시작...
+20:48:07 | TradingSystem | INFO | ✅ 267260 분석 완료 - 점수: 53.9, 추천: HOLD
+20:48:07 | TradingSystem | INFO | 🎯 267260 분석 완료: 점수 53.93621212121212, 추천 HOLD
+20:48:07 | TradingSystem | INFO | ❌ 267260 점수 부족: 53.93621212121212 < 60
+20:48:07 | TradingSystem | INFO | 🔬 329180 (종목329180) 분석 시작...
+20:48:15 | TradingSystem | INFO | ✅ 329180 분석 완료 - 점수: 45.9, 추천: HOLD
+20:48:15 | TradingSystem | INFO | 🎯 329180 분석 완료: 점수 45.86666666666667, 추천 HOLD
+20:48:15 | TradingSystem | INFO | ❌ 329180 점수 부족: 45.86666666666667 < 60
+20:48:15 | TradingSystem | INFO | 🔬 373220 (종목373220) 분석 시작...
+20:48:23 | TradingSystem | INFO | ✅ 373220 분석 완료 - 점수: 60.8, 추천: WEAK_BUY
+20:48:23 | TradingSystem | INFO | 🎯 373220 분석 완료: 점수 60.77637931034483, 추천 WEAK_BUY
+20:48:23 | TradingSystem | INFO | ✅ 373220 신호 추가됨
+20:48:23 | TradingSystem | INFO | 🔬 277810 (종목277810) 분석 시작...
+20:48:31 | TradingSystem | INFO | ✅ 277810 분석 완료 - 점수: 54.9, 추천: HOLD
+20:48:31 | TradingSystem | INFO | 🎯 277810 분석 완료: 점수 54.94423913043478, 추천 HOLD
+20:48:31 | TradingSystem | INFO | ❌ 277810 점수 부족: 54.94423913043478 < 60
+20:48:31 | TradingSystem | INFO | 🔬 034730 (종목034730) 분석 시작...
+20:48:39 | TradingSystem | INFO | ✅ 034730 분석 완료 - 점수: 49.6, 추천: HOLD
+20:48:39 | TradingSystem | INFO | 🎯 034730 분석 완료: 점수 49.62, 추천 HOLD
+20:48:39 | TradingSystem | INFO | ❌ 034730 점수 부족: 49.62 < 60
+20:48:39 | TradingSystem | INFO | 🔬 006260 (종목006260) 분석 시작...
+20:48:47 | TradingSystem | INFO | ✅ 006260 분석 완료 - 점수: 47.7, 추천: HOLD
+20:48:47 | TradingSystem | INFO | 🎯 006260 분석 완료: 점수 47.698125, 추천 HOLD
+20:48:47 | TradingSystem | INFO | ❌ 006260 점수 부족: 47.698125 < 60
+20:48:47 | TradingSystem | INFO | 🔬 010620 (종목010620) 분석 시작...
+20:48:55 | TradingSystem | INFO | ✅ 010620 분석 완료 - 점수: 44.8, 추천: WEAK_SELL
+20:48:55 | TradingSystem | INFO | 🎯 010620 분석 완료: 점수 44.77166666666667, 추천 WEAK_SELL
+20:48:55 | TradingSystem | INFO | ❌ 010620 점수 부족: 44.77166666666667 < 60
+20:48:55 | TradingSystem | INFO | 🔬 402340 (종목402340) 분석 시작...
+20:49:03 | TradingSystem | INFO | ✅ 402340 분석 완료 - 점수: 51.8, 추천: HOLD
+20:49:03 | TradingSystem | INFO | 🎯 402340 분석 완료: 점수 51.81454545454545, 추천 HOLD
+20:49:03 | TradingSystem | INFO | ❌ 402340 점수 부족: 51.81454545454545 < 60
+20:49:03 | TradingSystem | INFO | 🔬 011070 (종목011070) 분석 시작...
+20:49:11 | TradingSystem | INFO | ✅ 011070 분석 완료 - 점수: 65.9, 추천: BUY
+20:49:11 | TradingSystem | INFO | 🎯 011070 분석 완료: 점수 65.935, 추천 BUY
+20:49:11 | TradingSystem | INFO | ✅ 011070 신호 추가됨
+20:49:11 | TradingSystem | INFO | 🔬 086280 (종목086280) 분석 시작...
+20:49:19 | TradingSystem | INFO | ✅ 086280 분석 완료 - 점수: 56.3, 추천: WEAK_BUY
+20:49:19 | TradingSystem | INFO | 🎯 086280 분석 완료: 점수 56.34, 추천 WEAK_BUY
+20:49:19 | TradingSystem | INFO | ❌ 086280 점수 부족: 56.34 < 60
+20:49:19 | TradingSystem | INFO | 🔬 041510 (종목041510) 분석 시작...
+20:49:27 | TradingSystem | INFO | ✅ 041510 분석 완료 - 점수: 52.7, 추천: HOLD
+20:49:27 | TradingSystem | INFO | 🎯 041510 분석 완료: 점수 52.6665625, 추천 HOLD
+20:49:27 | TradingSystem | INFO | ❌ 041510 점수 부족: 52.6665625 < 60
+20:49:27 | TradingSystem | INFO | 🔬 033780 (종목033780) 분석 시작...
+20:49:35 | TradingSystem | INFO | ✅ 033780 분석 완료 - 점수: 73.6, 추천: BUY
+20:49:35 | TradingSystem | INFO | 🎯 033780 분석 완료: 점수 73.64, 추천 BUY
+20:49:35 | TradingSystem | INFO | ✅ 033780 신호 추가됨
+20:49:35 | TradingSystem | INFO | 🔬 141080 (종목141080) 분석 시작...
+20:49:43 | TradingSystem | INFO | ✅ 141080 분석 완료 - 점수: 58.3, 추천: WEAK_BUY
+20:49:43 | TradingSystem | INFO | 🎯 141080 분석 완료: 점수 58.25561403508772, 추천 WEAK_BUY
+20:49:43 | TradingSystem | INFO | ❌ 141080 점수 부족: 58.25561403508772 < 60
+20:49:43 | TradingSystem | INFO | 🔬 064760 (종목064760) 분석 시작...
+20:49:51 | TradingSystem | INFO | ✅ 064760 분석 완료 - 점수: 53.5, 추천: HOLD
+20:49:51 | TradingSystem | INFO | 🎯 064760 분석 완료: 점수 53.46, 추천 HOLD
+20:49:51 | TradingSystem | INFO | ❌ 064760 점수 부족: 53.46 < 60
+20:49:51 | TradingSystem | INFO | 🔬 021240 (종목021240) 분석 시작...
+20:49:59 | TradingSystem | INFO | ✅ 021240 분석 완료 - 점수: 57.3, 추천: WEAK_BUY
+20:49:59 | TradingSystem | INFO | 🎯 021240 분석 완료: 점수 57.27681818181818, 추천 WEAK_BUY
+20:49:59 | TradingSystem | INFO | ❌ 021240 점수 부족: 57.27681818181818 < 60
+20:49:59 | TradingSystem | INFO | 🔬 000120 (종목000120) 분석 시작...
+20:50:08 | TradingSystem | INFO | ✅ 000120 분석 완료 - 점수: 53.5, 추천: HOLD
+20:50:08 | TradingSystem | INFO | 🎯 000120 분석 완료: 점수 53.54, 추천 HOLD
+20:50:08 | TradingSystem | INFO | ❌ 000120 점수 부족: 53.54 < 60
+20:50:08 | TradingSystem | INFO | 🔬 067160 (종목067160) 분석 시작...
+20:50:16 | TradingSystem | INFO | ✅ 067160 분석 완료 - 점수: 54.6, 추천: HOLD
+20:50:16 | TradingSystem | INFO | 🎯 067160 분석 완료: 점수 54.56531914893617, 추천 HOLD
+20:50:16 | TradingSystem | INFO | ❌ 067160 점수 부족: 54.56531914893617 < 60
+20:50:16 | TradingSystem | INFO | 🔬 000880 (종목000880) 분석 시작...
+20:50:24 | TradingSystem | INFO | ✅ 000880 분석 완료 - 점수: 55.7, 추천: WEAK_BUY
+20:50:24 | TradingSystem | INFO | 🎯 000880 분석 완료: 점수 55.713125, 추천 WEAK_BUY
+20:50:24 | TradingSystem | INFO | ❌ 000880 점수 부족: 55.713125 < 60
+20:50:24 | TradingSystem | INFO | 🔬 003550 (종목003550) 분석 시작...
+20:50:32 | TradingSystem | INFO | ✅ 003550 분석 완료 - 점수: 67.4, 추천: BUY
+20:50:32 | TradingSystem | INFO | 🎯 003550 분석 완료: 점수 67.44087378640776, 추천 BUY
+20:50:32 | TradingSystem | INFO | ✅ 003550 신호 추가됨
+20:50:33 | TradingSystem | INFO | 🔬 064400 (종목064400) 분석 시작...
+20:50:41 | TradingSystem | INFO | ✅ 064400 분석 완료 - 점수: 63.7, 추천: WEAK_BUY
+20:50:41 | TradingSystem | INFO | 🎯 064400 분석 완료: 점수 63.69, 추천 WEAK_BUY
+20:50:41 | TradingSystem | INFO | ✅ 064400 신호 추가됨
+20:50:41 | TradingSystem | INFO | 🔬 066570 (종목066570) 분석 시작...
+20:50:49 | TradingSystem | INFO | ✅ 066570 분석 완료 - 점수: 55.1, 추천: WEAK_BUY
+20:50:49 | TradingSystem | INFO | 🎯 066570 분석 완료: 점수 55.11, 추천 WEAK_BUY
+20:50:49 | TradingSystem | INFO | ❌ 066570 점수 부족: 55.11 < 60
+20:50:49 | TradingSystem | INFO | 🔬 108320 (종목108320) 분석 시작...
+20:50:57 | TradingSystem | INFO | ✅ 108320 분석 완료 - 점수: 68.3, 추천: BUY
+20:50:57 | TradingSystem | INFO | 🎯 108320 분석 완료: 점수 68.30250000000001, 추천 BUY
+20:50:57 | TradingSystem | INFO | ✅ 108320 신호 추가됨
+20:50:57 | TradingSystem | INFO | 🔬 065350 (종목065350) 분석 시작...
+20:51:05 | TradingSystem | INFO | ✅ 065350 분석 완료 - 점수: 47.8, 추천: HOLD
+20:51:05 | TradingSystem | INFO | 🎯 065350 분석 완료: 점수 47.76, 추천 HOLD
+20:51:05 | TradingSystem | INFO | ❌ 065350 점수 부족: 47.76 < 60
+20:51:05 | TradingSystem | INFO | 🔬 192080 (종목192080) 분석 시작...
+20:51:13 | TradingSystem | INFO | ✅ 192080 분석 완료 - 점수: 61.1, 추천: WEAK_BUY
+20:51:13 | TradingSystem | INFO | 🎯 192080 분석 완료: 점수 61.08054054054054, 추천 WEAK_BUY
+20:51:13 | TradingSystem | INFO | ✅ 192080 신호 추가됨
+20:51:13 | TradingSystem | INFO | 🔬 051600 (종목051600) 분석 시작...
+20:51:21 | TradingSystem | INFO | ✅ 051600 분석 완료 - 점수: 55.8, 추천: WEAK_BUY
+20:51:21 | TradingSystem | INFO | 🎯 051600 분석 완료: 점수 55.82875, 추천 WEAK_BUY
+20:51:21 | TradingSystem | INFO | ❌ 051600 점수 부족: 55.82875 < 60
+20:51:21 | TradingSystem | INFO | 🔬 017670 (종목017670) 분석 시작...
+20:51:29 | TradingSystem | INFO | ✅ 017670 분석 완료 - 점수: 55.4, 추천: WEAK_BUY
+20:51:29 | TradingSystem | INFO | 🎯 017670 분석 완료: 점수 55.37695652173913, 추천 WEAK_BUY
+20:51:29 | TradingSystem | INFO | ❌ 017670 점수 부족: 55.37695652173913 < 60
+20:51:29 | TradingSystem | INFO | 🔬 007660 (종목007660) 분석 시작...
+20:51:37 | TradingSystem | INFO | ✅ 007660 분석 완료 - 점수: 63.7, 추천: WEAK_BUY
+20:51:37 | TradingSystem | INFO | 🎯 007660 분석 완료: 점수 63.74, 추천 WEAK_BUY
+20:51:37 | TradingSystem | INFO | ✅ 007660 신호 추가됨
+20:51:37 | TradingSystem | INFO | 🔬 450080 (종목450080) 분석 시작...
+20:51:45 | TradingSystem | INFO | ✅ 450080 분석 완료 - 점수: 51.9, 추천: HOLD
+20:51:45 | TradingSystem | INFO | 🎯 450080 분석 완료: 점수 51.90326530612244, 추천 HOLD
+20:51:45 | TradingSystem | INFO | ❌ 450080 점수 부족: 51.90326530612244 < 60
+20:51:45 | TradingSystem | INFO | 🔬 375500 (종목375500) 분석 시작...
+20:51:53 | TradingSystem | INFO | ✅ 375500 분석 완료 - 점수: 53.9, 추천: HOLD
+20:51:53 | TradingSystem | INFO | 🎯 375500 분석 완료: 점수 53.91383720930232, 추천 HOLD
+20:51:53 | TradingSystem | INFO | ❌ 375500 점수 부족: 53.91383720930232 < 60
+20:51:53 | TradingSystem | INFO | 🔬 112610 (종목112610) 분석 시작...
+20:52:01 | TradingSystem | INFO | ✅ 112610 분석 완료 - 점수: 55.8, 추천: WEAK_BUY
+20:52:01 | TradingSystem | INFO | 🎯 112610 분석 완료: 점수 55.82666666666666, 추천 WEAK_BUY
+20:52:01 | TradingSystem | INFO | ❌ 112610 점수 부족: 55.82666666666666 < 60
+20:52:01 | TradingSystem | INFO | 🔬 036460 (종목036460) 분석 시작...
+20:52:09 | TradingSystem | INFO | ✅ 036460 분석 완료 - 점수: 74.5, 추천: BUY
+20:52:09 | TradingSystem | INFO | 🎯 036460 분석 완료: 점수 74.54672131147541, 추천 BUY
+20:52:09 | TradingSystem | INFO | ✅ 036460 신호 추가됨
+20:52:09 | TradingSystem | INFO | 🔬 003570 (종목003570) 분석 시작...
+20:52:17 | TradingSystem | INFO | ✅ 003570 분석 완료 - 점수: 51.5, 추천: HOLD
+20:52:17 | TradingSystem | INFO | 🎯 003570 분석 완료: 점수 51.54, 추천 HOLD
+20:52:17 | TradingSystem | INFO | ❌ 003570 점수 부족: 51.54 < 60
+20:52:17 | TradingSystem | INFO | 🔬 000990 (종목000990) 분석 시작...
+20:52:25 | TradingSystem | INFO | ✅ 000990 분석 완료 - 점수: 57.8, 추천: WEAK_BUY
+20:52:25 | TradingSystem | INFO | 🎯 000990 분석 완료: 점수 57.76, 추천 WEAK_BUY
+20:52:25 | TradingSystem | INFO | ❌ 000990 점수 부족: 57.76 < 60
+20:52:25 | TradingSystem | INFO | 🔬 263750 (종목263750) 분석 시작...
+20:52:33 | TradingSystem | INFO | ✅ 263750 분석 완료 - 점수: 55.7, 추천: WEAK_BUY
+20:52:33 | TradingSystem | INFO | 🎯 263750 분석 완료: 점수 55.749328358208956, 추천 WEAK_BUY
+20:52:33 | TradingSystem | INFO | ❌ 263750 점수 부족: 55.749328358208956 < 60
+20:52:33 | TradingSystem | INFO | 🔬 031210 (종목031210) 분석 시작...
+20:52:42 | TradingSystem | INFO | ✅ 031210 분석 완료 - 점수: 63.8, 추천: WEAK_BUY
+20:52:42 | TradingSystem | INFO | 🎯 031210 분석 완료: 점수 63.79893162393162, 추천 WEAK_BUY
+20:52:42 | TradingSystem | INFO | ✅ 031210 신호 추가됨
+20:52:43 | TradingSystem | INFO | 🔬 160190 (종목160190) 분석 시작...
+20:52:52 | TradingSystem | INFO | ✅ 160190 분석 완료 - 점수: 61.4, 추천: WEAK_BUY
+20:52:52 | TradingSystem | INFO | 🎯 160190 분석 완료: 점수 61.38090909090909, 추천 WEAK_BUY
+20:52:52 | TradingSystem | INFO | ✅ 160190 신호 추가됨
+20:52:52 | TradingSystem | INFO | 🔬 023590 (종목023590) 분석 시작...
+20:53:01 | TradingSystem | INFO | ✅ 023590 분석 완료 - 점수: 64.5, 추천: WEAK_BUY
+20:53:01 | TradingSystem | INFO | 🎯 023590 분석 완료: 점수 64.50298507462686, 추천 WEAK_BUY
+20:53:01 | TradingSystem | INFO | ✅ 023590 신호 추가됨
+20:53:01 | TradingSystem | INFO | 🔬 004020 (종목004020) 분석 시작...
+20:53:10 | TradingSystem | INFO | ✅ 004020 분석 완료 - 점수: 67.5, 추천: BUY
+20:53:10 | TradingSystem | INFO | 🎯 004020 분석 완료: 점수 67.50386363636363, 추천 BUY
+20:53:10 | TradingSystem | INFO | ✅ 004020 신호 추가됨
+20:53:10 | TradingSystem | INFO | 🔬 096530 (종목096530) 분석 시작...
+20:53:19 | TradingSystem | INFO | ✅ 096530 분석 완료 - 점수: 65.0, 추천: WEAK_BUY
+20:53:19 | TradingSystem | INFO | 🎯 096530 분석 완료: 점수 64.99, 추천 WEAK_BUY
+20:53:19 | TradingSystem | INFO | ✅ 096530 신호 추가됨
+20:53:19 | TradingSystem | INFO | 🔬 036930 (종목036930) 분석 시작...
+20:53:28 | TradingSystem | INFO | ✅ 036930 분석 완료 - 점수: 70.6, 추천: BUY
+20:53:28 | TradingSystem | INFO | 🎯 036930 분석 완료: 점수 70.615, 추천 BUY
+20:53:28 | TradingSystem | INFO | ✅ 036930 신호 추가됨
+20:53:28 | TradingSystem | INFO | 🔬 361610 (종목361610) 분석 시작...
+20:53:37 | TradingSystem | INFO | ✅ 361610 분석 완료 - 점수: 72.8, 추천: BUY
+20:53:37 | TradingSystem | INFO | 🎯 361610 분석 완료: 점수 72.80388686131387, 추천 BUY
+20:53:37 | TradingSystem | INFO | ✅ 361610 신호 추가됨
+20:53:38 | TradingSystem | INFO | 🔬 022100 (종목022100) 분석 시작...
+20:53:47 | TradingSystem | INFO | ✅ 022100 분석 완료 - 점수: 65.6, 추천: BUY
+20:53:47 | TradingSystem | INFO | 🎯 022100 분석 완료: 점수 65.6218811881188, 추천 BUY
+20:53:47 | TradingSystem | INFO | ✅ 022100 신호 추가됨
+20:53:47 | TradingSystem | INFO | 🔬 003490 (종목003490) 분석 시작...
+20:53:56 | TradingSystem | INFO | ✅ 003490 분석 완료 - 점수: 71.7, 추천: BUY
+20:53:56 | TradingSystem | INFO | 🎯 003490 분석 완료: 점수 71.68618721461188, 추천 BUY
+20:53:56 | TradingSystem | INFO | ✅ 003490 신호 추가됨
+20:53:56 | TradingSystem | INFO | 🔬 020150 (종목020150) 분석 시작...
+20:54:05 | TradingSystem | INFO | ✅ 020150 분석 완료 - 점수: 65.4, 추천: BUY
+20:54:05 | TradingSystem | INFO | 🎯 020150 분석 완료: 점수 65.44705128205128, 추천 BUY
+20:54:05 | TradingSystem | INFO | ✅ 020150 신호 추가됨
+20:54:05 | TradingSystem | INFO | 🔬 035250 (종목035250) 분석 시작...
+20:54:14 | TradingSystem | INFO | ✅ 035250 분석 완료 - 점수: 79.8, 추천: BUY
+20:54:14 | TradingSystem | INFO | 🎯 035250 분석 완료: 점수 79.84106761565836, 추천 BUY
+20:54:14 | TradingSystem | INFO | ✅ 035250 신호 추가됨
+20:54:14 | TradingSystem | INFO | 🔬 300720 (종목300720) 분석 시작...
+20:54:24 | TradingSystem | INFO | ✅ 300720 분석 완료 - 점수: 63.2, 추천: WEAK_BUY
+20:54:24 | TradingSystem | INFO | 🎯 300720 분석 완료: 점수 63.204659685863874, 추천 WEAK_BUY
+20:54:24 | TradingSystem | INFO | ✅ 300720 신호 추가됨
+20:54:24 | TradingSystem | INFO | 🔬 007070 (종목007070) 분석 시작...
+20:54:33 | TradingSystem | INFO | ✅ 007070 분석 완료 - 점수: 58.1, 추천: WEAK_BUY
+20:54:33 | TradingSystem | INFO | 🎯 007070 분석 완료: 점수 58.1214371257485, 추천 WEAK_BUY
+20:54:33 | TradingSystem | INFO | ❌ 007070 점수 부족: 58.1214371257485 < 60
+20:54:33 | TradingSystem | INFO | 🔬 034230 (종목034230) 분석 시작...
+20:54:43 | TradingSystem | INFO | ✅ 034230 분석 완료 - 점수: 78.4, 추천: BUY
+20:54:43 | TradingSystem | INFO | 🎯 034230 분석 완료: 점수 78.438, 추천 BUY
+20:54:43 | TradingSystem | INFO | ✅ 034230 신호 추가됨
+20:54:43 | TradingSystem | INFO | 🔬 003530 (종목003530) 분석 시작...
+20:54:52 | TradingSystem | INFO | ✅ 003530 분석 완료 - 점수: 55.5, 추천: WEAK_BUY
+20:54:52 | TradingSystem | INFO | 🎯 003530 분석 완료: 점수 55.46357575757576, 추천 WEAK_BUY
+20:54:52 | TradingSystem | INFO | ❌ 003530 점수 부족: 55.46357575757576 < 60
+20:54:52 | TradingSystem | INFO | 🔬 330590 (종목330590) 분석 시작...
+20:55:01 | TradingSystem | INFO | ✅ 330590 분석 완료 - 점수: 70.0, 추천: BUY
+20:55:01 | TradingSystem | INFO | 🎯 330590 분석 완료: 점수 70.04611111111112, 추천 BUY
+20:55:01 | TradingSystem | INFO | ✅ 330590 신호 추가됨
+20:55:01 | TradingSystem | INFO | 💾 분석 결과 저장 중... (23개 결과)
+20:55:01 | TradingSystem | WARNING | ⚠️ DB 저장 실패: 'DatabaseManager' object has no attribute 'save_analysis_results'
+20:55:01 | TradingSystem | INFO | 📢 분석 결과 알림 발송 중... (10개 결과)
+20:55:01 | TradingSystem | INFO | ✅ 분석 결과 알림 발송 완료
+20:55:01 | TradingSystem | INFO | ✅ 시장 분석 완료: 23개 신호 발견
+21:06:10 | TradingSystem | INFO | ✅ Smart 데이터 수집기 정리 완료
+21:06:10 | TradingSystem | INFO | ✅ 리소스 정리 완료
+06:05:48 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+06:05:48 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:05:48 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:05:48 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:05:49 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:05:49 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:05:49 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:05:49 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:10:28 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+06:10:28 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:10:28 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:10:29 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:10:29 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:10:29 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:10:29 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:10:29 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:10:40 | TradingSystem | INFO | 필터링 결과: 50개 종목
+06:17:28 | TradingSystem | ERROR | ❌ 결과 저장 실패: 'DatabaseManager' object has no attribute 'save_analysis_results'
+07:21:54 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:22:10 | TradingSystem | INFO | 필터링 결과: 102개 종목
+07:34:59 | TradingSystem | ERROR | ❌ 결과 저장 실패: 'DatabaseManager' object has no attribute 'save_analysis_results'
+07:48:04 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:48:04 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:48:04 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:48:06 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:48:06 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:48:06 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:48:06 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:48:06 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:48:06 | TradingSystem | INFO | 필터링 결과: 50개 종목
+07:55:25 | TradingSystem | INFO | 💾 분석 결과 저장 중... (38개 결과)
+07:55:25 | TradingSystem | INFO | ✅ DB 저장 완료
+07:55:25 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250706_075525.json
+08:01:46 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:01:46 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:01:46 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:01:46 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:01:46 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:01:46 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:01:46 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:04:38 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:04:38 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:04:39 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:04:39 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:04:39 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:04:39 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:04:39 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+12:37:16 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+12:37:16 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+12:37:16 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: 'Config' object has no attribute 'api'
+12:37:16 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: 'Config' object has no attribute 'api'
+12:43:06 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+12:43:06 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+12:43:06 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: type object 'Config' has no attribute 'api'
+12:43:06 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: type object 'Config' has no attribute 'api'
+12:52:21 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+12:52:21 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+12:52:21 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+12:52:45 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+12:52:45 | TradingSystem | WARNING | ⚠️ 뉴스 수집기 초기화 실패: No module named 'bs4'
+12:52:45 | TradingSystem | INFO | ✅ 전략 초기화 완료
+12:52:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+12:53:02 | TradingSystem | INFO | 필터링 결과: 58개 종목
+12:53:11 | TradingSystem | INFO | 💾 분석 결과 저장 중... (12개 결과)
+12:53:11 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250714_125311.json
+12:55:19 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+12:55:19 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+12:55:19 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+12:55:20 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+12:55:20 | TradingSystem | WARNING | ⚠️ 뉴스 수집기 초기화 실패: No module named 'bs4'
+12:55:20 | TradingSystem | INFO | ✅ 전략 초기화 완료
+12:55:20 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+12:55:20 | TradingSystem | INFO | 필터링 결과: 50개 종목
+12:55:31 | TradingSystem | INFO | 💾 분석 결과 저장 중... (7개 결과)
+12:55:31 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250714_125531.json
+12:59:00 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+12:59:00 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+12:59:00 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+12:59:00 | TradingSystem | WARNING | ⚠️ 뉴스 수집기 초기화 실패: No module named 'bs4'
+12:59:00 | TradingSystem | INFO | ✅ 전략 초기화 완료
+12:59:00 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+13:09:35 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+13:09:35 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+13:09:35 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+13:09:37 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+13:09:37 | TradingSystem | WARNING | ⚠️ 뉴스 수집기 초기화 실패: No module named 'bs4'
+13:09:37 | TradingSystem | INFO | ✅ 전략 초기화 완료
+13:09:37 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+13:09:38 | TradingSystem | INFO | 필터링 결과: 50개 종목
+13:09:49 | TradingSystem | INFO | 💾 분석 결과 저장 중... (9개 결과)
+13:09:49 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250714_130949.json
+13:16:35 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+13:16:35 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+13:16:35 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+13:16:36 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+13:16:36 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+13:16:36 | TradingSystem | INFO | ✅ 전략 초기화 완료
+13:16:36 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+13:16:36 | TradingSystem | INFO | 필터링 결과: 50개 종목
+13:23:34 | TradingSystem | INFO | 💾 분석 결과 저장 중... (46개 결과)
+13:23:34 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250714_132334.json
+15:32:55 | TradingSystem | INFO | ✅ MenuHandlers 초기화 완료
+15:33:11 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+15:33:11 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:33:11 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:33:12 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:33:12 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:33:12 | TradingSystem | INFO | ✅ 전략 초기화 완료
+15:33:12 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:33:12 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:33:33 | TradingSystem | INFO | 필터링 결과: 100개 종목
+15:46:55 | TradingSystem | INFO | 💾 분석 결과 저장 중... (88개 결과)
+15:46:55 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250714_154655.json
+15:55:00 | TradingSystem | INFO | ✅ MenuHandlers 초기화 완료
+15:55:09 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+15:55:09 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:55:10 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:55:10 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:55:10 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:55:10 | TradingSystem | INFO | ✅ 전략 초기화 완료
+15:55:10 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:55:10 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:55:10 | TradingSystem | INFO | 필터링 결과: 100개 종목
+16:08:37 | TradingSystem | INFO | 💾 분석 결과 저장 중... (89개 결과)
+16:08:37 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250714_160837.json
+16:12:34 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+16:12:34 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:12:34 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:12:36 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:12:36 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:12:36 | TradingSystem | INFO | ✅ 전략 초기화 완료
+16:12:36 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:12:36 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:12:36 | TradingSystem | INFO | 필터링 결과: 50개 종목
+16:19:36 | TradingSystem | INFO | 💾 분석 결과 저장 중... (44개 결과)
+16:19:36 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250714_161936.json
+09:11:50 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+09:11:53 | TradingSystem | INFO | 필터링 결과: 28개 종목
+09:15:32 | TradingSystem | INFO | 💾 분석 결과 저장 중... (21개 결과)
+09:15:32 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_091532.json
+09:21:12 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+09:21:12 | TradingSystem | INFO | 필터링 결과: 1개 종목
+09:21:21 | TradingSystem | INFO | 💾 저장할 분석 결과가 없습니다
+09:35:40 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+09:35:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:35:41 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:35:43 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:35:43 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:35:43 | TradingSystem | INFO | ✅ 전략 초기화 완료
+09:35:43 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:35:43 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:35:43 | TradingSystem | INFO | 필터링 결과: 28개 종목
+09:39:40 | TradingSystem | INFO | 💾 분석 결과 저장 중... (23개 결과)
+09:39:40 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_093940.json
+09:41:32 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+09:41:32 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:41:33 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:41:34 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:41:34 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:41:34 | TradingSystem | INFO | ✅ 전략 초기화 완료
+09:41:34 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:41:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:41:34 | TradingSystem | INFO | 필터링 결과: 28개 종목
+09:41:58 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+09:41:58 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:41:58 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:41:59 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:41:59 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:41:59 | TradingSystem | INFO | ✅ 전략 초기화 완료
+09:41:59 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:41:59 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:41:59 | TradingSystem | INFO | 필터링 결과: 28개 종목
+09:45:49 | TradingSystem | INFO | 💾 분석 결과 저장 중... (24개 결과)
+09:45:49 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_094549.json
+09:46:08 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+09:46:08 | TradingSystem | INFO | 필터링 결과: 5개 종목
+09:46:47 | TradingSystem | INFO | 💾 분석 결과 저장 중... (3개 결과)
+09:46:47 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_094647.json
+09:50:58 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+09:50:58 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:50:58 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:50:59 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:50:59 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:50:59 | TradingSystem | INFO | ✅ 전략 초기화 완료
+09:50:59 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:50:59 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:50:59 | TradingSystem | INFO | 필터링 결과: 28개 종목
+09:54:54 | TradingSystem | INFO | 💾 분석 결과 저장 중... (23개 결과)
+09:54:54 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_095454.json
+09:56:10 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+09:56:10 | TradingSystem | INFO | 필터링 결과: 5개 종목
+09:56:50 | TradingSystem | INFO | 💾 분석 결과 저장 중... (1개 결과)
+09:56:50 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_095650.json
+10:02:08 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: breakout)
+10:02:08 | TradingSystem | INFO | 필터링 결과: 5개 종목
+10:02:53 | TradingSystem | INFO | 💾 분석 결과 저장 중... (1개 결과)
+10:02:53 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_100253.json
+10:03:50 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+10:03:50 | TradingSystem | INFO | 필터링 결과: 1개 종목
+10:03:58 | TradingSystem | INFO | 💾 저장할 분석 결과가 없습니다
+10:14:00 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+10:14:00 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:14:00 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:14:01 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:14:01 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:14:01 | TradingSystem | INFO | ✅ 전략 초기화 완료
+10:14:01 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:14:01 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:38:38 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+10:39:33 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+10:39:33 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:39:33 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:39:34 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:39:34 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:39:34 | TradingSystem | INFO | ✅ 전략 초기화 완료
+10:39:34 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:39:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:39:44 | TradingSystem | INFO | 필터링 결과: 12개 종목
+10:41:22 | TradingSystem | INFO | 💾 분석 결과 저장 중... (10개 결과)
+10:41:22 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_104122.json
+10:41:51 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+10:41:51 | TradingSystem | INFO | 필터링 결과: 5개 종목
+10:42:31 | TradingSystem | INFO | 💾 분석 결과 저장 중... (4개 결과)
+10:42:31 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_104231.json
+11:25:20 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+11:25:25 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+11:25:25 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:25:25 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:25:26 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:25:26 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:25:26 | TradingSystem | INFO | ✅ 전략 초기화 완료
+11:25:26 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:25:26 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:25:26 | TradingSystem | INFO | 필터링 결과: 5개 종목
+11:26:12 | TradingSystem | INFO | 💾 분석 결과 저장 중... (4개 결과)
+11:26:12 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_112612.json
+11:29:14 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+11:29:18 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+11:29:18 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:29:18 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:29:19 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:29:19 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:29:19 | TradingSystem | INFO | ✅ 전략 초기화 완료
+11:29:19 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:29:19 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:29:19 | TradingSystem | INFO | 필터링 결과: 5개 종목
+11:30:04 | TradingSystem | INFO | 💾 분석 결과 저장 중... (4개 결과)
+11:30:04 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_113004.json
+11:34:56 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+11:34:56 | TradingSystem | INFO | 필터링 결과: 5개 종목
+11:35:36 | TradingSystem | INFO | 💾 분석 결과 저장 중... (5개 결과)
+11:35:36 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_113536.json
+11:52:08 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+11:52:12 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+11:52:12 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:52:12 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:52:13 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:52:13 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:52:13 | TradingSystem | INFO | ✅ 전략 초기화 완료
+11:52:13 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:52:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:52:25 | TradingSystem | INFO | 필터링 결과: 14개 종목
+11:54:19 | TradingSystem | INFO | 💾 분석 결과 저장 중... (10개 결과)
+11:54:19 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_115419.json
+12:09:38 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+12:09:42 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+12:09:42 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+12:09:42 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+12:09:43 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+12:09:43 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+12:09:43 | TradingSystem | INFO | ✅ 전략 초기화 완료
+12:09:43 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+12:09:43 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+12:09:43 | TradingSystem | INFO | 필터링 결과: 3개 종목
+12:10:12 | TradingSystem | INFO | 💾 분석 결과 저장 중... (2개 결과)
+12:10:12 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_121012.json
+12:32:05 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+12:32:11 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+12:32:11 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+12:32:11 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+12:32:12 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+12:32:12 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+12:32:12 | TradingSystem | INFO | ✅ 전략 초기화 완료
+12:32:12 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+12:32:12 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+12:32:12 | TradingSystem | INFO | 필터링 결과: 5개 종목
+12:32:58 | TradingSystem | INFO | 💾 분석 결과 저장 중... (3개 결과)
+12:32:58 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_123258.json
+12:33:30 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+12:33:30 | TradingSystem | INFO | 필터링 결과: 5개 종목
+12:34:09 | TradingSystem | INFO | 💾 분석 결과 저장 중... (3개 결과)
+12:34:09 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_123409.json
+13:35:05 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+13:35:08 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+13:35:08 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+13:35:09 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+13:35:10 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+13:35:10 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+13:35:10 | TradingSystem | INFO | ✅ 전략 초기화 완료
+13:35:10 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+13:35:10 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+13:35:37 | TradingSystem | INFO | 필터링 결과: 107개 종목
+13:49:47 | TradingSystem | INFO | 💾 분석 결과 저장 중... (72개 결과)
+13:49:47 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_134947.json
+14:02:31 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+14:02:31 | TradingSystem | INFO | 필터링 결과: 100개 종목
+14:16:21 | TradingSystem | INFO | 💾 분석 결과 저장 중... (68개 결과)
+14:16:21 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250715_141621.json
+05:20:26 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+05:20:30 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+05:20:30 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:20:31 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:20:34 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:20:34 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:20:34 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:20:34 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:20:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:20:54 | TradingSystem | INFO | 필터링 결과: 110개 종목
+05:35:45 | TradingSystem | INFO | 💾 분석 결과 저장 중... (67개 결과)
+05:35:45 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_053545.json
+14:59:46 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+15:00:13 | TradingSystem | INFO | 필터링 결과: 111개 종목
+15:15:21 | TradingSystem | INFO | 💾 분석 결과 저장 중... (57개 결과)
+15:15:21 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_151521.json
+15:21:34 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+15:21:34 | TradingSystem | INFO | 필터링 결과: 100개 종목
+15:35:22 | TradingSystem | INFO | 💾 분석 결과 저장 중... (56개 결과)
+15:35:22 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_153522.json
+15:52:14 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+15:52:18 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+15:52:18 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:52:19 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:52:21 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:52:21 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:52:21 | TradingSystem | INFO | ✅ 전략 초기화 완료
+15:52:21 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:52:21 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:52:21 | TradingSystem | INFO | 필터링 결과: 3개 종목
+15:52:53 | TradingSystem | INFO | 💾 분석 결과 저장 중... (1개 결과)
+15:52:53 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_155253.json
+15:54:07 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+15:54:07 | TradingSystem | INFO | 필터링 결과: 5개 종목
+15:54:51 | TradingSystem | INFO | 💾 분석 결과 저장 중... (1개 결과)
+15:54:51 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_155451.json
+16:51:16 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+16:51:19 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+16:51:19 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:51:20 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:51:21 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:51:21 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:51:21 | TradingSystem | INFO | ✅ 전략 초기화 완료
+16:51:21 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:51:21 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:51:27 | TradingSystem | INFO | 필터링 결과: 7개 종목
+16:52:25 | TradingSystem | INFO | 💾 분석 결과 저장 중... (4개 결과)
+16:52:25 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_165225.json
+16:53:00 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+16:53:00 | TradingSystem | INFO | 필터링 결과: 5개 종목
+16:53:40 | TradingSystem | INFO | 💾 분석 결과 저장 중... (3개 결과)
+16:53:40 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_165340.json
+16:56:18 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+16:56:18 | TradingSystem | INFO | 필터링 결과: 7개 종목
+16:57:16 | TradingSystem | INFO | 💾 분석 결과 저장 중... (4개 결과)
+16:57:16 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250716_165716.json
+05:44:37 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+05:44:43 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+05:44:43 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:44:44 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:44:46 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:44:46 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:44:46 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:44:46 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:44:46 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:47:10 | TradingSystem | INFO | 필터링 결과: 100개 종목
+06:00:36 | TradingSystem | INFO | 💾 분석 결과 저장 중... (37개 결과)
+06:00:36 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250717_060036.json
+06:05:03 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+06:10:42 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+06:10:46 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+06:10:46 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:10:46 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:10:47 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:10:47 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:10:47 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:10:47 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:10:47 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:13:26 | TradingSystem | INFO | 필터링 결과: 100개 종목
+06:26:51 | TradingSystem | INFO | 💾 분석 결과 저장 중... (39개 결과)
+06:26:51 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250717_062651.json
+11:09:58 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+10:08:19 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+10:08:24 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+10:08:24 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:08:27 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:08:28 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:08:28 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:08:28 | TradingSystem | INFO | ✅ 전략 초기화 완료
+10:08:28 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:08:29 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:08:29 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:10:04 | TradingSystem | INFO | 필터링 결과: 95개 종목
+10:23:54 | TradingSystem | INFO | 💾 분석 결과 저장 중... (51개 결과)
+10:23:54 | TradingSystem | INFO | ✅ DB 저장 완료
+10:23:54 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250718_102354.json
+15:44:06 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+15:44:09 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+15:44:09 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:44:09 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:44:10 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:44:10 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:44:10 | TradingSystem | INFO | ✅ 전략 초기화 완료
+15:44:10 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:44:10 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:44:10 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:45:21 | TradingSystem | INFO | 필터링 결과: 84개 종목
+15:57:28 | TradingSystem | INFO | 💾 분석 결과 저장 중... (49개 결과)
+15:57:28 | TradingSystem | INFO | ✅ DB 저장 완료
+15:57:28 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250718_155728.json
+15:58:04 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+15:58:04 | TradingSystem | INFO | 필터링 결과: 84개 종목
+16:10:02 | TradingSystem | INFO | 💾 분석 결과 저장 중... (48개 결과)
+16:10:03 | TradingSystem | INFO | ✅ DB 저장 완료
+16:10:03 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250718_161003.json
+06:06:47 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+06:06:50 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+06:06:50 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:06:53 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:06:55 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:06:55 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:06:55 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:06:55 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:06:56 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:06:56 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:08:23 | TradingSystem | INFO | 필터링 결과: 100개 종목
+06:22:49 | TradingSystem | INFO | 💾 분석 결과 저장 중... (55개 결과)
+06:22:49 | TradingSystem | INFO | ✅ DB 저장 완료
+06:22:49 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_062249.json
+06:47:38 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+06:47:40 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+06:47:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:47:42 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:47:45 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:47:45 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:47:45 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:47:45 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:47:45 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:47:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:47:45 | TradingSystem | INFO | 필터링 결과: 100개 종목
+07:04:43 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+07:04:45 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:04:45 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:04:45 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:04:46 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:04:46 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:04:46 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:04:46 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:04:46 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:04:46 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:04:46 | TradingSystem | INFO | 필터링 결과: 100개 종목
+07:21:11 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+07:21:13 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:21:13 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:21:15 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:21:16 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:21:16 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:21:16 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:21:16 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:21:16 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:21:16 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:22:29 | TradingSystem | INFO | 필터링 결과: 88개 종목
+07:25:21 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+07:25:23 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:25:23 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:25:24 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:25:24 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:25:24 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:25:24 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:25:24 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:25:24 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:25:24 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:25:24 | TradingSystem | INFO | 필터링 결과: 88개 종목
+07:26:08 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+07:26:12 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:26:12 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:26:12 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:26:12 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:26:12 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:26:12 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:26:12 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:26:13 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:26:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:26:13 | TradingSystem | INFO | 필터링 결과: 10개 종목
+07:27:41 | TradingSystem | INFO | 💾 분석 결과 저장 중... (10개 결과)
+07:27:41 | TradingSystem | INFO | ✅ DB 저장 완료
+07:27:41 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_072741.json
+07:37:36 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+07:37:40 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:37:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:37:40 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:37:41 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:37:41 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:37:41 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:37:41 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:37:41 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:37:41 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:37:41 | TradingSystem | INFO | 필터링 결과: 10개 종목
+07:39:09 | TradingSystem | INFO | 💾 분석 결과 저장 중... (10개 결과)
+07:39:09 | TradingSystem | INFO | ✅ DB 저장 완료
+07:39:09 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_073909.json
+07:46:25 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+07:46:28 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:46:28 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:46:29 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:46:29 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:46:29 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:46:29 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:46:29 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:46:29 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:46:29 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:46:29 | TradingSystem | INFO | 필터링 결과: 10개 종목
+07:48:00 | TradingSystem | INFO | 💾 분석 결과 저장 중... (10개 결과)
+07:48:00 | TradingSystem | INFO | ✅ DB 저장 완료
+07:48:00 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_074800.json
+07:49:07 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+07:49:10 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+07:49:10 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:49:13 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:49:13 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:49:13 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:49:13 | TradingSystem | INFO | ✅ 전략 초기화 완료
+07:49:13 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:49:13 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:49:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:49:13 | TradingSystem | INFO | 필터링 결과: 10개 종목
+08:03:41 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+08:03:44 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+08:03:44 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:03:44 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:03:45 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:03:45 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:03:45 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:03:45 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:03:45 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:03:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:03:45 | TradingSystem | INFO | 필터링 결과: 10개 종목
+08:05:10 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+08:05:12 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+08:05:12 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:05:15 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:05:15 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:05:15 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:05:15 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:05:15 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:05:15 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:05:15 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:05:15 | TradingSystem | INFO | 필터링 결과: 10개 종목
+08:07:02 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+08:07:05 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+08:07:05 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:07:05 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:07:06 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:07:06 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:07:06 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:07:06 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:07:06 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:07:06 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:07:06 | TradingSystem | INFO | 필터링 결과: 10개 종목
+08:08:34 | TradingSystem | INFO | 💾 분석 결과 저장 중... (5개 결과)
+08:08:34 | TradingSystem | INFO | ✅ DB 저장 완료
+08:08:34 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_080834.json
+08:12:05 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+08:12:11 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: supertrend_ema_rsi)
+08:12:11 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:12:13 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:12:13 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:12:13 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:12:13 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:12:13 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:12:14 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:12:14 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:12:14 | TradingSystem | INFO | 필터링 결과: 10개 종목
+08:13:41 | TradingSystem | INFO | 💾 분석 결과 저장 중... (4개 결과)
+08:13:41 | TradingSystem | INFO | ✅ DB 저장 완료
+08:13:41 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_081341.json
+08:52:35 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+08:52:38 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+08:52:38 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:52:39 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:52:39 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:52:39 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:52:39 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:52:39 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:52:39 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:52:39 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:52:45 | TradingSystem | INFO | 필터링 결과: 6개 종목
+08:53:20 | TradingSystem | INFO | 💾 분석 결과 저장 중... (2개 결과)
+08:53:20 | TradingSystem | INFO | ✅ DB 저장 완료
+08:53:20 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_085320.json
+08:58:17 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+08:58:20 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+08:58:20 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:58:20 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:58:21 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:58:21 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:58:21 | TradingSystem | INFO | ✅ 전략 초기화 완료
+08:58:21 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:58:21 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:58:21 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:58:21 | TradingSystem | INFO | 필터링 결과: 3개 종목
+08:58:51 | TradingSystem | INFO | 💾 분석 결과 저장 중... (2개 결과)
+08:58:52 | TradingSystem | INFO | ✅ DB 저장 완료
+08:58:52 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_085852.json
+09:00:19 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+09:00:21 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum)
+09:00:21 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:00:24 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:00:24 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:00:24 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:00:24 | TradingSystem | INFO | ✅ 전략 초기화 완료
+09:00:24 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:00:24 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+09:00:24 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:00:24 | TradingSystem | INFO | 필터링 결과: 3개 종목
+09:00:54 | TradingSystem | INFO | 💾 분석 결과 저장 중... (2개 결과)
+09:00:54 | TradingSystem | INFO | ✅ DB 저장 완료
+09:00:54 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_090054.json

@@ -1,0 +1,140 @@
+{
+  "timestamp": "2025-07-15T12:10:12.156331",
+  "total_count": 2,
+  "results": [
+    {
+      "symbol": "005830",
+      "name": "DB손해보험",
+      "score": 68.91173913043478,
+      "signals": {
+        "signal_strength": 29.0,
+        "signal_type": "SELL",
+        "action": "SELL",
+        "confidence": 0.29,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "True",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 56537.333542486806,
+            "ma_short": 57875.44783535582,
+            "ma_medium": 57981.130979710295,
+            "ma_long": 56213.405343838924
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 58.39834958692488,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -8.81406314988898
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.375407834216512,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1683262",
+            "avg_volume": 1223827.55
+          },
+          "momentum_signals": {
+            "score": 25,
+            "returns_1d": -0.019122214940018367,
+            "returns_5d": -0.040387656460818884,
+            "returns_10d": 0.004312401072894212,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.01104468364785459
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 60507.0862515645,
+            "support_level": 51619.575305185375,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "LOW",
+        "timestamp": "2025-07-15T12:10:12.040111"
+      },
+      "analysis_time": "2025-07-15T12:10:12.040272",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 143700.0,
+      "stop_loss": 136515.0,
+      "take_profit": 158070.0
+    },
+    {
+      "symbol": "001040",
+      "name": "종목001040",
+      "score": 66.39081395348836,
+      "signals": {
+        "signal_strength": 55.0,
+        "signal_type": "WEAK_BUY",
+        "action": "HOLD",
+        "confidence": 0.55,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 49084.89093396768,
+            "ma_short": 47819.48435540635,
+            "ma_medium": 47084.14420623089,
+            "ma_long": 46551.383905080525
+          },
+          "rsi_signals": {
+            "score": 40,
+            "rsi": 73.79398497819116,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": 3.689478510703509
+          },
+          "volume_signals": {
+            "score": 60,
+            "volume_ratio": 1.2297968927492124,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1461856",
+            "avg_volume": 1188697.1
+          },
+          "momentum_signals": {
+            "score": 55,
+            "returns_1d": -0.00011896721857529464,
+            "returns_5d": 0.04866059648039094,
+            "returns_10d": 0.07052526779879716,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.009851086514653483
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 50562.38558436462,
+            "support_level": 41892.69761237202,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T12:10:03.989676"
+      },
+      "analysis_time": "2025-07-15T12:10:03.989849",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 175300.0,
+      "stop_loss": 166535.0,
+      "take_profit": 192830.00000000003
+    }
+  ]
+}

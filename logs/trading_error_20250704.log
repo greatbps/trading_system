@@ -1,0 +1,15 @@
+2025-07-04 05:16:14 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:19:50 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:22:15 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:30:17 | TradingSystem | ERROR    | run_market_analysis | ❌ 시장 분석 실패: 'KISCollector' object has no attribute 'get_filtered_stocks'
+2025-07-04 05:31:19 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:53:33 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: invalid syntax (kis_collector.py, line 1247)
+2025-07-04 06:03:06 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: invalid syntax (kis_collector.py, line 1247)
+2025-07-04 06:05:25 | TradingSystem | ERROR    | run_market_analysis | ❌ 시장 분석 실패: 'KISCollector' object has no attribute 'get_filtered_stocks'
+2025-07-04 06:12:18 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: expected 'except' or 'finally' block (kis_collector.py, line 119)
+2025-07-04 06:14:07 | KISCollector | ERROR    | get_filtered_stocks_pykrx | ❌ pykrx 필터링 실패: '>' not supported between instances of 'int' and 'NoneType'
+2025-07-04 06:14:08 | KISCollector | ERROR    | get_filtered_stocks | ❌ KIS API 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 06:14:08 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 필터링 방식 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 21:39:51 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-04 21:40:13 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-04 21:40:13 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: KIS API 토큰 발급에 실패했습니다. API 키를 확인하세요.

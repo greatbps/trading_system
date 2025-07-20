@@ -1,0 +1,49 @@
+2025-07-03 14:25:02 | Main         | ERROR    | interactive_mode | ❌ 작업 실패
+2025-07-03 20:24:34 | KISCollector | ERROR    | get_filtered_stocks | ❌ 필터링 조건을 만족하는 종목이 없습니다.
+2025-07-03 20:37:35 | KISCollector | ERROR    | debug_filtering_process | ❌ 모든 테스트 종목이 필터링에서 탈락 - 조건이 너무 엄격함
+2025-07-03 20:37:48 | KISCollector | ERROR    | debug_filtering_process | ❌ 모든 테스트 종목이 필터링에서 탈락 - 조건이 너무 엄격함
+2025-07-03 20:44:25 | TradingSystem | ERROR    | analyze_symbol  | ❌ 383220 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:25 | TradingSystem | ERROR    | analyze_symbol  | ❌ 010060 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:25 | TradingSystem | ERROR    | analyze_symbol  | ❌ 066570 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:25 | TradingSystem | ERROR    | analyze_symbol  | ❌ 009420 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:25 | TradingSystem | ERROR    | analyze_symbol  | ❌ 008930 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 015760 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 280360 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 122870 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 004170 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 192400 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 462870 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 082640 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 347850 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 192820 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:27 | TradingSystem | ERROR    | analyze_symbol  | ❌ 128940 분석 실패: 'KISCollector' object has no attribute 'get_stock_data'
+2025-07-03 20:44:27 | TradingSystem | ERROR    | _save_analysis_results | ❌ 분석 결과 저장 실패: 'DatabaseManager' object has no attribute 'save_analysis_results'
+2025-07-03 20:46:34 | TradingSystem | ERROR    | analyze_symbol  | ❌ 006120 분석 실패: 'NewsCollector' object has no attribute 'analyze_stock_news'
+2025-07-03 20:46:34 | TradingSystem | ERROR    | analyze_symbol  | ❌ 028300 분석 실패: 'NewsCollector' object has no attribute 'analyze_stock_news'
+2025-07-03 20:46:34 | TradingSystem | ERROR    | analyze_symbol  | ❌ 122870 분석 실패: 'NewsCollector' object has no attribute 'analyze_stock_news'
+2025-07-03 20:46:34 | TradingSystem | ERROR    | analyze_symbol  | ❌ 005290 분석 실패: 'NewsCollector' object has no attribute 'analyze_stock_news'
+2025-07-03 20:46:34 | TradingSystem | ERROR    | analyze_symbol  | ❌ 257720 분석 실패: 'NewsCollector' object has no attribute 'analyze_stock_news'
+2025-07-03 20:46:35 | TradingSystem | ERROR    | analyze_symbol  | ❌ 00680K 분석 실패: 'NewsCollector' object has no attribute 'analyze_stock_news'
+2025-07-03 20:46:35 | TradingSystem | ERROR    | analyze_symbol  | ❌ 085620 분석 실패: 'NewsCollector' object has no attribute 'analyze_stock_news'
+2025-07-03 21:03:43 | TradingSystem | ERROR    | analyze_symbol  | ❌ 알 수 없는 전략: momentum, 사용 가능: []
+2025-07-03 21:03:53 | TradingSystem | ERROR    | analyze_symbol  | ❌ 알 수 없는 전략: momentum, 사용 가능: []
+2025-07-03 21:04:02 | TradingSystem | ERROR    | analyze_symbol  | ❌ 알 수 없는 전략: momentum, 사용 가능: []
+2025-07-03 21:04:11 | TradingSystem | ERROR    | analyze_symbol  | ❌ 알 수 없는 전략: momentum, 사용 가능: []
+2025-07-03 21:05:29 | TradingSystem | ERROR    | analyze_symbol  | ❌ 알 수 없는 전략: momentum, 사용 가능: []
+2025-07-03 21:05:38 | TradingSystem | ERROR    | analyze_symbol  | ❌ 알 수 없는 전략: momentum, 사용 가능: []
+2025-07-03 21:05:47 | TradingSystem | ERROR    | analyze_symbol  | ❌ 알 수 없는 전략: momentum, 사용 가능: []
+2025-07-03 21:07:57 | TradingSystem | ERROR    | analyze_symbol  | ❌ 082640 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:08:06 | TradingSystem | ERROR    | analyze_symbol  | ❌ 298020 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:08:16 | TradingSystem | ERROR    | analyze_symbol  | ❌ 011070 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:08:26 | TradingSystem | ERROR    | analyze_symbol  | ❌ 112040 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:08:36 | TradingSystem | ERROR    | analyze_symbol  | ❌ 010120 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:08:45 | TradingSystem | ERROR    | analyze_symbol  | ❌ 028260 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:08:54 | TradingSystem | ERROR    | analyze_symbol  | ❌ 000815 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:09:04 | TradingSystem | ERROR    | analyze_symbol  | ❌ 443060 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:09:13 | TradingSystem | ERROR    | analyze_symbol  | ❌ 032350 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:09:23 | TradingSystem | ERROR    | analyze_symbol  | ❌ 259960 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:09:32 | TradingSystem | ERROR    | analyze_symbol  | ❌ 103140 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:09:42 | TradingSystem | ERROR    | analyze_symbol  | ❌ 033780 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:09:52 | TradingSystem | ERROR    | analyze_symbol  | ❌ 196170 분석 실패: 'dict' object has no attribute 'symbol'
+2025-07-03 21:17:00 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-03 21:19:46 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'

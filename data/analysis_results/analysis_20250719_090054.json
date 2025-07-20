@@ -1,0 +1,140 @@
+{
+  "timestamp": "2025-07-19T09:00:54.891697",
+  "total_count": 2,
+  "results": [
+    {
+      "symbol": "000990",
+      "name": "DB하이텍",
+      "score": 68.01,
+      "signals": {
+        "signal_strength": 59.5,
+        "signal_type": "WEAK_BUY",
+        "action": "HOLD",
+        "confidence": 0.595,
+        "details": {
+          "ma_signals": {
+            "score": 65,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 48407.156274497516,
+            "ma_short": 47476.26506309784,
+            "ma_medium": 47172.61484018129,
+            "ma_long": 47421.98757705577
+          },
+          "rsi_signals": {
+            "score": 50,
+            "rsi": 47.68832714778361,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 1.1330383451518884
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.5420498574471331,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "560747",
+            "avg_volume": 1034493.4
+          },
+          "momentum_signals": {
+            "score": 75,
+            "returns_1d": 0.020571274856427228,
+            "returns_5d": 0.02954494455068295,
+            "returns_10d": -0.0031728916462991333,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.014662285946290638
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 50596.98262137433,
+            "support_level": 44479.40389329498,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-19T09:00:46.161289"
+      },
+      "analysis_time": "2025-07-19T09:00:46.161289",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 47300.0,
+      "stop_loss": 44935.0,
+      "take_profit": 52030.00000000001
+    },
+    {
+      "symbol": "007340",
+      "name": "DN오토모티브",
+      "score": 62.58,
+      "signals": {
+        "signal_strength": 48.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.48,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "False",
+            "current_price": 49318.31247893011,
+            "ma_short": 49616.21051887014,
+            "ma_medium": 48841.35869482693,
+            "ma_long": 48355.41995277962
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 60.53654431010613,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -8.327754098996657
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 1.0027533856263107,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1394954",
+            "avg_volume": 1391123.7
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.017537832326295064,
+            "returns_5d": 0.017607195341009407,
+            "returns_10d": 0.0023770727424095774,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.021059271394496946
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 51361.07622658526,
+            "support_level": 45086.8515539779,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-19T09:00:54.223405"
+      },
+      "analysis_time": "2025-07-19T09:00:54.224405",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 27600.0,
+      "stop_loss": 26220.0,
+      "take_profit": 30360.000000000004
+    }
+  ]
+}

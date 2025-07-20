@@ -1,0 +1,3423 @@
+{
+  "timestamp": "2025-07-18T10:25:06.559144",
+  "total_results": 51,
+  "results": [
+    {
+      "symbol": "028670",
+      "name": "팬오션",
+      "score": 74.90910651629072,
+      "signals": {
+        "signal_strength": 34.0,
+        "signal_type": "SELL",
+        "action": "SELL",
+        "confidence": 0.34,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 55393.51172969359,
+            "ma_short": 56404.405709738494,
+            "ma_medium": 57502.94693726845,
+            "ma_long": 57692.03586678354
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 36.315703448628646,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -6.544774968808788
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.0658681148503637,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1275435",
+            "avg_volume": 1196616.15
+          },
+          "momentum_signals": {
+            "score": 15,
+            "returns_1d": -0.029374724134769045,
+            "returns_5d": -0.03832223146474678,
+            "returns_10d": -0.04103125526256914,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": -0.02171027784181969
+          },
+          "breakout_signals": {
+            "score": 40,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 62076.46042436867,
+            "support_level": 52859.89750233444,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:23:27.351747"
+      },
+      "analysis_time": "2025-07-18T10:23:27.351747",
+      "strategy": "momentum",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 4225.0,
+      "stop_loss": 4013.75,
+      "take_profit": 4647.5
+    },
+    {
+      "symbol": "161390",
+      "name": "한국타이어앤테크놀로지",
+      "score": 72.11571428571429,
+      "signals": {
+        "signal_strength": 25.0,
+        "signal_type": "SELL",
+        "action": "SELL",
+        "confidence": 0.25,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "True",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 48128.66555191061,
+            "ma_short": 50179.57697513314,
+            "ma_medium": 50644.7987766534,
+            "ma_long": 49858.698029446845
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 54.17506728244324,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -3.2969750261263187
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 1.1383585740271762,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1309471",
+            "avg_volume": 1150315.05
+          },
+          "momentum_signals": {
+            "score": 10,
+            "returns_1d": -0.02935733555953219,
+            "returns_5d": -0.07258651261845572,
+            "returns_10d": -0.016740822500245247,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": -0.014840033035841044
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 54213.9895103744,
+            "support_level": 44757.93955652142,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:11:06.038130"
+      },
+      "analysis_time": "2025-07-18T10:11:06.038130",
+      "strategy": "momentum",
+      "recommendation": "BUY",
+      "risk_level": "LOW",
+      "entry_price": 47000.0,
+      "stop_loss": 44650.0,
+      "take_profit": 51700.00000000001
+    },
+    {
+      "symbol": "034230",
+      "name": "파라다이스",
+      "score": 72.046,
+      "signals": {
+        "signal_strength": 78.5,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.785,
+        "details": {
+          "ma_signals": {
+            "score": 95,
+            "golden_cross": "True",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 53138.5196598574,
+            "ma_short": 51654.31772418566,
+            "ma_medium": 51539.2496926639,
+            "ma_long": 51216.30762233336
+          },
+          "rsi_signals": {
+            "score": 30,
+            "rsi": 73.79076203896109,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": 10.283680888294164
+          },
+          "volume_signals": {
+            "score": 75,
+            "volume_ratio": 1.6776955979965462,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1918052",
+            "avg_volume": 1143265.8
+          },
+          "momentum_signals": {
+            "score": 80,
+            "returns_1d": 0.012812754371943869,
+            "returns_5d": 0.03642937914626473,
+            "returns_10d": 0.015313793482011295,
+            "momentum_strong": "False",
+            "momentum_consistency": 1,
+            "acceleration": 0.005526878542690923
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 54526.78800653414,
+            "support_level": 47185.52723933598,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:20:27.992805"
+      },
+      "analysis_time": "2025-07-18T10:20:27.992805",
+      "strategy": "momentum",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 19430.0,
+      "stop_loss": 18458.5,
+      "take_profit": 21373.0
+    },
+    {
+      "symbol": "030000",
+      "name": "제일기획",
+      "score": 71.23220430107527,
+      "signals": {
+        "signal_strength": 45.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.45,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 36958.9091192804,
+            "ma_short": 37117.46100015439,
+            "ma_medium": 37787.86590219618,
+            "ma_long": 38718.955242918615
+          },
+          "rsi_signals": {
+            "score": 65,
+            "rsi": 38.419718257722025,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 6.494594642998209
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.8491517253100925,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1052925",
+            "avg_volume": 1239972.75
+          },
+          "momentum_signals": {
+            "score": 55,
+            "returns_1d": 0.022856913552573493,
+            "returns_5d": -0.027302338831591833,
+            "returns_10d": -0.052242509719876956,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.02831738131889186
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 44344.75736851672,
+            "support_level": 35585.75248411463,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:19:44.708361"
+      },
+      "analysis_time": "2025-07-18T10:19:44.709361",
+      "strategy": "momentum",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 21850.0,
+      "stop_loss": 20757.5,
+      "take_profit": 24035.000000000004
+    },
+    {
+      "symbol": "316140",
+      "name": "우리금융지주",
+      "score": 71.0088559322034,
+      "signals": {
+        "signal_strength": 51.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.51,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 42199.618975240344,
+            "ma_short": 42649.02517760131,
+            "ma_medium": 41869.58237579987,
+            "ma_long": 41942.44634739142
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 47.4999406885948,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -4.506303417098877
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.3494519475901097,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1815381",
+            "avg_volume": 1345272.8
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.026851253016704726,
+            "returns_5d": 0.023198840856485964,
+            "returns_10d": 0.03845652984440092,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.03149102118800192
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 44992.59682370976,
+            "support_level": 38897.734399623485,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "LOW",
+        "timestamp": "2025-07-18T10:18:44.405342"
+      },
+      "analysis_time": "2025-07-18T10:18:44.405342",
+      "strategy": "momentum",
+      "recommendation": "BUY",
+      "risk_level": "LOW",
+      "entry_price": 24800.0,
+      "stop_loss": 23560.0,
+      "take_profit": 27280.000000000004
+    },
+    {
+      "symbol": "000240",
+      "name": "한국앤컴퍼니",
+      "score": 69.565,
+      "signals": {
+        "signal_strength": 33.0,
+        "signal_type": "SELL",
+        "action": "SELL",
+        "confidence": 0.33,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 48569.348108034384,
+            "ma_short": 49687.66688716361,
+            "ma_medium": 50549.59901354984,
+            "ma_long": 51552.09169779006
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 34.5601059898743,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -3.9328475052530436
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 0.9485660047147128,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1126277",
+            "avg_volume": 1187347.0
+          },
+          "momentum_signals": {
+            "score": 15,
+            "returns_1d": -0.026881972647499173,
+            "returns_5d": -0.02212985900093043,
+            "returns_10d": -0.08405327902675852,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": -0.022456000847313085
+          },
+          "breakout_signals": {
+            "score": 40,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 55348.93523579689,
+            "support_level": 46400.04209302593,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:18:27.148721"
+      },
+      "analysis_time": "2025-07-18T10:18:27.149720",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 25600.0,
+      "stop_loss": 24320.0,
+      "take_profit": 28160.000000000004
+    },
+    {
+      "symbol": "089860",
+      "name": "롯데렌탈",
+      "score": 69.55206225680934,
+      "signals": {
+        "signal_strength": 66.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.66,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 48273.94486669308,
+            "ma_short": 48253.699688611705,
+            "ma_medium": 47456.90379982324,
+            "ma_long": 46824.31187972172
+          },
+          "rsi_signals": {
+            "score": 65,
+            "rsi": 60.71690354034776,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 8.054199871342796
+          },
+          "volume_signals": {
+            "score": 70,
+            "volume_ratio": 1.4530390065343373,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1795091",
+            "avg_volume": 1235404.55
+          },
+          "momentum_signals": {
+            "score": 50,
+            "returns_1d": 0.009426098020948835,
+            "returns_5d": -0.004243647428078573,
+            "returns_10d": 0.08672906374704814,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.010274827506564551
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 50536.6653933555,
+            "support_level": 42479.70031473677,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:14:57.097478"
+      },
+      "analysis_time": "2025-07-18T10:14:57.097478",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 34100.0,
+      "stop_loss": 32395.0,
+      "take_profit": 37510.0
+    },
+    {
+      "symbol": "175330",
+      "name": "JB금융지주",
+      "score": 69.2734375,
+      "signals": {
+        "signal_strength": 52.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.52,
+        "details": {
+          "ma_signals": {
+            "score": 40,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "False",
+            "current_price": 50790.64455405158,
+            "ma_short": 50948.92056185419,
+            "ma_medium": 50941.45343780746,
+            "ma_long": 50105.10469695882
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 57.310361714148826,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -0.874107232242693
+          },
+          "volume_signals": {
+            "score": 70,
+            "volume_ratio": 1.220917883310204,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1646230",
+            "avg_volume": 1348354.4
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": 0.0012068673415160226,
+            "returns_5d": -0.02331150807836675,
+            "returns_10d": -0.004467572340676926,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.005869168957189372
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 53096.498637146295,
+            "support_level": 45794.84899653219,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:19:01.800862"
+      },
+      "analysis_time": "2025-07-18T10:19:01.800862",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 23850.0,
+      "stop_loss": 22657.5,
+      "take_profit": 26235.000000000004
+    },
+    {
+      "symbol": "011200",
+      "name": "HMM",
+      "score": 69.04,
+      "signals": {
+        "signal_strength": 66.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.66,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 50988.92633494408,
+            "ma_short": 49863.269196926645,
+            "ma_medium": 50352.80718616755,
+            "ma_long": 50233.99259368042
+          },
+          "rsi_signals": {
+            "score": 65,
+            "rsi": 61.96850183851893,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 8.910947177806456
+          },
+          "volume_signals": {
+            "score": 65,
+            "volume_ratio": 1.5336198053428407,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1825748",
+            "avg_volume": 1190482.8
+          },
+          "momentum_signals": {
+            "score": 75,
+            "returns_1d": 0.02760109308045316,
+            "returns_5d": 0.020779158712618057,
+            "returns_10d": -0.015909296178701585,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.02344526133792955
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 54058.667436402524,
+            "support_level": 47357.04088435825,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "LOW",
+        "timestamp": "2025-07-18T10:18:53.183675"
+      },
+      "analysis_time": "2025-07-18T10:18:53.183675",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 24850.0,
+      "stop_loss": 23607.5,
+      "take_profit": 27335.000000000004
+    },
+    {
+      "symbol": "030610",
+      "name": "교보증권",
+      "score": 68.7996551724138,
+      "signals": {
+        "signal_strength": 49.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.49,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 59139.98167875309,
+            "ma_short": 58409.73756478535,
+            "ma_medium": 56920.45750458224,
+            "ma_long": 55778.46420389827
+          },
+          "rsi_signals": {
+            "score": 30,
+            "rsi": 75.29707026968035,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": -3.7052233217781776
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 0.84976549314243,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1071561",
+            "avg_volume": 1261007.9
+          },
+          "momentum_signals": {
+            "score": 55,
+            "returns_1d": -0.0012616014951861985,
+            "returns_5d": 0.051566666754087234,
+            "returns_10d": 0.08363219967001409,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.011574934846003646
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 61764.18732939213,
+            "support_level": 51059.15525904164,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:22:43.104969"
+      },
+      "analysis_time": "2025-07-18T10:22:43.105969",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 9730.0,
+      "stop_loss": 9243.5,
+      "take_profit": 10703.0
+    },
+    {
+      "symbol": "002790",
+      "name": "아모레퍼시픽홀딩스",
+      "score": 68.68673796791444,
+      "signals": {
+        "signal_strength": 67.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.67,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 49746.461917529,
+            "ma_short": 49571.99763452661,
+            "ma_medium": 48196.9359819008,
+            "ma_long": 47638.56364349266
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 53.03572640387597,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -1.6943743379083926
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.6337609221616369,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "824553",
+            "avg_volume": 1301047.4
+          },
+          "momentum_signals": {
+            "score": 80,
+            "returns_1d": 0.010367788446050472,
+            "returns_5d": 0.04314074025334823,
+            "returns_10d": 0.05740624143915884,
+            "momentum_strong": "False",
+            "momentum_consistency": 1,
+            "acceleration": 0.001739640395380826
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 52940.99530525627,
+            "support_level": 43731.356966994776,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:15:31.502493"
+      },
+      "analysis_time": "2025-07-18T10:15:31.502493",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 32500.0,
+      "stop_loss": 30875.0,
+      "take_profit": 35750.0
+    },
+    {
+      "symbol": "015760",
+      "name": "한국전력",
+      "score": 68.46037735849056,
+      "signals": {
+        "signal_strength": 36.5,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.365,
+        "details": {
+          "ma_signals": {
+            "score": 25,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 50433.40899561326,
+            "ma_short": 51679.13804627776,
+            "ma_medium": 52623.51842059354,
+            "ma_long": 52162.6510889725
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 45.34126481267273,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -8.133921414468958
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.3105002523315654,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1718940",
+            "avg_volume": 1311667.05
+          },
+          "momentum_signals": {
+            "score": 15,
+            "returns_1d": -0.027932241425912555,
+            "returns_5d": -0.04137490976740763,
+            "returns_10d": -0.030471845903101525,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": -0.019657259472431028
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 56497.28225887394,
+            "support_level": 48315.858664400905,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "LOW",
+        "timestamp": "2025-07-18T10:14:05.893028"
+      },
+      "analysis_time": "2025-07-18T10:14:05.893028",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 36200.0,
+      "stop_loss": 34390.0,
+      "take_profit": 39820.0
+    },
+    {
+      "symbol": "032640",
+      "name": "LG유플러스",
+      "score": 68.30492753623189,
+      "signals": {
+        "signal_strength": 76.5,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.765,
+        "details": {
+          "ma_signals": {
+            "score": 75,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 49580.64556129182,
+            "ma_short": 48026.46948838035,
+            "ma_medium": 46626.53728900439,
+            "ma_long": 47169.996948429536
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 54.34625255562773,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 1.0155925754458082
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.5963012097248735,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "736215",
+            "avg_volume": 1234636.1
+          },
+          "momentum_signals": {
+            "score": 85,
+            "returns_1d": 0.021878855725830107,
+            "returns_5d": 0.0785772168654688,
+            "returns_10d": 0.06251705747193079,
+            "momentum_strong": "True",
+            "momentum_consistency": 1,
+            "acceleration": 0.006163412352736347
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 50515.93082199036,
+            "support_level": 42082.0819692621,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:21:39.360884"
+      },
+      "analysis_time": "2025-07-18T10:21:39.360884",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 14760.0,
+      "stop_loss": 14022.0,
+      "take_profit": 16236.000000000002
+    },
+    {
+      "symbol": "003490",
+      "name": "대한항공",
+      "score": 67.27711267605633,
+      "signals": {
+        "signal_strength": 48.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.48,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 43999.80690507396,
+            "ma_short": 44496.477888408575,
+            "ma_medium": 45274.70527382755,
+            "ma_long": 46703.039620613774
+          },
+          "rsi_signals": {
+            "score": 70,
+            "rsi": 29.533498806626383,
+            "rsi_trend": "down",
+            "oversold": "True",
+            "overbought": "False",
+            "rsi_momentum": -5.568652876398971
+          },
+          "volume_signals": {
+            "score": 65,
+            "volume_ratio": 1.605528716667512,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1854517",
+            "avg_volume": 1155081.8
+          },
+          "momentum_signals": {
+            "score": 25,
+            "returns_1d": -0.00159627688236148,
+            "returns_5d": -0.04145536568479253,
+            "returns_10d": -0.045195940139957494,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": 0.006694796254597027
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 50731.6140168209,
+            "support_level": 43006.176713648674,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:18:09.363175"
+      },
+      "analysis_time": "2025-07-18T10:18:09.363175",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 25650.0,
+      "stop_loss": 24367.5,
+      "take_profit": 28215.000000000004
+    },
+    {
+      "symbol": "009830",
+      "name": "한화솔루션",
+      "score": 66.41602040816326,
+      "signals": {
+        "signal_strength": 72.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.72,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 45564.14585615891,
+            "ma_short": 44408.60875203547,
+            "ma_medium": 43755.05476551246,
+            "ma_long": 43252.95921648014
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 64.68095379675202,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 0.6889978320595844
+          },
+          "volume_signals": {
+            "score": 70,
+            "volume_ratio": 1.3592159953350738,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1800895",
+            "avg_volume": 1324951.3
+          },
+          "momentum_signals": {
+            "score": 80,
+            "returns_1d": 0.01017358900720551,
+            "returns_5d": 0.03445380713362904,
+            "returns_10d": 0.08406457331466555,
+            "momentum_strong": "False",
+            "momentum_consistency": 1,
+            "acceleration": 0.003282827580479703
+          },
+          "breakout_signals": {
+            "score": 60,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 47352.18433172054,
+            "support_level": 40407.612071166644,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:14:14.427767"
+      },
+      "analysis_time": "2025-07-18T10:14:14.427767",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "LOW",
+      "entry_price": 36000.0,
+      "stop_loss": 34200.0,
+      "take_profit": 39600.0
+    },
+    {
+      "symbol": "204320",
+      "name": "HL만도",
+      "score": 65.8907326007326,
+      "signals": {
+        "signal_strength": 48.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.48,
+        "details": {
+          "ma_signals": {
+            "score": 40,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "False",
+            "current_price": 46825.53305436588,
+            "ma_short": 47228.48542181541,
+            "ma_medium": 47091.40802837792,
+            "ma_long": 46990.84593534484
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 49.608551778086735,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -1.5699767338120125
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.0331580084335426,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1216936",
+            "avg_volume": 1177879.85
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": 0.007567682957952482,
+            "returns_5d": -0.004526638584000091,
+            "returns_10d": 0.039521485242830015,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.0084730106747525
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 50023.628640439616,
+            "support_level": 44230.57304350866,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:14:40.002030"
+      },
+      "analysis_time": "2025-07-18T10:14:40.002030",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 34900.0,
+      "stop_loss": 33155.0,
+      "take_profit": 38390.0
+    },
+    {
+      "symbol": "004000",
+      "name": "롯데정밀화학",
+      "score": 65.81206467661691,
+      "signals": {
+        "signal_strength": 44.5,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.445,
+        "details": {
+          "ma_signals": {
+            "score": 45,
+            "golden_cross": "False",
+            "dead_cross": "True",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 50522.968918256214,
+            "ma_short": 50329.55236055438,
+            "ma_medium": 50414.414377929745,
+            "ma_long": 50812.308897208764
+          },
+          "rsi_signals": {
+            "score": 65,
+            "rsi": 50.620322621454534,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 6.789577796984901
+          },
+          "volume_signals": {
+            "score": 60,
+            "volume_ratio": 1.1533950973383018,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1500524",
+            "avg_volume": 1300962.7
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": 0.002005461337607033,
+            "returns_5d": -0.00969644479951984,
+            "returns_10d": 0.015061453910912405,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.0039447502975110006
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 55197.78951974894,
+            "support_level": 46880.74219530536,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "HIGH",
+        "timestamp": "2025-07-18T10:12:48.742402"
+      },
+      "analysis_time": "2025-07-18T10:12:48.742402",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 42300.0,
+      "stop_loss": 40185.0,
+      "take_profit": 46530.00000000001
+    },
+    {
+      "symbol": "022100",
+      "name": "포스코DX",
+      "score": 65.76240293040293,
+      "signals": {
+        "signal_strength": 55.0,
+        "signal_type": "WEAK_BUY",
+        "action": "HOLD",
+        "confidence": 0.55,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 48862.36474687656,
+            "ma_short": 48702.617822852364,
+            "ma_medium": 48761.44239782903,
+            "ma_long": 48589.1912304429
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 49.26785199539203,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 2.6269476703303027
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.6157879999398107,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "752990",
+            "avg_volume": 1222807.2
+          },
+          "momentum_signals": {
+            "score": 65,
+            "returns_1d": 0.007282482791826244,
+            "returns_5d": 0.02016494791453114,
+            "returns_10d": -0.004129086805807839,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.003249493208920016
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 51703.826393452335,
+            "support_level": 46016.267813285194,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "HIGH",
+        "timestamp": "2025-07-18T10:18:35.633147"
+      },
+      "analysis_time": "2025-07-18T10:18:35.633147",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 25350.0,
+      "stop_loss": 24082.5,
+      "take_profit": 27885.000000000004
+    },
+    {
+      "symbol": "001430",
+      "name": "세아베스틸지주",
+      "score": 65.65783105022831,
+      "signals": {
+        "signal_strength": 54.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.54,
+        "details": {
+          "ma_signals": {
+            "score": 60,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 51496.408394069585,
+            "ma_short": 51144.55648057239,
+            "ma_medium": 51344.265542431036,
+            "ma_long": 51535.47483878876
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 44.550788822223446,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -8.661387318406383
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.3429170013142016,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1938245",
+            "avg_volume": 1443309.6
+          },
+          "momentum_signals": {
+            "score": 50,
+            "returns_1d": -0.009882523906707746,
+            "returns_5d": 0.029753807124817486,
+            "returns_10d": -0.04572248078773535,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.01583328533167124
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 55685.5065286303,
+            "support_level": 47684.57691559207,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:15:48.563402"
+      },
+      "analysis_time": "2025-07-18T10:15:48.563402",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 32400.0,
+      "stop_loss": 30780.0,
+      "take_profit": 35640.0
+    },
+    {
+      "symbol": "001120",
+      "name": "LX인터내셔널",
+      "score": 64.76109004739337,
+      "signals": {
+        "signal_strength": 76.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.76,
+        "details": {
+          "ma_signals": {
+            "score": 70,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 55351.78746634666,
+            "ma_short": 54079.95727150614,
+            "ma_medium": 53987.15186825078,
+            "ma_long": 53248.14362455979
+          },
+          "rsi_signals": {
+            "score": 65,
+            "rsi": 59.10100304187968,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 12.511190011019835
+          },
+          "volume_signals": {
+            "score": 75,
+            "volume_ratio": 1.6946343084659958,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1817235",
+            "avg_volume": 1072346.4
+          },
+          "momentum_signals": {
+            "score": 85,
+            "returns_1d": 0.02893225395961373,
+            "returns_5d": 0.01316720527524863,
+            "returns_10d": 0.06770991484239729,
+            "momentum_strong": "False",
+            "momentum_consistency": 1,
+            "acceleration": 0.026298812904564005
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 56989.42767783035,
+            "support_level": 49651.54972497993,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:15:22.874893"
+      },
+      "analysis_time": "2025-07-18T10:15:22.876409",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 33000.0,
+      "stop_loss": 31350.0,
+      "take_profit": 36300.0
+    },
+    {
+      "symbol": "457190",
+      "name": "이수스페셜티케미컬",
+      "score": 64.588,
+      "signals": {
+        "signal_strength": 48.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.48,
+        "details": {
+          "ma_signals": {
+            "score": 40,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 44450.1929539595,
+            "ma_short": 45102.87789454019,
+            "ma_medium": 44700.51177467987,
+            "ma_long": 44871.865009697314
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 48.186778359956335,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -3.8212726126547665
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.7061503958069661,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "951074",
+            "avg_volume": 1346843.4
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.011800564645018849,
+            "returns_5d": 0.0024526386824950007,
+            "returns_10d": -0.017149544429448195,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.012291092381517849
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 47519.22042790027,
+            "support_level": 41781.13437545162,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "HIGH",
+        "timestamp": "2025-07-18T10:12:23.281375"
+      },
+      "analysis_time": "2025-07-18T10:12:23.283374",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 43900.0,
+      "stop_loss": 41705.0,
+      "take_profit": 48290.00000000001
+    },
+    {
+      "symbol": "017960",
+      "name": "한국카본",
+      "score": 64.48396617336152,
+      "signals": {
+        "signal_strength": 35.0,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.35,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 48271.61515975111,
+            "ma_short": 48617.925642328264,
+            "ma_medium": 49276.08192424569,
+            "ma_long": 49616.81417553789
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 40.65720044687135,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -5.445071991460985
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 1.0727132559405372,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1361410",
+            "avg_volume": 1269127.6
+          },
+          "momentum_signals": {
+            "score": 25,
+            "returns_1d": -0.004864848973432654,
+            "returns_5d": -0.039288177043429996,
+            "returns_10d": -0.033844466669583746,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": 0.0029927864352533463
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 52541.33594591153,
+            "support_level": 47119.962381187084,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:18:00.523031"
+      },
+      "analysis_time": "2025-07-18T10:18:00.523031",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 26150.0,
+      "stop_loss": 24842.5,
+      "take_profit": 28765.000000000004
+    },
+    {
+      "symbol": "138930",
+      "name": "BNK금융지주",
+      "score": 64.35541284403669,
+      "signals": {
+        "signal_strength": 42.0,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.42,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 50098.72424301657,
+            "ma_short": 50124.46306054066,
+            "ma_medium": 50543.40583027203,
+            "ma_long": 52259.13603829005
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 34.20395358446734,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -4.474162880501247
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.2235533987100518,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1596526",
+            "avg_volume": 1304827.4
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.02271042275496643,
+            "returns_5d": 0.02432291348279178,
+            "returns_10d": -0.052013767247808235,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.027575005451524786
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 57138.726256295326,
+            "support_level": 46753.45307936289,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:21:20.538065"
+      },
+      "analysis_time": "2025-07-18T10:21:20.539064",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 15480.0,
+      "stop_loss": 14706.0,
+      "take_profit": 17028.0
+    },
+    {
+      "symbol": "023590",
+      "name": "다우기술",
+      "score": 64.19850340136054,
+      "signals": {
+        "signal_strength": 65.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.65,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 44884.22157423468,
+            "ma_short": 44108.87140656191,
+            "ma_medium": 44362.63604285906,
+            "ma_long": 44542.4171167769
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 46.162621144225554,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -3.6996124423302277
+          },
+          "volume_signals": {
+            "score": 75,
+            "volume_ratio": 1.7424762094264783,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1982614",
+            "avg_volume": 1137814.1
+          },
+          "momentum_signals": {
+            "score": 65,
+            "returns_1d": 0.0037786859784145763,
+            "returns_5d": 0.009486691659753629,
+            "returns_10d": -0.004892782120928598,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.0018813476464638506
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 48537.575620968346,
+            "support_level": 41907.6955341188,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:13:39.982683"
+      },
+      "analysis_time": "2025-07-18T10:13:39.982683",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 37600.0,
+      "stop_loss": 35720.0,
+      "take_profit": 41360.0
+    },
+    {
+      "symbol": "012630",
+      "name": "HDC",
+      "score": 64.08364312267658,
+      "signals": {
+        "signal_strength": 57.0,
+        "signal_type": "WEAK_BUY",
+        "action": "HOLD",
+        "confidence": 0.57,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 55908.291993509876,
+            "ma_short": 55019.46009272167,
+            "ma_medium": 54096.0491489517,
+            "ma_long": 52999.18485982049
+          },
+          "rsi_signals": {
+            "score": 30,
+            "rsi": 70.68936118850482,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": 6.132035038989798
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.5582479922291544,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "655342",
+            "avg_volume": 1173926.3
+          },
+          "momentum_signals": {
+            "score": 85,
+            "returns_1d": 0.02174392993458301,
+            "returns_5d": 0.016991838986309238,
+            "returns_10d": 0.053985671316351784,
+            "momentum_strong": "False",
+            "momentum_consistency": 1,
+            "acceleration": 0.018345562137321164
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 58068.29568788909,
+            "support_level": 48617.13721717569,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:19:53.587133"
+      },
+      "analysis_time": "2025-07-18T10:19:53.587133",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 21600.0,
+      "stop_loss": 20520.0,
+      "take_profit": 23760.000000000004
+    },
+    {
+      "symbol": "003380",
+      "name": "하림지주",
+      "score": 63.952593984962405,
+      "signals": {
+        "signal_strength": 59.0,
+        "signal_type": "WEAK_BUY",
+        "action": "HOLD",
+        "confidence": 0.59,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 42288.840611336,
+            "ma_short": 41746.484838495286,
+            "ma_medium": 41888.187827438116,
+            "ma_long": 42910.95928679591
+          },
+          "rsi_signals": {
+            "score": 65,
+            "rsi": 41.11162017004236,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 9.127312680609933
+          },
+          "volume_signals": {
+            "score": 60,
+            "volume_ratio": 1.1474235393953314,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1453880",
+            "avg_volume": 1267082.25
+          },
+          "momentum_signals": {
+            "score": 70,
+            "returns_1d": 0.011541486473624345,
+            "returns_5d": 0.012657242000514915,
+            "returns_10d": -0.014734840854349548,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.00901003807352136
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 46645.829524276276,
+            "support_level": 40114.86347434148,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:22:16.347839"
+      },
+      "analysis_time": "2025-07-18T10:22:16.348840",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 10280.0,
+      "stop_loss": 9766.0,
+      "take_profit": 11308.000000000002
+    },
+    {
+      "symbol": "028050",
+      "name": "삼성E&A",
+      "score": 63.535,
+      "signals": {
+        "signal_strength": 76.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.76,
+        "details": {
+          "ma_signals": {
+            "score": 90,
+            "golden_cross": "True",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 52181.4399165398,
+            "ma_short": 51726.82954747147,
+            "ma_medium": 51529.35650357348,
+            "ma_long": 51714.46814216791
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 51.30841201820553,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 3.27592349705985
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.7893247252060095,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1004149",
+            "avg_volume": 1272162.1
+          },
+          "momentum_signals": {
+            "score": 70,
+            "returns_1d": 0.013925067186792152,
+            "returns_5d": 0.039793560268678564,
+            "returns_10d": -0.010601707566774362,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.005966355133056439
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 54752.00168958909,
+            "support_level": 48469.13060607718,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:18:18.642430"
+      },
+      "analysis_time": "2025-07-18T10:18:18.642430",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 25500.0,
+      "stop_loss": 24225.0,
+      "take_profit": 28050.000000000004
+    },
+    {
+      "symbol": "358570",
+      "name": "지아이이노베이션",
+      "score": 63.45083215962442,
+      "signals": {
+        "signal_strength": 45.5,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.455,
+        "details": {
+          "ma_signals": {
+            "score": 35,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 46596.672575269324,
+            "ma_short": 47786.20933920122,
+            "ma_medium": 47832.48853846722,
+            "ma_long": 47003.8985762415
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 51.64999038174669,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -10.864393838415573
+          },
+          "volume_signals": {
+            "score": 55,
+            "volume_ratio": 1.570848164910446,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1621828",
+            "avg_volume": 1032453.7
+          },
+          "momentum_signals": {
+            "score": 15,
+            "returns_1d": -0.02999714789982273,
+            "returns_5d": -0.01025428283480875,
+            "returns_10d": -0.04448341522937828,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": -0.02794629133286098
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 51005.05295717674,
+            "support_level": 42022.5444944451,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "HIGH",
+        "timestamp": "2025-07-18T10:19:36.155159"
+      },
+      "analysis_time": "2025-07-18T10:19:36.155159",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 21600.0,
+      "stop_loss": 20520.0,
+      "take_profit": 23760.000000000004
+    },
+    {
+      "symbol": "034220",
+      "name": "LG디스플레이",
+      "score": 63.135,
+      "signals": {
+        "signal_strength": 57.0,
+        "signal_type": "WEAK_BUY",
+        "action": "HOLD",
+        "confidence": 0.57,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 49141.390064046136,
+            "ma_short": 48350.74471882624,
+            "ma_medium": 47465.08712363888,
+            "ma_long": 46853.81308534383
+          },
+          "rsi_signals": {
+            "score": 30,
+            "rsi": 73.9028241812862,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": 11.60750964642044
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.5104087108728463,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "610915",
+            "avg_volume": 1196913.35
+          },
+          "momentum_signals": {
+            "score": 85,
+            "returns_1d": 0.02484825537116104,
+            "returns_5d": 0.029118410617277303,
+            "returns_10d": 0.08146877460838572,
+            "momentum_strong": "False",
+            "momentum_consistency": 1,
+            "acceleration": 0.019024573247705578
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 50882.80950427572,
+            "support_level": 43058.382514721125,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:23:00.470274"
+      },
+      "analysis_time": "2025-07-18T10:23:00.470274",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 9200.0,
+      "stop_loss": 8740.0,
+      "take_profit": 10120.0
+    },
+    {
+      "symbol": "178320",
+      "name": "서진시스템",
+      "score": 63.010632911392406,
+      "signals": {
+        "signal_strength": 39.5,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.395,
+        "details": {
+          "ma_signals": {
+            "score": 25,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 74662.9387321768,
+            "ma_short": 75212.83499925226,
+            "ma_medium": 75587.11989523028,
+            "ma_long": 75360.09652344373
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 50.25260794182417,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 4.659448313746132
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.5446214564772389,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "612237",
+            "avg_volume": 1124151.45
+          },
+          "momentum_signals": {
+            "score": 25,
+            "returns_1d": -0.005026447317251457,
+            "returns_5d": -0.007705283549621203,
+            "returns_10d": -0.013027251456029926,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": -0.003485390607327216
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 79987.8380665912,
+            "support_level": 71171.52126205122,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:20:10.579317"
+      },
+      "analysis_time": "2025-07-18T10:20:10.579317",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 20900.0,
+      "stop_loss": 19855.0,
+      "take_profit": 22990.000000000004
+    },
+    {
+      "symbol": "006360",
+      "name": "GS건설",
+      "score": 62.522254901960785,
+      "signals": {
+        "signal_strength": 62.0,
+        "signal_type": "WEAK_BUY",
+        "action": "HOLD",
+        "confidence": 0.62,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 47081.21966561046,
+            "ma_short": 46943.6163214495,
+            "ma_medium": 45464.76199977903,
+            "ma_long": 44878.28050115863
+          },
+          "rsi_signals": {
+            "score": 70,
+            "rsi": 67.27268199282406,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 2.348466421604982
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.3259712994931674,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1654977",
+            "avg_volume": 1248124.3
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.01392347874503826,
+            "returns_5d": 0.04706437723564313,
+            "returns_10d": 0.0727518281642748,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.023336354192166883
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 49409.82000883794,
+            "support_level": 41353.39929519893,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:20:19.421447"
+      },
+      "analysis_time": "2025-07-18T10:20:19.421447",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 20400.0,
+      "stop_loss": 19380.0,
+      "take_profit": 22440.0
+    },
+    {
+      "symbol": "375500",
+      "name": "DL이앤씨",
+      "score": 62.40953125,
+      "signals": {
+        "signal_strength": 46.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.46,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 47599.42075439239,
+            "ma_short": 47908.08969190668,
+            "ma_medium": 49881.52579444854,
+            "ma_long": 51089.792929908945
+          },
+          "rsi_signals": {
+            "score": 75,
+            "rsi": 26.813539637237326,
+            "rsi_trend": "up",
+            "oversold": "True",
+            "overbought": "False",
+            "rsi_momentum": 7.566491844558456
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.1249457876436346,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1536721",
+            "avg_volume": 1366040.05
+          },
+          "momentum_signals": {
+            "score": 50,
+            "returns_1d": 0.025882001445639735,
+            "returns_5d": -0.06459785127584483,
+            "returns_10d": -0.09254065159268296,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.0388015717008087
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 54307.461003245204,
+            "support_level": 45011.917622728375,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:10:22.272996"
+      },
+      "analysis_time": "2025-07-18T10:10:22.272996",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 49200.0,
+      "stop_loss": 46740.0,
+      "take_profit": 54120.00000000001
+    },
+    {
+      "symbol": "005850",
+      "name": "에스엘",
+      "score": 62.389959839357424,
+      "signals": {
+        "signal_strength": 51.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.51,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "False",
+            "current_price": 54538.66189054636,
+            "ma_short": 54923.03074607088,
+            "ma_medium": 53251.94313350114,
+            "ma_long": 52998.2005724113
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 58.68009150391512,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -3.5000618614960217
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.5649034359027364,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "763788",
+            "avg_volume": 1352068.25
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.028705552090700234,
+            "returns_5d": 0.03557605678660295,
+            "returns_10d": 0.08584246010621202,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.03582076344802083
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 57757.368381844535,
+            "support_level": 48008.499050046295,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:15:39.954484"
+      },
+      "analysis_time": "2025-07-18T10:15:39.954484",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 32450.0,
+      "stop_loss": 30827.5,
+      "take_profit": 35695.0
+    },
+    {
+      "symbol": "086520",
+      "name": "에코프로",
+      "score": 62.17992119758351,
+      "signals": {
+        "signal_strength": 27.0,
+        "signal_type": "SELL",
+        "action": "SELL",
+        "confidence": 0.27,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "True",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 54417.15210124826,
+            "ma_short": 54643.768981502995,
+            "ma_medium": 54776.17009994297,
+            "ma_long": 54143.808535980235
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 54.78190277937357,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -7.854653158531015
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 0.6406479103425741,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "813862",
+            "avg_volume": 1270373.3
+          },
+          "momentum_signals": {
+            "score": 25,
+            "returns_1d": -0.017930436662015492,
+            "returns_5d": -0.03946398020001026,
+            "returns_10d": 0.022288366686383145,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.01003764062201344
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 58073.41118725637,
+            "support_level": 50954.96847568631,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "HIGH",
+        "timestamp": "2025-07-18T10:10:30.980592"
+      },
+      "analysis_time": "2025-07-18T10:10:30.980592",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 49150.0,
+      "stop_loss": 46692.5,
+      "take_profit": 54065.00000000001
+    },
+    {
+      "symbol": "001740",
+      "name": "SK네트웍스",
+      "score": 62.115,
+      "signals": {
+        "signal_strength": 74.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.74,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "True",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 47547.92365126911,
+            "ma_short": 46954.04809845155,
+            "ma_medium": 46938.73200065862,
+            "ma_long": 48140.26913296072
+          },
+          "rsi_signals": {
+            "score": 65,
+            "rsi": 43.05134263792434,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 5.595614531065756
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.9430286114418487,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "922986",
+            "avg_volume": 978746.55
+          },
+          "momentum_signals": {
+            "score": 70,
+            "returns_1d": 0.0160461361506408,
+            "returns_5d": 0.030541916963560158,
+            "returns_10d": -0.01964254868601337,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.00993775275792877
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 52622.00129109065,
+            "support_level": 45151.96533610217,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:23:18.599660"
+      },
+      "analysis_time": "2025-07-18T10:23:18.600659",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 4755.0,
+      "stop_loss": 4517.25,
+      "take_profit": 5230.5
+    },
+    {
+      "symbol": "007340",
+      "name": "DN오토모티브",
+      "score": 61.95,
+      "signals": {
+        "signal_strength": 89.0,
+        "signal_type": "STRONG_BUY",
+        "action": "BUY",
+        "confidence": 0.89,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 48368.40600582249,
+            "ma_short": 46943.153590463335,
+            "ma_medium": 46382.29105127883,
+            "ma_long": 45676.410532647606
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 62.84690931202882,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -0.9400780066679246
+          },
+          "volume_signals": {
+            "score": 75,
+            "volume_ratio": 1.53461561608603,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1765835",
+            "avg_volume": 1150669.25
+          },
+          "momentum_signals": {
+            "score": 85,
+            "returns_1d": 0.022458600086343164,
+            "returns_5d": 0.06923977566289469,
+            "returns_10d": 0.05910979160041283,
+            "momentum_strong": "True",
+            "momentum_consistency": 1,
+            "acceleration": 0.008610644953764226
+          },
+          "breakout_signals": {
+            "score": 60,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 49569.72196966454,
+            "support_level": 40779.962093848,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:17:34.634022"
+      },
+      "analysis_time": "2025-07-18T10:17:34.634022",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 27300.0,
+      "stop_loss": 25935.0,
+      "take_profit": 30030.000000000004
+    },
+    {
+      "symbol": "195940",
+      "name": "HK이노엔",
+      "score": 61.82831417624521,
+      "signals": {
+        "signal_strength": 46.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.46,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 45715.75222273659,
+            "ma_short": 46034.60037952997,
+            "ma_medium": 46815.54913770348,
+            "ma_long": 47096.617146161836
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 33.220342650865774,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -4.1907337277420496
+          },
+          "volume_signals": {
+            "score": 60,
+            "volume_ratio": 1.1720619085374595,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1423785",
+            "avg_volume": 1214769.45
+          },
+          "momentum_signals": {
+            "score": 55,
+            "returns_1d": 0.014613474538683937,
+            "returns_5d": -0.038511737347351034,
+            "returns_10d": -0.011558349464846672,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.022315822008154143
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 51366.31480226444,
+            "support_level": 44250.02889231957,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:12:31.962757"
+      },
+      "analysis_time": "2025-07-18T10:12:31.962757",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 43400.0,
+      "stop_loss": 41230.0,
+      "take_profit": 47740.00000000001
+    },
+    {
+      "symbol": "084370",
+      "name": "유진테크",
+      "score": 61.611652892561985,
+      "signals": {
+        "signal_strength": 69.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.69,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 56786.32158227607,
+            "ma_short": 54930.37564767073,
+            "ma_medium": 53397.73802345648,
+            "ma_long": 51625.74777290181
+          },
+          "rsi_signals": {
+            "score": 30,
+            "rsi": 87.44008028415354,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": 0.4524234862764729
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.7744258217512966,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "895629",
+            "avg_volume": 1156507.15
+          },
+          "momentum_signals": {
+            "score": 90,
+            "returns_1d": 0.028134871440237144,
+            "returns_5d": 0.08149816965109376,
+            "returns_10d": 0.13936899708681055,
+            "momentum_strong": "True",
+            "momentum_consistency": 1,
+            "acceleration": 0.011835237510018394
+          },
+          "breakout_signals": {
+            "score": 60,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 58798.77625047977,
+            "support_level": 47124.31263032471,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:11:14.441074"
+      },
+      "analysis_time": "2025-07-18T10:11:14.441074",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 46550.0,
+      "stop_loss": 44222.5,
+      "take_profit": 51205.00000000001
+    },
+    {
+      "symbol": "293490",
+      "name": "카카오게임즈",
+      "score": 61.56,
+      "signals": {
+        "signal_strength": 45.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.45,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "False",
+            "current_price": 50821.78264733166,
+            "ma_short": 51431.5667853765,
+            "ma_medium": 50452.42720874629,
+            "ma_long": 49442.70152379974
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 62.69742934250424,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -3.1156704148038514
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 0.9704369670142913,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1156072",
+            "avg_volume": 1191290.15
+          },
+          "momentum_signals": {
+            "score": 25,
+            "returns_1d": -0.028039822454695884,
+            "returns_5d": -0.004638196438215387,
+            "returns_10d": 0.06954240618656558,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.027112183167052807
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 53233.94101437559,
+            "support_level": 45548.27253801592,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:21:03.140098"
+      },
+      "analysis_time": "2025-07-18T10:21:03.140098",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 17320.0,
+      "stop_loss": 16454.0,
+      "take_profit": 19052.0
+    },
+    {
+      "symbol": "003090",
+      "name": "종목003090",
+      "score": 61.31168393782384,
+      "signals": {
+        "signal_strength": 47.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.47,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "False",
+            "current_price": 51143.86258633299,
+            "ma_short": 51472.71858721085,
+            "ma_medium": 50936.36966401185,
+            "ma_long": 49234.994872051015
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 65.08159059764776,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -3.048658430736751
+          },
+          "volume_signals": {
+            "score": 40,
+            "volume_ratio": 0.7746132971930733,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1027209",
+            "avg_volume": 1326092.65
+          },
+          "momentum_signals": {
+            "score": 35,
+            "returns_1d": -0.001557926163092595,
+            "returns_5d": -0.01439511374567583,
+            "returns_10d": 0.04190836327051108,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.001321096586042571
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 55056.0347935899,
+            "support_level": 43836.04411298967,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:17:51.876015"
+      },
+      "analysis_time": "2025-07-18T10:17:51.876015",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 26700.0,
+      "stop_loss": 25365.0,
+      "take_profit": 29370.000000000004
+    },
+    {
+      "symbol": "140410",
+      "name": "메지온",
+      "score": 61.21833333333333,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 47886.56923106108,
+            "ma_short": 47567.22866434158,
+            "ma_medium": 46578.23711536698,
+            "ma_long": 45461.05611234382
+          },
+          "rsi_signals": {
+            "score": 30,
+            "rsi": 75.87327781150836,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": -0.06002850803017168
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.7004551017310532,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "826283",
+            "avg_volume": 1179637.35
+          },
+          "momentum_signals": {
+            "score": 50,
+            "returns_1d": -0.009277192582290528,
+            "returns_5d": 0.027954830784628078,
+            "returns_10d": 0.06683639985236568,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.014868158739216144
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 49636.629580221765,
+            "support_level": 42041.653647929714,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:13:05.827741"
+      },
+      "analysis_time": "2025-07-18T10:13:05.828740",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 40500.0,
+      "stop_loss": 38475.0,
+      "take_profit": 44550.0
+    },
+    {
+      "symbol": "096530",
+      "name": "종목096530",
+      "score": 61.041948051948054,
+      "signals": {
+        "signal_strength": 51.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.51,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 43939.21147020323,
+            "ma_short": 44051.458863840846,
+            "ma_medium": 43650.96139290304,
+            "ma_long": 44620.759825457666
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 42.68525821399042,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 3.299806758014263
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.8313511199767203,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "939643",
+            "avg_volume": 1130260.1
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.011832093932568347,
+            "returns_5d": 0.020282111735031815,
+            "returns_10d": 0.005758537815633802,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.01588851627957471
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 49777.07719863424,
+            "support_level": 40306.431289810964,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:15:59.533244"
+      },
+      "analysis_time": "2025-07-18T10:15:59.533244",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 32250.0,
+      "stop_loss": 30637.5,
+      "take_profit": 35475.0
+    },
+    {
+      "symbol": "950160",
+      "name": "코오롱티슈진",
+      "score": 61.015,
+      "signals": {
+        "signal_strength": 36.0,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.36,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 46526.043860563186,
+            "ma_short": 47827.37718939139,
+            "ma_medium": 48489.66644997699,
+            "ma_long": 49176.93096706992
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 32.13415342985935,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -9.8500864297079
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.6155490859244382,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "675282",
+            "avg_volume": 1097040.05
+          },
+          "momentum_signals": {
+            "score": 20,
+            "returns_1d": -0.013962788566351853,
+            "returns_5d": -0.0470160774873257,
+            "returns_10d": -0.07539903656111206,
+            "momentum_strong": "False",
+            "momentum_consistency": -1,
+            "acceleration": -0.004559573068886713
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 53504.6705345483,
+            "support_level": 45328.77430897005,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:11:48.867002"
+      },
+      "analysis_time": "2025-07-18T10:11:48.867002",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 44600.0,
+      "stop_loss": 42370.0,
+      "take_profit": 49060.00000000001
+    },
+    {
+      "symbol": "031210",
+      "name": "서울보증보험",
+      "score": 60.94,
+      "signals": {
+        "signal_strength": 45.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.45,
+        "details": {
+          "ma_signals": {
+            "score": 30,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 50461.057473727364,
+            "ma_short": 50478.153266533925,
+            "ma_medium": 50598.72084700844,
+            "ma_long": 51459.896575168284
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 36.915416905617846,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 1.5641529500475002
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.7903483925257518,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "946737",
+            "avg_volume": 1197873.0
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.01206940414355286,
+            "returns_5d": 0.0021167168165108427,
+            "returns_10d": -0.014651257390747704,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.012492747506855029
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 56247.75213977012,
+            "support_level": 48048.77300553901,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:12:05.897902"
+      },
+      "analysis_time": "2025-07-18T10:12:05.898346",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 43750.0,
+      "stop_loss": 41562.5,
+      "take_profit": 48125.00000000001
+    },
+    {
+      "symbol": "071970",
+      "name": "HD현대마린엔진",
+      "score": 60.77505050505051,
+      "signals": {
+        "signal_strength": 37.0,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.37,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "True",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 53258.79303871266,
+            "ma_short": 54275.44288461463,
+            "ma_medium": 54329.39700741868,
+            "ma_long": 54085.223322280435
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 39.64613756659337,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 0.26614466099906053
+          },
+          "volume_signals": {
+            "score": 60,
+            "volume_ratio": 0.8169001266594338,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "963148",
+            "avg_volume": 1179027.85
+          },
+          "momentum_signals": {
+            "score": 50,
+            "returns_1d": 0.004425246717498512,
+            "returns_5d": -0.03293666679503999,
+            "returns_10d": -0.005384982463144337,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.01101258007650651
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 57253.75732848741,
+            "support_level": 50796.402708710135,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:10:13.626785"
+      },
+      "analysis_time": "2025-07-18T10:10:13.626785",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 49750.0,
+      "stop_loss": 47262.5,
+      "take_profit": 54725.00000000001
+    },
+    {
+      "symbol": "192400",
+      "name": "쿠쿠홀딩스",
+      "score": 60.67581818181818,
+      "signals": {
+        "signal_strength": 65.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.65,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 61322.15533987651,
+            "ma_short": 59566.744148609425,
+            "ma_medium": 58291.673506932,
+            "ma_long": 56706.96609210768
+          },
+          "rsi_signals": {
+            "score": 20,
+            "rsi": 73.8711651854131,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": 1.2454446876178764
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.5081442907393442,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "618477",
+            "avg_volume": 1217128.7
+          },
+          "momentum_signals": {
+            "score": 85,
+            "returns_1d": 0.01673679987157324,
+            "returns_5d": 0.08478883104305349,
+            "returns_10d": 0.07605547567134824,
+            "momentum_strong": "True",
+            "momentum_consistency": 1,
+            "acceleration": -0.0002209663370374565
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 64147.08301200021,
+            "support_level": 49975.01639885901,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:16:08.293704"
+      },
+      "analysis_time": "2025-07-18T10:16:08.293704",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 31000.0,
+      "stop_loss": 29450.0,
+      "take_profit": 34100.0
+    },
+    {
+      "symbol": "008930",
+      "name": "한미사이언스",
+      "score": 60.45366812227074,
+      "signals": {
+        "signal_strength": 33.0,
+        "signal_type": "SELL",
+        "action": "SELL",
+        "confidence": 0.33,
+        "details": {
+          "ma_signals": {
+            "score": 30,
+            "golden_cross": "False",
+            "dead_cross": "True",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 54256.047826265276,
+            "ma_short": 54291.828366623624,
+            "ma_medium": 54354.529846952224,
+            "ma_long": 52888.665273038416
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 64.58478165262731,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -0.7742179542330092
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.3143604797147264,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1760641",
+            "avg_volume": 1339541.95
+          },
+          "momentum_signals": {
+            "score": 25,
+            "returns_1d": -0.01696853886011556,
+            "returns_5d": -0.0021065716390786297,
+            "returns_10d": 0.021401348566433213,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.016547224532299835
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 57685.44301299803,
+            "support_level": 47994.708720308365,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:10:48.729782"
+      },
+      "analysis_time": "2025-07-18T10:10:48.730782",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 47400.0,
+      "stop_loss": 45030.0,
+      "take_profit": 52140.00000000001
+    },
+    {
+      "symbol": "103590",
+      "name": "일진전기",
+      "score": 60.21872641509434,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "False",
+            "current_price": 46631.712690076354,
+            "ma_short": 46746.10707443492,
+            "ma_medium": 45805.90855197255,
+            "ma_long": 44349.566563160086
+          },
+          "rsi_signals": {
+            "score": 55,
+            "rsi": 61.472699370030035,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": -5.181129535958881
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 1.3634982985033393,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1786615",
+            "avg_volume": 1310317.0
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": -0.013097074904771062,
+            "returns_5d": 0.013809222738753736,
+            "returns_10d": 0.08056777160843909,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": -0.01585891945252181
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 49391.6669816817,
+            "support_level": 40312.28810574472,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:13:14.334709"
+      },
+      "analysis_time": "2025-07-18T10:13:14.335698",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 39300.0,
+      "stop_loss": 37335.0,
+      "take_profit": 43230.0
+    },
+    {
+      "symbol": "003530",
+      "name": "한화투자증권",
+      "score": 60.20111111111111,
+      "signals": {
+        "signal_strength": 42.0,
+        "signal_type": "WEAK_SELL",
+        "action": "HOLD",
+        "confidence": 0.42,
+        "details": {
+          "ma_signals": {
+            "score": 20,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "down",
+            "ma_alignment": "False",
+            "current_price": 44111.17947948998,
+            "ma_short": 44309.61303178058,
+            "ma_medium": 44561.31139192639,
+            "ma_long": 45989.766163505
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 36.2177951942494,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 4.441422639127502
+          },
+          "volume_signals": {
+            "score": 50,
+            "volume_ratio": 0.8786227270989794,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1161933",
+            "avg_volume": 1322448.15
+          },
+          "momentum_signals": {
+            "score": 45,
+            "returns_1d": 0.003027937241694747,
+            "returns_5d": -0.027587001773290563,
+            "returns_10d": -0.05000970118222886,
+            "momentum_strong": "False",
+            "momentum_consistency": 0,
+            "acceleration": 0.00854533759635286
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 49715.660823751095,
+            "support_level": 42207.38915423812,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:23:09.538881"
+      },
+      "analysis_time": "2025-07-18T10:23:09.538881",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 6530.0,
+      "stop_loss": 6203.5,
+      "take_profit": 7183.000000000001
+    },
+    {
+      "symbol": "137310",
+      "name": "에스디바이오센서",
+      "score": 60.035,
+      "signals": {
+        "signal_strength": 67.0,
+        "signal_type": "BUY",
+        "action": "BUY",
+        "confidence": 0.67,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "False",
+            "dead_cross": "False",
+            "trend_direction": "up",
+            "ma_alignment": "True",
+            "current_price": 65755.6227329644,
+            "ma_short": 64991.41115025621,
+            "ma_medium": 63951.46740896645,
+            "ma_long": 61731.42140848677
+          },
+          "rsi_signals": {
+            "score": 30,
+            "rsi": 71.40989587708049,
+            "rsi_trend": "down",
+            "oversold": "False",
+            "overbought": "True",
+            "rsi_momentum": -0.4654148870080519
+          },
+          "volume_signals": {
+            "score": 75,
+            "volume_ratio": 1.6641764493596067,
+            "volume_trend": "mixed",
+            "volume_breakout": "True",
+            "current_volume": "1957520",
+            "avg_volume": 1176269.5
+          },
+          "momentum_signals": {
+            "score": 85,
+            "returns_1d": 0.023358913053833804,
+            "returns_5d": 0.025102470718978243,
+            "returns_10d": 0.044392103047068476,
+            "momentum_strong": "False",
+            "momentum_consistency": 1,
+            "acceleration": 0.018338418910038155
+          },
+          "breakout_signals": {
+            "score": 50,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 67613.69449948754,
+            "support_level": 54796.06351541153,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-18T10:22:25.299259"
+      },
+      "analysis_time": "2025-07-18T10:22:25.299259",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 10170.0,
+      "stop_loss": 9661.5,
+      "take_profit": 11187.0
+    },
+    {
+      "symbol": "020560",
+      "name": "아시아나항공",
+      "score": 60.02331775700934,
+      "signals": {
+        "signal_strength": 92.0,
+        "signal_type": "STRONG_BUY",
+        "action": "BUY",
+        "confidence": 0.92,
+        "details": {
+          "ma_signals": {
+            "score": 80,
+            "golden_cross": "True",
+            "dead_cross": "False",
+            "trend_direction": "sideways",
+            "ma_alignment": "False",
+            "current_price": 49622.17683174993,
+            "ma_short": 47624.2752935492,
+            "ma_medium": 47385.46274247959,
+            "ma_long": 47645.907122518016
+          },
+          "rsi_signals": {
+            "score": 60,
+            "rsi": 53.38234394262519,
+            "rsi_trend": "up",
+            "oversold": "False",
+            "overbought": "False",
+            "rsi_momentum": 0.29575128030877096
+          },
+          "volume_signals": {
+            "score": 70,
+            "volume_ratio": 1.456257225805782,
+            "volume_trend": "mixed",
+            "volume_breakout": "False",
+            "current_volume": "1893805",
+            "avg_volume": 1300460.5
+          },
+          "momentum_signals": {
+            "score": 90,
+            "returns_1d": 0.028760516044554374,
+            "returns_5d": 0.07107752472267477,
+            "returns_10d": 0.013977002842243564,
+            "momentum_strong": "True",
+            "momentum_consistency": 1,
+            "acceleration": 0.01454501110001942
+          },
+          "breakout_signals": {
+            "score": 60,
+            "resistance_break": "False",
+            "support_break": "False",
+            "resistance_level": 51497.96474518873,
+            "support_level": 44535.35396180345,
+            "near_52w_high": "False",
+            "near_52w_low": "False"
+          }
+        },
+        "risk_level": "HIGH",
+        "timestamp": "2025-07-18T10:22:34.543596"
+      },
+      "analysis_time": "2025-07-18T10:22:34.543596",
+      "strategy": "momentum",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 9800.0,
+      "stop_loss": 9310.0,
+      "take_profit": 10780.0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-07-06T07:35:15.346306",
+  "total_results": 42,
+  "results": [
+    {
+      "symbol": "138930",
+      "name": "2",
+      "score": 79.86405405405405,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {
+          "ma_signals": {
+            "score": 50,
+            "golden_cross": 

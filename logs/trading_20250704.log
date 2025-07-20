@@ -1,0 +1,323 @@
+2025-07-04 05:15:59 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 05:15:59 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 05:15:59 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 05:16:08 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 05:16:09 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 05:16:09 | KISCollector | INFO     | _load_saved_token | ✅ 저장된 토큰 로드 성공 (생성: 2025-07-03 20:06, 남은시간: 14.7시간)
+2025-07-04 05:16:09 | KISCollector | INFO     | initialize      | ✅ 저장된 토큰 사용
+2025-07-04 05:16:09 | KISCollector | INFO     | initialize      | ✅ KIS API 초기화 완료
+2025-07-04 05:16:09 | AnalysisEngine | INFO     | __init__        | ✅ 뉴스 수집기 초기화 완료
+2025-07-04 05:16:09 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:16:09 | TechnicalAnalyzer | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:16:09 | TechnicalAnalyzer | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:16:09 | AnalysisEngine | INFO     | __init__        | ✅ 향상된 기술적 분석기 초기화 완료
+2025-07-04 05:16:09 | AnalysisEngine | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:16:09 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:16:09 | AnalysisEngine | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:16:09 | MomentumStrategy | INFO     | __init__        | 📈 모멘텀 전략 초기화 완료
+2025-07-04 05:16:09 | TradingSystem | INFO     | _initialize_strategies | ✅ 전략 초기화 완료: ['momentum']
+2025-07-04 05:16:09 | TradingSystem | INFO     | initialize_components | ✅ 모든 컴포넌트 초기화 완료
+2025-07-04 05:16:09 | KISCollector | INFO     | get_filtered_stocks | 🔍 종목 필터링 시작 (목표: None개)
+2025-07-04 05:16:09 | KISCollector | INFO     | get_filtered_stocks | 🔧 pykrx 방식을 건너뛰고 KIS API 직접 사용
+2025-07-04 05:16:09 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 확인 중...
+2025-07-04 05:16:09 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 없음 - 새로 필터링 진행
+2025-07-04 05:16:09 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 리스트 조회 중...
+2025-07-04 05:16:09 | KISCollector | INFO     | get_stock_list  | 📋 상장 종목 리스트 조회 중...
+2025-07-04 05:16:09 | KISCollector | INFO     | get_stock_list  | 🔍 방법 1: pykrx 라이브러리 시도...
+2025-07-04 05:16:10 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx 라이브러리 로드 성공
+2025-07-04 05:16:10 | KISCollector | INFO     | _get_stock_list_pykrx | 📅 조회 기준일: 20250704
+2025-07-04 05:16:10 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSPI 종목 조회 중...
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSPI 종목 962개 조회 완료
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 1: 095570 - AJ네트웍스
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 2: 006840 - AK홀딩스
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 3: 027410 - BGF
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 4: 282330 - BGF리테일
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 5: 138930 - BNK금융지주
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSDAQ 종목 조회 중...
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSDAQ 종목 1798개 조회 완료
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 1: 060310 - 3S
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 2: 054620 - APS
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 3: 265520 - AP시스템
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 4: 211270 - AP위성
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 5: 109960 - AP헬스케어
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KONEX 종목 조회 중...
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KONEX 종목 117개 조회 완료
+2025-07-04 05:16:14 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - 총 2877개 종목 조회 완료
+2025-07-04 05:16:14 | KISCollector | INFO     | get_stock_list  | ✅ pykrx로 2877개 종목 조회 성공!
+2025-07-04 05:16:14 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 수: 2877개
+2025-07-04 05:16:14 | KISCollector | INFO     | get_filtered_stocks | 🎯 샘플링 필터링: 200개 종목 검사
+2025-07-04 05:16:14 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:16:14 | TradingSystem | INFO     | run_market_analysis |    필터링 결과: 0개 종목
+2025-07-04 05:17:02 | KISCollector | INFO     | close           | ✅ KIS API 연결 종료
+2025-07-04 05:17:02 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 05:19:39 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 05:19:39 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 05:19:39 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 05:19:44 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 05:19:44 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 05:19:44 | KISCollector | INFO     | _load_saved_token | ✅ 저장된 토큰 로드 성공 (생성: 2025-07-03 20:06, 남은시간: 14.6시간)
+2025-07-04 05:19:44 | KISCollector | INFO     | initialize      | ✅ 저장된 토큰 사용
+2025-07-04 05:19:44 | KISCollector | INFO     | initialize      | ✅ KIS API 초기화 완료
+2025-07-04 05:19:45 | AnalysisEngine | INFO     | __init__        | ✅ 뉴스 수집기 초기화 완료
+2025-07-04 05:19:45 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:19:45 | TechnicalAnalyzer | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:19:45 | TechnicalAnalyzer | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:19:45 | AnalysisEngine | INFO     | __init__        | ✅ 향상된 기술적 분석기 초기화 완료
+2025-07-04 05:19:45 | AnalysisEngine | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:19:45 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:19:45 | AnalysisEngine | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:19:45 | MomentumStrategy | INFO     | __init__        | 📈 모멘텀 전략 초기화 완료
+2025-07-04 05:19:45 | TradingSystem | INFO     | _initialize_strategies | ✅ 전략 초기화 완료: ['momentum']
+2025-07-04 05:19:45 | TradingSystem | INFO     | initialize_components | ✅ 모든 컴포넌트 초기화 완료
+2025-07-04 05:19:45 | KISCollector | INFO     | get_filtered_stocks | 🔍 종목 필터링 시작 (목표: None개)
+2025-07-04 05:19:45 | KISCollector | INFO     | get_filtered_stocks | 🔧 pykrx 방식을 건너뛰고 KIS API 직접 사용
+2025-07-04 05:19:45 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 확인 중...
+2025-07-04 05:19:45 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 없음 - 새로 필터링 진행
+2025-07-04 05:19:45 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 리스트 조회 중...
+2025-07-04 05:19:45 | KISCollector | INFO     | get_stock_list  | 📋 상장 종목 리스트 조회 중...
+2025-07-04 05:19:45 | KISCollector | INFO     | get_stock_list  | 🔍 방법 1: pykrx 라이브러리 시도...
+2025-07-04 05:19:45 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx 라이브러리 로드 성공
+2025-07-04 05:19:45 | KISCollector | INFO     | _get_stock_list_pykrx | 📅 조회 기준일: 20250704
+2025-07-04 05:19:45 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSPI 종목 조회 중...
+2025-07-04 05:19:49 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSPI 종목 962개 조회 완료
+2025-07-04 05:19:49 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 1: 095570 - AJ네트웍스
+2025-07-04 05:19:49 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 2: 006840 - AK홀딩스
+2025-07-04 05:19:49 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 3: 027410 - BGF
+2025-07-04 05:19:49 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 4: 282330 - BGF리테일
+2025-07-04 05:19:49 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 5: 138930 - BNK금융지주
+2025-07-04 05:19:49 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSDAQ 종목 조회 중...
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSDAQ 종목 1798개 조회 완료
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 1: 060310 - 3S
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 2: 054620 - APS
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 3: 265520 - AP시스템
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 4: 211270 - AP위성
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 5: 109960 - AP헬스케어
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KONEX 종목 조회 중...
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KONEX 종목 117개 조회 완료
+2025-07-04 05:19:50 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - 총 2877개 종목 조회 완료
+2025-07-04 05:19:50 | KISCollector | INFO     | get_stock_list  | ✅ pykrx로 2877개 종목 조회 성공!
+2025-07-04 05:19:50 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 수: 2877개
+2025-07-04 05:19:50 | KISCollector | INFO     | get_filtered_stocks | 🎯 샘플링 필터링: 200개 종목 검사
+2025-07-04 05:19:50 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:19:50 | TradingSystem | INFO     | run_market_analysis |    필터링 결과: 0개 종목
+2025-07-04 05:22:14 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 05:22:14 | KISCollector | INFO     | get_filtered_stocks | 🔍 종목 필터링 시작 (목표: None개)
+2025-07-04 05:22:14 | KISCollector | INFO     | get_filtered_stocks | 🔧 pykrx 방식을 건너뛰고 KIS API 직접 사용
+2025-07-04 05:22:14 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 확인 중...
+2025-07-04 05:22:14 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 없음 - 새로 필터링 진행
+2025-07-04 05:22:14 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 리스트 조회 중...
+2025-07-04 05:22:14 | KISCollector | INFO     | get_stock_list  | 📋 상장 종목 리스트 조회 중...
+2025-07-04 05:22:14 | KISCollector | INFO     | get_stock_list  | 🔍 방법 1: pykrx 라이브러리 시도...
+2025-07-04 05:22:14 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx 라이브러리 로드 성공
+2025-07-04 05:22:14 | KISCollector | INFO     | _get_stock_list_pykrx | 📅 조회 기준일: 20250704
+2025-07-04 05:22:14 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSPI 종목 조회 중...
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSPI 종목 962개 조회 완료
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 1: 095570 - AJ네트웍스
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 2: 006840 - AK홀딩스
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 3: 027410 - BGF
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 4: 282330 - BGF리테일
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 5: 138930 - BNK금융지주
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSDAQ 종목 조회 중...
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSDAQ 종목 1798개 조회 완료
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 1: 060310 - 3S
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 2: 054620 - APS
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 3: 265520 - AP시스템
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 4: 211270 - AP위성
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 5: 109960 - AP헬스케어
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KONEX 종목 조회 중...
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KONEX 종목 117개 조회 완료
+2025-07-04 05:22:15 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - 총 2877개 종목 조회 완료
+2025-07-04 05:22:15 | KISCollector | INFO     | get_stock_list  | ✅ pykrx로 2877개 종목 조회 성공!
+2025-07-04 05:22:15 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 수: 2877개
+2025-07-04 05:22:15 | KISCollector | INFO     | get_filtered_stocks | 🎯 샘플링 필터링: 200개 종목 검사
+2025-07-04 05:22:15 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:22:15 | TradingSystem | INFO     | run_market_analysis |    필터링 결과: 0개 종목
+2025-07-04 05:30:09 | KISCollector | INFO     | close           | ✅ KIS API 연결 종료
+2025-07-04 05:30:09 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 05:30:11 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 05:30:11 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 05:30:11 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 05:30:16 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 05:30:17 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 05:30:17 | KISCollector | INFO     | _load_saved_token | ✅ 저장된 토큰 로드 성공 (생성: 2025-07-03 20:06, 남은시간: 14.4시간)
+2025-07-04 05:30:17 | KISCollector | INFO     | initialize      | ✅ 저장된 토큰 사용
+2025-07-04 05:30:17 | KISCollector | INFO     | initialize      | ✅ KIS API 초기화 완료
+2025-07-04 05:30:17 | AnalysisEngine | INFO     | __init__        | ✅ 뉴스 수집기 초기화 완료
+2025-07-04 05:30:17 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:30:17 | TechnicalAnalyzer | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:30:17 | TechnicalAnalyzer | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:30:17 | AnalysisEngine | INFO     | __init__        | ✅ 향상된 기술적 분석기 초기화 완료
+2025-07-04 05:30:17 | AnalysisEngine | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:30:17 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:30:17 | AnalysisEngine | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:30:17 | MomentumStrategy | INFO     | __init__        | 📈 모멘텀 전략 초기화 완료
+2025-07-04 05:30:17 | TradingSystem | INFO     | _initialize_strategies | ✅ 전략 초기화 완료: ['momentum']
+2025-07-04 05:30:17 | TradingSystem | INFO     | initialize_components | ✅ 모든 컴포넌트 초기화 완료
+2025-07-04 05:30:17 | TradingSystem | ERROR    | run_market_analysis | ❌ 시장 분석 실패: 'KISCollector' object has no attribute 'get_filtered_stocks'
+2025-07-04 05:31:06 | KISCollector | INFO     | close           | ✅ KIS API 연결 종료
+2025-07-04 05:31:06 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 05:31:09 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 05:31:09 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 05:31:09 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 05:31:13 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 05:31:13 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 05:31:13 | KISCollector | INFO     | _load_saved_token | ✅ 저장된 토큰 로드 성공 (생성: 2025-07-03 20:06, 남은시간: 14.4시간)
+2025-07-04 05:31:13 | KISCollector | INFO     | initialize      | ✅ 저장된 토큰 사용
+2025-07-04 05:31:13 | KISCollector | INFO     | initialize      | ✅ KIS API 초기화 완료
+2025-07-04 05:31:14 | AnalysisEngine | INFO     | __init__        | ✅ 뉴스 수집기 초기화 완료
+2025-07-04 05:31:14 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:31:14 | TechnicalAnalyzer | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:31:14 | TechnicalAnalyzer | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:31:14 | AnalysisEngine | INFO     | __init__        | ✅ 향상된 기술적 분석기 초기화 완료
+2025-07-04 05:31:14 | AnalysisEngine | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 05:31:14 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 05:31:14 | AnalysisEngine | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 05:31:14 | MomentumStrategy | INFO     | __init__        | 📈 모멘텀 전략 초기화 완료
+2025-07-04 05:31:14 | TradingSystem | INFO     | _initialize_strategies | ✅ 전략 초기화 완료: ['momentum']
+2025-07-04 05:31:14 | TradingSystem | INFO     | initialize_components | ✅ 모든 컴포넌트 초기화 완료
+2025-07-04 05:31:14 | KISCollector | INFO     | get_filtered_stocks | 🔍 종목 필터링 시작 (목표: None개)
+2025-07-04 05:31:14 | KISCollector | INFO     | get_filtered_stocks | 🔧 pykrx 방식을 건너뛰고 KIS API 직접 사용
+2025-07-04 05:31:14 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 확인 중...
+2025-07-04 05:31:14 | KISCollector | INFO     | get_filtered_stocks | 📚 캐시 없음 - 새로 필터링 진행
+2025-07-04 05:31:14 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 리스트 조회 중...
+2025-07-04 05:31:14 | KISCollector | INFO     | get_stock_list  | 📋 상장 종목 리스트 조회 중...
+2025-07-04 05:31:14 | KISCollector | INFO     | get_stock_list  | 🔍 방법 1: pykrx 라이브러리 시도...
+2025-07-04 05:31:14 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx 라이브러리 로드 성공
+2025-07-04 05:31:14 | KISCollector | INFO     | _get_stock_list_pykrx | 📅 조회 기준일: 20250704
+2025-07-04 05:31:14 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSPI 종목 조회 중...
+2025-07-04 05:31:18 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSPI 종목 962개 조회 완료
+2025-07-04 05:31:18 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 1: 095570 - AJ네트웍스
+2025-07-04 05:31:18 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 2: 006840 - AK홀딩스
+2025-07-04 05:31:18 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 3: 027410 - BGF
+2025-07-04 05:31:18 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 4: 282330 - BGF리테일
+2025-07-04 05:31:18 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSPI 예시 5: 138930 - BNK금융지주
+2025-07-04 05:31:18 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSDAQ 종목 조회 중...
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSDAQ 종목 1798개 조회 완료
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 1: 060310 - 3S
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 2: 054620 - APS
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 3: 265520 - AP시스템
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 4: 211270 - AP위성
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx |    📋 KOSDAQ 예시 5: 109960 - AP헬스케어
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KONEX 종목 조회 중...
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KONEX 종목 117개 조회 완료
+2025-07-04 05:31:19 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - 총 2877개 종목 조회 완료
+2025-07-04 05:31:19 | KISCollector | INFO     | get_stock_list  | ✅ pykrx로 2877개 종목 조회 성공!
+2025-07-04 05:31:19 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 수: 2877개
+2025-07-04 05:31:19 | KISCollector | INFO     | get_filtered_stocks | 🎯 샘플링 필터링: 200개 종목 검사
+2025-07-04 05:31:19 | KISCollector | ERROR    | get_filtered_stocks | ❌ 종목 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 05:31:19 | TradingSystem | INFO     | run_market_analysis |    필터링 결과: 0개 종목
+2025-07-04 05:31:43 | KISCollector | INFO     | close           | ✅ KIS API 연결 종료
+2025-07-04 05:31:43 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 05:53:28 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 05:53:28 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 05:53:28 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 05:53:33 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 05:53:33 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: invalid syntax (kis_collector.py, line 1247)
+2025-07-04 06:02:58 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 06:03:02 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 06:03:02 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 06:03:02 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 06:03:06 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 06:03:06 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: invalid syntax (kis_collector.py, line 1247)
+2025-07-04 06:05:16 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 06:05:18 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 06:05:18 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 06:05:18 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 06:05:23 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 06:05:24 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 06:05:24 | KISCollector | INFO     | _load_saved_token | ✅ 저장된 토큰 로드 성공 (생성: 2025-07-03 20:06, 남은시간: 13.9시간)
+2025-07-04 06:05:24 | KISCollector | INFO     | initialize      | ✅ 저장된 토큰 사용
+2025-07-04 06:05:24 | KISCollector | INFO     | initialize      | ✅ KIS API 초기화 완료
+2025-07-04 06:05:25 | AnalysisEngine | INFO     | __init__        | ✅ 뉴스 수집기 초기화 완료
+2025-07-04 06:05:25 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 06:05:25 | TechnicalAnalyzer | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 06:05:25 | TechnicalAnalyzer | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 06:05:25 | AnalysisEngine | INFO     | __init__        | ✅ 향상된 기술적 분석기 초기화 완료
+2025-07-04 06:05:25 | AnalysisEngine | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 06:05:25 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 06:05:25 | AnalysisEngine | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 06:05:25 | MomentumStrategy | INFO     | __init__        | 📈 모멘텀 전략 초기화 완료
+2025-07-04 06:05:25 | TradingSystem | INFO     | _initialize_strategies | ✅ 전략 초기화 완료: ['momentum']
+2025-07-04 06:05:25 | TradingSystem | INFO     | initialize_components | ✅ 모든 컴포넌트 초기화 완료
+2025-07-04 06:05:25 | TradingSystem | ERROR    | run_market_analysis | ❌ 시장 분석 실패: 'KISCollector' object has no attribute 'get_filtered_stocks'
+2025-07-04 06:05:39 | KISCollector | INFO     | close           | ✅ KIS API 연결 종료
+2025-07-04 06:05:39 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 06:12:14 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 06:12:14 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 06:12:14 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 06:12:18 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 06:12:18 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: expected 'except' or 'finally' block (kis_collector.py, line 119)
+2025-07-04 06:13:51 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료
+2025-07-04 06:13:55 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 06:13:55 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 06:13:55 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 06:13:59 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 06:13:59 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 06:13:59 | KISCollector | INFO     | _get_access_token | 🔑 새 액세스 토큰 발급 시도...
+2025-07-04 06:14:02 | KISCollector | INFO     | _save_token_to_file | 💾 토큰 정보 저장 완료
+2025-07-04 06:14:02 | KISCollector | INFO     | _get_access_token | ✅ 새 액세스 토큰 발급 성공
+2025-07-04 06:14:02 | KISCollector | INFO     | initialize      | ✅ KIS API 초기화 완료
+2025-07-04 06:14:02 | AnalysisEngine | INFO     | __init__        | ✅ 뉴스 수집기 초기화 완료
+2025-07-04 06:14:02 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 06:14:02 | TechnicalAnalyzer | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 06:14:02 | TechnicalAnalyzer | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 06:14:02 | AnalysisEngine | INFO     | __init__        | ✅ 향상된 기술적 분석기 초기화 완료
+2025-07-04 06:14:02 | AnalysisEngine | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 06:14:02 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 06:14:02 | AnalysisEngine | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 06:14:02 | MomentumStrategy | INFO     | __init__        | 📈 모멘텀 전략 초기화 완료
+2025-07-04 06:14:02 | TradingSystem | INFO     | _initialize_strategies | ✅ 전략 초기화 완료: ['momentum']
+2025-07-04 06:14:02 | TradingSystem | INFO     | initialize_components | ✅ 모든 컴포넌트 초기화 완료
+2025-07-04 06:14:02 | KISCollector | INFO     | get_filtered_stocks | 🔍 종목 필터링 시작 (목표: None개)
+2025-07-04 06:14:02 | KISCollector | INFO     | get_filtered_stocks_pykrx | 🔍 pykrx 기반 종목 필터링 시작 (목표: None개)
+2025-07-04 06:14:03 | KISCollector | INFO     | get_filtered_stocks_pykrx | 📅 데이터 기준일: 20250704
+2025-07-04 06:14:03 | KISCollector | INFO     | get_filtered_stocks_pykrx | 📊 KOSPI 시장 필터링 중...
+2025-07-04 06:14:07 | KISCollector | INFO     | get_filtered_stocks_pykrx | ✅ KOSPI 필터링 완료: 0개 종목
+2025-07-04 06:14:07 | KISCollector | INFO     | get_filtered_stocks_pykrx | 📊 KOSDAQ 시장 필터링 중...
+2025-07-04 06:14:07 | KISCollector | INFO     | get_filtered_stocks_pykrx | ✅ KOSDAQ 필터링 완료: 0개 종목
+2025-07-04 06:14:07 | KISCollector | ERROR    | get_filtered_stocks_pykrx | ❌ pykrx 필터링 실패: '>' not supported between instances of 'int' and 'NoneType'
+2025-07-04 06:14:07 | KISCollector | WARNING  | get_filtered_stocks | ⚠️ pykrx 방식 실패: '>' not supported between instances of 'int' and 'NoneType'
+2025-07-04 06:14:07 | KISCollector | INFO     | get_filtered_stocks | 🔍 KIS API 기반 필터링 시작
+2025-07-04 06:14:07 | KISCollector | INFO     | get_stock_list  | 📋 상장 종목 리스트 조회 중...
+2025-07-04 06:14:07 | KISCollector | INFO     | get_stock_list  | 🔍 pykrx 라이브러리 시도...
+2025-07-04 06:14:07 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx 라이브러리 로드 성공
+2025-07-04 06:14:07 | KISCollector | INFO     | _get_stock_list_pykrx | 📅 조회 기준일: 20250704
+2025-07-04 06:14:07 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSPI 종목 조회 중...
+2025-07-04 06:14:07 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSPI 종목 962개 조회 완료
+2025-07-04 06:14:07 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - KOSDAQ 종목 조회 중...
+2025-07-04 06:14:08 | KISCollector | INFO     | _get_stock_list_pykrx | ✅ pykrx - KOSDAQ 종목 1798개 조회 완료
+2025-07-04 06:14:08 | KISCollector | INFO     | _get_stock_list_pykrx | 📊 pykrx - 총 2760개 종목 조회 완료
+2025-07-04 06:14:08 | KISCollector | INFO     | get_stock_list  | ✅ pykrx로 2760개 종목 조회 성공!
+2025-07-04 06:14:08 | KISCollector | INFO     | get_filtered_stocks | 📊 전체 종목 수: 2760개
+2025-07-04 06:14:08 | KISCollector | INFO     | get_filtered_stocks | 🎯 샘플링: 300개 종목 검사
+2025-07-04 06:14:08 | KISCollector | ERROR    | get_filtered_stocks | ❌ KIS API 필터링 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 06:14:08 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 필터링 방식 실패: '>=' not supported between instances of 'int' and 'NoneType'
+2025-07-04 06:14:08 | TradingSystem | INFO     | run_market_analysis |    필터링 결과: 0개 종목
+2025-07-04 21:39:49 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-07-04 21:39:51 | AnalysisEngine | INFO     | __init__        | ✅ 뉴스 수집기 초기화 완료
+2025-07-04 21:39:51 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 21:39:51 | TechnicalAnalyzer | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 21:39:51 | TechnicalAnalyzer | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 21:39:51 | AnalysisEngine | INFO     | __init__        | ✅ 향상된 기술적 분석기 초기화 완료
+2025-07-04 21:39:51 | AnalysisEngine | INFO     | __init__        | ✅ 수급 분석기 초기화 완료
+2025-07-04 21:39:51 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-07-04 21:39:51 | AnalysisEngine | INFO     | __init__        | ✅ 차트패턴 분석기 초기화 완료
+2025-07-04 21:39:51 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 21:39:51 | KISCollector | INFO     | _get_access_token | 🔑 새 액세스 토큰 발급 시도...
+2025-07-04 21:39:51 | KISCollector | INFO     | _save_token_to_file | 💾 토큰 정보 저장 완료
+2025-07-04 21:39:51 | KISCollector | INFO     | _get_access_token | ✅ 새 액세스 토큰 발급 성공
+2025-07-04 21:39:51 | KISCollector | INFO     | initialize      | ✅ KIS API 초기화 완료
+2025-07-04 21:39:51 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 21:39:51 | KISCollector | INFO     | _get_access_token | 🔑 새 액세스 토큰 발급 시도...
+2025-07-04 21:39:51 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-04 21:39:51 | KISCollector | INFO     | close           | ✅ KIS API 연결 종료
+2025-07-04 21:40:08 | TradingSystem | INFO     | _initialize_system | 🚀 트레이딩 시스템 초기화 완료
+2025-07-04 21:40:08 | TradingSystem | INFO     | _initialize_system |    매매 모드: 비활성화
+2025-07-04 21:40:08 | TradingSystem | INFO     | _initialize_system |    백테스트: 비활성화
+2025-07-04 21:40:13 | TradingSystem | INFO     | run_market_analysis | 📊 전체 시장 분석 시작 (전략: momentum, 전체 종목 필터링)
+2025-07-04 21:40:13 | KISCollector | INFO     | initialize      | 🔌 KIS API 연결 초기화 중...
+2025-07-04 21:40:13 | KISCollector | INFO     | _get_access_token | 🔑 새 액세스 토큰 발급 시도...
+2025-07-04 21:40:13 | KISCollector | ERROR    | _get_access_token | ❌ 액세스 토큰 발급 실패: 403, {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-07-04 21:40:13 | TradingSystem | ERROR    | initialize_components | ❌ 컴포넌트 초기화 실패: KIS API 토큰 발급에 실패했습니다. API 키를 확인하세요.
+2025-07-04 21:40:43 | KISCollector | INFO     | close           | ✅ KIS API 연결 종료
+2025-07-04 21:40:43 | TradingSystem | INFO     | cleanup         | ✅ 리소스 정리 완료

@@ -1,0 +1,447 @@
+{
+  "timestamp": "2025-07-15T09:15:32.288692",
+  "total_count": 21,
+  "results": [
+    {
+      "symbol": "105560",
+      "name": "KB금융",
+      "score": 80.74036437246963,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:16.877183"
+      },
+      "analysis_time": "2025-07-15T09:13:16.877200",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "STRONG_BUY",
+      "risk_level": "LOW",
+      "entry_price": 116900.0,
+      "stop_loss": 111055.0,
+      "take_profit": 128590.00000000001
+    },
+    {
+      "symbol": "005830",
+      "name": "DB손해보험",
+      "score": 77.62780104712043,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:12:43.947205"
+      },
+      "analysis_time": "2025-07-15T09:12:43.947214",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 146500.0,
+      "stop_loss": 139175.0,
+      "take_profit": 161150.0
+    },
+    {
+      "symbol": "267270",
+      "name": "HD현대건설기계",
+      "score": 75.93873188405797,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:33.520324"
+      },
+      "analysis_time": "2025-07-15T09:13:33.520333",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 75100.0,
+      "stop_loss": 71345.0,
+      "take_profit": 82610.0
+    },
+    {
+      "symbol": "267250",
+      "name": "HD현대",
+      "score": 75.57810572687225,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:00.284235"
+      },
+      "analysis_time": "2025-07-15T09:13:00.284244",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 137000.0,
+      "stop_loss": 130150.0,
+      "take_profit": 150700.0
+    },
+    {
+      "symbol": "001040",
+      "name": "종목001040",
+      "score": 75.26581395348836,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:12:35.712735"
+      },
+      "analysis_time": "2025-07-15T09:12:35.712743",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 172600.0,
+      "stop_loss": 163970.0,
+      "take_profit": 189860.00000000003
+    },
+    {
+      "symbol": "000990",
+      "name": "DB하이텍",
+      "score": 73.83953703703705,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:14:16.048872"
+      },
+      "analysis_time": "2025-07-15T09:14:16.048883",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 46900.0,
+      "stop_loss": 44555.0,
+      "take_profit": 51590.00000000001
+    },
+    {
+      "symbol": "294870",
+      "name": "HDC현대산업개발",
+      "score": 73.64513392857143,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:14:48.897158"
+      },
+      "analysis_time": "2025-07-15T09:14:48.897167",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 23650.0,
+      "stop_loss": 22467.5,
+      "take_profit": 26015.000000000004
+    },
+    {
+      "symbol": "138930",
+      "name": "BNK금융지주",
+      "score": 72.63767482517483,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:15:24.018683"
+      },
+      "analysis_time": "2025-07-15T09:15:24.018726",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "LOW",
+      "entry_price": 15900.0,
+      "stop_loss": 15105.0,
+      "take_profit": 17490.0
+    },
+    {
+      "symbol": "375500",
+      "name": "DL이앤씨",
+      "score": 71.97856060606061,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:14:07.860223"
+      },
+      "analysis_time": "2025-07-15T09:14:07.860250",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 49100.0,
+      "stop_loss": 46645.0,
+      "take_profit": 54010.00000000001
+    },
+    {
+      "symbol": "030200",
+      "name": "종목030200",
+      "score": 70.8834589041096,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:42.206990"
+      },
+      "analysis_time": "2025-07-15T09:13:42.207001",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 57900.0,
+      "stop_loss": 55005.0,
+      "take_profit": 63690.00000000001
+    },
+    {
+      "symbol": "012630",
+      "name": "HDC",
+      "score": 70.85,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:14:57.584080"
+      },
+      "analysis_time": "2025-07-15T09:14:57.584089",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 21900.0,
+      "stop_loss": 20805.0,
+      "take_profit": 24090.000000000004
+    },
+    {
+      "symbol": "042670",
+      "name": "HD현대인프라코어",
+      "score": 70.83134615384616,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:15:32.169462"
+      },
+      "analysis_time": "2025-07-15T09:15:32.169471",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 11610.0,
+      "stop_loss": 11029.5,
+      "take_profit": 12771.000000000002
+    },
+    {
+      "symbol": "000210",
+      "name": "종목000210",
+      "score": 70.43947019867551,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:59.293398"
+      },
+      "analysis_time": "2025-07-15T09:13:59.293406",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 52200.0,
+      "stop_loss": 49590.0,
+      "take_profit": 57420.00000000001
+    },
+    {
+      "symbol": "007340",
+      "name": "DN오토모티브",
+      "score": 69.69496753246753,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:14:40.585926"
+      },
+      "analysis_time": "2025-07-15T09:14:40.585934",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 27400.0,
+      "stop_loss": 26030.0,
+      "take_profit": 30140.000000000004
+    },
+    {
+      "symbol": "033780",
+      "name": "KT&G",
+      "score": 69.43543413173653,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:12:52.226976"
+      },
+      "analysis_time": "2025-07-15T09:12:52.226984",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 140800.0,
+      "stop_loss": 133760.0,
+      "take_profit": 154880.0
+    },
+    {
+      "symbol": "000120",
+      "name": "CJ대한통운",
+      "score": 69.05344696969698,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:25.241488"
+      },
+      "analysis_time": "2025-07-15T09:13:25.241496",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 93700.0,
+      "stop_loss": 89015.0,
+      "take_profit": 103070.00000000001
+    },
+    {
+      "symbol": "282330",
+      "name": "BGF리테일",
+      "score": 68.51280528052806,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:08.440261"
+      },
+      "analysis_time": "2025-07-15T09:13:08.440272",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 122800.0,
+      "stop_loss": 116660.0,
+      "take_profit": 135080.0
+    },
+    {
+      "symbol": "071970",
+      "name": "HD현대마린엔진",
+      "score": 66.69618279569892,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:14:24.377174"
+      },
+      "analysis_time": "2025-07-15T09:14:24.377186",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 47200.0,
+      "stop_loss": 44840.0,
+      "take_profit": 51920.00000000001
+    },
+    {
+      "symbol": "204320",
+      "name": "HL만도",
+      "score": 65.22638554216867,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:14:32.485981"
+      },
+      "analysis_time": "2025-07-15T09:14:32.485989",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 35400.0,
+      "stop_loss": 33630.0,
+      "take_profit": 38940.0
+    },
+    {
+      "symbol": "078930",
+      "name": "종목078930",
+      "score": 63.87157894736842,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:13:50.576461"
+      },
+      "analysis_time": "2025-07-15T09:13:50.576470",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 53600.0,
+      "stop_loss": 50920.0,
+      "take_profit": 58960.00000000001
+    },
+    {
+      "symbol": "097950",
+      "name": "CJ제일제당",
+      "score": 60.96,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:12:10.432563"
+      },
+      "analysis_time": "2025-07-15T09:12:10.432571",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 258000.0,
+      "stop_loss": 245100.0,
+      "take_profit": 283800.0
+    }
+  ]
+}
