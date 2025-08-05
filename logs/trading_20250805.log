@@ -398,3 +398,424 @@
 2025-08-05 06:10:03 | Main         | INFO     | main            | ✅ 시스템 초기화 완료!
 2025-08-05 06:29:02 | Main         | ERROR    | main            | ❌ 시스템 실행 중 오류: [Errno 22] Invalid argument
 2025-08-05 06:29:02 | Main         | ERROR    | main            | ❌ 시스템 실행 중 오류: [Errno 22] Invalid argument
+2025-08-05 10:03:56 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini API 초기화 완료
+2025-08-05 10:03:58 | GeminiAnalyzer | INFO     | analyze_news_sentiment | ✅ Gemini 감성 분석 완료 - 005930: POSITIVE
+2025-08-05 10:04:18 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini API 초기화 완료
+2025-08-05 10:04:22 | GeminiAnalyzer | INFO     | analyze_news_sentiment | ✅ Gemini 감성 분석 완료 - 005930: POSITIVE
+2025-08-05 10:04:22 | SentimentAnalyzer | INFO     | analyze         | ✅ Gemini 감정 분석 완료 - 005930 감정: POSITIVE
+2025-08-05 10:07:28 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 10:07:28 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 10:07:28 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 5:08:58.689569)
+2025-08-05 10:07:30 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 10:07:30 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 10:07:32 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 10:07:32 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini API 초기화 완료
+2025-08-05 10:07:32 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 10:07:32 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 10:07:32 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini API 초기화 완료
+2025-08-05 10:07:32 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-05 10:07:32 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-05 10:07:32 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-05 10:07:33 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005930 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000660 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 035420 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005380(현대차) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005380 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 051910(LG화학) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 051910 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 028260(삼성물산) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 028260 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 006400(삼성SDI) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 006400 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000270(기아) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000270 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 068270(셀트리온) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 068270 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 105560(KB금융) 종합 분석 시작...
+2025-08-05 10:07:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 105560 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005930 기술적 분석 시작...
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005930 기술적 분석 완료 - 점수: 55.0
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 005930 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005930
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005930 (종목005930)
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000660 기술적 분석 시작...
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (종목005930) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000660 기술적 분석 완료 - 점수: 70.0
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005930 (종목005930) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 000660 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000660
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000660 (종목000660)
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (종목000660) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 035420 기술적 분석 시작...
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000660 (종목000660) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 035420 기술적 분석 완료 - 점수: 50.0
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 035420 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005930 점수: 58.1
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 035420
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000660 점수: 44.4
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 035420 (종목035420)
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005380 기술적 분석 시작...
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 035420 점수: 59.5
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 035420 (종목035420) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005380 기술적 분석 완료 - 점수: 30.0
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 035420 (종목035420) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 005380 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 051910 기술적 분석 시작...
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005380 (종목005380)
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005380
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005380 (종목005380) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 051910 기술적 분석 완료 - 점수: 50.0
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005380 점수: 50.1
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 051910 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005380 (종목005380) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 028260 기술적 분석 시작...
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 051910
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 051910 (종목051910)
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 051910 점수: 60.7
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 051910 (종목051910) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 028260 기술적 분석 완료 - 점수: 75.0
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 051910 (종목051910) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 028260 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 006400 기술적 분석 시작...
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 028260
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 028260 (종목028260)
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 028260 (종목028260) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 006400 기술적 분석 완료 - 점수: 55.0
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 028260 점수: 54.7
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 006400 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 028260 (종목028260) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 006400 (종목006400)
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 006400
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000270 기술적 분석 시작...
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 006400 (종목006400) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 006400 점수: 61.0
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000270 기술적 분석 완료 - 점수: 20.0
+2025-08-05 10:07:33 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 000270 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 006400 (종목006400) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 068270 기술적 분석 시작...
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000270 (종목000270)
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000270
+2025-08-05 10:07:33 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000270 (종목000270) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 068270 기술적 분석 완료 - 점수: 60.0
+2025-08-05 10:07:33 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000270 (종목000270) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:33 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 068270 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:34 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 068270
+2025-08-05 10:07:34 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 068270 (종목068270)
+2025-08-05 10:07:34 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 105560 기술적 분석 시작...
+2025-08-05 10:07:34 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 068270 (종목068270) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000270 점수: 52.0
+2025-08-05 10:07:34 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 105560 기술적 분석 완료 - 점수: 45.0
+2025-08-05 10:07:34 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 068270 (종목068270) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 105560 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:34 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 068270 점수: 57.1
+2025-08-05 10:07:34 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 105560
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000660(SK하이닉스) 종합 분석 완료 (점수: 54.61, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 105560 (종목105560)
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005930(삼성전자) 종합 분석 완료 (점수: 53.52, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 105560 (종목105560) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 035420(NAVER) 종합 분석 완료 (점수: 52.37, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 105560 점수: 48.9
+2025-08-05 10:07:34 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 105560 (종목105560) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005380(현대차) 종합 분석 완료 (점수: 44.02, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 051910(LG화학) 종합 분석 완료 (점수: 52.68, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 028260(삼성물산) 종합 분석 완료 (점수: 58.68, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 006400(삼성SDI) 종합 분석 완료 (점수: 54.24, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000270(기아) 종합 분석 완료 (점수: 41.51, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 068270(셀트리온) 종합 분석 완료 (점수: 54.78, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:34 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 105560(KB금융) 종합 분석 완료 (점수: 48.21, 추천: STRONG_SELL) - 소요시간: 0.35초
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005930 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000660 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 035420 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005380(현대차) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005380 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 051910(LG화학) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 051910 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 028260(삼성물산) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 028260 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 006400(삼성SDI) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 006400 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000270(기아) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000270 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 068270(셀트리온) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 068270 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 105560(KB금융) 종합 분석 시작...
+2025-08-05 10:07:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 105560 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005930 기술적 분석 시작...
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005930 기술적 분석 완료 - 점수: 55.0
+2025-08-05 10:07:48 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 005930 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005930
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000660 기술적 분석 시작...
+2025-08-05 10:07:48 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005930 (종목005930)
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000660 기술적 분석 완료 - 점수: 30.0
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005930 점수: 47.6
+2025-08-05 10:07:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (종목005930) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 000660 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:48 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005930 (종목005930) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 035420 기술적 분석 시작...
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 035420 기술적 분석 완료 - 점수: 70.0
+2025-08-05 10:07:48 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000660 (종목000660)
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000660
+2025-08-05 10:07:48 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 035420 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (종목000660) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 035420 (종목035420)
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005380 기술적 분석 시작...
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 035420
+2025-08-05 10:07:48 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000660 (종목000660) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 035420 (종목035420) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000660 점수: 63.1
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005380 기술적 분석 완료 - 점수: 20.0
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 035420 (종목035420) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:48 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 005380 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 035420 점수: 44.2
+2025-08-05 10:07:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 051910 기술적 분석 시작...
+2025-08-05 10:07:48 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005380 (종목005380)
+2025-08-05 10:07:48 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005380
+2025-08-05 10:07:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005380 (종목005380) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 051910 기술적 분석 완료 - 점수: 20.0
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005380 (종목005380) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 051910 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005380 점수: 62.1
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 028260 기술적 분석 시작...
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 051910
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 051910 (종목051910)
+2025-08-05 10:07:49 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 051910 (종목051910) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 051910 점수: 53.5
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 028260 기술적 분석 완료 - 점수: 45.0
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 051910 (종목051910) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 028260 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 006400 기술적 분석 시작...
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 028260 (종목028260)
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 028260
+2025-08-05 10:07:49 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 028260 (종목028260) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 006400 기술적 분석 완료 - 점수: 30.0
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 028260 (종목028260) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 006400 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 028260 점수: 63.0
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000270 기술적 분석 시작...
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 006400
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 006400 (종목006400)
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000270 기술적 분석 완료 - 점수: 30.0
+2025-08-05 10:07:49 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 006400 (종목006400) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 000270 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 006400 (종목006400) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 006400 점수: 62.1
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 068270 기술적 분석 시작...
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000270 (종목000270)
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000270
+2025-08-05 10:07:49 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000270 (종목000270) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 068270 기술적 분석 완료 - 점수: 35.0
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000270 (종목000270) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 068270 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000270 점수: 41.4
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 105560 기술적 분석 시작...
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 068270
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 068270 (종목068270)
+2025-08-05 10:07:49 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 105560 기술적 분석 완료 - 점수: 40.0
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 068270 (종목068270) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 105560 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 068270 점수: 41.9
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 105560
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 068270 (종목068270) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005930(삼성전자) 종합 분석 완료 (점수: 50.89, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 105560 (종목105560)
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000660(SK하이닉스) 종합 분석 완료 (점수: 47.27, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:49 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 105560 점수: 57.5
+2025-08-05 10:07:49 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 105560 (종목105560) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 035420(NAVER) 종합 분석 완료 (점수: 54.55, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:49 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 105560 (종목105560) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005380(현대차) 종합 분석 완료 (점수: 44.01, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 051910(LG화학) 종합 분석 완료 (점수: 41.88, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 028260(삼성물산) 종합 분석 완료 (점수: 51.74, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 006400(삼성SDI) 종합 분석 완료 (점수: 47.02, 추천: STRONG_SELL) - 소요시간: 0.30초
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000270(기아) 종합 분석 완료 (점수: 41.84, 추천: STRONG_SELL) - 소요시간: 0.30초
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 068270(셀트리온) 종합 분석 완료 (점수: 43.47, 추천: STRONG_SELL) - 소요시간: 0.30초
+2025-08-05 10:07:49 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 105560(KB금융) 종합 분석 완료 (점수: 48.88, 추천: STRONG_SELL) - 소요시간: 0.30초
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005930 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000660 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 035420 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005380(현대차) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005380 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 051910(LG화학) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 051910 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 028260(삼성물산) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 028260 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 006400(삼성SDI) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 006400 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000270(기아) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000270 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 068270(셀트리온) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 068270 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 105560(KB금융) 종합 분석 시작...
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 105560 모의 가격 데이터 생성: 100개
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005930 기술적 분석 시작...
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005930 기술적 분석 완료 - 점수: 45.0
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 005930 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000660 기술적 분석 시작...
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005930
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005930 (종목005930)
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000660 기술적 분석 완료 - 점수: 55.0
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (종목005930) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 000660 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005930 점수: 63.8
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005930 (종목005930) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000660
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 035420 기술적 분석 시작...
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000660 (종목000660)
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (종목000660) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 035420 기술적 분석 완료 - 점수: 55.0
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000660 점수: 61.0
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 035420 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005380 기술적 분석 시작...
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000660 (종목000660) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 035420
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 035420 (종목035420)
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 035420 (종목035420) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005380 기술적 분석 완료 - 점수: 25.0
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 035420 (종목035420) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 005380 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 051910 기술적 분석 시작...
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 035420 점수: 47.3
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005380 (종목005380)
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005380
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005380 (종목005380) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 051910 기술적 분석 완료 - 점수: 25.0
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 051910 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005380 (종목005380) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005380 점수: 60.8
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 051910 (종목051910)
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 028260 기술적 분석 시작...
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 051910
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 028260 기술적 분석 완료 - 점수: 70.0
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 051910 (종목051910) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 051910 점수: 57.7
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 028260 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 051910 (종목051910) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 028260
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 028260 (종목028260)
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 006400 기술적 분석 시작...
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 028260 (종목028260) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 006400 기술적 분석 완료 - 점수: 60.0
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 006400 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 028260 (종목028260) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 028260 점수: 60.7
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 006400
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000270 기술적 분석 시작...
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 006400 (종목006400)
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 006400 점수: 51.0
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000270 기술적 분석 완료 - 점수: 55.0
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 006400 (종목006400) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 000270 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 068270 기술적 분석 시작...
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000270 (종목000270)
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000270
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 006400 (종목006400) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 068270 기술적 분석 완료 - 점수: 30.0
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000270 (종목000270) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 068270 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000270 점수: 59.1
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 068270
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000270 (종목000270) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 105560 기술적 분석 시작...
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 068270 (종목068270)
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 068270 점수: 58.7
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 068270 (종목068270) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 105560 기술적 분석 완료 - 점수: 35.0
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 068270 (종목068270) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SentimentAnalyzer | WARNING  | analyze         | ⚠️ 105560 뉴스 데이터 없음 - 기본값 사용
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 105560
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005930(삼성전자) 종합 분석 완료 (점수: 51.94, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 105560 (종목105560)
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000660(SK하이닉스) 종합 분석 완료 (점수: 54.24, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 035420(NAVER) 종합 분석 완료 (점수: 50.81, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 105560 (종목105560) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 105560 점수: 56.8
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005380(현대차) 종합 분석 완료 (점수: 45.21, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 105560 (종목105560) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 051910(LG화학) 종합 분석 완료 (점수: 44.43, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 028260(삼성물산) 종합 분석 완료 (점수: 58.68, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 006400(삼성SDI) 종합 분석 완료 (점수: 53.25, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000270(기아) 종합 분석 완료 (점수: 53.76, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 068270(셀트리온) 종합 분석 완료 (점수: 46.17, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:07:59 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 105560(KB금융) 종합 분석 완료 (점수: 47.19, 추천: STRONG_SELL) - 소요시간: 0.31초
+2025-08-05 10:11:03 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 10:11:03 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 10:17:17 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini API 초기화 완료
+2025-08-05 10:17:20 | GeminiAnalyzer | INFO     | analyze_news_sentiment | ✅ Gemini 감성 분석 완료 - 005930: POSITIVE
+2025-08-05 10:17:20 | SentimentAnalyzer | INFO     | analyze         | ✅ Gemini 감정 분석 완료 - 005930 감정: POSITIVE
+2025-08-05 10:50:18 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 10:52:35 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 10:52:40 | GeminiAnalyzer | WARNING  | _call_gemini_cli | Gemini CLI 호출 실패 (시도 1/3): 빈 응답
+2025-08-05 10:54:02 | GeminiAnalyzer | WARNING  | _parse_sentiment_response | 감성 분석 응답 파싱 실패: JSON 형식을 찾을 수 없음
+2025-08-05 10:54:02 | GeminiAnalyzer | INFO     | analyze_news_sentiment | ✅ Gemini CLI 감성 분석 완료 - 005930: NEUTRAL
+2025-08-05 14:38:25 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 14:38:25 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 14:38:25 | KISCollector | INFO     | load_cached_token | Cached token is near expiry, will refresh
+2025-08-05 14:38:25 | KISCollector | INFO     | request_new_token | Requesting new access token...
+2025-08-05 14:38:25 | KISCollector | INFO     | _save_token_to_file | Token cache saved successfully
+2025-08-05 14:38:25 | KISCollector | INFO     | request_new_token | New access token obtained (expires: 2025-08-06 14:28:25.472018)
+2025-08-05 14:38:25 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 14:38:25 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 14:38:37 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 14:38:37 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 14:38:37 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:49:48.199268)
+2025-08-05 14:38:37 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 14:38:37 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 14:38:47 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 14:38:47 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 14:38:47 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:49:37.960825)
+2025-08-05 14:38:47 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 14:38:47 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 14:39:03 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 14:39:03 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 14:39:03 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:49:22.186451)
+2025-08-05 14:39:03 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 14:39:03 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 14:39:09 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 14:39:09 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 14:41:06 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 14:41:06 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 14:41:06 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:47:18.626725)
+2025-08-05 14:41:06 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 14:41:06 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 14:41:12 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 14:41:12 | KISCollector | INFO     | close           | KIS API collector closed successfully

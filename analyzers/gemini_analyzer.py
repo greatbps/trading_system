@@ -3,39 +3,116 @@
 """
 trading_system/analyzers/gemini_analyzer.py
 
-Google Gemini API를 활용한 뉴스 및 감성 분석기
+Gemini CLI를 활용한 뉴스 및 감성 분석기 - 완전 CLI 기반 구현
 """
 
 import asyncio
 import json
 import re
+import subprocess
+import tempfile
+import os
 from typing import Dict, Any, List, Optional
 from datetime import datetime, timedelta
-import google.generativeai as genai
 
 from utils.logger import get_logger
 from config import Config
 
 
 class GeminiAnalyzer:
-    """Gemini AI를 활용한 뉴스 및 감성 분석기"""
+    """Gemini CLI를 활용한 뉴스 및 감성 분석기"""
     
     def __init__(self, config: Config):
         self.config = config
         self.logger = get_logger("GeminiAnalyzer")
+        self.cli_command = None
         
-        # Gemini API 설정
-        if config.api.GEMINI_API_KEY:
-            genai.configure(api_key=config.api.GEMINI_API_KEY)
-            self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
-            self.logger.info("✅ Gemini API 초기화 완료")
+        # Gemini CLI 사용 가능 여부 확인
+        self.cli_available = self._check_gemini_cli()
+        
+        if self.cli_available:
+            self.logger.info("✅ Gemini CLI 초기화 완료")
         else:
-            self.model = None
-            self.logger.warning("⚠️ GEMINI_API_KEY가 설정되지 않았습니다. 기본 분석을 사용합니다.")
+            self.logger.warning("⚠️ Gemini CLI를 사용할 수 없습니다. 기본 분석을 사용합니다.")
+    
+    def _check_gemini_cli(self) -> bool:
+        """Gemini CLI 사용 가능 여부 확인"""
+        # Node.js로 직접 실행하는 방식 포함
+        node_script_path = 'C:\\Users\\great\\AppData\\Roaming\\npm\\node_modules\\@google\\gemini-cli\\dist\\index.js'
+        possible_commands = [
+            ['gemini', '--version'],
+            ['node', node_script_path, '--version'],
+            ['/c/Users/great/AppData/Roaming/npm/gemini.cmd', '--version'],
+        ]
+        
+        for cmd in possible_commands:
+            try:
+                result = subprocess.run(cmd, 
+                                      capture_output=True, 
+                                      text=True, 
+                                      timeout=10)
+                if result.returncode == 0:
+                    self.cli_command = cmd[:-1]  # --version 제거
+                    return True
+            except (subprocess.SubprocessError, FileNotFoundError, subprocess.TimeoutExpired):
+                continue
+        
+        return False
+    
+    async def _call_gemini_cli(self, prompt: str, max_retries: int = 3) -> str:
+        """Gemini CLI를 통한 비동기 API 호출"""
+        if not self.cli_available:
+            raise Exception("Gemini CLI를 사용할 수 없습니다")
+        
+        for attempt in range(max_retries):
+            try:
+                # 임시 파일에 프롬프트 저장 (긴 프롬프트 처리용)
+                with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False, encoding='utf-8') as f:
+                    f.write(prompt)
+                    temp_file = f.name
+                
+                try:
+                    # Gemini CLI 실행 (비동기)
+                    cmd_args = self.cli_command + ['-p', f'다음 내용을 분석해주세요: {prompt[:200]}...']
+                    process = await asyncio.create_subprocess_exec(
+                        *cmd_args,
+                        stdin=asyncio.subprocess.PIPE,
+                        stdout=asyncio.subprocess.PIPE,
+                        stderr=asyncio.subprocess.PIPE
+                    )
+                    
+                    # 전체 프롬프트를 stdin으로 전송
+                    stdout, stderr = await process.communicate(input=prompt.encode('utf-8'))
+                    
+                    if process.returncode == 0:
+                        response = stdout.decode('utf-8').strip()
+                        if response:
+                            self.logger.debug(f"Gemini CLI 응답 성공 (시도 {attempt + 1}/{max_retries})")
+                            return response
+                        else:
+                            raise Exception("빈 응답")
+                    else:
+                        error_msg = stderr.decode('utf-8').strip()
+                        raise Exception(f"CLI 오류 (코드: {process.returncode}): {error_msg}")
+                
+                finally:
+                    # 임시 파일 정리
+                    try:
+                        os.unlink(temp_file)
+                    except:
+                        pass
+                        
+            except Exception as e:
+                self.logger.warning(f"Gemini CLI 호출 실패 (시도 {attempt + 1}/{max_retries}): {e}")
+                if attempt == max_retries - 1:
+                    raise
+                await asyncio.sleep(2 ** attempt)  # 지수 백오프
+        
+        raise Exception(f"Gemini CLI 호출 {max_retries}회 모두 실패")
     
     async def analyze_news_sentiment(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:
-        """뉴스 데이터를 바탕으로 감성 분석 수행"""
-        if not self.model or not news_data:
+        """뉴스 데이터를 바탕으로 감성 분석 수행 - CLI 기반"""
+        if not self.cli_available or not news_data:
             return self._get_default_sentiment()
         
         try:
@@ -48,268 +125,199 @@ class GeminiAnalyzer:
             
             news_content = "\n\n".join(news_texts)
             
-            # Gemini 프롬프트 생성
-            prompt = self._create_sentiment_prompt(symbol, company_name, news_content)
+            # Gemini CLI용 프롬프트 구성
+            prompt = self._build_sentiment_prompt(symbol, company_name, news_content)
             
-            # Gemini API 호출
-            response = await self._call_gemini_api(prompt)
+            # CLI를 통한 분석 수행
+            response = await self._call_gemini_cli(prompt)
             
-            # 응답 파싱
-            sentiment_result = self._parse_sentiment_response(response)
+            # JSON 응답 파싱
+            result = self._parse_sentiment_response(response)
             
-            self.logger.info(f"✅ Gemini 감성 분석 완료 - {symbol}: {sentiment_result.get('sentiment', 'NEUTRAL')}")
-            return sentiment_result
+            self.logger.info(f"✅ Gemini CLI 감성 분석 완료 - {symbol}: {result.get('sentiment', 'UNKNOWN')}")
+            return result
             
         except Exception as e:
-            self.logger.error(f"❌ Gemini 감성 분석 실패: {e}")
+            self.logger.error(f"❌ Gemini CLI 감성 분석 실패 ({symbol}): {e}")
             return self._get_default_sentiment()
     
     async def analyze_market_impact(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:
-        """뉴스가 주가에 미치는 영향도 분석"""
-        if not self.model or not news_data:
-            return self._get_default_impact()
+        """시장 영향도 분석 수행 - CLI 기반"""
+        if not self.cli_available or not news_data:
+            return self._get_default_market_impact()
         
         try:
-            # 주요 뉴스만 선별
-            important_news = [news for news in news_data[:5] if self._is_important_news(news)]
+            # 뉴스 텍스트 준비
+            news_texts = []
+            for news in news_data[:10]:
+                title = news.get('title', '')
+                description = news.get('description', '')
+                news_texts.append(f"제목: {title}\n내용: {description}")
             
-            if not important_news:
-                return self._get_default_impact()
+            news_content = "\n\n".join(news_texts)
             
-            news_content = "\n\n".join([
-                f"제목: {news.get('title', '')}\n내용: {news.get('description', '')}"
-                for news in important_news
-            ])
+            # Gemini CLI용 프롬프트 구성
+            prompt = self._build_market_impact_prompt(symbol, company_name, news_content)
             
-            # 시장 영향도 분석 프롬프트
-            prompt = self._create_impact_prompt(symbol, company_name, news_content)
+            # CLI를 통한 분석 수행
+            response = await self._call_gemini_cli(prompt)
             
-            # Gemini API 호출
-            response = await self._call_gemini_api(prompt)
+            # JSON 응답 파싱
+            result = self._parse_market_impact_response(response)
             
-            # 응답 파싱
-            impact_result = self._parse_impact_response(response)
-            
-            self.logger.info(f"✅ Gemini 시장 영향도 분석 완료 - {symbol}: {impact_result.get('impact_level', 'MEDIUM')}")
-            return impact_result
+            self.logger.info(f"✅ Gemini CLI 시장 영향도 분석 완료 - {symbol}: {result.get('impact_level', 'UNKNOWN')}")
+            return result
             
         except Exception as e:
-            self.logger.error(f"❌ Gemini 시장 영향도 분석 실패: {e}")
-            return self._get_default_impact()
+            self.logger.error(f"❌ Gemini CLI 시장 영향도 분석 실패 ({symbol}): {e}")
+            return self._get_default_market_impact()
     
-    def _create_sentiment_prompt(self, symbol: str, company_name: str, news_content: str) -> str:
-        """감성 분석용 프롬프트 생성"""
+    def _build_sentiment_prompt(self, symbol: str, company_name: str, news_content: str) -> str:
+        """감성 분석용 프롬프트 구성"""
         return f"""
-주식 투자 분석가로서 다음 뉴스들을 분석하여 해당 기업의 주가에 대한 감성을 평가해주세요.
-
-기업 정보:
-- 종목코드: {symbol}
-- 기업명: {company_name}
+한국 주식 시장 전문가로서 다음 뉴스들을 분석하여 {company_name}({symbol})에 대한 감성 분석을 수행해주세요.
 
 뉴스 내용:
 {news_content}
 
-다음 JSON 형식으로 분석 결과를 제공해주세요:
+다음 JSON 형식으로 정확히 응답해주세요:
 {{
     "sentiment": "VERY_POSITIVE|POSITIVE|NEUTRAL|NEGATIVE|VERY_NEGATIVE",
-    "confidence": 0.0-1.0,
-    "overall_score": 0-100,
-    "positive_factors": ["긍정 요인들"],
-    "negative_factors": ["부정 요인들"],
-    "key_keywords": ["핵심 키워드들"],
-    "short_term_outlook": "단기 전망 (1-2주)",
-    "medium_term_outlook": "중기 전망 (1-3개월)",
-    "summary": "한줄 요약"
+    "overall_score": (0-100 숫자),
+    "confidence": (0.0-1.0 숫자),
+    "positive_factors": ["긍정 요인1", "긍정 요인2"],
+    "negative_factors": ["부정 요인1", "부정 요인2"],
+    "key_keywords": ["핵심 키워드1", "키워드2"],
+    "short_term_outlook": "단기 전망 설명",
+    "medium_term_outlook": "중기 전망 설명",
+    "summary": "종합 분석 요약"
 }}
 
-분석 기준:
-- VERY_POSITIVE (90-100점): 매우 강한 호재, 즉시 주가 상승 기대
-- POSITIVE (70-89점): 명확한 호재, 주가 상승 가능성 높음
-- NEUTRAL (40-69점): 중립적, 큰 영향 없음
-- NEGATIVE (20-39점): 악재, 주가 하락 우려
-- VERY_NEGATIVE (0-19점): 매우 강한 악재, 즉시 주가 하락 우려
+주의사항:
+1. sentiment는 반드시 위 5개 값 중 하나여야 합니다
+2. overall_score는 0-100 사이의 정수입니다 (50이 중립)
+3. 한국 주식 시장 관점에서 분석해주세요
+4. JSON 형식을 정확히 지켜주세요
 """
-    
-    def _create_impact_prompt(self, symbol: str, company_name: str, news_content: str) -> str:
-        """시장 영향도 분석용 프롬프트 생성"""
-        return f"""
-주식 시장 분석가로서 다음 뉴스가 해당 기업의 주가와 시장에 미치는 영향을 분석해주세요.
 
-기업 정보:
-- 종목코드: {symbol}  
-- 기업명: {company_name}
+    def _build_market_impact_prompt(self, symbol: str, company_name: str, news_content: str) -> str:
+        """시장 영향도 분석용 프롬프트 구성"""
+        return f"""
+한국 주식 시장 전문가로서 다음 뉴스들이 {company_name}({symbol})의 시장에 미칠 영향을 분석해주세요.
 
 뉴스 내용:
 {news_content}
 
-다음 JSON 형식으로 분석 결과를 제공해주세요:
+다음 JSON 형식으로 정확히 응답해주세요:
 {{
-    "impact_level": "VERY_HIGH|HIGH|MEDIUM|LOW|VERY_LOW",
-    "impact_score": 0-100,
-    "duration": "IMMEDIATE|SHORT_TERM|MEDIUM_TERM|LONG_TERM",
-    "price_direction": "STRONG_UP|UP|NEUTRAL|DOWN|STRONG_DOWN",
-    "volatility_expected": "VERY_HIGH|HIGH|MEDIUM|LOW",
-    "trading_volume_impact": "SURGE|INCREASE|NORMAL|DECREASE",
-    "sector_impact": "업종에 미치는 영향",
-    "key_risks": ["주요 리스크들"],
-    "catalysts": ["상승 촉매들"],
-    "target_price_change": "예상 주가 변동률 (%)",
+    "impact_level": "HIGH|MEDIUM|LOW",
+    "impact_score": (0-100 숫자),
+    "duration": "SHORT_TERM|MEDIUM_TERM|LONG_TERM",
+    "price_direction": "UP|DOWN|NEUTRAL",
+    "volatility_expected": "HIGH|MEDIUM|LOW",
+    "trading_volume_impact": "INCREASE|DECREASE|NORMAL",
+    "sector_impact": "섹터 영향 설명",
+    "key_risks": ["리스크1", "리스크2"],
+    "catalysts": ["촉매1", "촉매2"],
+    "target_price_change": "예상 목표가 변동률 (예: +5%, -3%)",
     "recommendation": "BUY|HOLD|SELL"
 }}
 
-영향도 기준:
-- VERY_HIGH: 즉시 10% 이상 주가 변동 예상
-- HIGH: 1주일 내 5-10% 주가 변동 예상
-- MEDIUM: 1개월 내 3-5% 주가 변동 예상
-- LOW: 소폭 변동 또는 장기적 영향
-- VERY_LOW: 거의 영향 없음
+주의사항:
+1. 모든 열거형 값은 정확히 지정된 값 중 선택해주세요
+2. 한국 주식 시장과 해당 업종 특성을 고려해주세요
+3. JSON 형식을 정확히 지켜주세요
 """
-    
-    async def _call_gemini_api(self, prompt: str) -> str:
-        """Gemini API 비동기 호출"""
-        try:
-            # 동기 호출을 비동기로 래핑
-            loop = asyncio.get_event_loop()
-            response = await loop.run_in_executor(
-                None, 
-                lambda: self.model.generate_content(prompt)
-            )
-            return response.text
-        except Exception as e:
-            self.logger.error(f"❌ Gemini API 호출 실패: {e}")
-            raise
-    
+
     def _parse_sentiment_response(self, response: str) -> Dict[str, Any]:
-        """Gemini 감성 분석 응답 파싱"""
+        """감성 분석 응답 파싱"""
         try:
-            # JSON 추출
-            json_match = re.search(r'\{.*\}', response, re.DOTALL)
+            # JSON 부분만 추출 시도
+            json_match = re.search(r'\{[\s\S]*\}', response)
             if json_match:
-                result = json.loads(json_match.group())
+                json_str = json_match.group()
+                result = json.loads(json_str)
                 
-                # 데이터 검증 및 정규화
+                # 필수 필드 검증 및 기본값 설정
                 return {
                     'sentiment': result.get('sentiment', 'NEUTRAL'),
-                    'confidence': max(0, min(1, float(result.get('confidence', 0.5)))),
-                    'overall_score': max(0, min(100, int(result.get('overall_score', 50)))),
+                    'overall_score': float(result.get('overall_score', 50)),
+                    'confidence': float(result.get('confidence', 0.5)),
                     'positive_factors': result.get('positive_factors', []),
                     'negative_factors': result.get('negative_factors', []),
                     'key_keywords': result.get('key_keywords', []),
-                    'short_term_outlook': result.get('short_term_outlook', ''),
-                    'medium_term_outlook': result.get('medium_term_outlook', ''),
-                    'summary': result.get('summary', ''),
-                    'signal_strength': self._calculate_signal_strength(result),
-                    'trend': self._determine_trend(result.get('sentiment', 'NEUTRAL'))
+                    'short_term_outlook': result.get('short_term_outlook', '분석 정보 부족'),
+                    'medium_term_outlook': result.get('medium_term_outlook', '분석 정보 부족'),
+                    'summary': result.get('summary', 'CLI 분석 완료')
                 }
             else:
-                return self._get_default_sentiment()
+                raise ValueError("JSON 형식을 찾을 수 없음")
                 
         except Exception as e:
-            self.logger.error(f"❌ 감성 분석 응답 파싱 실패: {e}")
+            self.logger.warning(f"감성 분석 응답 파싱 실패: {e}")
             return self._get_default_sentiment()
     
-    def _parse_impact_response(self, response: str) -> Dict[str, Any]:
-        """Gemini 시장 영향도 분석 응답 파싱"""
+    def _parse_market_impact_response(self, response: str) -> Dict[str, Any]:
+        """시장 영향도 분석 응답 파싱"""
         try:
-            # JSON 추출
-            json_match = re.search(r'\{.*\}', response, re.DOTALL)
+            # JSON 부분만 추출 시도
+            json_match = re.search(r'\{[\s\S]*\}', response)
             if json_match:
-                result = json.loads(json_match.group())
+                json_str = json_match.group()
+                result = json.loads(json_str)
                 
+                # 필수 필드 검증 및 기본값 설정
                 return {
                     'impact_level': result.get('impact_level', 'MEDIUM'),
-                    'impact_score': max(0, min(100, int(result.get('impact_score', 50)))),
+                    'impact_score': float(result.get('impact_score', 50)),
                     'duration': result.get('duration', 'MEDIUM_TERM'),
                     'price_direction': result.get('price_direction', 'NEUTRAL'),
                     'volatility_expected': result.get('volatility_expected', 'MEDIUM'),
                     'trading_volume_impact': result.get('trading_volume_impact', 'NORMAL'),
-                    'sector_impact': result.get('sector_impact', ''),
+                    'sector_impact': result.get('sector_impact', '정보 부족'),
                     'key_risks': result.get('key_risks', []),
                     'catalysts': result.get('catalysts', []),
                     'target_price_change': result.get('target_price_change', '0%'),
                     'recommendation': result.get('recommendation', 'HOLD')
                 }
             else:
-                return self._get_default_impact()
+                raise ValueError("JSON 형식을 찾을 수 없음")
                 
         except Exception as e:
-            self.logger.error(f"❌ 시장 영향도 응답 파싱 실패: {e}")
-            return self._get_default_impact()
-    
-    def _is_important_news(self, news: Dict) -> bool:
-        """뉴스의 중요도 판단"""
-        title = news.get('title', '').lower()
-        description = news.get('description', '').lower()
-        
-        important_keywords = [
-            '실적', '매출', '영업이익', '순이익', '배당', 
-            '인수', '합병', 'm&a', '투자', '계약', '수주',
-            '신제품', '신사업', '특허', '기술개발',
-            '상장', '분할', '증자', '감자',
-            '경영진', '대표이사', '이사회'
-        ]
-        
-        for keyword in important_keywords:
-            if keyword in title or keyword in description:
-                return True
-        
-        return False
-    
-    def _calculate_signal_strength(self, result: Dict) -> float:
-        """시그널 강도 계산"""
-        sentiment = result.get('sentiment', 'NEUTRAL')
-        confidence = result.get('confidence', 0.5)
-        
-        strength_map = {
-            'VERY_POSITIVE': 0.9,
-            'POSITIVE': 0.7,
-            'NEUTRAL': 0.5,
-            'NEGATIVE': 0.7,
-            'VERY_NEGATIVE': 0.9
-        }
-        
-        base_strength = strength_map.get(sentiment, 0.5)
-        return base_strength * confidence
-    
-    def _determine_trend(self, sentiment: str) -> str:
-        """트렌드 결정"""
-        trend_map = {
-            'VERY_POSITIVE': 'IMPROVING',
-            'POSITIVE': 'IMPROVING',
-            'NEUTRAL': 'STABLE',
-            'NEGATIVE': 'DECLINING',
-            'VERY_NEGATIVE': 'DECLINING'
-        }
-        return trend_map.get(sentiment, 'STABLE')
+            self.logger.warning(f"시장 영향도 분석 응답 파싱 실패: {e}")
+            return self._get_default_market_impact()
     
     def _get_default_sentiment(self) -> Dict[str, Any]:
         """기본 감성 분석 결과"""
         return {
             'sentiment': 'NEUTRAL',
-            'confidence': 0.5,
-            'overall_score': 50,
-            'positive_factors': [],
-            'negative_factors': [],
+            'overall_score': 50.0,
+            'confidence': 0.3,
+            'positive_factors': ['CLI 분석 불가'],
+            'negative_factors': ['CLI 분석 불가'],
             'key_keywords': [],
-            'short_term_outlook': '정보 부족으로 중립적 전망',
-            'medium_term_outlook': '정보 부족으로 중립적 전망',
-            'summary': 'AI 분석 정보 부족',
-            'signal_strength': 50,
-            'trend': 'STABLE'
+            'short_term_outlook': 'Gemini CLI 분석 불가로 중립적 전망',
+            'medium_term_outlook': 'Gemini CLI 분석 불가로 중립적 전망',
+            'summary': 'CLI 기반 분석 실패로 기본값 사용'
         }
     
-    def _get_default_impact(self) -> Dict[str, Any]:
+    def _get_default_market_impact(self) -> Dict[str, Any]:
         """기본 시장 영향도 분석 결과"""
         return {
-            'impact_level': 'MEDIUM',
-            'impact_score': 50,
-            'duration': 'MEDIUM_TERM',
+            'impact_level': 'LOW',
+            'impact_score': 40.0,
+            'duration': 'SHORT_TERM',
             'price_direction': 'NEUTRAL',
-            'volatility_expected': 'MEDIUM',
+            'volatility_expected': 'LOW',
             'trading_volume_impact': 'NORMAL',
-            'sector_impact': '정보 부족',
+            'sector_impact': 'CLI 분석 불가',
             'key_risks': [],
             'catalysts': [],
             'target_price_change': '0%',
             'recommendation': 'HOLD'
         }
+
+    @property
+    def model(self):
+        """호환성을 위한 model 속성 (CLI 사용 시에는 None이 아닌 값 반환)"""
+        return "gemini-cli" if self.cli_available else None

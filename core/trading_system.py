@@ -251,18 +251,37 @@ class TradingSystem:
             try:
                 from strategies.momentum_strategy import MomentumStrategy
                 self.strategies['momentum'] = MomentumStrategy(self.config)
-                self.logger.info("✅ 전략 초기화 완료")
+                self.logger.info("✅ Momentum 전략 등록 완료")
             except Exception as e:
-                self.logger.warning(f"⚠️ 전략 초기화 실패: {e}")
-                self.strategies = {}
-                
-                
+                self.logger.warning(f"⚠️ Momentum 전략 초기화 실패: {e}")
+
+            try:
+                from strategies.breakout_strategy import BreakoutStrategy
+                self.strategies['breakout'] = BreakoutStrategy(self.config)
+                self.logger.info("✅ Breakout 전략 등록 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ Breakout 전략 초기화 실패: {e}")
+
+            try:
+                from strategies.eod_strategy import EodStrategy
+                self.strategies['eod'] = EodStrategy(self.config)
+                self.logger.info("✅ EOD 전략 등록 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ EOD 전략 초기화 실패: {e}")
+
             try:
                 from strategies.supertrend_ema_rsi_strategy import SupertrendEmaRsiStrategy
                 self.strategies['supertrend_ema_rsi'] = SupertrendEmaRsiStrategy(self.config)
                 self.logger.info("✅ Supertrend EMA RSI 전략 등록 완료")
-            except Exception:
-                self.logger.debug("Supertrend EMA RSI 전략 로드 실패 (파일이 없을 수 있음)")
+            except Exception as e:
+                self.logger.warning(f"⚠️ Supertrend EMA RSI 전략 로드 실패: {e}")
+
+            try:
+                from strategies.vwap_strategy import VwapStrategy
+                self.strategies['vwap'] = VwapStrategy(self.config)
+                self.logger.info("✅ VWAP 전략 등록 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ VWAP 전략 로드 실패: {e}")
             
             # 알림 서비스
             self.notifier = SimpleNotifier(self.config)

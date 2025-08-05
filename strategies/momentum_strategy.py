@@ -135,21 +135,20 @@ class MomentumStrategy(BaseStrategy):
         except (AttributeError, TypeError):
             return default
     
-    async def generate_signals(self, stock_data: Any, analysis_result: Dict) -> Dict[str, Any]:
-        """모멘텀 기반 매매 신호 생성 - 안전한 버전"""
+    async def generate_signals(self, stock_data: Any, analysis_result: Dict, price_data: List[Dict] = None) -> Dict[str, Any]:
+        """모멘텀 기반 매매 신호 생성 - 실제 가격 데이터 사용"""
         try:
             # 안전한 symbol 추출
             symbol = self.safe_get_attr(stock_data, 'symbol', 'UNKNOWN')
             self.logger.info(f"📊 {symbol} 모멘텀 신호 생성 중...")
             
-            # 차트 데이터 필요 (실제로는 데이터 수집기에서 가져옴)
-            chart_data = await self._get_chart_data(symbol)
-            
-            if not chart_data or len(chart_data) < self.params['ma_long']:
+            # 가격 데이터 확인
+            if not price_data or len(price_data) < self.params['ma_long']:
+                self.logger.warning(f"⚠️ {symbol} 가격 데이터 부족 - 필요: {self.params['ma_long']}개, 보유: {len(price_data) if price_data else 0}개")
                 return self._create_empty_signal()
             
             # DataFrame 변환
-            df = pd.DataFrame(chart_data)
+            df = pd.DataFrame(price_data)
             df['close'] = df['close'].astype(float)
             df['volume'] = df['volume'].astype(int)
             
@@ -627,26 +626,15 @@ class MomentumStrategy(BaseStrategy):
             return "MEDIUM"
     
     async def _get_chart_data(self, symbol: str) -> List[Dict]:
-        """차트 데이터 조회 (임시 구현)"""
-        # 실제로는 데이터 수집기에서 가져옴
-        # 여기서는 더미 데이터 생성
-        import random
-        
-        data = []
-        base_price = 50000
-        
-        for i in range(50):
-            base_price *= (1 + random.uniform(-0.03, 0.03))
-            data.append({
-                'date': (datetime.now() - timedelta(days=49-i)).strftime('%Y%m%d'),
-                'open': base_price * random.uniform(0.99, 1.01),
-                'high': base_price * random.uniform(1.00, 1.05),
-                'low': base_price * random.uniform(0.95, 1.00),
-                'close': base_price,
-                'volume': random.randint(500000, 2000000)
-            })
-        
-        return data
+        """차트 데이터 조회 - 실제 데이터 수집기 사용"""
+        try:
+            # 실제 데이터 수집기에서 가져옴 (analysis_engine에서 전달받은 가격 데이터 사용)
+            # 이 메서드는 더 이상 사용되지 않고, generate_signals에서 직접 price_data를 받아야 함
+            self.logger.warning(f"⚠️ {symbol} 차트 데이터 조회 - 실제 구현 필요")
+            return []
+        except Exception as e:
+            self.logger.error(f"❌ {symbol} 차트 데이터 조회 실패: {e}")
+            return []
     
     def _create_empty_signal(self) -> Dict[str, Any]:
         """빈 신호 생성"""

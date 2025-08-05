@@ -51,6 +51,8 @@ class TradingConfig:
         'momentum': os.getenv("HTS_MOMENTUM_ID", "001"),
         'breakout': os.getenv("HTS_BREAKOUT_ID", "002"),
         'eod': os.getenv("HTS_EOD_ID", "003"),
+        'supertrend_ema_rsi': os.getenv("HTS_SUPERTREND_ID", "004"), # Supertrend+EMA+RSI 전략
+        'vwap': os.getenv("HTS_VWAP_ID", "005"),                   # VWAP 전략
     }
 
     # 기본 설정

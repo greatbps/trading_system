@@ -2222,3 +2222,49 @@
 06:10:02 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
 06:10:03 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'Order' is not defined
 06:10:03 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:07:15 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+10:07:27 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 100개)
+10:07:27 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:07:30 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:07:32 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:07:32 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:07:32 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:07:32 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:07:32 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:07:32 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:07:32 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:07:33 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'TradeExecution' is not defined
+10:07:33 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:07:33 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+10:07:33 | TradingSystem | INFO | ✅ 1차 필터링 완료: 10개 종목 선정
+10:07:48 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: breakout, 최대 100개)
+10:07:48 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+10:07:48 | TradingSystem | INFO | ✅ 1차 필터링 완료: 10개 종목 선정
+10:07:59 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: eod, 최대 100개)
+10:07:59 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+10:07:59 | TradingSystem | INFO | ✅ 1차 필터링 완료: 10개 종목 선정
+13:58:41 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+14:38:23 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 100개)
+14:38:23 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+14:38:25 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+14:38:28 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'Optional' is not defined
+14:38:28 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'Optional' is not defined
+14:38:37 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: breakout, 최대 100개)
+14:38:37 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+14:38:37 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+14:38:37 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'Optional' is not defined
+14:38:37 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'Optional' is not defined
+14:38:47 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: eod, 최대 100개)
+14:38:47 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+14:38:47 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+14:38:47 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'Optional' is not defined
+14:38:47 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'Optional' is not defined
+14:39:03 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+14:39:03 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+14:39:03 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'Optional' is not defined
+14:39:03 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'Optional' is not defined
+14:41:06 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+14:41:06 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+14:41:06 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+14:41:07 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'Optional' is not defined
+14:41:07 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'Optional' is not defined

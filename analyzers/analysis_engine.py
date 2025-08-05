@@ -55,18 +55,33 @@ class AnalysisEngine:
             self.logger.info(f"🚀 {symbol}({name}) 종합 분석 시작...")
 
             # 1. 각 분석 작업을 비동기 태스크로 생성
-            # 기술적 분석용 차트 데이터 수집
+            # 기술적 분석용 차트 데이터 수집 (실제 KIS API 사용)
             try:
-                price_data = await self.data_collector.get_price_history(symbol, 'D', 100) if self.data_collector else []
-                if not price_data:
-                    # 기본 가격 데이터 생성 (실제 주가 기반)
-                    current_price = getattr(stock_data, 'current_price', 50000) if hasattr(stock_data, 'current_price') else stock_data.get('current_price', 50000) if isinstance(stock_data, dict) else 50000
-                    price_data = self._generate_mock_price_data(symbol, current_price)
-                    self.logger.info(f"📊 {symbol} 모의 가격 데이터 생성: {len(price_data)}개")
+                if self.data_collector:
+                    price_data = await self.data_collector.get_ohlcv_data(symbol, 'D', 100)
+                    if price_data:
+                        # OHLCV 데이터를 분석기가 기대하는 형식으로 변환
+                        price_data = [
+                            {
+                                'date': item.date.strftime('%Y-%m-%d'),
+                                'open': int(item.open),
+                                'high': int(item.high),
+                                'low': int(item.low),
+                                'close': int(item.close),
+                                'volume': int(item.volume)
+                            }
+                            for item in price_data
+                        ]
+                        self.logger.info(f"📊 {symbol} 실제 가격 데이터 수집: {len(price_data)}개")
+                    else:
+                        self.logger.error(f"❌ {symbol} KIS API에서 가격 데이터를 가져올 수 없습니다")
+                        return self._get_fallback_analysis('comprehensive', symbol=symbol, name=name)
+                else:
+                    self.logger.error(f"❌ 데이터 수집기가 초기화되지 않았습니다")
+                    return self._get_fallback_analysis('comprehensive', symbol=symbol, name=name)
             except Exception as e:
-                self.logger.warning(f"⚠️ {symbol} 가격 데이터 수집 실패: {e}")
-                current_price = getattr(stock_data, 'current_price', 50000) if hasattr(stock_data, 'current_price') else stock_data.get('current_price', 50000) if isinstance(stock_data, dict) else 50000
-                price_data = self._generate_mock_price_data(symbol, current_price)
+                self.logger.error(f"❌ {symbol} 가격 데이터 수집 중 오류: {e}")
+                return self._get_fallback_analysis('comprehensive', symbol=symbol, name=name)
             
             # 각 분석기가 비동기인지 확인하고 적절히 처리
             tasks = []
@@ -80,8 +95,8 @@ class AnalysisEngine:
             # 수급 분석 (동기 -> 비동기 래퍼)
             tasks.append(('supply_demand', self._async_wrapper(self.supply_demand_analyzer.analyze, stock_data)))
             
-            # 차트 패턴 분석 (동기 -> 비동기 래퍼)
-            tasks.append(('chart_pattern', self._async_wrapper(self.chart_pattern_analyzer.analyze, stock_data)))
+            # 차트 패턴 분석 (비동기)
+            tasks.append(('chart_pattern', self.chart_pattern_analyzer.analyze(stock_data)))
 
             # 2. 병렬 실행
             results = await asyncio.gather(*[task[1] for task in tasks], return_exceptions=True)
@@ -184,34 +199,17 @@ class AnalysisEngine:
             self.logger.warning(f"⚠️ {sync_func.__name__} 분석 실패: {e}")
             return {'overall_score': 50.0, 'error': str(e)}
     
-    def _generate_mock_price_data(self, symbol: str, current_price: float, days: int = 100) -> List[Dict]:
-        """모의 가격 데이터 생성 (기술적 분석용)"""
-        import random
-        from datetime import datetime, timedelta
-        
-        price_data = []
-        base_price = current_price
-        
-        for i in range(days):
-            date = datetime.now() - timedelta(days=days-i)
+    async def _get_real_trading_data(self, symbol: str) -> Optional[Dict]:
+        """실제 KIS API에서 매매동향 데이터 조회"""
+        try:
+            if not self.data_collector:
+                return None
+                
+            # 실제 KIS API 호출로 외국인/기관/개인 매매동향 조회
+            # TODO: KIS API에 실제 매매동향 API가 있다면 구현
+            # 현재는 None 반환하여 분석기에서 적절히 처리하도록 함
+            return None
             
-            # 간단한 랜덤 워크 생성
-            change = random.uniform(-0.05, 0.05)  # -5% ~ +5%
-            base_price = max(base_price * (1 + change), 1000)  # 최소 1000원
-            
-            # OHLCV 데이터 생성
-            high = base_price * random.uniform(1.0, 1.03)
-            low = base_price * random.uniform(0.97, 1.0)
-            open_price = base_price * random.uniform(0.98, 1.02)
-            volume = random.randint(100000, 1000000)
-            
-            price_data.append({
-                'date': date.strftime('%Y-%m-%d'),
-                'open': int(open_price),
-                'high': int(high),  
-                'low': int(low),
-                'close': int(base_price),
-                'volume': volume
-            })
-        
-        return price_data
+        except Exception as e:
+            self.logger.warning(f"⚠️ {symbol} 매매동향 데이터 조회 실패: {e}")
+            return None

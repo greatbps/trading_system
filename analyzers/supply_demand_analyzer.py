@@ -77,8 +77,8 @@ class SupplyDemandAnalyzer:
         try:
             symbol = getattr(stock_data, 'symbol', 'UNKNOWN')
             
-            # KIS API에서 외국인 매매동향 데이터 조회 시도
-            foreign_data = self._fetch_foreign_trading_data(symbol)
+            # KIS API에서 외국인 매매동향 데이터 조회 시도 (동기 버전 사용)
+            foreign_data = self._fetch_foreign_trading_data_sync(symbol)
             
             if foreign_data:
                 # 실제 데이터 분석
@@ -255,131 +255,65 @@ class SupplyDemandAnalyzer:
     
     # API 데이터 조회 메서드들 (동기화 버전 추가)
     def _fetch_foreign_trading_data_sync(self, symbol: str) -> Optional[Dict]:
-        """외국인 매매동향 데이터 조회 (동기화)"""
+        """외국인 매매동향 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
         try:
-            # 간단한 추정: 대형주는 외국인 관심 높음
-            if symbol in ['005930', '000660', '035420', '207940', '373220']:
-                return {
-                    'net_buying': np.random.randint(-100000, 150000),
-                    'trading_value': np.random.randint(1000, 50000),
-                    'buy_ratio': np.random.uniform(0.3, 0.7),
-                    'recent_pattern': np.random.choice(['buying', 'selling', 'neutral'])
-                }
+            # TODO: 실제 KIS API 외국인 매매동향 API 호출
+            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
+            self.logger.debug(f"⚠️ {symbol} 외국인 매매동향 실제 API 구현 필요")
             return None
         except Exception as e:
             self.logger.debug(f"⚠️ 외국인 매매동향 데이터 조회 실패: {e}")
             return None
     
     def _fetch_institution_trading_data_sync(self, symbol: str) -> Optional[Dict]:
-        """기관 매매동향 데이터 조회 (동기화)"""
+        """기관 매매동향 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
         try:
-            return {
-                'net_buying': np.random.randint(-80000, 120000),
-                'trading_value': np.random.randint(500, 30000),
-                'buy_ratio': np.random.uniform(0.25, 0.75),
-                'recent_pattern': np.random.choice(['buying', 'selling', 'neutral'])
-            }
+            # TODO: 실제 KIS API 기관 매매동향 API 호출
+            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
+            self.logger.debug(f"⚠️ {symbol} 기관 매매동향 실제 API 구현 필요")
+            return None
         except Exception as e:
             self.logger.debug(f"⚠️ 기관 매매동향 데이터 조회 실패: {e}")
             return None
     
     def _fetch_individual_trading_data_sync(self, symbol: str) -> Optional[Dict]:
-        """개인 매매동향 데이터 조회 (동기화)"""
+        """개인 매매동향 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
         try:
-            return {
-                'net_buying': np.random.randint(-50000, 80000),
-                'trading_value': np.random.randint(2000, 100000),
-                'buy_ratio': np.random.uniform(0.4, 0.8),
-                'recent_pattern': np.random.choice(['buying', 'selling', 'neutral'])
-            }
+            # TODO: 실제 KIS API 개인 매매동향 API 호출
+            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
+            self.logger.debug(f"⚠️ {symbol} 개인 매매동향 실제 API 구현 필요")
+            return None
         except Exception as e:
             self.logger.debug(f"⚠️ 개인 매매동향 데이터 조회 실패: {e}")
             return None
     
     def _fetch_large_order_data_sync(self, symbol: str) -> Optional[Dict]:
-        """대량거래 데이터 조회 (동기화)"""
+        """대량거래 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
         try:
-            return {
-                'large_buy_orders': np.random.randint(0, 50000),
-                'large_sell_orders': np.random.randint(0, 50000),
-                'block_trades': np.random.randint(0, 5),
-                'unusual_volume_spikes': np.random.choice([True, False])
-            }
+            # TODO: 실제 KIS API 대량거래 또는 체결내역 API 호출
+            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
+            self.logger.debug(f"⚠️ {symbol} 대량거래 실제 API 구현 필요")
+            return None
         except Exception as e:
             self.logger.debug(f"⚠️ 대량거래 데이터 조회 실패: {e}")
             return None
 
-    # 기존 async 메서드들
+    # 기존 async 메서드들 - 동기 버전으로 대체됨
     async def _fetch_foreign_trading_data(self, symbol: str) -> Optional[Dict]:
-        """외국인 매매동향 데이터 조회"""
-        try:
-            # 실제로는 KIS API의 외국인 매매동향 API 호출
-            # 현재는 더미 데이터 반환
-            
-            # 간단한 추정: 대형주는 외국인 관심 높음
-            if symbol in ['005930', '000660', '035420', '207940', '373220']:
-                return {
-                    'net_buying': np.random.randint(-100000, 150000),
-                    'trading_value': np.random.randint(1000, 50000),
-                    'buy_ratio': np.random.uniform(0.3, 0.7),
-                    'recent_pattern': np.random.choice(['buying', 'selling', 'neutral'])
-                }
-            
-            return None
-            
-        except Exception as e:
-            self.logger.debug(f"⚠️ 외국인 매매동향 데이터 조회 실패: {e}")
-            return None
+        """외국인 매매동향 데이터 조회 - 동기 버전 사용"""
+        return self._fetch_foreign_trading_data_sync(symbol)
     
     async def _fetch_institution_trading_data(self, symbol: str) -> Optional[Dict]:
-        """기관 매매동향 데이터 조회"""
-        try:
-            # 실제로는 KIS API의 기관 매매동향 API 호출
-            # 현재는 더미 데이터 반환
-            
-            return {
-                'net_buying': np.random.randint(-80000, 120000),
-                'trading_value': np.random.randint(500, 30000),
-                'buy_ratio': np.random.uniform(0.25, 0.75),
-                'recent_pattern': np.random.choice(['buying', 'selling', 'neutral'])
-            }
-            
-        except Exception as e:
-            self.logger.debug(f"⚠️ 기관 매매동향 데이터 조회 실패: {e}")
-            return None
+        """기관 매매동향 데이터 조회 - 동기 버전 사용"""
+        return self._fetch_institution_trading_data_sync(symbol)
     
     async def _fetch_individual_trading_data(self, symbol: str) -> Optional[Dict]:
-        """개인 매매동향 데이터 조회"""
-        try:
-            # 실제로는 KIS API 호출
-            # 개인은 보통 외국인, 기관과 반대 방향
-            
-            return {
-                'net_buying': np.random.randint(-50000, 80000),
-                'trading_value': np.random.randint(2000, 100000),
-                'buy_ratio': np.random.uniform(0.4, 0.8),
-                'recent_pattern': np.random.choice(['buying', 'selling', 'neutral'])
-            }
-            
-        except Exception as e:
-            self.logger.debug(f"⚠️ 개인 매매동향 데이터 조회 실패: {e}")
-            return None
+        """개인 매매동향 데이터 조회 - 동기 버전 사용"""
+        return self._fetch_individual_trading_data_sync(symbol)
     
     async def _fetch_large_order_data(self, symbol: str) -> Optional[Dict]:
-        """대량거래 데이터 조회"""
-        try:
-            # 실제로는 KIS API의 대량거래 또는 체결 내역 API 호출
-            
-            return {
-                'large_buy_orders': np.random.randint(0, 50000),
-                'large_sell_orders': np.random.randint(0, 50000),
-                'block_trades': np.random.randint(0, 5),
-                'unusual_volume_spikes': np.random.choice([True, False])
-            }
-            
-        except Exception as e:
-            self.logger.debug(f"⚠️ 대량거래 데이터 조회 실패: {e}")
-            return None
+        """대량거래 데이터 조회 - 동기 버전 사용"""
+        return self._fetch_large_order_data_sync(symbol)
     
     # 점수 계산 메서드들
     def _calculate_foreign_score(self, net_buying: float, trading_value: float, buy_ratio: float) -> float:

@@ -24,6 +24,7 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 from utils.logger import get_logger
+from analyzers.gemini_analyzer import GeminiAnalyzer
 
 # ================================
 # 재료 분류 키워드 및 가중치
@@ -147,7 +148,7 @@ EXCLUDE_KEYWORDS = [
 ]
 
 class NewsCollector:
-    """개선된 네이버 뉴스 수집 및 재료 분석 클래스"""
+    """Gemini AI 통합 네이버 뉴스 수집 및 분석 클래스"""
     
     def __init__(self, config=None):
         self.config = config
@@ -164,6 +165,9 @@ class NewsCollector:
         else:
             self.naver_client_id = None
             self.naver_client_secret = None
+        
+        # Gemini 분석기 초기화
+        self.gemini_analyzer = GeminiAnalyzer(config) if config else None
     
     def is_excluded_stock(self, stock_name: str, stock_code: str = "") -> bool:
         """제외 대상 종목인지 확인"""
@@ -697,3 +701,241 @@ class NewsCollector:
         except Exception as e:
             self.logger.error(f"❌ {symbol} 분석 실패: {e}")
             return None
+    
+    async def analyze_with_gemini(self, stock_name: str, stock_code: str, news_data: List[Dict] = None) -> Dict:
+        """Gemini AI를 활용한 뉴스 분석"""
+        try:
+            if not self.gemini_analyzer:
+                self.logger.warning("⚠️ Gemini 분석기가 초기화되지 않았습니다. 기본 분석 사용")
+                return self._get_default_gemini_analysis()
+            
+            # 뉴스 데이터가 없으면 수집
+            if not news_data:
+                news_data = self.search_stock_news_naver(stock_name, stock_code)
+            
+            if not news_data:
+                # 뉴스 데이터가 없을 때 더 적극적인 검색 시도
+                self.logger.warning(f"⚠️ {stock_name} 초기 뉴스 검색 실패, 추가 검색 시도 중...")
+                
+                # 대체 검색어로 다시 시도
+                alternative_searches = [
+                    stock_code,  # 종목코드로 검색
+                    f"{stock_name} 주가",  # 주가 키워드 추가
+                    f"{stock_name} 실적",  # 실적 키워드 추가
+                    f"{stock_name} 공시"   # 공시 키워드 추가
+                ]
+                
+                for search_term in alternative_searches:
+                    try:
+                        news_data = self.search_stock_news_naver(search_term, stock_code)
+                        if news_data:
+                            self.logger.info(f"✅ {stock_name} 대체 검색어 '{search_term}'으로 뉴스 {len(news_data)}건 발견")
+                            break
+                    except Exception as e:
+                        self.logger.debug(f"대체 검색 '{search_term}' 실패: {e}")
+                        continue
+                
+                if not news_data:
+                    self.logger.warning(f"⚠️ {stock_name}({stock_code}) 모든 뉴스 검색 시도 실패 - 기본 분석 사용")
+                    return self._get_default_gemini_analysis_with_context(stock_name, stock_code)
+            
+            # Gemini로 감성 분석
+            sentiment_result = await self.gemini_analyzer.analyze_news_sentiment(
+                stock_code, stock_name, news_data
+            )
+            
+            # Gemini로 시장 영향도 분석
+            impact_result = await self.gemini_analyzer.analyze_market_impact(
+                stock_code, stock_name, news_data
+            )
+            
+            # 결과 통합
+            combined_analysis = {
+                'symbol': stock_code,
+                'name': stock_name,
+                'news_count': len(news_data),
+                'analysis_timestamp': datetime.now().isoformat(),
+                
+                # 감성 분석 결과
+                'sentiment': {
+                    'overall_sentiment': sentiment_result.get('sentiment', 'NEUTRAL'),
+                    'confidence': sentiment_result.get('confidence', 0.5),
+                    'overall_score': sentiment_result.get('overall_score', 50),
+                    'positive_factors': sentiment_result.get('positive_factors', []),
+                    'negative_factors': sentiment_result.get('negative_factors', []),
+                    'key_keywords': sentiment_result.get('key_keywords', []),
+                    'short_term_outlook': sentiment_result.get('short_term_outlook', ''),
+                    'medium_term_outlook': sentiment_result.get('medium_term_outlook', ''),
+                    'summary': sentiment_result.get('summary', '')
+                },
+                
+                # 시장 영향도 분석 결과
+                'market_impact': {
+                    'impact_level': impact_result.get('impact_level', 'MEDIUM'),
+                    'impact_score': impact_result.get('impact_score', 50),
+                    'duration': impact_result.get('duration', 'MEDIUM_TERM'),
+                    'price_direction': impact_result.get('price_direction', 'NEUTRAL'),
+                    'volatility_expected': impact_result.get('volatility_expected', 'MEDIUM'),
+                    'trading_volume_impact': impact_result.get('trading_volume_impact', 'NORMAL'),
+                    'sector_impact': impact_result.get('sector_impact', ''),
+                    'key_risks': impact_result.get('key_risks', []),
+                    'catalysts': impact_result.get('catalysts', []),
+                    'target_price_change': impact_result.get('target_price_change', '0%'),
+                    'recommendation': impact_result.get('recommendation', 'HOLD')
+                },
+                
+                # 종합 평가
+                'final_assessment': {
+                    'investment_grade': self._calculate_investment_grade(sentiment_result, impact_result),
+                    'risk_level': self._assess_risk_level(sentiment_result, impact_result),
+                    'trading_strategy': self._suggest_trading_strategy(sentiment_result, impact_result),
+                    'key_points': self._extract_key_points(sentiment_result, impact_result)
+                }
+            }
+            
+            self.logger.info(f"✅ {stock_name} Gemini 분석 완료 - 감성: {sentiment_result.get('sentiment', 'NEUTRAL')}, 영향도: {impact_result.get('impact_level', 'MEDIUM')}")
+            return combined_analysis
+            
+        except Exception as e:
+            self.logger.error(f"❌ {stock_name} Gemini 분석 실패: {e}")
+            return self._get_default_gemini_analysis()
+    
+    def _get_default_gemini_analysis(self) -> Dict:
+        """기본 Gemini 분석 결과"""
+        return self._get_default_gemini_analysis_with_context("UNKNOWN", "UNKNOWN")
+    
+    def _get_default_gemini_analysis_with_context(self, stock_name: str, stock_code: str) -> Dict:
+        """컨텍스트가 포함된 기본 Gemini 분석 결과"""
+        return {
+            'symbol': stock_code,
+            'name': stock_name,
+            'news_count': 0,
+            'analysis_timestamp': datetime.now().isoformat(),
+            'data_status': 'NO_NEWS_DATA',
+            'sentiment': {
+                'overall_sentiment': 'NEUTRAL',
+                'confidence': 0.3,  # 데이터 부족으로 낮은 신뢰도
+                'overall_score': 50,
+                'positive_factors': ['뉴스 데이터 부족으로 분석 불가'],
+                'negative_factors': ['뉴스 데이터 부족으로 분석 불가'],
+                'key_keywords': [],
+                'short_term_outlook': f'{stock_name} 뉴스 정보 부족으로 중립적 전망',
+                'medium_term_outlook': f'{stock_name} 추가 정보 수집 후 재분석 필요',
+                'summary': f'{stock_name}({stock_code}) 뉴스 데이터 부족으로 AI 분석 제한'
+            },
+            'market_impact': {
+                'impact_level': 'LOW',  # 정보 부족시 낮은 영향도
+                'impact_score': 40,     # 보수적 점수
+                'duration': 'SHORT_TERM',
+                'price_direction': 'NEUTRAL',
+                'volatility_expected': 'LOW',
+                'trading_volume_impact': 'NORMAL',
+                'sector_impact': '정보 부족',
+                'key_risks': [],
+                'catalysts': [],
+                'target_price_change': '0%',
+                'recommendation': 'HOLD'
+            },
+            'final_assessment': {
+                'investment_grade': 'C',
+                'risk_level': 'MEDIUM',
+                'trading_strategy': 'WAIT_AND_SEE',
+                'key_points': ['정보 부족으로 신중한 접근 권장']
+            }
+        }
+    
+    def _calculate_investment_grade(self, sentiment_result: Dict, impact_result: Dict) -> str:
+        """투자 등급 계산"""
+        sentiment_score = sentiment_result.get('overall_score', 50)
+        impact_score = impact_result.get('impact_score', 50)
+        
+        combined_score = (sentiment_score + impact_score) / 2
+        
+        if combined_score >= 85:
+            return 'A+'
+        elif combined_score >= 80:
+            return 'A'
+        elif combined_score >= 75:
+            return 'A-'
+        elif combined_score >= 70:
+            return 'B+'
+        elif combined_score >= 65:
+            return 'B'
+        elif combined_score >= 60:
+            return 'B-'
+        elif combined_score >= 55:
+            return 'C+'
+        elif combined_score >= 50:
+            return 'C'
+        elif combined_score >= 45:
+            return 'C-'
+        elif combined_score >= 40:
+            return 'D+'
+        elif combined_score >= 35:
+            return 'D'
+        else:
+            return 'D-'
+    
+    def _assess_risk_level(self, sentiment_result: Dict, impact_result: Dict) -> str:
+        """리스크 레벨 평가"""
+        volatility = impact_result.get('volatility_expected', 'MEDIUM')
+        confidence = sentiment_result.get('confidence', 0.5)
+        
+        if volatility == 'VERY_HIGH' or confidence < 0.3:
+            return 'HIGH'
+        elif volatility == 'HIGH' or confidence < 0.5:
+            return 'MEDIUM'
+        else:
+            return 'LOW'
+    
+    def _suggest_trading_strategy(self, sentiment_result: Dict, impact_result: Dict) -> str:
+        """매매 전략 제안"""
+        sentiment = sentiment_result.get('sentiment', 'NEUTRAL')
+        impact_level = impact_result.get('impact_level', 'MEDIUM')
+        price_direction = impact_result.get('price_direction', 'NEUTRAL')
+        
+        if sentiment in ['VERY_POSITIVE', 'POSITIVE'] and impact_level in ['VERY_HIGH', 'HIGH']:
+            if price_direction in ['STRONG_UP', 'UP']:
+                return 'AGGRESSIVE_BUY'
+            else:
+                return 'MODERATE_BUY'
+        elif sentiment in ['VERY_NEGATIVE', 'NEGATIVE'] and impact_level in ['VERY_HIGH', 'HIGH']:
+            if price_direction in ['STRONG_DOWN', 'DOWN']:
+                return 'AGGRESSIVE_SELL'
+            else:
+                return 'MODERATE_SELL'
+        elif sentiment == 'NEUTRAL' or impact_level in ['LOW', 'VERY_LOW']:
+            return 'WAIT_AND_SEE'
+        else:
+            return 'CAUTIOUS_APPROACH'
+    
+    def _extract_key_points(self, sentiment_result: Dict, impact_result: Dict) -> List[str]:
+        """핵심 포인트 추출"""
+        key_points = []
+        
+        # 긍정적 요인
+        positive_factors = sentiment_result.get('positive_factors', [])
+        if positive_factors:
+            key_points.append(f"긍정 요인: {', '.join(positive_factors[:3])}")
+        
+        # 부정적 요인
+        negative_factors = sentiment_result.get('negative_factors', [])
+        if negative_factors:
+            key_points.append(f"우려 요인: {', '.join(negative_factors[:3])}")
+        
+        # 상승 촉매
+        catalysts = impact_result.get('catalysts', [])
+        if catalysts:
+            key_points.append(f"상승 촉매: {', '.join(catalysts[:2])}")
+        
+        # 주요 리스크
+        risks = impact_result.get('key_risks', [])
+        if risks:
+            key_points.append(f"주요 리스크: {', '.join(risks[:2])}")
+        
+        # 예상 주가 변동
+        price_change = impact_result.get('target_price_change', '0%')
+        if price_change != '0%':
+            key_points.append(f"예상 변동률: {price_change}")
+        
+        return key_points if key_points else ['특별한 이슈 없음']

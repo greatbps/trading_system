@@ -6,7 +6,12 @@
       "Bash(sed:*)",
       "Bash(mkdir:*)",
       "Bash(chcp:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(gemini:*)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(/c/Users/great/AppData/Roaming/npm/gemini --version)",
+      "Bash(ls:*)",
+      "Bash(node:*)"
     ],
     "deny": []
   }
