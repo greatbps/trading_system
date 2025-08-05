@@ -28,20 +28,37 @@ class APIConfig:
     # 텔레그램 봇
     TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
     TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+    
+    # Google Gemini API
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 class DatabaseConfig:
     """데이터베이스 설정"""
     DB_URL = os.getenv("DATABASE_URL", "sqlite:///trading_system.db")
     DB_ECHO = False  # SQL 로깅
 
+class DatabaseConfig:
+    """데이터베이스 설정"""
+    # PostgreSQL 연결 URL, .env 파일에 설정하는 것을 강력히 권장합니다.
+    DB_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/trading_system")
+    DB_ECHO = False  # True로 설정 시 모든 SQL 쿼리가 로그에 출력됩니다.
+
 class TradingConfig:
-    """매매 설정"""
+    """매매 및 전략 설정"""
+    # HTS 조건검색식 ID (.env 파일 또는 직접 수정)
+    # 사용자는 KIS HTS에서 생성한 자신의 조건검색식 ID를 여기에 입력해야 합니다.
+    HTS_CONDITIONAL_SEARCH_IDS = {
+        'momentum': os.getenv("HTS_MOMENTUM_ID", "001"),
+        'breakout': os.getenv("HTS_BREAKOUT_ID", "002"),
+        'eod': os.getenv("HTS_EOD_ID", "003"),
+    }
+
     # 기본 설정
     INITIAL_CAPITAL = 10000000  # 초기 자본금 (1천만원)
     MAX_POSITION_SIZE = 0.1     # 최대 포지션 크기 (10%)
     MAX_DAILY_LOSS = 0.03       # 일일 최대 손실률 (3%)
     COMMISSION_RATE = 0.00015   # 수수료율 (0.015%)
-    
+
     # 리스크 관리
     STOP_LOSS_RATIO = 0.05      # 기본 손절률 (5%)
     TAKE_PROFIT_RATIO = 0.10    # 기본 익절률 (10%)
@@ -55,6 +72,14 @@ class TradingConfig:
 
 class AnalysisConfig:
     """분석 설정"""
+    # 각 분석 모듈의 가중치 (총합 1.0)
+    WEIGHTS = {
+        'technical': 0.30,      # 기술적 분석
+        'sentiment': 0.25,      # 뉴스/감성 분석
+        'supply_demand': 0.25,  # 수급 분석
+        'chart_pattern': 0.20   # 차트 패턴 분석
+    }
+
     # 기술적 분석 파라미터
     RSI_PERIOD = 14
     MACD_FAST = 12
@@ -105,6 +130,17 @@ class Config:
         self.ENVIRONMENT = os.getenv("ENVIRONMENT", "development")  # development, production
         self.DEBUG = self.ENVIRONMENT == "development"
     
+    @property
+    def DATABASE_URL(self):
+        """PostgreSQL 데이터베이스 URL 생성"""
+        host = os.getenv("POSTGRES_HOST", "localhost")
+        port = os.getenv("POSTGRES_PORT", "5432")
+        db = os.getenv("POSTGRES_DB", "trading_system")
+        user = os.getenv("POSTGRES_USER", "postgres")
+        password = os.getenv("POSTGRES_PASSWORD", "")
+        
+        return f"postgresql://{user}:{password}@{host}:{port}/{db}"
+    
     @classmethod
     def validate(cls):
         """설정 유효성 검사"""
@@ -115,6 +151,8 @@ class Config:
             errors.append("KIS_APP_KEY가 설정되지 않았습니다.")
         if not APIConfig.KIS_APP_SECRET:
             errors.append("KIS_APP_SECRET이 설정되지 않았습니다.")
+        if not APIConfig.GEMINI_API_KEY:
+            errors.append("GEMINI_API_KEY가 설정되지 않았습니다.")
             
         # 필수 디렉토리 생성
         os.makedirs("logs", exist_ok=True)

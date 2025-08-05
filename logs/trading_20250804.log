@@ -1,0 +1,73 @@
+2025-08-04 15:26:27 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 15:26:27 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 15:26:27 | KISCollector | WARNING  | _load_token_from_file | Token cache missing required fields
+2025-08-04 15:26:27 | KISCollector | INFO     | request_new_token | Requesting new access token...
+2025-08-04 15:26:27 | KISCollector | INFO     | _save_token_to_file | Token cache saved successfully
+2025-08-04 15:26:27 | KISCollector | INFO     | request_new_token | New access token obtained (expires: 2025-08-05 15:16:27.147041)
+2025-08-04 15:26:27 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-04 15:26:27 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-04 15:26:27 | KISCollector | WARNING  | load_hts_conditions | PyKis not available for HTS conditions
+2025-08-04 15:26:27 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-04 15:26:27 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-04 15:31:55 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 15:31:55 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 15:31:55 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:44:31.561615)
+2025-08-04 15:31:55 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-04 15:31:55 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-04 15:31:55 | KISCollector | WARNING  | load_hts_conditions | PyKis not available for HTS conditions
+2025-08-04 15:31:55 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-04 15:31:55 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-04 15:33:31 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 15:33:31 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 15:33:31 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:42:56.102933)
+2025-08-04 15:33:31 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-04 15:33:31 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-04 15:33:31 | KISCollector | WARNING  | load_hts_conditions | PyKis not available for HTS conditions
+2025-08-04 15:33:31 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-04 15:33:31 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-04 16:03:18 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-04 16:03:18 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 16:04:51 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-04 16:04:51 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 16:04:51 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 16:04:51 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:11:35.609607)
+2025-08-04 16:04:51 | KISCollector | ERROR    | initialize      | Failed to initialize KIS collector: 'KISCollector' object has no attribute '_test_connection'
+2025-08-04 16:06:27 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-04 16:06:27 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 16:06:27 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 16:06:27 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:09:59.180422)
+2025-08-04 16:06:27 | KISCollector | WARNING  | _test_connection | API connection test failed: 'KISCollector' object has no attribute 'get_stock_info'
+2025-08-04 16:06:27 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-04 16:06:27 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-04 16:06:28 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-04 16:08:47 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-04 16:08:47 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 16:08:47 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 16:08:47 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:07:39.195200)
+2025-08-04 16:08:54 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-04 16:08:54 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-04 16:08:54 | KISCollector | INFO     | load_hts_conditions | HTS conditions are loaded automatically by pykis>=0.7.0
+2025-08-04 16:08:54 | KISCollector | INFO     | get_hts_condition_list | Fetching HTS conditional search list...
+2025-08-04 16:08:54 | KISCollector | ERROR    | get_hts_condition_list | Failed to get HTS condition list: 'Api' object has no attribute 'conditions'
+2025-08-04 16:08:54 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-04 16:08:55 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-04 16:16:37 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-04 16:16:37 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 16:16:37 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 16:16:37 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 22:59:49.729021)
+2025-08-04 16:16:43 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-04 16:16:43 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-04 16:16:43 | KISCollector | INFO     | get_hts_condition_list | Fetching HTS conditional search list...
+2025-08-04 16:16:43 | KISCollector | ERROR    | get_hts_condition_list | Failed to get HTS condition list: 'Api' object has no attribute 'conditions'
+2025-08-04 16:16:43 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-04 16:16:43 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-04 16:18:29 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-04 16:18:29 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-04 16:18:29 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-04 16:18:29 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 22:57:57.992969)
+2025-08-04 16:18:35 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-04 16:18:35 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-04 16:18:35 | KISCollector | INFO     | get_hts_condition_list | Fetching HTS conditional search list from config...
+2025-08-04 16:18:35 | KISCollector | INFO     | get_hts_condition_list | Retrieved 3 HTS conditions from config
+2025-08-04 16:18:35 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-04 16:18:35 | KISCollector | INFO     | close           | KIS API collector closed successfully

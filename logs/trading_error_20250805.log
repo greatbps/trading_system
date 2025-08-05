@@ -1,0 +1,22 @@
+2025-08-05 05:48:30 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:48:30 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:48:30 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:49:16 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:49:16 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:58:03 | Main         | ERROR    | main            | ❌ 컴포넌트 초기화 실패
+2025-08-05 06:00:31 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 종합 분석 중 치명적 오류: 'StockData' object has no attribute 'get'
+2025-08-05 06:02:00 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:00 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:00 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 종합 분석 중 치명적 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (삼성전자) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (SK하이닉스) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 035420 (NAVER) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (삼성전자) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (SK하이닉스) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 035420 (NAVER) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (삼성전자) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (SK하이닉스) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:29:02 | Main         | ERROR    | main            | ❌ 시스템 실행 중 오류: [Errno 22] Invalid argument
+2025-08-05 06:29:02 | Main         | ERROR    | main            | ❌ 시스템 실행 중 오류: [Errno 22] Invalid argument

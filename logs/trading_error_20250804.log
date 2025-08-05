@@ -1,0 +1,3 @@
+2025-08-04 16:04:51 | KISCollector | ERROR    | initialize      | Failed to initialize KIS collector: 'KISCollector' object has no attribute '_test_connection'
+2025-08-04 16:08:54 | KISCollector | ERROR    | get_hts_condition_list | Failed to get HTS condition list: 'Api' object has no attribute 'conditions'
+2025-08-04 16:16:43 | KISCollector | ERROR    | get_hts_condition_list | Failed to get HTS condition list: 'Api' object has no attribute 'conditions'

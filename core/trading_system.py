@@ -80,15 +80,29 @@ class StockData:
 
 @dataclass
 class AnalysisResult:
-    """분석 결과 데이터 클래스"""
+    """분석 결과 데이터 클래스 (DB 모델과 일치)"""
+    filtered_stock_id: int
+    stock_id: int
     symbol: str
     name: str
-    score: float
-    signals: Dict[str, Any]
-    analysis_time: datetime
+    analysis_datetime: datetime
     strategy: str
-    recommendation: str
-    risk_level: str
+    total_score: float
+    final_grade: str # BUY, SELL, HOLD 등
+    news_score: float
+    chart_score: float
+    supply_demand_score: float
+    signal_strength: Optional[float] = None
+    signal_type: Optional[str] = None
+    action: Optional[str] = None
+    volatility: Optional[float] = None
+    liquidity_risk: Optional[float] = None
+    market_risk: Optional[float] = None
+    risk_level: Optional[str] = None
+    technical_details: Optional[Dict] = None
+    fundamental_details: Optional[Dict] = None
+    sentiment_details: Optional[Dict] = None
+    price_at_analysis: Optional[float] = None
     entry_price: Optional[float] = None
     stop_loss: Optional[float] = None
     take_profit: Optional[float] = None
@@ -96,7 +110,6 @@ class AnalysisResult:
     def to_dict(self) -> Dict[str, Any]:
         """JSON 직렬화 가능한 딕셔너리 변환"""
         def safe_serialize(obj):
-            """JSON 직렬화 안전 처리"""
             if obj is None:
                 return None
             elif isinstance(obj, (bool, int, float, str)):
@@ -111,17 +124,31 @@ class AnalysisResult:
                 return str(obj)
         
         return {
-            'symbol': str(self.symbol),
-            'name': str(self.name),
-            'score': float(self.score),
-            'signals': safe_serialize(self.signals),
-            'analysis_time': self.analysis_time.isoformat() if isinstance(self.analysis_time, datetime) else str(self.analysis_time),
-            'strategy': str(self.strategy),
-            'recommendation': str(self.recommendation),
-            'risk_level': str(self.risk_level),
-            'entry_price': float(self.entry_price) if self.entry_price is not None else None,
-            'stop_loss': float(self.stop_loss) if self.stop_loss is not None else None,
-            'take_profit': float(self.take_profit) if self.take_profit is not None else None
+            'filtered_stock_id': self.filtered_stock_id,
+            'stock_id': self.stock_id,
+            'symbol': self.symbol,
+            'name': self.name,
+            'analysis_datetime': self.analysis_datetime.isoformat(),
+            'strategy': self.strategy,
+            'total_score': self.total_score,
+            'final_grade': self.final_grade,
+            'news_score': self.news_score,
+            'chart_score': self.chart_score,
+            'supply_demand_score': self.supply_demand_score,
+            'signal_strength': safe_serialize(self.signal_strength),
+            'signal_type': safe_serialize(self.signal_type),
+            'action': safe_serialize(self.action),
+            'volatility': safe_serialize(self.volatility),
+            'liquidity_risk': safe_serialize(self.liquidity_risk),
+            'market_risk': safe_serialize(self.market_risk),
+            'risk_level': safe_serialize(self.risk_level),
+            'technical_details': safe_serialize(self.technical_details),
+            'fundamental_details': safe_serialize(self.fundamental_details),
+            'sentiment_details': safe_serialize(self.sentiment_details),
+            'price_at_analysis': safe_serialize(self.price_at_analysis),
+            'entry_price': safe_serialize(self.entry_price),
+            'stop_loss': safe_serialize(self.stop_loss),
+            'take_profit': safe_serialize(self.take_profit)
         }
 
 class SimpleNotifier:
@@ -194,8 +221,8 @@ class TradingSystem:
             
             # 데이터 수집기
             try:
-                from data_collectors.kis_collector import SmartKISCollector
-                self.data_collector = SmartKISCollector(self.config)
+                from data_collectors.kis_collector import KISCollector
+                self.data_collector = KISCollector(self.config)
                 await self.data_collector.initialize()
                 self.logger.info("✅ 데이터 수집기 초기화 완료")
             except Exception as e:
@@ -245,7 +272,8 @@ class TradingSystem:
                 from database.database_manager import DatabaseManager
                 self.db_manager = DatabaseManager(self.config)
                 self.logger.info("✅ 데이터베이스 초기화 완료")
-            except:
+            except Exception as e:
+                self.logger.error(f"❌ 데이터베이스 초기화 실패: {e}")
                 self.db_manager = None
             
             # 메뉴 핸들러
@@ -265,65 +293,146 @@ class TradingSystem:
         """결과 표시 - 유연한 호환성 메서드 (다양한 호출 방식 지원)"""
         # 추가 인수들은 무시하고 결과만 표시
         await self._display_analysis_results(results)
-    async def run_market_analysis(self, strategy: str = 'momentum', limit: int = None) -> List[AnalysisResult]:
-        """시장 분석"""
+    async def run_market_analysis(self, strategy: str = 'momentum', limit: int = 20) -> List[Dict]:
+        """
+        시장 분석 (2단계 필터링)을 수행합니다.
+        1. 1차 필터링 (HTS 조건검색) 결과를 DB에서 가져옵니다.
+        2. 각 종목을 2차 필터링 (종합 분석)합니다.
+        3. 분석 결과를 DB에 저장하고 최종 결과를 반환합니다.
+        """
         self.last_analysis_time = datetime.now()
-        self.logger.info(f"📊 시장 분석 시작 (전략: {strategy})")
-        
+        self.logger.info(f"📊 시장 분석 시작 (전략: {strategy}, 최대 {limit}개)")
+
         if not await self._check_components():
             return []
-        
+
         try:
             with Progress() as progress:
-                task = progress.add_task("[green]시장 분석 중...", total=100)
+                progress_task = progress.add_task("[green]시장 분석 중...", total=100)
+
+                # 1. 1차 필터링: HTS 조건검색 또는 기본 종목
+                progress.update(progress_task, advance=10, description="1차 필터링 (HTS 조건검색 또는 기본 종목) 실행...")
                 
-                # 종목 필터링
-                progress.update(task, advance=20, description="종목 필터링 중...")
-                candidates = await self.data_collector.get_filtered_stocks(limit=limit)
-                
+                # DB가 없으면 기본 종목들로 진행
+                if not self.db_manager:
+                    self.logger.warning("⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.")
+                    # 기본 주요 종목들을 사용
+                    major_stocks = await self._get_major_stocks_as_fallback(limit)
+                    candidates = [type('Stock', (), {'id': i, 'stock_id': i, 'stock_code': symbol, 'stock_name': name})() 
+                                 for i, (symbol, name) in enumerate(major_stocks)]
+                else:
+                    # 원래 DB 로직
+                    latest_history = await self.db_manager.db_operations.get_latest_filter_history(strategy)
+                    
+                    # 하루에 한 번만 실행하도록 체크
+                    if latest_history and latest_history.filter_datetime.date() == datetime.now().date():
+                        self.logger.info("✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.")
+                        candidates = await self.db_manager.db_operations.get_filtered_stocks_for_history(latest_history.id)
+                    else:
+                        hts_condition_id = self.config.trading.HTS_CONDITIONAL_SEARCH_IDS.get(strategy)
+                        if not hts_condition_id:
+                            self.logger.error(f"❌ HTS 조건검색식 ID가 없습니다: {strategy}")
+                            return []
+                        
+                        # HTS 조건검색 실행 (개선된 버전)
+                        self.logger.info(f"📡 HTS 조건검색 실행: 전략={strategy}, 조건ID={hts_condition_id}")
+                        symbols_from_hts = await self.data_collector.get_stocks_by_condition(hts_condition_id)
+                        
+                        if not symbols_from_hts:
+                            console.print(f"[red]❌ HTS 조건검색식 [{hts_condition_id}]에서 종목을 찾지 못했습니다.[/red]")
+                            self.logger.warning(f"HTS 조건검색 실패 - 기본 종목으로 대체")
+                            
+                            # HTS 실패시 기본 종목으로 fallback
+                            major_stocks = await self._get_major_stocks_as_fallback(limit)
+                            symbols_from_hts = [symbol for symbol, name in major_stocks]
+                            self.logger.info(f"기본 종목 {len(symbols_from_hts)}개로 대체")
+                        else:
+                            self.logger.info(f"✅ HTS 조건검색 성공: {len(symbols_from_hts)}개 종목 발견")
+
+                        candidates_data = []
+                        for symbol in symbols_from_hts:
+                            stock_info = await self.data_collector.get_stock_info(symbol)
+                            if stock_info:
+                                candidates_data.append({'stock_code': symbol, 'stock_name': stock_info.get('name', symbol)})
+                        
+                        filter_history = await self.db_manager.db_operations.save_filter_history(strategy, candidates_data)
+                        if not filter_history:
+                            self.logger.error("❌ 1차 필터링 이력 저장 실패")
+                            return []
+                        candidates = await self.db_manager.db_operations.get_filtered_stocks_for_history(filter_history.id)
+
                 if not candidates:
-                    console.print("[red]❌ 종목 필터링 실패[/red]")
+                    console.print("[red]❌ 1차 필터링된 종목이 없습니다.[/red]")
                     return []
                 
-                self.logger.info(f"필터링 결과: {len(candidates)}개 종목")
+                self.logger.info(f"✅ 1차 필터링 완료: {len(candidates)}개 종목 선정")
+                progress.update(progress_task, advance=20)
+
+                # 2. 2차 필터링: 종합 분석 실행
+                progress.update(progress_task, advance=10, description=f"2차 필터링 (종합 분석) 실행... (상위 {limit}개)")
                 
-                # 분석 실행
-                progress.update(task, advance=20, description="종목 분석 중...")
-                results = []
+                final_results = []
+                analysis_tasks = []
                 
-                for i, (symbol, name) in enumerate(candidates):
-                    try:
-                        result = await self.analyze_symbol(symbol, name, strategy)
-                        if result:
-                            min_score = getattr(self.config, 'MIN_COMPREHENSIVE_SCORE', 60)
-                            if hasattr(min_score, 'analysis'):
-                                min_score = getattr(min_score.analysis, 'MIN_COMPREHENSIVE_SCORE', 60)
-                            
-                            if result.score >= min_score:
-                                results.append(result)
-                        
-                        progress.update(task, advance=50/len(candidates))
-                        await asyncio.sleep(0.1)
-                        
-                    except Exception as e:
-                        self.logger.warning(f"⚠️ {symbol} 분석 실패: {e}")
+                # 상위 limit 개수만큼만 분석
+                stocks_to_analyze = candidates[:limit]
+
+                for filtered_stock in stocks_to_analyze:
+                    # DB가 있으면 이미 분석된 종목은 건너뛰기
+                    if self.db_manager:
+                        existing_analysis = await self.db_manager.db_operations.get_analysis_result_by_filtered_stock_id(filtered_stock.id)
+                        if existing_analysis:
+                            self.logger.info(f"🔄 {filtered_stock.stock_code}는 이미 분석되었습니다. 건너뜁니다.")
+                            continue
+
+                    stock_info = await self.data_collector.get_stock_info(filtered_stock.stock_code)
+                    if stock_info:
+                        analysis_task = self.analysis_engine.analyze_comprehensive(
+                            symbol=filtered_stock.stock_code,
+                            name=filtered_stock.stock_name,
+                            stock_data=stock_info,
+                            strategy=strategy
+                        )
+                        analysis_tasks.append((filtered_stock, analysis_task))
+
+                # 병렬로 분석 실행
+                analysis_results_raw = await asyncio.gather(*[t[1] for t in analysis_tasks], return_exceptions=True)
+                
+                progress.update(progress_task, advance=50)
+                progress.update(progress_task, advance=0, description="분석 결과 저장 중...")
+
+                # 3. 분석 결과 저장 및 정리
+                for i, result_data in enumerate(analysis_results_raw):
+                    filtered_stock, _ = analysis_tasks[i]
+                    if isinstance(result_data, Exception) or result_data is None:
+                        self.logger.error(f"❌ {filtered_stock.stock_code} 분석 실패: {result_data}")
                         continue
-                
-                # 결과 정렬 및 저장
-                progress.update(task, advance=10, description="결과 정리 중...")
-                results.sort(key=lambda x: x.score, reverse=True)
-                
-                await self._save_analysis_results(results)
-                if results:
-                    await self._send_analysis_notification(results[:10])
-                
-                progress.update(task, advance=0, description="완료!")
+                    
+                    # DB에 저장 (DB가 있으면)
+                    if self.db_manager:
+                        saved_analysis = await self.db_manager.db_operations.save_analysis_result(
+                            filtered_stock_id=filtered_stock.id,
+                            stock_id=filtered_stock.stock_id,
+                            analysis_data=result_data
+                        )
+                        if saved_analysis:
+                            final_results.append(result_data)
+                    else:
+                        # DB 없으면 바로 추가
+                        final_results.append(result_data)
+
+                progress.update(progress_task, advance=20)
+
+            # 최종 결과 정렬 및 반환
+            final_results.sort(key=lambda x: x.get('comprehensive_score', 0), reverse=True)
             
-            console.print(f"[green]✅ 시장 분석 완료: {len(results)}개 신호[/green]")
-            return results
-            
+            console.print(f"[green]✅ 시장 분석 완료: {len(final_results)}개 종목 분석 완료[/green]")
+            return final_results
+
         except Exception as e:
             console.print(f"[red]❌ 시장 분석 실패: {e}[/red]")
+            import traceback
+            traceback.print_exc()
             return []
     
     async def get_filtered_stocks(self, limit: int = 50, use_cache: bool = True) -> List[Tuple[str, str]]:
@@ -456,6 +565,79 @@ class TradingSystem:
         # Fallback
         return await self._get_major_stocks_as_fallback(limit)
     
+    async def _get_cached_filtered_stocks(self, limit: int) -> Optional[List[Tuple[str, str]]]:
+        """캐시된 필터링 종목 조회"""
+        # TODO: 캐시 구현
+        return None
+    
+    async def collect_filtered_stocks(self, max_stocks: int = 50) -> List[Dict]:
+        """필터링된 종목 수집"""
+        # TODO: 실제 필터링 로직 구현
+        return []
+    
+    async def _save_filtered_stocks_cache(self, result: List[Tuple[str, str]]):
+        """필터링 결과 캐시 저장"""
+        # TODO: 캐시 저장 구현
+        pass
+    
+    async def _direct_filtering(self, limit: int) -> List[Tuple[str, str]]:
+        """직접 필터링"""
+        # TODO: 직접 필터링 구현
+        return []
+    
+    async def _get_major_stocks_as_fallback(self, limit: int) -> List[Tuple[str, str]]:
+        """주요 종목 fallback"""
+        # 기본 주요 종목들
+        major_stocks = [
+            ("005930", "삼성전자"),
+            ("000660", "SK하이닉스"),
+            ("035420", "NAVER"),
+            ("005380", "현대차"),
+            ("051910", "LG화학"),
+            ("028260", "삼성물산"),
+            ("006400", "삼성SDI"),
+            ("000270", "기아"),
+            ("068270", "셀트리온"),
+            ("105560", "KB금융")
+        ]
+        return major_stocks[:limit]
+    
+    async def _save_filter_history(self, strategy: str, filter_type: str, 
+                                 hts_condition: str = None, hts_result_count: int = 0,
+                                 hts_symbols: list = None, ai_result_count: int = 0,
+                                 ai_symbols: list = None, ai_avg_score: float = 0.0) -> bool:
+        """FilterHistory에 필터링 결과 저장"""
+        try:
+            if not self.db_manager:
+                return False
+                
+            from datetime import datetime
+            
+            # FilterHistory 레코드 생성
+            filter_data = {
+                'filter_date': datetime.now(),
+                'strategy': strategy,
+                'filter_type': filter_type,
+                'hts_condition': hts_condition or f'{strategy}_조건검색',
+                'hts_result_count': hts_result_count,
+                'hts_symbols': hts_symbols or [],
+                'ai_result_count': ai_result_count,
+                'ai_symbols': ai_symbols or [],
+                'ai_avg_score': ai_avg_score,
+                'execution_time': datetime.now(),
+                'success': True,
+                'error_message': None
+            }
+            
+            # DB에 저장 (db_operations 메서드 사용)
+            await self.db_manager.db_operations.save_filter_history_record(filter_data)
+            self.logger.info(f"✅ FilterHistory 저장 완료: {filter_type} (HTS:{hts_result_count}, AI:{ai_result_count})")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"❌ FilterHistory 저장 실패: {e}")
+            return False
+    
     
     async def _correct_stock_name(self, symbol: str, original_name: str) -> str:
         """종목명 보정"""
@@ -502,7 +684,23 @@ class TradingSystem:
         except Exception as e:
             self.logger.debug(f"⚠️ {symbol} 종목명 보정 실패: {e}")
             return f'종목{symbol}'
-    async def analyze_symbol(self, symbol: str, name: str, strategy: str) -> Optional[AnalysisResult]:
+    
+    def _clean_stock_name(self, name: str) -> str:
+        """종목명 정리"""
+        if not name:
+            return name
+        # 불필요한 문자 제거
+        cleaned = name.strip()
+        # 추가 정리 로직 필요시 여기에 추가
+        return cleaned
+    
+    async def get_stock_info(self, symbol: str) -> Optional[Dict]:
+        """종목 정보 조회 (data_collector 래퍼)"""
+        if self.data_collector:
+            return await self.data_collector.get_stock_info(symbol)
+        return None
+    
+    async def analyze_symbol(self, symbol: str, name: str, strategy: str, stock_id: int = None, filtered_stock_id: int = None) -> Optional[AnalysisResult]:
         """개별 종목 분석 - 종목명 fallback 강화"""
         try:
             # 기본 데이터 수집
@@ -552,7 +750,7 @@ class TradingSystem:
                     self.logger.warning(f"⚠️ {symbol} 뉴스 분석 실패: {e}")
             
             # 종합 분석
-            analysis_result = await self.analysis_engine.analyze_comprehensive(
+            analysis_result_raw = await self.analysis_engine.analyze_comprehensive(
                 symbol=symbol,
                 name=final_name,  # 확정된 종목명 사용
                 stock_data=stock_data,
@@ -560,7 +758,7 @@ class TradingSystem:
                 strategy=strategy
             )
             
-            if not analysis_result:
+            if not analysis_result_raw:
                 return None
             
             # 신호 생성
@@ -568,15 +766,15 @@ class TradingSystem:
             strategy_obj = self.strategies.get(strategy)
             if strategy_obj:
                 try:
-                    signals = await strategy_obj.generate_signals(stock_data, analysis_result)
+                    signals = await strategy_obj.generate_signals(stock_data, analysis_result_raw) # analysis_result_raw 사용
                 except:
                     pass
             
             # 리스크 평가
-            risk_level = self._evaluate_risk(stock_data, analysis_result)
+            risk_level = self._evaluate_risk(stock_data, analysis_result_raw) # analysis_result_raw 사용
             
             # 추천 등급
-            recommendation = self._get_recommendation(analysis_result, signals)
+            final_grade = self._get_recommendation(analysis_result_raw, signals) # analysis_result_raw 사용
             
             # 가격 계산
             current_price = self._safe_get(stock_data, 'current_price', 0)
@@ -585,14 +783,28 @@ class TradingSystem:
             take_profit = current_price * 1.10
             
             return AnalysisResult(
+                filtered_stock_id=filtered_stock_id,
+                stock_id=stock_id,
                 symbol=symbol,
-                name=final_name,  # 확정된 종목명 사용
-                score=analysis_result.get('comprehensive_score', 0),
-                signals=signals,
-                analysis_time=datetime.now(),
+                name=final_name,
+                analysis_datetime=datetime.now(),
                 strategy=strategy,
-                recommendation=recommendation,
+                total_score=analysis_result_raw.get('comprehensive_score', 0),
+                final_grade=final_grade,
+                news_score=analysis_result_raw.get('sentiment_score', 0),
+                chart_score=analysis_result_raw.get('technical_score', 0),
+                supply_demand_score=analysis_result_raw.get('fundamental_score', 0), # 임시로 fundamental_score 사용
+                signal_strength=signals.get('strength'),
+                signal_type=signals.get('type'),
+                action=signals.get('action'),
+                volatility=analysis_result_raw.get('volatility'),
+                liquidity_risk=analysis_result_raw.get('liquidity_risk'),
+                market_risk=analysis_result_raw.get('market_risk'),
                 risk_level=risk_level,
+                technical_details=analysis_result_raw.get('technical_details'),
+                fundamental_details=analysis_result_raw.get('fundamental_details'),
+                sentiment_details=analysis_result_raw.get('sentiment_details'),
+                price_at_analysis=current_price,
                 entry_price=entry_price,
                 stop_loss=stop_loss,
                 take_profit=take_profit
@@ -639,7 +851,7 @@ class TradingSystem:
             return data.get(key, default)
         return getattr(data, key, default)
     
-    def _evaluate_risk(self, stock_data, analysis_result: Dict) -> str:
+    def _evaluate_risk(self, stock_data, analysis_result: AnalysisResult) -> str:
         """리스크 평가"""
         try:
             change_rate = abs(self._safe_get(stock_data, 'change_rate', 0))
@@ -657,6 +869,12 @@ class TradingSystem:
             if market_cap < 500:
                 risk_score += 1
             
+            # 분석 결과의 리스크 레벨도 반영
+            if analysis_result.risk_level == "HIGH":
+                risk_score += 2
+            elif analysis_result.risk_level == "MEDIUM":
+                risk_score += 1
+
             if risk_score >= 3:
                 return "HIGH"
             elif risk_score >= 1:
@@ -665,10 +883,10 @@ class TradingSystem:
         except:
             return "MEDIUM"
     
-    def _get_recommendation(self, analysis_result: Dict, signals: Dict) -> str:
+    def _get_recommendation(self, analysis_result: AnalysisResult, signals: Dict) -> str:
         """추천 등급"""
         try:
-            score = analysis_result.get('comprehensive_score', 0)
+            score = analysis_result.total_score
             if score >= 80:
                 return 'STRONG_BUY'
             elif score >= 70:
@@ -917,127 +1135,40 @@ class TradingSystem:
             console.print(f"[red]❌ 테스트 실패: {e}[/red]")
             return False
     
-    async def _display_analysis_results(self, results: List[AnalysisResult]):
-        """분석 결과 표시 - 종목명 fallback 포함 + 손절가/익절가 추가"""
+    async def _display_analysis_results(self, results: List[Dict]):
+        """분석 결과(딕셔셔리 리스트)를 테이블로 표시합니다."""
         if not results:
             console.print("[yellow]📊 분석 결과 없음[/yellow]")
             return
-        
-        # 결과 테이블 - 손절가/익절가 컬럼 추가
+
         table = Table(title=f"📊 분석 결과 (상위 {min(len(results), 20)}개)")
         table.add_column("순위", style="cyan", width=4)
         table.add_column("종목코드", style="magenta", width=8)
         table.add_column("종목명", style="white", width=12)
-        table.add_column("점수", style="green", width=6)
-        table.add_column("추천", style="yellow", width=8)
-        table.add_column("현재가", style="blue", width=8)
-        table.add_column("손절가", style="red", width=8)
-        table.add_column("익절가", style="bright_green", width=8)
-        table.add_column("리스크", style="orange3", width=6)
-        
+        table.add_column("종합점수", style="green", width=8)
+        table.add_column("추천등급", style="yellow", width=12)
+        table.add_column("기술", style="blue", width=6)
+        table.add_column("수급", style="blue", width=6)
+        table.add_column("뉴스", style="blue", width=6)
+        table.add_column("패턴", style="blue", width=6)
+
         for i, result in enumerate(results[:20]):
-            # 종목명 fallback 처리 (기존 로직 유지)
-            name = result.name
-            
-            # 1. 종목명이 숫자이거나 비어있으면 재조회
-            if (not name or 
-                name.isdigit() or 
-                name.startswith('종목') or 
-                len(name) <= 2):
-                
-                try:
-                    # 데이터 컬렉터에서 재조회
-                    if hasattr(self, 'data_collector') and self.data_collector:
-                        stock_info = await self.data_collector.get_stock_info(result.symbol)
-                        if stock_info and stock_info.get('name'):
-                            name = stock_info['name']
-                except Exception as e:
-                    self.logger.debug(f"⚠️ {result.symbol} 종목명 재조회 실패: {e}")
-            
-            # 2. 여전히 문제가 있으면 pykrx 시도
-            if (not name or 
-                name.isdigit() or 
-                name.startswith('종목') or 
-                len(name) <= 2):
-                
-                try:
-                    from pykrx import stock as pykrx_stock
-                    pykrx_name = pykrx_stock.get_market_ticker_name(result.symbol)
-                    if pykrx_name and pykrx_name.strip():
-                        name = pykrx_name.strip()
-                except Exception as e:
-                    self.logger.debug(f"⚠️ {result.symbol} pykrx 조회 실패: {e}")
-            
-            # 3. 최후의 수단
-            if (not name or 
-                name.isdigit() or 
-                name.startswith('종목') or 
-                len(name) <= 2):
-                name = f'종목{result.symbol}'
-            
-            # 종목명 길이 제한 (테이블 레이아웃을 위해)
-            if len(name) > 10:
-                display_name = name[:9] + "…"
-            else:
-                display_name = name
-            
-            # 가격 정보 포맷팅
-            entry_price = "N/A"
-            stop_loss = "N/A"
-            take_profit = "N/A"
-            
-            # 현재가 (진입가)
-            if hasattr(result, 'entry_price') and result.entry_price:
-                entry_price = f"{result.entry_price:,.0f}"
-            elif hasattr(result, 'current_price') and result.current_price:
-                entry_price = f"{result.current_price:,.0f}"
-            
-            # 손절가
-            if hasattr(result, 'stop_loss') and result.stop_loss:
-                stop_loss = f"{result.stop_loss:,.0f}"
-            elif hasattr(result, 'entry_price') and result.entry_price:
-                # 기본 손절가 계산 (진입가의 5% 하락)
-                calculated_stop = result.entry_price * 0.95
-                stop_loss = f"{calculated_stop:,.0f}"
-            
-            # 익절가
-            if hasattr(result, 'take_profit') and result.take_profit:
-                take_profit = f"{result.take_profit:,.0f}"
-            elif hasattr(result, 'entry_price') and result.entry_price:
-                # 기본 익절가 계산 (진입가의 10% 상승)
-                calculated_profit = result.entry_price * 1.10
-                take_profit = f"{calculated_profit:,.0f}"
-            
-            # 추천 텍스트 길이 제한
-            recommendation = result.recommendation
-            if len(recommendation) > 6:
-                rec_display = recommendation[:5] + "…"
-            else:
-                rec_display = recommendation
-            
-            # 리스크 레벨 길이 제한
-            risk_level = result.risk_level
-            if len(risk_level) > 5:
-                risk_display = risk_level[:4] + "…"
-            else:
-                risk_display = risk_level
-            
+            name = result.get('name', 'N/A')
+            display_name = name[:10] + "…" if len(name) > 10 else name
+
             table.add_row(
                 str(i + 1),
-                result.symbol,
+                result.get('symbol', 'N/A'),
                 display_name,
-                f"{result.score:.1f}",
-                rec_display,
-                entry_price,
-                stop_loss,
-                take_profit,
-                risk_display
+                f"{result.get('comprehensive_score', 0):.1f}",
+                result.get('recommendation', 'N/A'),
+                f"{result.get('technical_score', 0):.0f}",
+                f"{result.get('supply_demand_score', 0):.0f}",
+                f"{result.get('sentiment_score', 0):.0f}",
+                f"{result.get('chart_pattern_score', 0):.0f}"
             )
         
         console.print(table)
-        
-        # 개선된 요약 통계 표시
-        await self._display_result_summary(results)
 
     async def _display_result_summary(self, results: List[AnalysisResult]):
         """분석 결과 요약 통계"""

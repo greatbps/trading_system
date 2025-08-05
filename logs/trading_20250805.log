@@ -1,0 +1,400 @@
+2025-08-05 05:43:51 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:43:51 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:43:51 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:43:51 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:32:35.477140)
+2025-08-05 05:43:57 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:43:57 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:43:57 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 05:43:57 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 05:43:57 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 05:43:58 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 10개)
+2025-08-05 05:43:58 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 05:43:58 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 05:46:02 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 05:46:17 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:46:17 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:46:17 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:46:17 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:30:09.318956)
+2025-08-05 05:46:22 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:46:22 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:46:22 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 05:46:22 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 05:46:22 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 05:46:22 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 05:46:22 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 5개)
+2025-08-05 05:46:22 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 05:46:22 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 05:46:56 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:46:56 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:46:56 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:46:56 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:29:31.029876)
+2025-08-05 05:47:00 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:47:00 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:47:00 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 05:47:00 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 05:47:00 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 05:47:00 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 05:47:00 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 3개)
+2025-08-05 05:47:00 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 05:47:00 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 05:47:17 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:47:17 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:47:17 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:47:17 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:29:09.687539)
+2025-08-05 05:47:23 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:47:23 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:47:23 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 05:47:23 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 05:47:23 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 05:47:24 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 05:47:24 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 1개)
+2025-08-05 05:47:24 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 05:47:24 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 05:48:25 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:48:25 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:48:25 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:48:25 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:28:01.234651)
+2025-08-05 05:48:30 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:48:30 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:48:30 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 05:48:30 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 05:48:30 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 05:48:30 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 05:48:30 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 3개)
+2025-08-05 05:48:30 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:48:30 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 05:48:30 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 05:49:10 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:49:10 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:49:10 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:49:10 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:27:16.986173)
+2025-08-05 05:49:16 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:49:16 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:49:16 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 05:49:16 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 05:49:16 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 05:49:16 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 05:49:16 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 2개)
+2025-08-05 05:49:16 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: unhashable type: 'dict'
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 05:49:16 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 05:49:16 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 05:57:58 | Main         | INFO     | main            | ✅ 설정 초기화 완료
+2025-08-05 05:57:58 | Main         | INFO     | main            | ✅ TradingSystem 임포트 성공
+2025-08-05 05:57:58 | Main         | INFO     | main            | 🔧 컴포넌트 초기화 중...
+2025-08-05 05:57:59 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:57:59 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:57:59 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:57:59 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:18:27.603996)
+2025-08-05 05:58:03 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:58:03 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:58:03 | Main         | ERROR    | main            | ❌ 컴포넌트 초기화 실패
+2025-08-05 05:58:13 | Main         | INFO     | main            | ✅ 설정 초기화 완료
+2025-08-05 05:58:13 | Main         | INFO     | main            | ✅ TradingSystem 임포트 성공
+2025-08-05 05:58:13 | Main         | INFO     | main            | 🔧 컴포넌트 초기화 중...
+2025-08-05 05:58:14 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 05:58:14 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 05:58:14 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 05:58:14 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:18:12.779999)
+2025-08-05 05:58:20 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 05:58:20 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 05:58:20 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 05:58:20 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 05:58:20 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 05:58:21 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 05:58:21 | Main         | INFO     | main            | ✅ 시스템 초기화 완료!
+2025-08-05 06:00:26 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 06:00:26 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 06:00:26 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 06:00:26 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:16:01.057674)
+2025-08-05 06:00:30 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 06:00:30 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 06:00:30 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 06:00:30 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 06:00:30 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 06:00:31 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 06:00:31 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 3개)
+2025-08-05 06:00:31 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | analyze_comprehensive | ⚠️ 005930 가격 데이터 수집 실패: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | analyze_comprehensive | ⚠️ 000660 가격 데이터 수집 실패: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | analyze_comprehensive | ⚠️ 035420 가격 데이터 수집 실패: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 종합 분석 중 치명적 오류: 'StockData' object has no attribute 'get'
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:00:31 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 06:00:31 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 06:01:55 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 06:01:55 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 06:01:55 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 06:01:55 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:14:31.548279)
+2025-08-05 06:01:59 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 06:01:59 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 06:01:59 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 06:01:59 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 06:01:59 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 06:02:00 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 06:02:00 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 3개)
+2025-08-05 06:02:00 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 06:02:00 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005930 모의 가격 데이터 생성: 100개
+2025-08-05 06:02:00 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 06:02:00 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000660 모의 가격 데이터 생성: 100개
+2025-08-05 06:02:00 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 06:02:00 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 035420 모의 가격 데이터 생성: 100개
+2025-08-05 06:02:00 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005930 기술적 분석 시작...
+2025-08-05 06:02:00 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005930 기술적 분석 완료 - 점수: 70.0
+2025-08-05 06:02:00 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 005930 감정: positive
+2025-08-05 06:02:00 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000660 기술적 분석 시작...
+2025-08-05 06:02:00 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000660 기술적 분석 완료 - 점수: 25.0
+2025-08-05 06:02:00 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 000660 감정: very_negative
+2025-08-05 06:02:00 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 035420 기술적 분석 시작...
+2025-08-05 06:02:00 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 035420 기술적 분석 완료 - 점수: 75.0
+2025-08-05 06:02:00 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 035420 감정: neutral
+2025-08-05 06:02:00 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 종합 분석 중 치명적 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 종합 분석 중 치명적 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 종합 분석 중 치명적 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 06:02:00 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 06:02:00 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 06:02:43 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 06:02:43 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 06:02:43 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 06:02:43 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:13:43.670633)
+2025-08-05 06:02:47 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 06:02:47 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 06:02:47 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 06:02:47 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 06:02:47 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 06:02:48 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 06:02:48 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 3개)
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005930 모의 가격 데이터 생성: 100개
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000660 모의 가격 데이터 생성: 100개
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 035420 모의 가격 데이터 생성: 100개
+2025-08-05 06:02:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005930 기술적 분석 시작...
+2025-08-05 06:02:48 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005930 기술적 분석 완료 - 점수: 80.0
+2025-08-05 06:02:48 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 005930 감정: neutral
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005930
+2025-08-05 06:02:48 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005930 (삼성전자)
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (삼성전자) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000660 기술적 분석 시작...
+2025-08-05 06:02:48 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005930 (삼성전자) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000660 기술적 분석 완료 - 점수: 50.0
+2025-08-05 06:02:48 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 000660 감정: neutral
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000660
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000660 (SK하이닉스)
+2025-08-05 06:02:48 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 035420 기술적 분석 시작...
+2025-08-05 06:02:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (SK하이닉스) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000660 (SK하이닉스) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 035420 기술적 분석 완료 - 점수: 55.0
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 035420 감정: very_negative
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 035420 (NAVER)
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 035420
+2025-08-05 06:02:48 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 035420 (NAVER) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005930 점수: 50.0
+2025-08-05 06:02:48 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 035420 (NAVER) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000660 점수: 50.0
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005930(삼성전자) 종합 분석 완료 (점수: 55.66, 추천: STRONG_SELL) - 소요시간: 0.11초
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000660(SK하이닉스) 종합 분석 완료 (점수: 48.02, 추천: STRONG_SELL) - 소요시간: 0.11초
+2025-08-05 06:02:48 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 035420 점수: 50.0
+2025-08-05 06:02:48 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 035420(NAVER) 종합 분석 완료 (점수: 56.53, 추천: STRONG_SELL) - 소요시간: 0.11초
+2025-08-05 06:02:48 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 06:02:48 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 06:04:32 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 06:04:32 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 06:04:32 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 06:04:32 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:11:54.617697)
+2025-08-05 06:04:36 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 06:04:36 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 06:04:36 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 06:04:36 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 06:04:36 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 06:04:37 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 06:04:37 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 3개)
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005930 모의 가격 데이터 생성: 100개
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000660 모의 가격 데이터 생성: 100개
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 035420(NAVER) 종합 분석 시작...
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 035420 모의 가격 데이터 생성: 100개
+2025-08-05 06:04:37 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005930 기술적 분석 시작...
+2025-08-05 06:04:37 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005930 기술적 분석 완료 - 점수: 65.0
+2025-08-05 06:04:37 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 005930 감정: neutral
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005930
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005930 (삼성전자)
+2025-08-05 06:04:37 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000660 기술적 분석 시작...
+2025-08-05 06:04:37 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (삼성전자) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005930 (삼성전자) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000660 기술적 분석 완료 - 점수: 75.0
+2025-08-05 06:04:37 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 000660 감정: very_positive
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000660
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000660 (SK하이닉스)
+2025-08-05 06:04:37 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 035420 기술적 분석 시작...
+2025-08-05 06:04:37 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (SK하이닉스) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000660 (SK하이닉스) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 035420 기술적 분석 완료 - 점수: 65.0
+2025-08-05 06:04:37 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 035420 감정: very_positive
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 035420
+2025-08-05 06:04:37 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 035420 (NAVER)
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 035420 (NAVER) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 035420 (NAVER) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005930 점수: 50.0
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000660 점수: 50.0
+2025-08-05 06:04:37 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 035420 점수: 50.0
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005930(삼성전자) 종합 분석 완료 (점수: 53.07, 추천: STRONG_SELL) - 소요시간: 0.10초
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000660(SK하이닉스) 종합 분석 완료 (점수: 59.61, 추천: STRONG_SELL) - 소요시간: 0.10초
+2025-08-05 06:04:37 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 035420(NAVER) 종합 분석 완료 (점수: 54.43, 추천: STRONG_SELL) - 소요시간: 0.10초
+2025-08-05 06:04:37 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 06:04:37 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 06:05:16 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 06:05:16 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 06:05:16 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 06:05:16 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:11:10.373936)
+2025-08-05 06:05:23 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 06:05:23 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 06:05:23 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 06:05:23 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 06:05:23 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 06:05:23 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 06:05:23 | Main         | INFO     | run_analysis_mode | 📊 분석 모드 시작 (전략: momentum, 최대: 2개)
+2025-08-05 06:05:23 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 06:05:23 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 005930 모의 가격 데이터 생성: 100개
+2025-08-05 06:05:23 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 000660(SK하이닉스) 종합 분석 시작...
+2025-08-05 06:05:23 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 000660 모의 가격 데이터 생성: 100개
+2025-08-05 06:05:23 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 005930 기술적 분석 시작...
+2025-08-05 06:05:23 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 005930 기술적 분석 완료 - 점수: 50.0
+2025-08-05 06:05:23 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 005930 감정: positive
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 005930
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 005930 (삼성전자)
+2025-08-05 06:05:23 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 000660 기술적 분석 시작...
+2025-08-05 06:05:23 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 005930 (삼성전자) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 005930 (삼성전자) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 000660 기술적 분석 완료 - 점수: 55.0
+2025-08-05 06:05:23 | SentimentAnalyzer | INFO     | analyze         | ✅ 감정 분석 완료 - 000660 감정: very_positive
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 000660
+2025-08-05 06:05:23 | ChartPatternAnalyzer | INFO     | analyze         | 📈 차트패턴 분석 시작 - 000660 (SK하이닉스)
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _analyze_foreign_trading | ⚠️ 외국인 매매동향 분석 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | ChartPatternAnalyzer | ERROR    | analyze         | ❌ 000660 (SK하이닉스) 패턴 감지 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | ChartPatternAnalyzer | INFO     | _create_default_pattern_result | 📊 000660 (SK하이닉스) 기본 패턴 결과 생성: 패턴 감지 오류: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _calculate_overall_supply_demand_score | ⚠️ 종합 수급 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _calculate_supply_demand_balance | ⚠️ 수급 균형 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | WARNING  | _calculate_trading_intensity | ⚠️ 거래 강도 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 005930 점수: 50.0
+2025-08-05 06:05:23 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 000660 점수: 50.0
+2025-08-05 06:05:23 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 005930(삼성전자) 종합 분석 완료 (점수: 47.89, 추천: STRONG_SELL) - 소요시간: 0.07초
+2025-08-05 06:05:23 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 000660(SK하이닉스) 종합 분석 완료 (점수: 57.40, 추천: STRONG_SELL) - 소요시간: 0.07초
+2025-08-05 06:05:23 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 06:05:23 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 06:09:57 | Main         | INFO     | main            | ✅ 설정 초기화 완료
+2025-08-05 06:09:57 | Main         | INFO     | main            | ✅ TradingSystem 임포트 성공
+2025-08-05 06:09:57 | Main         | INFO     | main            | 🔧 컴포넌트 초기화 중...
+2025-08-05 06:09:58 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 06:09:58 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 06:09:58 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 06:09:58 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 9:06:28.475172)
+2025-08-05 06:10:02 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 06:10:02 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 06:10:02 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 06:10:02 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 06:10:02 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 06:10:03 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 06:10:03 | Main         | INFO     | main            | ✅ 시스템 초기화 완료!
+2025-08-05 06:29:02 | Main         | ERROR    | main            | ❌ 시스템 실행 중 오류: [Errno 22] Invalid argument
+2025-08-05 06:29:02 | Main         | ERROR    | main            | ❌ 시스템 실행 중 오류: [Errno 22] Invalid argument

@@ -74,7 +74,7 @@ class ChartPatternAnalyzer:
         
     # chart_pattern_analyzer.py에서 수정
 
-    async def analyze(self, stock_data: Any) -> Dict[str, Any]:
+    def analyze(self, stock_data: Any) -> Dict[str, Any]:
         """차트패턴 종합 분석 - None 처리 강화"""
         try:
             # 안전한 속성 접근으로 종목 정보 추출
@@ -97,7 +97,8 @@ class ChartPatternAnalyzer:
             # 패턴 감지기 호출
             if self.pattern_detector:
                 try:
-                    pattern_results = await self.pattern_detector.detect_patterns(
+                    # 패턴 감지기가 async인 경우 동기적으로 처리
+                    pattern_results = self.pattern_detector.detect_patterns(
                         stock_data, 
                         symbol=symbol, 
                         name=name

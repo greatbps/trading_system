@@ -8,8 +8,10 @@ trading_system/database/db_operations.py
 
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
-from sqlalchemy import text
+from sqlalchemy import text, select, func
+from sqlalchemy.orm import selectinload
 
+from database.models import FilteredStock, Stock, AnalysisResult, SystemLog, TradingSession, MarketData, FilterHistory, Trade
 from utils.logger import get_logger
 
 class DatabaseOperations:
@@ -140,6 +142,91 @@ class DatabaseOperations:
         
         self.logger.info("="*60)
     
+    async def save_filter_history(self, strategy_id: str, filtered_stocks_data: List[Dict]) -> Optional[FilterHistory]:
+        """
+        새로운 필터링 이력과 해당 종목들을 저장합니다.
+        filtered_stocks_data: [{'stock_code': '005930', 'stock_name': '삼성전자', 'stock_id': 1}, ...]
+        """
+        try:
+            async with self.db_manager.get_async_session() as session:
+                # FilterHistory 저장
+                filter_history = FilterHistory(
+                    strategy_id=strategy_id,
+                    stock_count=len(filtered_stocks_data)
+                )
+                session.add(filter_history)
+                await session.flush() # ID를 얻기 위해 flush
+
+                # FilteredStock 저장
+                for stock_data in filtered_stocks_data:
+                    # stock_id가 없는 경우 symbol로 Stock 테이블에서 조회하여 stock_id를 가져옴
+                    stock_id = stock_data.get('stock_id')
+                    if not stock_id:
+                        stock = await session.execute(select(Stock).filter_by(symbol=stock_data['stock_code']))
+                        stock_obj = stock.scalar_one_or_none()
+                        if stock_obj:
+                            stock_id = stock_obj.id
+                        else:
+                            self.logger.warning(f"⚠️ Stock not found for symbol {stock_data['stock_code']}. Skipping FilteredStock entry.")
+                            continue
+
+                    filtered_stock = FilteredStock(
+                        history_id=filter_history.id,
+                        stock_id=stock_id,
+                        stock_code=stock_data['stock_code'],
+                        stock_name=stock_data['stock_name']
+                    )
+                    session.add(filtered_stock)
+                
+                await session.commit()
+                self.logger.info(f"✅ 필터링 이력 저장 완료: 전략={strategy_id}, 종목수={len(filtered_stocks_data)}개")
+                return filter_history
+        except Exception as e:
+            self.logger.error(f"❌ 필터링 이력 저장 실패: {e}")
+            await session.rollback()
+            return None
+
+    async def get_filter_history(self, history_id: int) -> Optional[FilterHistory]:
+        """특정 필터링 이력을 조회합니다."""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                result = await session.execute(
+                    select(FilterHistory).filter_by(id=history_id)
+                )
+                return result.scalar_one_or_none()
+        except Exception as e:
+            self.logger.error(f"❌ 필터링 이력 조회 실패 (ID: {history_id}): {e}")
+            return None
+
+    async def get_latest_filter_history(self, strategy_id: str) -> Optional[FilterHistory]:
+        """특정 전략의 최신 필터링 이력을 조회합니다."""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                result = await session.execute(
+                    select(FilterHistory)
+                    .filter_by(strategy_id=strategy_id)
+                    .order_by(FilterHistory.filter_datetime.desc())
+                    .limit(1)
+                )
+                return result.scalar_one_or_none()
+        except Exception as e:
+            self.logger.error(f"❌ 최신 필터링 이력 조회 실패 (전략: {strategy_id}): {e}")
+            return None
+
+    async def get_filtered_stocks_for_history(self, history_id: int) -> List[FilteredStock]:
+        """특정 필터링 이력에 포함된 모든 종목을 조회합니다."""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                result = await session.execute(
+                    select(FilteredStock)
+                    .filter_by(history_id=history_id)
+                    .options(selectinload(FilteredStock.stock)) # Stock 정보도 함께 로드
+                )
+                return result.scalars().all()
+        except Exception as e:
+            self.logger.error(f"❌ 필터링된 종목 조회 실패 (History ID: {history_id}): {e}")
+            return []
+    
     async def get_stocks_report(self, limit: int = 50, symbols: List[str] = None) -> Dict:
         """종목 데이터 보고서 생성"""
         try:
@@ -183,7 +270,153 @@ class DatabaseOperations:
         except Exception as e:
             self.logger.error(f"❌ 종목 보고서 생성 실패: {e}")
             return {"error": str(e)}
-    
+
+    async def save_analysis_result(self, filtered_stock_id: int, stock_id: int, analysis_data: Dict) -> Optional[AnalysisResult]:
+        """2차 필터링 분석 결과를 저장합니다."""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                # final_grade와 risk_level이 Enum 멤버인지 확인하고, 아니면 None으로 설정
+                final_grade_enum = analysis_data.get('final_grade')
+                if final_grade_enum and not isinstance(final_grade_enum, AnalysisGrade):
+                    final_grade_enum = None
+
+                risk_level_enum = analysis_data.get('risk_level')
+                if risk_level_enum and not isinstance(risk_level_enum, RiskLevel):
+                    risk_level_enum = None
+
+                analysis_result = AnalysisResult(
+                    filtered_stock_id=filtered_stock_id,
+                    stock_id=stock_id,
+                    analysis_datetime=datetime.fromisoformat(analysis_data.get('analysis_time')) if analysis_data.get('analysis_time') else datetime.now(),
+                    strategy=analysis_data.get('strategy'),
+                    total_score=analysis_data.get('comprehensive_score'),
+                    final_grade=final_grade_enum,
+                    
+                    # 세부 점수
+                    news_score=analysis_data.get('sentiment_score'),
+                    technical_score=analysis_data.get('technical_score'),
+                    supply_demand_score=analysis_data.get('supply_demand_score'),
+                    
+                    # 상세 분석 결과 (JSON)
+                    technical_details=analysis_data.get('technical_details'),
+                    sentiment_details=analysis_data.get('sentiment_details'),
+                    supply_demand_details=analysis_data.get('supply_demand_details'),
+                    chart_pattern_details=analysis_data.get('chart_pattern_details'),
+
+                    # 리스크 및 가격 정보
+                    risk_level=risk_level_enum,
+                    price_at_analysis=analysis_data.get('price_at_analysis')
+                )
+                session.add(analysis_result)
+                await session.commit()
+                self.logger.info(f"✅ 분석 결과 저장 완료: FilteredStock ID={filtered_stock_id}, 점수={analysis_result.total_score}")
+                return analysis_result
+        except Exception as e:
+            self.logger.error(f"❌ 분석 결과 저장 실패 (FilteredStock ID: {filtered_stock_id}): {e}")
+            await session.rollback()
+            return None
+
+    async def get_analysis_result_by_filtered_stock_id(self, filtered_stock_id: int) -> Optional[AnalysisResult]:
+        """FilteredStock ID로 분석 결과를 조회합니다."""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                result = await session.execute(
+                    select(AnalysisResult).filter_by(filtered_stock_id=filtered_stock_id)
+                )
+                return result.scalar_one_or_none()
+        except Exception as e:
+            self.logger.error(f"❌ 분석 결과 조회 실패 (FilteredStock ID: {filtered_stock_id}): {e}")
+            return None
+
+    async def save_order(self, order_data: Dict) -> Optional[Trade]:
+        """새로운 주문을 저장합니다. (Trade 모델 사용)"""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                order = Trade(
+                    analysis_result_id=order_data.get('analysis_id'),
+                    stock_id=order_data['stock_id'],
+                    order_id=order_data.get('kis_order_id'),
+                    trade_type=order_data.get('trade_type', 'BUY'),
+                    order_type=order_data['order_type'],
+                    order_price=order_data.get('price'),
+                    order_quantity=order_data['quantity'],
+                    order_status=order_data.get('status', 'PENDING'),
+                    order_time=order_data.get('order_time', func.now()),
+                    strategy_name=order_data.get('strategy_name'),
+                    notes=order_data.get('notes')
+                )
+                session.add(order)
+                await session.commit()
+                self.logger.info(f"✅ 주문 저장 완료: 종목={order.stock_id}, 유형={order.order_type}, 수량={order.quantity}")
+                return order
+        except Exception as e:
+            self.logger.error(f"❌ 주문 저장 실패: {e}")
+            await session.rollback()
+            return None
+
+    async def get_order(self, order_id: int) -> Optional[Trade]:
+        """주문 ID로 주문을 조회합니다. (Trade 모델 사용)"""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                result = await session.execute(
+                    select(Trade).filter_by(id=order_id)
+                )
+                return result.scalar_one_or_none()
+        except Exception as e:
+            self.logger.error(f"❌ 주문 조회 실패 (ID: {order_id}): {e}")
+            return None
+
+    async def update_order_status(self, order_id: int, status: str) -> Optional[Trade]:
+        """주문 상태를 업데이트합니다. (Trade 모델 사용)"""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                order = await session.get(Trade, order_id)
+                if order:
+                    order.order_status = status
+                    order.updated_at = func.now()
+                    await session.commit()
+                    self.logger.info(f"✅ 주문 상태 업데이트 완료: 주문 ID={order_id}, 상태={status}")
+                    return order
+                return None
+        except Exception as e:
+            self.logger.error(f"❌ 주문 상태 업데이트 실패 (ID: {order_id}): {e}")
+            await session.rollback()
+            return None
+
+    async def save_trade_execution(self, order_id: int, execution_data: Dict) -> Optional[TradeExecution]:
+        """새로운 체결 내역을 저장합니다."""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                trade_execution = TradeExecution(
+                    order_id=order_id,
+                    stock_id=execution_data['stock_id'],
+                    execution_type=execution_data['execution_type'],
+                    quantity=execution_data['quantity'],
+                    price=execution_data['price'],
+                    commission=execution_data.get('commission', 0.0),
+                    trade_datetime=execution_data.get('trade_datetime', func.now())
+                )
+                session.add(trade_execution)
+                await session.commit()
+                self.logger.info(f"✅ 체결 내역 저장 완료: 주문 ID={order_id}, 유형={trade_execution.execution_type}, 수량={trade_execution.quantity}")
+                return trade_execution
+        except Exception as e:
+            self.logger.error(f"❌ 체결 내역 저장 실패: {e}")
+            await session.rollback()
+            return None
+
+    async def get_trade_executions_for_order(self, order_id: int) -> List[TradeExecution]:
+        """특정 주문에 대한 모든 체결 내역을 조회합니다."""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                result = await session.execute(
+                    select(TradeExecution).filter_by(order_id=order_id)
+                )
+                return result.scalars().all()
+        except Exception as e:
+            self.logger.error(f"❌ 체결 내역 조회 실패 (Order ID: {order_id}): {e}")
+            return []
+
     def print_stocks_report(self, report: Dict):
         """종목 보고서 출력"""
         self.logger.info("="*60)
@@ -512,3 +745,31 @@ class DatabaseOperations:
                     self.logger.warning(f"  ⚠️ {symbol} 거래 이력 없음")
         
         self.logger.info("="*60)
+    
+    async def save_filter_history_record(self, filter_data: Dict) -> bool:
+        """FilterHistory 레코드 저장"""
+        try:
+            async with self.db_manager.get_async_session() as session:
+                filter_history = FilterHistory(
+                    filter_date=filter_data.get('filter_date'),
+                    strategy=filter_data.get('strategy'),
+                    filter_type=filter_data.get('filter_type'),
+                    hts_condition=filter_data.get('hts_condition'),
+                    hts_result_count=filter_data.get('hts_result_count', 0),
+                    hts_symbols=filter_data.get('hts_symbols', []),
+                    ai_result_count=filter_data.get('ai_result_count', 0),
+                    ai_symbols=filter_data.get('ai_symbols', []),
+                    ai_avg_score=filter_data.get('ai_avg_score', 0.0),
+                    execution_time=filter_data.get('execution_time'),
+                    success=filter_data.get('success', True),
+                    error_message=filter_data.get('error_message')
+                )
+                
+                session.add(filter_history)
+                await session.commit()
+                self.logger.info(f"✅ FilterHistory 저장 완료: {filter_data.get('filter_type')} - {filter_data.get('strategy')}")
+                return True
+                
+        except Exception as e:
+            self.logger.error(f"❌ FilterHistory 저장 실패: {e}")
+            return False

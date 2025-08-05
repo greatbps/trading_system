@@ -3,41 +3,110 @@
 """
 trading_system/analyzers/sentiment_analyzer.py
 
-감정 분석기 (뉴스 기반)
+감정 분석기 (Gemini AI 기반 뉴스 분석)
 """
 
 import numpy as np
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from utils.logger import get_logger
+from analyzers.gemini_analyzer import GeminiAnalyzer
 
 class SentimentAnalyzer:
-    """감정 분석기"""
+    """Gemini AI 기반 감정 분석기"""
     
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("SentimentAnalyzer")
+        self.gemini_analyzer = GeminiAnalyzer(config)
     
-    async def analyze(self, symbol: str, name: str, news_data: Optional[Dict] = None) -> Dict[str, Any]:
+    async def analyze(self, symbol: str, name: str, news_data: Optional[List[Dict]] = None) -> Dict[str, Any]:
         """감정 분석 실행"""
         try:
-            # 임시 구현 - 실제로는 뉴스 텍스트 감정 분석
-            sentiments = ['very_positive', 'positive', 'neutral', 'negative', 'very_negative']
-            
-            result = {
-                'overall_score': np.random.uniform(35, 80),
-                'signal_strength': np.random.uniform(30, 75),
-                'confidence': np.random.uniform(0.4, 0.7),
-                'news_sentiment': np.random.choice(sentiments),
-                'news_count': np.random.randint(5, 50),
-                'positive_ratio': np.random.uniform(0.3, 0.8),
-                'negative_ratio': np.random.uniform(0.1, 0.4),
-                'sentiment_score': np.random.uniform(-1.0, 1.0),
-                'trend': np.random.choice(['IMPROVING', 'STABLE', 'DECLINING'])
-            }
-            
-            self.logger.info(f"✅ 감정 분석 완료 - {symbol} 감정: {result['news_sentiment']}")
-            return result
+            if news_data and len(news_data) > 0:
+                # Gemini AI를 사용한 실제 뉴스 분석
+                sentiment_result = await self.gemini_analyzer.analyze_news_sentiment(
+                    symbol, name, news_data
+                )
+                
+                # 기존 포맷에 맞게 결과 변환
+                result = self._convert_to_legacy_format(sentiment_result, len(news_data))
+                
+                self.logger.info(f"✅ Gemini 감정 분석 완료 - {symbol} 감정: {sentiment_result.get('sentiment', 'NEUTRAL')}")
+                return result
+            else:
+                # 뉴스 데이터가 없을 때 기본값
+                self.logger.warning(f"⚠️ {symbol} 뉴스 데이터 없음 - 기본값 사용")
+                return self._get_default_result()
             
         except Exception as e:
             self.logger.error(f"❌ 감정 분석 실패: {e}")
-            return {'overall_score': 50, 'signal_strength': 50, 'confidence': 0.5}
+            return self._get_default_result()
+    
+    def _convert_to_legacy_format(self, gemini_result: Dict, news_count: int) -> Dict[str, Any]:
+        """Gemini 결과를 기존 포맷으로 변환"""
+        # 감정을 숫자 점수로 변환
+        sentiment_scores = {
+            'VERY_POSITIVE': 90,
+            'POSITIVE': 75,
+            'NEUTRAL': 50,
+            'NEGATIVE': 25,
+            'VERY_NEGATIVE': 10
+        }
+        
+        sentiment = gemini_result.get('sentiment', 'NEUTRAL')
+        overall_score = gemini_result.get('overall_score', 50)
+        confidence = gemini_result.get('confidence', 0.5)
+        
+        # 신호 강도 계산
+        signal_strength = overall_score * confidence
+        
+        # 긍정/부정 비율 계산
+        positive_factors = len(gemini_result.get('positive_factors', []))
+        negative_factors = len(gemini_result.get('negative_factors', []))
+        total_factors = positive_factors + negative_factors
+        
+        if total_factors > 0:
+            positive_ratio = positive_factors / total_factors
+            negative_ratio = negative_factors / total_factors
+        else:
+            positive_ratio = 0.5
+            negative_ratio = 0.5
+        
+        return {
+            'overall_score': overall_score,
+            'signal_strength': signal_strength,
+            'confidence': confidence,
+            'news_sentiment': sentiment.lower(),
+            'news_count': news_count,
+            'positive_ratio': positive_ratio,
+            'negative_ratio': negative_ratio,
+            'sentiment_score': (overall_score - 50) / 50,  # -1 to 1 범위로 변환
+            'trend': gemini_result.get('trend', 'STABLE'),
+            # Gemini 추가 정보
+            'positive_factors': gemini_result.get('positive_factors', []),
+            'negative_factors': gemini_result.get('negative_factors', []),
+            'key_keywords': gemini_result.get('key_keywords', []),
+            'short_term_outlook': gemini_result.get('short_term_outlook', ''),
+            'medium_term_outlook': gemini_result.get('medium_term_outlook', ''),
+            'summary': gemini_result.get('summary', '')
+        }
+    
+    def _get_default_result(self) -> Dict[str, Any]:
+        """기본 결과값"""
+        return {
+            'overall_score': 50,
+            'signal_strength': 50,
+            'confidence': 0.5,
+            'news_sentiment': 'neutral',
+            'news_count': 0,
+            'positive_ratio': 0.5,
+            'negative_ratio': 0.5,
+            'sentiment_score': 0.0,
+            'trend': 'STABLE',
+            'positive_factors': [],
+            'negative_factors': [],
+            'key_keywords': [],
+            'short_term_outlook': '정보 부족',
+            'medium_term_outlook': '정보 부족',
+            'summary': '뉴스 정보 부족으로 중립 판정'
+        }

@@ -2091,3 +2091,134 @@
 09:00:54 | TradingSystem | INFO | 💾 분석 결과 저장 중... (2개 결과)
 09:00:54 | TradingSystem | INFO | ✅ DB 저장 완료
 09:00:54 | TradingSystem | INFO | ✅ 로컬 파일 저장 완료: data\analysis_results\analysis_20250719_090054.json
+05:43:49 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:43:57 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:43:57 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:43:57 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:43:57 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:43:57 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:43:58 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:43:58 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 10개)
+05:46:16 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:46:22 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:46:22 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:46:22 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:46:22 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:46:22 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:46:22 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+05:46:22 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:46:22 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 5개)
+05:46:55 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:47:00 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:47:00 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:47:00 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:47:00 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:47:00 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:47:00 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:47:00 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 3개)
+05:47:16 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:47:23 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:47:23 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:47:23 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:47:23 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:47:23 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:47:24 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+05:47:24 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:47:24 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 1개)
+05:48:24 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:48:30 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:48:30 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:48:30 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:48:30 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:48:30 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:48:30 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+05:48:30 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:48:30 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 3개)
+05:48:30 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+05:48:30 | TradingSystem | INFO | ✅ 1차 필터링 완료: 3개 종목 선정
+05:49:09 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:49:16 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:49:16 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:49:16 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:49:16 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:49:16 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:49:16 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+05:49:16 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:49:16 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 2개)
+05:49:16 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+05:49:16 | TradingSystem | INFO | ✅ 1차 필터링 완료: 2개 종목 선정
+05:57:58 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:58:03 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:58:03 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'List' is not defined
+05:58:03 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'List' is not defined
+05:58:13 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:58:20 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:58:20 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:58:20 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:58:20 | TradingSystem | INFO | ✅ 전략 초기화 완료
+05:58:20 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:58:21 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+05:58:21 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:00:25 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:00:30 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:00:30 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:00:30 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:00:30 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:00:30 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:00:31 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+06:00:31 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:00:31 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 3개)
+06:00:31 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+06:00:31 | TradingSystem | INFO | ✅ 1차 필터링 완료: 3개 종목 선정
+06:01:54 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:01:59 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:01:59 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:02:00 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:02:00 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:02:00 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:02:00 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+06:02:00 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:02:00 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 3개)
+06:02:00 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+06:02:00 | TradingSystem | INFO | ✅ 1차 필터링 완료: 3개 종목 선정
+06:02:42 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:02:47 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:02:47 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:02:47 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:02:47 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:02:47 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:02:48 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+06:02:48 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:02:48 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 3개)
+06:02:48 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+06:02:48 | TradingSystem | INFO | ✅ 1차 필터링 완료: 3개 종목 선정
+06:04:31 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:04:36 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:04:36 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:04:36 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:04:36 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:04:36 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:04:37 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'FilterHistory' is not defined
+06:04:37 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:04:37 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 3개)
+06:04:37 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+06:04:37 | TradingSystem | INFO | ✅ 1차 필터링 완료: 3개 종목 선정
+06:05:15 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:05:23 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:05:23 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:05:23 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:05:23 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:05:23 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:05:23 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'Order' is not defined
+06:05:23 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:05:23 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 2개)
+06:05:23 | TradingSystem | WARNING | ⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.
+06:05:23 | TradingSystem | INFO | ✅ 1차 필터링 완료: 2개 종목 선정
+06:09:57 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:10:02 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:10:02 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:10:02 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:10:02 | TradingSystem | INFO | ✅ 전략 초기화 완료
+06:10:02 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:10:03 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'Order' is not defined
+06:10:03 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
