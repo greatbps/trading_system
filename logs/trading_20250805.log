@@ -862,3 +862,21 @@
 2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
 2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
 2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 15:15:50 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 15:15:50 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 15:15:50 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:12:34.859291)
+2025-08-05 15:15:50 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 15:15:50 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 15:15:51 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 15:15:53 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 15:15:53 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 15:15:53 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 15:15:56 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 15:15:56 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-05 15:15:56 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-05 15:15:56 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-05 15:15:57 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 15:16:07 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): Entity namespace for "filter_history" has no property "strategy_id"
+2025-08-05 15:16:07 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-05 15:16:49 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-05 15:16:49 | KISCollector | INFO     | close           | KIS API collector closed successfully

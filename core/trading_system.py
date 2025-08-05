@@ -372,7 +372,9 @@ class TradingSystem:
                         for symbol in symbols_from_hts:
                             stock_info = await self.data_collector.get_stock_info(symbol)
                             if stock_info:
-                                candidates_data.append({'stock_code': symbol, 'stock_name': stock_info.get('name', symbol)})
+                                # StockData 객체에서 속성 직접 접근
+                                stock_name = stock_info.name if hasattr(stock_info, 'name') else symbol
+                                candidates_data.append({'stock_code': symbol, 'stock_name': stock_name})
                         
                         filter_history = await self.db_manager.db_operations.save_filter_history(strategy, candidates_data)
                         if not filter_history:

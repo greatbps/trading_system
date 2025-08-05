@@ -2279,3 +2279,19 @@
 15:01:31 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
 15:01:32 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'TradeExecution' is not defined
 15:01:32 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:15:50 | TradingSystem | INFO | ✅ 메뉴 핸들러 지연 초기화 완료
+15:15:50 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:15:50 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:15:53 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:15:56 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:15:56 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:15:56 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:15:56 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:15:56 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:15:56 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:15:57 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:15:57 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:16:07 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 최대 100개)
+15:16:07 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+15:16:07 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+15:16:07 | TradingSystem | INFO | 기본 종목 10개로 대체

@@ -198,19 +198,19 @@ class DatabaseOperations:
             self.logger.error(f"❌ 필터링 이력 조회 실패 (ID: {history_id}): {e}")
             return None
 
-    async def get_latest_filter_history(self, strategy_id: str) -> Optional[FilterHistory]:
+    async def get_latest_filter_history(self, strategy: str) -> Optional[FilterHistory]:
         """특정 전략의 최신 필터링 이력을 조회합니다."""
         try:
             async with self.db_manager.get_async_session() as session:
                 result = await session.execute(
                     select(FilterHistory)
-                    .filter_by(strategy_id=strategy_id)
-                    .order_by(FilterHistory.filter_datetime.desc())
+                    .filter_by(strategy=strategy)
+                    .order_by(FilterHistory.filter_date.desc())
                     .limit(1)
                 )
                 return result.scalar_one_or_none()
         except Exception as e:
-            self.logger.error(f"❌ 최신 필터링 이력 조회 실패 (전략: {strategy_id}): {e}")
+            self.logger.error(f"❌ 최신 필터링 이력 조회 실패 (전략: {strategy}): {e}")
             return None
 
     async def get_filtered_stocks_for_history(self, history_id: int) -> List[FilteredStock]:
