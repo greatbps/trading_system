@@ -477,33 +477,104 @@ class MenuHandlers:
             return False
     
     async def _scheduler(self) -> bool:
-        """스케줄러 시작"""
-        console.print(Panel("[bold green]⏰ 스케줄러 시작[/bold green]", border_style="green"))
+        """실시간 매매 스케줄러 관리"""
+        console.print(Panel("[bold green]⏰ 실시간 매매 스케줄러[/bold green]", border_style="green"))
         
-        try:
-            # 스케줄러 옵션
-            schedule_options = {
-                "1": "매일 장 시작 전 분석",
-                "2": "매일 장 마감 후 분석", 
-                "3": "실시간 모니터링 (5분마다)",
-                "4": "커스텀 스케줄"
-            }
-            
-            console.print("\n[bold]스케줄 옵션:[/bold]")
-            for key, value in schedule_options.items():
-                console.print(f"  {key}. {value}")
-            
-            choice = Prompt.ask("스케줄을 선택하세요", choices=list(schedule_options.keys()))
-            
-            # 스케줄러 시작 (실제 구현에서는 별도 스케줄러 모듈 사용)
-            console.print(f"[green]✅ '{schedule_options[choice]}' 스케줄러가 시작되었습니다.[/green]")
-            console.print("[dim]주의: 실제 스케줄러 구현은 별도 모듈에서 처리됩니다.[/dim]")
-            
-            return True
-            
-        except Exception as e:
-            console.print(f"[red]❌ 스케줄러 시작 실패: {e}[/red]")
+        if not self.system.scheduler:
+            console.print("[red]❌ 스케줄러가 초기화되지 않았습니다.[/red]")
             return False
+        
+        while True:
+            try:
+                # 현재 스케줄러 상태 표시
+                status = self.system.scheduler.get_status()
+                
+                console.print(f"\n[bold]📊 현재 상태:[/bold]")
+                console.print(f"• 실행 상태: {'[green]실행 중[/green]' if status['is_running'] else '[red]중지됨[/red]'}")
+                console.print(f"• 장중 여부: {'[green]장중[/green]' if status['is_market_hours'] else '[yellow]장외[/yellow]'}")
+                console.print(f"• 모니터링 종목: {status['monitored_stocks_count']}개")
+                console.print(f"• 마지막 분석 시간: {status['last_analysis_time'] or 'N/A'}")
+                
+                # 스케줄러 메뉴
+                scheduler_options = {
+                    "1": "📈 실시간 스케줄러 시작",
+                    "2": "🛑 실시간 스케줄러 중지", 
+                    "3": "📋 모니터링 종목 추가",
+                    "4": "🗑️ 모니터링 종목 제거",
+                    "5": "📊 스케줄러 상태 확인",
+                    "0": "메인 메뉴로 돌아가기"
+                }
+                
+                console.print("\n[bold]스케줄러 관리 옵션:[/bold]")
+                for key, value in scheduler_options.items():
+                    console.print(f"  {key}. {value}")
+                
+                choice = Prompt.ask("옵션을 선택하세요", choices=list(scheduler_options.keys()), default="0")
+                
+                if choice == "0":
+                    break
+                elif choice == "1":
+                    # 스케줄러 시작
+                    if status['is_running']:
+                        console.print("[yellow]⚠️ 스케줄러가 이미 실행 중입니다.[/yellow]")
+                    else:
+                        await self.system.scheduler.start()
+                        console.print("[green]✅ 실시간 스케줄러가 시작되었습니다.[/green]")
+                        
+                elif choice == "2":
+                    # 스케줄러 중지
+                    if status['is_running']:
+                        await self.system.scheduler.stop()
+                        console.print("[red]🛑 실시간 스케줄러가 중지되었습니다.[/red]")
+                    else:
+                        console.print("[yellow]⚠️ 스케줄러가 이미 중지되어 있습니다.[/yellow]")
+                        
+                elif choice == "3":
+                    # 모니터링 종목 추가
+                    symbol = Prompt.ask("추가할 종목 코드를 입력하세요 (예: 005930)")
+                    
+                    # 전략 선택
+                    available_strategies = list(self.system.strategies.keys())
+                    strategy_list = "\n".join([f"  {i+1}. {s}" for i, s in enumerate(available_strategies)])
+                    console.print(f"\n[bold]사용 가능한 전략:[/bold]\n{strategy_list}")
+                    
+                    strategy_choice = Prompt.ask("전략 번호를 선택하세요", 
+                                               choices=[str(i+1) for i in range(len(available_strategies))], 
+                                               default="1")
+                    strategy = available_strategies[int(strategy_choice) - 1]
+                    
+                    success = await self.system.scheduler.add_monitoring_stock(symbol, strategy)
+                    if success:
+                        console.print(f"[green]✅ {symbol} ({strategy} 전략) 모니터링 추가됨[/green]")
+                    else:
+                        console.print(f"[yellow]⚠️ {symbol} 모니터링 추가 실패 (이미 존재할 수 있음)[/yellow]")
+                        
+                elif choice == "4":
+                    # 모니터링 종목 제거
+                    if status['monitored_stocks_count'] == 0:
+                        console.print("[yellow]⚠️ 모니터링 중인 종목이 없습니다.[/yellow]")
+                    else:
+                        symbol = Prompt.ask("제거할 종목 코드를 입력하세요")
+                        success = self.system.scheduler.remove_monitoring_stock(symbol)
+                        if success:
+                            console.print(f"[green]✅ {symbol} 모니터링 제거됨[/green]")
+                        else:
+                            console.print(f"[yellow]⚠️ {symbol} 모니터링 제거 실패 (존재하지 않을 수 있음)[/yellow]")
+                            
+                elif choice == "5":
+                    # 상태 확인 (이미 상단에 표시됨)
+                    console.print("[green]✅ 상태 정보가 상단에 표시되어 있습니다.[/green]")
+                
+                # 잠시 대기 후 다시 메뉴 표시
+                if choice != "0":
+                    await asyncio.sleep(1)
+                    
+            except Exception as e:
+                console.print(f"[red]❌ 스케줄러 관리 실패: {e}[/red]")
+                self.logger.error(f"❌ 스케줄러 관리 실패: {e}")
+                break
+        
+        return True
     
     # === 데이터베이스 메뉴 ===
     
