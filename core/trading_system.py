@@ -283,8 +283,33 @@ class TradingSystem:
             except Exception as e:
                 self.logger.warning(f"⚠️ VWAP 전략 로드 실패: {e}")
             
+            # 3분봉 스캘핑 전략
+            try:
+                from strategies.scalping_3m_strategy import Scalping3mStrategy
+                self.strategies['scalping_3m'] = Scalping3mStrategy(self.config)
+                self.logger.info("✅ 3분봉 스캘핑 전략 등록 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ 3분봉 스캘핑 전략 로드 실패: {e}")
+            
+            # RSI 전략
+            try:
+                from strategies.rsi_strategy import RsiStrategy
+                self.strategies['rsi'] = RsiStrategy(self.config)
+                self.logger.info("✅ RSI 전략 등록 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ RSI 전략 로드 실패: {e}")
+            
             # 알림 서비스
             self.notifier = SimpleNotifier(self.config)
+            
+            # 실시간 스케줄러
+            try:
+                from core.scheduler import TradingScheduler
+                self.scheduler = TradingScheduler(self)
+                self.logger.info("✅ 실시간 스케줄러 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ 실시간 스케줄러 초기화 실패: {e}")
+                self.scheduler = None
             
             # 데이터베이스
             try:
@@ -294,6 +319,23 @@ class TradingSystem:
             except Exception as e:
                 self.logger.error(f"❌ 데이터베이스 초기화 실패: {e}")
                 self.db_manager = None
+            
+            # Trading 모듈들 초기화
+            try:
+                from trading.executor import TradingExecutor
+                from trading.position_manager import PositionManager
+                from trading.risk_manager import RiskManager
+                
+                self.trading_executor = TradingExecutor(self.config, self.data_collector, self.db_manager)
+                self.position_manager = PositionManager(self.config, self.data_collector, self.db_manager)
+                self.risk_manager = RiskManager(self.config, self.data_collector, self.position_manager, self.trading_executor, self.db_manager)
+                
+                self.logger.info("✅ Trading 모듈들 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ Trading 모듈 초기화 실패: {e}")
+                self.trading_executor = None
+                self.position_manager = None
+                self.risk_manager = None
             
             # 메뉴 핸들러
             try:
@@ -312,7 +354,7 @@ class TradingSystem:
         """결과 표시 - 유연한 호환성 메서드 (다양한 호출 방식 지원)"""
         # 추가 인수들은 무시하고 결과만 표시
         await self._display_analysis_results(results)
-    async def run_market_analysis(self, strategy: str = 'momentum', limit: int = 20) -> List[Dict]:
+    async def run_market_analysis(self, strategy: str = 'momentum', limit: int = None) -> List[Dict]:
         """
         시장 분석 (2단계 필터링)을 수행합니다.
         1. 1차 필터링 (HTS 조건검색) 결과를 DB에서 가져옵니다.
@@ -320,7 +362,8 @@ class TradingSystem:
         3. 분석 결과를 DB에 저장하고 최종 결과를 반환합니다.
         """
         self.last_analysis_time = datetime.now()
-        self.logger.info(f"📊 시장 분석 시작 (전략: {strategy}, 최대 {limit}개)")
+        limit_msg = "모든 종목" if limit is None else f"최대 {limit}개"
+        self.logger.info(f"📊 시장 분석 시작 (전략: {strategy}, {limit_msg})")
 
         if not await self._check_components():
             return []
@@ -344,7 +387,7 @@ class TradingSystem:
                     latest_history = await self.db_manager.db_operations.get_latest_filter_history(strategy)
                     
                     # 하루에 한 번만 실행하도록 체크
-                    if latest_history and latest_history.filter_datetime.date() == datetime.now().date():
+                    if latest_history and latest_history.filter_date.date() == datetime.now().date():
                         self.logger.info("✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.")
                         candidates = await self.db_manager.db_operations.get_filtered_stocks_for_history(latest_history.id)
                     else:
@@ -365,16 +408,27 @@ class TradingSystem:
                             major_stocks = await self._get_major_stocks_as_fallback(limit)
                             symbols_from_hts = [symbol for symbol, name in major_stocks]
                             self.logger.info(f"기본 종목 {len(symbols_from_hts)}개로 대체")
+                            
+                            # 기본 종목의 경우 이름을 직접 사용
+                            candidates_data = [{'stock_code': symbol, 'stock_name': name} for symbol, name in major_stocks]
                         else:
                             self.logger.info(f"✅ HTS 조건검색 성공: {len(symbols_from_hts)}개 종목 발견")
-
-                        candidates_data = []
-                        for symbol in symbols_from_hts:
-                            stock_info = await self.data_collector.get_stock_info(symbol)
-                            if stock_info:
-                                # StockData 객체에서 속성 직접 접근
-                                stock_name = stock_info.name if hasattr(stock_info, 'name') else symbol
-                                candidates_data.append({'stock_code': symbol, 'stock_name': stock_name})
+                            
+                            # HTS에서 가져온 종목의 경우 API로 정보 조회
+                            candidates_data = []
+                            for symbol in symbols_from_hts:
+                                try:
+                                    stock_info = await self.data_collector.get_stock_info(symbol)
+                                    if stock_info:
+                                        # StockData 객체에서 속성 직접 접근
+                                        stock_name = stock_info.name if hasattr(stock_info, 'name') else symbol
+                                        candidates_data.append({'stock_code': symbol, 'stock_name': stock_name})
+                                    else:
+                                        # stock_info가 None인 경우 기본값 사용
+                                        candidates_data.append({'stock_code': symbol, 'stock_name': symbol})
+                                except Exception as e:
+                                    self.logger.warning(f"⚠️ {symbol} 종목 정보 조회 실패: {e}")
+                                    candidates_data.append({'stock_code': symbol, 'stock_name': symbol})
                         
                         filter_history = await self.db_manager.db_operations.save_filter_history(strategy, candidates_data)
                         if not filter_history:
@@ -607,9 +661,10 @@ class TradingSystem:
         return []
     
     async def _get_major_stocks_as_fallback(self, limit: int) -> List[Tuple[str, str]]:
-        """주요 종목 fallback"""
-        # 기본 주요 종목들
+        """주요 종목 fallback - 확장된 종목 리스트"""
+        # 기본 주요 종목들 (KOSPI 대형주 + 인기 종목)
         major_stocks = [
+            # 대형주 (시가총액 상위)
             ("005930", "삼성전자"),
             ("000660", "SK하이닉스"),
             ("035420", "NAVER"),
@@ -619,9 +674,50 @@ class TradingSystem:
             ("006400", "삼성SDI"),
             ("000270", "기아"),
             ("068270", "셀트리온"),
-            ("105560", "KB금융")
+            ("105560", "KB금융"),
+            
+            # 추가 대형주
+            ("055550", "신한지주"),
+            ("035720", "카카오"),
+            ("207940", "삼성바이오로직스"),
+            ("066570", "LG전자"),
+            ("323410", "카카오뱅크"),
+            ("000810", "삼성화재"),
+            ("017670", "SK텔레콤"),
+            ("034730", "SK"),
+            ("259960", "크래프톤"),
+            ("003550", "LG"),
+            
+            # 섹터별 대표주
+            ("032830", "삼성생명"),
+            ("009150", "삼성전기"),
+            ("018260", "삼성에스디에스"),
+            ("012330", "현대모비스"),
+            ("024110", "기업은행"),
+            ("086790", "하나금융지주"),
+            ("316140", "우리금융지주"),
+            ("090430", "아모레퍼시픽"),
+            ("021240", "코웨이"),
+            ("030200", "KT"),
+            
+            # 인기 중형주
+            ("036570", "엔씨소프트"),
+            ("251270", "넷마블"),
+            ("112040", "위메이드"),
+            ("064350", "현대로템"),
+            ("010950", "S-Oil"),
+            ("011170", "롯데케미칼"),
+            ("267250", "HD현대중공업"),
+            ("042660", "한화오션"),
+            ("009830", "한화솔루션"),
+            ("000720", "현대건설")
         ]
-        return major_stocks[:limit]
+        
+        # limit이 None이면 모든 종목 반환
+        if limit is None:
+            return major_stocks
+        else:
+            return major_stocks[:min(limit, len(major_stocks))]
     
     async def _save_filter_history(self, strategy: str, filter_type: str, 
                                  hts_condition: str = None, hts_result_count: int = 0,

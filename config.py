@@ -53,6 +53,8 @@ class TradingConfig:
         'eod': os.getenv("HTS_EOD_ID", "003"),
         'supertrend_ema_rsi': os.getenv("HTS_SUPERTREND_ID", "004"), # Supertrend+EMA+RSI 전략
         'vwap': os.getenv("HTS_VWAP_ID", "005"),                   # VWAP 전략
+        'scalping_3m': os.getenv("HTS_SCALPING_3M_ID", "006"),    # 3분봉 스캘핑 전략
+        'rsi': os.getenv("HTS_RSI_ID", "007"),                     # RSI 전략
     }
 
     # 기본 설정

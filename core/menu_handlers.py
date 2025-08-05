@@ -229,7 +229,10 @@ class MenuHandlers:
             "1": ("momentum", "1. Momentum 전략"),
             "2": ("breakout", "2. Breakout 전략"), 
             "3": ("eod", "3. EOD 전략"),
-            "4": ("supertrend_ema_rsi", "4. Supertrend EMA RSI 전략 (신규)")
+            "4": ("supertrend_ema_rsi", "4. Supertrend EMA RSI 전략"),
+            "5": ("vwap", "5. VWAP 전략"),
+            "6": ("scalping_3m", "6. 3분봉 스캘핑 전략"),
+            "7": ("rsi", "7. RSI (상대강도지수) 전략")
         }
         
         console.print("\n[bold]분석 전략을 선택하세요:[/bold]")
@@ -247,9 +250,9 @@ class MenuHandlers:
                 strategy_name, strategy_desc = strategies[choice]
                 console.print(f"\n[green]✅ {strategy_desc} 선택됨[/green]")
                 
-                # 분석 실행
-                limit = await self._get_analysis_limit()
-                results = await self.system.run_market_analysis(strategy=strategy_name, limit=limit)
+                # 분석 실행 (1차 필터링 결과 모두 2차 필터링)
+                console.print("[yellow]ℹ️ 1차 필터링에서 추출된 모든 종목을 2차 필터링합니다.[/yellow]")
+                results = await self.system.run_market_analysis(strategy=strategy_name, limit=None)
                 
                 # 결과 표시
                 if results:
@@ -742,8 +745,9 @@ class MenuHandlers:
         return strategies[choice]
     
     async def _get_analysis_limit(self) -> int:
-        """분석 종목 수 제한"""
-        return IntPrompt.ask("분석할 최대 종목 수", default=100)
+        """분석 종목 수 제한 - 1차 필터링 결과 모두 분석"""
+        console.print("[yellow]ℹ️ 1차 필터링에서 추출된 모든 종목을 2차 필터링합니다.[/yellow]")
+        return None  # 제한 없음
     
     async def _get_pattern_types(self) -> List[str]:
         """차트패턴 유형 선택"""

@@ -13,7 +13,7 @@ from decimal import Decimal
 from enum import Enum
 
 from utils.logger import get_logger
-from database.models import Trade, TradeType, OrderStatus
+from database.models import Trade, TradeType, OrderStatus, OrderType
 
 
 class RiskLevel(Enum):
