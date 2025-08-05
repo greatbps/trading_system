@@ -20,17 +20,17 @@ import json
 
 # 절대 임포트로 변경
 try:
-    from database.models import Base, Stock, MarketData, AnalysisResult, Trade, Portfolio, SystemLog, TradingSession, FilterHistory
+    from database.models import Base, Stock, MarketData, AnalysisResult, Trade, TradeExecution, Portfolio, SystemLog, TradingSession, FilterHistory
 except ImportError:
     # 상대 임포트 시도
     try:
-        from .models import Base, Stock, MarketData, AnalysisResult, Trade, Portfolio, SystemLog, TradingSession, FilterHistory
+        from .models import Base, Stock, MarketData, AnalysisResult, Trade, TradeExecution, Portfolio, SystemLog, TradingSession, FilterHistory
     except ImportError:
         # 직접 실행되는 경우
         import sys
         from pathlib import Path
         sys.path.append(str(Path(__file__).parent.parent))
-        from database.models import Base, Stock, MarketData, AnalysisResult, Trade, Portfolio, SystemLog, TradingSession, FilterHistory
+        from database.models import Base, Stock, MarketData, AnalysisResult, Trade, TradeExecution, Portfolio, SystemLog, TradingSession, FilterHistory
 
 from utils.logger import get_logger
 

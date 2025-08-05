@@ -7,15 +7,15 @@ trading_system/strategies/__init__.py
 from .base_strategy import BaseStrategy
 from .momentum_strategy import MomentumStrategy
 from .supertrend_ema_rsi_strategy import SupertrendEmaRsiStrategy
-from .vwap_strategy import VWAPStrategy
+from .vwap_strategy import VwapStrategy
 from .breakout_strategy import BreakoutStrategy
-from .eod_strategy import EODStrategy
+from .eod_strategy import EodStrategy
 
 __all__ = [
     'BaseStrategy',
     'MomentumStrategy', 
     'SupertrendEmaRsiStrategy',
-    'VWAPStrategy',
+    'VwapStrategy',
     'BreakoutStrategy',
-    'EODStrategy'
+    'EodStrategy'
 ]

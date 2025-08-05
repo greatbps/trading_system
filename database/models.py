@@ -512,6 +512,39 @@ class Trade(BaseModel):
         return f"<Trade(stock_id={self.stock_id}, type='{self.trade_type.value}', status='{self.order_status.value}', price={self.executed_price})>"
 
 
+class TradeExecution(BaseModel):
+    """실제 체결 내역 테이블 (하나의 주문이 여러 번 체결될 수 있음)"""
+    __tablename__ = 'trade_executions'
+    
+    order_id = Column(Integer, ForeignKey('trades.id', ondelete='CASCADE'), nullable=False, index=True)
+    stock_id = Column(Integer, ForeignKey('stocks.id'), nullable=False, index=True)
+    
+    # 체결 정보
+    execution_type = Column(String(10), nullable=False, comment="BUY, SELL")
+    quantity = Column(Integer, nullable=False, comment="체결수량")
+    price = Column(Integer, nullable=False, comment="체결가격")
+    commission = Column(Integer, default=0, comment="수수료")
+    
+    # 시간 정보
+    trade_datetime = Column(DateTime, nullable=False, default=func.now(), index=True, comment="체결시간")
+    
+    # 관계
+    order = relationship("Trade", backref="trade_executions")
+    stock = relationship("Stock")
+    
+    # 제약 조건
+    __table_args__ = (
+        CheckConstraint('quantity > 0', name='check_execution_quantity_positive'),
+        CheckConstraint('price > 0', name='check_execution_price_positive'),
+        CheckConstraint('commission >= 0', name='check_execution_commission_non_negative'),
+        Index('idx_trade_execution_order_id', 'order_id'),
+        Index('idx_trade_execution_datetime', 'trade_datetime'),
+    )
+    
+    def __repr__(self):
+        return f"<TradeExecution(id={self.id}, order_id={self.order_id}, type='{self.execution_type}', price={self.price}, qty={self.quantity})>"
+
+
 class Portfolio(BaseModel):
     """포트폴리오 현황 테이블"""
     __tablename__ = 'portfolio'

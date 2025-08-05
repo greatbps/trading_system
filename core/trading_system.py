@@ -232,7 +232,7 @@ class TradingSystem:
             # 분석 엔진
             try:
                 from analyzers.analysis_engine import AnalysisEngine
-                self.analysis_engine = AnalysisEngine(self.config)
+                self.analysis_engine = AnalysisEngine(self.config, self.data_collector)
                 self.logger.info("✅ 분석 엔진 초기화 완료")
             except Exception as e:
                 self.logger.error(f"❌ 분석 엔진 초기화 실패: {e}")

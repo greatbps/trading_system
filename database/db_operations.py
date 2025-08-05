@@ -11,7 +11,7 @@ from typing import Dict, List, Optional
 from sqlalchemy import text, select, func
 from sqlalchemy.orm import selectinload
 
-from database.models import FilteredStock, Stock, AnalysisResult, SystemLog, TradingSession, MarketData, FilterHistory, Trade
+from database.models import FilteredStock, Stock, AnalysisResult, SystemLog, TradingSession, MarketData, FilterHistory, Trade, TradeExecution
 from utils.logger import get_logger
 
 class DatabaseOperations:

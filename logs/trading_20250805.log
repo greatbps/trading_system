@@ -819,3 +819,46 @@
 2025-08-05 14:41:06 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
 2025-08-05 14:41:12 | KISCollector | INFO     | close           | Closing KIS API collector...
 2025-08-05 14:41:12 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-05 15:01:16 | Main         | INFO     | main            | ✅ 설정 초기화 완료
+2025-08-05 15:01:16 | Main         | INFO     | main            | ✅ TradingSystem 임포트 성공
+2025-08-05 15:01:16 | Main         | INFO     | main            | 🔧 컴포넌트 초기화 중...
+2025-08-05 15:01:19 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 15:01:19 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 15:01:19 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-05 15:01:19 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 23:27:05.795569)
+2025-08-05 15:01:26 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-05 15:01:26 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-05 15:01:26 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 15:01:28 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 15:01:28 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 15:01:28 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 15:01:31 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 15:01:31 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-05 15:01:32 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-05 15:01:32 | Main         | INFO     | main            | ✅ 시스템 초기화 완료!
+2025-08-05 15:04:10 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 15:04:10 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 15:04:10 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 15:04:12 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 15:04:12 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 15:04:12 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 15:04:12 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-05 15:04:49 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 15:04:49 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 15:04:49 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 15:04:52 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 15:04:52 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 15:04:52 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 15:08:03 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-05 15:08:03 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-05 15:08:03 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-05 15:08:06 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-05 15:08:06 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-05 15:08:06 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-05 15:08:06 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 005930(삼성전자) 종합 분석 시작...
+2025-08-05 15:08:06 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ comprehensive 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ technical 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ sentiment 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ supply_demand 분석 실패. Fallback 데이터를 사용합니다.
+2025-08-05 15:08:06 | AnalysisEngine | WARNING  | _get_fallback_analysis | ⚠️ chart_pattern 분석 실패. Fallback 데이터를 사용합니다.

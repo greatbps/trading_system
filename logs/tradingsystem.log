@@ -2268,3 +2268,14 @@
 14:41:06 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
 14:41:07 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'Optional' is not defined
 14:41:07 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'Optional' is not defined
+15:01:16 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:01:26 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:01:28 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:01:31 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:01:31 | TradingSystem | WARNING | ⚠️ Momentum 전략 초기화 실패: cannot import name 'VWAPStrategy' from 'strategies.vwap_strategy' (D:\trading_system\strategies\vwap_strategy.py)
+15:01:31 | TradingSystem | WARNING | ⚠️ Breakout 전략 초기화 실패: cannot import name 'VWAPStrategy' from 'strategies.vwap_strategy' (D:\trading_system\strategies\vwap_strategy.py)
+15:01:31 | TradingSystem | WARNING | ⚠️ EOD 전략 초기화 실패: cannot import name 'VWAPStrategy' from 'strategies.vwap_strategy' (D:\trading_system\strategies\vwap_strategy.py)
+15:01:31 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:01:31 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:01:32 | TradingSystem | ERROR | ❌ 데이터베이스 초기화 실패: name 'TradeExecution' is not defined
+15:01:32 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
