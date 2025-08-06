@@ -546,3 +546,42 @@
 2025-08-06 10:08:23 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
 2025-08-06 10:08:23 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
 2025-08-06 10:08:23 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 10:10:50 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-06 10:10:50 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-06 10:12:46 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-06 10:12:46 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-06 10:12:46 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 4:15:38.966579)
+2025-08-06 10:12:46 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-06 10:12:46 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-06 10:12:46 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-06 10:12:49 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:12:49 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-06 10:12:49 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-06 10:12:51 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:12:51 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 10:12:51 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 10:12:51 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 10:12:51 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 10:12:51 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 10:12:51 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-06 10:12:54 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:12:54 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 10:12:56 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:12:56 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 10:12:59 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:12:59 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 10:13:02 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:13:02 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 10:13:02 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 10:13:02 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-06 10:13:02 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-06 10:13:02 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-06 10:13:02 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-06 10:13:04 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:13:04 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-06 10:13:04 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-06 10:13:04 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 10:13:04 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-06 10:13:04 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 10:15:32 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-06 10:15:32 | KISCollector | INFO     | close           | KIS API collector closed successfully
