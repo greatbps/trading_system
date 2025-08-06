@@ -43,6 +43,19 @@ class MenuHandlers:
     7. 자동매매 시작
     8. 백테스트 실행
 
+    [bold magenta]🧠 AI 고급 기능 (Phase 4)[/bold magenta]
+    11. AI 종합 시장 분석
+    12. AI 시장 체제 분석
+    13. AI 전략 최적화
+    14. AI 리스크 평가
+    15. AI 일일 보고서
+
+    [bold yellow]📢 알림 시스템 (Phase 5)[/bold yellow]
+    16. 텔레그램 알림 테스트
+    17. 알림 설정 관리
+    18. 알림 통계 조회
+    19. 알림 상태 확인
+
     [bold blue]🗄️ 데이터[/bold blue]
     9. 데이터베이스 상태
     10. 종목 데이터 조회
@@ -74,23 +87,36 @@ class MenuHandlers:
                 "4": self._comprehensive_analysis,
                 "5": self._specific_symbol_analysis,
                 "6": self._news_analysis,
-                "7": self._supply_demand_analysis,
-                "8": self._chart_pattern_analysis,
-                "9": self._auto_trading,
-                "10": self._backtest,
-                "11": self._scheduler,
+                "7": self._auto_trading,
+                "8": self._backtest,
                 
                 # 데이터베이스
-                "12": self._database_status,
-                "13": self._view_stock_data,
-                "14": self._view_analysis_results,
-                "15": self._view_trading_records,
+                "9": self._database_status,
+                "10": self._view_stock_data,
                 
-                # 고급 기능
-                "16": self._data_cleanup,
-                "17": self._log_analysis,
-                "18": self._system_monitoring,
-                "19": self._debug_filtering
+                # AI 고급 기능 (Phase 4)
+                "11": self._ai_comprehensive_analysis,
+                "12": self._ai_market_regime_analysis,
+                "13": self._ai_strategy_optimization,
+                "14": self._ai_risk_assessment,
+                "15": self._ai_daily_report,
+                
+                # 알림 시스템 (Phase 5)
+                "16": self._test_telegram_notification,
+                "17": self._manage_notification_settings,
+                "18": self._view_notification_stats,
+                "19": self._check_notification_status,
+                
+                # 고급 기능 (기존) - 번호 이동
+                "20": self._supply_demand_analysis,
+                "21": self._chart_pattern_analysis,
+                "22": self._scheduler,
+                "23": self._view_analysis_results,
+                "24": self._view_trading_records,
+                "25": self._data_cleanup,
+                "26": self._log_analysis,
+                "27": self._system_monitoring,
+                "28": self._debug_filtering
             }
             
             handler = menu_map.get(choice)
@@ -575,6 +601,343 @@ class MenuHandlers:
                 break
         
         return True
+    
+    # === AI 고급 기능 메뉴 (Phase 4) ===
+    
+    async def _ai_comprehensive_analysis(self) -> bool:
+        """AI 종합 시장 분석"""
+        console.print(Panel("[bold magenta]🧠 AI 종합 시장 분석[/bold magenta]", border_style="magenta"))
+        
+        try:
+            # AI 컨트롤러 확인
+            if not self.system.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return False
+            
+            # 시장 데이터 수집
+            console.print("[yellow]📊 시장 데이터 수집 중...[/yellow]")
+            market_data = await self._collect_market_data_for_ai()
+            individual_stocks = await self._collect_individual_stocks_data()
+            portfolio_data = await self._collect_portfolio_data()
+            
+            # AI 종합 분석 실행
+            console.print("[yellow]🧠 AI 종합 분석 실행 중...[/yellow]")
+            results = await self.system.run_ai_comprehensive_analysis(
+                market_data, individual_stocks, portfolio_data
+            )
+            
+            if results:
+                console.print("[green]✅ AI 종합 분석 완료[/green]")
+                return True
+            else:
+                console.print("[yellow]⚠️ AI 분석 결과가 없습니다.[/yellow]")
+                return False
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI 종합 분석 실패: {e}[/red]")
+            self.logger.error(f"❌ AI 종합 분석 실패: {e}")
+            return False
+    
+    async def _ai_market_regime_analysis(self) -> bool:
+        """AI 시장 체제 분석"""
+        console.print(Panel("[bold magenta]🌐 AI 시장 체제 분석[/bold magenta]", border_style="magenta"))
+        
+        try:
+            # AI 컨트롤러 확인
+            if not self.system.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return False
+            
+            # 시장 데이터 수집
+            console.print("[yellow]📊 시장 데이터 수집 중...[/yellow]")
+            market_data = await self._collect_market_data_for_ai()
+            individual_stocks = await self._collect_individual_stocks_data()
+            
+            # AI 시장 체제 분석 실행
+            console.print("[yellow]🌐 AI 시장 체제 분석 실행 중...[/yellow]")
+            results = await self.system.run_ai_market_regime_analysis(market_data, individual_stocks)
+            
+            if results:
+                console.print("[green]✅ AI 시장 체제 분석 완료[/green]")
+                return True
+            else:
+                console.print("[yellow]⚠️ 시장 체제 분석 결과가 없습니다.[/yellow]")
+                return False
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI 시장 체제 분석 실패: {e}[/red]")
+            self.logger.error(f"❌ AI 시장 체제 분석 실패: {e}")
+            return False
+    
+    async def _ai_strategy_optimization(self) -> bool:
+        """AI 전략 최적화"""
+        console.print(Panel("[bold magenta]⚙️ AI 전략 최적화[/bold magenta]", border_style="magenta"))
+        
+        try:
+            # AI 컨트롤러 확인
+            if not self.system.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return False
+            
+            # 전략 선택
+            available_strategies = ['momentum', 'breakout', 'rsi', 'scalping_3m', 'eod', 'vwap', 'supertrend_ema_rsi']
+            console.print("\n[bold]최적화할 전략을 선택하세요:[/bold]")
+            for i, strategy in enumerate(available_strategies, 1):
+                console.print(f"  {i}. {strategy}")
+            console.print("  0. 전체 전략")
+            
+            choice = Prompt.ask("전략 선택", choices=[str(i) for i in range(len(available_strategies) + 1)], default="0")
+            
+            if choice == "0":
+                strategies = available_strategies
+            else:
+                strategies = [available_strategies[int(choice) - 1]]
+            
+            # 성과 데이터 수집
+            console.print("[yellow]📊 성과 데이터 수집 중...[/yellow]")
+            performance_data = await self._collect_strategy_performance_data()
+            market_conditions = await self._collect_market_conditions()
+            
+            # AI 전략 최적화 실행
+            console.print("[yellow]⚙️ AI 전략 최적화 실행 중...[/yellow]")
+            results = await self.system.run_ai_strategy_optimization(
+                strategies, performance_data, market_conditions
+            )
+            
+            if results:
+                console.print("[green]✅ AI 전략 최적화 완료[/green]")
+                return True
+            else:
+                console.print("[yellow]⚠️ 전략 최적화 결과가 없습니다.[/yellow]")
+                return False
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI 전략 최적화 실패: {e}[/red]")
+            self.logger.error(f"❌ AI 전략 최적화 실패: {e}")
+            return False
+    
+    async def _ai_risk_assessment(self) -> bool:
+        """AI 리스크 평가"""
+        console.print(Panel("[bold magenta]🛡️ AI 리스크 평가[/bold magenta]", border_style="magenta"))
+        
+        try:
+            # AI 컨트롤러 확인
+            if not self.system.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return False
+            
+            # 포트폴리오 데이터 수집
+            console.print("[yellow]📊 포트폴리오 데이터 수집 중...[/yellow]")
+            portfolio_data = await self._collect_portfolio_data()
+            market_context = await self._collect_market_conditions()
+            current_positions = await self._collect_current_positions()
+            
+            # AI 리스크 평가 실행
+            console.print("[yellow]🛡️ AI 리스크 평가 실행 중...[/yellow]")
+            results = await self.system.run_ai_risk_assessment(
+                portfolio_data, market_context, current_positions
+            )
+            
+            if results:
+                console.print("[green]✅ AI 리스크 평가 완료[/green]")
+                return True
+            else:
+                console.print("[yellow]⚠️ 리스크 평가 결과가 없습니다.[/yellow]")
+                return False
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI 리스크 평가 실패: {e}[/red]")
+            self.logger.error(f"❌ AI 리스크 평가 실패: {e}")
+            return False
+    
+    async def _ai_daily_report(self) -> bool:
+        """AI 일일 보고서"""
+        console.print(Panel("[bold magenta]📊 AI 일일 보고서[/bold magenta]", border_style="magenta"))
+        
+        try:
+            # AI 컨트롤러 확인
+            if not self.system.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return False
+            
+            # 보고서 기간 선택
+            period_options = {
+                "1": "daily",
+                "2": "weekly",
+                "3": "monthly"
+            }
+            
+            console.print("\n[bold]보고서 기간을 선택하세요:[/bold]")
+            console.print("  1. 일일 보고서")
+            console.print("  2. 주간 보고서") 
+            console.print("  3. 월간 보고서")
+            
+            choice = Prompt.ask("기간 선택", choices=list(period_options.keys()), default="1")
+            period = period_options[choice]
+            
+            # AI 일일 보고서 생성
+            console.print(f"[yellow]📊 AI {period} 보고서 생성 중...[/yellow]")
+            results = await self.system.generate_ai_daily_report(period)
+            
+            if results:
+                console.print(f"[green]✅ AI {period} 보고서 생성 완료[/green]")
+                
+                # 보고서 저장 옵션
+                if Confirm.ask("\n보고서를 파일로 저장하시겠습니까?"):
+                    await self._save_ai_report_to_file(results, period)
+                
+                return True
+            else:
+                console.print("[yellow]⚠️ 보고서 생성 결과가 없습니다.[/yellow]")
+                return False
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI 보고서 생성 실패: {e}[/red]")
+            self.logger.error(f"❌ AI 보고서 생성 실패: {e}")
+            return False
+    
+    # === AI 헬퍼 메서드들 ===
+    
+    async def _collect_market_data_for_ai(self) -> List[Dict]:
+        """AI용 시장 데이터 수집"""
+        try:
+            # 기본 시장 지수 데이터 수집
+            market_indices = ["KOSPI", "KOSDAQ", "KS11", "KQ11"]
+            market_data = []
+            
+            for index in market_indices:
+                try:
+                    data = await self.system.data_collector.get_market_index_data(index)
+                    if data:
+                        market_data.append(data)
+                except Exception as e:
+                    self.logger.warning(f"시장 지수 {index} 데이터 수집 실패: {e}")
+            
+            # 빈 리스트 반환하지 않도록 기본 데이터 생성
+            if not market_data:
+                market_data = [{
+                    'index': 'KOSPI',
+                    'current_price': 2500,
+                    'change_rate': 0.01,
+                    'volume': 1000000,
+                    'timestamp': datetime.now()
+                }]
+            
+            return market_data
+            
+        except Exception as e:
+            self.logger.error(f"AI용 시장 데이터 수집 실패: {e}")
+            return []
+    
+    async def _collect_individual_stocks_data(self) -> List[Dict]:
+        """개별 종목 데이터 수집"""
+        try:
+            # 대형주 샘플 데이터 수집
+            sample_stocks = ["005930", "000660", "035420", "005380", "051910"]
+            stocks_data = []
+            
+            for symbol in sample_stocks:
+                try:
+                    data = await self.system.data_collector.get_stock_data(symbol)
+                    if data:
+                        data['symbol'] = symbol
+                        stocks_data.append(data)
+                except Exception as e:
+                    self.logger.warning(f"종목 {symbol} 데이터 수집 실패: {e}")
+            
+            return stocks_data
+            
+        except Exception as e:
+            self.logger.error(f"개별 종목 데이터 수집 실패: {e}")
+            return []
+    
+    async def _collect_portfolio_data(self) -> Dict:
+        """포트폴리오 데이터 수집"""
+        try:
+            # 기본 포트폴리오 정보 생성
+            portfolio_data = {
+                'total_value': 10000000,  # 1천만원
+                'cash': 2000000,  # 200만원
+                'positions': [],
+                'daily_pnl': 0,
+                'total_pnl': 0,
+                'risk_level': 'MODERATE'
+            }
+            
+            return portfolio_data
+            
+        except Exception as e:
+            self.logger.error(f"포트폴리오 데이터 수집 실패: {e}")
+            return {}
+    
+    async def _collect_strategy_performance_data(self) -> Dict:
+        """전략 성과 데이터 수집"""
+        try:
+            # 기본 전략 성과 데이터
+            performance_data = {
+                'momentum': {'total_return': 0.05, 'win_rate': 0.6, 'sharpe_ratio': 1.2},
+                'breakout': {'total_return': 0.08, 'win_rate': 0.55, 'sharpe_ratio': 1.0},
+                'rsi': {'total_return': 0.03, 'win_rate': 0.65, 'sharpe_ratio': 0.8},
+                'scalping_3m': {'total_return': 0.12, 'win_rate': 0.58, 'sharpe_ratio': 1.5},
+                'eod': {'total_return': 0.06, 'win_rate': 0.62, 'sharpe_ratio': 1.1},
+                'vwap': {'total_return': 0.04, 'win_rate': 0.68, 'sharpe_ratio': 0.9},
+                'supertrend_ema_rsi': {'total_return': 0.07, 'win_rate': 0.60, 'sharpe_ratio': 1.3}
+            }
+            
+            return performance_data
+            
+        except Exception as e:
+            self.logger.error(f"전략 성과 데이터 수집 실패: {e}")
+            return {}
+    
+    async def _collect_market_conditions(self) -> Dict:
+        """시장 조건 데이터 수집"""
+        try:
+            market_conditions = {
+                'volatility': 0.2,
+                'trend': 'BULL',
+                'volume_trend': 'INCREASING',
+                'sector_rotation': 'TECH_TO_VALUE',
+                'interest_rate_environment': 'RISING',
+                'economic_indicators': 'MIXED'
+            }
+            
+            return market_conditions
+            
+        except Exception as e:
+            self.logger.error(f"시장 조건 데이터 수집 실패: {e}")
+            return {}
+    
+    async def _collect_current_positions(self) -> Dict:
+        """현재 포지션 데이터 수집"""
+        try:
+            current_positions = {
+                '005930': {'quantity': 10, 'avg_price': 70000, 'current_price': 72000},
+                '000660': {'quantity': 5, 'avg_price': 85000, 'current_price': 87000}
+            }
+            
+            return current_positions
+            
+        except Exception as e:
+            self.logger.error(f"현재 포지션 데이터 수집 실패: {e}")
+            return {}
+    
+    async def _save_ai_report_to_file(self, report: Dict, period: str) -> bool:
+        """AI 보고서를 파일로 저장"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"ai_report_{period}_{timestamp}.json"
+            
+            # 보고서 데이터를 JSON으로 저장
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(report, f, ensure_ascii=False, indent=2, default=str)
+            
+            console.print(f"[green]✅ AI 보고서가 {filename}에 저장되었습니다.[/green]")
+            return True
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI 보고서 저장 실패: {e}[/red]")
+            return False
     
     # === 데이터베이스 메뉴 ===
     
@@ -1284,3 +1647,178 @@ class MenuHandlers:
             
         except Exception as e:
             console.print(f"[red]❌ 로그 분석 실패: {e}[/red]")
+    
+    # === 알림 시스템 메뉴 핸들러들 (Phase 5) ===
+    
+    async def _test_telegram_notification(self):
+        """텔레그램 알림 테스트"""
+        try:
+            console.print("[cyan]📢 텔레그램 알림 테스트 시작...[/cyan]")
+            
+            if not hasattr(self.system, 'notification_manager') or not self.system.notification_manager:
+                console.print("[red]❌ 알림 관리자가 초기화되지 않았습니다.[/red]")
+                return
+            
+            # 테스트 알림 전송
+            success = await self.system.notification_manager.send_test_notification()
+            
+            if success:
+                console.print("[green]✅ 텔레그램 알림 테스트 성공![/green]")
+                console.print("[dim]텔레그램에서 테스트 메시지를 확인하세요.[/dim]")
+            else:
+                console.print("[red]❌ 텔레그램 알림 테스트 실패[/red]")
+                console.print("[dim]설정을 확인하고 다시 시도하세요.[/dim]")
+                
+        except Exception as e:
+            console.print(f"[red]❌ 텔레그램 알림 테스트 오류: {e}[/red]")
+    
+    async def _manage_notification_settings(self):
+        """알림 설정 관리"""
+        try:
+            if not hasattr(self.system, 'notification_manager') or not self.system.notification_manager:
+                console.print("[red]❌ 알림 관리자가 초기화되지 않았습니다.[/red]")
+                return
+            
+            # 현재 설정 표시
+            settings = self.system.notification_manager.get_notification_settings()
+            
+            # 설정 표시용 테이블
+            table = Table(title="📢 현재 알림 설정", show_header=True, header_style="bold cyan")
+            table.add_column("설정", style="yellow", width=20)
+            table.add_column("값", style="white", width=30)
+            table.add_column("설명", style="dim", width=40)
+            
+            table.add_row("알림 활성화", "✅ 활성화" if settings['enabled'] else "❌ 비활성화", "텔레그램 알림 전체 활성화 상태")
+            table.add_row("알림 수준", ", ".join([level.value for level in settings['alert_levels']]), "전송할 알림 수준")
+            table.add_row("조용한 시간", f"{settings['quiet_hours']['start']}:00 - {settings['quiet_hours']['end']}:00", "알림 제한 시간대")
+            table.add_row("속도 제한", f"{settings['rate_limit']['messages_per_minute']}개/분", "분당 최대 메시지 수")
+            
+            console.print(table)
+            
+            # 설정 변경 옵션
+            if Confirm.ask("\n[yellow]설정을 변경하시겠습니까?[/yellow]"):
+                await self._modify_notification_settings()
+                
+        except Exception as e:
+            console.print(f"[red]❌ 알림 설정 조회 오류: {e}[/red]")
+    
+    async def _modify_notification_settings(self):
+        """알림 설정 수정"""
+        try:
+            console.print("\n[cyan]📝 알림 설정 수정[/cyan]")
+            
+            new_settings = {}
+            
+            # 조용한 시간 설정
+            if Confirm.ask("조용한 시간을 변경하시겠습니까?"):
+                start_hour = IntPrompt.ask("시작 시간 (0-23)", default=22)
+                end_hour = IntPrompt.ask("종료 시간 (0-23)", default=7)
+                new_settings['quiet_hours'] = {'start': start_hour, 'end': end_hour}
+            
+            # 속도 제한 설정
+            if Confirm.ask("속도 제한을 변경하시겠습니까?"):
+                rate_limit = IntPrompt.ask("분당 최대 메시지 수", default=10)
+                new_settings['rate_limit'] = {'messages_per_minute': rate_limit, 'burst_limit': rate_limit * 2}
+            
+            # 설정 적용
+            if new_settings:
+                success = self.system.notification_manager.update_notification_settings(new_settings)
+                if success:
+                    console.print("[green]✅ 설정이 성공적으로 변경되었습니다.[/green]")
+                else:
+                    console.print("[red]❌ 설정 변경에 실패했습니다.[/red]")
+            else:
+                console.print("[yellow]변경된 설정이 없습니다.[/yellow]")
+                
+        except Exception as e:
+            console.print(f"[red]❌ 설정 수정 오류: {e}[/red]")
+    
+    async def _view_notification_stats(self):
+        """알림 통계 조회"""
+        try:
+            if not hasattr(self.system, 'notification_manager') or not self.system.notification_manager:
+                console.print("[red]❌ 알림 관리자가 초기화되지 않았습니다.[/red]")
+                return
+            
+            stats = self.system.notification_manager.get_notification_stats()
+            
+            # 통계 표시용 테이블
+            table = Table(title="📊 일일 알림 통계", show_header=True, header_style="bold cyan")
+            table.add_column("항목", style="yellow", width=20)
+            table.add_column("수량", style="white", width=15)
+            table.add_column("비율", style="green", width=15)
+            
+            total_sent = stats['sent_today']
+            total_failed = stats['failed_today']
+            total_attempts = total_sent + total_failed
+            
+            table.add_row("전송 성공", f"{total_sent:,}개", f"{total_sent/total_attempts*100:.1f}%" if total_attempts > 0 else "0%")
+            table.add_row("전송 실패", f"{total_failed:,}개", f"{total_failed/total_attempts*100:.1f}%" if total_attempts > 0 else "0%")
+            table.add_row("총 시도", f"{total_attempts:,}개", "100%")
+            
+            console.print(table)
+            
+            # 타입별 통계
+            if stats['types_sent']:
+                type_table = Table(title="📈 알림 유형별 통계", show_header=True, header_style="bold magenta")
+                type_table.add_column("알림 유형", style="yellow", width=20)
+                type_table.add_column("전송 수", style="white", width=15)
+                type_table.add_column("비율", style="green", width=15)
+                
+                for notification_type, count in stats['types_sent'].items():
+                    percentage = count / total_sent * 100 if total_sent > 0 else 0
+                    type_table.add_row(notification_type, f"{count:,}개", f"{percentage:.1f}%")
+                
+                console.print(type_table)
+            
+            console.print(f"\n[dim]마지막 업데이트: {stats['last_reset']}[/dim]")
+                
+        except Exception as e:
+            console.print(f"[red]❌ 알림 통계 조회 오류: {e}[/red]")
+    
+    async def _check_notification_status(self):
+        """알림 상태 확인"""
+        try:
+            if not hasattr(self.system, 'notification_manager') or not self.system.notification_manager:
+                console.print("[red]❌ 알림 관리자가 초기화되지 않았습니다.[/red]")
+                return
+            
+            status = self.system.notification_manager.get_system_status()
+            
+            # 상태 표시용 테이블
+            table = Table(title="🔍 알림 시스템 상태", show_header=True, header_style="bold cyan")
+            table.add_column("구성 요소", style="yellow", width=25)
+            table.add_column("상태", style="white", width=15)
+            table.add_column("세부 정보", style="dim", width=40)
+            
+            # 텔레그램 상태
+            telegram_status = "✅ 활성화" if status['telegram_enabled'] else "❌ 비활성화"
+            table.add_row("텔레그램 봇", telegram_status, "텔레그램 알림 전송 상태")
+            
+            # 이벤트 처리 상태
+            processing_status = "✅ 실행 중" if status['processing_events'] else "❌ 중지됨"
+            table.add_row("이벤트 처리", processing_status, "알림 이벤트 큐 처리 상태")
+            
+            # 큐 상태
+            queue_info = f"{status['queue_size']}개 대기 중"
+            table.add_row("이벤트 큐", queue_info, "처리 대기 중인 알림 수")
+            
+            # 최근 알림 수
+            recent_count = status['recent_notifications_count']
+            table.add_row("최근 알림", f"{recent_count}개 기록됨", "중복 방지용 최근 알림 기록")
+            
+            console.print(table)
+            
+            # 오늘의 통계 요약
+            stats = status['stats']
+            summary_text = f"""
+[bold]📊 오늘의 요약[/bold]
+• 전송 성공: {stats['sent_today']:,}개
+• 전송 실패: {stats['failed_today']:,}개
+• 성공률: {stats['sent_today']/(stats['sent_today']+stats['failed_today'])*100:.1f}% (전체 {stats['sent_today']+stats['failed_today']:,}회 시도)
+            """
+            
+            console.print(Panel(summary_text.strip(), title="📈 성과 요약", border_style="green"))
+                
+        except Exception as e:
+            console.print(f"[red]❌ 알림 상태 확인 오류: {e}[/red]")

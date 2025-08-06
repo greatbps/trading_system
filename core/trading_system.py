@@ -337,6 +337,25 @@ class TradingSystem:
                 self.position_manager = None
                 self.risk_manager = None
             
+            # AI 통합 컨트롤러 (Phase 4)
+            try:
+                from analyzers.ai_controller import AIController
+                self.ai_controller = AIController(self.config)
+                self.logger.info("✅ AI 통합 컨트롤러 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ AI 통합 컨트롤러 초기화 실패: {e}")
+                self.ai_controller = None
+            
+            # 알림 관리자 (Phase 5)
+            try:
+                from notifications.notification_manager import NotificationManager
+                self.notification_manager = NotificationManager(self.config)
+                await self.notification_manager.start_processing()
+                self.logger.info("✅ 알림 관리자 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ 알림 관리자 초기화 실패: {e}")
+                self.notification_manager = None
+            
             # 메뉴 핸들러
             try:
                 from core.menu_handlers import MenuHandlers
@@ -1125,14 +1144,16 @@ class TradingSystem:
     
     def print_banner(self):
         """시스템 배너"""
-        banner = f"""[bold cyan]🚀 AI Trading System v3.0[/bold cyan]
+        banner = f"""[bold cyan]AI Trading System v4.0 - Phase 4: Advanced AI Features[/bold cyan]
 
-📊 5개 영역 통합 분석: 기술적 + 펀더멘털 + 뉴스 + 수급 + 패턴
+5개 영역 통합 분석: 기술적 + 펀더멘털 + 뉴스 + 수급 + 패턴
+AI 고급 기능: 예측 + 리스크 관리 + 체제 감지 + 전략 최적화
 
-매매 모드: {'🔴 활성화' if self.trading_enabled else '🟡 비활성화'}
-백테스트: {'🔴 활성화' if self.backtest_mode else '🟡 비활성화'}"""
+매매 모드: {'[red]활성화[/red]' if self.trading_enabled else '[yellow]비활성화[/yellow]'}
+백테스트: {'[red]활성화[/red]' if self.backtest_mode else '[yellow]비활성화[/yellow]'}
+AI 컨트롤러: {'[green]초기화됨[/green]' if self.ai_controller else '[red]미초기화[/red]'}"""
         
-        console.print(Panel.fit(banner, title="AI Trading System", border_style="cyan"))
+        console.print(Panel.fit(banner, title="AI Trading System v4.0", border_style="cyan"))
     
     def show_main_menu(self):
         """메인 메뉴"""
@@ -1377,9 +1398,385 @@ class TradingSystem:
             width=70
         ))
     
+    # === Phase 4: Advanced AI Features ===
+    
+    async def run_ai_comprehensive_analysis(self, market_data: List[Dict] = None,
+                                          individual_stocks: List[Dict] = None,
+                                          portfolio_data: Dict = None) -> Dict[str, Any]:
+        """AI 종합 분석 실행"""
+        try:
+            if not self.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return {}
+            
+            console.print("[cyan]🧠 AI 종합 분석 시작...[/cyan]")
+            
+            # 기본 데이터 준비
+            if market_data is None:
+                market_data = []
+            
+            if individual_stocks is None:
+                # 최근 분석 결과에서 주요 종목 추출
+                major_stocks = await self._get_major_stocks_as_fallback(20)
+                individual_stocks = []
+                for symbol, name in major_stocks:
+                    try:
+                        stock_info = await self.data_collector.get_stock_info(symbol)
+                        if stock_info:
+                            individual_stocks.append({
+                                'symbol': symbol,
+                                'name': name,
+                                'current_price': stock_info.current_price,
+                                'change_rate': stock_info.change_rate,
+                                'volume': stock_info.volume
+                            })
+                    except Exception as e:
+                        self.logger.warning(f"⚠️ {symbol} 정보 조회 실패: {e}")
+            
+            if portfolio_data is None:
+                portfolio_data = {'total_value': 10000000, 'positions': {}}
+            
+            # AI 종합 분석 실행
+            analysis_result = await self.ai_controller.comprehensive_market_analysis(
+                market_data, individual_stocks, portfolio_data
+            )
+            
+            # 결과 표시
+            await self._display_ai_analysis_results(analysis_result)
+            
+            return analysis_result
+            
+        except Exception as e:
+            self.logger.error(f"❌ AI 종합 분석 실패: {e}")
+            console.print(f"[red]❌ AI 종합 분석 실패: {e}[/red]")
+            return {}
+    
+    async def run_ai_market_regime_analysis(self) -> Dict[str, Any]:
+        """AI 시장 체제 분석"""
+        try:
+            if not self.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return {}
+            
+            console.print("[cyan]🌐 AI 시장 체제 분석 시작...[/cyan]")
+            
+            # 시장 데이터 수집
+            market_data = []
+            individual_stocks = []
+            
+            # 주요 종목 데이터 수집
+            major_stocks = await self._get_major_stocks_as_fallback(30)
+            for symbol, name in major_stocks:
+                try:
+                    stock_info = await self.data_collector.get_stock_info(symbol)
+                    if stock_info:
+                        stock_dict = {
+                            'symbol': symbol,
+                            'name': name,
+                            'current_price': stock_info.current_price,
+                            'change_rate': stock_info.change_rate,
+                            'volume': stock_info.volume,
+                            'trading_value': stock_info.trading_value
+                        }
+                        individual_stocks.append(stock_dict)
+                        market_data.append(stock_dict)
+                except Exception as e:
+                    self.logger.warning(f"⚠️ {symbol} 데이터 수집 실패: {e}")
+            
+            # 시장 체제 감지
+            current_regime = await self.ai_controller.regime_detector.detect_current_regime(
+                market_data, individual_stocks
+            )
+            
+            # 결과 표시
+            await self._display_regime_analysis(current_regime)
+            
+            return {
+                'regime_type': current_regime.regime_type,
+                'confidence': current_regime.confidence,
+                'expected_duration': current_regime.expected_duration,
+                'recommended_strategies': current_regime.recommended_strategies,
+                'risk_factors': current_regime.risk_factors,
+                'market_characteristics': current_regime.market_characteristics
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ AI 시장 체제 분석 실패: {e}")
+            console.print(f"[red]❌ AI 시장 체제 분석 실패: {e}[/red]")
+            return {}
+    
+    async def run_ai_strategy_optimization(self, strategy_name: str = None) -> Dict[str, Any]:
+        """AI 전략 최적화"""
+        try:
+            if not self.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return {}
+            
+            if strategy_name is None:
+                # 사용 가능한 전략 목록 표시
+                available_strategies = list(self.strategies.keys())
+                console.print("\n[bold]사용 가능한 전략:[/bold]")
+                for i, strategy in enumerate(available_strategies, 1):
+                    console.print(f"  {i}. {strategy}")
+                
+                from rich.prompt import Prompt
+                choice = Prompt.ask("최적화할 전략 번호를 선택하세요", 
+                                  choices=[str(i) for i in range(1, len(available_strategies) + 1)],
+                                  default="1")
+                strategy_name = available_strategies[int(choice) - 1]
+            
+            console.print(f"[cyan]⚙️ {strategy_name} 전략 AI 최적화 시작...[/cyan]")
+            
+            # 모의 성과 데이터 (실제 구현에서는 실제 성과 데이터 사용)
+            performance_data = {
+                'total_return': 0.08,
+                'sharpe_ratio': 1.2,
+                'max_drawdown': 0.12,
+                'win_rate': 0.65,
+                'volatility': 0.15
+            }
+            
+            # 시장 조건 데이터
+            market_conditions = {
+                'volatility': 0.20,
+                'trend': 'NEUTRAL',
+                'regime': 'SIDEWAYS'
+            }
+            
+            # 전략 최적화 실행
+            optimization_result = await self.ai_controller.strategy_optimizer.optimize_strategy(
+                strategy_name, performance_data, market_conditions
+            )
+            
+            # 결과 표시
+            await self._display_optimization_results(optimization_result)
+            
+            return {
+                'strategy_name': optimization_result.strategy_name,
+                'performance_improvement': optimization_result.performance_improvement,
+                'confidence': optimization_result.confidence,
+                'optimized_params': optimization_result.optimized_params,
+                'ai_insights': optimization_result.ai_insights
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ AI 전략 최적화 실패: {e}")
+            console.print(f"[red]❌ AI 전략 최적화 실패: {e}[/red]")
+            return {}
+    
+    async def run_ai_risk_assessment(self, portfolio_data: Dict = None) -> Dict[str, Any]:
+        """AI 리스크 평가"""
+        try:
+            if not self.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return {}
+            
+            console.print("[cyan]🛡️ AI 포트폴리오 리스크 평가 시작...[/cyan]")
+            
+            # 기본 포트폴리오 데이터
+            if portfolio_data is None:
+                portfolio_data = {
+                    'total_value': 10000000,
+                    'positions': {
+                        '005930': {'value': 3000000, 'quantity': 100},
+                        '000660': {'value': 2000000, 'quantity': 50},
+                        '035420': {'value': 1500000, 'quantity': 30}
+                    },
+                    'cash': 3500000
+                }
+            
+            # 시장 데이터
+            market_data = {'volatility': 0.20, 'trend': 'NEUTRAL'}
+            
+            # AI 리스크 평가 실행
+            risk_assessment = await self.ai_controller.risk_manager.assess_portfolio_risk(
+                portfolio_data, market_data
+            )
+            
+            # 결과 표시
+            await self._display_risk_assessment(risk_assessment)
+            
+            return {
+                'overall_risk_level': risk_assessment.overall_risk_level,
+                'risk_score': risk_assessment.risk_score,
+                'key_risk_factors': risk_assessment.key_risk_factors,
+                'mitigation_strategies': risk_assessment.risk_mitigation_strategies,
+                'confidence': risk_assessment.confidence
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ AI 리스크 평가 실패: {e}")
+            console.print(f"[red]❌ AI 리스크 평가 실패: {e}[/red]")
+            return {}
+    
+    async def generate_ai_daily_report(self) -> Dict[str, Any]:
+        """AI 일일 보고서 생성"""
+        try:
+            if not self.ai_controller:
+                console.print("[yellow]⚠️ AI 컨트롤러가 초기화되지 않았습니다.[/yellow]")
+                return {}
+            
+            console.print("[cyan]📊 AI 일일 보고서 생성 중...[/cyan]")
+            
+            # AI 보고서 생성
+            report = await self.ai_controller.generate_ai_report('daily')
+            
+            # 결과 표시
+            await self._display_ai_report(report)
+            
+            return report
+            
+        except Exception as e:
+            self.logger.error(f"❌ AI 보고서 생성 실패: {e}")
+            console.print(f"[red]❌ AI 보고서 생성 실패: {e}[/red]")
+            return {}
+    
+    # === AI 결과 표시 메서드들 ===
+    
+    async def _display_ai_analysis_results(self, analysis_result: Dict):
+        """AI 분석 결과 표시"""
+        try:
+            if not analysis_result:
+                return
+            
+            # 시장 체제 정보
+            regime_info = analysis_result.get('market_regime', {})
+            console.print(Panel(
+                f"[bold blue]🌐 시장 체제[/bold blue]\n"
+                f"• 체제: {regime_info.get('regime_type', 'UNKNOWN')}\n"
+                f"• 신뢰도: {regime_info.get('confidence', 0):.1f}%\n"
+                f"• 예상 지속기간: {regime_info.get('expected_duration', 0)}일\n"
+                f"• 추천 전략: {', '.join(regime_info.get('recommended_strategies', []))}",
+                title="🧠 AI 시장 분석",
+                border_style="blue"
+            ))
+            
+            # 주요 인사이트
+            insights = analysis_result.get('ai_insights', [])
+            if insights:
+                insight_text = "\n".join([
+                    f"• [{insight.get('priority', 'MEDIUM')}] {insight.get('message', '')}"
+                    for insight in insights[:5]
+                ])
+                console.print(Panel(
+                    f"[bold green]💡 주요 인사이트[/bold green]\n{insight_text}",
+                    title="🎯 AI 인사이트",
+                    border_style="green"
+                ))
+            
+            # AI 결정 사항
+            decisions = analysis_result.get('ai_decisions', [])
+            if decisions:
+                decision_text = "\n".join([
+                    f"• {decision.get('recommendation', '')} (신뢰도: {decision.get('confidence', 0):.1f}%)"
+                    for decision in decisions[:3]
+                ])
+                console.print(Panel(
+                    f"[bold yellow]⚙️ AI 추천 결정[/bold yellow]\n{decision_text}",
+                    title="🎯 실행 권고",
+                    border_style="yellow"
+                ))
+            
+        except Exception as e:
+            self.logger.error(f"❌ AI 결과 표시 실패: {e}")
+    
+    async def _display_regime_analysis(self, regime):
+        """시장 체제 분석 결과 표시"""
+        try:
+            console.print(Panel(
+                f"[bold cyan]🌐 시장 체제 분석 결과[/bold cyan]\n\n"
+                f"[green]체제 정보[/green]\n"
+                f"• 체제 유형: {regime.regime_type}\n"
+                f"• 세부 체제: {regime.sub_regime}\n"
+                f"• 신뢰도: {regime.confidence:.1f}%\n"
+                f"• 예상 지속기간: {regime.expected_duration}일\n\n"
+                f"[yellow]주요 특징[/yellow]\n"
+                f"• {chr(10).join([f'  - {indicator}' for indicator in regime.key_indicators])}\n\n"
+                f"[blue]추천 전략[/blue]\n"
+                f"• {', '.join(regime.recommended_strategies)}\n\n"
+                f"[red]리스크 요인[/red]\n"
+                f"• {chr(10).join([f'  - {risk}' for risk in regime.risk_factors])}",
+                title="🧠 AI 시장 체제 분석",
+                border_style="cyan"
+            ))
+            
+        except Exception as e:
+            self.logger.error(f"❌ 체제 분석 표시 실패: {e}")
+    
+    async def _display_optimization_results(self, result):
+        """최적화 결과 표시"""
+        try:
+            console.print(Panel(
+                f"[bold green]⚙️ {result.strategy_name} 전략 최적화 결과[/bold green]\n\n"
+                f"[yellow]성과 개선[/yellow]\n"
+                f"• 예상 개선률: {result.performance_improvement:.1f}%\n"
+                f"• 최적화 신뢰도: {result.confidence:.1f}%\n"
+                f"• 최적화 방법: {result.optimization_method}\n\n"
+                f"[blue]AI 인사이트[/blue]\n"
+                f"• {chr(10).join([f'  - {insight}' for insight in result.ai_insights])}\n\n"
+                f"[red]주의사항[/red]\n"
+                f"• {chr(10).join([f'  - {warning}' for warning in result.risk_warnings])}\n\n"
+                f"[green]모니터링[/green]\n"
+                f"• 모니터링 주기: {result.monitoring_frequency}",
+                title="🎯 전략 최적화",
+                border_style="green"
+            ))
+            
+        except Exception as e:
+            self.logger.error(f"❌ 최적화 결과 표시 실패: {e}")
+    
+    async def _display_risk_assessment(self, assessment):
+        """리스크 평가 결과 표시"""
+        try:
+            console.print(Panel(
+                f"[bold red]🛡️ AI 포트폴리오 리스크 평가[/bold red]\n\n"
+                f"[yellow]전체 리스크[/yellow]\n"
+                f"• 리스크 레벨: {assessment.overall_risk_level}\n"
+                f"• 리스크 점수: {assessment.risk_score:.1f}/100\n"
+                f"• 평가 신뢰도: {assessment.confidence:.1f}%\n\n"
+                f"[red]주요 리스크 요인[/red]\n"
+                f"• {chr(10).join([f'  - {factor}' for factor in assessment.key_risk_factors])}\n\n"
+                f"[green]완화 전략[/green]\n"
+                f"• {chr(10).join([f'  - {strategy}' for strategy in assessment.risk_mitigation_strategies])}\n\n"
+                f"[blue]권장 조치[/blue]\n"
+                f"• {chr(10).join([f'  - {action}' for action in assessment.recommended_actions])}",
+                title="⚠️ 리스크 관리",
+                border_style="red"
+            ))
+            
+        except Exception as e:
+            self.logger.error(f"❌ 리스크 평가 표시 실패: {e}")
+    
+    async def _display_ai_report(self, report):
+        """AI 보고서 표시"""
+        try:
+            console.print(Panel(
+                f"[bold cyan]📊 AI 일일 보고서[/bold cyan]\n\n"
+                f"[green]시장 상황[/green]\n"
+                f"• 현재 체제: {report.get('market_regime_summary', {}).get('current_regime', 'UNKNOWN')}\n"
+                f"• 체제 안정성: {report.get('market_regime_summary', {}).get('stability', 'STABLE')}\n\n"
+                f"[yellow]예측 정확도[/yellow]\n"
+                f"• 전체 정확도: {report.get('prediction_accuracy', {}).get('overall_accuracy', 0):.1%}\n"
+                f"• 트렌드 정확도: {report.get('prediction_accuracy', {}).get('trend_accuracy', 0):.1%}\n\n"
+                f"[blue]시스템 건전성[/blue]\n"
+                f"• 전체 상태: {report.get('system_health', {}).get('overall_health', 'GOOD')}\n"
+                f"• 가동률: {report.get('system_health', {}).get('uptime', 0):.1%}\n\n"
+                f"[magenta]주요 인사이트[/magenta]\n"
+                f"• {chr(10).join([f'  - {insight}' for insight in report.get('key_insights', [])])}\n\n"
+                f"[green]전략적 권고[/green]\n"
+                f"• {chr(10).join([f'  - {rec}' for rec in report.get('recommendations', [])])}",
+                title="📈 AI 분석 보고서",
+                border_style="cyan"
+            ))
+            
+        except Exception as e:
+            self.logger.error(f"❌ AI 보고서 표시 실패: {e}")
+    
+    # === 기존 시스템 상태 메서드 업데이트 ===
+    
     async def get_system_status(self) -> Dict[str, Any]:
-        """시스템 상태"""
-        return {
+        """시스템 상태 (AI 기능 포함)"""
+        base_status = {
             'timestamp': datetime.now().isoformat(),
             'trading_enabled': self.trading_enabled,
             'backtest_mode': self.backtest_mode,
@@ -1391,15 +1788,36 @@ class TradingSystem:
                 'news_collector': self.news_collector is not None,
                 'strategies': len(self.strategies),
                 'notifier': self.notifier is not None,
-                'db_manager': self.db_manager is not None
+                'db_manager': self.db_manager is not None,
+                'scheduler': self.scheduler is not None,
+                'ai_controller': self.ai_controller is not None,  # Phase 4 추가
             }
         }
+        
+        # AI 컨트롤러 상태 추가
+        if self.ai_controller:
+            try:
+                ai_status = await self.ai_controller._get_system_status()
+                base_status['ai_system'] = {
+                    'overall_confidence': ai_status.overall_confidence,
+                    'active_models': ai_status.active_models,
+                    'system_health': ai_status.system_health,
+                    'prediction_accuracy': ai_status.prediction_accuracy
+                }
+            except Exception as e:
+                base_status['ai_system'] = {'error': str(e)}
+        
+        return base_status
     
     async def cleanup(self):
         """리소스 정리"""
         try:
             console.print("[yellow]🧹 정리 중...[/yellow]")
             self.is_running = False
+            
+            # 알림 관리자 정리
+            if hasattr(self, 'notification_manager') and self.notification_manager:
+                await self.notification_manager.cleanup()
             
             if self.data_collector:
                 await self.data_collector.close()

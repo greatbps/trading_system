@@ -39,7 +39,8 @@ schedule>=1.2.0
 python-telegram-bot>=20.0
 # smtplib2는 존재하지 않음 - Python 내장 smtplib 사용
 
-# AI/ML 서비스 (Gemini CLI 사용 - Python SDK 제거됨)
+# AI/ML 서비스
+google-generativeai>=0.3.0
 
 # 설정 관리
 python-dotenv>=1.0.0

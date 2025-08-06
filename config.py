@@ -25,9 +25,9 @@ class APIConfig:
     NAVER_CLIENT_ID = os.getenv("NAVER_CLIENT_ID", "")
     NAVER_CLIENT_SECRET = os.getenv("NAVER_CLIENT_SECRET", "")
     
-    # 텔레그램 봇
+    # 텔레그램 봇 (Phase 5 Notification System)
     TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-    TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+    TELEGRAM_CHAT_IDS = [id.strip() for id in os.getenv("TELEGRAM_CHAT_IDS", "").split(",") if id.strip()]
     
     # Google Gemini API
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
