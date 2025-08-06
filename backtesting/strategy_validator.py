@@ -97,10 +97,21 @@ class StrategyComparison:
 class StrategyValidator:
     """전략 검증기 - AI 기반 전략 성능 검증"""
     
-    def __init__(self):
+    def __init__(self, config=None):
         """전략 검증기 초기화"""
-        self.backtesting_engine = BacktestingEngine()
-        self.logger = logging.getLogger(__name__)
+        try:
+            if config:
+                self.backtesting_engine = BacktestingEngine(config)
+            else:
+                # 기본 설정으로 초기화
+                from config import get_config
+                default_config = get_config()
+                self.backtesting_engine = BacktestingEngine(default_config)
+            self.logger = logging.getLogger(__name__)
+        except Exception as e:
+            self.logger = logging.getLogger(__name__)
+            self.logger.warning(f"백테스팅 엔진 초기화 실패: {e}")
+            self.backtesting_engine = None
     
     async def validate_strategy(
         self,

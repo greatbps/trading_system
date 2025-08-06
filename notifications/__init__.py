@@ -3,7 +3,7 @@
 """
 trading_system/notifications/__init__.py
 
-L� ܤ\ (�� - Phase 5 Notification & Monitoring System
+알림 시스템 - Phase 5 Notification & Monitoring System
 """
 
 from .telegram_notifier import TelegramNotifier, AlertLevel, NotificationType

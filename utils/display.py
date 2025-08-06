@@ -72,17 +72,7 @@ class DisplayUtils:
                 rec_icon = self._get_recommendation_icon(recommendation)
                 
                 # 개별 종목 패널 생성
-                stock_content = f"""[bold]{symbol} {name}[/bold] {news_icon}
-[bold green]종합점수: {score:.1f}점[/bold green] {rec_icon}
-
-[blue]📊 5개 영역 분석[/blue]
-• 기술적: {tech_score:.1f}점
-• 펀더멘털: {fund_score:.1f}점
-• 뉴스감정: {news_score:.1f}점
-• 수급정보: {supply_score:.1f}점
-• 차트패턴: {pattern_score:.1f}점
-
-[yellow]추천등급: {recommendation}[/yellow]"""
+                stock_content = f"""[bold]{symbol} {name}[/bold] {news_icon}\n[bold green]종합점수: {score:.1f}점[/bold green] {rec_icon}\n\n[blue]📊 5개 영역 분석[/blue]\n• 기술적: {tech_score:.1f}점\n• 펀더멘털: {fund_score:.1f}점\n• 뉴스감정: {news_score:.1f}점\n• 수급정보: {supply_score:.1f}점\n• 차트패턴: {pattern_score:.1f}점\n\n[yellow]추천등급: {recommendation}[/yellow]"""
                 
                 panel = Panel(
                     stock_content,
@@ -133,28 +123,7 @@ class DisplayUtils:
             high_score_count = len([r for r in recommendations if r.get('comprehensive_score', 0) >= 80])
             news_material_count = len([r for r in recommendations if self._safe_get_news_material(r)])
             
-            stats_content = f"""[bold cyan]📈 투자 추천 요약[/bold cyan]
-
-[bold]기본 통계[/bold]
-• 전체 분석 종목: {total_count}개
-• 매수 추천 종목: {len(recommendations)}개 ({len(recommendations)/total_count*100:.1f}%)
-• 평균 추천 점수: {avg_score:.1f}점
-
-[bold green]추천 등급 분포[/bold green]
-• 🚀🚀🚀 초강력매수: {ultra_strong}개
-• 🚀🚀 강력매수: {strong}개  
-• 🚀 매수: {normal}개
-
-[bold blue]품질 지표[/bold blue]
-• 고득점(80+) 종목: {high_score_count}개
-• 뉴스재료 보유: {news_material_count}개
-• 투자 적합도: {'매우높음' if avg_score >= 75 else '높음' if avg_score >= 65 else '보통'}
-
-[bold yellow]💡 투자 가이드[/bold yellow]
-1. 🚀🚀🚀 초강력매수 종목을 최우선 검토
-2. 뉴스재료가 있는 종목은 타이밍 중요
-3. 80점 이상 고득점 종목에 집중 투자
-4. 분산투자로 리스크 관리 필수"""
+            stats_content = f"""[bold cyan]📈 투자 추천 요약[/bold cyan]\n\n[bold]기본 통계[/bold]\n• 전체 분석 종목: {total_count}개\n• 매수 추천 종목: {len(recommendations)}개 ({len(recommendations)/total_count*100:.1f}%)\n• 평균 추천 점수: {avg_score:.1f}점\n\n[bold green]추천 등급 분포[/bold green]\n• 🚀🚀🚀 초강력매수: {ultra_strong}개\n• 🚀🚀 강력매수: {strong}개  \n• 🚀 매수: {normal}개\n\n[bold blue]품질 지표[/bold blue]\n• 고득점(80+) 종목: {high_score_count}개\n• 뉴스재료 보유: {news_material_count}개\n• 투자 적합도: {'매우높음' if avg_score >= 75 else '높음' if avg_score >= 65 else '보통'}\n\n[bold yellow]💡 투자 가이드[/bold yellow]\n1. 🚀🚀🚀 초강력매수 종목을 최우선 검토\n2. 뉴스재료가 있는 종목은 타이밍 중요\n3. 80점 이상 고득점 종목에 집중 투자\n4. 분산투자로 리스크 관리 필수"""
             
             console.print(Panel(
                 stats_content,
@@ -258,31 +227,7 @@ class DisplayUtils:
         # 재료 보유 종목
         with_material = len([r for r in results if self._safe_get_news_material(r)])
         
-        summary_content = f"""[bold]📊 5개 영역 통합 분석 요약[/bold]
-
-[cyan]기본 통계[/cyan]
-• 총 분석 종목: {total}개
-• 평균 종합 점수: {avg_score:.1f}점
-• 뉴스 재료 보유: {with_material}개 ({with_material/total*100:.1f}%)
-
-[green]점수 분포[/green]
-• 🌟 우수(85+): {excellent}개 ({excellent/total*100:.1f}%)
-• ✅ 양호(70-84): {good}개 ({good/total*100:.1f}%)
-• 📊 보통(50-69): {average}개 ({average/total*100:.1f}%)
-• ⚠️ 부진(50미만): {poor}개 ({poor/total*100:.1f}%)
-
-[yellow]투자 추천 분포[/yellow]
-• 🚀 강력매수: {strong_buy}개
-• 📈 매수: {buy}개
-• ⏸️ 보유: {hold}개
-• 📉 매도: {sell}개
-
-[bold blue]✨ AI 분석 특징[/bold blue]
-✅ 기술적 분석 (30% 가중치)
-✅ 펀더멘털 분석 (25% 가중치)  
-✅ 뉴스 감정 분석 (25% 가중치)
-✅ 수급 정보 분석 (10% 가중치)
-✅ 차트 패턴 분석 (10% 가중치)"""
+        summary_content = f"""[bold]📊 5개 영역 통합 분석 요약[/bold]\n\n[cyan]기본 통계[/cyan]\n• 총 분석 종목: {total}개\n• 평균 종합 점수: {avg_score:.1f}점\n• 뉴스 재료 보유: {with_material}개 ({with_material/total*100:.1f}%)\n\n[green]점수 분포[/green]\n• 🌟 우수(85+): {excellent}개 ({excellent/total*100:.1f}%)\n• ✅ 양호(70-84): {good}개 ({good/total*100:.1f}%)\n• 📊 보통(50-69): {average}개 ({average/total*100:.1f}%)\n• ⚠️ 부진(50미만): {poor}개 ({poor/total*100:.1f}%)\n\n[yellow]투자 추천 분포[/yellow]\n• 🚀 강력매수: {strong_buy}개\n• 📈 매수: {buy}개\n• ⏸️ 보유: {hold}개\n• 📉 매도: {sell}개\n\n[bold blue]✨ AI 분석 특징[/bold blue]\n✅ 기술적 분석 (30% 가중치)\n✅ 펀더멘털 분석 (25% 가중치)  \n✅ 뉴스 감정 분석 (25% 가중치)\n✅ 수급 정보 분석 (10% 가중치)\n✅ 차트 패턴 분석 (10% 가중치)"""
         
         console.print(Panel(
             summary_content,
@@ -362,28 +307,7 @@ class DisplayUtils:
         neutral = len([s for s in material_stocks if s.get('sentiment_score', 0) == 0])
         negative = len([s for s in material_stocks if s.get('sentiment_score', 0) < 0])
         
-        summary_content = f"""[bold]📊 뉴스 재료 분석 요약[/bold]
-
-[cyan]기본 현황[/cyan]
-• 전체 분석: {total_count}개 종목
-• 재료 보유: {material_count}개 종목 ({material_count/total_count*100:.1f}%)
-• 평균 재료 점수: {avg_score:.1f}점
-
-[green]재료 유형별 분포[/green]
-• 🔵 장기재료: {long_term}개 (중장기 투자)
-• 🟡 중기재료: {mid_term}개 (단기~중기)
-• 🔴 단기재료: {short_term}개 (단기 트레이딩)
-
-[yellow]시장 감정 분포[/yellow]
-• 😊 긍정적: {positive}개
-• 😐 중립적: {neutral}개
-• 😔 부정적: {negative}개
-
-[bold blue]💡 뉴스 투자 전략[/bold blue]
-1. 장기재료 종목은 중장기 관점에서 접근
-2. 단기재료는 빠른 진입/청산 전략 고려
-3. 감정 점수가 높은 종목일수록 상승 모멘텀 기대
-4. 재료 점수 70점 이상 종목에 집중"""
+        summary_content = f"""[bold]📊 뉴스 재료 분석 요약[/bold]\n\n[cyan]기본 현황[/cyan]\n• 전체 분석: {total_count}개 종목\n• 재료 보유: {material_count}개 종목 ({material_count/total_count*100:.1f}%)\n• 평균 재료 점수: {avg_score:.1f}점\n\n[green]재료 유형별 분포[/green]\n• 🔵 장기재료: {long_term}개 (중장기 투자)\n• 🟡 중기재료: {mid_term}개 (단기~중기)\n• 🔴 단기재료: {short_term}개 (단기 트레이딩)\n\n[yellow]시장 감정 분포[/yellow]\n• 긍정적: {positive}개\n• 중립적: {neutral}개\n• 부정적: {negative}개\n\n[bold blue]💡 뉴스 투자 전략[/bold blue]\n1. 장기재료 종목은 중장기 관점에서 접근\n2. 단기재료는 빠른 진입/청산 전략 고려\n3. 감정 점수가 높은 종목일수록 상승 모멘텀 기대\n4. 재료 점수 70점 이상 종목에 집중"""
         
         console.print(Panel(
             summary_content,
@@ -465,30 +389,7 @@ class DisplayUtils:
         foreign_strong = len([r for r in supply_results if r.get('foreign_score', 0) >= 70])
         institution_strong = len([r for r in supply_results if r.get('institution_score', 0) >= 70])
         
-        summary_content = f"""[bold]📊 수급정보 분석 요약[/bold]
-
-[cyan]기본 통계[/cyan]
-• 전체 분석: {total}개 종목
-• 평균 수급 점수: {avg_score:.1f}점
-• 스마트머니 우세: {smart_money_count}개 ({smart_money_count/total*100:.1f}%)
-• 고강도 거래: {high_intensity}개 ({high_intensity/total*100:.1f}%)
-
-[green]수급 품질 분포[/green]
-• 🌟 우수(80+): {excellent}개
-• ✅ 양호(60-79): {good}개
-• 📊 보통(40-59): {average}개
-• ⚠️ 부진(40미만): {poor}개
-
-[yellow]투자주체별 현황[/yellow]
-• 외국인 매수 우세: {foreign_strong}개
-• 기관 매수 우세: {institution_strong}개
-• 스마트머니 집중: {smart_money_count}개
-
-[bold blue]💡 수급 투자 전략[/bold blue]
-1. 스마트머니 우세 + 고점수 종목 최우선
-2. 외국인과 기관이 동시 매수하는 종목 주목
-3. 거래강도 높으면서 수급 우수한 종목 발굴
-4. 개인 매도 우세 + 기관 매수 패턴 관찰"""
+        summary_content = f"""[bold]📊 수급정보 분석 요약[/bold]\n\n[cyan]기본 통계[/cyan]\n• 전체 분석: {total}개 종목\n• 평균 수급 점수: {avg_score:.1f}점\n• 스마트머니 우세: {smart_money_count}개 ({smart_money_count/total*100:.1f}%)\n• 고강도 거래: {high_intensity}개 ({high_intensity/total*100:.1f}%)\n\n[green]수급 품질 분포[/green]\n• 🌟 우수(80+): {excellent}개\n• ✅ 양호(60-79): {good}개\n• 📊 보통(40-59): {average}개\n• ⚠️ 부진(40미만): {poor}개\n\n[yellow]투자주체별 현황[/yellow]\n• 외국인 매수 우세: {foreign_strong}개\n• 기관 매수 우세: {institution_strong}개\n• 스마트머니 집중: {smart_money_count}개\n\n[bold blue]💡 수급 투자 전략[/bold blue]\n1. 스마트머니 우세 + 고점수 종목 최우선\n2. 외국인과 기관이 동시 매수하는 종목 주목\n3. 거래강도 높으면서 수급 우수한 종목 발굴\n4. 개인 매도 우세 + 기관 매수 패턴 관찰"""
         
         console.print(Panel(
             summary_content,
@@ -570,29 +471,7 @@ class DisplayUtils:
         excellent_patterns = len([r for r in pattern_results if r.get('overall_score', 0) >= 80])
         good_patterns = len([r for r in pattern_results if 60 <= r.get('overall_score', 0) < 80])
         
-        summary_content = f"""[bold]📊 차트패턴 분석 요약[/bold]
-
-[cyan]기본 통계[/cyan]
-• 전체 분석: {total}개 종목
-• 평균 패턴 점수: {avg_score:.1f}점
-• 평균 신뢰도: {avg_confidence:.3f}
-
-[green]신뢰도 분포[/green]
-• 🌟 고신뢰도(0.8+): {high_confidence}개 ({high_confidence/total*100:.1f}%)
-• ✅ 중신뢰도(0.6-0.8): {medium_confidence}개 ({medium_confidence/total*100:.1f}%)
-• ⚠️ 저신뢰도(0.6미만): {low_confidence}개 ({low_confidence/total*100:.1f}%)
-
-[yellow]패턴 추천 분포[/yellow]
-• 🚀 강력매수 패턴: {strong_buy_patterns}개
-• 📈 매수 패턴: {buy_patterns}개
-• 우수 패턴(80+): {excellent_patterns}개
-• 양호 패턴(60-79): {good_patterns}개
-
-[bold blue]💡 패턴 투자 전략[/bold blue]
-1. 신뢰도 0.8 이상 패턴을 최우선 검토
-2. 여러 패턴이 동시 출현하는 종목 주목
-3. 강력매수 패턴 + 고신뢰도 조합이 최적
-4. 지지저항선 돌파 확인 후 진입"""
+        summary_content = f"""[bold]📊 차트패턴 분석 요약[/bold]\n\n[cyan]기본 통계[/cyan]\n• 전체 분석: {total}개 종목\n• 평균 패턴 점수: {avg_score:.1f}점\n• 평균 신뢰도: {avg_confidence:.3f}\n\n[green]신뢰도 분포[/green]\n• 🌟 고신뢰도(0.8+): {high_confidence}개 ({high_confidence/total*100:.1f}%)\n• ✅ 중신뢰도(0.6-0.8): {medium_confidence}개 ({medium_confidence/total*100:.1f}%)\n• ⚠️ 저신뢰도(0.6미만): {low_confidence}개 ({low_confidence/total*100:.1f}%)\n\n[yellow]패턴 추천 분포[/yellow]\n• 🚀 강력매수 패턴: {strong_buy_patterns}개\n• 📈 매수 패턴: {buy_patterns}개\n• 우수 패턴(80+): {excellent_patterns}개\n• 양호 패턴(60-79): {good_patterns}개\n\n[bold blue]💡 패턴 투자 전략[/bold blue]\n1. 신뢰도 0.8 이상 패턴을 최우선 검토\n2. 여러 패턴이 동시 출현하는 종목 주목\n3. 강력매수 패턴 + 고신뢰도 조합이 최적\n4. 지지저항선 돌파 확인 후 진입"""
         
         console.print(Panel(
             summary_content,
@@ -749,15 +628,7 @@ class DisplayUtils:
             # 특별한 스타일링
             medal = "🥇" if i == 1 else "🥈" if i == 2 else "🥉"
             
-            pick_content = f"""{medal} [bold]{symbol} {name}[/bold]
-
-[bold gold1]종합점수: {score:.1f}점[/bold gold1]
-[bold green]추천등급: {recommendation}[/bold green]
-
-🎯 [yellow]투자 포인트[/yellow]
-• 5개 영역 모든 지표 우수
-• AI 신뢰도 최고 수준
-• 즉시 투자 검토 권장"""
+            pick_content = f"""{medal} [bold]{symbol} {name}[/bold]\n\n[bold gold1]종합점수: {score:.1f}점[/bold gold1]\n[bold green]추천등급: {recommendation}[/bold green]\n\n🎯 [yellow]투자 포인트[/yellow]\n• 5개 영역 모든 지표 우수\n• AI 신뢰도 최고 수준\n• 즉시 투자 검토 권장"""
             
             console.print(Panel(
                 pick_content,
@@ -792,19 +663,7 @@ class DisplayUtils:
         total_buy = len([r for r in results if r.get('recommendation') in ['BUY', 'STRONG_BUY', 'ULTRA_STRONG_BUY']])
         buy_ratio = total_buy / total * 100 if total > 0 else 0
         
-        overview_content = f"""[bold]📊 오늘의 시장 분석 개요[/bold]
-
-[{market_color}]시장 상태: {market_status}[/{market_color}]
-전체 분석 종목: {total}개
-평균 종합 점수: {avg_score:.1f}점
-
-📈 투자 기회
-• 매수 추천 종목: {total_buy}개 ({buy_ratio:.1f}%)
-• 고득점(80+) 종목: {len([r for r in results if r.get('comprehensive_score', 0) >= 80])}개
-• 뉴스 재료 보유: {len([r for r in results if self._safe_get_news_material(r)])}개
-
-💡 [yellow]오늘의 투자 전략[/yellow]
-{"• 적극적 매수 진입 타이밍" if avg_score >= 65 else "• 신중한 종목 선별 필요" if avg_score >= 55 else "• 관망 및 리스크 관리 우선"}"""
+        overview_content = f"""[bold]📊 오늘의 시장 분석 개요[/bold]\n\n[{market_color}]시장 상태: {market_status}[/{market_color}]\n전체 분석 종목: {total}개\n평균 종합 점수: {avg_score:.1f}점\n\n📈 투자 기회\n• 매수 추천 종목: {total_buy}개 ({buy_ratio:.1f}%)\n• 고득점(80+) 종목: {len([r for r in results if r.get('comprehensive_score', 0) >= 80])}개\n• 뉴스 재료 보유: {len([r for r in results if self._safe_get_news_material(r)])}개\n\n💡 [yellow]오늘의 투자 전략[/yellow]\n{"• 적극적 매수 진입 타이밍" if avg_score >= 65 else "• 신중한 종목 선별 필요" if avg_score >= 55 else "• 관망 및 리스크 관리 우선"}"""
         
         console.print(Panel(
             overview_content,
@@ -821,17 +680,7 @@ class DisplayUtils:
         risk_ratio = high_risk_count / total_count * 100
         
         if risk_ratio > 30:  # 30% 이상이 고위험
-            warning_content = f"""[bold red]⚠️ 높은 리스크 경고![/bold red]
-
-분석 종목 중 {high_risk_count}개({risk_ratio:.1f}%)가 고위험으로 분류되었습니다.
-
-🚨 [yellow]주의사항[/yellow]
-• 고위험 종목 투자 시 신중한 검토 필요
-• 포지션 크기를 평소의 50% 이하로 제한
-• 손절매 기준을 더욱 엄격하게 설정
-• 분산투자를 통한 리스크 관리 필수
-
-💡 안전한 투자를 위해 리스크 관리를 우선하세요."""
+            warning_content = f"""[bold red]⚠️ 높은 리스크 경고![/bold red]\n\n분석 종목 중 {high_risk_count}개({risk_ratio:.1f}%)가 고위험으로 분류되었습니다.\n\n🚨 [yellow]주의사항[/yellow]\n• 고위험 종목 투자 시 신중한 검토 필요\n• 포지션 크기를 평소의 50% 이하로 제한\n• 손절매 기준을 더욱 엄격하게 설정\n• 분산투자를 통한 리스크 관리 필수\n\n💡 안전한 투자를 위해 리스크 관리를 우선하세요."""
             
             console.print(Panel(
                 warning_content,
@@ -844,17 +693,6 @@ class DisplayUtils:
         """분석 결과 하단 정보"""
         from datetime import datetime
         
-        footer_content = f"""[dim]━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[/dim]
-
-[bold cyan]🤖 AI Trading System v3.0[/bold cyan] | 분석 완료: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-
-[yellow]⚡ 5개 영역 통합 분석[/yellow]
-• 기술적 분석 (30%) • 펀더멘털 분석 (25%) • 뉴스 감정 분석 (25%) • 수급 정보 (10%) • 차트 패턴 (10%)
-
-[green]💡 투자시 유의사항[/green]
-본 분석은 AI가 제공하는 참고 정보이며, 최종 투자 결정은 본인의 책임입니다.
-시장 상황 변화에 따라 결과가 달라질 수 있으니 실시간 정보를 함께 확인하세요.
-
-[bold blue]📞 Happy Trading! 📊[/bold blue]"""
+        footer_content = f"""[dim]━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[/dim]\n\n[bold cyan]🤖 AI Trading System v3.0[/bold cyan] | 분석 완료: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n\n[yellow]⚡ 5개 영역 통합 분석[/yellow]\n• 기술적 분석 (30%) • 펀더멘털 분석 (25%) • 뉴스 감정 분석 (25%) • 수급 정보 (10%) • 차트 패턴 (10%)\n\n[green]💡 투자시 유의사항[/green]\n본 분석은 AI가 제공하는 참고 정보이며, 최종 투자 결정은 본인의 책임입니다.\n시장 상황 변화에 따라 결과가 달라질 수 있으니 실시간 정보를 함께 확인하세요.\n\n[bold blue]📞 Happy Trading! 📊[/bold blue]"""
         
         console.print(footer_content)

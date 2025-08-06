@@ -1,2 +1,4 @@
 2025-08-06 05:13:46 | Main         | ERROR    | main            | 시스템 실행 중 오류: 'cp949' codec can't encode character '\U0001f680' in position 0: illegal multibyte sequence
 2025-08-06 05:14:31 | Main         | ERROR    | main            | 시스템 실행 중 오류: 'cp949' codec can't encode character '\U0001f4cb' in position 1: illegal multibyte sequence
+2025-08-06 09:07:56 | Main         | ERROR    | main            | 시스템 실행 중 오류: 'cp949' codec can't encode character '\U0001f4cb' in position 1: illegal multibyte sequence
+2025-08-06 09:19:24 | Main         | ERROR    | main            | 시스템 실행 중 오류: 'cp949' codec can't encode character '\U0001f527' in position 0: illegal multibyte sequence

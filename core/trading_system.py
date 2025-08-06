@@ -311,6 +311,15 @@ class TradingSystem:
                 self.logger.warning(f"⚠️ 실시간 스케줄러 초기화 실패: {e}")
                 self.scheduler = None
             
+            # AI 컨트롤러 초기화
+            try:
+                from analyzers.ai_controller import AIController
+                self.ai_controller = AIController(self.config)
+                self.logger.info("✅ AI 컨트롤러 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ AI 컨트롤러 초기화 실패: {e}")
+                self.ai_controller = None
+            
             # 데이터베이스
             try:
                 from database.database_manager import DatabaseManager
@@ -337,14 +346,6 @@ class TradingSystem:
                 self.position_manager = None
                 self.risk_manager = None
             
-            # AI 통합 컨트롤러 (Phase 4)
-            try:
-                from analyzers.ai_controller import AIController
-                self.ai_controller = AIController(self.config)
-                self.logger.info("✅ AI 통합 컨트롤러 초기화 완료")
-            except Exception as e:
-                self.logger.warning(f"⚠️ AI 통합 컨트롤러 초기화 실패: {e}")
-                self.ai_controller = None
             
             # 알림 관리자 (Phase 5)
             try:
@@ -1151,38 +1152,39 @@ AI 고급 기능: 예측 + 리스크 관리 + 체제 감지 + 전략 최적화
 
 매매 모드: {'[red]활성화[/red]' if self.trading_enabled else '[yellow]비활성화[/yellow]'}
 백테스트: {'[red]활성화[/red]' if self.backtest_mode else '[yellow]비활성화[/yellow]'}
-AI 컨트롤러: {'[green]초기화됨[/green]' if self.ai_controller else '[red]미초기화[/red]'}"""
+AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller') and self.ai_controller else '[red]미초기화[/red]'}"""
         
         console.print(Panel.fit(banner, title="AI Trading System v4.0", border_style="cyan"))
     
     def show_main_menu(self):
-        """메인 메뉴"""
-        menu = """[bold cyan]🔧 시스템 관리[/bold cyan]
-  1. 시스템 테스트
-  2. 설정 확인
-  3. 컴포넌트 초기화
-
-[bold green]📊 분석 및 매매[/bold green]
-  4. 종합 분석 (5개 영역 통합)
-  5. 특정 종목 분석
-  6. 뉴스 재료 분석
-  7. 자동매매 시작
-  8. 백테스트 실행
-
-[bold blue]🗄️ 데이터[/bold blue]
-  9. 데이터베이스 상태
-  10. 종목 데이터 조회
-
-  [bold red]0. 종료[/bold red]"""
-        
-        console.print(Panel.fit(menu, title="📋 메인 메뉴", border_style="cyan"))
+        """메인 메뉴 표시 - MenuHandlers에 위임"""
+        try:
+            if not self.menu_handlers:
+                from core.menu_handlers import MenuHandlers
+                self.menu_handlers = MenuHandlers(self)
+            
+            # MenuHandlers의 show_main_menu 사용
+            self.menu_handlers.show_main_menu()
+        except Exception as e:
+            # 폴백: 간단한 메뉴 표시
+            console.print(Panel("메뉴를 불러올 수 없습니다. MenuHandlers 오류입니다.", title="오류", border_style="red"))
     
     def get_user_choice(self) -> str:
-        """사용자 입력"""
+        """사용자 입력 - MenuHandlers에 위임"""
         try:
-            return Prompt.ask("[bold yellow]메뉴 선택[/bold yellow]", default="0").strip()
+            if not self.menu_handlers:
+                from core.menu_handlers import MenuHandlers
+                self.menu_handlers = MenuHandlers(self)
+                
+            return self.menu_handlers.get_user_choice()
         except KeyboardInterrupt:
             return "0"
+        except Exception as e:
+            # 폴백: 직접 입력 받기
+            try:
+                return Prompt.ask("[bold yellow]메뉴 선택[/bold yellow]", default="0").strip()
+            except KeyboardInterrupt:
+                return "0"
     
     async def run_interactive_mode(self):
         """대화형 모드"""

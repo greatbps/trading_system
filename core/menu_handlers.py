@@ -11,6 +11,11 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any
 import json
 
+# 백테스팅 모듈
+from backtesting.strategy_validator import StrategyValidator, ValidationCriteria
+from backtesting.historical_analyzer import HistoricalAnalyzer
+from backtesting.performance_visualizer import PerformanceVisualizer
+
 # Rich UI 라이브러리
 from rich.console import Console
 from rich.panel import Panel
@@ -55,6 +60,13 @@ class MenuHandlers:
     17. 알림 설정 관리
     18. 알림 통계 조회
     19. 알림 상태 확인
+
+    [bold purple]🧪 백테스팅 & 검증 (Phase 6)[/bold purple]
+    20. AI vs 전통 전략 비교
+    21. 전략 성능 검증
+    22. 과거 AI 예측 정확도 분석
+    23. 시장 체제별 성과 분석
+    24. 백테스팅 보고서 생성
 
     [bold blue]🗄️ 데이터[/bold blue]
     9. 데이터베이스 상태
@@ -107,16 +119,23 @@ class MenuHandlers:
                 "18": self._view_notification_stats,
                 "19": self._check_notification_status,
                 
+                # 백테스팅 & 검증 (Phase 6)
+                "20": self._ai_vs_traditional_comparison,
+                "21": self._strategy_validation,
+                "22": self._ai_prediction_accuracy_analysis,
+                "23": self._market_regime_performance,
+                "24": self._backtesting_report_generation,
+                
                 # 고급 기능 (기존) - 번호 이동
-                "20": self._supply_demand_analysis,
-                "21": self._chart_pattern_analysis,
-                "22": self._scheduler,
-                "23": self._view_analysis_results,
-                "24": self._view_trading_records,
-                "25": self._data_cleanup,
-                "26": self._log_analysis,
-                "27": self._system_monitoring,
-                "28": self._debug_filtering
+                "25": self._supply_demand_analysis,
+                "26": self._chart_pattern_analysis,
+                "27": self._scheduler,
+                "28": self._view_analysis_results,
+                "29": self._view_trading_records,
+                "30": self._data_cleanup,
+                "31": self._log_analysis,
+                "32": self._system_monitoring,
+                "33": self._debug_filtering
             }
             
             handler = menu_map.get(choice)
@@ -1822,3 +1841,767 @@ class MenuHandlers:
                 
         except Exception as e:
             console.print(f"[red]❌ 알림 상태 확인 오류: {e}[/red]")
+    
+    #######################################################
+    # Phase 6: 백테스팅 & 검증 시스템
+    #######################################################
+    
+    async def _ai_vs_traditional_comparison(self) -> bool:
+        """AI vs 전통적 전략 성능 비교"""
+        console.print(Panel("[bold purple]🧪 AI vs 전통 전략 비교[/bold purple]", border_style="purple"))
+        
+        try:
+            # 컴포넌트 초기화
+            if not await self.system.initialize_components():
+                console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
+                return False
+            
+            # 전략 검증기 초기화
+            validator = StrategyValidator(self.config)
+            
+            # 비교 매개변수 설정
+            console.print("\n[bold]비교 설정:[/bold]")
+            
+            # 전략 선택
+            strategies = ["momentum_strategy", "supertrend_ema_rsi_strategy"]
+            strategy_table = Table(title="📋 사용 가능한 전략")
+            strategy_table.add_column("번호", style="cyan", width=6)
+            strategy_table.add_column("전략명", style="green")
+            strategy_table.add_column("설명", style="white")
+            
+            for i, strategy in enumerate(strategies, 1):
+                descriptions = {
+                    "momentum_strategy": "모멘텀 기반 단기 매매 전략",
+                    "supertrend_ema_rsi_strategy": "SuperTrend + EMA + RSI 기술적 분석 전략"
+                }
+                strategy_table.add_row(str(i), strategy, descriptions.get(strategy, "설명 없음"))
+            
+            console.print(strategy_table)
+            
+            # 전략 선택
+            try:
+                strategy_choice = IntPrompt.ask("전략 번호를 선택하세요", choices=[str(i) for i in range(1, len(strategies) + 1)], default=1)
+                selected_strategy = strategies[strategy_choice - 1]
+            except (ValueError, IndexError):
+                selected_strategy = strategies[0]
+            
+            console.print(f"[green]✅ 선택된 전략: {selected_strategy}[/green]")
+            
+            # 기간 설정
+            console.print("\n[bold]분석 기간 설정:[/bold]")
+            end_date = datetime.now()
+            
+            period_options = {
+                "1": 30,   # 1개월
+                "2": 90,   # 3개월  
+                "3": 180,  # 6개월
+                "4": 365   # 1년
+            }
+            
+            console.print("1. 1개월")
+            console.print("2. 3개월")
+            console.print("3. 6개월") 
+            console.print("4. 1년")
+            
+            period_choice = Prompt.ask("분석 기간을 선택하세요", choices=["1", "2", "3", "4"], default="3")
+            days = period_options[period_choice]
+            start_date = end_date - timedelta(days=days)
+            
+            console.print(f"[green]✅ 분석 기간: {start_date.strftime('%Y-%m-%d')} ~ {end_date.strftime('%Y-%m-%d')}[/green]")
+            
+            # 종목 설정
+            default_symbols = ['005930', '000660', '035420', '005380', '068270']  # 대형주 5개
+            symbols_input = Prompt.ask("분석 종목 (콤마로 구분, 엔터시 기본 대형주 5개)", default=",".join(default_symbols))
+            symbols = [s.strip() for s in symbols_input.split(",") if s.strip()]
+            
+            console.print(f"[green]✅ 분석 종목: {', '.join(symbols)}[/green]")
+            
+            # 백테스팅 실행
+            console.print(f"\n[yellow]🔄 AI vs 전통 전략 비교 실행 중...[/yellow]")
+            
+            with Progress() as progress:
+                task = progress.add_task("비교 분석", total=100)
+                
+                progress.update(task, advance=20, description="AI 전략 백테스팅...")
+                comparison_result = await validator.compare_ai_vs_traditional(
+                    selected_strategy, start_date, end_date, symbols
+                )
+                
+                progress.update(task, advance=80, description="분석 완료")
+            
+            # 결과 표시
+            console.print("\n" + "="*60)
+            console.print("[bold green]📊 AI vs 전통 전략 비교 결과[/bold green]")
+            console.print("="*60)
+            
+            # 성과 비교 테이블
+            results_table = Table(title="📈 성과 비교")
+            results_table.add_column("지표", style="cyan", width=20)
+            results_table.add_column("AI 전략", style="green", width=15)
+            results_table.add_column("전통 전략", style="yellow", width=15)
+            results_table.add_column("개선도", style="magenta", width=15)
+            
+            ai_metrics = comparison_result.with_ai_result.metrics
+            traditional_metrics = comparison_result.without_ai_result.metrics
+            
+            results_table.add_row(
+                "연수익률 (%)",
+                f"{ai_metrics.annual_return:.2f}%",
+                f"{traditional_metrics.annual_return:.2f}%",
+                f"{comparison_result.return_improvement:+.2f}%"
+            )
+            
+            results_table.add_row(
+                "샤프 비율",
+                f"{ai_metrics.sharpe_ratio:.2f}",
+                f"{traditional_metrics.sharpe_ratio:.2f}",
+                f"{comparison_result.sharpe_improvement:+.2f}"
+            )
+            
+            results_table.add_row(
+                "최대 낙폭 (%)",
+                f"{ai_metrics.max_drawdown:.2f}%",
+                f"{traditional_metrics.max_drawdown:.2f}%",
+                f"{comparison_result.drawdown_improvement:+.2f}%"
+            )
+            
+            results_table.add_row(
+                "승률 (%)",
+                f"{ai_metrics.win_rate:.2f}%",
+                f"{traditional_metrics.win_rate:.2f}%",
+                f"{comparison_result.win_rate_improvement:+.2f}%"
+            )
+            
+            console.print(results_table)
+            
+            # AI 효과성 점수
+            effectiveness_text = f"""
+[bold]🤖 AI 효과성 분석[/bold]
+• AI 효과성 점수: {comparison_result.ai_effectiveness_score:.1f}/100점
+• 통계적 유의성: {"✅ 유의함" if comparison_result.statistical_significance else "❌ 유의하지 않음"}
+• P-값: {comparison_result.p_value:.4f}
+            """
+            
+            console.print(Panel(effectiveness_text.strip(), title="🎯 AI 효과성 평가", border_style="magenta"))
+            
+            # 저장 옵션
+            if Confirm.ask("\n📁 결과를 파일로 저장하시겠습니까?"):
+                filename = f"ai_vs_traditional_comparison_{selected_strategy}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                
+                # 결과 데이터 준비
+                result_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "strategy": selected_strategy,
+                    "period": {"start": start_date.isoformat(), "end": end_date.isoformat()},
+                    "symbols": symbols,
+                    "ai_metrics": {
+                        "annual_return": ai_metrics.annual_return,
+                        "sharpe_ratio": ai_metrics.sharpe_ratio,
+                        "max_drawdown": ai_metrics.max_drawdown,
+                        "win_rate": ai_metrics.win_rate,
+                        "total_trades": ai_metrics.total_trades
+                    },
+                    "traditional_metrics": {
+                        "annual_return": traditional_metrics.annual_return,
+                        "sharpe_ratio": traditional_metrics.sharpe_ratio,
+                        "max_drawdown": traditional_metrics.max_drawdown,
+                        "win_rate": traditional_metrics.win_rate,
+                        "total_trades": traditional_metrics.total_trades
+                    },
+                    "improvements": {
+                        "return_improvement": comparison_result.return_improvement,
+                        "sharpe_improvement": comparison_result.sharpe_improvement,
+                        "drawdown_improvement": comparison_result.drawdown_improvement,
+                        "win_rate_improvement": comparison_result.win_rate_improvement
+                    },
+                    "ai_effectiveness_score": comparison_result.ai_effectiveness_score,
+                    "statistical_significance": comparison_result.statistical_significance,
+                    "p_value": comparison_result.p_value
+                }
+                
+                # 파일 저장
+                import os
+                reports_dir = "reports/backtesting"
+                os.makedirs(reports_dir, exist_ok=True)
+                
+                filepath = os.path.join(reports_dir, filename)
+                with open(filepath, 'w', encoding='utf-8') as f:
+                    json.dump(result_data, f, ensure_ascii=False, indent=2)
+                
+                console.print(f"[green]✅ 결과가 저장되었습니다: {filepath}[/green]")
+            
+            return True
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI vs 전통 전략 비교 오류: {e}[/red]")
+            self.logger.error(f"AI vs 전통 전략 비교 오류: {e}")
+            return False
+    
+    async def _strategy_validation(self) -> bool:
+        """전략 성능 검증"""
+        console.print(Panel("[bold purple]🔍 전략 성능 검증[/bold purple]", border_style="purple"))
+        
+        try:
+            # 컴포넌트 초기화
+            if not await self.system.initialize_components():
+                console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
+                return False
+            
+            validator = StrategyValidator(self.config)
+            
+            # 전략 선택
+            strategies = ["momentum_strategy", "supertrend_ema_rsi_strategy"]
+            console.print("\n[bold]검증할 전략 선택:[/bold]")
+            
+            for i, strategy in enumerate(strategies, 1):
+                console.print(f"{i}. {strategy}")
+            
+            try:
+                choice = IntPrompt.ask("전략 번호", choices=[str(i) for i in range(1, len(strategies) + 1)], default=1)
+                selected_strategy = strategies[choice - 1]
+            except (ValueError, IndexError):
+                selected_strategy = strategies[0]
+            
+            console.print(f"[green]✅ 선택된 전략: {selected_strategy}[/green]")
+            
+            # 검증 기준 설정
+            console.print("\n[bold]검증 기준 설정:[/bold]")
+            
+            use_custom = Confirm.ask("기본 검증 기준을 사용하시겠습니까? (아니오 선택시 사용자 정의)", default=True)
+            
+            if use_custom:
+                criteria = ValidationCriteria()
+                console.print("[yellow]✅ 기본 검증 기준을 사용합니다[/yellow]")
+            else:
+                # 사용자 정의 기준
+                console.print("[cyan]사용자 정의 검증 기준 설정:[/cyan]")
+                
+                min_return = IntPrompt.ask("최소 연수익률 (%)", default=5)
+                max_drawdown = IntPrompt.ask("최대 낙폭 (%)", default=20)
+                min_sharpe = float(Prompt.ask("최소 샤프 비율", default="1.0"))
+                min_win_rate = IntPrompt.ask("최소 승률 (%)", default=45)
+                min_trades = IntPrompt.ask("최소 거래 수", default=50)
+                min_ai_accuracy = IntPrompt.ask("최소 AI 정확도 (%)", default=60)
+                
+                criteria = ValidationCriteria(
+                    min_return=min_return,
+                    max_drawdown=max_drawdown,
+                    min_sharpe=min_sharpe,
+                    min_win_rate=min_win_rate,
+                    min_trades=min_trades,
+                    min_ai_accuracy=min_ai_accuracy
+                )
+            
+            # 기간 설정
+            end_date = datetime.now()
+            days = 180  # 6개월 기본
+            start_date = end_date - timedelta(days=days)
+            
+            symbols = ['005930', '000660', '035420', '005380', '068270']  # 기본 대형주
+            
+            console.print(f"\n[yellow]🔄 전략 검증 실행 중...[/yellow]")
+            
+            with Progress() as progress:
+                task = progress.add_task("전략 검증", total=100)
+                
+                progress.update(task, advance=30, description="백테스팅 실행...")
+                
+                # 백테스팅 실행
+                backtest_result = await validator.backtesting_engine.run_backtest(
+                    selected_strategy, start_date, end_date, symbols, use_ai=True
+                )
+                
+                progress.update(task, advance=30, description="검증 수행...")
+                
+                # 검증 수행
+                validation_result = await validator.validate_strategy(
+                    selected_strategy, backtest_result, criteria
+                )
+                
+                progress.update(task, advance=40, description="검증 완료")
+            
+            # 결과 표시
+            console.print("\n" + "="*60)
+            console.print(f"[bold green]📋 전략 검증 결과: {selected_strategy}[/bold green]")
+            console.print("="*60)
+            
+            # 전체 상태
+            status_color = {
+                "PASSED": "green",
+                "WARNING": "yellow", 
+                "FAILED": "red",
+                "INSUFFICIENT_DATA": "orange"
+            }.get(validation_result.status.value, "white")
+            
+            console.print(f"[bold {status_color}]📊 검증 상태: {validation_result.status.value}[/bold {status_color}]")
+            console.print(f"[bold cyan]🔢 전체 점수: {validation_result.overall_score:.1f}/100점[/bold cyan]")
+            
+            # 상세 검증 결과
+            console.print("\n[bold]📋 상세 검증 결과:[/bold]")
+            for message in validation_result.messages:
+                console.print(f"  {message}")
+            
+            # 경고 메시지
+            if validation_result.warnings:
+                console.print("\n[bold yellow]⚠️ 경고 사항:[/bold yellow]")
+                for warning in validation_result.warnings:
+                    console.print(f"  - {warning}")
+            
+            # 개선 제안
+            suggestions = []
+            if not validation_result.return_check:
+                suggestions.append("• 수익률 개선을 위한 전략 매개변수 조정 고려")
+            if not validation_result.drawdown_check:
+                suggestions.append("• 리스크 관리 강화 (손절선, 포지션 크기 조정)")
+            if not validation_result.sharpe_check:
+                suggestions.append("• 위험 대비 수익 개선 (변동성 관리)")
+            if not validation_result.ai_accuracy_check:
+                suggestions.append("• AI 모델 개선 또는 추가 훈련 데이터 확보")
+            
+            if suggestions:
+                suggestion_text = "\n".join(suggestions)
+                console.print(Panel(suggestion_text, title="💡 개선 제안", border_style="blue"))
+            
+            return True
+            
+        except Exception as e:
+            console.print(f"[red]❌ 전략 검증 오류: {e}[/red]")
+            self.logger.error(f"전략 검증 오류: {e}")
+            return False
+    
+    async def _ai_prediction_accuracy_analysis(self) -> bool:
+        """과거 AI 예측 정확도 분석"""
+        console.print(Panel("[bold purple]🎯 AI 예측 정확도 분석[/bold purple]", border_style="purple"))
+        
+        try:
+            # 컴포넌트 초기화
+            if not await self.system.initialize_components():
+                console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
+                return False
+            
+            analyzer = HistoricalAnalyzer(self.config)
+            
+            # 분석 기간 설정
+            console.print("\n[bold]분석 기간 설정:[/bold]")
+            end_date = datetime.now()
+            
+            # 기간 선택
+            period_map = {"1": 30, "2": 90, "3": 180, "4": 365}
+            console.print("1. 1개월")
+            console.print("2. 3개월") 
+            console.print("3. 6개월")
+            console.print("4. 1년")
+            
+            period_choice = Prompt.ask("분석 기간", choices=["1", "2", "3", "4"], default="3")
+            days = period_map[period_choice]
+            start_date = end_date - timedelta(days=days)
+            
+            console.print(f"[green]✅ 분석 기간: {start_date.strftime('%Y-%m-%d')} ~ {end_date.strftime('%Y-%m-%d')}[/green]")
+            
+            # 분석 종목
+            symbols = ['005930', '000660', '035420', '005380', '068270']
+            symbols_input = Prompt.ask("분석 종목 (콤마로 구분)", default=",".join(symbols))
+            selected_symbols = [s.strip() for s in symbols_input.split(",") if s.strip()]
+            
+            console.print(f"[green]✅ 분석 종목: {', '.join(selected_symbols)}[/green]")
+            
+            # 분석 실행
+            console.print(f"\n[yellow]🔄 AI 예측 정확도 분석 실행 중...[/yellow]")
+            
+            with Progress() as progress:
+                task = progress.add_task("정확도 분석", total=100)
+                
+                progress.update(task, advance=50, description="과거 예측 데이터 수집...")
+                
+                accuracy_results = await analyzer.analyze_ai_prediction_accuracy(
+                    start_date, end_date, selected_symbols
+                )
+                
+                progress.update(task, advance=50, description="분석 완료")
+            
+            # 결과 표시
+            console.print("\n" + "="*60)
+            console.print("[bold green]🎯 AI 예측 정확도 분석 결과[/bold green]")
+            console.print("="*60)
+            
+            # 전체 정확도
+            overall_accuracy = accuracy_results.get('overall_accuracy', 0.0)
+            console.print(f"[bold cyan]📊 전체 예측 정확도: {overall_accuracy:.2f}%[/bold cyan]")
+            
+            # 종목별 정확도
+            symbol_accuracy = accuracy_results.get('symbol_accuracy', {})
+            if symbol_accuracy:
+                accuracy_table = Table(title="📈 종목별 예측 정확도")
+                accuracy_table.add_column("종목", style="cyan", width=10)
+                accuracy_table.add_column("정확도 (%)", style="green", width=15)
+                accuracy_table.add_column("예측 횟수", style="yellow", width=15)
+                accuracy_table.add_column("맞춘 횟수", style="magenta", width=15)
+                
+                for symbol, data in symbol_accuracy.items():
+                    accuracy_table.add_row(
+                        symbol,
+                        f"{data['accuracy']:.2f}%",
+                        str(data['total_predictions']),
+                        str(data['correct_predictions'])
+                    )
+                
+                console.print(accuracy_table)
+            
+            # 예측 유형별 정확도
+            prediction_types = accuracy_results.get('prediction_types', {})
+            if prediction_types:
+                console.print("\n[bold]📋 예측 유형별 성능:[/bold]")
+                
+                for pred_type, data in prediction_types.items():
+                    type_names = {
+                        'directional': '방향 예측',
+                        'magnitude': '크기 예측',
+                        'confidence_high': '고신뢰도 예측',
+                        'confidence_low': '저신뢰도 예측'
+                    }
+                    
+                    type_name = type_names.get(pred_type, pred_type)
+                    console.print(f"  • {type_name}: {data['accuracy']:.1f}% ({data['sample_count']}회)")
+            
+            # 신뢰도와 정확도 상관관계
+            correlation = accuracy_results.get('confidence_correlation', 0.0)
+            if abs(correlation) > 0.1:
+                correlation_text = f"""
+[bold]🔗 신뢰도-정확도 상관관계 분석[/bold]
+• 상관계수: {correlation:.3f}
+• 해석: {"AI 신뢰도가 높을수록 예측이 더 정확함" if correlation > 0.3 else "AI 신뢰도와 정확도 간 약한 상관관계" if correlation > 0.1 else "AI 신뢰도와 정확도 간 상관관계 미약"}
+                """
+                
+                console.print(Panel(correlation_text.strip(), title="📊 상관관계 분석", border_style="blue"))
+            
+            # 개선 제안
+            suggestions = []
+            if overall_accuracy < 60:
+                suggestions.append("• AI 모델 재훈련 또는 새로운 특성 추가 고려")
+            if correlation < 0.2:
+                suggestions.append("• 신뢰도 측정 방식 개선 필요")
+            if len(symbol_accuracy) > 0:
+                worst_performer = min(symbol_accuracy.items(), key=lambda x: x[1]['accuracy'])
+                if worst_performer[1]['accuracy'] < 50:
+                    suggestions.append(f"• {worst_performer[0]} 종목에 대한 특별 분석 필요")
+            
+            if suggestions:
+                suggestion_text = "\n".join(suggestions)
+                console.print(Panel(suggestion_text, title="💡 개선 제안", border_style="yellow"))
+            
+            return True
+            
+        except Exception as e:
+            console.print(f"[red]❌ AI 예측 정확도 분석 오류: {e}[/red]")
+            self.logger.error(f"AI 예측 정확도 분석 오류: {e}")
+            return False
+    
+    async def _market_regime_performance(self) -> bool:
+        """시장 체제별 성과 분석"""
+        console.print(Panel("[bold purple]📊 시장 체제별 성과 분석[/bold purple]", border_style="purple"))
+        
+        try:
+            # 컴포넌트 초기화
+            if not await self.system.initialize_components():
+                console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
+                return False
+            
+            analyzer = HistoricalAnalyzer(self.config)
+            
+            # 분석 기간 설정 (시장 체제 분석을 위해 더 긴 기간)
+            console.print("\n[bold]분석 기간 설정:[/bold]")
+            end_date = datetime.now()
+            
+            # 기간 선택 (최소 6개월)
+            period_map = {"1": 180, "2": 365, "3": 730}  # 6개월, 1년, 2년
+            console.print("1. 6개월")
+            console.print("2. 1년")
+            console.print("3. 2년")
+            
+            period_choice = Prompt.ask("분석 기간", choices=["1", "2", "3"], default="2")
+            days = period_map[period_choice]
+            start_date = end_date - timedelta(days=days)
+            
+            console.print(f"[green]✅ 분석 기간: {start_date.strftime('%Y-%m-%d')} ~ {end_date.strftime('%Y-%m-%d')}[/green]")
+            
+            # 시장 지수 선택
+            market_indices = {"1": "KOSPI", "2": "KOSDAQ"}
+            console.print("\n[bold]시장 지수 선택:[/bold]")
+            console.print("1. KOSPI")
+            console.print("2. KOSDAQ")
+            
+            index_choice = Prompt.ask("시장 지수", choices=["1", "2"], default="1")
+            selected_index = market_indices[index_choice]
+            
+            console.print(f"[green]✅ 선택된 지수: {selected_index}[/green]")
+            
+            # 분석 실행
+            console.print(f"\n[yellow]🔄 시장 체제별 성과 분석 실행 중...[/yellow]")
+            
+            with Progress() as progress:
+                task = progress.add_task("체제 분석", total=100)
+                
+                progress.update(task, advance=30, description="시장 데이터 수집...")
+                
+                regime_analyses = await analyzer.identify_market_regimes(
+                    start_date, end_date, selected_index
+                )
+                
+                progress.update(task, advance=40, description="체제별 성과 분석...")
+                
+                # 뉴스 영향 분석 추가
+                symbols = ['005930', '000660', '035420']  # 대표 종목
+                news_validation = await analyzer.validate_historical_news_impact(
+                    start_date, end_date, symbols
+                )
+                
+                progress.update(task, advance=30, description="분석 완료")
+            
+            # 결과 표시
+            console.print("\n" + "="*60)
+            console.print(f"[bold green]📊 시장 체제별 성과 분석 결과 ({selected_index})[/bold green]")
+            console.print("="*60)
+            
+            if not regime_analyses:
+                console.print("[yellow]⚠️ 충분한 데이터가 없거나 명확한 체제 변화가 감지되지 않았습니다[/yellow]")
+                return True
+            
+            # 체제별 분석 결과 테이블
+            regime_table = Table(title="📈 시장 체제별 성과")
+            regime_table.add_column("체제", style="cyan", width=15)
+            regime_table.add_column("기간", style="green", width=20)
+            regime_table.add_column("수익률 (%)", style="yellow", width=12)
+            regime_table.add_column("변동성 (%)", style="orange", width=12)
+            regime_table.add_column("최대낙폭 (%)", style="red", width=12)
+            regime_table.add_column("AI 정확도 (%)", style="magenta", width=12)
+            
+            regime_names = {
+                "BULL_MARKET": "강세장",
+                "BEAR_MARKET": "약세장", 
+                "SIDEWAYS": "횡보장",
+                "HIGH_VOLATILITY": "고변동성",
+                "LOW_VOLATILITY": "저변동성"
+            }
+            
+            for regime_analysis in regime_analyses:
+                regime_name = regime_names.get(regime_analysis.regime.value, regime_analysis.regime.value)
+                period_str = f"{regime_analysis.period_start.strftime('%y/%m/%d')} - {regime_analysis.period_end.strftime('%y/%m/%d')}"
+                
+                regime_table.add_row(
+                    regime_name,
+                    period_str,
+                    f"{regime_analysis.avg_return:.2f}",
+                    f"{regime_analysis.volatility:.2f}",
+                    f"{regime_analysis.max_drawdown:.2f}",
+                    f"{regime_analysis.ai_accuracy:.2f}"
+                )
+            
+            console.print(regime_table)
+            
+            # 체제별 AI 성과 요약
+            best_regime = max(regime_analyses, key=lambda x: x.ai_accuracy)
+            worst_regime = min(regime_analyses, key=lambda x: x.ai_accuracy)
+            
+            ai_summary = f"""
+[bold]🤖 체제별 AI 성과 요약[/bold]
+• 최고 성과 체제: {regime_names.get(best_regime.regime.value, best_regime.regime.value)} (정확도: {best_regime.ai_accuracy:.1f}%)
+• 최저 성과 체제: {regime_names.get(worst_regime.regime.value, worst_regime.regime.value)} (정확도: {worst_regime.ai_accuracy:.1f}%)
+• 평균 AI 정확도: {sum(r.ai_accuracy for r in regime_analyses) / len(regime_analyses):.1f}%
+            """
+            
+            console.print(Panel(ai_summary.strip(), title="🎯 AI 성과 분석", border_style="blue"))
+            
+            # 뉴스 영향 분석 결과
+            if news_validation and news_validation.get('overall_correlation', 0) != 0:
+                news_summary = f"""
+[bold]📰 뉴스 영향 분석[/bold]
+• 전체 감정-가격 상관관계: {news_validation['overall_correlation']:.3f}
+• AI 감정 분석 정확도: {news_validation['sentiment_accuracy']:.1f}%
+• 분석된 뉴스-가격 쌍: {len(news_validation.get('detailed_analysis', []))}개
+                """
+                
+                console.print(Panel(news_summary.strip(), title="📈 뉴스 영향 검증", border_style="green"))
+            
+            # 각 체제별 주요 특징
+            console.print("\n[bold]📋 체제별 주요 특징:[/bold]")
+            for regime_analysis in regime_analyses:
+                regime_name = regime_names.get(regime_analysis.regime.value, regime_analysis.regime.value)
+                console.print(f"\n[cyan]{regime_name} ({regime_analysis.period_start.strftime('%Y-%m-%d')} ~ {regime_analysis.period_end.strftime('%Y-%m-%d')}):[/cyan]")
+                
+                if regime_analysis.key_events:
+                    console.print("  주요 이벤트:")
+                    for event in regime_analysis.key_events:
+                        console.print(f"    - {event}")
+                
+                characteristics = regime_analysis.characteristics
+                if characteristics:
+                    console.print("  시장 특성:")
+                    for key, value in characteristics.items():
+                        if key in ['trend_strength', 'momentum']:
+                            console.print(f"    - {key}: {value:.2f}")
+                        elif 'volatility' in key:
+                            console.print(f"    - {key}: {value:.2f}%")
+            
+            return True
+            
+        except Exception as e:
+            console.print(f"[red]❌ 시장 체제별 성과 분석 오류: {e}[/red]")
+            self.logger.error(f"시장 체제별 성과 분석 오류: {e}")
+            return False
+    
+    async def _backtesting_report_generation(self) -> bool:
+        """백테스팅 종합 보고서 생성"""
+        console.print(Panel("[bold purple]📋 백테스팅 종합 보고서 생성[/bold purple]", border_style="purple"))
+        
+        try:
+            # 컴포넌트 초기화
+            if not await self.system.initialize_components():
+                console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
+                return False
+            
+            validator = StrategyValidator(self.config)
+            visualizer = PerformanceVisualizer(self.config)
+            
+            # 보고서 설정
+            console.print("\n[bold]보고서 설정:[/bold]")
+            
+            # 전략 선택
+            strategies = ["momentum_strategy", "supertrend_ema_rsi_strategy"]
+            console.print("포함할 전략 (여러 선택 가능):")
+            for i, strategy in enumerate(strategies, 1):
+                console.print(f"{i}. {strategy}")
+            
+            strategy_choices = Prompt.ask("전략 번호 (콤마로 구분)", default="1,2")
+            selected_indices = [int(x.strip()) - 1 for x in strategy_choices.split(',') if x.strip().isdigit()]
+            selected_strategies = [strategies[i] for i in selected_indices if 0 <= i < len(strategies)]
+            
+            if not selected_strategies:
+                selected_strategies = strategies
+            
+            console.print(f"[green]✅ 선택된 전략: {', '.join(selected_strategies)}[/green]")
+            
+            # 분석 기간
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=180)  # 6개월
+            symbols = ['005930', '000660', '035420', '005380', '068270']
+            
+            console.print(f"[green]✅ 분석 기간: {start_date.strftime('%Y-%m-%d')} ~ {end_date.strftime('%Y-%m-%d')}[/green]")
+            console.print(f"[green]✅ 분석 종목: {', '.join(symbols)}[/green]")
+            
+            # 보고서 생성
+            console.print(f"\n[yellow]🔄 종합 보고서 생성 중...[/yellow]")
+            
+            all_results = {}
+            all_comparisons = {}
+            
+            with Progress() as progress:
+                total_tasks = len(selected_strategies)
+                task = progress.add_task("보고서 생성", total=total_tasks * 100)
+                
+                for i, strategy in enumerate(selected_strategies):
+                    progress.update(task, description=f"전략 분석: {strategy}")
+                    
+                    # 백테스팅 실행
+                    backtest_result = await validator.backtesting_engine.run_backtest(
+                        strategy, start_date, end_date, symbols, use_ai=True
+                    )
+                    
+                    # 검증 실행
+                    validation_result = await validator.validate_strategy(
+                        strategy, backtest_result
+                    )
+                    
+                    # AI vs 전통 비교
+                    comparison_result = await validator.compare_ai_vs_traditional(
+                        strategy, start_date, end_date, symbols
+                    )
+                    
+                    all_results[strategy] = validation_result
+                    all_comparisons[strategy] = comparison_result
+                    
+                    progress.update(task, advance=100)
+            
+            # 종합 보고서 생성
+            console.print(f"[yellow]📝 보고서 작성 중...[/yellow]")
+            
+            # 텍스트 보고서
+            text_report = await validator.generate_validation_report(
+                all_results, all_comparisons
+            )
+            
+            # HTML 보고서 (시각화 포함)
+            html_report = await visualizer.generate_comprehensive_report(
+                all_comparisons, all_results
+            )
+            
+            # 파일 저장
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            
+            import os
+            reports_dir = "reports/backtesting"
+            os.makedirs(reports_dir, exist_ok=True)
+            
+            # 텍스트 보고서 저장
+            text_filename = f"backtesting_report_{timestamp}.txt"
+            text_filepath = os.path.join(reports_dir, text_filename)
+            with open(text_filepath, 'w', encoding='utf-8') as f:
+                f.write(text_report)
+            
+            # HTML 보고서 저장
+            html_filename = f"backtesting_report_{timestamp}.html"
+            html_filepath = os.path.join(reports_dir, html_filename)
+            with open(html_filepath, 'w', encoding='utf-8') as f:
+                f.write(html_report)
+            
+            # 결과 표시
+            console.print("\n" + "="*60)
+            console.print("[bold green]📋 백테스팅 종합 보고서 완성[/bold green]")
+            console.print("="*60)
+            
+            # 요약 통계
+            passed_count = sum(1 for r in all_results.values() if r.status.value == "PASSED")
+            total_strategies = len(all_results)
+            avg_ai_effectiveness = sum(c.ai_effectiveness_score for c in all_comparisons.values()) / len(all_comparisons) if all_comparisons else 0
+            
+            summary_stats = f"""
+[bold]📊 보고서 요약[/bold]
+• 분석된 전략: {total_strategies}개
+• 검증 통과 전략: {passed_count}개
+• 평균 AI 효과성 점수: {avg_ai_effectiveness:.1f}/100점
+• 분석 기간: {(end_date - start_date).days}일
+• 분석 종목: {len(symbols)}개
+            """
+            
+            console.print(Panel(summary_stats.strip(), title="📈 보고서 요약", border_style="cyan"))
+            
+            # 파일 정보
+            file_info = f"""
+[bold]📁 생성된 파일[/bold]
+• 텍스트 보고서: {text_filepath}
+• HTML 보고서: {html_filepath}
+            """
+            
+            console.print(Panel(file_info.strip(), title="💾 저장된 파일", border_style="green"))
+            
+            # 브라우저에서 HTML 보고서 열기 옵션
+            if Confirm.ask("\n🌐 HTML 보고서를 브라우저에서 여시겠습니까?"):
+                import webbrowser
+                import os
+                
+                # 절대 경로로 변환
+                abs_path = os.path.abspath(html_filepath)
+                file_url = f"file:///{abs_path.replace(chr(92), '/')}"  # Windows 경로 처리
+                
+                try:
+                    webbrowser.open(file_url)
+                    console.print(f"[green]✅ 브라우저에서 보고서를 열었습니다[/green]")
+                except Exception as e:
+                    console.print(f"[yellow]⚠️ 브라우저 열기 실패: {e}[/yellow]")
+                    console.print(f"[cyan]수동으로 다음 파일을 열어주세요: {html_filepath}[/cyan]")
+            
+            return True
+            
+        except Exception as e:
+            console.print(f"[red]❌ 백테스팅 보고서 생성 오류: {e}[/red]")
+            self.logger.error(f"백테스팅 보고서 생성 오류: {e}")
+            return False

@@ -15,7 +15,7 @@ from enum import Enum
 import pandas as pd
 import numpy as np
 
-from database.db_operations import get_historical_analysis, get_historical_news
+# Note: Historical database functions need to be implemented for full functionality
 from analyzers.ai_controller import AIController
 from analyzers.gemini_analyzer import GeminiAnalyzer
 
@@ -66,11 +66,23 @@ class MarketRegimeAnalysis:
 class HistoricalAnalyzer:
     """과거 데이터 분석기 - AI 예측 검증 및 시장 분석"""
     
-    def __init__(self):
+    def __init__(self, config=None):
         """과거 데이터 분석기 초기화"""
-        self.ai_controller = AIController()
-        self.gemini_analyzer = GeminiAnalyzer()
-        self.logger = logging.getLogger(__name__)
+        try:
+            if config:
+                self.ai_controller = AIController(config)
+            else:
+                # 기본 설정으로 초기화
+                from config import get_config
+                default_config = get_config()
+                self.ai_controller = AIController(default_config)
+            self.gemini_analyzer = GeminiAnalyzer()
+            self.logger = logging.getLogger(__name__)
+        except Exception as e:
+            self.logger = logging.getLogger(__name__)
+            self.logger.warning(f"AI 컨트롤러 초기화 실패: {e}")
+            self.ai_controller = None
+            self.gemini_analyzer = None
     
     async def analyze_ai_prediction_accuracy(
         self,
@@ -281,8 +293,8 @@ class HistoricalAnalyzer:
             }
             
             for symbol in symbols:
-                # 해당 기간의 뉴스 데이터 가져오기
-                news_data = await get_historical_news(symbol, start_date, end_date)
+                # TODO: 해당 기간의 뉴스 데이터 가져오기 (구현 필요)
+                news_data = []  # await get_historical_news(symbol, start_date, end_date)
                 
                 if not news_data:
                     continue
@@ -369,8 +381,8 @@ class HistoricalAnalyzer:
             current_date = start_date
             
             while current_date <= end_date:
-                # 데이터베이스에서 해당 날짜 데이터 가져오기
-                analysis_data = await get_historical_analysis(symbol, current_date)
+                # TODO: 데이터베이스에서 해당 날짜 데이터 가져오기 (구현 필요)
+                analysis_data = None  # await get_historical_analysis(symbol, current_date)
                 
                 if analysis_data:
                     data_point = HistoricalData(
@@ -386,10 +398,8 @@ class HistoricalAnalyzer:
                     if 'ai_prediction' in analysis_data:
                         data_point.ai_prediction = analysis_data['ai_prediction']
                     
-                    # 실제 결과 데이터 (다음날 데이터에서 계산)
-                    next_day_data = await get_historical_analysis(
-                        symbol, current_date + timedelta(days=1)
-                    )
+                    # TODO: 실제 결과 데이터 (다음날 데이터에서 계산) (구현 필요)
+                    next_day_data = None  # await get_historical_analysis(symbol, current_date + timedelta(days=1))
                     
                     if next_day_data:
                         next_price = next_day_data.get('current_price', 0)
@@ -514,7 +524,7 @@ class HistoricalAnalyzer:
                 daily_volumes = []
                 
                 for symbol in representative_symbols:
-                    analysis_data = await get_historical_analysis(symbol, current_date)
+                    analysis_data = None  # TODO: await get_historical_analysis(symbol, current_date) 구현 필요
                     if analysis_data:
                         daily_prices.append(analysis_data.get('current_price', 0))
                         daily_volumes.append(analysis_data.get('volume', 0))
@@ -767,8 +777,9 @@ class HistoricalAnalyzer:
             before_date = news_date - timedelta(days=1)
             after_date = news_date + timedelta(days=1)
             
-            before_data = await get_historical_analysis(symbol, before_date)
-            after_data = await get_historical_analysis(symbol, after_date)
+            # TODO: 뉴스 전후 데이터 가져오기 (구현 필요)
+            before_data = None  # await get_historical_analysis(symbol, before_date)
+            after_data = None   # await get_historical_analysis(symbol, after_date)
             
             if not before_data or not after_data:
                 return None

@@ -15,20 +15,17 @@ from decimal import Decimal
 import pandas as pd
 import numpy as np
 
-from database.models import StockAnalysis, Order, Trade
-from database.db_operations import (
-    get_historical_analysis, save_backtest_result,
-    get_historical_orders, get_historical_trades
-)
+from database.models import AnalysisResult, Trade
+# Note: Some database functions need to be implemented for full functionality
 from analyzers.ai_controller import AIController
-from strategies.base_strategy import BaseStrategy, Signal
+from strategies.base_strategy import BaseStrategy
 from strategies.momentum_strategy import MomentumStrategy
 from strategies.breakout_strategy import BreakoutStrategy
-from strategies.eod_strategy import EODStrategy
-from strategies.supertrend_ema_rsi_strategy import SupertrendEMAStrategy
-from strategies.vwap_strategy import VWAPStrategy
-from strategies.scalping_3m_strategy import Scalping3MStrategy
-from strategies.rsi_strategy import RSIStrategy
+from strategies.eod_strategy import EodStrategy
+from strategies.supertrend_ema_rsi_strategy import SupertrendEmaRsiStrategy
+from strategies.vwap_strategy import VwapStrategy
+from strategies.scalping_3m_strategy import Scalping3mStrategy
+from strategies.rsi_strategy import RsiStrategy
 
 logger = logging.getLogger(__name__)
 
@@ -79,19 +76,33 @@ class BacktestResult:
 class BacktestingEngine:
     """백테스팅 엔진 - AI 기반 전략 성능 검증"""
     
-    def __init__(self):
+    def __init__(self, config=None):
         """백테스팅 엔진 초기화"""
-        self.ai_controller = AIController()
-        self.strategies = {
-            'momentum': MomentumStrategy(),
-            'breakout': BreakoutStrategy(),
-            'eod': EODStrategy(),
-            'supertrend_ema_rsi': SupertrendEMAStrategy(),
-            'vwap': VWAPStrategy(),
-            'scalping_3m': Scalping3MStrategy(),
-            'rsi': RSIStrategy()
-        }
-        self.logger = logging.getLogger(__name__)
+        try:
+            if config:
+                self.ai_controller = AIController(config)
+                strategy_config = config
+            else:
+                # 기본 설정으로 초기화
+                import config
+                default_config = config.Config()
+                self.ai_controller = AIController(default_config)
+                strategy_config = default_config
+            self.strategies = {
+                'momentum': MomentumStrategy(strategy_config),
+                'breakout': BreakoutStrategy(strategy_config), 
+                'eod': EodStrategy(strategy_config),
+                'supertrend_ema_rsi': SupertrendEmaRsiStrategy(strategy_config),
+                'vwap': VwapStrategy(strategy_config),
+                'scalping_3m': Scalping3mStrategy(strategy_config),
+                'rsi': RsiStrategy(strategy_config)
+            }
+            self.logger = logging.getLogger(__name__)
+        except Exception as e:
+            self.logger = logging.getLogger(__name__)
+            self.logger.warning(f"백테스팅 엔진 초기화 실패: {e}")
+            self.ai_controller = None
+            self.strategies = {}
     
     async def run_backtest(
         self,
