@@ -2439,3 +2439,90 @@
 09:29:29 | TradingSystem | WARNING | ⚠️ Trading 모듈 초기화 실패: 'Config' object has no attribute 'risk'
 09:29:29 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: source code string cannot contain null bytes
 09:29:29 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:39:04 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:39:10 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:39:13 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:39:16 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:39:16 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+09:39:16 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+09:39:16 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+09:39:16 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:39:16 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+09:39:16 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+09:39:16 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+09:39:16 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+09:39:33 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+09:39:33 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+09:39:33 | TradingSystem | WARNING | ⚠️ Trading 모듈 초기화 실패: 'Config' object has no attribute 'risk'
+09:39:33 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: source code string cannot contain null bytes
+09:39:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:44:13 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:44:13 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:44:16 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:44:19 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:44:19 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+09:44:19 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+09:44:19 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+09:44:19 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:44:19 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+09:44:19 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+09:44:19 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+09:44:19 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+09:44:29 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+09:44:30 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+09:44:30 | TradingSystem | WARNING | ⚠️ Trading 모듈 초기화 실패: 'Config' object has no attribute 'risk'
+09:44:30 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: source code string cannot contain null bytes
+09:44:31 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:46:00 | TradingSystem | WARNING | 시장 지수 KOSPI 데이터 수집 실패: 'KISCollector' object has no attribute 'get_market_index_data'
+09:46:00 | TradingSystem | WARNING | 시장 지수 KOSDAQ 데이터 수집 실패: 'KISCollector' object has no attribute 'get_market_index_data'
+09:46:00 | TradingSystem | WARNING | 시장 지수 KS11 데이터 수집 실패: 'KISCollector' object has no attribute 'get_market_index_data'
+09:46:00 | TradingSystem | WARNING | 시장 지수 KQ11 데이터 수집 실패: 'KISCollector' object has no attribute 'get_market_index_data'
+09:46:00 | TradingSystem | WARNING | 종목 005930 데이터 수집 실패: 'KISCollector' object has no attribute 'get_stock_data'
+09:46:00 | TradingSystem | WARNING | 종목 000660 데이터 수집 실패: 'KISCollector' object has no attribute 'get_stock_data'
+09:46:00 | TradingSystem | WARNING | 종목 035420 데이터 수집 실패: 'KISCollector' object has no attribute 'get_stock_data'
+09:46:00 | TradingSystem | WARNING | 종목 005380 데이터 수집 실패: 'KISCollector' object has no attribute 'get_stock_data'
+09:46:00 | TradingSystem | WARNING | 종목 051910 데이터 수집 실패: 'KISCollector' object has no attribute 'get_stock_data'
+09:46:23 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+09:46:23 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+09:46:23 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+09:46:23 | TradingSystem | INFO | 기본 종목 40개로 대체
+09:46:23 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패
+09:48:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+09:48:42 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+09:48:45 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+09:48:48 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+09:48:48 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+09:48:48 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+09:48:48 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+09:48:48 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+09:48:48 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+09:48:48 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+09:48:48 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+09:48:48 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+09:48:58 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+09:48:59 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+09:48:59 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+09:49:01 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+09:49:02 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:04:54 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+10:04:54 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:04:54 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:04:57 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:05:00 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:05:00 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:05:00 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:05:00 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:05:00 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:05:00 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:05:00 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:05:00 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:05:00 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:05:10 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:05:10 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:05:10 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:05:12 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+10:05:12 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:05:12 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+10:05:12 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+10:05:12 | TradingSystem | INFO | 기본 종목 40개로 대체
+10:05:12 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패

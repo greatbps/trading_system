@@ -268,3 +268,274 @@
 2025-08-06 09:29:29 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
 2025-08-06 09:29:29 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
 2025-08-06 09:29:29 | Main         | INFO     | main            | 시스템 초기화 완료!
+2025-08-06 09:39:04 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-06 09:39:04 | Main         | INFO     | main            | TradingSystem 임포트 성공
+2025-08-06 09:39:04 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-06 09:39:05 | KISCollector | INFO     | __init__        | pykis.Api integration enabled
+2025-08-06 09:39:05 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-06 09:39:05 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-06 09:39:05 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 4:49:19.667695)
+2025-08-06 09:39:10 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-06 09:39:10 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-06 09:39:10 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-06 09:39:13 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:39:13 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-06 09:39:13 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-06 09:39:16 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:39:16 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 09:39:16 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 09:39:16 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 09:39:16 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 09:39:16 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 09:39:16 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-06 09:39:19 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:39:19 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:39:22 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:39:22 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:39:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:39:29 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:39:33 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:39:33 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:39:33 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:39:33 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-06 09:39:33 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-06 09:39:33 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-06 09:39:34 | Main         | INFO     | main            | 시스템 초기화 완료!
+2025-08-06 09:40:58 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:40:58 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:41:01 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:01 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:41:04 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:04 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:41:07 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:07 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:41:07 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:41:07 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 09:41:07 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 09:41:07 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 09:41:07 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 09:41:07 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 09:41:10 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:10 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:41:13 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:13 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:41:15 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:15 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:41:18 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:18 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:41:18 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:41:18 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 09:41:18 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 09:41:18 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 09:41:18 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 09:41:18 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 09:41:21 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:21 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:41:24 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:24 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:41:26 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:26 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:41:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:41:29 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:41:29 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:44:12 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-06 09:44:13 | Main         | INFO     | main            | TradingSystem 임포트 성공
+2025-08-06 09:44:13 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-06 09:44:13 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-06 09:44:13 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-06 09:44:13 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 4:44:11.986797)
+2025-08-06 09:44:13 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-06 09:44:13 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-06 09:44:13 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-06 09:44:16 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:44:16 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-06 09:44:16 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-06 09:44:19 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:44:19 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 09:44:19 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 09:44:19 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 09:44:19 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 09:44:19 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 09:44:19 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-06 09:44:21 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:44:21 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:44:24 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:44:24 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:44:27 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:44:27 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:44:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:44:29 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:44:29 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:44:30 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-06 09:44:30 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-06 09:44:30 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-06 09:44:31 | Main         | INFO     | main            | 시스템 초기화 완료!
+2025-08-06 09:46:00 | AIController | INFO     | comprehensive_market_analysis | 🧠 AI 종합 시장 분석 시작
+2025-08-06 09:46:00 | MarketRegimeDetector | INFO     | detect_current_regime | 🌐 현재 시장 체제 감지 시작
+2025-08-06 09:46:00 | MarketRegimeDetector | ERROR    | _ai_regime_classification | ❌ AI 체제 분류 실패: 'GeminiAnalyzer' object has no attribute 'analyze_with_custom_prompt'
+2025-08-06 09:46:00 | MarketRegimeDetector | INFO     | detect_current_regime | ✅ 시장 체제 감지 완료: SIDEWAYS (60.0%)
+2025-08-06 09:46:00 | AIRiskManager | INFO     | assess_portfolio_risk | 🛡️ 포트폴리오 리스크 종합 평가 시작
+2025-08-06 09:46:00 | AIRiskManager | INFO     | assess_portfolio_risk | ✅ 포트폴리오 리스크 평가 완료: MEDIUM (50.0점)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | 🌐 momentum 시장 적응성 분석 시작 (체제: SIDEWAYS)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | ✅ momentum 적응성 분석 완료: 65.0점
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | 🌐 breakout 시장 적응성 분석 시작 (체제: SIDEWAYS)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | ✅ breakout 적응성 분석 완료: 65.0점
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | 🌐 rsi 시장 적응성 분석 시작 (체제: SIDEWAYS)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | ✅ rsi 적응성 분석 완료: 65.0점
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | 🌐 scalping_3m 시장 적응성 분석 시작 (체제: SIDEWAYS)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | ✅ scalping_3m 적응성 분석 완료: 65.0점
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | 🌐 eod 시장 적응성 분석 시작 (체제: SIDEWAYS)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | ✅ eod 적응성 분석 완료: 65.0점
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | 🌐 vwap 시장 적응성 분석 시작 (체제: SIDEWAYS)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | ✅ vwap 적응성 분석 완료: 65.0점
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | 🌐 supertrend_ema_rsi 시장 적응성 분석 시작 (체제: SIDEWAYS)
+2025-08-06 09:46:00 | StrategyOptimizer | INFO     | analyze_market_adaptation | ✅ supertrend_ema_rsi 적응성 분석 완료: 65.0점
+2025-08-06 09:46:00 | AIController | ERROR    | comprehensive_market_analysis | ❌ AI 종합 시장 분석 실패: 'AIRiskAssessment' object has no attribute 'overall_risk_level'
+2025-08-06 09:46:23 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 09:46:23 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-06 09:46:23 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 09:48:40 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-06 09:48:40 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-06 09:48:40 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 4:39:44.875759)
+2025-08-06 09:48:42 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-06 09:48:42 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-06 09:48:43 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-06 09:48:45 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:48:45 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-06 09:48:45 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-06 09:48:48 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:48:48 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 09:48:48 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 09:48:48 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 09:48:48 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 09:48:48 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 09:48:48 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-06 09:48:51 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:48:51 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:48:53 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:48:53 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:48:56 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:48:56 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:48:58 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:48:58 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:48:58 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:48:59 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-06 09:48:59 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-06 09:48:59 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-06 09:48:59 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-06 09:49:01 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:49:01 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-06 09:49:01 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-06 09:49:41 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-06 09:49:41 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-06 09:51:57 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:51:57 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:52:00 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:00 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:52:03 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:03 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:52:05 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:05 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:52:05 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:52:05 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 09:52:05 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 09:52:05 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 09:52:05 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 09:52:05 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 09:52:08 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:08 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:52:11 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:11 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:52:13 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:13 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:52:16 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:16 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:52:16 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:52:16 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 09:52:16 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 09:52:16 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 09:52:16 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 09:52:16 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 09:52:18 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:18 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 09:52:21 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:21 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 09:52:24 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:24 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 09:52:26 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:26 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 09:52:26 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 09:52:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:29 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-06 09:52:32 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 09:52:32 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-06 09:52:32 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-06 10:04:54 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-06 10:04:54 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-06 10:04:54 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 4:23:30.805111)
+2025-08-06 10:04:54 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-06 10:04:54 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-06 10:04:54 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-06 10:04:57 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:04:57 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-06 10:04:57 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-06 10:05:00 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:05:00 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 10:05:00 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 10:05:00 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 10:05:00 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 10:05:00 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 10:05:00 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-06 10:05:02 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:05:02 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 10:05:05 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:05:05 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 10:05:07 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:05:07 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 10:05:10 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:05:10 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 10:05:10 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 10:05:10 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-06 10:05:10 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-06 10:05:10 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-06 10:05:10 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-06 10:05:12 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:05:12 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-06 10:05:12 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-06 10:05:12 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 10:05:12 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-06 10:05:12 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 10:07:35 | KISCollector | INFO     | close           | Closing KIS API collector...
+2025-08-06 10:07:35 | KISCollector | INFO     | close           | KIS API collector closed successfully
+2025-08-06 10:07:43 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-06 10:07:43 | Main         | INFO     | main            | TradingSystem 임포트 성공
+2025-08-06 10:07:43 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-06 10:07:43 | KISCollector | INFO     | __init__        | KISCollector initialized (virtual: True)
+2025-08-06 10:07:43 | KISCollector | INFO     | initialize      | Initializing KIS API collector...
+2025-08-06 10:07:43 | KISCollector | INFO     | load_cached_token | Using cached token (expires in 4:20:41.878573)
+2025-08-06 10:07:43 | KISCollector | INFO     | _test_connection | API connection test successful
+2025-08-06 10:07:43 | KISCollector | INFO     | initialize      | KIS API collector initialized successfully
+2025-08-06 10:07:43 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-06 10:07:46 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:07:46 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-06 10:07:46 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-06 10:07:49 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:07:49 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-06 10:07:49 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-06 10:07:49 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-06 10:07:49 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-06 10:07:49 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-06 10:07:49 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-06 10:07:51 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:07:51 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-06 10:07:54 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:07:54 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-06 10:07:56 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:07:56 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-06 10:07:59 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:07:59 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-06 10:07:59 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-06 10:07:59 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-06 10:07:59 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-06 10:07:59 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-06 10:07:59 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료

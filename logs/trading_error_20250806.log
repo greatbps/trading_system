@@ -2,3 +2,9 @@
 2025-08-06 05:14:31 | Main         | ERROR    | main            | 시스템 실행 중 오류: 'cp949' codec can't encode character '\U0001f4cb' in position 1: illegal multibyte sequence
 2025-08-06 09:07:56 | Main         | ERROR    | main            | 시스템 실행 중 오류: 'cp949' codec can't encode character '\U0001f4cb' in position 1: illegal multibyte sequence
 2025-08-06 09:19:24 | Main         | ERROR    | main            | 시스템 실행 중 오류: 'cp949' codec can't encode character '\U0001f527' in position 0: illegal multibyte sequence
+2025-08-06 09:46:00 | MarketRegimeDetector | ERROR    | _ai_regime_classification | ❌ AI 체제 분류 실패: 'GeminiAnalyzer' object has no attribute 'analyze_with_custom_prompt'
+2025-08-06 09:46:00 | AIController | ERROR    | comprehensive_market_analysis | ❌ AI 종합 시장 분석 실패: 'AIRiskAssessment' object has no attribute 'overall_risk_level'
+2025-08-06 09:46:23 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 09:46:23 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 10:05:12 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 10:05:12 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory

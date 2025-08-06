@@ -297,7 +297,7 @@ class BacktestingEngine:
     async def _execute_trade(
         self,
         symbol: str,
-        signal: Signal,
+        signal: Dict,
         stock_data: Dict,
         positions: Dict,
         cash: float,
@@ -312,16 +312,16 @@ class BacktestingEngine:
             trade = {
                 'symbol': symbol,
                 'date': stock_data['date'],
-                'action': signal.action,
+                'action': signal.get('action', 'HOLD'),
                 'price': price,
-                'confidence': signal.confidence,
+                'confidence': signal.get('confidence', 0.5),
                 'quantity': 0,
                 'amount': 0,
                 'commission': 0,
                 'net_amount': 0
             }
             
-            if signal.action == 'BUY':
+            if signal.get('action') == 'BUY':
                 # 가용 현금의 일정 비율로 매수 (리스크 관리)
                 max_investment = cash * 0.1  # 최대 10%
                 quantity = int(max_investment / price)
@@ -348,7 +348,7 @@ class BacktestingEngine:
                             'trade': trade
                         }
             
-            elif signal.action == 'SELL':
+            elif signal.get('action') == 'SELL':
                 # 보유 수량 전체 매도
                 quantity = positions.get(symbol, 0)
                 

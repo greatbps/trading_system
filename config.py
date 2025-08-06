@@ -116,6 +116,14 @@ class SystemConfig:
     MAX_RETRY_COUNT = 3
     REQUEST_TIMEOUT = 30
 
+class RiskConfig:
+    """리스크 관리 설정"""
+    MAX_DAILY_LOSS = 500000  # 일일 최대 손실 (50만원)
+    MAX_POSITION_LOSS = 200000  # 포지션별 최대 손실 (20만원)
+    DEFAULT_STOP_LOSS_PCT = 5.0  # 기본 손절매 비율 (5%)
+    DEFAULT_TAKE_PROFIT_PCT = 10.0  # 기본 익절매 비율 (10%)
+    MAX_PORTFOLIO_RISK = 0.02  # 최대 포트폴리오 위험도 (2%)
+
 class Config:
     """통합 설정 클래스"""
     api = APIConfig()
@@ -127,6 +135,7 @@ class Config:
         self.trading = TradingConfig()
         self.analysis = AnalysisConfig()
         self.system = SystemConfig()
+        self.risk = RiskConfig()
         
         
         
