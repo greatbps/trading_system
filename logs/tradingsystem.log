@@ -2526,3 +2526,25 @@
 10:05:12 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
 10:05:12 | TradingSystem | INFO | 기본 종목 40개로 대체
 10:05:12 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패
+10:07:43 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:07:43 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:07:46 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:07:49 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:07:49 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:07:49 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:07:49 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:07:49 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:07:49 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:07:49 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:07:49 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:07:49 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:07:59 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:07:59 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:07:59 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:08:02 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+10:08:03 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:08:23 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+10:08:23 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+10:08:23 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+10:08:23 | TradingSystem | INFO | 기본 종목 40개로 대체
+10:08:23 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패

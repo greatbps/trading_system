@@ -539,3 +539,10 @@
 2025-08-06 10:07:59 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
 2025-08-06 10:07:59 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
 2025-08-06 10:07:59 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-06 10:08:02 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-06 10:08:02 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-06 10:08:02 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-06 10:08:03 | Main         | INFO     | main            | 시스템 초기화 완료!
+2025-08-06 10:08:23 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 10:08:23 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-06 10:08:23 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory

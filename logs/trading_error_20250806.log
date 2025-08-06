@@ -8,3 +8,5 @@
 2025-08-06 09:46:23 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
 2025-08-06 10:05:12 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
 2025-08-06 10:05:12 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 10:08:23 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 10:08:23 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
