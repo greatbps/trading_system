@@ -2570,3 +2570,534 @@
 10:13:04 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
 10:13:04 | TradingSystem | INFO | 기본 종목 40개로 대체
 10:13:04 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패
+10:48:47 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+10:48:47 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:48:49 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:48:52 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:48:54 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:48:54 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:48:54 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:48:54 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:48:54 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:48:54 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:48:54 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:48:54 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:48:55 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:49:04 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:49:04 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:49:05 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:49:07 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+10:49:07 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:49:07 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+10:49:07 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+10:49:07 | TradingSystem | INFO | 기본 종목 40개로 대체
+10:49:07 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패
+11:04:49 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:04:49 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:04:51 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:04:54 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:04:54 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+11:04:54 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+11:04:54 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+11:04:54 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:04:54 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+11:04:54 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+11:04:54 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+11:04:54 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+11:05:03 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+11:05:03 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+11:05:03 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+11:05:05 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+11:05:05 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:05:10 | TradingSystem | ERROR | ❌ 005930 분석 실패: AnalysisEngine.analyze_comprehensive() got an unexpected keyword argument 'news_data'
+15:20:03 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+15:20:03 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+15:20:03 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+15:20:03 | TradingSystem | INFO | 기본 종목 40개로 대체
+15:20:03 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패
+15:25:51 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:25:52 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:25:54 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:25:57 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:25:57 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:25:57 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:25:57 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:25:57 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:25:57 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:25:57 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:25:57 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:25:57 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:26:06 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:26:06 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:26:06 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:26:08 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+15:26:09 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:26:15 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+15:26:15 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+15:26:15 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+15:26:15 | TradingSystem | INFO | 기본 종목 40개로 대체
+15:26:15 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패
+15:31:04 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:31:04 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:31:06 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:31:09 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:31:09 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:31:09 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:31:09 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:31:09 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:31:09 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:31:09 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:31:09 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:31:09 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:31:18 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:31:18 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:31:18 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:31:21 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+15:31:21 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:34:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:34:43 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:34:45 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:34:48 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:34:48 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:34:48 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:34:48 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:34:48 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:34:48 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:34:48 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:34:48 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:34:48 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:34:57 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:34:57 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:34:57 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:34:59 | TradingSystem | WARNING | ⚠️ 알림 관리자 초기화 실패: 'NotificationManager' object has no attribute 'start_processing'
+15:35:00 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:35:16 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+15:35:16 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+15:35:16 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+15:35:16 | TradingSystem | INFO | 기본 종목 40개로 대체
+15:35:17 | TradingSystem | ERROR | ❌ 1차 필터링 이력 저장 실패
+15:38:41 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:38:43 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:38:46 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:38:48 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:38:48 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:38:48 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:38:48 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:38:48 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:38:48 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:38:48 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:38:48 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:38:48 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:38:57 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:38:57 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:38:57 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:38:59 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+15:39:00 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:39:04 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+15:45:49 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:45:49 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:45:52 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:45:54 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:45:54 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:45:54 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:45:54 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:45:54 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:45:54 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:45:54 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:45:54 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:45:54 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:46:03 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:46:03 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:46:03 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:46:06 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+15:46:07 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:46:23 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+15:46:26 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+15:46:26 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+15:46:26 | TradingSystem | INFO | 기본 종목 40개로 대체
+15:46:30 | TradingSystem | WARNING | ⚠️ 1차 필터링 이력 저장 실패 - 메모리에서 계속 진행
+15:46:30 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+15:46:30 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+15:51:27 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:51:27 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:51:30 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:51:32 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:51:32 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:51:32 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:51:32 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:51:32 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:51:32 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:51:32 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:51:32 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:51:32 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:51:42 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:51:42 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:51:42 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:51:44 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+15:51:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:52:00 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+15:52:03 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+15:52:03 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+15:52:03 | TradingSystem | INFO | 기본 종목 40개로 대체
+15:52:07 | TradingSystem | WARNING | ⚠️ 1차 필터링 이력 저장 실패 - 메모리에서 계속 진행
+15:52:07 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+15:52:07 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+15:54:29 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:54:31 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:54:34 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:54:36 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:54:36 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:54:36 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:54:36 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:54:36 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:54:36 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:54:36 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:54:36 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:54:36 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:54:46 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:54:46 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:54:46 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:54:48 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+15:54:49 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:54:55 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+15:54:58 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+15:54:58 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+15:54:58 | TradingSystem | INFO | 기본 종목 40개로 대체
+15:55:01 | TradingSystem | WARNING | ⚠️ 1차 필터링 이력 저장 실패 - 메모리에서 계속 진행
+15:55:01 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+15:55:01 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+15:59:42 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:59:49 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:59:51 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:59:53 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:59:53 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:59:53 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:59:53 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:59:53 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:59:53 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:59:53 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:59:53 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:59:54 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:00:03 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:00:03 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:00:03 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:00:06 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:00:10 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:02:26 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:02:26 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:02:29 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:02:31 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:02:31 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:02:31 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:02:31 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:02:31 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:02:31 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:02:31 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:02:31 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:02:31 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:02:41 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:02:41 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:02:41 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:02:43 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:02:44 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:09:21 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:09:23 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:09:26 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:09:28 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:09:28 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:09:28 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:09:28 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:09:28 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:09:28 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:09:28 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:09:28 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:09:28 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:09:37 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:09:38 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:09:38 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:09:40 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:09:41 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:09:53 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+16:09:57 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+16:09:57 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+16:09:57 | TradingSystem | INFO | 기본 종목 40개로 대체
+16:10:00 | TradingSystem | WARNING | ⚠️ 1차 필터링 이력 저장 실패 - 메모리에서 계속 진행
+16:10:00 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+16:10:00 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+21:51:31 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+21:51:37 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+21:51:39 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+21:51:42 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+21:51:42 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+21:51:42 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+21:51:42 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+21:51:42 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+21:51:42 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+21:51:42 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+21:51:42 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+21:51:42 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+21:51:51 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+21:51:51 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+21:51:51 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+21:51:53 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+21:51:54 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:55:47 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+05:55:50 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+05:55:54 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+05:55:56 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+05:55:56 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+05:55:56 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+05:55:56 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+05:55:56 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+05:55:56 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+05:55:56 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+05:55:56 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+05:55:56 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+05:56:06 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+05:56:06 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+05:56:06 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+05:56:08 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+05:56:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+05:56:23 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+05:56:26 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+05:56:26 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+05:56:26 | TradingSystem | INFO | 기본 종목 40개로 대체
+05:56:30 | TradingSystem | WARNING | ⚠️ 1차 필터링 이력 저장 실패 - 메모리에서 계속 진행
+05:56:30 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+05:56:30 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+06:08:02 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:08:03 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:08:05 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:08:08 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:08:08 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:08:08 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:08:08 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:08:08 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:08:08 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:08:08 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:08:08 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:08:08 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:08:17 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:08:17 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:08:17 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:08:19 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:08:20 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:08:25 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+06:08:25 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+06:08:25 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+06:08:25 | TradingSystem | INFO | 기본 종목 40개로 대체
+06:08:25 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+06:08:25 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+06:08:25 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+06:08:27 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+06:16:14 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:16:17 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:16:19 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:16:21 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:16:21 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:16:21 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:16:21 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:16:21 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:16:21 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:16:21 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:16:21 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:16:21 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:16:31 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:16:31 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:16:31 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:16:33 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:16:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:17:27 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+06:17:27 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+06:17:27 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+06:17:27 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+06:17:27 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+06:17:27 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+06:17:27 | TradingSystem | INFO | 기본 종목 40개로 대체
+06:17:27 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+06:17:27 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+06:17:27 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+06:17:27 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+06:17:28 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+06:22:28 | TradingSystem | ERROR | ❌ 분석 타임아웃 (5분) - 부분 결과로 진행
+06:31:26 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:31:26 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:31:29 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:31:31 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:31:31 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:31:31 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:31:31 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:31:31 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:31:31 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:31:31 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:31:31 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:31:31 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:31:41 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:31:41 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:31:41 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:31:44 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:31:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:40:27 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:40:28 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:40:32 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:40:35 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:40:35 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:40:35 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:40:35 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:40:35 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:40:35 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:40:35 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:40:35 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:40:35 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:40:44 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:40:44 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:40:44 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:40:46 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:40:51 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:41:33 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+06:41:33 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+06:41:33 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+06:41:33 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+06:41:33 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+06:41:33 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+06:41:33 | TradingSystem | INFO | 기본 종목 40개로 대체
+06:41:33 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+06:41:33 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+06:41:33 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+06:41:33 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+06:41:33 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+06:41:44 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
+06:41:44 | TradingSystem | ERROR | ❌ 005930 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 000660 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 035420 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 005380 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 051910 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 028260 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 006400 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 000270 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 068270 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 105560 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 055550 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 035720 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 207940 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 066570 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 323410 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 000810 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 017670 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
+06:41:44 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패
+14:44:23 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+14:44:24 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+14:44:28 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+14:44:30 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+14:44:30 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+14:44:30 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+14:44:30 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+14:44:30 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+14:44:30 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+14:44:30 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+14:44:30 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+14:44:30 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+14:44:40 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+14:44:40 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+14:44:40 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+14:44:43 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+14:44:47 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+14:45:06 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+14:45:07 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+14:45:07 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+14:45:07 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+14:45:07 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+14:45:07 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+14:45:07 | TradingSystem | INFO | 기본 종목 40개로 대체
+14:45:07 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+14:45:07 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+14:45:07 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+14:45:07 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+14:45:07 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+14:45:37 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
+14:45:37 | TradingSystem | ERROR | ❌ 005930 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 000660 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 035420 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 005380 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 051910 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 028260 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 006400 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 000270 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 068270 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 105560 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 055550 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 035720 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 207940 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 066570 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 323410 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 000810 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 017670 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
+14:45:37 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패
+14:48:54 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+14:48:54 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+14:48:57 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+14:48:59 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+14:48:59 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+14:48:59 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+14:48:59 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+14:48:59 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+14:48:59 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+14:48:59 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+14:48:59 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+14:48:59 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+14:49:08 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+14:49:09 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+14:49:09 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+14:49:11 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+14:49:12 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:50:33 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:50:34 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:50:39 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:50:41 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:50:41 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+08:50:41 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+08:50:41 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+08:50:41 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:50:41 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+08:50:41 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+08:50:41 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+08:50:41 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+08:50:50 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+08:50:51 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:50:51 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+08:50:53 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+08:50:58 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:51:04 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+08:51:04 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+08:51:04 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+08:51:04 | TradingSystem | INFO | 기본 종목 40개로 대체
+08:51:04 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+08:51:04 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+08:51:04 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+08:51:04 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+08:51:05 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+08:51:35 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
+08:51:35 | TradingSystem | ERROR | ❌ 005930 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 000660 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 035420 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 005380 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 051910 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 028260 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 006400 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 000270 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 068270 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 105560 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 055550 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 035720 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 207940 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 066570 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 323410 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 000810 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 017670 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
+08:51:35 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패

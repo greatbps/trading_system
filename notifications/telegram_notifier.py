@@ -491,3 +491,12 @@ class TelegramNotifier:
             'rate_limit_count': 0
         }
         self.logger.info("📊 텔레그램 통계 리셋")
+    
+    async def cleanup(self):
+        """리소스 정리 - 현재는 aiohttp 세션이 context manager로 관리되므로 별도 정리 불필요"""
+        try:
+            # 현재 aiohttp.ClientSession이 context manager로 사용되므로 자동 정리됨
+            # 필요시 추가 정리 작업을 여기에 추가
+            self.logger.info("✅ TelegramNotifier 정리 완료")
+        except Exception as e:
+            self.logger.error(f"❌ TelegramNotifier 정리 중 오류: {e}")

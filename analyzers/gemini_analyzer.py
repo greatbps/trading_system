@@ -287,6 +287,61 @@ class GeminiAnalyzer:
             self.logger.warning(f"시장 영향도 분석 응답 파싱 실패: {e}")
             return self._get_default_market_impact()
     
+    def _format_news_for_analysis(self, news_data: List[Dict]) -> str:
+        """뉴스 데이터를 분석용 텍스트로 포맷"""
+        try:
+            formatted_content = []
+            for i, news in enumerate(news_data, 1):
+                title = news.get('title', '제목 없음')
+                content = news.get('content', news.get('summary', '내용 없음'))
+                formatted_content.append(f"뉴스 {i}: {title}\n내용: {content}")
+            
+            return "\n\n".join(formatted_content)
+            
+        except Exception as e:
+            self.logger.warning(f"뉴스 포맷팅 실패: {e}")
+            return "뉴스 내용 파싱 실패"
+
+    def _fallback_analysis(self, news_content: str, company_name: str) -> Dict[str, Any]:
+        """키워드 기반 fallback 분석"""
+        try:
+            # 간단한 키워드 기반 분석
+            positive_keywords = ['상승', '긍정', '성장', '실적', '호조', '증가', '확대', '개선', '신규', '계약', '수주']
+            negative_keywords = ['하락', '부정', '감소', '우려', '위험', '손실', '규제', '중단', '취소', '악화']
+            
+            content_lower = news_content.lower()
+            
+            positive_count = sum(1 for keyword in positive_keywords if keyword in content_lower)
+            negative_count = sum(1 for keyword in negative_keywords if keyword in content_lower)
+            
+            # 점수 계산 (30-70 범위)
+            if positive_count > negative_count:
+                sentiment = 'POSITIVE'
+                score = min(80, 60 + (positive_count - negative_count) * 5)
+            elif negative_count > positive_count:
+                sentiment = 'NEGATIVE'
+                score = max(20, 40 - (negative_count - positive_count) * 5)
+            else:
+                sentiment = 'NEUTRAL'
+                score = 50.0
+            
+            return {
+                'sentiment': sentiment,
+                'overall_score': float(score),
+                'confidence': 0.6,
+                'positive_factors': [f'긍정 키워드 {positive_count}개 발견'] if positive_count > 0 else [],
+                'negative_factors': [f'부정 키워드 {negative_count}개 발견'] if negative_count > 0 else [],
+                'key_keywords': positive_keywords[:positive_count] + negative_keywords[:negative_count],
+                'short_term_outlook': f'키워드 분석 기반 {sentiment.lower()} 전망',
+                'medium_term_outlook': '상세 분석 필요',
+                'summary': f'{company_name} 키워드 분석 결과: {sentiment}',
+                'trend': 'STABLE'
+            }
+            
+        except Exception as e:
+            self.logger.warning(f"Fallback 분석 실패: {e}")
+            return self._get_default_sentiment()
+
     def _get_default_sentiment(self) -> Dict[str, Any]:
         """기본 감성 분석 결과"""
         return {

@@ -377,6 +377,7 @@ class AnalysisResult(BaseModel):
     technical_details = Column(JSON, comment="기술적 분석 상세")
     fundamental_details = Column(JSON, comment="기본 분석 상세")
     sentiment_details = Column(JSON, comment="감정 분석 상세")
+    supply_demand_details = Column(JSON, comment="수급 분석 상세")
     
     # 가격 정보 (분석 당시)
     price_at_analysis = Column(Integer, comment="분석 당시 가격")

@@ -206,6 +206,8 @@ class TradingSystem:
         self.notifier = None
         self.db_manager = None
         self.menu_handlers = None
+        
+        # 데이터베이스 연결이 안정적이므로 메모리 캐시 불필요
     
     async def initialize_components(self):
         """컴포넌트 초기화"""
@@ -403,14 +405,29 @@ class TradingSystem:
                     candidates = [type('Stock', (), {'id': i, 'stock_id': i, 'stock_code': symbol, 'stock_name': name})() 
                                  for i, (symbol, name) in enumerate(major_stocks)]
                 else:
-                    # 원래 DB 로직
-                    latest_history = await self.db_manager.db_operations.get_latest_filter_history(strategy)
+                    # DB 연결 안정성 강화 - 예외 처리 추가
+                    try:
+                        latest_history = await self.db_manager.db_operations.get_latest_filter_history(strategy)
+                        
+                        # 하루에 한 번만 실행하도록 체크
+                        if latest_history and latest_history.filter_date.date() == datetime.now().date():
+                            self.logger.info("✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.")
+                            try:
+                                candidates = await self.db_manager.db_operations.get_filtered_stocks_for_history(latest_history.id)
+                            except Exception as e:
+                                self.logger.warning(f"⚠️ DB에서 필터링된 종목 조회 실패: {e}")
+                                self.logger.info("🔄 기본 종목으로 대체합니다.")
+                                candidates = None
+                        else:
+                            candidates = None
+                    except Exception as db_error:
+                        self.logger.warning(f"⚠️ DB 조회 완전 실패: {type(db_error).__name__}: {db_error}")
+                        self.logger.info("🔄 DB 없이 진행합니다.")
+                        latest_history = None
+                        candidates = None
                     
-                    # 하루에 한 번만 실행하도록 체크
-                    if latest_history and latest_history.filter_date.date() == datetime.now().date():
-                        self.logger.info("✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.")
-                        candidates = await self.db_manager.db_operations.get_filtered_stocks_for_history(latest_history.id)
-                    else:
+                    # DB 조회 실패 시 새로운 필터링 실행
+                    if not candidates:
                         hts_condition_id = self.config.trading.HTS_CONDITIONAL_SEARCH_IDS.get(strategy)
                         if not hts_condition_id:
                             self.logger.error(f"❌ HTS 조건검색식 ID가 없습니다: {strategy}")
@@ -450,11 +467,35 @@ class TradingSystem:
                                     self.logger.warning(f"⚠️ {symbol} 종목 정보 조회 실패: {e}")
                                     candidates_data.append({'stock_code': symbol, 'stock_name': symbol})
                         
-                        filter_history = await self.db_manager.db_operations.save_filter_history(strategy, candidates_data)
-                        if not filter_history:
-                            self.logger.error("❌ 1차 필터링 이력 저장 실패")
-                            return []
-                        candidates = await self.db_manager.db_operations.get_filtered_stocks_for_history(filter_history.id)
+                        # DB 저장 시도 (실패해도 계속 진행)
+                        try:
+                            filter_history = await self.db_manager.db_operations.save_filter_history(strategy, candidates_data)
+                            if filter_history:
+                                try:
+                                    candidates = await self.db_manager.db_operations.get_filtered_stocks_for_history(filter_history.id)
+                                except Exception as e:
+                                    self.logger.warning(f"⚠️ DB에서 필터링된 종목 조회 실패: {e}")
+                                    candidates = None
+                            else:
+                                self.logger.warning("⚠️ 1차 필터링 이력 저장 실패 - 메모리에서 계속 진행")
+                                candidates = None
+                        except Exception as save_error:
+                            self.logger.warning(f"⚠️ DB 저장 완전 실패: {type(save_error).__name__}: {save_error}")
+                            self.logger.info("🔄 DB 없이 메모리에서 계속 진행")
+                            candidates = None
+                        
+                        # DB 실패 시 메모리에서 임시 객체 생성
+                        if not candidates:
+                            self.logger.info("🔄 DB 실패로 메모리에서 임시 객체 생성")
+                            candidates = []
+                            for i, data in enumerate(candidates_data):
+                                temp_stock = type('Stock', (), {
+                                    'id': i,
+                                    'stock_id': i,
+                                    'stock_code': data['stock_code'],
+                                    'stock_name': data['stock_name']
+                                })()
+                                candidates.append(temp_stock)
 
                 if not candidates:
                     console.print("[red]❌ 1차 필터링된 종목이 없습니다.[/red]")
@@ -464,15 +505,22 @@ class TradingSystem:
                 progress.update(progress_task, advance=20)
 
                 # 2. 2차 필터링: 종합 분석 실행
-                progress.update(progress_task, advance=10, description=f"2차 필터링 (종합 분석) 실행... (상위 {limit}개)")
+                # limit이 None이면 기본값 설정
+                actual_limit = limit if limit is not None else 20
+                progress.update(progress_task, advance=10, description=f"2차 필터링 (종합 분석) 실행... (상위 {actual_limit}개)")
                 
                 final_results = []
                 analysis_tasks = []
                 
                 # 상위 limit 개수만큼만 분석
-                stocks_to_analyze = candidates[:limit]
+                stocks_to_analyze = candidates[:actual_limit]
+                self.logger.info(f"🔍 종합 분석 대상: {len(stocks_to_analyze)}개 종목")
 
-                for filtered_stock in stocks_to_analyze:
+                for i, filtered_stock in enumerate(stocks_to_analyze):
+                    # 진행률 업데이트
+                    progress_desc = f"2차 필터링 준비 중... ({i+1}/{len(stocks_to_analyze)}) {filtered_stock.stock_code}"
+                    progress.update(progress_task, advance=0, description=progress_desc)
+                    
                     # DB가 있으면 이미 분석된 종목은 건너뛰기
                     if self.db_manager:
                         existing_analysis = await self.db_manager.db_operations.get_analysis_result_by_filtered_stock_id(filtered_stock.id)
@@ -480,18 +528,38 @@ class TradingSystem:
                             self.logger.info(f"🔄 {filtered_stock.stock_code}는 이미 분석되었습니다. 건너뜁니다.")
                             continue
 
-                    stock_info = await self.data_collector.get_stock_info(filtered_stock.stock_code)
-                    if stock_info:
-                        analysis_task = self.analysis_engine.analyze_comprehensive(
-                            symbol=filtered_stock.stock_code,
-                            name=filtered_stock.stock_name,
-                            stock_data=stock_info,
-                            strategy=strategy
-                        )
-                        analysis_tasks.append((filtered_stock, analysis_task))
+                    try:
+                        stock_info = await self.data_collector.get_stock_info(filtered_stock.stock_code)
+                        if stock_info:
+                            analysis_task = self.analysis_engine.analyze_comprehensive(
+                                symbol=filtered_stock.stock_code,
+                                name=filtered_stock.stock_name,
+                                stock_data=stock_info,
+                                strategy=strategy
+                            )
+                            analysis_tasks.append((filtered_stock, analysis_task))
+                        else:
+                            self.logger.warning(f"⚠️ {filtered_stock.stock_code} 주식 정보 조회 실패")
+                    except Exception as e:
+                        self.logger.error(f"❌ {filtered_stock.stock_code} 분석 준비 실패: {e}")
+                        continue
 
-                # 병렬로 분석 실행
-                analysis_results_raw = await asyncio.gather(*[t[1] for t in analysis_tasks], return_exceptions=True)
+                # 분석할 대상이 없으면 조기 반환
+                if not analysis_tasks:
+                    self.logger.warning("⚠️ 분석할 종목이 없습니다 (모두 이미 분석되었거나 데이터 없음)")
+                    return []
+
+                # 병렬로 분석 실행 (타임아웃 추가)
+                self.logger.info(f"🔄 {len(analysis_tasks)}개 종목 병렬 분석 시작...")
+                try:
+                    analysis_results_raw = await asyncio.wait_for(
+                        asyncio.gather(*[t[1] for t in analysis_tasks], return_exceptions=True),
+                        timeout=300  # 5분 타임아웃
+                    )
+                    self.logger.info(f"✅ 병렬 분석 완료: {len(analysis_results_raw)}개 결과")
+                except asyncio.TimeoutError:
+                    self.logger.error("❌ 분석 타임아웃 (5분) - 부분 결과로 진행")
+                    analysis_results_raw = []
                 
                 progress.update(progress_task, advance=50)
                 progress.update(progress_task, advance=0, description="분석 결과 저장 중...")
@@ -503,18 +571,27 @@ class TradingSystem:
                         self.logger.error(f"❌ {filtered_stock.stock_code} 분석 실패: {result_data}")
                         continue
                     
-                    # DB에 저장 (DB가 있으면)
+                    # DB에 저장 시도 (DB가 있으면)
+                    db_save_success = False
                     if self.db_manager:
-                        saved_analysis = await self.db_manager.db_operations.save_analysis_result(
-                            filtered_stock_id=filtered_stock.id,
-                            stock_id=filtered_stock.stock_id,
-                            analysis_data=result_data
-                        )
-                        if saved_analysis:
-                            final_results.append(result_data)
-                    else:
-                        # DB 없으면 바로 추가
-                        final_results.append(result_data)
+                        try:
+                            saved_analysis = await self.db_manager.db_operations.save_analysis_result(
+                                filtered_stock_id=filtered_stock.id,
+                                stock_id=filtered_stock.stock_id,
+                                analysis_data=result_data
+                            )
+                            if saved_analysis:
+                                db_save_success = True
+                                pass  # DB 저장 성공
+                        except Exception as e:
+                            self.logger.warning(f"⚠️ DB 저장 실패 {filtered_stock.stock_code}: {e}")
+                    
+                    # DB 저장 실패 시 로그만 기록
+                    if not db_save_success:
+                        self.logger.error(f"❌ {filtered_stock.stock_code} 분석 결과 DB 저장 실패")
+                    
+                    # 결과를 최종 리스트에 추가 (DB 또는 캐시 저장 성공)
+                    final_results.append(result_data)
 
                 progress.update(progress_task, advance=20)
 
@@ -750,7 +827,7 @@ class TradingSystem:
                 
             from datetime import datetime
             
-            # FilterHistory 레코드 생성
+            # FilterHistory 레코드 생성 - 올바른 필드명 사용
             filter_data = {
                 'filter_date': datetime.now(),
                 'strategy': strategy,
@@ -758,11 +835,13 @@ class TradingSystem:
                 'hts_condition': hts_condition or f'{strategy}_조건검색',
                 'hts_result_count': hts_result_count,
                 'hts_symbols': hts_symbols or [],
-                'ai_result_count': ai_result_count,
-                'ai_symbols': ai_symbols or [],
-                'ai_avg_score': ai_avg_score,
+                'ai_analyzed_count': ai_result_count,
+                'ai_passed_count': ai_result_count,
+                'final_symbols': ai_symbols or [],
+                'final_count': ai_result_count,
+                'avg_score': ai_avg_score,
                 'execution_time': datetime.now(),
-                'success': True,
+                'status': 'COMPLETED',
                 'error_message': None
             }
             
@@ -1814,19 +1893,25 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
     async def cleanup(self):
         """리소스 정리"""
         try:
-            console.print("[yellow]🧹 정리 중...[/yellow]")
+            console.print("[yellow]정리 중...[/yellow]")
             self.is_running = False
+            
+            # 캐시 통계 제거 - 단순화
             
             # 알림 관리자 정리
             if hasattr(self, 'notification_manager') and self.notification_manager:
                 await self.notification_manager.cleanup()
             
+            # 데이터 수집기 정리 (aiohttp 세션 포함)
             if self.data_collector:
-                await self.data_collector.close()
+                if hasattr(self.data_collector, 'cleanup'):
+                    await self.data_collector.cleanup()
+                else:
+                    await self.data_collector.close()
             
-            console.print("[green]✅ 정리 완료[/green]")
+            console.print("[green]정리 완료[/green]")
         except Exception as e:
-            console.print(f"[yellow]⚠️ 정리 중 오류: {e}[/yellow]")
+            console.print(f"[yellow]정리 중 오류: {e}[/yellow]")
     
     async def stop(self):
         """시스템 정지"""

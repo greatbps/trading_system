@@ -71,10 +71,28 @@ class NotificationManager:
             asyncio.create_task(self._process_events())
             self.logger.info("🟢 이벤트 처리 시작")
     
+    async def start_processing(self):
+        """이벤트 처리 시작 (별칭)"""
+        await self.start_event_processing()
+    
     async def stop_event_processing(self):
         """이벤트 처리 중단"""
         self.processing_events = False
         self.logger.info("🔴 이벤트 처리 중단")
+    
+    async def cleanup(self):
+        """시스템 정리 - 이벤트 처리 중단 및 리소스 해제"""
+        try:
+            # 이벤트 처리 중단
+            await self.stop_event_processing()
+            
+            # 텔레그램 알림기 정리
+            if hasattr(self.telegram_notifier, 'cleanup'):
+                await self.telegram_notifier.cleanup()
+            
+            self.logger.info("✅ NotificationManager 정리 완료")
+        except Exception as e:
+            self.logger.error(f"❌ NotificationManager 정리 중 오류: {e}")
     
     async def add_trading_event(self, event_type: str, data: Dict[str, Any], priority: str = "MEDIUM"):
         """트레이딩 이벤트 추가"""

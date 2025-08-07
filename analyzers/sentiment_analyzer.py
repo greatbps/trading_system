@@ -34,8 +34,8 @@ class SentimentAnalyzer:
                 self.logger.info(f"✅ Gemini 감정 분석 완료 - {symbol} 감정: {sentiment_result.get('sentiment', 'NEUTRAL')}")
                 return result
             else:
-                # 뉴스 데이터가 없을 때 기본값
-                self.logger.warning(f"⚠️ {symbol} 뉴스 데이터 없음 - 기본값 사용")
+                # 뉴스 데이터가 없을 때 기본값 (로그 레벨 낮춤)
+                self.logger.debug(f"📰 {symbol} 뉴스 데이터 없음 - 중립 분석 사용")
                 return self._get_default_result()
             
         except Exception as e:
@@ -54,7 +54,10 @@ class SentimentAnalyzer:
         }
         
         sentiment = gemini_result.get('sentiment', 'NEUTRAL')
-        overall_score = gemini_result.get('overall_score', 50)
+        # Gemini에서 overall_score를 제공하지 않으면 sentiment를 기반으로 점수 계산
+        overall_score = gemini_result.get('overall_score')
+        if overall_score is None or overall_score == 50:
+            overall_score = sentiment_scores.get(sentiment, 50)
         confidence = gemini_result.get('confidence', 0.5)
         
         # 신호 강도 계산

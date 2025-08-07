@@ -71,13 +71,23 @@ class DatabaseManager:
                     pool_pre_ping=True
                 )
                 
-                # 비동기 엔진
+                # 비동기 엔진 - 연결 안정성 강화
                 async_db_url = db_url.replace('postgresql://', 'postgresql+asyncpg://')
                 self.async_engine = create_async_engine(
                     async_db_url,
                     echo=self.config.database.DB_ECHO,
-                    pool_size=10,
-                    max_overflow=20
+                    pool_size=15,  # 연결 풀 크기 증가
+                    max_overflow=25,  # 오버플로우 연결 증가
+                    pool_pre_ping=True,  # 연결 유효성 검사
+                    pool_recycle=1800,  # 30분 후 연결 재활용 (더 짧게)
+                    pool_timeout=30,  # 연결 대기 타임아웃
+                    connect_args={
+                        "command_timeout": 60,  # 명령 타임아웃
+                        "server_settings": {
+                            "jit": "off",  # JIT 최적화 비활성화로 안정성 향상
+                            "application_name": "TradingSystem",  # 연결 식별
+                        },
+                    }
                 )
                 
             else:

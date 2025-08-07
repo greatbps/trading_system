@@ -12,3 +12,429 @@
 2025-08-06 10:08:23 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
 2025-08-06 10:13:04 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
 2025-08-06 10:13:04 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 10:49:07 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 10:49:07 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 15:20:03 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 15:20:03 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'strategy_id' is an invalid keyword argument for FilterHistory
+2025-08-06 15:26:15 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 15:26:15 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: 'ai_result_count' is an invalid keyword argument for FilterHistory
+2025-08-06 15:35:16 | DatabaseOperations | ERROR    | get_latest_filter_history | ❌ 최신 필터링 이력 조회 실패 (전략: momentum): connection was closed in the middle of operation
+2025-08-06 15:35:17 | DatabaseOperations | ERROR    | save_filter_history | ❌ 필터링 이력 저장 실패: connection was closed in the middle of operation
+2025-08-06 15:46:26 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 0): connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 1): connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 2): connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 3): connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 4): connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 5): connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 6): connection was closed in the middle of operation
+2025-08-06 15:46:30 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 7): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 8): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 9): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 10): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 11): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 12): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 13): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 14): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 15): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 16): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 17): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 18): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 19): connection was closed in the middle of operation
+2025-08-06 15:46:31 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 20): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 21): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 22): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 23): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 24): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 25): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 26): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 27): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 28): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 29): connection was closed in the middle of operation
+2025-08-06 15:46:32 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 30): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 31): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 32): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 33): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 34): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 35): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 36): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 37): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 38): connection was closed in the middle of operation
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 39): connection was closed in the middle of operation
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005380 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 051910 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 028260 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 006400 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 068270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 105560 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 055550 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035720 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 207940 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 066570 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 323410 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000810 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 017670 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 034730 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 259960 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 003550 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 032830 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009150 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 018260 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 012330 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 024110 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 086790 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 316140 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 090430 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 021240 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 030200 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 036570 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 251270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 112040 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 064350 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 010950 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 011170 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 267250 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 042660 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009830 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000720 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 0): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 1): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 2): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 3): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 4): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 5): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 6): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 7): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 8): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 9): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 10): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 11): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 12): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 13): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 14): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 15): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 16): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 17): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 18): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 19): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 20): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 21): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 22): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 23): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 24): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 25): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 26): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 27): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 28): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 29): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 30): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 31): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 32): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 33): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 34): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 35): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 36): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 37): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 38): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:46:33 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 39): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:03 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 0): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 1): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 2): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 3): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 4): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 5): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 6): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 7): connection was closed in the middle of operation
+2025-08-06 15:52:07 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 8): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 9): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 10): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 11): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 12): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 13): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 14): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 15): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 16): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 17): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 18): connection was closed in the middle of operation
+2025-08-06 15:52:08 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 19): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 20): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 21): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 22): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 23): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 24): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 25): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 26): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 27): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 28): connection was closed in the middle of operation
+2025-08-06 15:52:09 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 29): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 30): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 31): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 32): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 33): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 34): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 35): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 36): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 37): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 38): connection was closed in the middle of operation
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 39): connection was closed in the middle of operation
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005380 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 051910 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 028260 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 006400 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 068270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 105560 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 055550 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035720 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 207940 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 066570 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 323410 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000810 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 017670 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 034730 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 259960 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 003550 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 032830 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009150 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 018260 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 012330 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 024110 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 086790 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 316140 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 090430 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 021240 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 030200 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 036570 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 251270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 112040 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 064350 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 010950 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 011170 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 267250 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 042660 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009830 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000720 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 0): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 1): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 2): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 3): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 4): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 5): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 6): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 7): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 8): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 9): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 10): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 11): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 12): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 13): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 14): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 15): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 16): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 17): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 18): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 19): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 20): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 21): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 22): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 23): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 24): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 25): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 26): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 27): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 28): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 29): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 30): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 31): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 32): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 33): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 34): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 35): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 36): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 37): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 38): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:52:10 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 39): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:54:58 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 15:55:01 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 0): connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 1): connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 2): connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 3): connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 4): connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 5): connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 6): connection was closed in the middle of operation
+2025-08-06 15:55:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 7): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 8): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 9): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 10): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 11): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 12): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 13): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 14): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 15): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 16): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 17): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 18): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 19): connection was closed in the middle of operation
+2025-08-06 15:55:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 20): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 21): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 22): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 23): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 24): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 25): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 26): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 27): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 28): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 29): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 30): connection was closed in the middle of operation
+2025-08-06 15:55:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 31): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 32): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 33): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 34): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 35): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 36): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 37): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 38): connection was closed in the middle of operation
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 39): connection was closed in the middle of operation
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005930 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000660 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035420 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 005380 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 051910 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 028260 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 006400 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 068270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 105560 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 055550 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 035720 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 207940 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 066570 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 323410 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000810 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 017670 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 034730 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 259960 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 003550 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 032830 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009150 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 018260 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 012330 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 024110 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 086790 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 316140 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 090430 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 021240 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 030200 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 036570 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 251270 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 112040 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 064350 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 010950 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 011170 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 267250 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 042660 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009830 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 000720 KIS API에서 가격 데이터를 가져올 수 없습니다
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 0): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 1): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 2): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 3): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 4): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 5): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 6): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 7): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 8): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 9): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 10): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 11): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 12): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 13): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 14): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 15): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 16): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 17): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 18): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 19): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 20): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 21): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 22): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 23): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 24): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 25): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 26): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 27): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 28): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 29): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 30): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 31): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 32): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 33): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 34): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 35): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 36): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 37): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 38): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 15:55:05 | DatabaseOperations | ERROR    | save_analysis_result | ❌ 분석 결과 저장 실패 (FilteredStock ID: 39): 'supply_demand_details' is an invalid keyword argument for AnalysisResult
+2025-08-06 16:09:57 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 16:10:00 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 16:10:00 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 0): connection was closed in the middle of operation
+2025-08-06 16:10:00 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 1): connection was closed in the middle of operation
+2025-08-06 16:10:00 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 2): connection was closed in the middle of operation
+2025-08-06 16:10:00 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 3): connection was closed in the middle of operation
+2025-08-06 16:10:00 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 4): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 5): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 6): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 7): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 8): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 9): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 10): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 11): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 12): connection was closed in the middle of operation
+2025-08-06 16:10:01 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 13): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 14): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 15): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 16): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 17): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 18): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 19): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 20): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 21): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 22): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 23): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 24): connection was closed in the middle of operation
+2025-08-06 16:10:02 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 25): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 26): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 27): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 28): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 29): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 30): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 31): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 32): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 33): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 34): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 35): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 36): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 37): connection was closed in the middle of operation
+2025-08-06 16:10:03 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 38): connection was closed in the middle of operation
+2025-08-06 16:10:04 | DatabaseOperations | ERROR    | get_analysis_result_by_filtered_stock_id | ❌ 분석 결과 조회 실패 (FilteredStock ID: 39): connection was closed in the middle of operation
+2025-08-06 22:05:09 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:12 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:15 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:19 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:22 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:25 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:29 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:32 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:35 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-08-06 22:05:38 | DatabaseOperations | ERROR    | wrapper         | ❌ DB 연결 최종 실패 (3회 시도): ConnectionDoesNotExistError: connection was closed in the middle of operation

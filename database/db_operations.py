@@ -6,13 +6,81 @@ trading_system/database/db_operations.py
 데이터베이스 조회 및 관리 작업들
 """
 
+import asyncio
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Callable, Any
+from functools import wraps
 from sqlalchemy import text, select, func
 from sqlalchemy.orm import selectinload
+from sqlalchemy.exc import SQLAlchemyError, DisconnectionError, OperationalError
 
-from database.models import FilteredStock, Stock, AnalysisResult, SystemLog, TradingSession, MarketData, FilterHistory, Trade, TradeExecution
+# asyncpg 예외 처리를 위한 임포트
+try:
+    import asyncpg.exceptions
+    ASYNCPG_AVAILABLE = True
+except ImportError:
+    ASYNCPG_AVAILABLE = False
+
+from database.models import FilteredStock, Stock, AnalysisResult, SystemLog, TradingSession, MarketData, FilterHistory, Trade, TradeExecution, AnalysisGrade, RiskLevel
 from utils.logger import get_logger
+
+def db_retry(max_retries: int = 3, delay: float = 1.0, fallback_return=None):
+    """데이터베이스 연결 실패 시 재시도 데코레이터 - 완전 개선 버전"""
+    def decorator(func: Callable) -> Callable:
+        @wraps(func)
+        async def wrapper(*args, **kwargs) -> Any:
+            last_exception = None
+            
+            def is_db_connection_error(exception) -> bool:
+                """데이터베이스 연결 관련 예외인지 확인"""
+                error_types = [DisconnectionError, OperationalError, SQLAlchemyError]
+                
+                # asyncpg 예외 추가
+                if ASYNCPG_AVAILABLE:
+                    error_types.extend([
+                        asyncpg.exceptions.ConnectionDoesNotExistError,
+                        asyncpg.exceptions.ConnectionFailureError,
+                        asyncpg.exceptions.InterfaceError,
+                        asyncpg.exceptions.PostgresError
+                    ])
+                
+                # 일반적인 연결 오류
+                error_types.extend([
+                    ConnectionError, ConnectionResetError, ConnectionAbortedError,
+                    OSError, BrokenPipeError
+                ])
+                
+                return any(isinstance(exception, error_type) for error_type in error_types)
+            
+            for attempt in range(max_retries):
+                try:
+                    return await func(*args, **kwargs)
+                except Exception as e:
+                    last_exception = e
+                    
+                    # DB 연결 관련 오류인지 확인
+                    if is_db_connection_error(e):
+                        if attempt < max_retries - 1:
+                            # self 참조로 로거에 접근
+                            if args and hasattr(args[0], 'logger'):
+                                args[0].logger.warning(f"⚠️ DB 연결 재시도 ({attempt + 1}/{max_retries}): {type(e).__name__}: {e}")
+                            await asyncio.sleep(delay * (2 ** attempt))  # 지수 백오프
+                        else:
+                            # 최종 실패 시 fallback 반환
+                            if args and hasattr(args[0], 'logger'):
+                                args[0].logger.error(f"❌ DB 연결 최종 실패 ({max_retries}회 시도): {type(e).__name__}: {e}")
+                                args[0].logger.warning(f"🔄 DB 연결 문제로 인해 기본값 반환: {fallback_return}")
+                            return fallback_return
+                    else:
+                        # DB 연결 문제가 아닌 다른 예외는 바로 재발생
+                        if args and hasattr(args[0], 'logger'):
+                            args[0].logger.error(f"❌ 비-DB 예외 발생: {type(e).__name__}: {e}")
+                        raise e
+            
+            # 모든 재시도 실패 시 fallback 반환
+            return fallback_return
+        return wrapper
+    return decorator
 
 class DatabaseOperations:
     """데이터베이스 조회 및 관리 작업 클래스"""
@@ -142,26 +210,36 @@ class DatabaseOperations:
         
         self.logger.info("="*60)
     
-    async def save_filter_history(self, strategy_id: str, filtered_stocks_data: List[Dict]) -> Optional[FilterHistory]:
+    @db_retry(max_retries=3, delay=1.0, fallback_return=None)
+    async def save_filter_history(self, strategy: str, filtered_stocks_data: List[Dict]) -> Optional[FilterHistory]:
         """
         새로운 필터링 이력과 해당 종목들을 저장합니다.
         filtered_stocks_data: [{'stock_code': '005930', 'stock_name': '삼성전자', 'stock_id': 1}, ...]
         """
-        try:
-            async with self.db_manager.get_async_session() as session:
-                # FilterHistory 저장
-                filter_history = FilterHistory(
-                    strategy_id=strategy_id,
-                    stock_count=len(filtered_stocks_data)
-                )
-                session.add(filter_history)
-                await session.flush() # ID를 얻기 위해 flush
+        # @db_retry 데코레이터가 예외를 처리하므로 try-except 최소화
+        async with self.db_manager.get_async_session() as session:
+            # FilterHistory 저장 - 올바른 필드명 사용
+            from datetime import datetime
+            filter_history = FilterHistory(
+                filter_date=datetime.now(),
+                strategy=strategy,
+                filter_type='COMBINED',
+                hts_result_count=0,
+                ai_analyzed_count=len(filtered_stocks_data),
+                ai_passed_count=len(filtered_stocks_data),
+                final_symbols=[stock.get('stock_code') for stock in filtered_stocks_data],
+                final_count=len(filtered_stocks_data),
+                status='COMPLETED'
+            )
+            session.add(filter_history)
+            await session.flush() # ID를 얻기 위해 flush
 
-                # FilteredStock 저장
-                for stock_data in filtered_stocks_data:
-                    # stock_id가 없는 경우 symbol로 Stock 테이블에서 조회하여 stock_id를 가져옴
-                    stock_id = stock_data.get('stock_id')
-                    if not stock_id:
+            # FilteredStock 저장
+            for stock_data in filtered_stocks_data:
+                # stock_id가 없는 경우 symbol로 Stock 테이블에서 조회하여 stock_id를 가져옴
+                stock_id = stock_data.get('stock_id')
+                if not stock_id:
+                    try:
                         stock = await session.execute(select(Stock).filter_by(symbol=stock_data['stock_code']))
                         stock_obj = stock.scalar_one_or_none()
                         if stock_obj:
@@ -169,23 +247,23 @@ class DatabaseOperations:
                         else:
                             self.logger.warning(f"⚠️ Stock not found for symbol {stock_data['stock_code']}. Skipping FilteredStock entry.")
                             continue
+                    except Exception as stock_error:
+                        self.logger.warning(f"⚠️ Stock lookup failed for {stock_data['stock_code']}: {stock_error}")
+                        continue
 
-                    filtered_stock = FilteredStock(
-                        history_id=filter_history.id,
-                        stock_id=stock_id,
-                        stock_code=stock_data['stock_code'],
-                        stock_name=stock_data['stock_name']
-                    )
-                    session.add(filtered_stock)
-                
-                await session.commit()
-                self.logger.info(f"✅ 필터링 이력 저장 완료: 전략={strategy_id}, 종목수={len(filtered_stocks_data)}개")
-                return filter_history
-        except Exception as e:
-            self.logger.error(f"❌ 필터링 이력 저장 실패: {e}")
-            await session.rollback()
-            return None
+                filtered_stock = FilteredStock(
+                    stock_id=stock_id,
+                    strategy_name=strategy,
+                    filtered_date=datetime.now(),
+                    hts_condition_name=f"{strategy}_condition"
+                )
+                session.add(filtered_stock)
+            
+            await session.commit()
+            self.logger.info(f"✅ 필터링 이력 저장 완료: 전략={strategy}, 종목수={len(filtered_stocks_data)}개")
+            return filter_history
 
+    @db_retry(max_retries=3, delay=1.0, fallback_return=None)
     async def get_filter_history(self, history_id: int) -> Optional[FilterHistory]:
         """특정 필터링 이력을 조회합니다."""
         try:
@@ -198,33 +276,46 @@ class DatabaseOperations:
             self.logger.error(f"❌ 필터링 이력 조회 실패 (ID: {history_id}): {e}")
             return None
 
+    @db_retry(max_retries=3, delay=1.0, fallback_return=None)
     async def get_latest_filter_history(self, strategy: str) -> Optional[FilterHistory]:
         """특정 전략의 최신 필터링 이력을 조회합니다."""
-        try:
-            async with self.db_manager.get_async_session() as session:
-                result = await session.execute(
-                    select(FilterHistory)
-                    .filter_by(strategy=strategy)
-                    .order_by(FilterHistory.filter_date.desc())
-                    .limit(1)
-                )
-                return result.scalar_one_or_none()
-        except Exception as e:
-            self.logger.error(f"❌ 최신 필터링 이력 조회 실패 (전략: {strategy}): {e}")
-            return None
+        # @db_retry 데코레이터가 예외를 처리하므로 try-except 제거
+        async with self.db_manager.get_async_session() as session:
+            result = await session.execute(
+                select(FilterHistory)
+                .filter_by(strategy=strategy)
+                .order_by(FilterHistory.filter_date.desc())
+                .limit(1)
+            )
+            return result.scalar_one_or_none()
 
-    async def get_filtered_stocks_for_history(self, history_id: int) -> List[FilteredStock]:
-        """특정 필터링 이력에 포함된 모든 종목을 조회합니다."""
+    @db_retry(max_retries=3, delay=1.0, fallback_return=[])
+    async def get_filtered_stocks(self, filter_history_id: int) -> List[FilteredStock]:
+        """특정 필터링 이력에 해당하는 종목들을 조회합니다."""
         try:
             async with self.db_manager.get_async_session() as session:
+                # FilterHistory에서 전략명과 날짜 조회
+                filter_result = await session.execute(
+                    select(FilterHistory).filter_by(id=filter_history_id)
+                )
+                filter_history = filter_result.scalar_one_or_none()
+                
+                if not filter_history:
+                    self.logger.warning(f"⚠️ FilterHistory ID {filter_history_id} not found")
+                    return []
+                
+                # 해당 전략과 날짜로 FilteredStock 조회
                 result = await session.execute(
                     select(FilteredStock)
-                    .filter_by(history_id=history_id)
-                    .options(selectinload(FilteredStock.stock)) # Stock 정보도 함께 로드
+                    .filter(
+                        FilteredStock.strategy_name == filter_history.strategy,
+                        FilteredStock.filtered_date >= filter_history.filter_date.date()
+                    )
+                    .options(selectinload(FilteredStock.stock))
                 )
                 return result.scalars().all()
         except Exception as e:
-            self.logger.error(f"❌ 필터링된 종목 조회 실패 (History ID: {history_id}): {e}")
+            self.logger.error(f"❌ 필터링된 종목 조회 실패 (History ID: {filter_history_id}): {e}")
             return []
     
     async def get_stocks_report(self, limit: int = 50, symbols: List[str] = None) -> Dict:
@@ -271,8 +362,10 @@ class DatabaseOperations:
             self.logger.error(f"❌ 종목 보고서 생성 실패: {e}")
             return {"error": str(e)}
 
+    @db_retry(max_retries=3, delay=1.0, fallback_return=None)
     async def save_analysis_result(self, filtered_stock_id: int, stock_id: int, analysis_data: Dict) -> Optional[AnalysisResult]:
         """2차 필터링 분석 결과를 저장합니다."""
+        session = None
         try:
             async with self.db_manager.get_async_session() as session:
                 # final_grade와 risk_level이 Enum 멤버인지 확인하고, 아니면 None으로 설정
@@ -289,11 +382,11 @@ class DatabaseOperations:
                     stock_id=stock_id,
                     analysis_datetime=datetime.fromisoformat(analysis_data.get('analysis_time')) if analysis_data.get('analysis_time') else datetime.now(),
                     strategy=analysis_data.get('strategy'),
-                    total_score=analysis_data.get('comprehensive_score'),
+                    total_score=analysis_data.get('total_score'),
                     final_grade=final_grade_enum,
                     
-                    # 세부 점수
-                    news_score=analysis_data.get('sentiment_score'),
+                    # 세부 점수 (-50~50 범위로 제한)
+                    news_score=min(50, max(-50, analysis_data.get('sentiment_score', 0))),
                     technical_score=analysis_data.get('technical_score'),
                     supply_demand_score=analysis_data.get('supply_demand_score'),
                     
@@ -301,7 +394,6 @@ class DatabaseOperations:
                     technical_details=analysis_data.get('technical_details'),
                     sentiment_details=analysis_data.get('sentiment_details'),
                     supply_demand_details=analysis_data.get('supply_demand_details'),
-                    chart_pattern_details=analysis_data.get('chart_pattern_details'),
 
                     # 리스크 및 가격 정보
                     risk_level=risk_level_enum,
@@ -313,9 +405,14 @@ class DatabaseOperations:
                 return analysis_result
         except Exception as e:
             self.logger.error(f"❌ 분석 결과 저장 실패 (FilteredStock ID: {filtered_stock_id}): {e}")
-            await session.rollback()
+            if session:
+                try:
+                    await session.rollback()
+                except Exception:
+                    pass  # rollback 실패는 무시
             return None
 
+    @db_retry(max_retries=3, delay=1.0, fallback_return=None)
     async def get_analysis_result_by_filtered_stock_id(self, filtered_stock_id: int) -> Optional[AnalysisResult]:
         """FilteredStock ID로 분석 결과를 조회합니다."""
         try:
@@ -746,30 +843,29 @@ class DatabaseOperations:
         
         self.logger.info("="*60)
     
+    @db_retry(max_retries=3, delay=1.0, fallback_return=False)
     async def save_filter_history_record(self, filter_data: Dict) -> bool:
         """FilterHistory 레코드 저장"""
-        try:
-            async with self.db_manager.get_async_session() as session:
-                filter_history = FilterHistory(
-                    filter_date=filter_data.get('filter_date'),
-                    strategy=filter_data.get('strategy'),
-                    filter_type=filter_data.get('filter_type'),
-                    hts_condition=filter_data.get('hts_condition'),
-                    hts_result_count=filter_data.get('hts_result_count', 0),
-                    hts_symbols=filter_data.get('hts_symbols', []),
-                    ai_result_count=filter_data.get('ai_result_count', 0),
-                    ai_symbols=filter_data.get('ai_symbols', []),
-                    ai_avg_score=filter_data.get('ai_avg_score', 0.0),
-                    execution_time=filter_data.get('execution_time'),
-                    success=filter_data.get('success', True),
-                    error_message=filter_data.get('error_message')
-                )
-                
-                session.add(filter_history)
-                await session.commit()
-                self.logger.info(f"✅ FilterHistory 저장 완료: {filter_data.get('filter_type')} - {filter_data.get('strategy')}")
-                return True
-                
-        except Exception as e:
-            self.logger.error(f"❌ FilterHistory 저장 실패: {e}")
-            return False
+        # @db_retry 데코레이터가 예외를 처리하므로 try-except 제거
+        async with self.db_manager.get_async_session() as session:
+            filter_history = FilterHistory(
+                filter_date=filter_data.get('filter_date', datetime.now()),
+                strategy=filter_data.get('strategy'),
+                filter_type=filter_data.get('filter_type', 'COMBINED'),
+                hts_condition=filter_data.get('hts_condition'),
+                hts_result_count=filter_data.get('hts_result_count', 0),
+                hts_symbols=filter_data.get('hts_symbols', []),
+                ai_analyzed_count=filter_data.get('ai_analyzed_count', 0),
+                ai_passed_count=filter_data.get('ai_passed_count', 0),
+                final_symbols=filter_data.get('final_symbols', []),
+                final_count=filter_data.get('final_count', 0),
+                avg_score=filter_data.get('avg_score', 0.0),
+                execution_time=filter_data.get('execution_time'),
+                status=filter_data.get('status', 'COMPLETED'),
+                error_message=filter_data.get('error_message')
+            )
+            
+            session.add(filter_history)
+            await session.commit()
+            self.logger.info(f"✅ FilterHistory 저장 완료: {filter_data.get('filter_type')} - {filter_data.get('strategy')}")
+            return True

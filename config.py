@@ -34,13 +34,19 @@ class APIConfig:
 
 class DatabaseConfig:
     """데이터베이스 설정"""
-    DB_URL = os.getenv("DATABASE_URL", "sqlite:///trading_system.db")
-    DB_ECHO = False  # SQL 로깅
-
-class DatabaseConfig:
-    """데이터베이스 설정"""
-    # PostgreSQL 연결 URL, .env 파일에 설정하는 것을 강력히 권장합니다.
-    DB_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/trading_system")
+    # 환경변수에서 PostgreSQL 설정을 가져와서 연결 URL 구성
+    POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
+    POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
+    POSTGRES_DB = os.getenv("POSTGRES_DB", "trading_system")
+    POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
+    POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "")
+    
+    # DATABASE_URL이 직접 설정되어 있으면 사용, 없으면 개별 설정으로 구성
+    if os.getenv("DATABASE_URL"):
+        DB_URL = os.getenv("DATABASE_URL")
+    else:
+        DB_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    
     DB_ECHO = False  # True로 설정 시 모든 SQL 쿼리가 로그에 출력됩니다.
 
 class TradingConfig:
