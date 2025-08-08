@@ -32,6 +32,10 @@ class APIConfig:
     # Google Gemini API
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
+class KISAccountConfig:
+    """KIS 계정 설정"""
+    KIS_USER_ID = os.getenv("KIS_USER_ID", "")
+
 class DatabaseConfig:
     """데이터베이스 설정"""
     # 환경변수에서 PostgreSQL 설정을 가져와서 연결 URL 구성
@@ -142,6 +146,7 @@ class Config:
         self.analysis = AnalysisConfig()
         self.system = SystemConfig()
         self.risk = RiskConfig()
+        self.kis_account = KISAccountConfig()
         
         
         

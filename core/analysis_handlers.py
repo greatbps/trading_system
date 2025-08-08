@@ -66,82 +66,70 @@ class AnalysisHandlers:
             return False
     
     async def _safe_get_stocks(self, limit: int) -> List[Tuple[str, str]]:
-        """안전한 종목 조회 - 다중 방법 시도"""
+        """안전한 종목 조회 - 실제 KIS API 우선 사용"""
         try:
-            # 방법 1: data_collector.get_filtered_stocks 직접 호출
+            # 방법 1: data_collector.get_filtered_stocks 직접 호출 (KIS API 활용)
             if hasattr(self.system.data_collector, 'get_filtered_stocks'):
                 try:
-                    console.print("[dim]  🔍 방법 1: get_filtered_stocks 직접 호출...[/dim]")
+                    console.print("[dim]KIS API 종목 조회 중...[/dim]")
                     stocks = await self.system.data_collector.get_filtered_stocks(limit)
                     if stocks:
-                        console.print(f"[dim]  ✅ 방법 1 성공: {len(stocks)}개[/dim]")
+                        console.print(f"[dim]KIS API로 {len(stocks)}개 종목 조회 성공[/dim]")
                         return stocks
                 except Exception as e:
-                    console.print(f"[dim]  ⚠️ 방법 1 실패: {e}[/dim]")
+                    console.print(f"[dim]KIS API 조회 실패: {e}[/dim]")
             
             # 방법 2: data_utils.safe_get_filtered_stocks 사용
             try:
-                console.print("[dim]  🔍 방법 2: safe_get_filtered_stocks 사용...[/dim]")
+                console.print("[dim]data_utils 종목 조회 중...[/dim]")
                 stocks = await self.data_utils.safe_get_filtered_stocks(
                     self.system.data_collector, 
                     limit=limit
                 )
                 if stocks:
-                    console.print(f"[dim]  ✅ 방법 2 성공: {len(stocks)}개[/dim]")
+                    console.print(f"[dim]data_utils로 {len(stocks)}개 종목 조회 성공[/dim]")
                     return stocks
             except Exception as e:
-                console.print(f"[dim]  ⚠️ 방법 2 실패: {e}[/dim]")
+                console.print(f"[dim]data_utils 조회 실패: {e}[/dim]")
             
             # 방법 3: collect_filtered_stocks 사용
             if hasattr(self.system.data_collector, 'collect_filtered_stocks'):
                 try:
-                    console.print("[dim]  🔍 방법 3: collect_filtered_stocks 사용...[/dim]")
+                    console.print("[dim]collect_filtered_stocks 사용 중...[/dim]")
                     filtered_data = await self.system.data_collector.collect_filtered_stocks(max_stocks=limit)
                     if filtered_data:
                         stocks = [(stock['symbol'], stock['name']) for stock in filtered_data]
-                        console.print(f"[dim]  ✅ 방법 3 성공: {len(stocks)}개[/dim]")
+                        console.print(f"[dim]collect_filtered_stocks로 {len(stocks)}개 종목 조회 성공[/dim]")
                         return stocks
                 except Exception as e:
-                    console.print(f"[dim]  ⚠️ 방법 3 실패: {e}[/dim]")
+                    console.print(f"[dim]collect_filtered_stocks 실패: {e}[/dim]")
             
             # 방법 4: 기본 종목 리스트 사용
             if hasattr(self.system.data_collector, 'get_stock_list'):
                 try:
-                    console.print("[dim]  🔍 방법 4: 기본 종목 리스트 사용...[/dim]")
+                    console.print("[dim]기본 종목 리스트 조회 중...[/dim]")
                     all_stocks = await self.system.data_collector.get_stock_list()
                     if all_stocks:
                         stocks = all_stocks[:limit]
-                        console.print(f"[dim]  ✅ 방법 4 성공: {len(stocks)}개[/dim]")
+                        console.print(f"[dim]기본 리스트로 {len(stocks)}개 종목 조회 성공[/dim]")
                         return stocks
                 except Exception as e:
-                    console.print(f"[dim]  ⚠️ 방법 4 실패: {e}[/dim]")
+                    console.print(f"[dim]기본 리스트 조회 실패: {e}[/dim]")
             
-            # 방법 5: 실제 종목 리스트에서 랜덤 샘플링
-            console.print("[dim]  🔍 방법 5: 실제 종목 리스트에서 샘플링...[/dim]")
-            try:
-                all_stocks = await self.system.data_collector.get_stock_list()
-                if all_stocks:
-                    import random
-                    # 전체 종목에서 랜덤하게 선택
-                    sample_size = min(limit, len(all_stocks))
-                    stocks = random.sample(all_stocks, sample_size)
-                    console.print(f"[dim]  ✅ 방법 5 성공: 전체 {len(all_stocks)}개 중 {len(stocks)}개 샘플링[/dim]")
-                    return stocks
-            except Exception as e:
-                console.print(f"[dim]  ⚠️ 방법 5 실패: {e}[/dim]")
-            
-            # 마지막 수단: 빈 리스트 반환 (실제 데이터만 사용)
-            console.print("[red]❌ 모든 종목 조회 방법이 실패했습니다. 실제 데이터를 가져올 수 없습니다.[/red]")
+            # 실패 시 빈 리스트 반환
+            console.print("[red]모든 종목 조회 방법이 실패했습니다.[/red]")
+            self.logger.error("❌ 모든 종목 조회 방법 실패")
             return []
             
         except Exception as e:
-            self.logger.error(f"❌ 모든 종목 조회 방법 실패: {e}")
+            self.logger.error(f"❌ 종목 조회 실패: {e}")
             return []
     
     
     async def comprehensive_analysis(self) -> bool:
-        """종합 분석 (5개 영역 통합) - 수정된 안전 버전"""
+        """종합 분석 (5개 영역 통합) - 44번 메뉴 전용 (DB 저장 안함)"""
         console.print("[bold]🔍 종합 분석 (5개 영역 통합: 기술적+펀더멘털+뉴스+수급+패턴)[/bold]")
+        console.print("[dim]ℹ️ 이 분석은 실시간 확인용으로 데이터베이스에 저장되지 않습니다.[/dim]")
         
         # 컴포넌트 초기화
         if not await self.system.initialize_components():
@@ -206,9 +194,11 @@ class AnalysisHandlers:
                 console.print("[red]❌ 분석 결과가 없습니다[/red]")
                 return False
             
-            # 결과 표시
+            # 결과 표시 (데이터베이스 저장 없이 메모리에서만 표시)
+            console.print("[dim]ℹ️ 실시간 분석 결과 표시 중... (DB 저장 없음)[/dim]")
             self.display.display_comprehensive_analysis_results(analysis_results)
             self.display.display_recommendations_summary(analysis_results)
+            console.print("[dim]ℹ️ 종합 분석 완료. 결과는 메모리에서만 표시되었습니다.[/dim]")
             
             return True
             
@@ -329,41 +319,125 @@ class AnalysisHandlers:
             return False
     
     async def _analyze_news_for_stock(self, symbol: str, name: str) -> Optional[Dict]:
-        """개별 종목 뉴스 분석"""
+        """개별 종목 뉴스 분석 - KIS API 활용"""
         try:
-            # 수정: news_collector가 직접 analysis_engine에 있는지 확인
-            if hasattr(self.system, 'news_collector') and self.system.news_collector:
-                # 직접 news_collector 사용
-                if hasattr(self.system.news_collector, 'get_news_analysis_summary'):
-                    news_summary = self.system.news_collector.get_news_analysis_summary(name, symbol)
-                elif hasattr(self.system.news_collector, 'analyze_stock_news'):
-                    news_summary = await self.system.news_collector.analyze_stock_news(symbol, name)
-                else:
-                    # 기본 뉴스 분석
-                    news_summary = await self._basic_news_analysis(symbol, name)
-            else:
-                # analysis_engine 통해서 시도
-                if (hasattr(self.system.analysis_engine, 'news_collector') and 
-                    self.system.analysis_engine.news_collector):
-                    news_summary = self.system.analysis_engine.news_collector.get_news_analysis_summary(name, symbol)
-                else:
-                    news_summary = await self._basic_news_analysis(symbol, name)
+            # 방법 1: data_collector에서 실제 뉴스 데이터 가져오기
+            if hasattr(self.system.data_collector, 'get_news_data'):
+                try:
+                    news_data = await self.system.data_collector.get_news_data(symbol, name, days=7)
+                    if news_data:
+                        # 실제 뉴스 데이터 기반 분석
+                        news_summary = self._process_real_news_data(news_data, symbol, name)
+                        return news_summary
+                except Exception as e:
+                    self.logger.warning(f"⚠️ KIS 뉴스 데이터 조회 실패 {symbol}: {e}")
             
-            if news_summary:
-                return {
-                    'symbol': symbol,
-                    'name': name,
-                    'has_material': news_summary.get('has_material', False),
-                    'material_type': news_summary.get('material_type', '재료없음'),
-                    'material_score': news_summary.get('material_score', 0),
-                    'news_count': news_summary.get('news_count', 0),
-                    'sentiment_score': news_summary.get('sentiment_score', 0),
-                    'keywords': news_summary.get('keywords', [])
-                }
+            # 방법 2: analysis_engine의 뉴스 분석 기능 활용
+            if hasattr(self.system, 'analysis_engine') and self.system.analysis_engine:
+                try:
+                    if hasattr(self.system.analysis_engine, 'analyze_news_sentiment'):
+                        news_analysis = await self.system.analysis_engine.analyze_news_sentiment(symbol, name)
+                        if news_analysis:
+                            return {
+                                'symbol': symbol,
+                                'name': name,
+                                'has_material': news_analysis.get('has_positive_news', False),
+                                'material_type': news_analysis.get('dominant_sentiment', '중립'),
+                                'material_score': news_analysis.get('sentiment_score', 50),
+                                'news_count': news_analysis.get('news_count', 0),
+                                'sentiment_score': news_analysis.get('sentiment_score', 50),
+                                'keywords': news_analysis.get('keywords', [])
+                            }
+                except Exception as e:
+                    self.logger.warning(f"⚠️ 분석엔진 뉴스 분석 실패 {symbol}: {e}")
+            
+            # 방법 3: 기본 뉴스 분석 (실패 시)
+            news_summary = await self._basic_news_analysis(symbol, name)
+            return news_summary
             return None
         except Exception as e:
             self.logger.error(f"❌ {symbol} 뉴스 분석 실패: {e}")
             return None
+
+    def _process_real_news_data(self, news_data: List[Dict], symbol: str, name: str) -> Dict:
+        """실제 뉴스 데이터를 처리하여 분석 결과 생성"""
+        try:
+            if not news_data:
+                return {
+                    'symbol': symbol,
+                    'name': name,
+                    'has_material': False,
+                    'material_type': '뉴스없음',
+                    'material_score': 50,
+                    'news_count': 0,
+                    'sentiment_score': 50,
+                    'keywords': []
+                }
+            
+            # 뉴스 감정 분석
+            positive_count = 0
+            negative_count = 0
+            total_impact_score = 0
+            keywords = []
+            
+            for news in news_data:
+                sentiment = news.get('sentiment', 'NEUTRAL')
+                impact_score = news.get('impact_score', 50)
+                
+                total_impact_score += impact_score
+                
+                if sentiment == 'POSITIVE':
+                    positive_count += 1
+                elif sentiment == 'NEGATIVE':
+                    negative_count += 1
+                
+                # 키워드 추출 (간단한 예)
+                title = news.get('title', '')
+                if any(word in title for word in ['실적', '매출', '영업이익']):
+                    keywords.append('실적')
+                if any(word in title for word in ['신규', '진출', '투자']):
+                    keywords.append('사업확장')
+                if any(word in title for word in ['우려', '하락', '부진']):
+                    keywords.append('리스크')
+            
+            # 전체적인 감정 점수 계산
+            news_count = len(news_data)
+            avg_impact_score = total_impact_score / news_count if news_count > 0 else 50
+            
+            # 재료성 판단
+            has_material = positive_count > negative_count and avg_impact_score > 60
+            
+            # 주요 재료 유형 결정
+            if positive_count > negative_count:
+                material_type = '긍정재료'
+            elif negative_count > positive_count:
+                material_type = '부정재료'
+            else:
+                material_type = '중립'
+            
+            return {
+                'symbol': symbol,
+                'name': name,
+                'has_material': has_material,
+                'material_type': material_type,
+                'material_score': int(avg_impact_score),
+                'news_count': news_count,
+                'sentiment_score': int(avg_impact_score),
+                'keywords': list(set(keywords))  # 중복 제거
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ 뉴스 데이터 처리 실패 {symbol}: {e}")
+            return {
+                'symbol': symbol,
+                'name': name,
+                'has_material': False,
+                'material_type': '처리실패',
+                'material_score': 50,
+                'news_count': 0,
+                'sentiment_score': 50,
+                'keywords': []
+            }
     
     async def _basic_news_analysis(self, symbol: str, name: str) -> Dict:
         """기본 뉴스 분석 (뉴스 수집기가 없을 때)"""
@@ -564,23 +638,30 @@ class AnalysisHandlers:
             return False
     
     async def _analyze_chart_pattern_for_stock(self, symbol: str, name: str) -> Optional[Dict]:
-        """개별 종목 차트패턴 분석"""
+        """개별 종목 차트패턴 분석 - 실제 OHLCV 데이터 활용"""
         try:
-            # 종목 정보 조회
+            # 1. 종목 정보 조회
             stock_info = await self.system.data_collector.get_stock_info(symbol)
-            if stock_info:
-                # StockData 객체 생성
-                if hasattr(self.system.data_collector, 'create_stock_data'):
-                    stock_data = self.system.data_collector.create_stock_data(stock_info)
-                else:
-                    stock_data = stock_info
+            if not stock_info:
+                return None
                 
-                # 차트패턴 분석 수행
+            # 2. OHLCV 데이터 조회 (차트패턴 분석을 위해 필수)
+            try:
+                ohlcv_data = await self.system.data_collector.get_ohlcv_data(symbol, period="D", count=60)
+                if not ohlcv_data:
+                    self.logger.warning(f"⚠️ {symbol} OHLCV 데이터 없음")
+                    return await self._basic_chart_pattern_analysis(symbol, stock_info)
+            except Exception as e:
+                self.logger.warning(f"⚠️ {symbol} OHLCV 조회 실패: {e}")
+                return await self._basic_chart_pattern_analysis(symbol, stock_info)
+            
+            # 3. 실제 차트패턴 분석
+            try:
                 if hasattr(self.system.analysis_engine, 'calculate_chart_pattern_score'):
-                    pattern_analysis = await self.system.analysis_engine.calculate_chart_pattern_score(symbol, stock_data)
+                    pattern_analysis = await self.system.analysis_engine.calculate_chart_pattern_score(symbol, stock_info, ohlcv_data)
                 else:
-                    # 기본 패턴 분석
-                    pattern_analysis = await self._basic_chart_pattern_analysis(symbol, stock_data)
+                    # OHLCV 데이터를 활용한 고급 패턴 분석
+                    pattern_analysis = await self._advanced_chart_pattern_analysis(symbol, stock_info, ohlcv_data)
                 
                 return {
                     'symbol': symbol,
@@ -592,12 +673,101 @@ class AnalysisHandlers:
                     'support_resistance_score': pattern_analysis.get('support_resistance_score', 50),
                     'confidence': pattern_analysis.get('confidence', 0.5),
                     'recommendation': pattern_analysis.get('recommendation', 'HOLD'),
-                    'detected_patterns': pattern_analysis.get('detected_patterns', [])
+                    'detected_patterns': pattern_analysis.get('detected_patterns', ['실제차트분석'])
                 }
+            except Exception as e:
+                self.logger.warning(f"⚠️ {symbol} 고급 패턴 분석 실패: {e}")
+                return await self._basic_chart_pattern_analysis(symbol, stock_info)
             return None
         except Exception as e:
             self.logger.error(f"❌ {symbol} 차트패턴 분석 실패: {e}")
             return None
+
+    async def _advanced_chart_pattern_analysis(self, symbol: str, stock_data, ohlcv_data: list) -> Dict:
+        """OHLCV 데이터를 활용한 고급 차트패턴 분석"""
+        try:
+            if not ohlcv_data or len(ohlcv_data) < 20:
+                return await self._basic_chart_pattern_analysis(symbol, stock_data)
+            
+            # 가격 데이터 추출
+            closes = [candle.close_price for candle in ohlcv_data]
+            highs = [candle.high_price for candle in ohlcv_data]
+            lows = [candle.low_price for candle in ohlcv_data]
+            volumes = [candle.volume for candle in ohlcv_data]
+            
+            # 1. 이동평균 기반 추세 분석
+            sma_20 = sum(closes[:20]) / 20 if len(closes) >= 20 else closes[0]
+            current_price = closes[0]  # 최신 가격
+            trend_score = 60 if current_price > sma_20 else 40
+            
+            # 2. 볼륨 패턴 분석
+            avg_volume = sum(volumes[:10]) / 10 if len(volumes) >= 10 else volumes[0]
+            volume_spike = volumes[0] > avg_volume * 1.5
+            volume_score = 70 if volume_spike else 50
+            
+            # 3. 지지저항 분석
+            recent_highs = sorted(highs[:20], reverse=True)[:3]
+            recent_lows = sorted(lows[:20])[:3]
+            
+            resistance_level = sum(recent_highs) / len(recent_highs)
+            support_level = sum(recent_lows) / len(recent_lows)
+            
+            # 현재가가 지지저항선과의 관계
+            price_position = (current_price - support_level) / (resistance_level - support_level) if resistance_level != support_level else 0.5
+            support_resistance_score = int(50 + (price_position - 0.5) * 40)  # 0.5 중심으로 ±20점
+            
+            # 4. 캔들 패턴 분석 (간단한 예)
+            if len(ohlcv_data) >= 2:
+                current_candle = ohlcv_data[0]
+                previous_candle = ohlcv_data[1]
+                
+                # 양봉/음봉 패턴
+                is_bullish = current_candle.close_price > current_candle.open_price
+                is_engulfing = (is_bullish and 
+                              current_candle.close_price > previous_candle.high_price and
+                              current_candle.open_price < previous_candle.low_price)
+                
+                candle_score = 75 if is_engulfing else (60 if is_bullish else 40)
+            else:
+                candle_score = 50
+            
+            # 5. 전체 점수 계산
+            overall_score = int((trend_score * 0.3 + volume_score * 0.2 + 
+                               support_resistance_score * 0.3 + candle_score * 0.2))
+            
+            # 6. 추천 등급 결정
+            if overall_score >= 70:
+                recommendation = 'BUY'
+            elif overall_score >= 55:
+                recommendation = 'HOLD'  
+            else:
+                recommendation = 'SELL'
+            
+            # 7. 패턴 감지
+            detected_patterns = []
+            if volume_spike:
+                detected_patterns.append('거래량급증')
+            if trend_score > 55:
+                detected_patterns.append('상승추세')
+            if support_resistance_score > 60:
+                detected_patterns.append('저항돌파')
+            if not detected_patterns:
+                detected_patterns.append('횡보')
+            
+            return {
+                'overall_score': max(20, min(80, overall_score)),  # 20-80 범위로 제한
+                'candle_pattern_score': max(20, min(80, candle_score)),
+                'technical_pattern_score': max(20, min(80, trend_score)),
+                'trendline_score': max(20, min(80, trend_score)),
+                'support_resistance_score': max(20, min(80, support_resistance_score)),
+                'confidence': min(0.9, len(ohlcv_data) / 60),  # 데이터 많을수록 신뢰도 증가
+                'recommendation': recommendation,
+                'detected_patterns': detected_patterns
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ {symbol} 고급 패턴 분석 실패: {e}")
+            return await self._basic_chart_pattern_analysis(symbol, stock_data)
     
     async def _basic_chart_pattern_analysis(self, symbol: str, stock_data) -> Dict:
         """기본 차트패턴 분석 (메서드가 없을 때) - 안전한 속성 접근"""

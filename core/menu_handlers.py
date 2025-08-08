@@ -383,17 +383,14 @@ class MenuHandlers:
                 strategy_name, strategy_desc = strategies[choice]
                 console.print(f"\n[green]✅ {strategy_desc} 선택됨[/green]")
                 
-                # 분석 실행 (1차 필터링 결과 모두 2차 필터링)
-                console.print("[yellow]ℹ️ 1차 필터링에서 추출된 모든 종목을 2차 필터링합니다.[/yellow]")
-                results = await self.system.run_market_analysis(strategy=strategy_name, limit=None)
+                # 44번 메뉴 전용 - DB 저장 없는 실시간 분석 실행
+                console.print("[yellow]ℹ️ 실시간 종합 분석 실행 중... (DB 저장 없음)[/yellow]")
+                analysis_success = await self.system.analysis_handlers.comprehensive_analysis()
                 
-                # 결과 표시
-                if results:
-                    await self.system._display_analysis_results(results)
-                    
-                    # 결과 저장 옵션
-                    if Confirm.ask("\n분석 결과를 파일로 저장하시겠습니까?"):
-                        await self._save_analysis_to_file(results)
+                if not analysis_success:
+                    console.print("[red]❌ 분석 실행 실패[/red]")
+                else:
+                    console.print("[green]✅ 실시간 분석 완료[/green]")
                 
                 # 다른 전략 분석 여부
                 if not Confirm.ask("\n다른 전략으로 분석하시겠습니까?"):

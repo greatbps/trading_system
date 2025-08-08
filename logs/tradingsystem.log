@@ -3352,3 +3352,439 @@
 22:44:26 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
 22:44:26 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
 22:44:26 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:44:36 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:44:36 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:44:36 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:44:38 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:44:39 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:44:39 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패: 'cp949' codec can't encode character '\U0001f50d' in position 2: illegal multibyte sequence
+22:46:00 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:46:01 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:46:03 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:46:06 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:46:06 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:46:06 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:46:06 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:46:06 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:46:06 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:46:06 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:46:06 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:46:06 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:46:15 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:46:15 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:46:15 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:46:17 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:46:18 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:46:18 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패: 'cp949' codec can't encode character '\U0001f50d' in position 2: illegal multibyte sequence
+22:47:04 | TradingSystem | ERROR | ❌ 기본 종목 조회 실패: 'cp949' codec can't encode character '\U0001f50d' in position 0: illegal multibyte sequence
+22:47:53 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:47:54 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:47:56 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:47:59 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:47:59 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:47:59 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:47:59 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:47:59 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:47:59 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:47:59 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:47:59 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:47:59 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:48:08 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:48:08 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:48:08 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:48:10 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:48:11 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:48:53 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:48:56 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:48:58 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:49:01 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:49:01 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:49:01 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:49:01 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:49:01 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:49:01 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:49:01 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:49:01 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:49:01 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:49:10 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:49:10 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:49:10 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:49:12 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:49:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:49:17 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+22:49:17 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+22:49:17 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:49:17 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+22:49:17 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+22:49:17 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+22:49:17 | TradingSystem | INFO | 기본 종목 40개로 대체
+22:49:17 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:49:17 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+22:49:17 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+22:49:17 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+22:49:17 | TradingSystem | INFO | 🔄 000270는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 068270는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 105560는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 055550는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 035720는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 207940는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 066570는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 323410는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 000810는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 017670는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 034730는 이미 분석되었습니다. 건너뜁니다.
+22:49:17 | TradingSystem | INFO | 🔄 259960는 이미 분석되었습니다. 건너뜁니다.
+22:49:18 | TradingSystem | INFO | 🔄 8개 종목 병렬 분석 시작...
+22:49:38 | TradingSystem | INFO | ✅ 병렬 분석 완료: 8개 결과
+22:54:10 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:54:11 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: invalid syntax (kis_collector.py, line 794)
+22:54:11 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: invalid syntax (kis_collector.py, line 794)
+22:54:54 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:54:54 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:54:57 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:54:59 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:54:59 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:54:59 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:54:59 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:54:59 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:54:59 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:54:59 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:54:59 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:55:00 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:55:09 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:55:09 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:55:09 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:55:12 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:55:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:57:45 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:57:47 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:57:50 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:57:53 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:57:53 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:57:53 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:57:53 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:57:53 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:57:53 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:57:53 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:57:53 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:57:53 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:58:02 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:58:03 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:58:03 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:58:05 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:58:06 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:58:24 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:58:24 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+22:58:24 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+23:01:38 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+23:01:39 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+23:01:41 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+23:01:44 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+23:01:44 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+23:01:44 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+23:01:44 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+23:01:44 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+23:01:44 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+23:01:44 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+23:01:44 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+23:01:44 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+23:01:53 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+23:01:53 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+23:01:53 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+23:01:55 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+23:01:56 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+23:01:59 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+23:01:59 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+23:01:59 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+23:01:59 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+23:01:59 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+23:01:59 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+23:01:59 | TradingSystem | INFO | 기본 종목 40개로 대체
+23:01:59 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+23:01:59 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+23:01:59 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+23:01:59 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+23:02:00 | TradingSystem | INFO | 🔄 000270는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 068270는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 105560는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 055550는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 035720는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 207940는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 066570는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 323410는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 000810는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 017670는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 034730는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 259960는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 003550는 이미 분석되었습니다. 건너뜁니다.
+23:02:00 | TradingSystem | INFO | 🔄 7개 종목 병렬 분석 시작...
+23:02:20 | TradingSystem | INFO | ✅ 병렬 분석 완료: 7개 결과
+06:17:35 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:17:37 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:17:40 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:17:42 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:17:42 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:17:42 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:17:42 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:17:42 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:17:42 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:17:42 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:17:42 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:17:42 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:17:51 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:17:51 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:17:51 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:17:53 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:17:54 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:19:16 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:19:17 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:19:19 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:19:22 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:19:22 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:19:22 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:19:22 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:19:22 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:19:22 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:19:22 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:19:22 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:19:22 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:19:31 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:19:31 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:19:31 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:19:33 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:19:33 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:19:34 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:19:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:27:07 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:27:10 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:27:12 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:27:14 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:27:14 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:27:14 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:27:14 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:27:14 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:27:14 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:27:14 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:27:14 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:27:15 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:27:24 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:27:24 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:27:24 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:27:26 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:27:26 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:27:27 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:27:27 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:27:30 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:27:30 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+06:27:30 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+06:32:14 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:32:15 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:32:17 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:32:20 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:32:20 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:32:20 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:32:20 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:32:20 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:32:20 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:32:20 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:32:20 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:32:20 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:32:29 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:32:29 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:32:29 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:32:31 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:32:31 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:32:32 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:32:32 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:32:38 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:32:38 | TradingSystem | WARNING | ⚠️ 데이터 수집기 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+06:32:38 | TradingSystem | INFO | 🔄 가상 모드로 데이터 수집기 생성...
+06:32:38 | TradingSystem | INFO | ✅ 가상 모드 데이터 수집기 생성 완료
+06:32:40 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:32:42 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:32:42 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:32:42 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:32:42 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:32:42 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:32:42 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:32:42 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:32:42 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:32:42 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:32:51 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:32:51 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:32:51 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:32:54 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:32:54 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:32:54 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:32:54 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:33:47 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+06:36:46 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:36:46 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:36:49 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:36:51 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:36:51 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:36:51 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:36:51 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:36:51 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:36:51 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:36:51 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:36:51 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:36:51 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:37:00 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:37:00 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:37:00 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:37:03 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:37:03 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:37:04 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:37:04 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:37:08 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:37:08 | TradingSystem | WARNING | ⚠️ 데이터 수집기 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+06:37:08 | TradingSystem | INFO | 🔄 가상 모드로 데이터 수집기 생성...
+06:37:08 | TradingSystem | INFO | ✅ 가상 모드 데이터 수집기 생성 완료
+06:37:10 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:37:12 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:37:12 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:37:12 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:37:12 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:37:12 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:37:12 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:37:12 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:37:12 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:37:12 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:37:22 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:37:22 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:37:22 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:37:24 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:37:24 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:37:24 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:37:24 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:37:27 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+06:43:53 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:43:55 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:43:58 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:44:00 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:44:00 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:44:00 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:44:00 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:44:00 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:44:00 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:44:00 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:44:00 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:44:00 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:44:09 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:44:09 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:44:09 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:44:11 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:44:11 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:44:12 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:44:12 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:44:26 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:44:26 | TradingSystem | WARNING | ⚠️ 데이터 수집기 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+06:44:26 | TradingSystem | INFO | 🔄 가상 모드로 데이터 수집기 생성...
+06:44:26 | TradingSystem | INFO | ✅ 가상 모드 데이터 수집기 생성 완료
+06:44:28 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:44:30 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:44:30 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:44:30 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:44:30 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:44:30 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:44:30 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:44:30 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:44:30 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:44:30 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:44:39 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:44:39 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:44:39 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:44:42 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:44:42 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:44:42 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:44:42 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:44:45 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+06:53:42 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:53:43 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: Initialization failed: 'KISTokenManager' object has no attribute '_load_cached_token'
+06:53:45 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:53:45 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: Initialization failed: 'KISTokenManager' object has no attribute '_load_cached_token'
+06:53:47 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:53:47 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: Initialization failed: 'KISTokenManager' object has no attribute '_load_cached_token'
+06:54:23 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:54:25 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+06:54:27 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:54:27 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:54:30 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:55:00 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:55:01 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:55:03 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:55:06 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:55:06 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:55:06 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:55:06 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:55:06 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:55:06 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:55:06 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:55:06 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:55:06 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:55:15 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:55:15 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:55:15 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:55:18 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:55:18 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:55:19 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:55:19 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+06:57:22 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+06:57:22 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+06:57:25 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+06:57:27 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+06:57:27 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+06:57:27 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+06:57:27 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+06:57:27 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+06:57:27 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+06:57:27 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+06:57:27 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+06:57:27 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+06:57:37 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+06:57:37 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+06:57:37 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+06:57:39 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+06:57:39 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+06:57:40 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+06:57:40 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:00:57 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:00:58 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:01:00 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:01:03 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:01:03 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+07:01:03 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+07:01:03 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+07:01:03 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:01:03 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+07:01:03 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+07:01:03 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+07:01:03 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+07:01:12 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+07:01:12 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:01:12 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+07:01:14 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+07:01:14 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+07:01:15 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+07:01:15 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:01:18 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:01:18 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:01:20 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:01:22 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:01:22 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+07:01:22 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+07:01:22 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+07:01:22 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:01:22 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+07:01:22 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+07:01:22 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+07:01:22 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+07:01:31 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+07:01:31 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:01:31 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+07:01:34 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+07:01:34 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+07:01:34 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+07:01:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:01:43 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패

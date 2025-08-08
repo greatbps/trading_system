@@ -75,7 +75,11 @@ class ChartPatternAnalyzer:
     # chart_pattern_analyzer.py에서 수정
 
     async def analyze(self, stock_data: Any) -> Dict[str, Any]:
-        """차트패턴 종합 분석 - 비동기 처리"""
+        """차트패턴 종합 분석 - 비동기 처리 (기본 버전)"""
+        return await self.analyze_with_ohlcv(stock_data, None)
+    
+    async def analyze_with_ohlcv(self, stock_data: Any, ohlcv_data: List[Dict] = None) -> Dict[str, Any]:
+        """차트패턴 종합 분석 - OHLCV 데이터 포함 버전"""
         try:
             # 안전한 속성 접근으로 종목 정보 추출
             symbol = self.safe_get_attr(stock_data, 'symbol', 'UNKNOWN')
@@ -87,6 +91,10 @@ class ChartPatternAnalyzer:
             
             self.logger.info(f"📈 차트패턴 분석 시작 - {symbol} ({name})")
             
+            # OHLCV 데이터 포함 시 추가 정보
+            if ohlcv_data and len(ohlcv_data) > 0:
+                self.logger.info(f"📊 {symbol} OHLCV 데이터 활용: {len(ohlcv_data)}개 캔들")
+            
             # 차트 데이터 유효성 검사
             current_price = self.safe_get_attr(stock_data, 'current_price', 0)
             
@@ -97,11 +105,12 @@ class ChartPatternAnalyzer:
             # 패턴 감지기 호출 (비동기)
             if self.pattern_detector:
                 try:
-                    # 패턴 감지기가 async이므로 await 사용
+                    # 패턴 감지기에 OHLCV 데이터 전달
                     pattern_results = await self.pattern_detector.detect_patterns(
                         stock_data, 
                         symbol=symbol, 
-                        name=name
+                        name=name,
+                        ohlcv_data=ohlcv_data
                     )
                     
                     # === 중요: None 체크 추가 ===

@@ -232,14 +232,10 @@ class TradingSystem:
                 self.config = type('Config', (), {})()
             
             # 데이터 수집기
-            try:
-                from data_collectors.kis_collector import KISCollector
-                self.data_collector = KISCollector(self.config)
-                await self.data_collector.initialize()
-                self.logger.info("✅ 데이터 수집기 초기화 완료")
-            except Exception as e:
-                self.logger.error(f"❌ 데이터 수집기 초기화 실패: {e}")
-                raise
+            from data_collectors.kis_collector import KISCollector
+            self.data_collector = KISCollector(self.config)
+            await self.data_collector.initialize()
+            self.logger.info("✅ 데이터 수집기 초기화 완료")
             
             # 분석 엔진
             try:
@@ -369,11 +365,22 @@ class TradingSystem:
                 self.logger.warning(f"⚠️ 알림 관리자 초기화 실패: {e}")
                 self.notification_manager = None
             
+            # 분석 핸들러
+            try:
+                from core.analysis_handlers import AnalysisHandlers
+                self.analysis_handlers = AnalysisHandlers(self)
+                self.logger.info("✅ 분석 핸들러 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ 분석 핸들러 초기화 실패: {e}")
+                self.analysis_handlers = None
+            
             # 메뉴 핸들러
             try:
                 from core.menu_handlers import MenuHandlers
                 self.menu_handlers = MenuHandlers(self)
-            except:
+                self.logger.info("✅ 메뉴 핸들러 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ 메뉴 핸들러 초기화 실패: {e}")
                 self.menu_handlers = None
             
             self.logger.info("✅ 모든 컴포넌트 초기화 완료")

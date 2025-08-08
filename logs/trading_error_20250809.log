@@ -1,0 +1,18 @@
+2025-08-09 06:27:30 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:32:38 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:33:47 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:33:47 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:37:08 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:37:27 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:37:27 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:44:26 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:44:45 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:44:45 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:53:43 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: 'KISTokenManager' object has no attribute '_load_cached_token'
+2025-08-09 06:53:45 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: 'KISTokenManager' object has no attribute '_load_cached_token'
+2025-08-09 06:53:47 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: 'KISTokenManager' object has no attribute '_load_cached_token'
+2025-08-09 06:53:47 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 06:54:25 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:59:59 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 07:01:43 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 07:01:43 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패

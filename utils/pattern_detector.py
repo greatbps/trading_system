@@ -29,8 +29,8 @@ class PatternDetector:
         except (AttributeError, TypeError):
             return default
 
-    async def detect_patterns(self, stock_data, symbol: str = None, name: str = None):
-        """패턴 감지 - UNKNOWN 해결 + 실용 패턴 추가"""
+    async def detect_patterns(self, stock_data, symbol: str = None, name: str = None, ohlcv_data: List[Dict] = None):
+        """패턴 감지 - OHLCV 데이터 활용한 실제 패턴 분석"""
         try:
             # === 종목 정보 확보 (UNKNOWN 문제 해결) ===
             if not symbol:
@@ -43,6 +43,10 @@ class PatternDetector:
                 name = symbol
             
             self.logger.info(f"🔍 패턴 감지 시작 - {symbol} ({name})")
+            
+            # OHLCV 데이터 확인
+            if ohlcv_data and len(ohlcv_data) > 0:
+                self.logger.info(f"📈 {symbol} OHLCV 데이터 활용: {len(ohlcv_data)}개 캔들")
             
             # === 기본 데이터 추출 ===
             current_price = self.safe_get_attr(stock_data, 'current_price', 0)
@@ -59,6 +63,15 @@ class PatternDetector:
             
             # === 패턴 감지 실행 ===
             detected_patterns = []
+            
+            # OHLCV 데이터가 있으면 캔들패턴 분석 추가
+            if ohlcv_data and len(ohlcv_data) >= 3:
+                try:
+                    ohlcv_patterns = self._detect_ohlcv_patterns(ohlcv_data, symbol, name)
+                    detected_patterns.extend(ohlcv_patterns)
+                    self.logger.info(f"📊 {symbol} OHLCV 패턴 {len(ohlcv_patterns)}개 감지")
+                except Exception as e:
+                    self.logger.warning(f"⚠️ {symbol} OHLCV 패턴 분석 실패: {e}")
             
             # 1. 거래량 돌파 패턴
             volume_pattern = self._detect_volume_breakout(volume, trading_value, change_rate)
@@ -289,6 +302,215 @@ class PatternDetector:
         final_score += pattern_bonus
         
         return max(0, min(100, final_score))
+
+    def _detect_ohlcv_patterns(self, ohlcv_data: List[Dict], symbol: str, name: str) -> List[Dict]:
+        """실제 OHLCV 데이터로 캔들패턴 분석"""
+        patterns = []
+        
+        try:
+            if len(ohlcv_data) < 3:
+                return patterns
+            
+            # 최근 3개 캔들 데이터 사용
+            recent_candles = ohlcv_data[:3]
+            latest = recent_candles[0]
+            prev_1 = recent_candles[1] 
+            prev_2 = recent_candles[2]
+            
+            # 1. 망치형(Hammer) 패턴 감지
+            hammer_pattern = self._detect_hammer_pattern(latest, prev_1)
+            if hammer_pattern:
+                patterns.append(hammer_pattern)
+            
+            # 2. 도지(Doji) 패턴 감지
+            doji_pattern = self._detect_doji_pattern(latest)
+            if doji_pattern:
+                patterns.append(doji_pattern)
+            
+            # 3. 삼봉(Three Soldiers/Crows) 패턴
+            three_pattern = self._detect_three_candle_pattern(latest, prev_1, prev_2)
+            if three_pattern:
+                patterns.append(three_pattern)
+                
+            # 4. 포용형(Engulfing) 패턴
+            engulfing_pattern = self._detect_engulfing_pattern(latest, prev_1)
+            if engulfing_pattern:
+                patterns.append(engulfing_pattern)
+            
+            return patterns
+            
+        except Exception as e:
+            self.logger.warning(f"⚠️ {symbol} OHLCV 패턴 분석 오류: {e}")
+            return []
+    
+    def _detect_hammer_pattern(self, latest: Dict, prev: Dict) -> Dict:
+        """망치형 패턴 감지"""
+        try:
+            open_price = latest['open']
+            high_price = latest['high'] 
+            low_price = latest['low']
+            close_price = latest['close']
+            
+            # 실체 크기
+            body_size = abs(close_price - open_price)
+            # 전체 캔들 크기
+            candle_size = high_price - low_price
+            
+            if candle_size <= 0:
+                return None
+            
+            # 하단 꼬리 크기
+            lower_shadow = min(open_price, close_price) - low_price
+            # 상단 꼬리 크기
+            upper_shadow = high_price - max(open_price, close_price)
+            
+            # 망치형 조건: 하단 꼬리가 실체의 2배 이상, 상단 꼬리는 작아야 함
+            if (lower_shadow >= body_size * 2 and 
+                upper_shadow <= body_size * 0.3 and 
+                body_size > candle_size * 0.1):  # 실체가 너무 작지 않아야 함
+                
+                pattern_type = 'bullish' if close_price > open_price else 'neutral'
+                
+                return {
+                    'name': '망치형',
+                    'type': pattern_type,
+                    'description': f'망치형 패턴 - 하단 꼬리 긴 반전 신호',
+                    'score': 75 if pattern_type == 'bullish' else 55,
+                    'confidence': 0.7,
+                    'candle_data': {
+                        'body_size': body_size,
+                        'lower_shadow': lower_shadow,
+                        'upper_shadow': upper_shadow
+                    }
+                }
+            
+            return None
+            
+        except Exception as e:
+            return None
+    
+    def _detect_doji_pattern(self, candle: Dict) -> Dict:
+        """도지 패턴 감지"""
+        try:
+            open_price = candle['open']
+            close_price = candle['close']
+            high_price = candle['high']
+            low_price = candle['low']
+            
+            # 실체 크기
+            body_size = abs(close_price - open_price)
+            # 전체 캔들 크기
+            candle_size = high_price - low_price
+            
+            if candle_size <= 0:
+                return None
+            
+            # 도지 조건: 실체가 전체 캔들의 5% 이하
+            if body_size <= candle_size * 0.05:
+                return {
+                    'name': '도지',
+                    'type': 'neutral',
+                    'description': '도지 패턴 - 매수/매도 균형, 방향 전환 신호',
+                    'score': 50,
+                    'confidence': 0.6,
+                    'candle_data': {
+                        'body_size': body_size,
+                        'candle_size': candle_size,
+                        'ratio': body_size / candle_size
+                    }
+                }
+            
+            return None
+            
+        except Exception:
+            return None
+    
+    def _detect_engulfing_pattern(self, latest: Dict, prev: Dict) -> Dict:
+        """포용형 패턴 감지"""
+        try:
+            # 최근 캔들
+            curr_open = latest['open']
+            curr_close = latest['close']
+            curr_high = latest['high']
+            curr_low = latest['low']
+            
+            # 이전 캔들
+            prev_open = prev['open']
+            prev_close = prev['close']
+            
+            # 현재 캔들이 이전 캔들을 완전히 포용하는가?
+            if (curr_high >= max(prev_open, prev_close) and 
+                curr_low <= min(prev_open, prev_close)):
+                
+                # 강세 포용형 (이전 하락 -> 현재 상승)
+                if prev_close < prev_open and curr_close > curr_open:
+                    return {
+                        'name': '강세_포용형',
+                        'type': 'bullish',
+                        'description': '강세 포용형 패턴 - 강한 상승 신호',
+                        'score': 80,
+                        'confidence': 0.8
+                    }
+                
+                # 약세 포용형 (이전 상승 -> 현재 하락)
+                elif prev_close > prev_open and curr_close < curr_open:
+                    return {
+                        'name': '약세_포용형',
+                        'type': 'bearish',
+                        'description': '약세 포용형 패턴 - 하락 신호',
+                        'score': 20,
+                        'confidence': 0.8
+                    }
+            
+            return None
+            
+        except Exception:
+            return None
+    
+    def _detect_three_candle_pattern(self, latest: Dict, prev_1: Dict, prev_2: Dict) -> Dict:
+        """삼봉 패턴 감지 (간소화)"""
+        try:
+            # 3개 캔들의 종가 방향성 확인
+            closes = [prev_2['close'], prev_1['close'], latest['close']]
+            
+            # 연속 상승 확인
+            if all(closes[i] > closes[i-1] for i in range(1, 3)):
+                # 각 캔들이 모두 상승 캔들인지 확인
+                all_bullish = all(
+                    candle['close'] > candle['open'] 
+                    for candle in [prev_2, prev_1, latest]
+                )
+                
+                if all_bullish:
+                    return {
+                        'name': '삼백병사',
+                        'type': 'bullish',
+                        'description': '삼백병사 패턴 - 연속 3일 상승',
+                        'score': 85,
+                        'confidence': 0.8
+                    }
+            
+            # 연속 하락 확인
+            elif all(closes[i] < closes[i-1] for i in range(1, 3)):
+                # 각 캔들이 모두 하락 캔들인지 확인
+                all_bearish = all(
+                    candle['close'] < candle['open'] 
+                    for candle in [prev_2, prev_1, latest]
+                )
+                
+                if all_bearish:
+                    return {
+                        'name': '삼흑까마귀',
+                        'type': 'bearish',
+                        'description': '삼흑까마귀 패턴 - 연속 3일 하락',
+                        'score': 15,
+                        'confidence': 0.8
+                    }
+            
+            return None
+            
+        except Exception:
+            return None
 
     def _create_empty_result(self, symbol: str, name: str, reason: str) -> dict:
         """빈 결과 생성"""

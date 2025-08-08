@@ -1,0 +1,626 @@
+2025-08-09 06:14:11 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:14:11 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:14:11 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:14:13 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:16:10 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:16:10 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:16:10 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:17:34 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:17:35 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:17:35 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:17:35 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:17:35 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:17:35 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:17:35 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:17:37 | KISCollector | INFO     | request_new_token | ✅ 새 액세스 토큰 획득 완료 (만료: 2025-08-10 06:07:37.567971)
+2025-08-09 06:17:37 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:17:37 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:17:40 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:17:40 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:17:40 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:17:42 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:17:42 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:17:42 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:17:42 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:17:42 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:17:42 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:17:42 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:17:44 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:17:44 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:17:47 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:17:47 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:17:49 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:17:49 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:17:51 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:17:51 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:17:51 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:17:51 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:17:51 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:17:51 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:17:51 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:17:53 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:17:53 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:17:53 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:17:53 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:17:54 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 06:19:16 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:19:16 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:19:16 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:19:16 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:19:17 | KISCollector | INFO     | request_new_token | ✅ 새 액세스 토큰 획득 완료 (만료: 2025-08-10 06:09:17.127244)
+2025-08-09 06:19:17 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:19:17 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:19:19 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:19:19 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:19:19 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:19:22 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:19:22 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:19:22 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:19:22 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:19:22 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:19:22 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:19:22 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:19:24 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:19:24 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:19:26 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:19:26 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:19:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:19:29 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:19:31 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:19:31 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:19:31 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:19:31 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:19:31 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:19:31 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:19:31 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:19:33 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:19:33 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:19:33 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:19:33 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:27:03 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:27:03 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:27:03 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:27:03 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:27:03 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:27:03 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:27:03 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:27:03 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:27:03 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:27:03 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:27:07 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:27:07 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:27:07 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:27:07 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:27:07 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:27:07 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:27:07 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:27:10 | KISCollector | INFO     | request_new_token | ✅ 새 액세스 토큰 획득 완료 (만료: 2025-08-10 06:17:10.060795)
+2025-08-09 06:27:10 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:27:10 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:27:12 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:27:12 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:27:12 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:27:14 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:27:14 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:27:14 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:27:14 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:27:14 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:27:14 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:27:15 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:27:17 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:27:17 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:27:19 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:27:19 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:27:21 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:27:21 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:27:24 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:27:24 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:27:24 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:27:24 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:27:24 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:27:24 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:27:24 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:27:26 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:27:26 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:27:26 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:27:26 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:27:27 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 06:27:30 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:27:30 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:27:30 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:27:30 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:27:30 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:28:01 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:28:01 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:28:01 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:28:01 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:28:01 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:28:01 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:28:01 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:28:01 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:28:01 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:28:01 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:32:14 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:32:14 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:32:14 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:32:15 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:32:15 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:32:15 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:32:15 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:32:15 | KISCollector | INFO     | request_new_token | ✅ 새 액세스 토큰 획득 완료 (만료: 2025-08-10 06:22:15.291895)
+2025-08-09 06:32:15 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:32:15 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:32:17 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:17 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:32:17 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:32:20 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:20 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:32:20 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:32:20 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:32:20 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:32:20 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:32:20 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:32:22 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:22 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:32:24 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:24 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:32:27 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:27 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:32:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:29 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:32:29 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:32:29 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:32:29 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:32:29 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:32:29 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:32:31 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:31 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:32:31 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:32:31 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:32:32 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 06:32:38 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:32:38 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:32:38 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:32:38 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:32:38 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:32:38 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:32:38 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:32:38 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:32:40 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:40 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:32:40 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:32:42 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:42 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:32:42 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:32:42 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:32:42 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:32:42 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:32:42 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:32:44 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:44 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:32:47 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:47 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:32:49 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:49 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:32:51 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:51 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:32:51 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:32:51 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:32:51 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:32:51 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:32:51 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:32:54 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:32:54 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:32:54 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:32:54 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:33:47 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 06:33:47 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 06:33:47 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:33:47 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 06:33:47 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 06:33:47 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:35:37 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:35:37 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:35:37 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:35:37 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:35:37 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:35:37 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:35:37 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:35:37 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:35:37 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:35:37 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:36:45 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:36:46 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:36:46 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:36:46 | KISCollector | WARNING  | __init__        | PyKis 라이브러리 또는 KIS 계정 설정 없음
+2025-08-09 06:36:46 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:36:46 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:36:46 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:36:46 | KISCollector | INFO     | request_new_token | ✅ 새 액세스 토큰 획득 완료 (만료: 2025-08-10 06:26:46.622195)
+2025-08-09 06:36:46 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:36:46 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:36:49 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:36:49 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:36:49 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:36:51 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:36:51 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:36:51 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:36:51 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:36:51 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:36:51 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:36:51 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:36:53 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:36:53 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:36:56 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:36:56 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:36:58 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:36:58 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:37:00 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:00 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:37:00 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:37:00 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:37:00 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:37:00 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:37:00 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:37:03 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:03 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:37:03 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:37:03 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:37:04 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 06:37:08 | KISCollector | WARNING  | __init__        | PyKis 라이브러리 또는 KIS 계정 설정 없음
+2025-08-09 06:37:08 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:37:08 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:37:08 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:37:08 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:37:08 | KISCollector | WARNING  | __init__        | PyKis 라이브러리 또는 KIS 계정 설정 없음
+2025-08-09 06:37:08 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:37:08 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:37:10 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:10 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:37:10 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:37:12 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:12 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:37:12 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:37:12 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:37:12 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:37:12 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:37:12 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:37:15 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:15 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:37:17 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:17 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:37:19 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:19 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:37:22 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:22 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:37:22 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:37:22 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:37:22 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:37:22 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:37:22 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:37:24 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:37:24 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:37:24 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:37:24 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:37:27 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 06:37:27 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 06:37:27 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:37:27 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 06:37:27 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 06:37:27 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:40:04 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:40:04 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:40:04 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:40:04 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:40:04 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:40:04 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 06:40:04 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 06:40:04 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 06:40:04 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:40:04 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:43:52 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:43:53 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:43:53 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:43:53 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:43:53 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:43:53 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:43:53 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:43:55 | KISCollector | INFO     | request_new_token | ✅ 새 액세스 토큰 획득 완료 (만료: 2025-08-10 06:33:55.663131)
+2025-08-09 06:43:55 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:43:55 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:43:58 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:43:58 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:43:58 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:44:00 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:00 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:44:00 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:44:00 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:44:00 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:44:00 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:44:00 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:44:02 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:02 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:44:05 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:05 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:44:07 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:07 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:44:09 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:09 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:44:09 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:44:09 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:44:09 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:44:09 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:44:09 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:44:11 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:11 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:44:11 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:44:11 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:44:12 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 06:44:26 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:44:26 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:44:26 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:44:26 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:44:26 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:44:26 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:44:26 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:44:26 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:44:28 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:28 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:44:28 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:44:30 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:30 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:44:30 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:44:30 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:44:30 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:44:30 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:44:30 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:44:32 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:32 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:44:35 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:35 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:44:37 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:37 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:44:39 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:39 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:44:39 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:44:39 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:44:39 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:44:39 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:44:39 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:44:42 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:44:42 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:44:42 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:44:42 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:44:45 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 06:44:45 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 06:44:45 | KISCollector | INFO     | _get_top_stocks_from_kis_api | 📊 KIS API로 주요 종목 10개 직접 조회 중...
+2025-08-09 06:44:45 | KISCollector | WARNING  | _get_top_stocks_from_kis_api | ⚠️ KIS API 직접 호출 실패: Session not initialized
+2025-08-09 06:44:45 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:44:45 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 06:44:45 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 06:44:45 | KISCollector | INFO     | _get_top_stocks_from_kis_api | 📊 KIS API로 주요 종목 10개 직접 조회 중...
+2025-08-09 06:44:45 | KISCollector | WARNING  | _get_top_stocks_from_kis_api | ⚠️ KIS API 직접 호출 실패: Session not initialized
+2025-08-09 06:44:45 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:53:42 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:53:42 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:53:42 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:53:43 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:53:43 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:53:43 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:53:43 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: 'KISTokenManager' object has no attribute '_load_cached_token'
+2025-08-09 06:53:43 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 06:53:45 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:53:45 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:53:45 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:53:45 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: 'KISTokenManager' object has no attribute '_load_cached_token'
+2025-08-09 06:53:45 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 06:53:47 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:53:47 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:53:47 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:53:47 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: 'KISTokenManager' object has no attribute '_load_cached_token'
+2025-08-09 06:53:47 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 06:53:47 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:53:47 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 06:54:22 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:54:23 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:54:23 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:54:23 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:54:23 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:54:23 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:54:23 | KISCollector | WARNING  | _load_cached_token | 토큰 캐시 로드 실패: name 'os' is not defined
+2025-08-09 06:54:23 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:54:25 | KISCollector | ERROR    | initialize      | ❌ KIS collector 초기화 실패: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+2025-08-09 06:54:25 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 06:54:27 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:54:27 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:54:27 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:54:27 | KISCollector | WARNING  | _load_cached_token | 토큰 캐시 로드 실패: name 'os' is not defined
+2025-08-09 06:54:27 | KISCollector | INFO     | request_new_token | 🔑 새 액세스 토큰 요청 중...
+2025-08-09 06:54:27 | KISCollector | INFO     | request_new_token | ✅ 새 액세스 토큰 획득 완료 (만료: 2025-08-10 06:44:27.602919)
+2025-08-09 06:54:27 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:54:27 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:54:30 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:54:30 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:54:30 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:55:00 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 06:55:00 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 06:55:00 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 06:55:01 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:55:01 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:55:01 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:55:01 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 06:55:01 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:55:01 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:55:03 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:55:03 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:55:03 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:55:06 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:55:06 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:55:06 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:55:06 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:55:06 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:55:06 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:55:06 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:55:08 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:55:08 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:55:11 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:55:11 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:55:13 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:55:13 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:55:15 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:55:15 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:55:15 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:55:15 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:55:15 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:55:15 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:55:15 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:55:18 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:55:18 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:55:18 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:55:18 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:55:19 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 06:57:22 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:57:22 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:57:22 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:57:22 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 06:57:22 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:57:23 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 06:57:25 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:57:25 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 06:57:25 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 06:57:27 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:57:27 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 06:57:27 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 06:57:27 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 06:57:27 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 06:57:27 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 06:57:27 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 06:57:30 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:57:30 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 06:57:32 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:57:32 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 06:57:34 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:57:34 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 06:57:37 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:57:37 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 06:57:37 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 06:57:37 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 06:57:37 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 06:57:37 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 06:57:37 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 06:57:39 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 06:57:39 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 06:57:39 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 06:57:39 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 06:59:59 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 06:59:59 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 06:59:59 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 06:59:59 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 06:59:59 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 06:59:59 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 06:59:59 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 06:59:59 | KISCollector | INFO     | _get_top_stocks_from_kis_api | 📊 KIS API로 주요 종목 10개 직접 조회 중...
+2025-08-09 06:59:59 | KISCollector | WARNING  | _get_top_stocks_from_kis_api | ⚠️ KIS API 직접 호출 실패: API request failed with status 404: 
+2025-08-09 06:59:59 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 06:59:59 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 06:59:59 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 07:00:54 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 07:00:54 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 07:00:54 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 07:00:54 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 07:00:54 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 07:00:54 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 07:00:54 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 07:00:54 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 07:00:54 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 07:00:54 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 07:00:57 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 07:00:57 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 07:00:57 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 07:00:58 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 07:00:58 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 07:00:58 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 07:00:58 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 07:00:58 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 07:00:58 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 07:01:00 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:00 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 07:01:00 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 07:01:03 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:03 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 07:01:03 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 07:01:03 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 07:01:03 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 07:01:03 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 07:01:03 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 07:01:05 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:05 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 07:01:07 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:07 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 07:01:09 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:09 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 07:01:12 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:12 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 07:01:12 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 07:01:12 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 07:01:12 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 07:01:12 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 07:01:12 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 07:01:14 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:14 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 07:01:14 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 07:01:14 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 07:01:15 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 07:01:18 | KISCollector | WARNING  | __init__        | PyKis API 초기화 실패: id를 입력해야 합니다.
+2025-08-09 07:01:18 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: True)
+2025-08-09 07:01:18 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 07:01:18 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 07:01:18 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 07:01:18 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 07:01:20 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:20 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 07:01:20 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 07:01:22 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:22 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 07:01:22 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 07:01:22 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 07:01:22 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 07:01:22 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 07:01:22 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 07:01:25 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:25 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 07:01:27 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:27 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 07:01:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:29 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 07:01:31 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:31 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 07:01:31 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 07:01:31 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 07:01:31 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 07:01:31 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 07:01:31 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 07:01:34 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-09 07:01:34 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 07:01:34 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 07:01:34 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 07:01:43 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 07:01:43 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 07:01:43 | KISCollector | INFO     | _get_top_stocks_from_kis_api | 📊 KIS API로 주요 종목 10개 직접 조회 중...
+2025-08-09 07:01:43 | KISCollector | WARNING  | _get_top_stocks_from_kis_api | ⚠️ KIS API 직접 호출 실패: API request failed with status 404: 
+2025-08-09 07:01:43 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 07:01:43 | KISCollector | INFO     | get_filtered_stocks | 📊 KIS API를 통한 10개 종목 조회 시작...
+2025-08-09 07:01:43 | KISCollector | WARNING  | get_stocks_by_condition | PyKis not available for HTS conditions
+2025-08-09 07:01:43 | KISCollector | INFO     | _get_top_stocks_from_kis_api | 📊 KIS API로 주요 종목 10개 직접 조회 중...
+2025-08-09 07:01:43 | KISCollector | WARNING  | _get_top_stocks_from_kis_api | ⚠️ KIS API 직접 호출 실패: API request failed with status 404: 
+2025-08-09 07:01:43 | KISCollector | ERROR    | get_filtered_stocks | ❌ 모든 종목 조회 방법 실패
+2025-08-09 07:06:05 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 07:06:05 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 07:06:05 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 07:06:05 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 07:06:05 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 07:06:05 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 07:06:05 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 07:06:05 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 07:06:05 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 07:06:05 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료

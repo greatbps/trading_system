@@ -189,7 +189,7 @@ class RateLimiter:
             return True
 
 class KISTokenManager:
-    """Enhanced token manager with caching and auto-refresh"""
+    """Enhanced token manager with file-based caching and auto-refresh"""
     
     def __init__(self, app_key: str, app_secret: str, base_url: str, logger: logging.Logger, virtual_mode: bool = True):
         self.app_key = app_key
@@ -203,8 +203,16 @@ class KISTokenManager:
         self.token_expired: Optional[datetime] = None
         self.refresh_threshold = timedelta(hours=1)  # Refresh 1 hour before expiry
         
+        # File-based token cache
+        import os
+        self.token_cache_file = os.path.join("data", "kis_token_cache.json")
+        os.makedirs("data", exist_ok=True)
+        
         # Lock for thread safety
         self._lock = asyncio.Lock()
+        
+        # Load cached token on initialization
+        self._load_cached_token()
     
     async def request_new_token(self, session: aiohttp.ClientSession) -> bool:
         """Request new access token with comprehensive error handling"""
@@ -242,6 +250,9 @@ class KISTokenManager:
                             self.access_token = result['access_token']
                             # KIS tokens typically expire in 24 hours
                             self.token_expired = datetime.now() + timedelta(hours=23, minutes=50)
+                            
+                            # 토큰을 파일에 캐시
+                            self._save_token_to_cache()
                             
                             self.logger.info(f"✅ 새 액세스 토큰 획득 완료 (만료: {self.token_expired})")
                             return True
@@ -298,6 +309,36 @@ class KISTokenManager:
             
         self.logger.info("토큰 만료 임박, 새로운 토큰 요청...")
         return await self.request_new_token(session)
+    
+    def _load_cached_token(self):
+        """Load cached token from file"""
+        try:
+            import os
+            if os.path.exists(self.token_cache_file):
+                with open(self.token_cache_file, 'r', encoding='utf-8') as f:
+                    cache_data = json.load(f)
+                    self.access_token = cache_data.get('access_token')
+                    if cache_data.get('token_expired'):
+                        self.token_expired = datetime.fromisoformat(cache_data['token_expired'])
+                    self.logger.info("캐시된 토큰 로드 완료")
+        except Exception as e:
+            self.logger.warning(f"토큰 캐시 로드 실패: {e}")
+            self.access_token = None
+            self.token_expired = None
+    
+    def _save_token_to_cache(self):
+        """Save token to cache file"""
+        try:
+            import os
+            cache_data = {
+                'access_token': self.access_token,
+                'token_expired': self.token_expired.isoformat() if self.token_expired else None
+            }
+            with open(self.token_cache_file, 'w', encoding='utf-8') as f:
+                json.dump(cache_data, f, ensure_ascii=False, indent=2)
+            self.logger.debug("토큰 캐시 저장 완료")
+        except Exception as e:
+            self.logger.warning(f"토큰 캐시 저장 실패: {e}")
 
 class KISCollector:
     """Production-ready KIS API Collector with enterprise features"""
@@ -320,28 +361,34 @@ class KISCollector:
         self.session: Optional[aiohttp.ClientSession] = None
         self.rate_limiter = RateLimiter(max_requests=20, time_window=1)
         
-        # PyKis integration - 필수 파라미터로 초기화
+        # PyKis integration - KIS 계정 정보 필요
         self.pykis_api = None
-        if Api:
+        if Api and hasattr(config, 'kis_account'):
             try:
-                # 가상 계좌용 초기화 (대부분의 경우)
-                if self.is_virtual:
-                    self.pykis_api = Api(
-                        virtual_id="DEMO_USER",  # 임시 ID
-                        virtual_appkey=self.app_key,
-                        virtual_secretkey=self.app_secret
-                    )
+                # 실제 KIS 계정 정보로 초기화
+                kis_id = getattr(config.kis_account, 'KIS_USER_ID', None)
+                if kis_id:
+                    if self.is_virtual:
+                        self.pykis_api = Api(
+                            virtual_id=kis_id,
+                            virtual_appkey=self.app_key,
+                            virtual_secretkey=self.app_secret
+                        )
+                    else:
+                        self.pykis_api = Api(
+                            id=kis_id,
+                            appkey=self.app_key,
+                            secretkey=self.app_secret
+                        )
+                    self.logger.info("PyKis API 객체 생성 성공")
                 else:
-                    self.pykis_api = Api(
-                        id="REAL_USER",  # 임시 ID
-                        appkey=self.app_key,
-                        secretkey=self.app_secret
-                    )
-                self.logger.info("PyKis API 객체 생성 성공")
+                    self.logger.warning("KIS 사용자 ID가 설정되지 않음. PyKis 비활성화")
+                    self.pykis_api = None
             except Exception as e:
                 self.logger.warning(f"PyKis API 초기화 실패: {e}")
-                # API가 초기화되지 않아도 시스템은 동작할 수 있음
                 self.pykis_api = None
+        else:
+            self.logger.warning("PyKis 라이브러리 또는 KIS 계정 설정 없음")
         
         # Performance metrics
         self.metrics = {
@@ -382,8 +429,8 @@ class KISCollector:
                 headers={'Content-Type': 'application/json', 'User-Agent': 'TradingSystem/2.0'}
             )
             
-            # 토큰 획득
-            await self.token_manager.request_new_token(self.session)
+            # 토큰 확인/획득 (캐시된 토큰이 유효하면 재사용)
+            await self.token_manager.ensure_valid_token(self.session)
             
             self.status = APIStatus.CONNECTED
             self.logger.info("✅ KIS API collector 초기화 성공")
@@ -723,58 +770,319 @@ class KISCollector:
             return []
 
     async def get_news_data(self, symbol: str, name: str, days: int = 7) -> List[Dict]:
-        """뉴스 데이터 수집 (임시 구현)"""
+        """뉴스 데이터 수집 - KIS API 실제 호출 시도"""
         try:
-            # 임시로 간단한 뉴스 데이터 생성
-            # 실제로는 KIS API나 외부 뉴스 API를 사용해야 함
-            self.logger.debug(f"📰 {symbol} 뉴스 데이터 수집 시도...")
+            self.logger.info(f"📰 {symbol}({name}) 실제 뉴스 데이터 수집 시작...")
             
-            import random
-            from datetime import datetime, timedelta
+            # 실제 KIS API 뉴스 호출 시도
+            real_news = []
+            if self.pykis_api:
+                try:
+                    # PyKis API로 실제 뉴스 데이터 조회 시도
+                    # 실제 구현: 종목 관련 뉴스 API 호출
+                    import asyncio
+                    news_result = await asyncio.to_thread(
+                        self._get_stock_news_from_kis, symbol, name, days
+                    )
+                    if news_result and len(news_result) > 0:
+                        real_news = news_result
+                        self.logger.info(f"✅ {symbol} 실제 KIS 뉴스 {len(real_news)}건 수집 완료")
+                    else:
+                        self.logger.debug(f"📰 {symbol} KIS API에서 뉴스 없음")
+                except Exception as e:
+                    self.logger.warning(f"⚠️ {symbol} KIS API 뉴스 조회 실패: {e}")
             
-            # 실제 뉴스가 없는 경우 50% 확률로 빈 리스트 반환 (기본값 50점 방지를 위해)
-            if random.random() < 0.3:  # 30% 확률로 뉴스 없음
-                return []
+            # KIS API 실패 시 실제 웹 뉴스 크롤링 시도 (간단한 구현)
+            if not real_news:
+                try:
+                    web_news = await self._crawl_web_news(symbol, name, days)
+                    if web_news and len(web_news) > 0:
+                        real_news = web_news
+                        self.logger.info(f"✅ {symbol} 웹 뉴스 {len(real_news)}건 수집 완료")
+                    else:
+                        self.logger.debug(f"📰 {symbol} 웹에서 뉴스 없음")
+                except Exception as e:
+                    self.logger.warning(f"⚠️ {symbol} 웹 뉴스 크롤링 실패: {e}")
             
-            # 간단한 더미 뉴스 데이터 생성 (실제 서비스에서는 실제 뉴스 API 사용)
-            news_sentiment_options = [
-                ("긍정적인 실적 발표", "POSITIVE", 75),
-                ("신규 사업 진출 발표", "POSITIVE", 70), 
-                ("주가 상승 전망", "POSITIVE", 80),
-                ("시장 우려 확산", "NEGATIVE", 30),
-                ("실적 부진 우려", "NEGATIVE", 25),
-                ("규제 리스크", "NEGATIVE", 35),
-                ("일반적인 업계 동향", "NEUTRAL", 50),
-                ("정기 공시", "NEUTRAL", 50)
-            ]
+            # 실제 뉴스가 있으면 반환
+            if real_news and len(real_news) > 0:
+                return real_news[:10]  # 최근 10개만 반환
             
-            # 1-5개의 뉴스 아이템 생성
-            news_count = random.randint(1, 5)
-            news_data = []
-            
-            for i in range(news_count):
-                title, sentiment, base_score = random.choice(news_sentiment_options)
-                
-                # 점수에 약간의 변동성 추가
-                score_variation = random.randint(-10, 10)
-                final_score = max(10, min(90, base_score + score_variation))
-                
-                news_item = {
-                    'title': f"{name} {title}",
-                    'content': f"{name}에 대한 {sentiment.lower()} 뉴스 내용입니다.",
-                    'published_date': (datetime.now() - timedelta(days=random.randint(0, days))).isoformat(),
-                    'sentiment': sentiment,
-                    'relevance_score': random.uniform(0.6, 1.0),
-                    'source': "테스트뉴스",
-                    'impact_score': final_score
-                }
-                news_data.append(news_item)
-            
-            self.logger.debug(f"📰 {symbol} 테스트 뉴스 {len(news_data)}개 생성")
-            return news_data
+            # 실제 뉴스가 없으면 빈 리스트 반환 (기본값 처리는 sentiment_analyzer에서)
+            self.logger.debug(f"📰 {symbol} 실제 뉴스 없음 - 빈 데이터 반환")
+            return []
             
         except Exception as e:
             self.logger.warning(f"⚠️ {symbol} 뉴스 데이터 수집 실패: {e}")
+            return []
+
+    async def get_filtered_stocks(self, limit: int = 20) -> List[Tuple[str, str]]:
+        """필터링된 종목 리스트 반환 - 실제 KIS API 활용"""
+        try:
+            self.logger.info(f"📊 KIS API를 통한 {limit}개 종목 조회 시작...")
+            
+            # 방법 1: HTS 조건검색 활용 (momentum 전략)
+            try:
+                momentum_stocks = await self.get_stocks_by_condition("momentum")
+                if momentum_stocks:
+                    # 종목코드만 있으므로 종목명 조회 필요
+                    stock_list = []
+                    for symbol in momentum_stocks[:limit]:
+                        try:
+                            stock_info = await self.get_stock_info(symbol)
+                            if stock_info:
+                                stock_list.append((symbol, stock_info.name))
+                        except Exception:
+                            stock_list.append((symbol, f"종목{symbol}"))
+                    
+                    if stock_list:
+                        self.logger.info(f"✅ 조건검색으로 {len(stock_list)}개 종목 조회 성공")
+                        return stock_list
+            except Exception as e:
+                self.logger.warning(f"⚠️ 조건검색 실패: {e}")
+            
+            # 방법 2: PyKis stock 메서드 활용 (실제 사용법)
+            if self.pykis_api:
+                try:
+                    # PyKis 2.1.3의 실제 stock 메서드 사용
+                    # 주요 종목들을 하나씩 조회
+                    major_symbols = ["005930", "000660", "035420", "207940", "005380", "006400", "051910", "035720", "028260", "105560"]
+                    stock_list = []
+                    
+                    for symbol in major_symbols[:limit]:
+                        try:
+                            # PyKis의 stock 메서드로 개별 종목 조회
+                            stock_info = await asyncio.to_thread(self.pykis_api.stock, symbol)
+                            if stock_info and hasattr(stock_info, 'name'):
+                                stock_list.append((symbol, stock_info.name))
+                            elif stock_info:
+                                # stock_info가 딕셔너리일 경우
+                                name = stock_info.get('name', f'종목{symbol}')
+                                stock_list.append((symbol, name))
+                        except Exception as e:
+                            self.logger.debug(f"⚠️ {symbol} 개별 조회 실패: {e}")
+                            continue
+                    
+                    if stock_list:
+                        self.logger.info(f"✅ PyKis로 {len(stock_list)}개 종목 조회 성공")
+                        return stock_list
+                        
+                except Exception as e:
+                    self.logger.warning(f"⚠️ PyKis stock 메서드 실패: {e}")
+            
+            # 방법 3: KIS API 직접 호출로 주요 종목 조회 
+            try:
+                top_stocks = await self._get_top_stocks_from_kis_api(limit)
+                if top_stocks:
+                    self.logger.info(f"✅ KIS API 직접 호출로 {len(top_stocks)}개 종목 조회 성공")
+                    return top_stocks
+            except Exception as e:
+                self.logger.warning(f"⚠️ KIS API 직접 호출 실패: {e}")
+            
+            # 방법 4: DB에서 기존 필터링된 종목 조회
+            try:
+                if hasattr(self, 'db_operations') and self.db_operations:
+                    from database.models import FilteredStock, Stock
+                    from sqlalchemy import select
+                    
+                    async with self.db_operations.db_manager.get_async_session() as session:
+                        # 최근 필터링된 종목들 조회
+                        result = await session.execute(
+                            select(FilteredStock.stock_id, Stock.name)
+                            .join(Stock, FilteredStock.stock_id == Stock.id)
+                            .order_by(FilteredStock.filtered_date.desc())
+                            .limit(limit)
+                        )
+                        db_stocks = result.fetchall()
+                        
+                        if db_stocks:
+                            stock_list = [(str(stock_id).zfill(6), name) for stock_id, name in db_stocks]
+                            self.logger.info(f"✅ DB에서 {len(stock_list)}개 종목 조회 성공")
+                            return stock_list
+            except Exception as e:
+                self.logger.warning(f"⚠️ DB 종목 조회 실패: {e}")
+            
+            # 실패 시 빈 리스트 반환
+            self.logger.error("❌ 모든 종목 조회 방법 실패")
+            return []
+            
+        except Exception as e:
+            self.logger.error(f"❌ 종목 조회 실패: {e}")
+            return []
+
+    def _get_top_market_cap_stocks(self, limit: int) -> List[Tuple[str, str]]:
+        """시가총액 상위 종목 조회 (동기 메소드)"""
+        try:
+            # PyKis API를 활용한 시가총액 상위 종목 조회
+            if not self.pykis_api:
+                return []
+            
+            # 코스피 시가총액 상위 종목 정보 조회
+            df = self.pykis_api.get_market_cap_rank(market="KOSPI", limit=limit)
+            if df is not None and not df.empty:
+                return [(str(code).zfill(6), name) for code, name in df.index[:limit]]
+            
+            return []
+        except Exception as e:
+            self.logger.warning(f"⚠️ 시가총액 조회 실패: {e}")
+            return []
+
+    def _get_stock_news_from_kis(self, symbol: str, name: str, days: int = 7) -> List[Dict]:
+        """KIS API로 종목 뉴스 데이터 조회 (동기 메서드)"""
+        try:
+            # 현재 KIS API에 뉴스 조회 기능이 없으므로 빈 리스트 반환
+            # 실제 서비스에서는 KIS API의 뉴스 관련 엔드포인트를 구현
+            self.logger.debug(f"📰 {symbol} KIS API 뉴스 조회 (현재 미지원)")
+            return []
+        except Exception as e:
+            self.logger.warning(f"⚠️ KIS API 뉴스 조회 실패: {e}")
+            return []
+    
+    async def _crawl_web_news(self, symbol: str, name: str, days: int = 7) -> List[Dict]:
+        """웹에서 실제 뉴스 크롤링"""
+        try:
+            import aiohttp
+            from datetime import datetime, timedelta
+            
+            news_list = []
+            
+            # 네이버 금융 뉴스 크롤링 시도
+            try:
+                search_url = f"https://finance.naver.com/item/news_news.naver?code={symbol}"
+                
+                if self.session:
+                    async with self.session.get(search_url, timeout=10) as response:
+                        if response.status == 200:
+                            html_content = await response.text()
+                            
+                            # 간단한 HTML 파싱 (Beautiful Soup 없이)
+                            import re
+                            
+                            # 제목과 내용 패턴 매칭
+                            title_pattern = r'<dd class="title"><a[^>]*>([^<]+)</a>'
+                            date_pattern = r'<dd class="date">([^<]+)</dd>'
+                            
+                            titles = re.findall(title_pattern, html_content)
+                            dates = re.findall(date_pattern, html_content)
+                            
+                            # 최대 5개 뉴스 처리
+                            for i, (title, date_str) in enumerate(zip(titles[:5], dates[:5])):
+                                if title and date_str:
+                                    news_item = {
+                                        'title': title.strip(),
+                                        'description': f"{name} 관련 뉴스",
+                                        'content': f"{name}에 대한 뉴스 내용입니다.",
+                                        'published_date': date_str.strip(),
+                                        'source': "네이버 금융",
+                                        'url': search_url
+                                    }
+                                    news_list.append(news_item)
+                            
+                            if news_list:
+                                self.logger.info(f"✅ {symbol} 네이버 금융에서 {len(news_list)}건 뉴스 수집")
+                                return news_list
+                            
+            except Exception as e:
+                self.logger.debug(f"📰 {symbol} 네이버 금융 크롤링 실패: {e}")
+            
+            # 다음 카카오 금융 뉴스 크롤링 시도
+            try:
+                daum_url = f"https://finance.daum.net/quotes/A{symbol}"
+                
+                if self.session:
+                    async with self.session.get(daum_url, timeout=10) as response:
+                        if response.status == 200:
+                            html_content = await response.text()
+                            
+                            # 간단한 뉴스 제목 추출
+                            import re
+                            news_pattern = r'<a[^>]*class="[^"]*link_news[^"]*"[^>]*>([^<]+)</a>'
+                            news_titles = re.findall(news_pattern, html_content)
+                            
+                            # 최대 3개 뉴스 처리
+                            for i, title in enumerate(news_titles[:3]):
+                                if title.strip():
+                                    news_item = {
+                                        'title': title.strip(),
+                                        'description': f"{name} 관련 뉴스",
+                                        'content': f"{name}에 대한 뉴스 내용입니다.",
+                                        'published_date': datetime.now().isoformat(),
+                                        'source': "다음 금융",
+                                        'url': daum_url
+                                    }
+                                    news_list.append(news_item)
+                            
+                            if news_list:
+                                self.logger.info(f"✅ {symbol} 다음 금융에서 {len(news_list)}건 뉴스 수집")
+                                return news_list
+                                
+            except Exception as e:
+                self.logger.debug(f"📰 {symbol} 다음 금융 크롤링 실패: {e}")
+            
+            # 모든 크롤링 실패 시 빈 리스트 반환
+            self.logger.debug(f"📰 {symbol} 실제 웹 뉴스 크롤링 결과 없음")
+            return []
+            
+        except Exception as e:
+            self.logger.warning(f"⚠️ {symbol} 웹 뉴스 크롤링 실패: {e}")
+            return []
+
+    async def _get_top_stocks_from_kis_api(self, limit: int = 20) -> List[Tuple[str, str]]:
+        """KIS API 직접 호출로 주요 종목 조회"""
+        try:
+            self.logger.info(f"📊 KIS API로 주요 종목 {limit}개 직접 조회 중...")
+            
+            # KOSPI 시가총액 상위 종목 조회
+            result = await self._make_api_request(
+                method="GET",
+                endpoint="/uapi/domestic-stock/v1/quotations/inquire-market-trading-top",
+                params={
+                    "FID_COND_MRKT_DIV_CODE": "J",  # KOSPI
+                    "FID_COND_SCR_DIV_CODE": "20174",  # 시가총액 상위
+                    "FID_DIV_CLS_CODE": "0",  # 전체
+                    "FID_TRGT_CLS_CODE": "111111111",  # 전체
+                    "FID_TRGT_EXLS_CLS_CODE": "0000000000",  # 제외없음
+                    "FID_INPUT_ISCD": "0000",  # 전체
+                    "FID_INPUT_CNT_1": str(limit),  # 조회 개수
+                },
+                tr_id="FHPST01740000"
+            )
+            
+            output = result.get('output', [])
+            if not output:
+                self.logger.warning("⚠️ KIS API 시가총액 상위 조회 결과 없음")
+                return []
+            
+            # 종목 리스트 생성
+            stock_list = []
+            for item in output:
+                try:
+                    symbol = item.get('stck_shrn_iscd', '')  # 종목코드
+                    name = item.get('hts_kor_isnm', '')    # 종목명
+                    
+                    if symbol and name:
+                        # 종목코드 6자리 맞추기
+                        symbol = symbol.zfill(6)
+                        # 종목명 정리
+                        clean_name = self._clean_stock_name(name)
+                        stock_list.append((symbol, clean_name))
+                        
+                    if len(stock_list) >= limit:
+                        break
+                        
+                except Exception as e:
+                    self.logger.debug(f"⚠️ 종목 데이터 파싱 실패: {e}")
+                    continue
+            
+            if stock_list:
+                self.logger.info(f"✅ KIS API로 {len(stock_list)}개 주요 종목 조회 완료")
+                return stock_list
+            else:
+                self.logger.warning("⚠️ KIS API 조회 성공했으나 유효한 종목 없음")
+                return []
+                
+        except Exception as e:
+            self.logger.warning(f"⚠️ KIS API 직접 호출 실패: {e}")
             return []
 
     async def cleanup(self):

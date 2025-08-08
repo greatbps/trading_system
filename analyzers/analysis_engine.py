@@ -130,9 +130,9 @@ class AnalysisEngine:
                 self._async_wrapper(self.supply_demand_analyzer.analyze, stock_data), timeout=10.0
             )))
             
-            # 차트 패턴 분석 (10초 타임아웃)
+            # 차트 패턴 분석 (10초 타임아웃) - OHLCV 데이터 포함
             tasks.append(('chart_pattern', asyncio.wait_for(
-                self.chart_pattern_analyzer.analyze(stock_data), timeout=10.0
+                self.chart_pattern_analyzer.analyze_with_ohlcv(stock_data, price_data), timeout=10.0
             )))
 
             # 2. 병렬 실행 (전체 60초 타임아웃)
