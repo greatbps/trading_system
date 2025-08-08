@@ -3101,3 +3101,113 @@
 08:51:35 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
 08:51:35 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
 08:51:35 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패
+08:56:19 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:56:19 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:56:22 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:56:24 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:56:24 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+08:56:24 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+08:56:24 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+08:56:24 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:56:24 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+08:56:24 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+08:56:24 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+08:56:24 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+08:56:34 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+08:56:34 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:56:34 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+08:56:36 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+08:56:37 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:56:37 | TradingSystem | INFO | 🚀 자동 매수 시작: 상위 2개 종목, 종목당 1,000,000원
+08:56:37 | TradingSystem | ERROR | ❌ 자동 매수 실행 실패: 'cp949' codec can't encode character '\U0001f3af' in position 0: illegal multibyte sequence
+08:57:27 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:57:27 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:57:30 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:57:32 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:57:32 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+08:57:32 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+08:57:32 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+08:57:32 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:57:32 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+08:57:32 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+08:57:32 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+08:57:32 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+08:57:41 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+08:57:42 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+08:57:42 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+08:57:44 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+08:57:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+08:57:45 | TradingSystem | INFO | 🚀 자동 매수 시작: 상위 2개 종목, 종목당 1,000,000원
+08:57:45 | TradingSystem | ERROR | ❌ 자동 매수 실행 실패: name 'OrderType' is not defined
+08:58:03 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:58:03 | TradingSystem | ERROR | ❌ 데이터 수집기 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+08:58:03 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: Initialization failed: Token request failed with status 403: {"error_description":"접근토큰 발급 잠시 후 다시 시도하세요(1분당 1회)","error_code":"EGW00133"}
+08:59:51 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+08:59:53 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+08:59:56 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+08:59:58 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+08:59:58 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+08:59:58 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+08:59:58 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+08:59:58 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+08:59:58 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+08:59:58 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+08:59:58 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+08:59:58 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+09:00:07 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+09:00:07 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+09:00:07 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+09:00:10 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+09:00:10 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+09:00:10 | TradingSystem | INFO | 🚀 자동 매수 시작: 상위 2개 종목, 종목당 1,000,000원
+09:00:10 | TradingSystem | ERROR | ❌ 자동 매수 실행 실패: 'cp949' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+22:20:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:20:42 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:20:47 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:20:49 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:20:49 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:20:49 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:20:49 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:20:49 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:20:49 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:20:49 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:20:49 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:20:49 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:20:58 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:20:58 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:20:58 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:21:01 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:21:05 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:21:09 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+22:21:09 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+22:21:09 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:21:09 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+22:21:09 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+22:21:09 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+22:21:09 | TradingSystem | INFO | 기본 종목 40개로 대체
+22:21:09 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:21:09 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+22:21:09 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+22:21:09 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+22:21:10 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+22:21:40 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
+22:21:40 | TradingSystem | ERROR | ❌ 005930 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 000660 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 035420 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 005380 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 051910 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 028260 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 006400 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 000270 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 068270 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 105560 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 055550 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 035720 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 207940 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 066570 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 323410 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 000810 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 017670 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
+22:21:41 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패

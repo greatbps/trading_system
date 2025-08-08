@@ -45,32 +45,33 @@ class MenuHandlers:
     4. 종합 분석 (5개 영역 통합)
     5. 특정 종목 분석
     6. 뉴스 재료 분석
-    7. 자동매매 시작
-    8. 백테스트 실행
+    7. 분석 후 상위 점수 자동 매수
+    8. 자동매매 시작
+    9. 백테스트 실행
 
     [bold magenta]🧠 AI 고급 기능 (Phase 4)[/bold magenta]
-    11. AI 종합 시장 분석
-    12. AI 시장 체제 분석
-    13. AI 전략 최적화
-    14. AI 리스크 평가
-    15. AI 일일 보고서
+    12. AI 종합 시장 분석
+    13. AI 시장 체제 분석
+    14. AI 전략 최적화
+    15. AI 리스크 평가
+    16. AI 일일 보고서
 
     [bold yellow]📢 알림 시스템 (Phase 5)[/bold yellow]
-    16. 텔레그램 알림 테스트
-    17. 알림 설정 관리
-    18. 알림 통계 조회
-    19. 알림 상태 확인
+    17. 텔레그램 알림 테스트
+    18. 알림 설정 관리
+    19. 알림 통계 조회
+    20. 알림 상태 확인
 
     [bold purple]🧪 백테스팅 & 검증 (Phase 6)[/bold purple]
-    20. AI vs 전통 전략 비교
-    21. 전략 성능 검증
-    22. 과거 AI 예측 정확도 분석
-    23. 시장 체제별 성과 분석
-    24. 백테스팅 보고서 생성
+    21. AI vs 전통 전략 비교
+    22. 전략 성능 검증
+    23. 과거 AI 예측 정확도 분석
+    24. 시장 체제별 성과 분석
+    25. 백테스팅 보고서 생성
 
     [bold blue]🗄️ 데이터[/bold blue]
-    9. 데이터베이스 상태
-    10. 종목 데이터 조회
+    10. 데이터베이스 상태
+    11. 종목 데이터 조회
 
     [bold red]0. 종료[/bold red]"""
         
@@ -99,43 +100,44 @@ class MenuHandlers:
                 "4": self._comprehensive_analysis,
                 "5": self._specific_symbol_analysis,
                 "6": self._news_analysis,
-                "7": self._auto_trading,
-                "8": self._backtest,
+                "7": self._analysis_and_auto_buy,
+                "8": self._auto_trading,
+                "9": self._backtest,
                 
                 # 데이터베이스
-                "9": self._database_status,
-                "10": self._view_stock_data,
+                "10": self._database_status,
+                "11": self._view_stock_data,
                 
                 # AI 고급 기능 (Phase 4)
-                "11": self._ai_comprehensive_analysis,
-                "12": self._ai_market_regime_analysis,
-                "13": self._ai_strategy_optimization,
-                "14": self._ai_risk_assessment,
-                "15": self._ai_daily_report,
+                "12": self._ai_comprehensive_analysis,
+                "13": self._ai_market_regime_analysis,
+                "14": self._ai_strategy_optimization,
+                "15": self._ai_risk_assessment,
+                "16": self._ai_daily_report,
                 
                 # 알림 시스템 (Phase 5)
-                "16": self._test_telegram_notification,
-                "17": self._manage_notification_settings,
-                "18": self._view_notification_stats,
-                "19": self._check_notification_status,
+                "17": self._test_telegram_notification,
+                "18": self._manage_notification_settings,
+                "19": self._view_notification_stats,
+                "20": self._check_notification_status,
                 
                 # 백테스팅 & 검증 (Phase 6)
-                "20": self._ai_vs_traditional_comparison,
-                "21": self._strategy_validation,
-                "22": self._ai_prediction_accuracy_analysis,
-                "23": self._market_regime_performance,
-                "24": self._backtesting_report_generation,
+                "21": self._ai_vs_traditional_comparison,
+                "22": self._strategy_validation,
+                "23": self._ai_prediction_accuracy_analysis,
+                "24": self._market_regime_performance,
+                "25": self._backtesting_report_generation,
                 
                 # 고급 기능 (기존) - 번호 이동
-                "25": self._supply_demand_analysis,
-                "26": self._chart_pattern_analysis,
-                "27": self._scheduler,
-                "28": self._view_analysis_results,
-                "29": self._view_trading_records,
-                "30": self._data_cleanup,
-                "31": self._log_analysis,
-                "32": self._system_monitoring,
-                "33": self._debug_filtering
+                "26": self._supply_demand_analysis,
+                "27": self._chart_pattern_analysis,
+                "28": self._scheduler,
+                "29": self._view_analysis_results,
+                "30": self._view_trading_records,
+                "31": self._data_cleanup,
+                "32": self._log_analysis,
+                "33": self._system_monitoring,
+                "34": self._debug_filtering
             }
             
             handler = menu_map.get(choice)
@@ -149,6 +151,92 @@ class MenuHandlers:
             console.print(f"[red]❌ 메뉴 실행 오류: {e}[/red]")
             self.logger.error(f"❌ 메뉴 실행 오류 ({choice}): {e}")
             return False
+    
+    async def _analysis_and_auto_buy(self) -> bool:
+        """분석 후 상위 점수 자동 매수"""
+        console.print(Panel("[bold green]분석 후 상위 점수 자동 매수[/bold green]", border_style="green"))
+        
+        try:
+            # 1. 전략 선택
+            strategies = {
+                "1": ("momentum", "Momentum 전략"),
+                "2": ("breakout", "Breakout 전략"), 
+                "3": ("eod", "EOD 전략"),
+                "4": ("supertrend_ema_rsi", "Supertrend EMA RSI 전략"),
+                "5": ("vwap", "VWAP 전략")
+            }
+            
+            console.print("\n[bold]전략 선택:[/bold]")
+            for key, (_, name) in strategies.items():
+                console.print(f"  {key}. {name}")
+            
+            strategy_choice = Prompt.ask("전략 선택", choices=list(strategies.keys()), default="1")
+            selected_strategy, strategy_name = strategies[strategy_choice]
+            
+            # 2. 매수 설정
+            console.print(f"\n[bold]선택된 전략:[/bold] {strategy_name}")
+            
+            top_n = IntPrompt.ask("상위 몇 개 종목을 매수하시겠습니까?", default=3, show_default=True)
+            budget_per_stock = IntPrompt.ask("종목당 투자 금액 (원)", default=1000000, show_default=True)
+            
+            # 3. 안전 확인
+            total_budget = top_n * budget_per_stock
+            console.print(f"\n[yellow]📋 매수 설정 확인:[/yellow]")
+            console.print(f"  • 전략: {strategy_name}")
+            console.print(f"  • 대상: 상위 {top_n}개 종목")
+            console.print(f"  • 종목당 투자금액: {budget_per_stock:,}원")
+            console.print(f"  • 총 투자금액: {total_budget:,}원")
+            
+            if not Confirm.ask("\n위 설정으로 분석 후 자동 매수를 진행하시겠습니까?", default=False):
+                console.print("[yellow]자동 매수를 취소했습니다[/yellow]")
+                return False
+            
+            # 4. 자동 매수 실행
+            result = await self.system.run_analysis_and_auto_buy(
+                strategy=selected_strategy,
+                top_n=top_n,
+                budget_per_stock=budget_per_stock
+            )
+            
+            # 5. 결과 표시
+            if result['success']:
+                console.print(f"\n[bold green]✅ 자동 매수 완료[/bold green]")
+                console.print(f"총 주문: {result.get('total_orders', 0)}건")
+                console.print(f"성공: {result.get('successful_orders', 0)}건")
+                console.print(f"실패: {result.get('failed_orders', 0)}건")
+                
+                # 성공한 매수 내역 표시
+                execution_results = result.get('execution_results', [])
+                if execution_results:
+                    success_results = [r for r in execution_results if r.get('status') == 'SUCCESS']
+                    if success_results:
+                        table = Table(title="매수 성공 내역")
+                        table.add_column("종목코드", style="cyan")
+                        table.add_column("종목명", style="white")
+                        table.add_column("수량", style="green")
+                        table.add_column("단가", style="yellow")
+                        table.add_column("총액", style="magenta")
+                        
+                        for result_item in success_results:
+                            table.add_row(
+                                result_item.get('symbol', ''),
+                                result_item.get('name', '')[:10],
+                                f"{result_item.get('quantity', 0):,}주",
+                                f"{result_item.get('price', 0):,}원",
+                                f"{result_item.get('amount', 0):,}원"
+                            )
+                        console.print(table)
+                
+                return True
+            else:
+                console.print(f"[red]❌ 자동 매수 실패: {result.get('reason', '알 수 없는 오류')}[/red]")
+                return False
+                
+        except Exception as e:
+            console.print(f"[red]❌ 자동 매수 오류: {e}[/red]")
+            self.logger.error(f"자동 매수 오류: {e}")
+            return False
+
     async def _debug_filtering(self) -> bool:
         """필터링 디버깅"""
         console.print(Panel("[bold yellow]🔍 필터링 디버깅[/bold yellow]", border_style="yellow"))

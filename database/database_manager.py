@@ -615,16 +615,23 @@ class DatabaseManager:
             self.logger.error(f"❌ 분석 결과 저장 실패: {e}")
             return None
     def _clean_analysis_data(self, data: Dict) -> Dict:
-        """numpy 타입을 Python 기본 타입으로 변환"""
+        """numpy 타입을 Python 기본 타입으로 변환하고 NaN/Inf 값 처리"""
         import json
         import numpy as np
+        import math
         
         def convert_numpy(obj):
-            """numpy 객체를 Python 기본 타입으로 변환"""
+            """numpy 객체를 Python 기본 타입으로 변환하고 NaN/Inf 처리"""
             if isinstance(obj, np.integer):
                 return int(obj)
             elif isinstance(obj, np.floating):
+                if np.isnan(obj) or np.isinf(obj):
+                    return None  # NaN, Inf를 null로 변환
                 return float(obj)
+            elif isinstance(obj, float):
+                if math.isnan(obj) or math.isinf(obj):
+                    return None  # Python float NaN, Inf도 처리
+                return obj
             elif isinstance(obj, np.bool_):
                 return bool(obj)
             elif isinstance(obj, np.str_):

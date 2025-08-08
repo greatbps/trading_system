@@ -362,42 +362,79 @@ class DatabaseOperations:
             self.logger.error(f"❌ 종목 보고서 생성 실패: {e}")
             return {"error": str(e)}
 
+    def _clean_analysis_data(self, data: Dict) -> Dict:
+        """NaN/Inf 값을 정리하고 JSON 필드를 준비"""
+        import json
+        import math
+        import numpy as np
+        
+        def clean_value(value):
+            """NaN/Inf 값을 None으로 변환"""
+            if value is None:
+                return None
+            elif isinstance(value, (float, np.floating)):
+                if math.isnan(value) or math.isinf(value):
+                    return None
+                return float(value)
+            elif isinstance(value, (int, np.integer)):
+                return int(value)
+            elif isinstance(value, dict):
+                return {k: clean_value(v) for k, v in value.items()}
+            elif isinstance(value, list):
+                return [clean_value(v) for v in value]
+            else:
+                return value
+        
+        # 모든 값 정리
+        cleaned_data = {}
+        for key, value in data.items():
+            if key in ['technical_details', 'sentiment_details', 'supply_demand_details']:
+                # JSON 필드는 딕셔너리를 정리하되, 저장할 때는 그대로 둠 (SQLAlchemy가 처리)
+                cleaned_data[key] = clean_value(value) if value else {}
+            else:
+                cleaned_data[key] = clean_value(value)
+        
+        return cleaned_data
+
     @db_retry(max_retries=3, delay=1.0, fallback_return=None)
     async def save_analysis_result(self, filtered_stock_id: int, stock_id: int, analysis_data: Dict) -> Optional[AnalysisResult]:
         """2차 필터링 분석 결과를 저장합니다."""
         session = None
         try:
+            # NaN/Inf 값 정리
+            cleaned_data = self._clean_analysis_data(analysis_data)
+            
             async with self.db_manager.get_async_session() as session:
                 # final_grade와 risk_level이 Enum 멤버인지 확인하고, 아니면 None으로 설정
-                final_grade_enum = analysis_data.get('final_grade')
+                final_grade_enum = cleaned_data.get('final_grade')
                 if final_grade_enum and not isinstance(final_grade_enum, AnalysisGrade):
                     final_grade_enum = None
 
-                risk_level_enum = analysis_data.get('risk_level')
+                risk_level_enum = cleaned_data.get('risk_level')
                 if risk_level_enum and not isinstance(risk_level_enum, RiskLevel):
                     risk_level_enum = None
 
                 analysis_result = AnalysisResult(
                     filtered_stock_id=filtered_stock_id,
                     stock_id=stock_id,
-                    analysis_datetime=datetime.fromisoformat(analysis_data.get('analysis_time')) if analysis_data.get('analysis_time') else datetime.now(),
-                    strategy=analysis_data.get('strategy'),
-                    total_score=analysis_data.get('total_score'),
+                    analysis_datetime=datetime.fromisoformat(cleaned_data.get('analysis_time')) if cleaned_data.get('analysis_time') else datetime.now(),
+                    strategy=cleaned_data.get('strategy'),
+                    total_score=cleaned_data.get('total_score'),
                     final_grade=final_grade_enum,
                     
                     # 세부 점수 (-50~50 범위로 제한)
-                    news_score=min(50, max(-50, analysis_data.get('sentiment_score', 0))),
-                    technical_score=analysis_data.get('technical_score'),
-                    supply_demand_score=analysis_data.get('supply_demand_score'),
+                    news_score=min(50, max(-50, cleaned_data.get('sentiment_score', 0))) if cleaned_data.get('sentiment_score') is not None else None,
+                    technical_score=cleaned_data.get('technical_score'),
+                    supply_demand_score=cleaned_data.get('supply_demand_score'),
                     
                     # 상세 분석 결과 (JSON)
-                    technical_details=analysis_data.get('technical_details'),
-                    sentiment_details=analysis_data.get('sentiment_details'),
-                    supply_demand_details=analysis_data.get('supply_demand_details'),
+                    technical_details=cleaned_data.get('technical_details'),
+                    sentiment_details=cleaned_data.get('sentiment_details'),
+                    supply_demand_details=cleaned_data.get('supply_demand_details'),
 
                     # 리스크 및 가격 정보
                     risk_level=risk_level_enum,
-                    price_at_analysis=analysis_data.get('price_at_analysis')
+                    price_at_analysis=cleaned_data.get('price_at_analysis')
                 )
                 session.add(analysis_result)
                 await session.commit()

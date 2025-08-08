@@ -33,6 +33,16 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 console = Console()
 
+# Database models import
+try:
+    from database.models import OrderType
+except ImportError:
+    # Fallback enum if models not available
+    from enum import Enum
+    class OrderType(Enum):
+        MARKET = "MARKET"
+        LIMIT = "LIMIT"
+
 def create_logger(name: str = "TradingSystem"):
     """로거 생성"""
     logger = logging.getLogger(name)
@@ -1388,6 +1398,145 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
             )
         
         console.print(table)
+
+    async def execute_auto_buy(self, results: List[Dict], top_n: int = 3, budget_per_stock: int = 1000000) -> Dict[str, Any]:
+        """분석 결과 상위 점수 종목 자동 매수"""
+        try:
+            self.logger.info(f"🚀 자동 매수 시작: 상위 {top_n}개 종목, 종목당 {budget_per_stock:,}원")
+            
+            # 1. 매수 가능 여부 확인
+            if not hasattr(self, 'trading_executor') or not self.trading_executor:
+                self.logger.error("❌ Trading Executor가 초기화되지 않았습니다")
+                return {'success': False, 'reason': 'Trading Executor 없음'}
+            
+            # 2. 상위 점수 종목 선별 (STRONG_BUY, BUY만)
+            buy_candidates = []
+            for result in results[:top_n * 2]:  # 여유분 확보
+                if result.get('recommendation') in ['STRONG_BUY', 'BUY']:
+                    score = result.get('comprehensive_score', 0)
+                    if score >= 70:  # 최소 70점 이상만
+                        buy_candidates.append(result)
+                        if len(buy_candidates) >= top_n:
+                            break
+            
+            if not buy_candidates:
+                self.logger.warning("⚠️ 매수 조건을 만족하는 종목이 없습니다 (70점 이상, BUY 등급)")
+                return {'success': False, 'reason': '매수 조건 불만족'}
+            
+            # 3. 매수 실행 결과
+            execution_results = []
+            total_success = 0
+            total_failed = 0
+            
+            console.print(f"\n[bold green][TARGET] 자동 매수 대상: {len(buy_candidates)}개 종목[/bold green]")
+            
+            for i, stock in enumerate(buy_candidates, 1):
+                symbol = stock.get('symbol')
+                name = stock.get('name', 'N/A')
+                score = stock.get('comprehensive_score', 0)
+                recommendation = stock.get('recommendation', 'N/A')
+                
+                console.print(f"\n[cyan]매수 {i}/{len(buy_candidates)}: {symbol}({name}) - 점수: {score:.1f}, 등급: {recommendation}[/cyan]")
+                
+                # 현재 주가 정보 조회
+                current_stock_data = await self.data_collector.get_stock_info(symbol)
+                if not current_stock_data:
+                    self.logger.warning(f"⚠️ {symbol} 주가 정보 조회 실패")
+                    execution_results.append({
+                        'symbol': symbol, 'name': name, 'status': 'FAILED',
+                        'reason': '주가 정보 조회 실패'
+                    })
+                    total_failed += 1
+                    continue
+                
+                current_price = current_stock_data.current_price
+                quantity = max(1, int(budget_per_stock / current_price))  # 최소 1주
+                expected_amount = quantity * current_price
+                
+                console.print(f"  현재가: {current_price:,}원, 수량: {quantity:,}주, 예상금액: {expected_amount:,}원")
+                
+                # 매수 주문 실행
+                order_result = await self.trading_executor.execute_buy_order(
+                    symbol=symbol,
+                    quantity=quantity,
+                    price=None,  # 시장가 주문
+                    order_type=OrderType.MARKET
+                )
+                
+                if order_result.get('status') == 'SUCCESS':
+                    console.print(f"  [green]✅ 매수 성공[/green]")
+                    total_success += 1
+                    execution_results.append({
+                        'symbol': symbol, 'name': name, 'status': 'SUCCESS',
+                        'quantity': quantity, 'price': current_price,
+                        'amount': expected_amount
+                    })
+                else:
+                    console.print(f"  [red]❌ 매수 실패: {order_result.get('reason', '알 수 없는 오류')}[/red]")
+                    total_failed += 1
+                    execution_results.append({
+                        'symbol': symbol, 'name': name, 'status': 'FAILED',
+                        'reason': order_result.get('reason', '알 수 없는 오류')
+                    })
+                
+                # 주문 간 간격 (초당 주문 제한 준수)
+                await asyncio.sleep(1)
+            
+            # 4. 결과 요약
+            console.print(f"\n[bold][RESULT] 자동 매수 완료[/bold]")
+            console.print(f"성공: {total_success}건, 실패: {total_failed}건")
+            
+            return {
+                'success': True,
+                'total_orders': len(buy_candidates),
+                'successful_orders': total_success,
+                'failed_orders': total_failed,
+                'execution_results': execution_results
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ 자동 매수 실행 실패: {e}")
+            return {'success': False, 'reason': f'실행 오류: {str(e)}'}
+
+    async def run_analysis_and_auto_buy(self, strategy: str = 'momentum', top_n: int = 3, 
+                                       budget_per_stock: int = 1000000) -> Dict[str, Any]:
+        """시장 분석 후 상위 점수 종목 자동 매수"""
+        try:
+            console.print(f"[bold cyan][START] 시장 분석 및 자동 매수 시작[/bold cyan]")
+            console.print(f"전략: {strategy}, 상위 {top_n}개 종목, 종목당 {budget_per_stock:,}원")
+            
+            # 1. 시장 분석 실행
+            analysis_results = await self.run_market_analysis(strategy=strategy)
+            
+            if not analysis_results:
+                console.print("[red]❌ 분석 결과가 없어 매수를 진행할 수 없습니다[/red]")
+                return {'success': False, 'reason': '분석 결과 없음'}
+            
+            # 2. 분석 결과 표시
+            await self._display_analysis_results(analysis_results)
+            
+            # 3. 매수 확인
+            if not self.trading_enabled:
+                console.print("[yellow]⚠️ 매매 모드가 비활성화되어 있습니다. 시뮬레이션으로 진행합니다.[/yellow]")
+            
+            user_confirm = Prompt.ask(
+                f"\n상위 {top_n}개 종목을 자동 매수하시겠습니까?", 
+                choices=["y", "n"], 
+                default="n"
+            )
+            
+            if user_confirm.lower() != 'y':
+                console.print("[yellow][CANCEL] 자동 매수를 취소했습니다[/yellow]")
+                return {'success': False, 'reason': '사용자 취소'}
+            
+            # 4. 자동 매수 실행
+            buy_result = await self.execute_auto_buy(analysis_results, top_n, budget_per_stock)
+            
+            return buy_result
+            
+        except Exception as e:
+            self.logger.error(f"❌ 분석 및 자동 매수 실패: {e}")
+            return {'success': False, 'reason': f'실행 오류: {str(e)}'}
 
     async def _display_result_summary(self, results: List[AnalysisResult]):
         """분석 결과 요약 통계"""
