@@ -405,6 +405,34 @@ class DatabaseOperations:
             cleaned_data = self._clean_analysis_data(analysis_data)
             
             async with self.db_manager.get_async_session() as session:
+                # filtered_stock_id 실제 존재 여부 확인
+                validated_filtered_stock_id = None
+                if filtered_stock_id and filtered_stock_id > 0:
+                    try:
+                        result = await session.execute(
+                            select(FilteredStock).filter_by(id=filtered_stock_id)
+                        )
+                        if result.scalar_one_or_none():
+                            validated_filtered_stock_id = filtered_stock_id
+                        else:
+                            self.logger.warning(f"⚠️ FilteredStock ID {filtered_stock_id} 존재하지 않음 - NULL 처리")
+                    except Exception:
+                        pass  # 오류 시 None으로 처리
+                
+                # stock_id 실제 존재 여부 확인  
+                validated_stock_id = None
+                if stock_id and stock_id > 0:
+                    try:
+                        result = await session.execute(
+                            select(Stock).filter_by(id=stock_id)
+                        )
+                        if result.scalar_one_or_none():
+                            validated_stock_id = stock_id
+                        else:
+                            self.logger.warning(f"⚠️ Stock ID {stock_id} 존재하지 않음 - NULL 처리")
+                    except Exception:
+                        pass  # 오류 시 None으로 처리
+                
                 # final_grade와 risk_level이 Enum 멤버인지 확인하고, 아니면 None으로 설정
                 final_grade_enum = cleaned_data.get('final_grade')
                 if final_grade_enum and not isinstance(final_grade_enum, AnalysisGrade):
@@ -415,8 +443,8 @@ class DatabaseOperations:
                     risk_level_enum = None
 
                 analysis_result = AnalysisResult(
-                    filtered_stock_id=filtered_stock_id,
-                    stock_id=stock_id,
+                    filtered_stock_id=validated_filtered_stock_id,
+                    stock_id=validated_stock_id,
                     analysis_datetime=datetime.fromisoformat(cleaned_data.get('analysis_time')) if cleaned_data.get('analysis_time') else datetime.now(),
                     strategy=cleaned_data.get('strategy'),
                     total_score=cleaned_data.get('total_score'),

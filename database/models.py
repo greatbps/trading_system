@@ -332,8 +332,8 @@ class AnalysisResult(BaseModel):
     __tablename__ = 'analysis_results'
     
     filtered_stock_id = Column(Integer, ForeignKey('filtered_stocks.id', ondelete='CASCADE'), 
-                              unique=True, nullable=False, index=True, comment="1:1 관계")
-    stock_id = Column(Integer, ForeignKey('stocks.id'), nullable=False, index=True)
+                              unique=True, nullable=True, index=True, comment="1:1 관계")
+    stock_id = Column(Integer, ForeignKey('stocks.id'), nullable=True, index=True)
     
     # 분석 기본 정보
     analysis_datetime = Column(DateTime, nullable=False, default=func.now(), index=True, comment="분석 실행 시간")
@@ -392,8 +392,8 @@ class AnalysisResult(BaseModel):
     __table_args__ = (
         CheckConstraint('total_score >= 0 AND total_score <= 100', name='check_total_score_range'),
         CheckConstraint('news_score >= -50 AND news_score <= 50', name='check_news_score_range'),
-        CheckConstraint('technical_score >= 0 AND technical_score <= 50', name='check_technical_score_range'),
-        CheckConstraint('supply_demand_score >= 0 AND supply_demand_score <= 50', name='check_supply_demand_score_range'),
+        CheckConstraint('technical_score >= 0 AND technical_score <= 100', name='check_technical_score_range'),
+        CheckConstraint('supply_demand_score >= 0 AND supply_demand_score <= 100', name='check_supply_demand_score_range'),
         CheckConstraint('rsi_14 IS NULL OR (rsi_14 >= 0 AND rsi_14 <= 100)', name='check_rsi_range'),
         Index('idx_analysis_filtered_stock_id', 'filtered_stock_id'),
         Index('idx_analysis_datetime', 'analysis_datetime'),

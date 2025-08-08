@@ -3211,3 +3211,132 @@
 22:21:41 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
 22:21:41 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
 22:21:41 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패
+22:26:05 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:26:06 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:26:08 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:26:10 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:26:11 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:26:11 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:26:11 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:26:11 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:26:11 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:26:11 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:26:11 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:26:11 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:26:20 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:26:20 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:26:20 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:26:22 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:26:23 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:26:36 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+22:26:37 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+22:26:37 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:26:37 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+22:26:37 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+22:26:37 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+22:26:37 | TradingSystem | INFO | 기본 종목 40개로 대체
+22:26:37 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:26:37 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+22:26:37 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+22:26:37 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+22:26:38 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+22:27:08 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
+22:27:08 | TradingSystem | ERROR | ❌ 005930 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 000660 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 035420 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 005380 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 051910 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 028260 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 006400 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 000270 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 068270 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 105560 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 055550 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 035720 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 207940 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 066570 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 323410 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 000810 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 017670 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
+22:27:08 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패
+22:33:31 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:33:32 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:33:34 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:33:36 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:33:36 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:33:36 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:33:36 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:33:36 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:33:36 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:33:36 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:33:36 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:33:37 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:33:46 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:33:46 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:33:46 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:33:48 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:33:49 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:34:04 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+22:34:04 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+22:34:04 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:34:04 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+22:34:05 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+22:34:05 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+22:34:05 | TradingSystem | INFO | 기본 종목 40개로 대체
+22:34:05 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:34:05 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+22:34:05 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+22:34:05 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+22:34:06 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+22:34:36 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
+22:34:36 | TradingSystem | ERROR | ❌ 000660 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 035420 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 005380 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 051910 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 028260 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 006400 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 000270 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 068270 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 105560 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 055550 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 035720 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 207940 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 066570 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 323410 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 000810 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 017670 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 034730 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 259960 분석 결과 DB 저장 실패
+22:34:36 | TradingSystem | ERROR | ❌ 003550 분석 결과 DB 저장 실패
+22:36:33 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:36:36 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:36:38 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:36:41 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:36:41 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:36:41 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:36:41 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:36:41 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:36:41 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:36:41 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:36:41 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:36:41 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+22:36:50 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+22:36:50 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+22:36:50 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+22:36:52 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+22:36:53 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+22:37:04 | TradingSystem | INFO | 📊 시장 분석 시작 (전략: momentum, 모든 종목)
+22:37:04 | TradingSystem | INFO | ✅ 오늘 이미 1차 필터링을 수행했습니다. DB 데이터를 사용합니다.
+22:37:04 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:37:04 | TradingSystem | INFO | 🔄 기본 종목으로 대체합니다.
+22:37:04 | TradingSystem | INFO | 📡 HTS 조건검색 실행: 전략=momentum, 조건ID=001
+22:37:04 | TradingSystem | WARNING | HTS 조건검색 실패 - 기본 종목으로 대체
+22:37:04 | TradingSystem | INFO | 기본 종목 40개로 대체
+22:37:04 | TradingSystem | WARNING | ⚠️ DB에서 필터링된 종목 조회 실패: 'DatabaseOperations' object has no attribute 'get_filtered_stocks_for_history'
+22:37:04 | TradingSystem | INFO | 🔄 DB 실패로 메모리에서 임시 객체 생성
+22:37:04 | TradingSystem | INFO | ✅ 1차 필터링 완료: 40개 종목 선정
+22:37:04 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
+22:37:04 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
+22:37:34 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
