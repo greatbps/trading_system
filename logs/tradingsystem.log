@@ -3340,3 +3340,15 @@
 22:37:04 | TradingSystem | INFO | 🔍 종합 분석 대상: 20개 종목
 22:37:04 | TradingSystem | INFO | 🔄 20개 종목 병렬 분석 시작...
 22:37:34 | TradingSystem | INFO | ✅ 병렬 분석 완료: 20개 결과
+22:44:18 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+22:44:20 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+22:44:23 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+22:44:26 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+22:44:26 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+22:44:26 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+22:44:26 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+22:44:26 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+22:44:26 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+22:44:26 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+22:44:26 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+22:44:26 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료

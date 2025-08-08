@@ -2433,3 +2433,16 @@ DETAIL:  (filtered_stock_id)=(19) 키가 "filtered_stocks" 테이블에 없습�
 2025-08-08 22:44:26 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
 2025-08-08 22:44:26 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
 2025-08-08 22:44:26 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-08 22:44:29 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-08 22:44:29 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-08 22:44:31 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-08 22:44:31 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-08 22:44:33 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-08 22:44:33 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-08 22:44:36 | GeminiAnalyzer | INFO     | __init__        | ✅ Gemini CLI 초기화 완료
+2025-08-08 22:44:36 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-08 22:44:36 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-08 22:44:36 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-08 22:44:36 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-08 22:44:36 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-08 22:44:36 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
