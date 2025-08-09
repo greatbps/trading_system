@@ -22,7 +22,8 @@
       "Bash(rm:*)",
       "Bash(D:/trading_system/trading_env_64/Scripts/alembic.exe revision --autogenerate -m \"Update score constraints to 0-100 range\")",
       "WebFetch(domain:apiportal.koreainvestment.com)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

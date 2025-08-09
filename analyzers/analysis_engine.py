@@ -79,25 +79,31 @@ class AnalysisEngine:
                         ]
                         self.logger.info(f"📊 {symbol} 가격 데이터 수집: {len(price_data)}개")
                     else:
-                        self.logger.warning(f"⚠️ {symbol} 가격 데이터 없음 - 기본 분석 사용")
-                        price_data = self._generate_mock_price_data(symbol)
+                        self.logger.warning(f"⚠️ {symbol} 가격 데이터 없음 - 기술적 분석 스킵")
+                        price_data = None
                 else:
-                    self.logger.warning(f"⚠️ 데이터 수집기 없음 - {symbol} 기본 분석 사용")
-                    price_data = self._generate_mock_price_data(symbol)
+                    self.logger.warning(f"⚠️ 데이터 수집기 없음 - {symbol} 기술적 분석 스킵")
+                    price_data = None
             except asyncio.TimeoutError:
-                self.logger.warning(f"⚠️ {symbol} 가격 데이터 수집 타임아웃 - 기본 분석 사용")
-                price_data = self._generate_mock_price_data(symbol)
+                self.logger.warning(f"⚠️ {symbol} 가격 데이터 수집 타임아웃 - 기술적 분석 스킵")
+                price_data = None
             except Exception as e:
-                self.logger.warning(f"⚠️ {symbol} 가격 데이터 수집 실패: {e} - 기본 분석 사용")
-                price_data = self._generate_mock_price_data(symbol)
+                self.logger.warning(f"⚠️ {symbol} 가격 데이터 수집 실패: {e} - 기술적 분석 스킵")
+                price_data = None
             
             # 각 분석기에 타임아웃을 적용한 태스크 생성
             tasks = []
             
-            # 기술적 분석 (15초 타임아웃)
-            tasks.append(('technical', asyncio.wait_for(
-                self.technical_analyzer.analyze_stock(symbol, price_data), timeout=15.0
-            )))
+            # 기술적 분석 (15초 타임아웃) - price_data가 있을 때만
+            if price_data:
+                try:
+                    tasks.append(('technical', asyncio.wait_for(
+                        self.technical_analyzer.analyze_stock(symbol, price_data), timeout=15.0
+                    )))
+                except Exception as e:
+                    self.logger.error(f"Failed to create technical analysis task: {e}")
+            else:
+                self.logger.warning(f"⚠️ {symbol} 가격 데이터 없음 - 기술적 분석 건너뜀")
             
             # 뉴스 데이터 수집 (감성 분석용)
             news_data = None
@@ -121,19 +127,31 @@ class AnalysisEngine:
                 news_data = None
             
             # 감성 분석 (20초 타임아웃) - news_data 파라미터 추가
-            tasks.append(('sentiment', asyncio.wait_for(
-                self.sentiment_analyzer.analyze(symbol, name, news_data), timeout=20.0
-            )))
+            try:
+                tasks.append(('sentiment', asyncio.wait_for(
+                    self.sentiment_analyzer.analyze(symbol, name, news_data), timeout=20.0
+                )))
+            except Exception as e:
+                self.logger.error(f"Failed to create sentiment analysis task: {e}")
             
             # 수급 분석 (10초 타임아웃)
-            tasks.append(('supply_demand', asyncio.wait_for(
-                self._async_wrapper(self.supply_demand_analyzer.analyze, stock_data), timeout=10.0
-            )))
+            try:
+                tasks.append(('supply_demand', asyncio.wait_for(
+                    self.supply_demand_analyzer.analyze(stock_data), timeout=10.0
+                )))
+            except Exception as e:
+                self.logger.error(f"Failed to create supply demand analysis task: {e}")
             
-            # 차트 패턴 분석 (10초 타임아웃) - OHLCV 데이터 포함
-            tasks.append(('chart_pattern', asyncio.wait_for(
-                self.chart_pattern_analyzer.analyze_with_ohlcv(stock_data, price_data), timeout=10.0
-            )))
+            # 차트 패턴 분석 (10초 타임아웃) - OHLCV 데이터가 있을 때만
+            if price_data:
+                try:
+                    tasks.append(('chart_pattern', asyncio.wait_for(
+                        self.chart_pattern_analyzer.analyze_with_ohlcv(stock_data, price_data), timeout=10.0
+                    )))
+                except Exception as e:
+                    self.logger.error(f"Failed to create chart pattern analysis task: {e}")
+            else:
+                self.logger.warning(f"⚠️ {symbol} 가격 데이터 없음 - 차트 패턴 분석 건너뜀")
 
             # 2. 병렬 실행 (전체 60초 타임아웃)
             self.logger.debug(f"🔄 {symbol} 4개 분석기 병렬 실행 시작...")
@@ -147,12 +165,19 @@ class AnalysisEngine:
             for i, (task_name, _) in enumerate(tasks):
                 if isinstance(results[i], Exception):
                     if isinstance(results[i], asyncio.TimeoutError):
-                        self.logger.warning(f"⏰ {symbol} {task_name} 분석 타임아웃 - 기본값 사용")
+                        self.logger.warning(f"⏰ {symbol} {task_name} 분석 타임아웃 - 해당 분석 제외")
                     else:
-                        self.logger.warning(f"⚠️ {symbol} {task_name} 분석 실패: {results[i]} - 기본값 사용")
-                    analysis_results[task_name] = self._get_fallback_analysis(task_name)
+                        self.logger.warning(f"⚠️ {symbol} {task_name} 분석 실패: {results[i]} - 해당 분석 제외")
+                    # fallback 대신 0점 처리
+                    analysis_results[task_name] = self._get_empty_analysis(task_name)
                 else:
                     analysis_results[task_name] = results[i]
+            
+            # 누락된 분석기에 대한 기본값 설정
+            required_analyses = ['technical', 'sentiment', 'supply_demand', 'chart_pattern']
+            for analysis_type in required_analyses:
+                if analysis_type not in analysis_results:
+                    analysis_results[analysis_type] = self._get_empty_analysis(analysis_type)
             
             self.logger.debug(f"✅ {symbol} 분석 완료 - 결과: {list(analysis_results.keys())}")
 
@@ -188,11 +213,11 @@ class AnalysisEngine:
             }
 
         except asyncio.TimeoutError:
-            self.logger.error(f"⏰ {symbol} 종합 분석 전체 타임아웃 - 기본값 반환")
-            return self._get_fallback_analysis('comprehensive', symbol=symbol, name=name)
+            self.logger.error(f"⏰ {symbol} 종합 분석 전체 타임아웃 - 분석 불가")
+            raise Exception(f"{symbol} 종합 분석 타임아웃")
         except Exception as e:
             self.logger.error(f"❌ {symbol} 종합 분석 중 치명적 오류: {e}")
-            return self._get_fallback_analysis('comprehensive', symbol=symbol, name=name)
+            raise Exception(f"{symbol} 종합 분석 실패: {e}")
 
     def _determine_recommendation(self, score: float, results: Dict, score_details: Dict = None) -> str:
         """종합 점수와 세부 분석 결과를 바탕으로 최종 추천 등급을 결정합니다."""
@@ -231,26 +256,16 @@ class AnalysisEngine:
         else:
             return "STRONG_SELL"
 
-    def _get_fallback_analysis(self, analyzer_name: str, symbol: str = "N/A", name: str = "N/A") -> Dict[str, Any]:
-        """분석 실패 시 반환할 기본 결과 객체"""
-        self.logger.warning(f"⚠️ {analyzer_name} 분석 실패. Fallback 데이터를 사용합니다.")
+    def _get_empty_analysis(self, analyzer_name: str) -> Dict[str, Any]:
+        """분석 실패 시 반환할 빈 결과 객체 (점수 0)"""
         if analyzer_name == 'technical':
-            return {'technical_score': 50.0, 'signals': {'overall_signal': 'HOLD'}, 'confidence': 50.0}
+            return {'technical_score': 0.0, 'signals': {}, 'confidence': 0.0}
         if analyzer_name == 'sentiment':
-            return {'overall_score': 50.0, 'news_sentiment': 'neutral'}
+            return {'overall_score': 0.0, 'news_sentiment': 'none'}
         if analyzer_name == 'supply_demand':
-            return {'overall_score': 50.0, 'supply_demand_balance': {'smart_money_dominance': False}}
+            return {'overall_score': 0.0, 'supply_demand_balance': {}}
         if analyzer_name == 'chart_pattern':
-            return {'overall_score': 50.0, 'detected_patterns': []}
-        if analyzer_name == 'comprehensive':
-            return {
-                'symbol': symbol, 'name': name, 'comprehensive_score': 50.0, 'recommendation': 'HOLD',
-                'technical_details': self._get_fallback_analysis('technical'),
-                'sentiment_details': self._get_fallback_analysis('sentiment'),
-                'supply_demand_details': self._get_fallback_analysis('supply_demand'),
-                'chart_pattern_details': self._get_fallback_analysis('chart_pattern'),
-                'error': 'Comprehensive analysis failed'
-            }
+            return {'overall_score': 0.0, 'detected_patterns': []}
         return {}
     
     async def _async_wrapper(self, sync_func, *args, **kwargs):
@@ -480,46 +495,3 @@ class AnalysisEngine:
             self.logger.debug(f"⚠️ 리스크 평가 실패: {e}")
             return "MEDIUM"
     
-    def _generate_mock_price_data(self, symbol: str) -> List[Dict]:
-        """API 실패 시 사용할 기본 가격 데이터 생성"""
-        try:
-            import random
-            from datetime import datetime, timedelta
-            
-            # 30일 기본 데이터 생성
-            mock_data = []
-            base_price = random.randint(10000, 50000)  # 기본 가격
-            
-            for i in range(30):
-                date = datetime.now() - timedelta(days=29-i)
-                # 간단한 랜덤 워크
-                price_change = random.uniform(-0.05, 0.05)  # ±5% 변동
-                base_price = max(1000, int(base_price * (1 + price_change)))
-                
-                # 일봉 데이터 생성
-                daily_volatility = random.uniform(0.01, 0.03)  # 1-3% 일일 변동성
-                open_price = int(base_price * (1 + random.uniform(-daily_volatility, daily_volatility)))
-                high_price = max(open_price, int(base_price * (1 + random.uniform(0, daily_volatility*2))))
-                low_price = min(open_price, int(base_price * (1 - random.uniform(0, daily_volatility*2))))
-                close_price = base_price
-                volume = random.randint(100000, 1000000)
-                
-                mock_data.append({
-                    'date': date.strftime('%Y-%m-%d'),
-                    'open': open_price,
-                    'high': high_price,
-                    'low': low_price,
-                    'close': close_price,
-                    'volume': volume
-                })
-            
-            self.logger.debug(f"📊 {symbol} 기본 가격 데이터 생성: {len(mock_data)}개")
-            return mock_data
-            
-        except Exception as e:
-            self.logger.error(f"❌ 기본 가격 데이터 생성 실패: {e}")
-            # 최소한의 데이터라도 반환
-            return [{
-                'date': datetime.now().strftime('%Y-%m-%d'),
-                'open': 20000, 'high': 21000, 'low': 19000, 'close': 20000, 'volume': 500000
-            }]

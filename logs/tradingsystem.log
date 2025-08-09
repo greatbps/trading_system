@@ -4100,3 +4100,260 @@
 10:29:59 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
 10:29:59 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
 10:30:03 | TradingSystem | ERROR | ❌ HTS 조건검색 실패 또는 결과 없음.
+10:53:37 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:53:37 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:53:39 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:53:39 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:53:41 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:53:41 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:53:52 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:53:52 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:53:54 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:53:54 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:53:56 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:53:56 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:54:06 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:54:06 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:54:08 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:54:08 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:54:10 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:54:10 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:07 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:07 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:09 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:09 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:11 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:11 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:28 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:28 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:30 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:30 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:32 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:32 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:51 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:51 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:53 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:53 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:56:55 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:56:55 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:57:10 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:57:10 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:57:12 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:57:12 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:57:14 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:57:14 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:58:09 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:58:09 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:58:11 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:58:11 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:58:13 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:58:13 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:59:10 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:59:10 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:59:12 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:59:12 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+10:59:14 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:59:14 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:00:12 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:00:12 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:00:14 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:00:14 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:00:16 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:00:16 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:00:36 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:00:36 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:00:38 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:00:38 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:00:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:00:40 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:21 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:21 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:23 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:23 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:25 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:25 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:37 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:37 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:39 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:39 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:41 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:41 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:54 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:54 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:56 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:56 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:01:58 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:01:58 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:02:13 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:02:13 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:02:15 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:02:15 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:02:17 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:02:17 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 855) (kis_collector.py, line 855)
+11:02:48 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:02:48 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:02:50 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:02:50 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:02:52 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:02:52 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:06 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:06 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:08 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:08 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:10 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:10 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:26 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:26 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:28 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:28 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:30 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:30 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:44 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:44 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:46 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:46 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:03:48 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:03:48 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated f-string literal (detected at line 889) (kis_collector.py, line 889)
+11:08:14 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:08:14 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 889) (kis_collector.py, line 889)
+11:08:16 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:08:16 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 889) (kis_collector.py, line 889)
+11:08:18 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:08:18 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 889) (kis_collector.py, line 889)
+11:21:10 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:21:11 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:21:11 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'ChartPatternAnalyzer' is not defined
+11:21:11 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'ChartPatternAnalyzer' is not defined
+11:21:13 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:21:13 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:21:13 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'ChartPatternAnalyzer' is not defined
+11:21:13 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'ChartPatternAnalyzer' is not defined
+11:21:15 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:21:15 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:21:15 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: name 'ChartPatternAnalyzer' is not defined
+11:21:15 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: name 'ChartPatternAnalyzer' is not defined
+11:33:50 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:33:52 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:33:57 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:33:57 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:33:58 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+11:33:58 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+11:33:58 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+11:33:58 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:33:58 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+11:33:58 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+11:33:58 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+11:33:58 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+11:33:58 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+11:33:59 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+11:33:59 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+11:33:59 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+11:33:59 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+11:34:07 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+11:34:07 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:34:34 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:34:34 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:34:34 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:34:34 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:34:34 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+11:34:34 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+11:34:34 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+11:34:34 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:34:34 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+11:34:34 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+11:34:34 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+11:34:34 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+11:34:34 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+11:34:35 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+11:34:35 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+11:34:35 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+11:34:35 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+11:34:36 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+11:34:36 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:56:39 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:56:40 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:56:40 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:56:40 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:56:40 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+11:56:40 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+11:56:40 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+11:56:40 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:56:40 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+11:56:40 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+11:56:40 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+11:56:41 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+11:56:41 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+11:56:41 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+11:56:41 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+11:56:41 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+11:56:41 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+11:56:45 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+11:56:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:56:57 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:56:57 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+11:56:57 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+11:56:57 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+11:56:57 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:56:57 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+11:56:57 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+11:56:57 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+11:56:57 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+11:56:57 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:56:59 | TradingSystem | ERROR | ❌ HTS 조건검색 실패 또는 결과 없음.
+11:59:01 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:59:01 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+11:59:02 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+11:59:02 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+11:59:02 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:59:02 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+11:59:02 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+11:59:02 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+11:59:02 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+11:59:02 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+11:59:03 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+11:59:03 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:59:06 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+11:59:06 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+11:59:06 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+11:59:06 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+11:59:06 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+11:59:06 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+11:59:06 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+11:59:06 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+11:59:06 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+11:59:06 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+11:59:09 | TradingSystem | ERROR | ❌ 009620 단일 분석 실패: 009620 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:10 | TradingSystem | ERROR | ❌ 014940 단일 분석 실패: 014940 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:10 | TradingSystem | ERROR | ❌ 017510 단일 분석 실패: 017510 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:10 | TradingSystem | ERROR | ❌ 023790 단일 분석 실패: 023790 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:10 | TradingSystem | ERROR | ❌ 033340 단일 분석 실패: 033340 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:11 | TradingSystem | ERROR | ❌ 033790 단일 분석 실패: 033790 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:11 | TradingSystem | ERROR | ❌ 034230 단일 분석 실패: 034230 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:11 | TradingSystem | ERROR | ❌ 037270 단일 분석 실패: 037270 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:11 | TradingSystem | ERROR | ❌ 041830 단일 분석 실패: 041830 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+11:59:12 | TradingSystem | ERROR | ❌ 044480 단일 분석 실패: 044480 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment

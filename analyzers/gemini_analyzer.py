@@ -26,38 +26,40 @@ class GeminiAnalyzer:
         self.config = config
         self.logger = get_logger("GeminiAnalyzer")
         self.cli_command = None
-        
-        # Gemini CLI 사용 가능 여부 확인
-        self.cli_available = self._check_gemini_cli()
-        
-        if self.cli_available:
-            self.logger.info("✅ Gemini CLI 초기화 완료")
-        else:
-            self.logger.warning("⚠️ Gemini CLI를 사용할 수 없습니다. 기본 분석을 사용합니다.")
-    
-    def _check_gemini_cli(self) -> bool:
-        """Gemini CLI 사용 가능 여부 확인"""
-        # Node.js로 직접 실행하는 방식 포함
+        self.cli_available = False  # Initially False
+        self.cli_checked = False    # Flag to check if CLI has been checked
+
+    async def _check_gemini_cli_async(self) -> bool:
+        """Asynchronously check for Gemini CLI availability."""
+        if self.cli_checked:
+            return self.cli_available
+
         node_script_path = 'C:\\Users\\great\\AppData\\Roaming\\npm\\node_modules\\@google\\gemini-cli\\dist\\index.js'
         possible_commands = [
             ['gemini', '--version'],
             ['node', node_script_path, '--version'],
             ['/c/Users/great/AppData/Roaming/npm/gemini.cmd', '--version'],
         ]
-        
+
         for cmd in possible_commands:
             try:
-                result = subprocess.run(cmd, 
-                                      capture_output=True, 
-                                      text=True, 
-                                      timeout=10)
-                if result.returncode == 0:
-                    self.cli_command = cmd[:-1]  # --version 제거
-                    return True
-            except (subprocess.SubprocessError, FileNotFoundError, subprocess.TimeoutExpired):
+                process = await asyncio.create_subprocess_exec(
+                    *cmd,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE
+                )
+                stdout, stderr = await asyncio.wait_for(process.communicate(), timeout=10)
+                if process.returncode == 0:
+                    self.cli_command = cmd[:-1]
+                    self.cli_available = True
+                    self.logger.info(f"Found Gemini CLI at: {self.cli_command}")
+                    break  # Exit loop once a valid command is found
+            except (FileNotFoundError, asyncio.TimeoutError, OSError) as e:
+                self.logger.debug(f"Command {cmd} failed: {e}")
                 continue
         
-        return False
+        self.cli_checked = True
+        return self.cli_available
     
     async def _call_gemini_cli(self, prompt: str, max_retries: int = 3) -> str:
         """Gemini CLI를 통한 비동기 API 호출"""
@@ -112,6 +114,7 @@ class GeminiAnalyzer:
     
     async def analyze_news_sentiment(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:
         """뉴스 데이터를 바탕으로 감성 분석 수행 - CLI 기반"""
+        await self._check_gemini_cli_async()
         if not self.cli_available or not news_data:
             return self._get_default_sentiment()
         
@@ -143,6 +146,7 @@ class GeminiAnalyzer:
     
     async def analyze_market_impact(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:
         """시장 영향도 분석 수행 - CLI 기반"""
+        await self._check_gemini_cli_async()
         if not self.cli_available or not news_data:
             return self._get_default_market_impact()
         

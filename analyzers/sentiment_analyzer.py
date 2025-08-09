@@ -17,10 +17,16 @@ class SentimentAnalyzer:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("SentimentAnalyzer")
-        self.gemini_analyzer = GeminiAnalyzer(config)
-    
+        self.gemini_analyzer = None  # Initially None
+
+    async def _ensure_gemini_analyzer(self):
+        if self.gemini_analyzer is None:
+            from analyzers.gemini_analyzer import GeminiAnalyzer
+            self.gemini_analyzer = GeminiAnalyzer(self.config)
+
     async def analyze(self, symbol: str, name: str, news_data: Optional[List[Dict]] = None) -> Dict[str, Any]:
         """감정 분석 실행"""
+        await self._ensure_gemini_analyzer()
         try:
             if news_data and len(news_data) > 0:
                 # Gemini AI를 사용한 실제 뉴스 분석

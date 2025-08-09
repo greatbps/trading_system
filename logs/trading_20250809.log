@@ -1406,3 +1406,731 @@
 2025-08-09 10:39:31 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
 2025-08-09 10:39:31 | KISCollector | INFO     | close           | KIS API collector 종료 중...
 2025-08-09 10:39:31 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 10:53:36 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:53:37 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:53:37 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:53:37 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:53:39 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:53:41 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:53:51 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:53:52 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:53:52 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:53:52 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:53:54 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:53:56 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:54:06 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:54:06 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:54:06 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:54:06 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:54:08 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:54:10 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:56:07 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:56:07 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:56:07 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:56:07 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:56:09 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:56:11 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:56:28 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:56:28 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:56:28 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:56:28 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:56:30 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:56:32 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:56:51 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:56:51 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:56:51 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:56:51 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:56:53 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:56:55 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:57:10 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:57:10 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:57:10 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:57:10 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:57:12 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:57:14 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:58:09 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:58:09 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:58:09 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:58:09 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:58:11 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:58:13 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 10:59:10 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 10:59:10 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 10:59:10 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 10:59:10 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 10:59:12 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 10:59:14 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:00:11 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:00:12 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:00:12 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:00:12 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:00:14 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:00:16 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:00:36 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:00:36 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:00:36 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:00:36 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:00:38 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:00:40 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:01:21 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:01:21 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:01:21 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:01:21 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:01:23 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:01:25 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:01:37 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:01:37 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:01:37 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:01:37 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:01:39 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:01:41 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:01:54 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:01:54 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:01:54 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:01:54 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:01:56 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:01:58 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:02:12 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:02:13 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:02:13 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:02:13 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:02:15 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:02:17 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:02:48 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:02:48 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:02:48 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:02:48 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:02:50 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:02:52 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:03:06 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:03:06 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:03:06 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:03:06 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:03:08 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:03:10 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:03:26 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:03:26 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:03:26 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:03:26 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:03:28 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:03:30 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:03:44 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:03:44 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:03:44 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:03:44 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:03:46 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:03:48 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:08:08 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:08:08 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:08:08 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:08:08 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:08:08 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:08:08 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:08:08 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:08:08 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:08:08 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:08:08 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:08:08 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:08:08 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:08:08 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:08:08 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:08:08 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:08:08 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:08:08 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:08:08 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:08:14 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:08:14 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:08:14 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:08:14 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:08:16 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:08:18 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:21:09 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:21:10 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:21:10 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:21:11 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:21:11 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:21:11 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:21:11 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:21:11 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:21:11 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (1/3), 재시도 중...
+2025-08-09 11:21:13 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:21:13 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:21:13 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:21:13 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:21:13 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:21:13 | Main         | WARNING  | main            | [WARN] 컴포넌트 초기화 실패 (2/3), 재시도 중...
+2025-08-09 11:21:15 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:21:15 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:21:15 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:21:15 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:21:15 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:21:15 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 11:21:15 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 11:21:15 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 11:25:38 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:33:47 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:33:50 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:33:50 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:33:52 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:33:52 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:33:52 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:33:52 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:33:57 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:33:57 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:33:57 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 11:33:58 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:33:58 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:33:58 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:33:58 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:33:58 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:33:58 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 11:33:58 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:33:58 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:33:58 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:33:58 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:33:58 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:33:59 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 11:33:59 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 11:33:59 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 11:33:59 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 11:33:59 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 11:33:59 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 11:33:59 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 11:34:07 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 11:34:34 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:34:34 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:34:34 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:34:34 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:34:34 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:34:34 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:34:34 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 11:34:34 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:34:34 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:34:34 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:34:34 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:34:34 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:34:34 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 11:34:34 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:34:34 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:34:34 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:34:34 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:34:34 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:34:35 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 11:34:35 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 11:34:35 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 11:34:35 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 11:34:35 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 11:34:35 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 11:34:35 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 11:52:12 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:52:12 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:52:12 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 11:56:39 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:56:39 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:56:39 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:56:40 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:56:40 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:56:40 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:56:40 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:56:40 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:56:40 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:56:40 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 11:56:40 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:56:40 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:56:40 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:56:40 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:56:40 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:56:41 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 11:56:41 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:56:41 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:56:41 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:56:41 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:56:41 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:56:41 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 11:56:41 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 11:56:41 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 11:56:41 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 11:56:41 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 11:56:41 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 11:56:41 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 11:56:45 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 11:56:57 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:56:57 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:56:57 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:56:57 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:56:57 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:56:57 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:56:57 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 11:56:57 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:56:57 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:56:57 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:56:57 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:56:57 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:56:57 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 11:56:57 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:56:57 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:56:57 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:56:57 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:56:57 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:56:57 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 11:56:57 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 11:56:57 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 11:56:57 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 11:56:57 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 11:56:57 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 11:56:57 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 11:56:59 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 11:56:59 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 11:56:59 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 11:56:59 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 11:56:59 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 11:56:59 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 11:56:59 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 11:56:59 | KISCollector | WARNING  | get_filtered_stocks | ⚠️ HTS 조건검색 실패: Invalid symbol format: {'code': '009620', 'name': '삼보산업', 'price': 1927.0, 'change': 444.0, 'chgrate': 29.9393, 'volume': 13295723, 'market_cap': 315.76}
+2025-08-09 11:56:59 | KISCollector | INFO     | get_filtered_stocks | 2️⃣ KIS API 시가총액 상위 종목 조회 시도...
+2025-08-09 11:56:59 | KISCollector | INFO     | _get_top_stocks_from_kis_api | 📊 KIS API로 KOSPI 200 구성 종목 20개 조회 중...
+2025-08-09 11:56:59 | KISCollector | WARNING  | _get_top_stocks_from_kis_api | ⚠️ KIS API KOSPI 200 직접 호출 실패: API request failed with status 404: 
+2025-08-09 11:56:59 | KISCollector | INFO     | get_filtered_stocks | ✅ KIS API 시총 상위 종목 추가 후 총 0개 종목 확보
+2025-08-09 11:56:59 | KISCollector | WARNING  | get_filtered_stocks | ⚠️ 모든 종목 소스에서 종목을 가져오지 못했습니다. DB 캐시를 확인해야 할 수 있습니다.
+2025-08-09 11:58:20 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 11:58:20 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 11:58:20 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 11:58:20 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 11:58:20 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 11:58:20 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 11:58:20 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 11:58:20 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 11:58:20 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 11:58:20 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 11:58:43 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:59:01 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 11:59:01 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 11:59:01 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 11:59:01 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:59:01 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:59:01 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:59:01 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:59:02 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:59:02 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:59:02 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 11:59:02 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:59:02 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:59:02 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:59:02 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:59:02 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:59:02 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 11:59:02 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:59:02 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:59:02 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:59:02 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:59:02 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:59:02 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 11:59:02 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 11:59:02 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 11:59:02 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 11:59:02 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 11:59:02 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 11:59:02 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 11:59:03 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 11:59:06 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 11:59:06 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 11:59:06 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 11:59:06 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 11:59:06 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 11:59:06 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 11:59:06 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 11:59:06 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 11:59:06 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 11:59:06 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 11:59:06 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 11:59:06 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 11:59:06 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 11:59:06 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 11:59:06 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 11:59:06 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 11:59:06 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 11:59:06 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 11:59:06 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 11:59:06 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 11:59:06 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 11:59:06 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 11:59:06 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 11:59:06 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 11:59:06 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 11:59:07 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 11:59:07 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 11:59:07 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 11:59:09 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 11:59:09 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 11:59:09 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 11:59:09 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 11:59:09 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 11:59:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 11:59:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 11:59:09 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:09 | KISCollector | WARNING  | get_news_data   | ⚠️ 009620 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 11:59:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 11:59:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 11:59:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 11:59:09 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:09 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 11:59:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 11:59:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 11:59:09 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:09 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009620 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 11:59:10 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:10 | KISCollector | WARNING  | get_news_data   | ⚠️ 014940 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 11:59:10 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 014940 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 11:59:10 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:10 | KISCollector | WARNING  | get_news_data   | ⚠️ 017510 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 11:59:10 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 017510 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 11:59:10 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:10 | KISCollector | WARNING  | get_news_data   | ⚠️ 023790 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 11:59:10 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 023790 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 11:59:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 11:59:10 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:10 | KISCollector | WARNING  | get_news_data   | ⚠️ 033340 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 11:59:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 11:59:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 11:59:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 11:59:10 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 033340 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 11:59:11 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:11 | KISCollector | WARNING  | get_news_data   | ⚠️ 033790 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 11:59:11 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:11 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 033790 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 11:59:11 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:11 | KISCollector | WARNING  | get_news_data   | ⚠️ 034230 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 11:59:11 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:11 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 034230 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 11:59:11 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:11 | KISCollector | WARNING  | get_news_data   | ⚠️ 037270 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 11:59:11 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:11 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 037270 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 11:59:11 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 11:59:11 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:11 | KISCollector | WARNING  | get_news_data   | ⚠️ 041830 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 11:59:11 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 11:59:11 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 11:59:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 11:59:11 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:11 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 041830 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 11:59:12 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 11:59:12 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 11:59:12 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 11:59:12 | KISCollector | WARNING  | get_news_data   | ⚠️ 044480 뉴스 데이터 수집 실패: 'KISCollector' object has no attribute 'pykis_api'
+2025-08-09 11:59:12 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 11:59:12 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 11:59:12 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 11:59:12 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:12 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 11:59:12 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 11:59:12 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 11:59:12 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 11:59:12 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 11:59:12 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 11:59:12 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 044480 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 13:45:47 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 13:45:47 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 13:45:47 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 13:45:47 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 13:45:47 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 13:45:47 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 13:45:47 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 13:45:47 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 13:45:47 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 13:45:47 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 15:21:54 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 15:21:55 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 15:21:55 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 15:21:55 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 15:21:55 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 15:21:55 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 15:21:55 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 15:21:55 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 15:21:55 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 15:21:55 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 15:21:56 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 15:21:56 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 15:21:56 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 15:21:56 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 15:21:56 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 15:21:56 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 15:21:56 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 15:21:56 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 15:21:56 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 15:21:56 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 15:21:56 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 15:21:56 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 15:21:56 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 15:21:56 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 15:21:56 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 15:21:56 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 15:21:56 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 15:21:56 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 15:21:57 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 15:22:00 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 15:22:00 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 15:22:00 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 15:22:00 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 15:22:00 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 15:22:00 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 15:22:00 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 15:22:00 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 15:22:00 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 15:22:00 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 15:22:00 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 15:22:00 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 15:22:00 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 15:22:00 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 15:22:00 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 15:22:00 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 15:22:00 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 15:22:00 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 15:22:00 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 15:22:00 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 15:22:00 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 15:22:00 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 15:22:00 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 15:22:00 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 15:22:00 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 15:22:01 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 15:22:01 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 15:22:01 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 15:22:03 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 15:22:03 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 15:22:03 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 15:22:03 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 15:22:03 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 15:22:03 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 15:22:03 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 15:22:03 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:07 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 15:22:07 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 15:22:07 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 15:22:07 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 15:22:07 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 15:22:07 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:07 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 009620 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:07 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 15:22:07 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 15:22:07 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:07 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 15:22:07 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 15:22:07 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 15:22:07 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 15:22:07 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 15:22:07 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 15:22:07 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:07 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 014940 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:08 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 15:22:08 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 15:22:08 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:08 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 15:22:08 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 15:22:08 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:08 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 017510 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:08 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 15:22:08 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 15:22:08 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:08 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 15:22:08 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 15:22:08 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:08 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 023790 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:08 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 15:22:08 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 15:22:08 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:08 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 15:22:08 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 15:22:08 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 15:22:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 15:22:08 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:08 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 033340 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 15:22:09 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 15:22:09 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:09 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 033790 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 15:22:09 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 15:22:09 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:09 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 034230 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 15:22:09 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 15:22:09 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:09 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 037270 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 15:22:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 15:22:09 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 15:22:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 15:22:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 15:22:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 15:22:09 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:09 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 041830 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment
+2025-08-09 15:22:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 15:22:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 15:22:10 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 15:22:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 15:22:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 15:22:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 15:22:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 15:22:10 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 15:22:10 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 15:22:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 15:22:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 15:22:10 | AnalysisEngine | WARNING  | _calculate_enhanced_comprehensive_score | ⚠️ 종합 점수 계산 실패: 'coroutine' object has no attribute 'get'
+2025-08-09 15:22:10 | AnalysisEngine | ERROR    | analyze_comprehensive | ❌ 044480 종합 분석 중 치명적 오류: local variable 'supply_demand_score' referenced before assignment

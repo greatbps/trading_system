@@ -244,6 +244,7 @@ class TradingSystem:
                 self.logger.info("✅ 분석 엔진 초기화 완료")
             except Exception as e:
                 self.logger.error(f"❌ 분석 엔진 초기화 실패: {e}")
+                print(f"FATAL_ERROR_ANALYSIS_ENGINE: {e}")
                 raise
             
             # 뉴스 수집기
@@ -416,11 +417,8 @@ class TradingSystem:
                 
                 # DB가 없으면 기본 종목들로 진행
                 if not self.db_manager:
-                    self.logger.warning("⚠️ 데이터베이스 없음. 기본 주요 종목으로 진행합니다.")
-                    # 기본 주요 종목들을 사용
-                    major_stocks = await self._get_major_stocks_as_fallback(limit)
-                    candidates = [type('Stock', (), {'id': i, 'stock_id': i, 'stock_code': symbol, 'stock_name': name})() 
-                                 for i, (symbol, name) in enumerate(major_stocks)]
+                    self.logger.error("❌ 데이터베이스 없음. 필터링 불가능합니다.")
+                    return []
                 else:
                     # DB 연결 안정성 강화 - 예외 처리 추가
                     try:
@@ -456,15 +454,8 @@ class TradingSystem:
                         
                         if not symbols_from_hts:
                             console.print(f"[red]❌ HTS 조건검색식 [{hts_condition_id}]에서 종목을 찾지 못했습니다.[/red]")
-                            self.logger.warning(f"HTS 조건검색 실패 - 기본 종목으로 대체")
-                            
-                            # HTS 실패시 기본 종목으로 fallback
-                            major_stocks = await self._get_major_stocks_as_fallback(limit)
-                            symbols_from_hts = [symbol for symbol, name in major_stocks]
-                            self.logger.info(f"기본 종목 {len(symbols_from_hts)}개로 대체")
-                            
-                            # 기본 종목의 경우 이름을 직접 사용
-                            candidates_data = [{'stock_code': symbol, 'stock_name': name} for symbol, name in major_stocks]
+                            self.logger.error(f"HTS 조건검색 실패 - 필터링 불가능")
+                            return []
                         else:
                             self.logger.info(f"✅ HTS 조건검색 성공: {len(symbols_from_hts)}개 종목 발견")
                             
@@ -749,10 +740,8 @@ class TradingSystem:
                 await self._save_filtered_stocks_cache(result)
                 return result
         except Exception as e:
-            self.logger.warning(f"⚠️ 직접 필터링 실패: {e}")
-        
-        # Fallback
-        return await self._get_major_stocks_as_fallback(limit)
+            self.logger.error(f"❌ 직접 필터링 실패: {e}")
+            return []
     
     async def _get_cached_filtered_stocks(self, limit: int) -> Optional[List[Tuple[str, str]]]:
         """캐시된 필터링 종목 조회"""
@@ -774,64 +763,6 @@ class TradingSystem:
         # TODO: 직접 필터링 구현
         return []
     
-    async def _get_major_stocks_as_fallback(self, limit: int) -> List[Tuple[str, str]]:
-        """주요 종목 fallback - 확장된 종목 리스트"""
-        # 기본 주요 종목들 (KOSPI 대형주 + 인기 종목)
-        major_stocks = [
-            # 대형주 (시가총액 상위)
-            ("005930", "삼성전자"),
-            ("000660", "SK하이닉스"),
-            ("035420", "NAVER"),
-            ("005380", "현대차"),
-            ("051910", "LG화학"),
-            ("028260", "삼성물산"),
-            ("006400", "삼성SDI"),
-            ("000270", "기아"),
-            ("068270", "셀트리온"),
-            ("105560", "KB금융"),
-            
-            # 추가 대형주
-            ("055550", "신한지주"),
-            ("035720", "카카오"),
-            ("207940", "삼성바이오로직스"),
-            ("066570", "LG전자"),
-            ("323410", "카카오뱅크"),
-            ("000810", "삼성화재"),
-            ("017670", "SK텔레콤"),
-            ("034730", "SK"),
-            ("259960", "크래프톤"),
-            ("003550", "LG"),
-            
-            # 섹터별 대표주
-            ("032830", "삼성생명"),
-            ("009150", "삼성전기"),
-            ("018260", "삼성에스디에스"),
-            ("012330", "현대모비스"),
-            ("024110", "기업은행"),
-            ("086790", "하나금융지주"),
-            ("316140", "우리금융지주"),
-            ("090430", "아모레퍼시픽"),
-            ("021240", "코웨이"),
-            ("030200", "KT"),
-            
-            # 인기 중형주
-            ("036570", "엔씨소프트"),
-            ("251270", "넷마블"),
-            ("112040", "위메이드"),
-            ("064350", "현대로템"),
-            ("010950", "S-Oil"),
-            ("011170", "롯데케미칼"),
-            ("267250", "HD현대중공업"),
-            ("042660", "한화오션"),
-            ("009830", "한화솔루션"),
-            ("000720", "현대건설")
-        ]
-        
-        # limit이 None이면 모든 종목 반환
-        if limit is None:
-            return major_stocks
-        else:
-            return major_stocks[:min(limit, len(major_stocks))]
     
     async def _save_filter_history(self, strategy: str, filter_type: str, 
                                  hts_condition: str = None, hts_result_count: int = 0,
@@ -1653,16 +1584,19 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
                 market_data = []
             
             if individual_stocks is None:
-                # 최근 분석 결과에서 주요 종목 추출
-                major_stocks = await self._get_major_stocks_as_fallback(20)
+                # HTS 조건검색에서 종목 추출 (실제 API 사용)
+                stocks_from_hts = await self.data_collector.get_stocks_by_condition("momentum")
+                if not stocks_from_hts:
+                    console.print("[yellow]⚠️ HTS에서 종목을 가져올 수 없습니다. 개별 종목 분석을 건너뜁니다.[/yellow]")
+                    return []
                 individual_stocks = []
-                for symbol, name in major_stocks:
+                for symbol in stocks_from_hts[:20]:  # 최대 20개 종목
                     try:
                         stock_info = await self.data_collector.get_stock_info(symbol)
                         if stock_info:
                             individual_stocks.append({
                                 'symbol': symbol,
-                                'name': name,
+                                'name': stock_info.name,
                                 'current_price': stock_info.current_price,
                                 'change_rate': stock_info.change_rate,
                                 'volume': stock_info.volume
@@ -1701,15 +1635,19 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
             market_data = []
             individual_stocks = []
             
-            # 주요 종목 데이터 수집
-            major_stocks = await self._get_major_stocks_as_fallback(30)
-            for symbol, name in major_stocks:
+            # HTS 조건검색에서 종목 데이터 수집
+            stocks_from_hts = await self.data_collector.get_stocks_by_condition("momentum")
+            if not stocks_from_hts:
+                console.print("[yellow]⚠️ HTS에서 종목을 가져올 수 없습니다. AI 시장 분석을 건너뜁니다.[/yellow]")
+                return []
+                
+            for symbol in stocks_from_hts[:30]:  # 최대 30개 종목
                 try:
                     stock_info = await self.data_collector.get_stock_info(symbol)
                     if stock_info:
                         stock_dict = {
                             'symbol': symbol,
-                            'name': name,
+                            'name': stock_info.name,
                             'current_price': stock_info.current_price,
                             'change_rate': stock_info.change_rate,
                             'volume': stock_info.volume,
