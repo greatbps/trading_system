@@ -867,54 +867,57 @@ class KISCollector:
             self.logger.warning(f"⚠️ {symbol} 뉴스 데이터 수집 실패: {e}")
             return []
 
-    async def get_filtered_stocks(self, limit: int = 20) -> List[Tuple[str, str]]:
+    async def get_filtered_stocks(self, strategy: str, limit: int = 20) -> List[Tuple[str, str]]:
         """
-        필터링된 종목 리스트 반환 (다중 소스 활용)
-        1. KIS HTS 조건검색 (사용자 ID 설정 시)
+        필터링된 종목 리스트 반환 (전략별 HTS 조건검색 우선)
+        1. KIS HTS 조건검색 (전략별)
         2. KIS API 시가총액 상위 종목 (Fallback)
-        3. 데이터베이스 캐시 (최후의 Fallback)
         """
-        self.logger.info(f"📊 {limit}개 필터링 종목 조회 시작 (다중 소스 활용)...")
+        self.logger.info(f"📊 '{strategy}' 전략으로 {limit}개 필터링 종목 조회 시작...")
         stock_list = []
-        
+
         # 1. KIS HTS 조건검색 (사용자 ID가 설정된 경우에만 시도)
         if hasattr(self.config, 'kis_account') and self.config.kis_account.KIS_USER_ID:
             try:
-                self.logger.info("1️⃣ HTS 조건검색 시도...")
-                # 'momentum' 조건식 ID를 동적으로 찾거나, 설정 파일에서 가져오도록 개선 가능
-                # 여기서는 'momentum' 이라는 이름의 조건식이 있다고 가정
-                conditions = await self.get_hts_condition_list()
-                momentum_condition = next((c for c in conditions if 'momentum' in c.get('name', '').lower()), None)
-
-                if momentum_condition:
-                    self.logger.info(f"'momentum' 조건식 발견 (ID: {momentum_condition['id']})")
-                    momentum_stocks = await self.get_stocks_by_condition(momentum_condition['id'], momentum_condition['name'])
-                    
-                    for stock_data in momentum_stocks:
-                        symbol = stock_data.get('code')
-                        name = stock_data.get('name')
-                        if symbol and name:
-                            stock_list.append((symbol, name))
-                            if len(stock_list) >= limit:
-                                break
-                    
-                    self.logger.info(f"✅ HTS 조건검색으로 {len(stock_list)}개 종목 조회 성공")
-
+                target_condition_name = self.config.trading.HTS_CONDITION_NAMES.get(strategy)
+                if not target_condition_name:
+                    self.logger.warning(f"⚠️ '{strategy}'에 해당하는 HTS 조건식 이름이 config에 없습니다.")
                 else:
-                    self.logger.warning("⚠️ HTS에서 'momentum' 조건식을 찾을 수 없습니다.")
+                    self.logger.info(f"1️⃣ HTS 조건검색 시도 (전략: {strategy}, 조건식명: {target_condition_name})...")
+                    conditions = await self.get_hts_condition_list()
+                    
+                    target_condition = next((c for c in conditions if c.get('name') == target_condition_name), None)
+
+                    if target_condition:
+                        condition_id = target_condition['id']
+                        self.logger.info(f"✅ 조건식 '{target_condition_name}' 발견 (ID: {condition_id})")
+                        
+                        # get_stocks_by_condition은 종목 딕셔너리 리스트를 반환
+                        momentum_stocks = await self.get_stocks_by_condition(condition_id, target_condition_name)
+                        
+                        for stock_data in momentum_stocks:
+                            symbol = stock_data.get('code')
+                            name = stock_data.get('name')
+                            if symbol and name:
+                                stock_list.append((symbol, name))
+                                if len(stock_list) >= limit:
+                                    break
+                        
+                        self.logger.info(f"✅ HTS 조건검색으로 {len(stock_list)}개 종목 조회 성공")
+                    else:
+                        self.logger.warning(f"⚠️ HTS에서 '{target_condition_name}' 조건식을 찾을 수 없습니다.")
 
             except Exception as e:
                 self.logger.warning(f"⚠️ HTS 조건검색 실패: {e}")
         else:
             self.logger.info("ℹ️ KIS_USER_ID가 설정되지 않아 HTS 조건검색을 건너뜁니다.")
 
-        # 2. HTS 조건검색 결과가 충분하지 않으면, KIS API로 시총 상위 종목 조회
+        # 2. HTS 조건검색 결과가 충분하지 않으면, KIS API로 시총 상위 종목 조회 (Fallback)
         if len(stock_list) < limit:
+            self.logger.info("2️⃣ HTS 조건검색 결과 부족, KIS API 시총 상위 종목 조회로 Fallback...")
             try:
-                self.logger.info("2️⃣ KIS API 시가총액 상위 종목 조회 시도...")
-                top_stocks = await self._get_top_stocks_from_kis_api(limit=limit * 2) # 여유있게 조회
+                top_stocks = await self._get_top_stocks_from_kis_api(limit=limit * 2)
                 
-                # HTS 결과와 중복되지 않게 추가
                 existing_symbols = {s[0] for s in stock_list}
                 for symbol, name in top_stocks:
                     if symbol not in existing_symbols:
@@ -927,11 +930,8 @@ class KISCollector:
             except Exception as e:
                 self.logger.warning(f"⚠️ KIS API 시총 상위 종목 조회 실패: {e}")
 
-        # 3. 그래도 종목이 없으면, 최후의 수단으로 DB 캐시 사용 (이 기능은 외부에서 호출)
         if not stock_list:
-            self.logger.warning("⚠️ 모든 종목 소스에서 종목을 가져오지 못했습니다. DB 캐시를 확인해야 할 수 있습니다.")
-            # DB 캐시 조회 로직은 여기에 직접 구현하기보다, 이 메서드를 호출하는 쪽에서 처리하는 것이 좋음
-            # 예: trading_system.py에서 이 메서드 결과가 비어있으면 DB에서 로드
+            self.logger.error("❌ 모든 소스에서 종목을 가져오지 못했습니다.")
 
         return stock_list[:limit]
 
@@ -1106,7 +1106,7 @@ class KISCollector:
             output = result.get('output1', [])
             if not output:
                 self.logger.warning(f"⚠️ {symbol} 투자자별 매매 동향 데이터 없음")
-                return None
+                return {} # None 대신 빈 딕셔너리 반환
 
             # 최신 데이터 사용
             latest_data = output[0]

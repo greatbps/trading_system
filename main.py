@@ -261,7 +261,7 @@ async def run_analysis_mode(args):
                 results = await trading_system.analyze_symbols([args.symbol], args.strategy)
             else:
                 # 시장 분석
-                results = await trading_system.run_market_analysis(args.strategy, args.limit)
+                results = await trading_system.run_market_analysis(args.strategy)
             
             # 결과 표시
             if results:

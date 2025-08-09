@@ -485,6 +485,19 @@ class DisplayUtils:
     def _safe_get_score(self, result: Dict, analysis_type: str) -> float:
         """안전하게 분석 점수 추출"""
         try:
+            # 새로운 데이터 구조: 직접 score 필드 확인
+            if analysis_type == 'technical_analysis':
+                return result.get('technical_score', 0)
+            elif analysis_type == 'sentiment_analysis':
+                return result.get('sentiment_score', 0)
+            elif analysis_type == 'supply_demand_analysis':
+                return result.get('supply_demand_score', 0)
+            elif analysis_type == 'chart_pattern_analysis':
+                return result.get('chart_pattern_score', 0)
+            elif analysis_type == 'fundamental_analysis':
+                return result.get('fundamental_score', 0)
+            
+            # 이전 데이터 구조 호환성: nested dict에서 추출
             analysis_data = result.get(analysis_type, {})
             if isinstance(analysis_data, dict):
                 return analysis_data.get('overall_score', 0)
@@ -495,6 +508,17 @@ class DisplayUtils:
     def _safe_get_news_material(self, stock: Dict) -> bool:
         """안전하게 뉴스 재료 정보 추출"""
         try:
+            # 새로운 데이터 구조: sentiment_details에서 확인
+            sentiment_details = stock.get('sentiment_details', {})
+            if isinstance(sentiment_details, dict) and sentiment_details.get('has_material', False):
+                return True
+                
+            # 뉴스 개수로 재료 여부 판단 (fallback)
+            news_count = sentiment_details.get('news_count', 0)
+            if news_count > 0:
+                return True
+                
+            # 이전 데이터 구조 호환성
             sentiment_data = stock.get('sentiment_analysis', {})
             if isinstance(sentiment_data, dict):
                 return sentiment_data.get('has_material', False)

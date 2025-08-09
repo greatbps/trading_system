@@ -72,6 +72,17 @@ class TradingConfig:
     MIN_VOLUME = 1000     # 최소 거래량
     MIN_MARKET_CAP = 100       # 최소 시가총액 (억원)
 
+    # 전략별 HTS 조건검색식 이름 매핑
+    HTS_CONDITION_NAMES = {
+        'momentum': '모멘텀상승',
+        'breakout': '신고가돌파',
+        'eod': '장마감관심종목',
+        'supertrend_ema_rsi': '슈퍼트렌드',
+        'vwap': 'VWAP상승',
+        'scalping_3m': '3분봉스캘핑',
+        'rsi': 'RSI과매도'
+    }
+
 class AnalysisConfig:
     """분석 설정"""
     # 각 분석 모듈의 가중치 (총합 1.0)

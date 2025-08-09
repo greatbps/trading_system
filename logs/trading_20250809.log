@@ -2514,3 +2514,1402 @@
 2025-08-09 16:30:22 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
 2025-08-09 16:30:22 | KISCollector | INFO     | close           | KIS API collector 종료 중...
 2025-08-09 16:30:22 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 16:47:10 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:03:10 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 17:03:10 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 17:03:10 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 17:03:11 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:03:11 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:03:11 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:03:11 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:03:11 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:03:11 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:03:11 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:03:11 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:03:11 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:03:11 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:03:11 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:03:11 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:03:11 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:03:11 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:03:11 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:03:11 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:03:11 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:03:11 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:03:11 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:03:11 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:03:11 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:03:11 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:03:11 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:03:11 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:03:11 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:03:12 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 17:03:15 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:03:15 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:03:15 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:03:15 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:03:15 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:03:15 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:03:15 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:03:15 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:03:15 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:03:15 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:03:15 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:03:15 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:03:15 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:03:15 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:03:15 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:03:15 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:03:15 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:03:15 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:03:15 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:03:15 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:03:15 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:03:15 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:03:15 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:03:15 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:03:15 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:03:16 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 17:03:16 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 17:03:16 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 17:03:18 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 17:03:18 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 17:03:18 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 17:03:18 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 17:03:18 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 17:03:18 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 17:03:18 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 17:03:18 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 009620
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 009620 점수: 52.6
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 009620(삼보산업) 종합 분석 완료 (점수: 44.18, 추천: WEAK_SELL) - 소요시간: 0.16초
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 17:03:19 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 014940
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 014940 점수: 51.6
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 014940(오리엔탈정공) 종합 분석 완료 (점수: 69.88, 추천: HOLD) - 소요시간: 0.09초
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 17:03:19 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 017510
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 017510 점수: 51.6
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 017510(세명전기) 종합 분석 완료 (점수: 57.20, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 17:03:19 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 17:03:19 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 023790
+2025-08-09 17:03:19 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 023790 점수: 52.6
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 17:03:19 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 17:03:19 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 17:03:19 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 023790(동일스틸럭스) 종합 분석 완료 (점수: 62.22, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 17:03:20 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033340
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033340 점수: 52.6
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033340(좋은사람들) 종합 분석 완료 (점수: 61.83, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 17:03:20 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033790
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033790 점수: 51.6
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033790(피노) 종합 분석 완료 (점수: 44.90, 추천: WEAK_SELL) - 소요시간: 0.07초
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 17:03:20 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 034230
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 034230 점수: 52.6
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 034230(파라다이스) 종합 분석 완료 (점수: 45.58, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 17:03:20 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 17:03:20 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 037270
+2025-08-09 17:03:20 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 037270 점수: 52.6
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 17:03:20 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 17:03:20 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 17:03:20 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 037270(YG PLUS) 종합 분석 완료 (점수: 49.24, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:03:21 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 17:03:21 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 17:03:21 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:21 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 17:03:21 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:03:21 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 041830
+2025-08-09 17:03:21 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 041830 점수: 51.6
+2025-08-09 17:03:21 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 17:03:21 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 17:03:21 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 17:03:21 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 041830(인바디) 종합 분석 완료 (점수: 57.18, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:03:21 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 17:03:21 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 17:03:21 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:03:21 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 17:03:21 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 17:03:21 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 044480
+2025-08-09 17:03:21 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 044480 점수: 52.6
+2025-08-09 17:03:21 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 17:03:21 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 17:03:21 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 17:03:21 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 17:03:21 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 044480(빌리언스) 종합 분석 완료 (점수: 39.88, 추천: WEAK_SELL) - 소요시간: 0.04초
+2025-08-09 17:07:10 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:07:10 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:07:10 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:07:10 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:07:10 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:07:10 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:07:10 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:07:10 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:07:10 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:07:10 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:07:10 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:07:10 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:07:10 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:07:10 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:07:10 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:07:10 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:07:10 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:07:10 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:07:10 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:07:10 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:07:10 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:07:10 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:07:10 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:07:10 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:07:10 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:07:12 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 17:07:12 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 17:07:12 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 17:07:12 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 17:07:12 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 17:07:12 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 17:07:12 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 17:07:12 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 17:07:12 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 17:07:12 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 17:07:12 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:12 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 17:07:12 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 17:07:12 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 009620
+2025-08-09 17:07:12 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 009620 점수: 52.6
+2025-08-09 17:07:12 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 17:07:12 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:12 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 17:07:12 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:12 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 17:07:12 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 17:07:12 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 17:07:12 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 009620(삼보산업) 종합 분석 완료 (점수: 44.18, 추천: WEAK_SELL) - 소요시간: 0.16초
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 17:07:13 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:13 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 17:07:13 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 17:07:13 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 014940
+2025-08-09 17:07:13 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 014940 점수: 51.6
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 014940(오리엔탈정공) 종합 분석 완료 (점수: 69.88, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 17:07:13 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:13 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 17:07:13 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:07:13 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 017510
+2025-08-09 17:07:13 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 017510 점수: 51.6
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 017510(세명전기) 종합 분석 완료 (점수: 57.20, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 17:07:13 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:13 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 17:07:13 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:07:13 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 023790
+2025-08-09 17:07:13 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 023790 점수: 52.6
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 17:07:13 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 17:07:13 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 023790(동일스틸럭스) 종합 분석 완료 (점수: 62.22, 추천: HOLD) - 소요시간: 0.05초
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 17:07:13 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 17:07:13 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:13 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 17:07:14 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033340
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033340 점수: 52.6
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033340(좋은사람들) 종합 분석 완료 (점수: 61.83, 추천: HOLD) - 소요시간: 0.08초
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 17:07:14 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:14 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 17:07:14 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033790
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033790 점수: 51.6
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033790(피노) 종합 분석 완료 (점수: 44.90, 추천: WEAK_SELL) - 소요시간: 0.05초
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 17:07:14 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:14 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 17:07:14 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 034230
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 034230 점수: 52.6
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 034230(파라다이스) 종합 분석 완료 (점수: 45.58, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 17:07:14 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:14 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 17:07:14 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 037270
+2025-08-09 17:07:14 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 037270 점수: 52.6
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 17:07:14 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 17:07:14 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 17:07:14 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 037270(YG PLUS) 종합 분석 완료 (점수: 49.24, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:07:15 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 17:07:15 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 17:07:15 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:15 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 17:07:15 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:07:15 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 041830
+2025-08-09 17:07:15 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 041830 점수: 51.6
+2025-08-09 17:07:15 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 17:07:15 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 17:07:15 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 17:07:15 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 041830(인바디) 종합 분석 완료 (점수: 57.18, 추천: HOLD) - 소요시간: 0.05초
+2025-08-09 17:07:15 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 17:07:15 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 17:07:15 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:15 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 17:07:15 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 17:07:15 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 044480
+2025-08-09 17:07:15 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 044480 점수: 52.6
+2025-08-09 17:07:15 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 17:07:15 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 17:07:15 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 17:07:15 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 17:07:15 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 044480(빌리언스) 종합 분석 완료 (점수: 39.88, 추천: WEAK_SELL) - 소요시간: 0.04초
+2025-08-09 17:07:41 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:07:41 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:07:41 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:07:41 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:07:41 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:07:41 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:07:41 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:07:41 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:07:41 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:07:41 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:07:41 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:07:41 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:07:41 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:07:41 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:07:41 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:07:41 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:07:41 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:07:41 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:07:41 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:07:41 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:07:41 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:07:41 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:07:41 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:07:41 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:07:41 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:07:43 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 17:07:43 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 17:07:43 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 17:07:43 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 17:07:43 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 17:07:43 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 17:07:43 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 17:07:43 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 17:07:43 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 17:07:43 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 17:07:43 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:43 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 17:07:43 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 17:07:43 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 009620
+2025-08-09 17:07:43 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 009620 점수: 52.6
+2025-08-09 17:07:43 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 17:07:43 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:43 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 17:07:43 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:43 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 17:07:43 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 17:07:43 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 17:07:43 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 009620(삼보산업) 종합 분석 완료 (점수: 44.18, 추천: WEAK_SELL) - 소요시간: 0.39초
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 17:07:44 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 014940
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 014940 점수: 51.6
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 014940(오리엔탈정공) 종합 분석 완료 (점수: 69.88, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 17:07:44 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 017510
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 017510 점수: 51.6
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 017510(세명전기) 종합 분석 완료 (점수: 57.20, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 17:07:44 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 023790
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 023790 점수: 52.6
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 023790(동일스틸럭스) 종합 분석 완료 (점수: 62.22, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 17:07:44 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 17:07:44 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033340
+2025-08-09 17:07:44 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033340 점수: 52.6
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 17:07:44 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 17:07:44 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 17:07:44 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033340(좋은사람들) 종합 분석 완료 (점수: 61.83, 추천: HOLD) - 소요시간: 0.08초
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 17:07:45 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:45 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 17:07:45 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:07:45 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033790
+2025-08-09 17:07:45 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033790 점수: 51.6
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033790(피노) 종합 분석 완료 (점수: 44.90, 추천: WEAK_SELL) - 소요시간: 0.07초
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 17:07:45 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:45 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 17:07:45 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:07:45 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 034230
+2025-08-09 17:07:45 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 034230 점수: 52.6
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 034230(파라다이스) 종합 분석 완료 (점수: 45.58, 추천: HOLD) - 소요시간: 0.08초
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 17:07:45 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:45 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 17:07:45 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 17:07:45 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 037270
+2025-08-09 17:07:45 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 037270 점수: 52.6
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 17:07:45 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 17:07:45 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 17:07:45 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 037270(YG PLUS) 종합 분석 완료 (점수: 49.24, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:07:46 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 17:07:46 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 17:07:46 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:46 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 17:07:46 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:07:46 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 041830
+2025-08-09 17:07:46 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 041830 점수: 51.6
+2025-08-09 17:07:46 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 17:07:46 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 17:07:46 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 17:07:46 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 041830(인바디) 종합 분석 완료 (점수: 57.18, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:07:46 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 17:07:46 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 17:07:46 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:07:46 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 17:07:46 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 17:07:46 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 044480
+2025-08-09 17:07:46 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 044480 점수: 52.6
+2025-08-09 17:07:46 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 17:07:46 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 17:07:46 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 17:07:46 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 17:07:46 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 044480(빌리언스) 종합 분석 완료 (점수: 39.88, 추천: WEAK_SELL) - 소요시간: 0.04초
+2025-08-09 17:08:29 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:08:29 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:08:29 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:08:29 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:08:29 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:08:29 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:08:29 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:08:29 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:08:29 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:08:29 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:08:29 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:08:29 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:08:29 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:08:29 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:08:29 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:08:29 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:08:29 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:08:29 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:08:29 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:08:29 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:08:29 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:08:29 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:08:29 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:08:29 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:08:29 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:08:30 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 17:08:30 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 17:08:30 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 17:08:30 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 17:08:30 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 17:08:30 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 17:08:30 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 17:08:30 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 17:08:30 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 17:08:30 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 17:08:30 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 009620
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 009620 점수: 52.6
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 009620(삼보산업) 종합 분석 완료 (점수: 44.18, 추천: WEAK_SELL) - 소요시간: 0.68초
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 17:08:31 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 014940
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 014940 점수: 51.6
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 014940(오리엔탈정공) 종합 분석 완료 (점수: 69.88, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 17:08:31 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 017510
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 017510 점수: 51.6
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 017510(세명전기) 종합 분석 완료 (점수: 57.20, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 17:08:31 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 17:08:31 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 023790
+2025-08-09 17:08:31 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 023790 점수: 52.6
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 17:08:31 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 17:08:31 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 17:08:31 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 023790(동일스틸럭스) 종합 분석 완료 (점수: 62.22, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 17:08:32 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033340
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033340 점수: 52.6
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033340(좋은사람들) 종합 분석 완료 (점수: 61.83, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 17:08:32 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033790
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033790 점수: 51.6
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033790(피노) 종합 분석 완료 (점수: 44.90, 추천: WEAK_SELL) - 소요시간: 0.04초
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 17:08:32 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 034230
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 034230 점수: 52.6
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 034230(파라다이스) 종합 분석 완료 (점수: 45.58, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 17:08:32 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 17:08:32 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 037270
+2025-08-09 17:08:32 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 037270 점수: 52.6
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 17:08:32 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 17:08:32 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 17:08:32 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 037270(YG PLUS) 종합 분석 완료 (점수: 49.24, 추천: HOLD) - 소요시간: 0.06초
+2025-08-09 17:08:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 17:08:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 17:08:33 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 17:08:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:08:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 041830
+2025-08-09 17:08:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 041830 점수: 51.6
+2025-08-09 17:08:33 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 17:08:33 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 17:08:33 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 17:08:33 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 041830(인바디) 종합 분석 완료 (점수: 57.18, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:33 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 17:08:33 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 17:08:33 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:33 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 17:08:33 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 17:08:33 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 044480
+2025-08-09 17:08:33 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 044480 점수: 52.6
+2025-08-09 17:08:33 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 17:08:33 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 17:08:33 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 17:08:33 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 17:08:33 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 044480(빌리언스) 종합 분석 완료 (점수: 39.88, 추천: WEAK_SELL) - 소요시간: 0.06초
+2025-08-09 17:08:50 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:08:50 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:08:50 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:08:50 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:08:50 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:08:50 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:08:50 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:08:50 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:08:50 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:08:50 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:08:50 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:08:50 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:08:50 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:08:50 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:08:50 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:08:50 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:08:50 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:08:50 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:08:50 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:08:50 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:08:50 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:08:50 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:08:50 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:08:50 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:08:50 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:08:51 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 17:08:51 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 17:08:51 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 17:08:51 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 17:08:51 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 17:08:51 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 17:08:51 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 17:08:51 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 17:08:51 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 17:08:51 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 17:08:51 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:51 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 17:08:51 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 17:08:51 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 009620
+2025-08-09 17:08:51 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 009620 점수: 52.6
+2025-08-09 17:08:51 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 17:08:51 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:51 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 17:08:51 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:51 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 17:08:51 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 17:08:51 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 17:08:51 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 009620(삼보산업) 종합 분석 완료 (점수: 44.18, 추천: WEAK_SELL) - 소요시간: 0.41초
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 17:08:52 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 014940
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 014940 점수: 51.6
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 014940(오리엔탈정공) 종합 분석 완료 (점수: 69.88, 추천: HOLD) - 소요시간: 0.06초
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 17:08:52 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 017510
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 017510 점수: 51.6
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 017510(세명전기) 종합 분석 완료 (점수: 57.20, 추천: HOLD) - 소요시간: 0.06초
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 17:08:52 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 023790
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 023790 점수: 52.6
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 023790(동일스틸럭스) 종합 분석 완료 (점수: 62.22, 추천: HOLD) - 소요시간: 0.08초
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 17:08:52 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 17:08:52 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033340
+2025-08-09 17:08:52 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033340 점수: 52.6
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 17:08:52 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 17:08:52 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 17:08:52 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033340(좋은사람들) 종합 분석 완료 (점수: 61.83, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 17:08:53 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033790
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033790 점수: 51.6
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033790(피노) 종합 분석 완료 (점수: 44.90, 추천: WEAK_SELL) - 소요시간: 0.04초
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 17:08:53 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 034230
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 034230 점수: 52.6
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 034230(파라다이스) 종합 분석 완료 (점수: 45.58, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 17:08:53 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 037270
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 037270 점수: 52.6
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 037270(YG PLUS) 종합 분석 완료 (점수: 49.24, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 17:08:53 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 17:08:53 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 041830
+2025-08-09 17:08:53 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 041830 점수: 51.6
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 17:08:53 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 17:08:53 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 17:08:53 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 041830(인바디) 종합 분석 완료 (점수: 57.18, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:08:54 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 17:08:54 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 17:08:54 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:08:54 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 17:08:54 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 17:08:54 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 044480
+2025-08-09 17:08:54 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 044480 점수: 52.6
+2025-08-09 17:08:54 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 17:08:54 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:54 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 17:08:54 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:08:54 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 17:08:54 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 17:08:54 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 17:08:54 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 044480(빌리언스) 종합 분석 완료 (점수: 39.88, 추천: WEAK_SELL) - 소요시간: 0.07초
+2025-08-09 17:09:21 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 17:09:21 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 17:09:21 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 17:09:21 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 17:09:21 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 17:09:21 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 17:09:21 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 17:09:21 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 17:09:21 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 17:09:21 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 17:31:01 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 17:31:01 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 17:31:01 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 17:31:01 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:31:01 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:31:01 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:31:01 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:31:02 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:31:02 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:31:02 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:31:02 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:31:02 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:31:02 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:31:02 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:31:02 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:31:02 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:31:02 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:31:02 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:31:02 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:31:02 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:31:02 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:31:02 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:31:02 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:31:02 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:31:02 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:31:02 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:31:02 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:31:02 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:31:03 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 17:31:06 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:31:06 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:31:06 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:31:06 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:31:06 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:31:06 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:31:06 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:31:06 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:31:06 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:31:06 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:31:06 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:31:06 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:31:06 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:31:06 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:31:06 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:31:06 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:31:06 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:31:06 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:31:06 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:31:06 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:31:06 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:31:06 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:31:06 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:31:06 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:31:06 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:31:08 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 17:31:08 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 17:31:08 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 17:31:08 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 17:31:08 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 17:31:08 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 17:31:08 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 17:31:08 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 17:31:08 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 17:31:08 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 17:31:08 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:08 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 17:31:08 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 17:31:08 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 009620
+2025-08-09 17:31:08 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 009620 점수: 52.6
+2025-08-09 17:31:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 17:31:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:08 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 17:31:08 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:08 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 17:31:08 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 17:31:08 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 17:31:08 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 009620(삼보산업) 종합 분석 완료 (점수: 44.18, 추천: WEAK_SELL) - 소요시간: 0.16초
+2025-08-09 17:31:08 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 17:31:08 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 17:31:08 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:08 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 17:31:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 014940
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 014940 점수: 51.6
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 014940(오리엔탈정공) 종합 분석 완료 (점수: 69.88, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 17:31:09 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 17:31:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 017510
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 017510 점수: 51.6
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 017510(세명전기) 종합 분석 완료 (점수: 57.20, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 17:31:09 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 17:31:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 023790
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 023790 점수: 52.6
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 023790(동일스틸럭스) 종합 분석 완료 (점수: 62.22, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 17:31:09 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:09 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 17:31:09 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033340
+2025-08-09 17:31:09 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033340 점수: 52.6
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 17:31:09 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 17:31:09 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 17:31:09 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033340(좋은사람들) 종합 분석 완료 (점수: 61.83, 추천: HOLD) - 소요시간: 0.06초
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 17:31:10 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033790
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033790 점수: 51.6
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033790(피노) 종합 분석 완료 (점수: 44.90, 추천: WEAK_SELL) - 소요시간: 0.06초
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 17:31:10 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 034230
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 034230 점수: 52.6
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 034230(파라다이스) 종합 분석 완료 (점수: 45.58, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 17:31:10 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 037270
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 037270 점수: 52.6
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 037270(YG PLUS) 종합 분석 완료 (점수: 49.24, 추천: HOLD) - 소요시간: 0.06초
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 17:31:10 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 17:31:10 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 041830
+2025-08-09 17:31:10 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 041830 점수: 51.6
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 17:31:10 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 17:31:10 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 17:31:10 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 041830(인바디) 종합 분석 완료 (점수: 57.18, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:31:11 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 17:31:11 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 17:31:11 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:31:11 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 17:31:11 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 17:31:11 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 044480
+2025-08-09 17:31:11 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 044480 점수: 52.6
+2025-08-09 17:31:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 17:31:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:11 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 17:31:11 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:31:11 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 17:31:11 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 17:31:11 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 17:31:11 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 044480(빌리언스) 종합 분석 완료 (점수: 39.88, 추천: WEAK_SELL) - 소요시간: 0.04초
+2025-08-09 17:34:24 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 17:34:24 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 17:34:24 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 17:34:24 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 17:34:24 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 17:34:24 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 17:34:24 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 17:34:24 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 17:34:24 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 17:34:24 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 17:45:10 | Main         | INFO     | main            | 설정 초기화 완료
+2025-08-09 17:45:10 | Main         | INFO     | main            | [PASS] TradingSystem 임포트 성공
+2025-08-09 17:45:10 | Main         | INFO     | main            | 컴포넌트 초기화 중...
+2025-08-09 17:45:10 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:45:10 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:45:10 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:45:10 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:45:11 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:45:11 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:45:11 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:45:11 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:45:11 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:45:11 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:45:11 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:45:11 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:45:11 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:45:11 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:45:11 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:45:11 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:45:11 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:45:11 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:45:11 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:45:11 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:45:11 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:45:11 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:45:11 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:45:11 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:45:11 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:45:12 | Main         | INFO     | main            | [PASS] 컴포넌트 초기화 완료!
+2025-08-09 17:45:14 | KISCollector | INFO     | __init__        | KISCollector 초기화 완료 (virtual: False)
+2025-08-09 17:45:14 | KISCollector | INFO     | initialize      | 🚀 KIS API collector 초기화 중...
+2025-08-09 17:45:14 | KISCollector | INFO     | _load_cached_token | 캐시된 토큰 로드 완료
+2025-08-09 17:45:14 | KISCollector | INFO     | initialize      | ✅ KIS API collector 초기화 성공
+2025-08-09 17:45:14 | TechnicalAnalyzer | INFO     | __init__        | ✅ 기술적 분석기 초기화 완료
+2025-08-09 17:45:14 | ChartPatternAnalyzer | INFO     | __init__        | ✅ 패턴 감지기 초기화 완료
+2025-08-09 17:45:14 | AnalysisEngine | INFO     | __init__        | ✅ 모든 하위 분석기 초기화 완료
+2025-08-09 17:45:14 | Strategy_BreakoutStrategy | INFO     | __init__        | 📈 돌파 매매 전략 초기화 완료
+2025-08-09 17:45:14 | Strategy_EodStrategy | INFO     | __init__        | 📈 EOD 전략 초기화 완료
+2025-08-09 17:45:14 | Strategy_VwapStrategy | INFO     | __init__        | 📈 VWAP 전략 초기화 완료
+2025-08-09 17:45:14 | Strategy_Scalping3mStrategy | INFO     | __init__        | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-08-09 17:45:14 | Strategy_RsiStrategy | INFO     | __init__        | ✅ RSI 전략 초기화 완료
+2025-08-09 17:45:14 | TradingScheduler | INFO     | __init__        | ✅ TradingScheduler 초기화 완료
+2025-08-09 17:45:14 | AIPredictor  | INFO     | __init__        | ✅ AI 예측 분석기 초기화 완료
+2025-08-09 17:45:15 | AIRiskManager | INFO     | __init__        | ✅ AI 리스크 관리자 초기화 완료
+2025-08-09 17:45:15 | MarketRegimeDetector | INFO     | __init__        | ✅ 시장 체제 감지기 초기화 완료
+2025-08-09 17:45:15 | StrategyOptimizer | INFO     | __init__        | ✅ 전략 최적화 엔진 초기화 완료
+2025-08-09 17:45:15 | AIController | INFO     | __init__        | ✅ AI 통합 컨트롤러 초기화 완료
+2025-08-09 17:45:15 | DatabaseManager | INFO     | _initialize_engines | ✅ 데이터베이스 엔진 초기화 완료
+2025-08-09 17:45:15 | TradingExecutor | INFO     | __init__        | ✅ TradingExecutor 초기화 완료 (매매 비활성화)
+2025-08-09 17:45:15 | PositionManager | INFO     | __init__        | ✅ PositionManager 초기화 완료
+2025-08-09 17:45:15 | RiskManager  | INFO     | __init__        | ✅ RiskManager 초기화 완료
+2025-08-09 17:45:15 | TelegramNotifier | INFO     | __init__        | ✅ 텔레그램 알림기 초기화 완료
+2025-08-09 17:45:15 | NotificationManager | INFO     | __init__        | ✅ 알림 관리자 초기화 완료
+2025-08-09 17:45:15 | NotificationManager | INFO     | start_event_processing | 🟢 이벤트 처리 시작
+2025-08-09 17:45:16 | KISCollector | INFO     | get_filtered_stocks | 📊 10개 필터링 종목 조회 시작 (다중 소스 활용)...
+2025-08-09 17:45:16 | KISCollector | INFO     | get_filtered_stocks | 1️⃣ HTS 조건검색 시도...
+2025-08-09 17:45:16 | KISCollector | INFO     | get_hts_condition_list | 📡 KIS API를 통해 HTS 조건식 목록 조회 중...
+2025-08-09 17:45:18 | KISCollector | INFO     | get_hts_condition_list | ✅ API를 통해 5개의 HTS 조건식 목록 조회 성공
+2025-08-09 17:45:18 | KISCollector | INFO     | get_filtered_stocks | 'momentum' 조건식 발견 (ID: 2)
+2025-08-09 17:45:18 | KISCollector | INFO     | get_stocks_by_condition | 📊 HTS 조건식 2 (momentum) 종목 검색 중...
+2025-08-09 17:45:18 | KISCollector | INFO     | get_stocks_by_condition | ✅ 조건식 2 (momentum)로 56개 종목 발견
+2025-08-09 17:45:18 | KISCollector | INFO     | get_filtered_stocks | ✅ HTS 조건검색으로 10개 종목 조회 성공
+2025-08-09 17:45:18 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 009620(삼보산업) 종합 분석 시작...
+2025-08-09 17:45:18 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 009620 가격 데이터 수집: 30개
+2025-08-09 17:45:18 | KISCollector | INFO     | get_news_data   | 📰 009620(삼보산업) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:22 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 009620 기술적 분석 시작...
+2025-08-09 17:45:22 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 009620 기술적 분석 완료 - 점수: 20.0
+2025-08-09 17:45:22 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 009620
+2025-08-09 17:45:22 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 009620 점수: 52.6
+2025-08-09 17:45:22 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 009620 (종목009620)
+2025-08-09 17:45:22 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 009620 (종목009620)
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | 📈 009620 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | 📊 009620 OHLCV 패턴 1개 감지
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 009620 (종목009620): 5개 패턴, 점수: 86.9
+2025-08-09 17:45:22 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 009620 (종목009620) 패턴 분석 완료: 5개 패턴, 점수: 86.9
+2025-08-09 17:45:22 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 009620(삼보산업) 종합 분석 완료 (점수: 44.18, 추천: WEAK_SELL) - 소요시간: 4.14초
+2025-08-09 17:45:22 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 014940(오리엔탈정공) 종합 분석 시작...
+2025-08-09 17:45:22 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 014940 가격 데이터 수집: 30개
+2025-08-09 17:45:22 | KISCollector | INFO     | get_news_data   | 📰 014940(오리엔탈정공) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:22 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 014940 기술적 분석 시작...
+2025-08-09 17:45:22 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 014940 기술적 분석 완료 - 점수: 80.0
+2025-08-09 17:45:22 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 014940
+2025-08-09 17:45:22 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 014940 점수: 51.6
+2025-08-09 17:45:22 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 014940 (종목014940)
+2025-08-09 17:45:22 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 014940 (종목014940)
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | 📈 014940 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | 📊 014940 OHLCV 패턴 1개 감지
+2025-08-09 17:45:22 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 014940 (종목014940): 2개 패턴, 점수: 76.5
+2025-08-09 17:45:22 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 014940 (종목014940) 패턴 분석 완료: 2개 패턴, 점수: 76.5
+2025-08-09 17:45:22 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 014940(오리엔탈정공) 종합 분석 완료 (점수: 69.88, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:45:22 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 017510(세명전기) 종합 분석 시작...
+2025-08-09 17:45:22 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 017510 가격 데이터 수집: 30개
+2025-08-09 17:45:22 | KISCollector | INFO     | get_news_data   | 📰 017510(세명전기) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 017510 기술적 분석 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 017510 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 017510
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 017510 점수: 51.6
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 017510 (종목017510)
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 017510 (종목017510)
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📈 017510 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📊 017510 OHLCV 패턴 1개 감지
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 017510 (종목017510): 3개 패턴, 점수: 78.6
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 017510 (종목017510) 패턴 분석 완료: 3개 패턴, 점수: 78.6
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 017510(세명전기) 종합 분석 완료 (점수: 57.20, 추천: HOLD) - 소요시간: 0.09초
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 023790(동일스틸럭스) 종합 분석 시작...
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 023790 가격 데이터 수집: 30개
+2025-08-09 17:45:23 | KISCollector | INFO     | get_news_data   | 📰 023790(동일스틸럭스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 023790 기술적 분석 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 023790 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 023790
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 023790 점수: 52.6
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 023790 (종목023790)
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 023790 (종목023790)
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📈 023790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📊 023790 OHLCV 패턴 1개 감지
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 023790 (종목023790): 4개 패턴, 점수: 83.7
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 023790 (종목023790) 패턴 분석 완료: 4개 패턴, 점수: 83.7
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 023790(동일스틸럭스) 종합 분석 완료 (점수: 62.22, 추천: HOLD) - 소요시간: 0.07초
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033340(좋은사람들) 종합 분석 시작...
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033340 가격 데이터 수집: 30개
+2025-08-09 17:45:23 | KISCollector | INFO     | get_news_data   | 📰 033340(좋은사람들) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033340 기술적 분석 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033340 기술적 분석 완료 - 점수: 65.0
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033340
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033340 점수: 52.6
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033340 (종목033340)
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033340 (종목033340)
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📈 033340 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📊 033340 OHLCV 패턴 0개 감지
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033340 (종목033340): 5개 패턴, 점수: 81.2
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033340 (종목033340) 패턴 분석 완료: 5개 패턴, 점수: 81.2
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033340(좋은사람들) 종합 분석 완료 (점수: 61.83, 추천: HOLD) - 소요시간: 0.06초
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 033790(피노) 종합 분석 시작...
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 033790 가격 데이터 수집: 30개
+2025-08-09 17:45:23 | KISCollector | INFO     | get_news_data   | 📰 033790(피노) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 033790 기술적 분석 시작...
+2025-08-09 17:45:23 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 033790 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 033790
+2025-08-09 17:45:23 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 033790 점수: 51.6
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 033790 (종목033790)
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 033790 (종목033790)
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📈 033790 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | 📊 033790 OHLCV 패턴 1개 감지
+2025-08-09 17:45:23 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 033790 (종목033790): 3개 패턴, 점수: 80.0
+2025-08-09 17:45:23 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 033790 (종목033790) 패턴 분석 완료: 3개 패턴, 점수: 80.0
+2025-08-09 17:45:23 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 033790(피노) 종합 분석 완료 (점수: 44.90, 추천: WEAK_SELL) - 소요시간: 0.08초
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 034230(파라다이스) 종합 분석 시작...
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 034230 가격 데이터 수집: 30개
+2025-08-09 17:45:24 | KISCollector | INFO     | get_news_data   | 📰 034230(파라다이스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 034230 기술적 분석 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 034230 기술적 분석 완료 - 점수: 25.0
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 034230
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 034230 점수: 52.6
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 034230 (종목034230)
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 034230 (종목034230)
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📈 034230 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📊 034230 OHLCV 패턴 1개 감지
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 034230 (종목034230): 6개 패턴, 점수: 82.8
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 034230 (종목034230) 패턴 분석 완료: 6개 패턴, 점수: 82.8
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 034230(파라다이스) 종합 분석 완료 (점수: 45.58, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 037270(YG PLUS) 종합 분석 시작...
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 037270 가격 데이터 수집: 30개
+2025-08-09 17:45:24 | KISCollector | INFO     | get_news_data   | 📰 037270(YG PLUS) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 037270 기술적 분석 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 037270 기술적 분석 완료 - 점수: 35.0
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 037270
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 037270 점수: 52.6
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 037270 (종목037270)
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 037270 (종목037270)
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📈 037270 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📊 037270 OHLCV 패턴 1개 감지
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 037270 (종목037270): 5개 패턴, 점수: 80.6
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 037270 (종목037270) 패턴 분석 완료: 5개 패턴, 점수: 80.6
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 037270(YG PLUS) 종합 분석 완료 (점수: 49.24, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 041830(인바디) 종합 분석 시작...
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 041830 가격 데이터 수집: 30개
+2025-08-09 17:45:24 | KISCollector | INFO     | get_news_data   | 📰 041830(인바디) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 041830 기술적 분석 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 041830 기술적 분석 완료 - 점수: 55.0
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 041830
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 041830 점수: 51.6
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 041830 (종목041830)
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 041830 (종목041830)
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📈 041830 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📊 041830 OHLCV 패턴 2개 감지
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 041830 (종목041830): 3개 패턴, 점수: 78.5
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 041830 (종목041830) 패턴 분석 완료: 3개 패턴, 점수: 78.5
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 041830(인바디) 종합 분석 완료 (점수: 57.18, 추천: HOLD) - 소요시간: 0.04초
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 🚀 044480(빌리언스) 종합 분석 시작...
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | 📊 044480 가격 데이터 수집: 30개
+2025-08-09 17:45:24 | KISCollector | INFO     | get_news_data   | 📰 044480(빌리언스) 실제 뉴스 데이터 수집 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | 🔍 044480 기술적 분석 시작...
+2025-08-09 17:45:24 | TechnicalAnalyzer | INFO     | analyze_stock   | ✅ 044480 기술적 분석 완료 - 점수: 30.0
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | 📊 수급 분석 시작 - 044480
+2025-08-09 17:45:24 | SupplyDemandAnalyzer | INFO     | analyze         | ✅ 수급 분석 완료 - 044480 점수: 52.6
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📈 차트패턴 분석 시작 - 044480 (종목044480)
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | 📊 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 🔍 패턴 감지 시작 - 044480 (종목044480)
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📈 044480 OHLCV 데이터 활용: 30개 캔들
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | 📊 044480 OHLCV 패턴 0개 감지
+2025-08-09 17:45:24 | PatternDetector | INFO     | detect_patterns | ✅ 패턴 감지 완료 - 044480 (종목044480): 3개 패턴, 점수: 28.1
+2025-08-09 17:45:24 | ChartPatternAnalyzer | INFO     | analyze_with_ohlcv | ✅ 044480 (종목044480) 패턴 분석 완료: 3개 패턴, 점수: 28.1
+2025-08-09 17:45:24 | AnalysisEngine | INFO     | analyze_comprehensive | ✅ 044480(빌리언스) 종합 분석 완료 (점수: 39.88, 추천: WEAK_SELL) - 소요시간: 0.04초
+2025-08-09 18:46:46 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 18:46:46 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 18:46:46 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 18:46:46 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 18:46:46 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료
+2025-08-09 18:46:46 | NotificationManager | INFO     | stop_event_processing | 🔴 이벤트 처리 중단
+2025-08-09 18:46:46 | TelegramNotifier | INFO     | cleanup         | ✅ TelegramNotifier 정리 완료
+2025-08-09 18:46:46 | NotificationManager | INFO     | cleanup         | ✅ NotificationManager 정리 완료
+2025-08-09 18:46:46 | KISCollector | INFO     | close           | KIS API collector 종료 중...
+2025-08-09 18:46:46 | KISCollector | INFO     | close           | ✅ KIS API collector 종료 완료

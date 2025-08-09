@@ -404,7 +404,7 @@ class TradingSystem:
         """결과 표시 - 유연한 호환성 메서드 (다양한 호출 방식 지원)"""
         # 추가 인수들은 무시하고 결과만 표시
         await self._display_analysis_results(results)
-    async def run_market_analysis(self, strategy: str = 'momentum', limit: int = None) -> List[Dict]:
+    async def run_market_analysis(self, strategy: str) -> List[Dict]:
         """
         시장 분석 (2단계 필터링)을 수행합니다.
         1. 1차 필터링 (HTS 조건검색) 결과를 DB에서 가져옵니다.
