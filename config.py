@@ -19,7 +19,7 @@ class APIConfig:
     KIS_BASE_URL = "https://openapi.koreainvestment.com:9443"
     KIS_APP_KEY = os.getenv("KIS_APP_KEY", "")
     KIS_APP_SECRET = os.getenv("KIS_APP_SECRET", "")
-    KIS_VIRTUAL_ACCOUNT = True
+    KIS_VIRTUAL_ACCOUNT = False
     
     # 네이버 뉴스 API
     NAVER_CLIENT_ID = os.getenv("NAVER_CLIENT_ID", "")
@@ -55,18 +55,6 @@ class DatabaseConfig:
 
 class TradingConfig:
     """매매 및 전략 설정"""
-    # HTS 조건검색식 ID (.env 파일 또는 직접 수정)
-    # 사용자는 KIS HTS에서 생성한 자신의 조건검색식 ID를 여기에 입력해야 합니다.
-    HTS_CONDITIONAL_SEARCH_IDS = {
-        'momentum': os.getenv("HTS_MOMENTUM_ID", "001"),
-        'breakout': os.getenv("HTS_BREAKOUT_ID", "002"),
-        'eod': os.getenv("HTS_EOD_ID", "003"),
-        'supertrend_ema_rsi': os.getenv("HTS_SUPERTREND_ID", "004"), # Supertrend+EMA+RSI 전략
-        'vwap': os.getenv("HTS_VWAP_ID", "005"),                   # VWAP 전략
-        'scalping_3m': os.getenv("HTS_SCALPING_3M_ID", "006"),    # 3분봉 스캘핑 전략
-        'rsi': os.getenv("HTS_RSI_ID", "007"),                     # RSI 전략
-    }
-
     # 기본 설정
     INITIAL_CAPITAL = 10000000  # 초기 자본금 (1천만원)
     MAX_POSITION_SIZE = 0.1     # 최대 포지션 크기 (10%)

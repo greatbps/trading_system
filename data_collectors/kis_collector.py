@@ -361,35 +361,6 @@ class KISCollector:
         self.session: Optional[aiohttp.ClientSession] = None
         self.rate_limiter = RateLimiter(max_requests=20, time_window=1)
         
-        # PyKis integration - KIS 계정 정보 필요
-        self.pykis_api = None
-        if Api and hasattr(config, 'kis_account'):
-            try:
-                # 실제 KIS 계정 정보로 초기화
-                kis_id = getattr(config.kis_account, 'KIS_USER_ID', None)
-                if kis_id:
-                    if self.is_virtual:
-                        self.pykis_api = Api(
-                            virtual_id=kis_id,
-                            virtual_appkey=self.app_key,
-                            virtual_secretkey=self.app_secret
-                        )
-                    else:
-                        self.pykis_api = Api(
-                            id=kis_id,
-                            appkey=self.app_key,
-                            secretkey=self.app_secret
-                        )
-                    self.logger.info("PyKis API 객체 생성 성공")
-                else:
-                    self.logger.warning("KIS 사용자 ID가 설정되지 않음. PyKis 비활성화")
-                    self.pykis_api = None
-            except Exception as e:
-                self.logger.warning(f"PyKis API 초기화 실패: {e}")
-                self.pykis_api = None
-        else:
-            self.logger.warning("PyKis 라이브러리 또는 KIS 계정 설정 없음")
-        
         # Performance metrics
         self.metrics = {
             'requests_made': 0,
@@ -466,23 +437,49 @@ class KISCollector:
         
         await self.rate_limiter.acquire()
         
-        url = f"{self.base_url}{endpoint}"
+        # URL 조합 시 중복 슬래시 방지
+        if self.base_url.endswith('/') and endpoint.startswith('/'):
+            url = f"{self.base_url[:-1]}{endpoint}"
+        elif not self.base_url.endswith('/') and not endpoint.startswith('/'):
+            url = f"{self.base_url}/{endpoint}"
+        else:
+            url = f"{self.base_url}{endpoint}"
+        
         request_start_time = time.time()
         
         for attempt in range(retry_count):
             try:
                 await self.token_manager.ensure_valid_token(self.session)
                 headers = self.token_manager.get_headers(tr_id=tr_id, custtype=custtype)
+
+                # 디버깅 로그 추가 (위치 수정)
+                self.logger.debug(f"---> API Request [Attempt {attempt+1}/{retry_count}] ---")
+                self.logger.debug(f"URL: {method} {url}")
+                self.logger.debug(f"Headers: {headers}")
+                self.logger.debug(f"Params: {params}")
+                self.logger.debug(f"Data: {data}")
+                self.logger.debug("--------------------------------------")
                 
                 async with self.session.request(method, url, params=params, json=data, headers=headers) as response:
                     response_text = await response.text()
                     self.metrics['requests_made'] += 1
                     response_time = time.time() - request_start_time
                     self._update_response_time(response_time)
+
+                    # <--- API Response 로그 추가
+                    self.logger.debug(f"<--- API Response [Status: {response.status}] ---")
+                    self.logger.debug(f"Response Body: {response_text[:500]}...") # 너무 길면 잘라서 표시
+                    self.logger.debug("--------------------------------------")
                     
                     if response.status == 200:
                         try:
                             result = await response.json()
+                            # rt_cd가 0이 아닌 경우, KIS API 레벨의 오류로 간주
+                            if result.get('rt_cd') != '0':
+                                self.logger.warning(f"KIS API Error: {result.get('msg1')}")
+                                # 실패로 간주하고 재시도 로직을 탈 수 있도록 예외 발생
+                                raise KISAPIError(f"KIS API returned error: {result.get('msg1')}", response_data=result)
+
                             self.logger.debug(f"✅ API 요청 성공: {method} {endpoint}")
                             return result
                         except json.JSONDecodeError as e:
@@ -728,45 +725,64 @@ class KISCollector:
             return False
 
     async def get_hts_condition_list(self) -> List[Dict[str, str]]:
-        """HTS 조건식 목록 조회"""
+        """HTS에 저장된 조건식 목록을 API를 통해 직접 조회"""
         try:
-            self.logger.info("📋 config.py에서 HTS 조건식 목록 조회 중...")
-            strategies = getattr(self.config.trading, 'HTS_CONDITIONAL_SEARCH_IDS', {})
-            if not strategies:
-                self.logger.warning("⚠️ config.py에 HTS 전략이 설정되지 않음")
+            self.logger.info("📡 KIS API를 통해 HTS 조건식 목록 조회 중...")
+            
+            result = await self._make_api_request(
+                method="GET",
+                endpoint="/uapi/domestic-stock/v1/quotations/psearch-title",
+                params={"user_id": self.config.kis_account.KIS_USER_ID},
+                tr_id="HHKST03900300",
+                custtype="P"  # 개인 고객 타입 명시
+            )
+
+            # output 또는 output2 필드에서 결과 확인
+            output = result.get('output', result.get('output2', []))
+            if not output:
+                self.logger.warning("⚠️ HTS에 저장된 조건식이 없거나 API 조회에 실패했습니다.")
                 return []
+
+            # API 응답 형식을 {'id': 'seq', 'name': 'condition_nm'} 형태로 변환
+            condition_list = [
+                {"id": item.get('seq'), "name": item.get('condition_nm')}
+                for item in output if 'seq' in item and 'condition_nm' in item
+            ]
             
-            condition_list = [{"id": cond_id, "name": name} for name, cond_id in strategies.items()]
-            self.logger.info(f"✅ config에서 {len(condition_list)}개 HTS 조건식 조회")
+            self.logger.info(f"✅ API를 통해 {len(condition_list)}개의 HTS 조건식 목록 조회 성공")
             return condition_list
-            
+
         except Exception as e:
-            self.logger.error(f"❌ config에서 HTS 조건식 목록 조회 실패: {e}")
+            self.logger.error(f"❌ HTS 조건식 목록 조회 실패: {e}")
             return []
 
-    async def get_stocks_by_condition(self, condition_id: str) -> List[str]:
-        """HTS 조건식으로 종목 검색"""
+    async def get_stocks_by_condition(self, condition_id: str, condition_name: str = "") -> List[str]:
+        """HTS 조건식으로 종목 검색 - KIS API 직접 호출"""
         try:
-            if not self.pykis_api:
-                self.logger.warning("PyKis not available for HTS conditions")
+            self.logger.info(f"📊 HTS 조건식 {condition_id} ({condition_name}) 종목 검색 중...")
+
+            # KIS API 직접 호출
+            result = await self._make_api_request(
+                method="GET",
+                endpoint="/uapi/domestic-stock/v1/quotations/psearch-result",
+                params={
+                    "user_id": self.config.kis_account.KIS_USER_ID,
+                    "seq": condition_id
+                },
+                tr_id="HHKST03900400"
+            )
+
+            output = result.get('output2', [])
+            if not output:
+                self.logger.warning(f"⚠️ 조건식 {condition_id} ({condition_name})에 해당하는 종목 없음")
                 return []
-                
-            self.logger.info(f"📊 HTS 조건식 {condition_id} 종목 검색 중...")
-            
-            # PyKis condition 메서드 호출 (동기 함수를 비동기로 래핑)
-            stocks_df = await asyncio.to_thread(self.pykis_api.condition, condition_id)
-            
-            if stocks_df is None or stocks_df.empty:
-                self.logger.warning(f"⚠️ 조건식 {condition_id}에 해당하는 종목 없음")
-                return []
-                
-            # DataFrame index에서 종목 코드 추출
-            valid_stocks = list(stocks_df.index)
-            self.logger.info(f"✅ 조건식 {condition_id}로 {len(valid_stocks)}개 종목 발견")
+
+            valid_stocks = [item['code'] for item in output if 'code' in item]
+            self.logger.info(f"✅ 조건식 {condition_id} ({condition_name})로 {len(valid_stocks)}개 종목 발견")
             return valid_stocks
-            
+
         except Exception as e:
-            self.logger.error(f"❌ 조건식 {condition_id} 검색 실패: {e}")
+            self.logger.error(f"❌ 조건식 {condition_id} ({condition_name}) 검색 실패: {e}")
             return []
 
     async def get_news_data(self, symbol: str, name: str, days: int = 7) -> List[Dict]:
@@ -817,114 +833,33 @@ class KISCollector:
             return []
 
     async def get_filtered_stocks(self, limit: int = 20) -> List[Tuple[str, str]]:
-        """필터링된 종목 리스트 반환 - 실제 KIS API 활용"""
+        """필터링된 종목 리스트 반환 - HTS 조건검색만 사용"""
+        self.logger.info(f"📊 HTS 조건검색을 통한 {limit}개 종목 조회 시작...")
+        
         try:
-            self.logger.info(f"📊 KIS API를 통한 {limit}개 종목 조회 시작...")
-            
-            # 방법 1: HTS 조건검색 활용 (momentum 전략)
-            try:
-                momentum_stocks = await self.get_stocks_by_condition("momentum")
-                if momentum_stocks:
-                    # 종목코드만 있으므로 종목명 조회 필요
-                    stock_list = []
-                    for symbol in momentum_stocks[:limit]:
-                        try:
-                            stock_info = await self.get_stock_info(symbol)
-                            if stock_info:
-                                stock_list.append((symbol, stock_info.name))
-                        except Exception:
-                            stock_list.append((symbol, f"종목{symbol}"))
-                    
-                    if stock_list:
-                        self.logger.info(f"✅ 조건검색으로 {len(stock_list)}개 종목 조회 성공")
-                        return stock_list
-            except Exception as e:
-                self.logger.warning(f"⚠️ 조건검색 실패: {e}")
-            
-            # 방법 2: PyKis stock 메서드 활용 (실제 사용법)
-            if self.pykis_api:
-                try:
-                    # PyKis 2.1.3의 실제 stock 메서드 사용
-                    # 주요 종목들을 하나씩 조회
-                    major_symbols = ["005930", "000660", "035420", "207940", "005380", "006400", "051910", "035720", "028260", "105560"]
-                    stock_list = []
-                    
-                    for symbol in major_symbols[:limit]:
-                        try:
-                            # PyKis의 stock 메서드로 개별 종목 조회
-                            stock_info = await asyncio.to_thread(self.pykis_api.stock, symbol)
-                            if stock_info and hasattr(stock_info, 'name'):
-                                stock_list.append((symbol, stock_info.name))
-                            elif stock_info:
-                                # stock_info가 딕셔너리일 경우
-                                name = stock_info.get('name', f'종목{symbol}')
-                                stock_list.append((symbol, name))
-                        except Exception as e:
-                            self.logger.debug(f"⚠️ {symbol} 개별 조회 실패: {e}")
-                            continue
-                    
-                    if stock_list:
-                        self.logger.info(f"✅ PyKis로 {len(stock_list)}개 종목 조회 성공")
-                        return stock_list
-                        
-                except Exception as e:
-                    self.logger.warning(f"⚠️ PyKis stock 메서드 실패: {e}")
-            
-            # 방법 3: KIS API 직접 호출로 주요 종목 조회 
-            try:
-                top_stocks = await self._get_top_stocks_from_kis_api(limit)
-                if top_stocks:
-                    self.logger.info(f"✅ KIS API 직접 호출로 {len(top_stocks)}개 종목 조회 성공")
-                    return top_stocks
-            except Exception as e:
-                self.logger.warning(f"⚠️ KIS API 직접 호출 실패: {e}")
-            
-            # 방법 4: DB에서 기존 필터링된 종목 조회
-            try:
-                if hasattr(self, 'db_operations') and self.db_operations:
-                    from database.models import FilteredStock, Stock
-                    from sqlalchemy import select
-                    
-                    async with self.db_operations.db_manager.get_async_session() as session:
-                        # 최근 필터링된 종목들 조회
-                        result = await session.execute(
-                            select(FilteredStock.stock_id, Stock.name)
-                            .join(Stock, FilteredStock.stock_id == Stock.id)
-                            .order_by(FilteredStock.filtered_date.desc())
-                            .limit(limit)
-                        )
-                        db_stocks = result.fetchall()
-                        
-                        if db_stocks:
-                            stock_list = [(str(stock_id).zfill(6), name) for stock_id, name in db_stocks]
-                            self.logger.info(f"✅ DB에서 {len(stock_list)}개 종목 조회 성공")
-                            return stock_list
-            except Exception as e:
-                self.logger.warning(f"⚠️ DB 종목 조회 실패: {e}")
-            
-            # 실패 시 빈 리스트 반환
-            self.logger.error("❌ 모든 종목 조회 방법 실패")
-            return []
-            
-        except Exception as e:
-            self.logger.error(f"❌ 종목 조회 실패: {e}")
-            return []
-
-    def _get_top_market_cap_stocks(self, limit: int) -> List[Tuple[str, str]]:
-        """시가총액 상위 종목 조회 (동기 메소드)"""
-        try:
-            # PyKis API를 활용한 시가총액 상위 종목 조회
-            if not self.pykis_api:
+            momentum_stocks = await self.get_stocks_by_condition("momentum")
+            if not momentum_stocks:
+                self.logger.error("❌ HTS 조건검색 결과, 'momentum' 전략에 해당하는 종목이 없습니다.")
                 return []
+
+            stock_list = []
+            for symbol in momentum_stocks[:limit]:
+                try:
+                    stock_info = await self.get_stock_info(symbol)
+                    if stock_info:
+                        stock_list.append((symbol, stock_info.name))
+                    else:
+                        # get_stock_info 실패 시, 이름 없이 추가
+                        stock_list.append((symbol, f"종목{symbol}"))
+                except Exception as e:
+                    self.logger.warning(f"⚠️ {symbol} 정보 조회 실패: {e}")
+                    stock_list.append((symbol, f"종목{symbol}"))
             
-            # 코스피 시가총액 상위 종목 정보 조회
-            df = self.pykis_api.get_market_cap_rank(market="KOSPI", limit=limit)
-            if df is not None and not df.empty:
-                return [(str(code).zfill(6), name) for code, name in df.index[:limit]]
-            
-            return []
+            self.logger.info(f"✅ HTS 조건검색으로 {len(stock_list)}개 종목 조회 성공")
+            return stock_list
+
         except Exception as e:
-            self.logger.warning(f"⚠️ 시가총액 조회 실패: {e}")
+            self.logger.error(f"❌ HTS 조건검색 중 심각한 오류 발생: {e}")
             return []
 
     def _get_stock_news_from_kis(self, symbol: str, name: str, days: int = 7) -> List[Dict]:
@@ -1028,62 +963,102 @@ class KISCollector:
             return []
 
     async def _get_top_stocks_from_kis_api(self, limit: int = 20) -> List[Tuple[str, str]]:
-        """KIS API 직접 호출로 주요 종목 조회"""
+        """KIS API 직접 호출로 KOSPI 200 구성 종목 조회"""
         try:
-            self.logger.info(f"📊 KIS API로 주요 종목 {limit}개 직접 조회 중...")
+            self.logger.info(f"📊 KIS API로 KOSPI 200 구성 종목 {limit}개 조회 중...")
             
-            # KOSPI 시가총액 상위 종목 조회
+            # KOSPI 200 지수 (업종코드: 001)
             result = await self._make_api_request(
                 method="GET",
-                endpoint="/uapi/domestic-stock/v1/quotations/inquire-market-trading-top",
+                endpoint="/uapi/domestic-stock/v1/quotations/inquire-index-constituent-stocks",
                 params={
-                    "FID_COND_MRKT_DIV_CODE": "J",  # KOSPI
-                    "FID_COND_SCR_DIV_CODE": "20174",  # 시가총액 상위
-                    "FID_DIV_CLS_CODE": "0",  # 전체
-                    "FID_TRGT_CLS_CODE": "111111111",  # 전체
-                    "FID_TRGT_EXLS_CLS_CODE": "0000000000",  # 제외없음
-                    "FID_INPUT_ISCD": "0000",  # 전체
-                    "FID_INPUT_CNT_1": str(limit),  # 조회 개수
+                    "FID_COND_MRKT_DIV_CODE": "U",
+                    "FID_INPUT_ISCD": "001",  # KOSPI 200
                 },
-                tr_id="FHPST01740000"
+                tr_id="FHPUP03100000"
             )
             
             output = result.get('output', [])
             if not output:
-                self.logger.warning("⚠️ KIS API 시가총액 상위 조회 결과 없음")
+                self.logger.warning("⚠️ KIS API KOSPI 200 조회 결과 없음")
                 return []
             
-            # 종목 리스트 생성
             stock_list = []
-            for item in output:
-                try:
-                    symbol = item.get('stck_shrn_iscd', '')  # 종목코드
-                    name = item.get('hts_kor_isnm', '')    # 종목명
-                    
-                    if symbol and name:
-                        # 종목코드 6자리 맞추기
-                        symbol = symbol.zfill(6)
-                        # 종목명 정리
-                        clean_name = self._clean_stock_name(name)
-                        stock_list.append((symbol, clean_name))
-                        
-                    if len(stock_list) >= limit:
-                        break
-                        
-                except Exception as e:
-                    self.logger.debug(f"⚠️ 종목 데이터 파싱 실패: {e}")
-                    continue
+            for item in output[:limit]:
+                symbol = item.get('stck_shrn_iscd', '').zfill(6)
+                name = self._clean_stock_name(item.get('hts_kor_isnm', ''))
+                if symbol and name:
+                    stock_list.append((symbol, name))
             
             if stock_list:
-                self.logger.info(f"✅ KIS API로 {len(stock_list)}개 주요 종목 조회 완료")
+                self.logger.info(f"✅ KIS API로 KOSPI 200 {len(stock_list)}개 종목 조회 완료")
                 return stock_list
             else:
-                self.logger.warning("⚠️ KIS API 조회 성공했으나 유효한 종목 없음")
+                self.logger.warning("⚠️ KIS API 조회 성공했으나 유효한 KOSPI 200 종목 없음")
                 return []
                 
         except Exception as e:
-            self.logger.warning(f"⚠️ KIS API 직접 호출 실패: {e}")
+            self.logger.warning(f"⚠️ KIS API KOSPI 200 직접 호출 실패: {e}")
             return []
+
+    async def get_investor_trading_data(self, symbol: str) -> Optional[Dict[str, Any]]:
+        """특정 종목의 투자자별 매매 동향 조회"""
+        try:
+            if not symbol or len(symbol) != 6 or not symbol.isdigit():
+                raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+            
+            self.logger.debug(f"📊 {symbol} 투자자별 매매 동향 조회 중...")
+            
+            today = datetime.now().strftime('%Y%m%d')
+            
+            result = await self._make_api_request(
+                method="GET",
+                endpoint="/uapi/domestic-stock/v1/quotations/inquire-investor-trend",
+                params={
+                    "FID_COND_MRKT_DIV_CODE": "J",
+                    "FID_INPUT_ISCD": symbol,
+                    "FID_INPUT_DATE_1": today,
+                    "FID_INPUT_DATE_2": today,
+                    "FID_PERIOD_DIV_CODE": "D", # 일별
+                    "FID_ORG_ADJ_PRC": "0"
+                },
+                tr_id="FHKST01010400"
+            )
+            
+            output = result.get('output1', [])
+            if not output:
+                self.logger.warning(f"⚠️ {symbol} 투자자별 매매 동향 데이터 없음")
+                return None
+
+            # 최신 데이터 사용
+            latest_data = output[0]
+
+            investor_data = {
+                'foreign': {
+                    'net_buying': self._safe_int_parse(latest_data.get('frgn_ntby_qty', '0')),
+                    'buy_volume': self._safe_int_parse(latest_data.get('frgn_shnu_vol', '0')),
+                    'sell_volume': self._safe_int_parse(latest_data.get('frgn_seln_vol', '0')),
+                },
+                'institution': {
+                    'net_buying': self._safe_int_parse(latest_data.get('orgn_ntby_qty', '0')),
+                    'buy_volume': self._safe_int_parse(latest_data.get('orgn_shnu_vol', '0')),
+                    'sell_volume': self._safe_int_parse(latest_data.get('orgn_seln_vol', '0')),
+                },
+                'individual': {
+                    'net_buying': self._safe_int_parse(latest_data.get('prsn_ntby_qty', '0')),
+                    'buy_volume': self._safe_int_parse(latest_data.get('prsn_shnu_vol', '0')),
+                    'sell_volume': self._safe_int_parse(latest_data.get('prsn_seln_vol', '0')),
+                }
+            }
+            self.logger.debug(f"✅ {symbol} 투자자별 매매 동향 조회 성공")
+            return investor_data
+
+        except KISAPIError as e:
+            self.logger.error(f"❌ {symbol} 투자자별 매매 동향 조회 실패: {e}")
+            return None
+        except Exception as e:
+            self.logger.error(f"❌ {symbol} 투자자별 매매 동향 조회 중 예상치 못한 오류: {e}")
+            return None
 
     async def cleanup(self):
         """리소스 정리"""

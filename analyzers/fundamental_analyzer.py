@@ -40,108 +40,134 @@ class FundamentalAnalyzer:
             return self._get_default_analysis('UNKNOWN')
     
     async def _get_financial_data(self, symbol: str, stock_data: Any) -> Optional[Dict]:
-        """실제 재무 데이터 조회"""
+        """stock_data에서 사용 가능한 모든 재무 데이터 추출"""
         try:
-            # TODO: KIS API 또는 다른 재무 데이터 API에서 실제 데이터 조회
-            # 현재는 stock_data에서 사용 가능한 데이터만 추출
-            
+            if not stock_data:
+                return None
+
             financial_data = {}
+            data_source = stock_data if isinstance(stock_data, dict) else stock_data.__dict__
+
+            # 사용 가능한 모든 재무 관련 필드 추출
+            for field in ['pe_ratio', 'pbr', 'eps', 'bps', 'market_cap', 'shares_outstanding']:
+                if field in data_source and data_source[field] is not None:
+                    financial_data[field] = data_source[field]
             
-            # stock_data에서 기본 재무 지표 추출
-            if hasattr(stock_data, 'pe_ratio') or (isinstance(stock_data, dict) and 'pe_ratio' in stock_data):
-                financial_data['pe_ratio'] = getattr(stock_data, 'pe_ratio', stock_data.get('pe_ratio')) if hasattr(stock_data, 'pe_ratio') else stock_data.get('pe_ratio')
-            
-            if hasattr(stock_data, 'pbr') or (isinstance(stock_data, dict) and 'pbr' in stock_data):
-                financial_data['pbr'] = getattr(stock_data, 'pbr', stock_data.get('pbr')) if hasattr(stock_data, 'pbr') else stock_data.get('pbr')
-            
-            if hasattr(stock_data, 'market_cap') or (isinstance(stock_data, dict) and 'market_cap' in stock_data):
-                financial_data['market_cap'] = getattr(stock_data, 'market_cap', stock_data.get('market_cap')) if hasattr(stock_data, 'market_cap') else stock_data.get('market_cap')
-            
+            self.logger.debug(f"Extracted financial data for {symbol}: {financial_data}")
             return financial_data if financial_data else None
             
         except Exception as e:
-            self.logger.debug(f"⚠️ {symbol} 재무 데이터 조회 실패: {e}")
+            self.logger.debug(f"⚠️ {symbol} 재무 데이터 추출 실패: {e}")
             return None
     
     async def _analyze_financial_metrics(self, financial_data: Dict, stock_data: Any) -> Dict[str, Any]:
         """실제 재무 지표 분석"""
         try:
-            score = 50.0  # 기본 점수
-            
+            # 점수 초기화
+            pe_score, pbr_score, stability_score, growth_score, profitability_score = 50, 50, 50, 50, 50
+
             # PE 비율 분석
             pe_ratio = financial_data.get('pe_ratio')
-            pe_score = 50
-            if pe_ratio:
-                if 8 <= pe_ratio <= 15:
-                    pe_score = 80  # 적정 밸류에이션
-                elif 5 <= pe_ratio < 8:
-                    pe_score = 70  # 저평가
-                elif 15 < pe_ratio <= 25:
-                    pe_score = 40  # 약간 고평가
-                elif pe_ratio > 25:
-                    pe_score = 20  # 고평가
+            if pe_ratio and pe_ratio > 0:
+                if 5 <= pe_ratio <= 12:
+                    pe_score = 90  # 이상적
+                elif 12 < pe_ratio <= 18:
+                    pe_score = 70  # 양호
                 elif pe_ratio < 5:
-                    pe_score = 30  # 너무 저평가 (위험)
+                    pe_score = 40  # 너무 낮음 (위험 가능성)
+                else:
+                    pe_score = 30  # 고평가
             
             # PBR 분석
             pbr = financial_data.get('pbr')
-            pbr_score = 50
-            if pbr:
-                if 0.8 <= pbr <= 1.5:
-                    pbr_score = 80  # 적정 수준
-                elif 0.5 <= pbr < 0.8:
-                    pbr_score = 70  # 저평가
-                elif 1.5 < pbr <= 2.5:
-                    pbr_score = 40  # 약간 고평가
-                elif pbr > 2.5:
-                    pbr_score = 20  # 고평가
+            if pbr and pbr > 0:
+                if 0.5 <= pbr <= 1.2:
+                    pbr_score = 90 # 이상적
+                elif 1.2 < pbr <= 2.0:
+                    pbr_score = 70 # 양호
                 elif pbr < 0.5:
-                    pbr_score = 30  # 위험 수준
-            
+                    pbr_score = 40 # 너무 낮음 (위험 가능성)
+                else:
+                    pbr_score = 30 # 고평가
+
+            # 성장성 (EPS) 분석 - 현재는 값의 유무만 판단
+            eps = financial_data.get('eps')
+            if eps and eps > 0:
+                growth_score = 75 # 긍정적 EPS
+            elif eps is not None and eps <= 0:
+                growth_score = 25 # 부정적 EPS
+
+            # 수익성 (ROE) 근사치 분석
+            if pe_ratio and pbr and pe_ratio > 0:
+                roe_approx = (pbr / pe_ratio) * 100
+                if roe_approx >= 15:
+                    profitability_score = 90 # 매우 높음
+                elif 10 <= roe_approx < 15:
+                    profitability_score = 75 # 높음
+                elif 5 <= roe_approx < 10:
+                    profitability_score = 60 # 양호
+                else:
+                    profitability_score = 40 # 낮음
+            else:
+                roe_approx = None
+
             # 시가총액 기반 안정성 점수
             market_cap = financial_data.get('market_cap', 0)
-            stability_score = 50
-            if market_cap > 10000:  # 10조 이상
-                stability_score = 80
-            elif market_cap > 5000:  # 5조 이상
-                stability_score = 70
-            elif market_cap > 1000:  # 1조 이상
-                stability_score = 60
-            elif market_cap > 500:  # 5000억 이상
-                stability_score = 50
-            else:
-                stability_score = 30  # 소형주
+            if market_cap > 10000: stability_score = 90
+            elif market_cap > 5000: stability_score = 80
+            elif market_cap > 1000: stability_score = 70
+            else: stability_score = 50
             
-            # 종합 점수 계산
-            overall_score = (pe_score * 0.4 + pbr_score * 0.4 + stability_score * 0.2)
+            # 종합 점수 계산 (가중치 조정)
+            weights = {'pe': 0.25, 'pbr': 0.25, 'stability': 0.2, 'growth': 0.15, 'profitability': 0.15}
+            overall_score = (
+                pe_score * weights['pe'] + 
+                pbr_score * weights['pbr'] + 
+                stability_score * weights['stability'] + 
+                growth_score * weights['growth'] + 
+                profitability_score * weights['profitability']
+            )
             
             return {
                 'overall_score': round(overall_score, 1),
-                'signal_strength': round(overall_score * 0.8, 1),  # 보수적 접근
-                'confidence': min(0.8, overall_score / 100),
                 'pe_ratio': pe_ratio,
                 'pbr': pbr,
+                'eps': eps,
+                'bps': financial_data.get('bps'),
                 'market_cap': market_cap,
-                'pe_score': pe_score,
-                'pbr_score': pbr_score,
-                'stability_score': stability_score,
-                'financial_health': 'GOOD' if overall_score >= 70 else 'FAIR' if overall_score >= 50 else 'POOR',
-                'valuation': 'UNDERVALUED' if overall_score >= 70 else 'FAIR' if overall_score >= 50 else 'OVERVALUED'
+                'roe_approx': roe_approx,
+                'scores': {
+                    'pe': pe_score,
+                    'pbr': pbr_score,
+                    'stability': stability_score,
+                    'growth': growth_score,
+                    'profitability': profitability_score
+                },
+                'financial_health': 'GOOD' if overall_score >= 75 else 'FAIR' if overall_score >= 55 else 'POOR',
+                'valuation': 'UNDERVALUED' if (pe_score + pbr_score) / 2 >= 75 else 'FAIR' if (pe_score + pbr_score) / 2 >= 55 else 'OVERVALUED'
             }
             
         except Exception as e:
             self.logger.error(f"❌ 재무 지표 분석 실패: {e}")
-            return self._get_default_analysis('UNKNOWN')
+            return self._get_default_analysis(financial_data.get('symbol', 'UNKNOWN'))
     
     def _get_default_analysis(self, symbol: str) -> Dict[str, Any]:
         """기본 분석 결과 반환 (데이터 없을 때)"""
         return {
             'overall_score': 50.0,
-            'signal_strength': 50.0,
-            'confidence': 0.5,
             'pe_ratio': None,
             'pbr': None,
+            'eps': None,
+            'bps': None,
             'market_cap': 0,
+            'roe_approx': None,
+            'scores': {
+                'pe': 50,
+                'pbr': 50,
+                'stability': 50,
+                'growth': 50,
+                'profitability': 50
+            },
             'financial_health': 'UNKNOWN',
             'valuation': 'UNKNOWN',
             'note': f'{symbol} 재무 데이터 없음 - 기본값 사용'

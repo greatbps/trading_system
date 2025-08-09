@@ -3788,3 +3788,315 @@
 07:01:34 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
 07:01:34 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
 07:01:43 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+07:46:42 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:46:42 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:46:45 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:46:47 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:46:47 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+07:46:47 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+07:46:47 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+07:46:47 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:46:47 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+07:46:47 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+07:46:47 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+07:46:47 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+07:46:56 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+07:46:56 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:46:56 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+07:46:59 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+07:46:59 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+07:46:59 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+07:46:59 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:47:14 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+07:47:14 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+07:47:16 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+07:47:19 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+07:47:19 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+07:47:19 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+07:47:19 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+07:47:19 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+07:47:19 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+07:47:19 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+07:47:19 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+07:47:19 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+07:47:28 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+07:47:28 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+07:47:28 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+07:47:30 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+07:47:30 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+07:47:30 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+07:47:30 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+07:47:31 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+10:01:45 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:01:45 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:01:47 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:01:50 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:01:50 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:01:50 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:01:50 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:01:50 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:01:50 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:01:50 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:01:50 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:01:50 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:01:59 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:01:59 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:01:59 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:02:01 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:02:01 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:02:02 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:02:02 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:02:05 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:02:05 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:02:07 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:02:09 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:02:09 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:02:09 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:02:09 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:02:09 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:02:09 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:02:09 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:02:09 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:02:09 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:02:19 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:02:19 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:02:19 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:02:21 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:02:21 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:02:21 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:02:21 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:02:25 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+10:06:17 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:06:17 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:06:20 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:06:22 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:06:22 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:06:22 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:06:22 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:06:22 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:06:22 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:06:22 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:06:22 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:06:22 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:06:31 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:06:32 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:06:32 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:06:34 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:06:34 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:06:35 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:06:35 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:06:40 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:06:40 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:06:43 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:06:45 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:06:45 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:06:45 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:06:45 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:06:45 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:06:45 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:06:45 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:06:45 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:06:45 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:06:54 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:06:54 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:06:54 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:06:56 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:06:56 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:06:56 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:06:56 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:07:01 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+10:13:24 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:13:25 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:13:27 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:13:30 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:13:30 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:13:30 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:13:30 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:13:30 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:13:30 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:13:30 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:13:30 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:13:30 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:13:39 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:13:39 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:13:39 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:13:41 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:13:41 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:13:42 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:13:42 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:13:51 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:13:51 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:13:53 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:13:56 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:13:56 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:13:56 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:13:56 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:13:56 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:13:56 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:13:56 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:13:56 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:13:56 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:14:05 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:14:05 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:14:05 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:14:07 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:14:07 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:14:07 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:14:07 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:14:09 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+10:16:27 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:16:27 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:16:29 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:16:32 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:16:32 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:16:32 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:16:32 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:16:32 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:16:32 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:16:32 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:16:32 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:16:32 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:16:41 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:16:41 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:16:41 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:16:43 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:16:43 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:16:44 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:16:44 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:17:11 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:17:11 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:17:14 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:17:16 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:17:16 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:17:16 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:17:16 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:17:16 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:17:16 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:17:16 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:17:16 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:17:16 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:17:25 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:17:25 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:17:25 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:17:27 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:17:27 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:17:27 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:17:27 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:17:29 | TradingSystem | ERROR | ❌ 모든 종목 조회 방법 실패
+10:24:15 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:24:16 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:24:18 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:24:21 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:24:21 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:24:21 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:24:21 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:24:21 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:24:21 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:24:21 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:24:21 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:24:21 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:24:30 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:24:30 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:24:30 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:24:32 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:24:32 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:24:33 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:24:33 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:24:36 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:24:36 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:24:39 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:24:41 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:24:41 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:24:41 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:24:41 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:24:41 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:24:41 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:24:41 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:24:41 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:24:41 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:24:50 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:24:50 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:24:50 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:24:52 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:24:52 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:24:52 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:24:52 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:24:53 | TradingSystem | ERROR | ❌ HTS 조건검색 실패 또는 결과 없음.
+10:26:13 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:26:13 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:26:16 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:26:18 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:26:18 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:26:18 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:26:18 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:26:18 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:26:18 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:26:18 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:26:18 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:26:18 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:26:27 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:26:27 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:26:27 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:26:29 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:26:29 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:26:30 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:26:30 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:26:34 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:26:34 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:26:36 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:26:38 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:26:38 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:26:38 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:26:38 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:26:38 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:26:38 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:26:38 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:26:38 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:26:38 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:26:47 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:26:47 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:26:47 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:26:50 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:26:50 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:26:50 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:26:50 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:26:51 | TradingSystem | ERROR | ❌ HTS 조건검색 실패 또는 결과 없음.
+10:29:00 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:29:00 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:29:03 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:29:05 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:29:05 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:29:05 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:29:05 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:29:05 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:29:05 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:29:05 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:29:05 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:29:05 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:29:15 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:29:15 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:29:15 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:29:17 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:29:17 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:29:18 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:29:18 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:29:43 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+10:29:43 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+10:29:45 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+10:29:47 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+10:29:47 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+10:29:47 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+10:29:47 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+10:29:47 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+10:29:47 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+10:29:47 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+10:29:47 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+10:29:47 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+10:29:56 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+10:29:56 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+10:29:56 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+10:29:59 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+10:29:59 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+10:29:59 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+10:29:59 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+10:30:03 | TradingSystem | ERROR | ❌ HTS 조건검색 실패 또는 결과 없음.

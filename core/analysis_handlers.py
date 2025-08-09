@@ -66,63 +66,21 @@ class AnalysisHandlers:
             return False
     
     async def _safe_get_stocks(self, limit: int) -> List[Tuple[str, str]]:
-        """안전한 종목 조회 - 실제 KIS API 우선 사용"""
+        """안전한 종목 조회 - 폴백 로직 없이 data_collector만 사용"""
         try:
-            # 방법 1: data_collector.get_filtered_stocks 직접 호출 (KIS API 활용)
-            if hasattr(self.system.data_collector, 'get_filtered_stocks'):
-                try:
-                    console.print("[dim]KIS API 종목 조회 중...[/dim]")
-                    stocks = await self.system.data_collector.get_filtered_stocks(limit)
-                    if stocks:
-                        console.print(f"[dim]KIS API로 {len(stocks)}개 종목 조회 성공[/dim]")
-                        return stocks
-                except Exception as e:
-                    console.print(f"[dim]KIS API 조회 실패: {e}[/dim]")
+            console.print("[dim]HTS 조건검색으로 종목 조회 시도...[/dim]")
+            stocks = await self.system.data_collector.get_filtered_stocks(limit)
+            if not stocks:
+                console.print("[red]❌ HTS 조건검색을 통해 종목을 가져오지 못했습니다. PyKis 초기화 및 HTS 설정을 확인하세요.[/red]")
+                self.logger.error("❌ HTS 조건검색 실패 또는 결과 없음.")
+                return []
             
-            # 방법 2: data_utils.safe_get_filtered_stocks 사용
-            try:
-                console.print("[dim]data_utils 종목 조회 중...[/dim]")
-                stocks = await self.data_utils.safe_get_filtered_stocks(
-                    self.system.data_collector, 
-                    limit=limit
-                )
-                if stocks:
-                    console.print(f"[dim]data_utils로 {len(stocks)}개 종목 조회 성공[/dim]")
-                    return stocks
-            except Exception as e:
-                console.print(f"[dim]data_utils 조회 실패: {e}[/dim]")
-            
-            # 방법 3: collect_filtered_stocks 사용
-            if hasattr(self.system.data_collector, 'collect_filtered_stocks'):
-                try:
-                    console.print("[dim]collect_filtered_stocks 사용 중...[/dim]")
-                    filtered_data = await self.system.data_collector.collect_filtered_stocks(max_stocks=limit)
-                    if filtered_data:
-                        stocks = [(stock['symbol'], stock['name']) for stock in filtered_data]
-                        console.print(f"[dim]collect_filtered_stocks로 {len(stocks)}개 종목 조회 성공[/dim]")
-                        return stocks
-                except Exception as e:
-                    console.print(f"[dim]collect_filtered_stocks 실패: {e}[/dim]")
-            
-            # 방법 4: 기본 종목 리스트 사용
-            if hasattr(self.system.data_collector, 'get_stock_list'):
-                try:
-                    console.print("[dim]기본 종목 리스트 조회 중...[/dim]")
-                    all_stocks = await self.system.data_collector.get_stock_list()
-                    if all_stocks:
-                        stocks = all_stocks[:limit]
-                        console.print(f"[dim]기본 리스트로 {len(stocks)}개 종목 조회 성공[/dim]")
-                        return stocks
-                except Exception as e:
-                    console.print(f"[dim]기본 리스트 조회 실패: {e}[/dim]")
-            
-            # 실패 시 빈 리스트 반환
-            console.print("[red]모든 종목 조회 방법이 실패했습니다.[/red]")
-            self.logger.error("❌ 모든 종목 조회 방법 실패")
-            return []
+            console.print(f"[green]✅ HTS 조건검색으로 {len(stocks)}개 종목 조회 성공[/green]")
+            return stocks
             
         except Exception as e:
-            self.logger.error(f"❌ 종목 조회 실패: {e}")
+            self.logger.error(f"❌ 종목 조회 중 심각한 오류 발생: {e}")
+            console.print(f"[red]❌ 종목 조회 실패: {e}[/red]")
             return []
     
     
@@ -221,8 +179,12 @@ class AnalysisHandlers:
             else:
                 # 기본 딕셔너리 사용
                 stock_data = stock_info
+
+            # 3. SupplyDemandAnalyzer에 kis_collector 설정
+            if hasattr(self.system.analysis_engine, 'supply_demand_analyzer'):
+                self.system.analysis_engine.supply_demand_analyzer.set_kis_collector(self.system.data_collector)
             
-            # 3. 분석 엔진을 통한 종합 분석
+            # 4. 분석 엔진을 통한 종합 분석
             analysis_result = await self.system.analysis_engine.analyze_comprehensive(
                 symbol, name, stock_data, strategy="momentum"
             )

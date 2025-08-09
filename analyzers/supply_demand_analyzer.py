@@ -16,34 +16,43 @@ from utils.logger import get_logger
 class SupplyDemandAnalyzer:
     """수급 분석기 - 외국인/기관/개인 매매동향 분석"""
     
-    def __init__(self, config):
+    def __init__(self, config, kis_collector=None):
         self.config = config
         self.logger = get_logger("SupplyDemandAnalyzer")
-        
-        # KIS API 수집기 참조
-        self.kis_collector = None
+        self.kis_collector = kis_collector
+
+    def set_kis_collector(self, kis_collector):
+        """KIS Collector를 설정합니다."""
+        self.kis_collector = kis_collector
     
-    def analyze(self, stock_data: Any) -> Dict[str, Any]:
+    async def analyze(self, stock_data: Any) -> Dict[str, Any]:
         """종합 수급 분석"""
         try:
-            #symbol = getattr(stock_data, 'symbol', 'UNKNOWN')
             symbol = stock_data.get('symbol', 'UNKNOWN') if isinstance(stock_data, dict) else getattr(stock_data, 'symbol', 'UNKNOWN')
             self.logger.info(f"📊 수급 분석 시작 - {symbol}")
-            
+
+            # KIS API에서 투자자별 매매 동향 데이터 한 번에 조회
+            investor_data = None
+            if self.kis_collector:
+                try:
+                    investor_data = await self.kis_collector.get_investor_trading_data(symbol)
+                except Exception as e:
+                    self.logger.warning(f"⚠️ KIS API 투자자 정보 조회 실패: {e}")
+
             # 1. 외국인 매매동향 분석
-            foreign_analysis = self._analyze_foreign_trading(stock_data)
+            foreign_analysis = self._analyze_foreign_trading(stock_data, investor_data.get('foreign') if investor_data else None)
             
             # 2. 기관 매매동향 분석
-            institution_analysis = self._analyze_institution_trading(stock_data)
+            institution_analysis = self._analyze_institution_trading(stock_data, investor_data.get('institution') if investor_data else None)
             
             # 3. 개인 매매동향 분석
-            individual_analysis = self._analyze_individual_trading(stock_data)
+            individual_analysis = self._analyze_individual_trading(stock_data, investor_data.get('individual') if investor_data else None)
             
             # 4. 거래량 패턴 분석
             volume_analysis = self._analyze_volume_patterns(stock_data)
             
-            # 5. 대량거래 분석
-            large_order_analysis = self._analyze_large_orders(stock_data)
+            # 5. 대량거래 분석 (현재는 추정)
+            large_order_analysis = self._estimate_large_orders(stock_data)
             
             # 6. 종합 수급 점수 계산
             overall_score = self._calculate_overall_supply_demand_score(
@@ -72,21 +81,16 @@ class SupplyDemandAnalyzer:
             self.logger.error(f"❌ 수급 분석 실패: {e}")
             return self._get_fallback_analysis()
     
-    def _analyze_foreign_trading(self, stock_data: Any) -> Dict[str, Any]:
+    def _analyze_foreign_trading(self, stock_data: Any, foreign_data: Optional[Dict]) -> Dict[str, Any]:
         """외국인 매매동향 분석"""
         try:
-            symbol = getattr(stock_data, 'symbol', 'UNKNOWN')
-            
-            # KIS API에서 외국인 매매동향 데이터 조회 시도 (동기 버전 사용)
-            foreign_data = self._fetch_foreign_trading_data_sync(symbol)
-            
             if foreign_data:
-                # 실제 데이터 분석
                 net_buying = foreign_data.get('net_buying', 0)
-                trading_value = foreign_data.get('trading_value', 0)
-                buy_ratio = foreign_data.get('buy_ratio', 0)
+                buy_volume = foreign_data.get('buy_volume', 0)
+                sell_volume = foreign_data.get('sell_volume', 0)
+                trading_value = (buy_volume + sell_volume) * getattr(stock_data, 'current_price', 0)
+                buy_ratio = buy_volume / (buy_volume + sell_volume) if (buy_volume + sell_volume) > 0 else 0.5
                 
-                # 점수 계산
                 score = self._calculate_foreign_score(net_buying, trading_value, buy_ratio)
                 
                 return {
@@ -96,31 +100,25 @@ class SupplyDemandAnalyzer:
                     'score': score,
                     'trend': self._determine_trading_trend(net_buying, buy_ratio),
                     'strength': abs(net_buying) / max(trading_value, 1) if trading_value > 0 else 0,
-                    'recent_pattern': foreign_data.get('recent_pattern', 'neutral')
+                    'recent_pattern': 'real_data'
                 }
             else:
-                # 데이터 없을 때 추정 분석
                 return self._estimate_foreign_trading(stock_data)
                 
         except Exception as e:
             self.logger.warning(f"⚠️ 외국인 매매동향 분석 실패: {e}")
             return self._estimate_foreign_trading(stock_data)
     
-    def _analyze_institution_trading(self, stock_data: Any) -> Dict[str, Any]:
+    def _analyze_institution_trading(self, stock_data: Any, institution_data: Optional[Dict]) -> Dict[str, Any]:
         """기관 매매동향 분석"""
         try:
-            symbol = getattr(stock_data, 'symbol', 'UNKNOWN')
-            
-            # KIS API에서 기관 매매동향 데이터 조회 시도 (동기화)
-            institution_data = self._fetch_institution_trading_data_sync(symbol)
-            
             if institution_data:
-                # 실제 데이터 분석
                 net_buying = institution_data.get('net_buying', 0)
-                trading_value = institution_data.get('trading_value', 0)
-                buy_ratio = institution_data.get('buy_ratio', 0)
-                
-                # 점수 계산
+                buy_volume = institution_data.get('buy_volume', 0)
+                sell_volume = institution_data.get('sell_volume', 0)
+                trading_value = (buy_volume + sell_volume) * getattr(stock_data, 'current_price', 0)
+                buy_ratio = buy_volume / (buy_volume + sell_volume) if (buy_volume + sell_volume) > 0 else 0.5
+
                 score = self._calculate_institution_score(net_buying, trading_value, buy_ratio)
                 
                 return {
@@ -130,30 +128,25 @@ class SupplyDemandAnalyzer:
                     'score': score,
                     'trend': self._determine_trading_trend(net_buying, buy_ratio),
                     'strength': abs(net_buying) / max(trading_value, 1) if trading_value > 0 else 0,
-                    'recent_pattern': institution_data.get('recent_pattern', 'neutral')
+                    'recent_pattern': 'real_data'
                 }
             else:
-                # 데이터 없을 때 추정 분석
                 return self._estimate_institution_trading(stock_data)
                 
         except Exception as e:
             self.logger.warning(f"⚠️ 기관 매매동향 분석 실패: {e}")
             return self._estimate_institution_trading(stock_data)
     
-    def _analyze_individual_trading(self, stock_data: Any) -> Dict[str, Any]:
+    def _analyze_individual_trading(self, stock_data: Any, individual_data: Optional[Dict]) -> Dict[str, Any]:
         """개인 매매동향 분석"""
         try:
-            symbol = getattr(stock_data, 'symbol', 'UNKNOWN')
-            
-            # 개인 투자자는 보통 외국인, 기관과 반대 방향
-            # 실제 데이터가 있다면 API에서 조회 (동기화)
-            individual_data = self._fetch_individual_trading_data_sync(symbol)
-            
             if individual_data:
                 net_buying = individual_data.get('net_buying', 0)
-                trading_value = individual_data.get('trading_value', 0)
-                buy_ratio = individual_data.get('buy_ratio', 0)
-                
+                buy_volume = individual_data.get('buy_volume', 0)
+                sell_volume = individual_data.get('sell_volume', 0)
+                trading_value = (buy_volume + sell_volume) * getattr(stock_data, 'current_price', 0)
+                buy_ratio = buy_volume / (buy_volume + sell_volume) if (buy_volume + sell_volume) > 0 else 0.5
+
                 score = self._calculate_individual_score(net_buying, trading_value, buy_ratio)
                 
                 return {
@@ -163,7 +156,7 @@ class SupplyDemandAnalyzer:
                     'score': score,
                     'trend': self._determine_trading_trend(net_buying, buy_ratio),
                     'strength': abs(net_buying) / max(trading_value, 1) if trading_value > 0 else 0,
-                    'recent_pattern': individual_data.get('recent_pattern', 'neutral')
+                    'recent_pattern': 'real_data'
                 }
             else:
                 return self._estimate_individual_trading(stock_data)
@@ -219,101 +212,8 @@ class SupplyDemandAnalyzer:
             }
     
     def _analyze_large_orders(self, stock_data: Any) -> Dict[str, Any]:
-        """대량거래 분석"""
-        try:
-            symbol = getattr(stock_data, 'symbol', 'UNKNOWN')
-            current_volume = getattr(stock_data, 'volume', 0)
-            trading_value = getattr(stock_data, 'trading_value', 0)
-            
-            # 대량거래 데이터 조회 시도 (동기화)
-            large_order_data = self._fetch_large_order_data_sync(symbol)
-            
-            if large_order_data:
-                large_buy_orders = large_order_data.get('large_buy_orders', 0)
-                large_sell_orders = large_order_data.get('large_sell_orders', 0)
-                net_large_orders = large_buy_orders - large_sell_orders
-                
-                # 대량거래 비중
-                large_order_ratio = (large_buy_orders + large_sell_orders) / max(current_volume, 1)
-                
-                return {
-                    'large_buy_orders': large_buy_orders,
-                    'large_sell_orders': large_sell_orders,
-                    'net_large_orders': net_large_orders,
-                    'large_order_ratio': large_order_ratio,
-                    'large_order_trend': self._determine_large_order_trend(net_large_orders),
-                    'block_trade_detected': large_order_ratio > 0.3,
-                    'unusual_activity': self._detect_unusual_trading_activity(large_order_data)
-                }
-            else:
-                # 데이터 없을 때 추정
-                return self._estimate_large_orders(stock_data)
-                
-        except Exception as e:
-            self.logger.warning(f"⚠️ 대량거래 분석 실패: {e}")
-            return self._estimate_large_orders(stock_data)
-    
-    # API 데이터 조회 메서드들 (동기화 버전 추가)
-    def _fetch_foreign_trading_data_sync(self, symbol: str) -> Optional[Dict]:
-        """외국인 매매동향 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
-        try:
-            # TODO: 실제 KIS API 외국인 매매동향 API 호출
-            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
-            self.logger.debug(f"⚠️ {symbol} 외국인 매매동향 실제 API 구현 필요")
-            return None
-        except Exception as e:
-            self.logger.debug(f"⚠️ 외국인 매매동향 데이터 조회 실패: {e}")
-            return None
-    
-    def _fetch_institution_trading_data_sync(self, symbol: str) -> Optional[Dict]:
-        """기관 매매동향 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
-        try:
-            # TODO: 실제 KIS API 기관 매매동향 API 호출
-            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
-            self.logger.debug(f"⚠️ {symbol} 기관 매매동향 실제 API 구현 필요")
-            return None
-        except Exception as e:
-            self.logger.debug(f"⚠️ 기관 매매동향 데이터 조회 실패: {e}")
-            return None
-    
-    def _fetch_individual_trading_data_sync(self, symbol: str) -> Optional[Dict]:
-        """개인 매매동향 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
-        try:
-            # TODO: 실제 KIS API 개인 매매동향 API 호출
-            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
-            self.logger.debug(f"⚠️ {symbol} 개인 매매동향 실제 API 구현 필요")
-            return None
-        except Exception as e:
-            self.logger.debug(f"⚠️ 개인 매매동향 데이터 조회 실패: {e}")
-            return None
-    
-    def _fetch_large_order_data_sync(self, symbol: str) -> Optional[Dict]:
-        """대량거래 데이터 조회 (동기화) - 실제 KIS API 연동 필요"""
-        try:
-            # TODO: 실제 KIS API 대량거래 또는 체결내역 API 호출
-            # 현재는 데이터 없음을 반환하여 fallback 로직 사용
-            self.logger.debug(f"⚠️ {symbol} 대량거래 실제 API 구현 필요")
-            return None
-        except Exception as e:
-            self.logger.debug(f"⚠️ 대량거래 데이터 조회 실패: {e}")
-            return None
-
-    # 기존 async 메서드들 - 동기 버전으로 대체됨
-    async def _fetch_foreign_trading_data(self, symbol: str) -> Optional[Dict]:
-        """외국인 매매동향 데이터 조회 - 동기 버전 사용"""
-        return self._fetch_foreign_trading_data_sync(symbol)
-    
-    async def _fetch_institution_trading_data(self, symbol: str) -> Optional[Dict]:
-        """기관 매매동향 데이터 조회 - 동기 버전 사용"""
-        return self._fetch_institution_trading_data_sync(symbol)
-    
-    async def _fetch_individual_trading_data(self, symbol: str) -> Optional[Dict]:
-        """개인 매매동향 데이터 조회 - 동기 버전 사용"""
-        return self._fetch_individual_trading_data_sync(symbol)
-    
-    async def _fetch_large_order_data(self, symbol: str) -> Optional[Dict]:
-        """대량거래 데이터 조회 - 동기 버전 사용"""
-        return self._fetch_large_order_data_sync(symbol)
+        """대량거래 분석 (현재는 추정치 사용)"""
+        return self._estimate_large_orders(stock_data)
     
     # 점수 계산 메서드들
     def _calculate_foreign_score(self, net_buying: float, trading_value: float, buy_ratio: float) -> float:
