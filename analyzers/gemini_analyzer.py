@@ -112,24 +112,19 @@ class GeminiAnalyzer:
         
         raise Exception(f"Gemini CLI 호출 {max_retries}회 모두 실패")
     
-    async def analyze_news_sentiment(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:
-        """뉴스 데이터를 바탕으로 감성 분석 수행 - CLI 기반"""
+    async def analyze_news_sentiment(self, symbol: str, company_name: str, news_data: List[Dict], period_name: str = "종합") -> Dict[str, Any]:
+        """뉴스 데이터를 바탕으로 감성 분석 수행 - CLI 기반 (기간별 분석 추가)"""
         await self._check_gemini_cli_async()
         if not self.cli_available or not news_data:
             return self._get_default_sentiment()
         
         try:
             # 뉴스 텍스트 준비
-            news_texts = []
-            for news in news_data:  # 전체 뉴스 분석 (10개 제한 제거)
-                title = news.get('title', '')
-                description = news.get('description', '')
-                news_texts.append(f"제목: {title}\n내용: {description}")
-            
+            news_texts = [f"제목: {news.get('title', '')}\n내용: {news.get('description', '')}" for news in news_data]
             news_content = "\n\n".join(news_texts)
             
-            # Gemini CLI용 프롬프트 구성
-            prompt = self._build_sentiment_prompt(symbol, company_name, news_content)
+            # Gemini CLI용 프롬프트 구성 (기간별)
+            prompt = self._build_sentiment_prompt(symbol, company_name, news_content, period_name)
             
             # CLI를 통한 분석 수행
             response = await self._call_gemini_cli(prompt)
@@ -137,11 +132,11 @@ class GeminiAnalyzer:
             # JSON 응답 파싱
             result = self._parse_sentiment_response(response)
             
-            self.logger.info(f"✅ Gemini CLI 감성 분석 완료 - {symbol}: {result.get('sentiment', 'UNKNOWN')}")
+            self.logger.info(f"✅ Gemini CLI '{period_name}' 감성 분석 완료 - {symbol}: {result.get('sentiment', 'UNKNOWN')}")
             return result
             
         except Exception as e:
-            self.logger.error(f"❌ Gemini CLI 감성 분석 실패 ({symbol}): {e}")
+            self.logger.error(f"❌ Gemini CLI '{period_name}' 감성 분석 실패 ({symbol}): {e}")
             return self._get_default_sentiment()
     
     async def analyze_market_impact(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:
@@ -176,78 +171,44 @@ class GeminiAnalyzer:
             self.logger.error(f"❌ Gemini CLI 시장 영향도 분석 실패 ({symbol}): {e}")
             return self._get_default_market_impact()
     
-    def _build_sentiment_prompt(self, symbol: str, company_name: str, news_content: str) -> str:
-        """감성 분석용 프롬프트 구성"""
+    def _build_sentiment_prompt(self, symbol: str, company_name: str, news_content: str, period_name: str) -> str:
+        """감성 분석용 프롬프트 구성 (재료 관점 분석)"""
         return f"""
-한국 주식 시장 전문가로서 다음 뉴스들을 분석하여 {company_name}({symbol})에 대한 감성 분석을 수행해주세요.
-분석 시 다음 단기/중기/장기 재료의 정의를 참고하여 전망을 제시해주세요.
+# 지시사항
+당신은 한국 주식 시장의 유능한 애널리스트입니다. 주어진 최신 뉴스들을 바탕으로 '{company_name}({symbol})'의 주가에 영향을 미칠 재료들을 분석하고, 단기, 중기, 장기적 관점에서 투자 심리를 평가해주세요.
 
-# 재료 분류 정의
-## 단기 재료 (수일 ~ 1개월 이내 영향)
-- 인수합병(M&A) 공시
-- 제3자 배정 유상증자
-- 신규 사업 진출 발표
-- 무상증자
-- 공개매수
-- 자회사 상장 추진
-- 특허권 취득
-- 회사 분할(인적분할, 물적분할)
-- 신약 개발 임상 결과 발표(1상, 2상, 3상 등)
-- 정부 정책 수혜(규제 완화, 보조금 지급 등)
-- 신규 수주 계약 체결(대규모 프로젝트)
-- 주가 급등에 따른 투자경고·거래정지 등 이슈
-- 특정 테마 부각(예: AI, 2차전지, 로봇, 방산 등)
-- 기관·외국인 대량 매수세 유입
-- 주요 주주 지분 변동 공시
+# 재료 분류 기준
+- **단기 재료 (1개월 이내)**: 수급, 단기 이벤트, 기술적 지표, 테마성 뉴스 등 주가에 즉각적이고 변동성이 큰 영향을 주는 요소.
+- **중기 재료 (1~6개월)**: 실적 발표, 산업 동향, 주요 계약, 신제품 출시 등 기업의 펀더멘털에 구체적인 변화를 가져오는 요소.
+- **장기 재료 (6개월 이상)**: 경영 전략, 신사업, 지배구조, 재무 건전성, 장기적 성장 동력 등 기업의 본질적인 가치에 영향을 주는 요소.
 
-## 중기 재료 (1개월 ~ 6개월 이내 영향)
-- 산업 호황(특정 섹터 수요 급증)
-- 턴어라운드 예상(흑자전환 기대감)
-- 사상 최대 실적 달성
-- 대규모 수주 잇따름(중장기 안정적 수익 기반 확보)
-- 해외 진출 성공 사례(글로벌 시장 확장)
-- 원자재 가격 하락에 따른 원가 절감
-- 경쟁사 대비 기술력 우위 확보
-- 주요 경쟁사의 사업 축소·철수로 인한 반사이익
-- 구조조정·비효율 사업부 매각으로 수익성 개선
-
-## 장기 재료 (6개월 이상 영향)
-- 최대 주주·주요 주주 매입(경영권 강화)
-- 단일 판매·공급계약 체결(장기 안정적 매출 확보)
-- 유형자산 취득 결정(생산설비 확대 등)
-- 자사주 매입(주주가치 제고)
-- 부채 조기 상환(재무건전성 개선)
-- 자사주 소각(주식 수 감소로 주당 가치 상승)
-- 액면분할(유통주식 수 증가로 거래 활성화)
-- 지속적 배당 확대 정책(주주 친화 정책)
-- ESG 경영 강화 및 수상(글로벌 펀드 자금 유입 기대)
-- 신성장 동력 확보(미래 먹거리 발굴 및 투자)
-- 핵심 인재 영입(경영진 변화 및 기술개발 역량 강화)
-- 글로벌 기업과 전략적 제휴(협력 강화)
-
-뉴스 내용:
+# 분석할 최신 뉴스
 {news_content}
 
-다음 JSON 형식으로 정확히 응답해주세요:
+# 출력 형식 (JSON)
+아래 JSON 형식을 반드시 준수하여, 다른 설명 없이 JSON 객체만 응답해주세요.
 {{
-    "sentiment": "VERY_POSITIVE|POSITIVE|NEUTRAL|NEGATIVE|VERY_NEGATIVE",
-    "overall_score": (0-100 숫자),
-    "confidence": (0.0-1.0 숫자),
-    "positive_factors": ["긍정 요인1", "긍정 요인2"],
-    "negative_factors": ["부정 요인1", "부정 요인2"],
-    "key_keywords": ["핵심 키워드1", "키워드2"],
-    "short_term_outlook": "단기 전망 설명",
-    "medium_term_outlook": "중기 전망 설명",
-    "long_term_outlook": "장기 전망 설명", # 장기 전망 필드 추가
-    "summary": "종합 분석 요약"
+  "short_term": {{
+    "score": (0에서 100 사이 정수, 50=중립),
+    "summary": "단기적 관점의 투자 심리 요약. 수급, 테마, 단기 이벤트 중심으로.",
+    "positive_factors": ["단기 긍정 재료 1", "요인 2"],
+    "negative_factors": ["단기 부정 재료 1", "요인 2"]
+  }},
+  "mid_term": {{
+    "score": (0에서 100 사이 정수, 50=중립),
+    "summary": "중기적 관점의 투자 심리 요약. 실적, 산업 동향, 계약 중심으로.",
+    "positive_factors": ["중기 긍정 재료 1", "요인 2"],
+    "negative_factors": ["중기 부정 재료 1", "요인 2"]
+  }},
+  "long_term": {{
+    "score": (0에서 100 사이 정수, 50=중립),
+    "summary": "장기적 관점의 투자 심리 요약. 성장 동력, 재무, 경영 전략 중심으로.",
+    "positive_factors": ["장기 긍정 재료 1", "요인 2"],
+    "negative_factors": ["장기 부정 재료 1", "요인 2"]
+  }},
+  "key_keywords": ["가장 중요한 핵심 키워드 1", "키워드 2"],
+  "overall_summary": "단기, 중기, 장기 분석을 종합한 최종 결론."
 }}
-
-주의사항:
-1. sentiment는 반드시 위 5개 값 중 하나여야 합니다
-2. overall_score는 0-100 사이의 정수입니다 (50이 중립)
-3. 한국 주식 시장 관점에서 분석해주세요
-4. JSON 형식을 정확히 지켜주세요
-5. short_term_outlook, medium_term_outlook, long_term_outlook 필드에 위 재료 분류 정의를 참고하여 구체적인 전망을 작성해주세요.
 """
 
     def _build_market_impact_prompt(self, symbol: str, company_name: str, news_content: str) -> str:

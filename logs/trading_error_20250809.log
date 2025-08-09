@@ -87,3 +87,6 @@
 2025-08-09 16:22:57 | KISCollector | ERROR    | get_investor_trading_data | ❌ 037270 투자자별 매매 동향 조회 실패: API request failed with status 404: 
 2025-08-09 16:22:57 | KISCollector | ERROR    | get_investor_trading_data | ❌ 041830 투자자별 매매 동향 조회 실패: API request failed with status 404: 
 2025-08-09 16:22:58 | KISCollector | ERROR    | get_investor_trading_data | ❌ 044480 투자자별 매매 동향 조회 실패: API request failed with status 404: 
+2025-08-09 19:06:50 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 19:06:57 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패
+2025-08-09 19:07:25 | Main         | ERROR    | main            | [ERROR] 컴포넌트 초기화 최종 실패

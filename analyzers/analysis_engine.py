@@ -207,9 +207,9 @@ class AnalysisEngine:
                 'sentiment_score': analysis_results['sentiment'].get('overall_score', 50),
                 'supply_demand_score': analysis_results['supply_demand'].get('overall_score', 50),
                 'chart_pattern_score': analysis_results['chart_pattern'].get('overall_score', 50),
-                'fundamental_score': 50,  # TODO: 펀더멘털 분석 구현 후 실제 점수로 교체
+                'fundamental_score': 50,
                 'technical_details': analysis_results['technical'],
-                'sentiment_details': analysis_results['sentiment'],
+                'sentiment_details': analysis_results['sentiment'],  # 상세한 기간별 분석 결과 포함
                 'supply_demand_details': analysis_results['supply_demand'],
                 'chart_pattern_details': analysis_results['chart_pattern'],
                 'score_details': score_details,

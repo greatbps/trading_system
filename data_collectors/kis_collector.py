@@ -820,7 +820,7 @@ class KISCollector:
             self.logger.error(f"❌ 조건식 {condition_id} ({condition_name}) 검색 실패: {e}")
             return []
 
-    async def get_news_data(self, symbol: str, name: str, days: int = 7) -> List[Dict]:
+    async def get_news_data(self, symbol: str, name: str, days: int = 14) -> List[Dict]:
         """뉴스 데이터 수집 - KIS API 실제 호출 시도"""
         try:
             self.logger.info(f"📰 {symbol}({name}) 실제 뉴스 데이터 수집 시작...")

@@ -65,14 +65,14 @@ class AnalysisHandlers:
             console.print(f"[red]❌ 데이터 수집기 디버깅 실패: {e}[/red]")
             return False
     
-    async def _safe_get_stocks(self, limit: int) -> List[Tuple[str, str]]:
-        """안전한 종목 조회 - 폴백 로직 없이 data_collector만 사용"""
+    async def _safe_get_stocks(self, strategy: str, limit: int) -> List[Tuple[str, str]]:
+        """안전한 종목 조회 - data_collector를 사용하여 전략별 필터링"""
         try:
-            console.print("[dim]HTS 조건검색으로 종목 조회 시도...[/dim]")
-            stocks = await self.system.data_collector.get_filtered_stocks(limit)
+            console.print(f"[dim]'{strategy}' 전략으로 HTS 조건검색 종목 조회 시도...[/dim]")
+            stocks = await self.system.data_collector.get_filtered_stocks(strategy, limit)
             if not stocks:
-                console.print("[red]❌ HTS 조건검색을 통해 종목을 가져오지 못했습니다. PyKis 초기화 및 HTS 설정을 확인하세요.[/red]")
-                self.logger.error("❌ HTS 조건검색 실패 또는 결과 없음.")
+                console.print(f"[red]❌ '{strategy}' 전략에 대한 HTS 조건검색 결과를 가져오지 못했습니다. Fallback을 확인하세요.[/red]")
+                self.logger.error(f"❌ HTS 조건검색 실패 또는 결과 없음 (전략: {strategy}).")
                 return []
             
             console.print(f"[green]✅ HTS 조건검색으로 {len(stocks)}개 종목 조회 성공[/green]")
@@ -89,27 +89,34 @@ class AnalysisHandlers:
         console.print("[bold]🔍 종합 분석 (5개 영역 통합: 기술적+펀더멘털+뉴스+수급+패턴)[/bold]")
         console.print("[dim]ℹ️ 이 분석은 실시간 확인용으로 데이터베이스에 저장되지 않습니다.[/dim]")
         
-        # 컴포넌트 초기화
         if not await self.system.initialize_components():
             console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
             return False
         
         try:
-            # 분석할 종목 수 입력
+            # 1. 전략 선택
+            strategy_names = list(self.system.config.trading.HTS_CONDITION_NAMES.keys())
+            strategy_menu = "\n".join([f"  {i+1}. {name}" for i, name in enumerate(strategy_names)])
+            console.print(f"\n[bold]분석할 전략을 선택하세요:[/bold]\n{strategy_menu}")
+            
+            choice = Prompt.ask("전략 번호 선택", choices=[str(i+1) for i in range(len(strategy_names))], default="1")
+            selected_strategy = strategy_names[int(choice)-1]
+            console.print(f"[green]✅ '{selected_strategy}' 전략 선택됨[/green]")
+
+            # 2. 분석할 종목 수 입력
             target_count = Prompt.ask(
                 "[yellow]분석할 종목 수를 입력하세요[/yellow]",
                 default="10"
             )
             try:
                 target_count = int(target_count)
-                target_count = max(1, min(target_count, 50))  # 1~50개 제한
-            except:
+                target_count = max(1, min(target_count, 50))
+            except ValueError:
                 target_count = 10
             
-            # 종목 조회 - 여러 방법으로 시도
-            console.print(f"[blue]📊 {target_count}개 종목 조회 중...[/blue]")
-            
-            stocks = await self._safe_get_stocks(target_count)
+            # 3. 전략 기반 종목 조회
+            console.print(f"[blue]📊 '{selected_strategy}' 전략으로 {target_count}개 종목 조회 중...[/blue]")
+            stocks = await self._safe_get_stocks(selected_strategy, target_count)
             
             if not stocks:
                 console.print("[red]❌ 종목 조회 실패[/red]")
@@ -117,12 +124,12 @@ class AnalysisHandlers:
             
             console.print(f"[green]✅ {len(stocks)}개 종목 조회 완료[/green]")
             
-            # 각 종목에 대해 5개 영역 분석 수행
+            # 4. 각 종목에 대해 5개 영역 분석 수행
             analysis_results = []
             
             with Progress() as progress:
                 task = progress.add_task(
-                    f"[cyan]5개 영역 통합 분석 진행중...", 
+                    f"[cyan]'{selected_strategy}' 전략으로 통합 분석 진행중...", 
                     total=len(stocks)
                 )
                 
@@ -134,12 +141,10 @@ class AnalysisHandlers:
                     )
                     
                     try:
-                        # 종목별 종합 분석
-                        result = await self._analyze_single_stock(symbol, name)
+                        result = await self._analyze_single_stock(symbol, name, selected_strategy)
                         if result:
                             analysis_results.append(result)
                         
-                        # API 호출 제한을 위한 딜레이
                         await asyncio.sleep(0.2)
                         
                     except Exception as e:
@@ -152,7 +157,7 @@ class AnalysisHandlers:
                 console.print("[red]❌ 분석 결과가 없습니다[/red]")
                 return False
             
-            # 결과 표시 (데이터베이스 저장 없이 메모리에서만 표시)
+            # 5. 결과 표시
             console.print("[dim]ℹ️ 실시간 분석 결과 표시 중... (DB 저장 없음)[/dim]")
             self.display.display_comprehensive_analysis_results(analysis_results)
             self.display.display_recommendations_summary(analysis_results)
@@ -165,7 +170,7 @@ class AnalysisHandlers:
             console.print(f"[red]❌ 종합 분석 실패: {e}[/red]")
             return False
     
-    async def _analyze_single_stock(self, symbol: str, name: str) -> Optional[Dict]:
+    async def _analyze_single_stock(self, symbol: str, name: str, strategy: str) -> Optional[Dict]:
         """단일 종목에 대한 5개 영역 통합 분석"""
         try:
             # 1. KIS API에서 종목 정보 조회
@@ -186,7 +191,7 @@ class AnalysisHandlers:
             
             # 4. 분석 엔진을 통한 종합 분석
             analysis_result = await self.system.analysis_engine.analyze_comprehensive(
-                symbol, name, stock_data, strategy="momentum"
+                symbol, name, stock_data, strategy=strategy
             )
             
             return analysis_result

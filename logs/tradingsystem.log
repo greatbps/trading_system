@@ -4725,3 +4725,48 @@
 17:45:15 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
 17:45:15 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
 17:45:15 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+19:06:45 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:06:46 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:06:46 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:06:46 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:46 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:48 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:06:48 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:06:48 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:06:48 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:48 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:50 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:06:50 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:06:50 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:06:50 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:50 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:53 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:06:53 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:06:53 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:06:53 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:53 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:55 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:06:55 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:06:55 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:06:55 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:55 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:57 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:06:57 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:06:57 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:06:57 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:06:57 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:07:20 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:07:20 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:07:20 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:07:21 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:07:21 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:07:23 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:07:23 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:07:23 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:07:23 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:07:23 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:07:25 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+19:07:25 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+19:07:25 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+19:07:25 | TradingSystem | ERROR | ❌ 분석 엔진 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
+19:07:25 | TradingSystem | ERROR | ❌ 컴포넌트 초기화 실패: unterminated string literal (detected at line 130) (sentiment_analyzer.py, line 130)
