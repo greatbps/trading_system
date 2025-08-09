@@ -121,7 +121,7 @@ class GeminiAnalyzer:
         try:
             # 뉴스 텍스트 준비
             news_texts = []
-            for news in news_data[:10]:  # 최근 10개 뉴스만 분석
+            for news in news_data:  # 전체 뉴스 분석 (10개 제한 제거)
                 title = news.get('title', '')
                 description = news.get('description', '')
                 news_texts.append(f"제목: {title}\n내용: {description}")
@@ -153,7 +153,7 @@ class GeminiAnalyzer:
         try:
             # 뉴스 텍스트 준비
             news_texts = []
-            for news in news_data[:10]:
+            for news in news_data:  # 전체 뉴스 분석 (10개 제한 제거)
                 title = news.get('title', '')
                 description = news.get('description', '')
                 news_texts.append(f"제목: {title}\n내용: {description}")

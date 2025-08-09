@@ -163,15 +163,22 @@ class AnalysisEngine:
             # 3. 결과 매핑 및 예외 처리
             analysis_results = {}
             for i, (task_name, _) in enumerate(tasks):
-                if isinstance(results[i], Exception):
-                    if isinstance(results[i], asyncio.TimeoutError):
+                result = results[i]
+                if isinstance(result, Exception):
+                    if isinstance(result, asyncio.TimeoutError):
                         self.logger.warning(f"⏰ {symbol} {task_name} 분석 타임아웃 - 해당 분석 제외")
                     else:
-                        self.logger.warning(f"⚠️ {symbol} {task_name} 분석 실패: {results[i]} - 해당 분석 제외")
+                        self.logger.warning(f"⚠️ {symbol} {task_name} 분석 실패: {result} - 해당 분석 제외")
                     # fallback 대신 0점 처리
                     analysis_results[task_name] = self._get_empty_analysis(task_name)
+                elif hasattr(result, '__await__'):  # coroutine 객체인 경우
+                    self.logger.warning(f"⚠️ {symbol} {task_name} 분석 결과가 coroutine 객체입니다 - await 되지 않음")
+                    analysis_results[task_name] = self._get_empty_analysis(task_name)
+                elif isinstance(result, dict):
+                    analysis_results[task_name] = result
                 else:
-                    analysis_results[task_name] = results[i]
+                    self.logger.warning(f"⚠️ {symbol} {task_name} 분석 결과가 예상된 형식이 아닙니다: {type(result)}")
+                    analysis_results[task_name] = self._get_empty_analysis(task_name)
             
             # 누락된 분석기에 대한 기본값 설정
             required_analyses = ['technical', 'sentiment', 'supply_demand', 'chart_pattern']
@@ -338,7 +345,16 @@ class AnalysisEngine:
             
         except Exception as e:
             self.logger.warning(f"⚠️ 종합 점수 계산 실패: {e}")
-            # 기본 점수 계산 fallback
+            # 기본 점수 계산 fallback - 안전한 점수 추출
+            try:
+                technical_score = analysis_results['technical'].get('technical_score', 50)
+                sentiment_score = analysis_results['sentiment'].get('overall_score', 50)
+                supply_demand_score = analysis_results['supply_demand'].get('overall_score', 50)
+                chart_pattern_score = analysis_results['chart_pattern'].get('overall_score', 50)
+            except:
+                # 완전 실패 시 기본값 사용
+                technical_score = sentiment_score = supply_demand_score = chart_pattern_score = 50
+            
             default_weights = self.config.analysis.WEIGHTS if hasattr(self.config, 'analysis') else {
                 'technical': 0.35, 'sentiment': 0.25, 'supply_demand': 0.25, 'chart_pattern': 0.15
             }

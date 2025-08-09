@@ -4357,3 +4357,171 @@
 11:59:11 | TradingSystem | ERROR | ❌ 037270 단일 분석 실패: 037270 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
 11:59:11 | TradingSystem | ERROR | ❌ 041830 단일 분석 실패: 041830 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
 11:59:12 | TradingSystem | ERROR | ❌ 044480 단일 분석 실패: 044480 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:21:55 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:21:55 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:21:55 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:21:56 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:21:56 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:21:56 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:21:56 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:21:56 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:21:56 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:21:56 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:21:56 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:21:56 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:21:56 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:21:56 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:21:56 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:21:56 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+15:21:56 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+15:21:57 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+15:21:57 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:22:00 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+15:22:00 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+15:22:00 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+15:22:00 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+15:22:00 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+15:22:00 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+15:22:00 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+15:22:00 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+15:22:00 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+15:22:00 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+15:22:07 | TradingSystem | ERROR | ❌ 009620 단일 분석 실패: 009620 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:07 | TradingSystem | ERROR | ❌ 014940 단일 분석 실패: 014940 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:08 | TradingSystem | ERROR | ❌ 017510 단일 분석 실패: 017510 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:08 | TradingSystem | ERROR | ❌ 023790 단일 분석 실패: 023790 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:08 | TradingSystem | ERROR | ❌ 033340 단일 분석 실패: 033340 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:09 | TradingSystem | ERROR | ❌ 033790 단일 분석 실패: 033790 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:09 | TradingSystem | ERROR | ❌ 034230 단일 분석 실패: 034230 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:09 | TradingSystem | ERROR | ❌ 037270 단일 분석 실패: 037270 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:09 | TradingSystem | ERROR | ❌ 041830 단일 분석 실패: 041830 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+15:22:10 | TradingSystem | ERROR | ❌ 044480 단일 분석 실패: 044480 종합 분석 실패: local variable 'supply_demand_score' referenced before assignment
+16:15:55 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:15:56 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+16:15:56 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:15:56 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:15:56 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:15:56 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:15:56 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:15:56 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:15:56 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:15:56 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:15:56 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:15:57 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:15:57 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:16:22 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:16:22 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+16:16:22 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:16:22 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:16:22 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:16:22 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:16:22 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:16:22 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:16:22 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:16:22 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:16:22 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:16:23 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:16:23 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:17:11 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:17:11 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+16:17:11 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:17:12 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:17:12 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:17:12 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:17:12 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:17:12 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:17:12 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:17:12 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:17:12 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:17:13 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:17:13 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:17:41 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:17:41 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+16:17:41 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:17:41 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:17:41 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:17:41 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:17:41 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:17:41 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:17:41 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:17:41 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:17:41 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:17:41 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:17:41 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:17:41 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:17:42 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:17:42 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:17:42 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:17:42 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:17:42 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:17:42 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:22:43 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:22:43 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+16:22:43 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:22:44 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:22:44 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:22:44 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:22:44 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:22:44 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:22:44 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:22:44 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:22:44 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:22:45 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:22:45 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:22:52 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:22:52 | TradingSystem | WARNING | ⚠️ PyKis 초기화 실패: id를 입력해야 합니다.
+16:22:52 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:22:52 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:22:52 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:22:52 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:22:52 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:22:52 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:22:52 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:22:52 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:22:52 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료

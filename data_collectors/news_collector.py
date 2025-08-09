@@ -383,7 +383,7 @@ class NewsCollector:
                     seen_titles.add(title_key)
                     unique_news.append(news)
             
-            final_news = unique_news[:10]
+            final_news = unique_news  # 전체 뉴스 반환 (10개 제한 제거)
             
             self.logger.info(f"   📰 {stock_name} 뉴스 {len(final_news)}개 수집")
             

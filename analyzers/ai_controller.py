@@ -110,7 +110,7 @@ class AIController:
             
             # 2. 개별 종목 예측 분석
             stock_predictions = {}
-            for stock in individual_stocks[:10]:  # 상위 10개 종목만
+            for stock in individual_stocks:  # 전체 종목 분석
                 symbol = stock.get('symbol', '')
                 if symbol:
                     prediction = await self.predictor.predict_market_trend(

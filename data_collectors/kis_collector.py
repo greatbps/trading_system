@@ -857,7 +857,7 @@ class KISCollector:
             
             # 실제 뉴스가 있으면 반환
             if real_news and len(real_news) > 0:
-                return real_news[:10]  # 최근 10개만 반환
+                return real_news  # 전체 뉴스 반환 (10개 제한 제거)
             
             # 실제 뉴스가 없으면 빈 리스트 반환 (기본값 처리는 sentiment_analyzer에서)
             self.logger.debug(f"📰 {symbol} 실제 뉴스 없음 - 빈 데이터 반환")
@@ -1080,6 +1080,11 @@ class KISCollector:
             if not symbol or len(symbol) != 6 or not symbol.isdigit():
                 raise KISDataValidationError(f"Invalid symbol format: {symbol}")
             
+            # 현재 KIS API에서 이 엔드포인트가 404를 반환하므로 일시적으로 비활성화
+            # TODO: 정확한 엔드포인트와 TR_ID 확인 필요
+            self.logger.debug(f"⚠️ {symbol} 투자자별 매매 동향 API 일시 비활성화 (404 에러로 인해)")
+            return self._get_default_investor_data()
+            
             self.logger.debug(f"📊 {symbol} 투자자별 매매 동향 조회 중...")
             
             today = datetime.now().strftime('%Y%m%d')
@@ -1132,6 +1137,26 @@ class KISCollector:
         except Exception as e:
             self.logger.error(f"❌ {symbol} 투자자별 매매 동향 조회 중 예상치 못한 오류: {e}")
             return None
+
+    def _get_default_investor_data(self) -> Dict[str, Any]:
+        """투자자별 매매 동향 기본값 반환"""
+        return {
+            'foreign': {
+                'net_buying': 0,
+                'buy_volume': 0,
+                'sell_volume': 0,
+            },
+            'institution': {
+                'net_buying': 0,
+                'buy_volume': 0,
+                'sell_volume': 0,
+            },
+            'individual': {
+                'net_buying': 0,
+                'buy_volume': 0,
+                'sell_volume': 0,
+            }
+        }
 
     async def cleanup(self):
         """리소스 정리"""

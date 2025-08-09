@@ -233,7 +233,17 @@ class TradingSystem:
             
             # 데이터 수집기
             from data_collectors.kis_collector import KISCollector
-            self.data_collector = KISCollector(self.config)
+            
+            # PyKis 초기화 시도
+            pykis_api = None
+            try:
+                from pykis import PyKis
+                if hasattr(self.config.api, 'KIS_APP_KEY') and hasattr(self.config.api, 'KIS_APP_SECRET'):
+                    pykis_api = PyKis()  # PyKis 인스턴스 생성
+            except Exception as e:
+                self.logger.warning(f"⚠️ PyKis 초기화 실패: {e}")
+            
+            self.data_collector = KISCollector(self.config, pykis_api=pykis_api)
             await self.data_collector.initialize()
             self.logger.info("✅ 데이터 수집기 초기화 완료")
             
