@@ -1,0 +1,222 @@
+[
+  {
+    "timestamp": "2025-09-15T15:46:25.262047",
+    "cpu_percent": 2.3,
+    "memory_percent": 67.2,
+    "memory_used_mb": 10984.84765625,
+    "memory_available_mb": 5351.5,
+    "disk_usage_percent": 43.6,
+    "process_count": 304,
+    "python_objects": 275819,
+    "network_connections": 112
+  },
+  {
+    "timestamp": "2025-09-15T15:46:56.288133",
+    "cpu_percent": 6.8,
+    "memory_percent": 66.9,
+    "memory_used_mb": 10925.5234375,
+    "memory_available_mb": 5410.82421875,
+    "disk_usage_percent": 43.6,
+    "process_count": 302,
+    "python_objects": 275924,
+    "network_connections": 110
+  },
+  {
+    "timestamp": "2025-09-15T15:47:28.286871",
+    "cpu_percent": 1.3,
+    "memory_percent": 67.3,
+    "memory_used_mb": 11001.63671875,
+    "memory_available_mb": 5334.7109375,
+    "disk_usage_percent": 43.6,
+    "process_count": 302,
+    "python_objects": 275934,
+    "network_connections": 107
+  },
+  {
+    "timestamp": "2025-09-15T15:47:59.319303",
+    "cpu_percent": 6.9,
+    "memory_percent": 66.8,
+    "memory_used_mb": 10918.07421875,
+    "memory_available_mb": 5418.2734375,
+    "disk_usage_percent": 43.6,
+    "process_count": 300,
+    "python_objects": 275948,
+    "network_connections": 105
+  },
+  {
+    "timestamp": "2025-09-15T15:48:30.351042",
+    "cpu_percent": 6.0,
+    "memory_percent": 67.4,
+    "memory_used_mb": 11006.71875,
+    "memory_available_mb": 5329.62890625,
+    "disk_usage_percent": 43.6,
+    "process_count": 302,
+    "python_objects": 275514,
+    "network_connections": 106
+  },
+  {
+    "timestamp": "2025-09-15T15:49:01.375577",
+    "cpu_percent": 3.1,
+    "memory_percent": 67.0,
+    "memory_used_mb": 10948.4609375,
+    "memory_available_mb": 5387.88671875,
+    "disk_usage_percent": 43.6,
+    "process_count": 301,
+    "python_objects": 275528,
+    "network_connections": 105
+  },
+  {
+    "timestamp": "2025-09-15T15:49:32.398602",
+    "cpu_percent": 2.4,
+    "memory_percent": 66.8,
+    "memory_used_mb": 10909.21875,
+    "memory_available_mb": 5427.12890625,
+    "disk_usage_percent": 43.6,
+    "process_count": 301,
+    "python_objects": 275540,
+    "network_connections": 104
+  },
+  {
+    "timestamp": "2025-09-15T15:50:03.417052",
+    "cpu_percent": 1.7,
+    "memory_percent": 66.4,
+    "memory_used_mb": 10851.6953125,
+    "memory_available_mb": 5484.65234375,
+    "disk_usage_percent": 43.6,
+    "process_count": 300,
+    "python_objects": 275552,
+    "network_connections": 105
+  },
+  {
+    "timestamp": "2025-09-15T15:50:34.438719",
+    "cpu_percent": 2.2,
+    "memory_percent": 66.4,
+    "memory_used_mb": 10845.6171875,
+    "memory_available_mb": 5490.73046875,
+    "disk_usage_percent": 43.6,
+    "process_count": 300,
+    "python_objects": 275564,
+    "network_connections": 104
+  },
+  {
+    "timestamp": "2025-09-15T15:51:05.458008",
+    "cpu_percent": 4.2,
+    "memory_percent": 66.8,
+    "memory_used_mb": 10915.74609375,
+    "memory_available_mb": 5420.6015625,
+    "disk_usage_percent": 43.6,
+    "process_count": 300,
+    "python_objects": 275575,
+    "network_connections": 107
+  },
+  {
+    "timestamp": "2025-09-15T15:51:36.488310",
+    "cpu_percent": 3.7,
+    "memory_percent": 66.4,
+    "memory_used_mb": 10846.3515625,
+    "memory_available_mb": 5489.99609375,
+    "disk_usage_percent": 43.6,
+    "process_count": 299,
+    "python_objects": 275587,
+    "network_connections": 107
+  },
+  {
+    "timestamp": "2025-09-15T15:52:07.518729",
+    "cpu_percent": 2.7,
+    "memory_percent": 66.9,
+    "memory_used_mb": 10934.5546875,
+    "memory_available_mb": 5401.79296875,
+    "disk_usage_percent": 43.6,
+    "process_count": 300,
+    "python_objects": 275599,
+    "network_connections": 106
+  },
+  {
+    "timestamp": "2025-09-15T15:52:38.678333",
+    "cpu_percent": 0.9,
+    "memory_percent": 66.4,
+    "memory_used_mb": 10845.00390625,
+    "memory_available_mb": 5491.34375,
+    "disk_usage_percent": 43.6,
+    "process_count": 299,
+    "python_objects": 275611,
+    "network_connections": 105
+  },
+  {
+    "timestamp": "2025-09-15T15:53:09.709405",
+    "cpu_percent": 2.5,
+    "memory_percent": 67.2,
+    "memory_used_mb": 10974.33203125,
+    "memory_available_mb": 5362.015625,
+    "disk_usage_percent": 43.6,
+    "process_count": 304,
+    "python_objects": 275625,
+    "network_connections": 105
+  },
+  {
+    "timestamp": "2025-09-15T15:53:40.728401",
+    "cpu_percent": 0.8,
+    "memory_percent": 66.0,
+    "memory_used_mb": 10782.984375,
+    "memory_available_mb": 5553.36328125,
+    "disk_usage_percent": 43.6,
+    "process_count": 301,
+    "python_objects": 275637,
+    "network_connections": 105
+  },
+  {
+    "timestamp": "2025-09-15T15:54:11.761400",
+    "cpu_percent": 1.4,
+    "memory_percent": 66.5,
+    "memory_used_mb": 10864.66015625,
+    "memory_available_mb": 5471.6875,
+    "disk_usage_percent": 43.6,
+    "process_count": 300,
+    "python_objects": 275649,
+    "network_connections": 106
+  },
+  {
+    "timestamp": "2025-09-15T15:54:42.891879",
+    "cpu_percent": 1.7,
+    "memory_percent": 65.4,
+    "memory_used_mb": 10677.625,
+    "memory_available_mb": 5658.72265625,
+    "disk_usage_percent": 43.6,
+    "process_count": 299,
+    "python_objects": 275669,
+    "network_connections": 102
+  },
+  {
+    "timestamp": "2025-09-15T15:55:13.911981",
+    "cpu_percent": 2.0,
+    "memory_percent": 65.8,
+    "memory_used_mb": 10752.38671875,
+    "memory_available_mb": 5583.9609375,
+    "disk_usage_percent": 43.6,
+    "process_count": 299,
+    "python_objects": 275672,
+    "network_connections": 102
+  },
+  {
+    "timestamp": "2025-09-15T15:55:44.934411",
+    "cpu_percent": 2.5,
+    "memory_percent": 65.4,
+    "memory_used_mb": 10681.39453125,
+    "memory_available_mb": 5654.953125,
+    "disk_usage_percent": 43.6,
+    "process_count": 298,
+    "python_objects": 275684,
+    "network_connections": 103
+  },
+  {
+    "timestamp": "2025-09-15T15:56:15.963864",
+    "cpu_percent": 1.6,
+    "memory_percent": 65.8,
+    "memory_used_mb": 10750.10546875,
+    "memory_available_mb": 5586.2421875,
+    "disk_usage_percent": 43.6,
+    "process_count": 299,
+    "python_objects": 275696,
+    "network_connections": 104
+  }
+]

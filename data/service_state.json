@@ -1,0 +1,10 @@
+{
+  "status": "running",
+  "monitoring_enabled": true,
+  "monitoring_active": false,
+  "market_status": "Unknown",
+  "market_status_korean": "알 수 없음",
+  "market_time_allowed": false,
+  "health_check": "2025-09-17T15:40:57.238286",
+  "last_update": "2025-09-17T15:40:57.238420"
+}

@@ -1,0 +1,69 @@
+{
+  "timestamp": "2025-07-16T16:53:40.974122",
+  "total_count": 3,
+  "results": [
+    {
+      "symbol": "012630",
+      "name": "HDC",
+      "score": 65.26737089201877,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-16T16:53:24.160808"
+      },
+      "analysis_time": "2025-07-16T16:53:24.160816",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 22150.0,
+      "stop_loss": 21042.5,
+      "take_profit": 24365.000000000004
+    },
+    {
+      "symbol": "000990",
+      "name": "DB하이텍",
+      "score": 63.34279069767441,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-16T16:53:08.270956"
+      },
+      "analysis_time": "2025-07-16T16:53:08.270967",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 46800.0,
+      "stop_loss": 44460.0,
+      "take_profit": 51480.00000000001
+    },
+    {
+      "symbol": "006360",
+      "name": "GS건설",
+      "score": 62.54,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-16T16:53:32.005999"
+      },
+      "analysis_time": "2025-07-16T16:53:32.006007",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 20550.0,
+      "stop_loss": 19522.5,
+      "take_profit": 22605.000000000004
+    }
+  ]
+}

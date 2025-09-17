@@ -1,0 +1,4 @@
+".env" 
+logs/*.log
+logs/*.log
+logs/*.log*

@@ -1,0 +1,6 @@
+[submodule "Superclaude"]
+	path = Superclaude
+	url = https://github.com/greatbps/trading_system
+[submodule "claudia"]
+	path = claudia
+	url = https://github.com/greatbps/trading_system

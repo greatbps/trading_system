@@ -1,0 +1,69 @@
+{
+  "timestamp": "2025-07-15T09:46:47.969451",
+  "total_count": 3,
+  "results": [
+    {
+      "symbol": "009540",
+      "name": "HD한국조선해양",
+      "score": 69.5434090909091,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:46:32.349814"
+      },
+      "analysis_time": "2025-07-15T09:46:32.349822",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 327000.0,
+      "stop_loss": 310650.0,
+      "take_profit": 359700.0
+    },
+    {
+      "symbol": "002380",
+      "name": "KCC",
+      "score": 65.55375000000001,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:46:24.587656"
+      },
+      "analysis_time": "2025-07-15T09:46:24.587665",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 376000.0,
+      "stop_loss": 357200.0,
+      "take_profit": 413600.00000000006
+    },
+    {
+      "symbol": "097950",
+      "name": "CJ제일제당",
+      "score": 60.97280373831776,
+      "signals": {
+        "signal_strength": 50.0,
+        "signal_type": "HOLD",
+        "action": "HOLD",
+        "confidence": 0.5,
+        "details": {},
+        "risk_level": "MEDIUM",
+        "timestamp": "2025-07-15T09:46:40.214138"
+      },
+      "analysis_time": "2025-07-15T09:46:40.214148",
+      "strategy": "supertrend_ema_rsi",
+      "recommendation": "WEAK_BUY",
+      "risk_level": "MEDIUM",
+      "entry_price": 258500.0,
+      "stop_loss": 245575.0,
+      "take_profit": 284350.0
+    }
+  ]
+}

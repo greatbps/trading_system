@@ -1,0 +1,1497 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+trading_system/core/db_auto_trading_handler.py
+
+DB 연동 자동매매 핸들러 - 완전한 모니터링 시스템
+"""
+
+import asyncio
+from datetime import datetime
+from typing import Dict, List, Optional, Any
+
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.text import Text
+
+from sqlalchemy.orm import Session
+from utils.logger import get_logger
+from database.models import (
+    MonitoringStock, MonitoringSchedulerState, MonitoringType, MonitoringStatus,
+    Stock
+)
+from trading.db_auto_trader import DatabaseAutoTrader
+from trading.executor import TradingExecutor
+from monitoring.db_monitoring_scheduler import DatabaseMonitoringRemovalScheduler
+from utils.stock_search import StockSearchEngine
+from strategies.strategy_manager import StrategyManager
+from utils.market_schedule_manager import MarketScheduleManager
+from .auto_mode_controller import AutoModeController, AutoMode
+
+
+class DatabaseAutoTradingHandler:
+    """DB 연동 자동매매 핸들러 - 영구 저장/복원 지원"""
+    
+    def __init__(self, config, kis_collector, db_manager=None, analysis_engine=None):
+        self.config = config
+        self.kis_collector = kis_collector
+        self.db_manager = db_manager
+        self.analysis_engine = analysis_engine
+        self.logger = get_logger("DatabaseAutoTradingHandler")
+        self.console = Console()
+        
+        # 자동매매 시스템 초기화
+        self.executor = TradingExecutor(config, kis_collector, db_manager)
+        self.auto_trader = DatabaseAutoTrader(config, kis_collector, self.executor, analysis_engine, db_manager)
+        
+        # 감시 제거 스케줄러 (매매와 별개)
+        self.removal_scheduler = DatabaseMonitoringRemovalScheduler(config, kis_collector, db_manager)
+        
+        # 종목 검색 엔진 (UX 개선)
+        self.stock_search = StockSearchEngine(kis_collector)
+        
+        # 향상된 통합 전략 관리자
+        self.strategy_manager = StrategyManager(config)
+        
+        # 시장 일정 및 자동 모드 관리자
+        self.market_manager = MarketScheduleManager(config, kis_collector)
+        self.auto_mode_controller = AutoModeController(config, self.market_manager)
+        
+        # 모니터링 태스크들
+        self.monitoring_task = None
+        self.removal_scheduler_task = None
+        
+        # 자동 모드 콜백 등록
+        self._setup_auto_mode_callbacks()
+        
+        self.logger.info("🤖 DatabaseAutoTradingHandler 초기화 완료 - DB 연동")
+
+    def _setup_auto_mode_callbacks(self):
+        """자동 모드 콜백 설정"""
+        try:
+            # 모니터링 모드 콜백
+            self.auto_mode_controller.add_mode_change_callback(
+                AutoMode.MONITORING, self._on_monitoring_mode_change
+            )
+            
+            # 매매 모드 콜백
+            self.auto_mode_controller.add_mode_change_callback(
+                AutoMode.TRADING, self._on_trading_mode_change
+            )
+            
+            self.logger.info("✅ 자동 모드 콜백 설정 완료")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 자동 모드 콜백 설정 실패: {e}")
+
+    async def _on_monitoring_mode_change(self, mode, old_status, new_status):
+        """모니터링 모드 변경 콜백"""
+        try:
+            from core.auto_mode_controller import ModeStatus
+            
+            if new_status == ModeStatus.ACTIVE and old_status != ModeStatus.ACTIVE:
+                self.logger.info("🟢 모니터링 모드 자동 활성화")
+                await self._start_monitoring_internal()
+                
+            elif new_status == ModeStatus.INACTIVE and old_status == ModeStatus.ACTIVE:
+                self.logger.info("🔴 모니터링 모드 자동 비활성화")
+                await self._stop_monitoring_internal()
+                
+        except Exception as e:
+            self.logger.error(f"❌ 모니터링 모드 변경 처리 실패: {e}")
+
+    async def _on_trading_mode_change(self, mode, old_status, new_status):
+        """매매 모드 변경 콜백"""
+        try:
+            from core.auto_mode_controller import ModeStatus
+            
+            if new_status == ModeStatus.ACTIVE and old_status != ModeStatus.ACTIVE:
+                self.logger.info("🟢 매매 모드 자동 활성화")
+                # 자동매매 활성화 (필요한 경우)
+                await self._activate_auto_trading()
+                
+            elif new_status == ModeStatus.INACTIVE and old_status == ModeStatus.ACTIVE:
+                self.logger.info("🔴 매매 모드 자동 비활성화")
+                # 자동매매 비활성화
+                await self._deactivate_auto_trading()
+                
+        except Exception as e:
+            self.logger.error(f"❌ 매매 모드 변경 처리 실패: {e}")
+
+    async def _start_monitoring_internal(self):
+        """내부 모니터링 시작 (콜백용)"""
+        try:
+            if self.monitoring_task is None or self.monitoring_task.done():
+                self.monitoring_task = asyncio.create_task(self.auto_trader.start_monitoring())
+                self.logger.info("📊 자동 모니터링 내부 시작")
+        except Exception as e:
+            self.logger.error(f"❌ 자동 모니터링 내부 시작 실패: {e}")
+
+    async def _stop_monitoring_internal(self):
+        """내부 모니터링 중지 (콜백용)"""
+        try:
+            if self.monitoring_task and not self.monitoring_task.done():
+                self.monitoring_task.cancel()
+                try:
+                    await self.monitoring_task
+                except asyncio.CancelledError:
+                    pass
+                self.logger.info("📊 자동 모니터링 내부 중지")
+        except Exception as e:
+            self.logger.error(f"❌ 자동 모니터링 내부 중지 실패: {e}")
+
+    async def _activate_auto_trading(self):
+        """자동매매 활성화"""
+        try:
+            # 자동매매 관련 설정 활성화
+            self.auto_trader.is_trading_enabled = True
+            self.logger.info("💰 자동매매 활성화")
+        except Exception as e:
+            self.logger.error(f"❌ 자동매매 활성화 실패: {e}")
+
+    async def _deactivate_auto_trading(self):
+        """자동매매 비활성화"""
+        try:
+            # 자동매매 관련 설정 비활성화
+            self.auto_trader.is_trading_enabled = False
+            self.logger.info("💰 자동매매 비활성화")
+        except Exception as e:
+            self.logger.error(f"❌ 자동매매 비활성화 실패: {e}")
+
+    async def initialize_systems(self):
+        """시스템 초기화"""
+        try:
+            # 시장 일정 관리자 초기화
+            await self.market_manager.initialize()
+            
+            # 자동 모드 제어기 초기화
+            await self.auto_mode_controller.initialize()
+            
+            # 시장 상태 모니터링 시작
+            await self.market_manager.start_monitoring()
+            
+            # 매매 모드 자동 활성화 (시장이 열려있는 경우)
+            if hasattr(self.executor, 'enable_trading'):
+                self.executor.enable_trading()
+                self.logger.info("🟢 매매 모드 활성화")
+            
+            self.logger.info("🚀 모든 시스템 초기화 완료")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 시스템 초기화 실패: {e}")
+
+    async def cleanup_systems(self):
+        """시스템 정리"""
+        try:
+            await self.auto_mode_controller.cleanup()
+            await self.market_manager.cleanup()
+            self.logger.info("🧹 시스템 정리 완료")
+        except Exception as e:
+            self.logger.error(f"❌ 시스템 정리 실패: {e}")
+
+    async def _view_market_schedule(self):
+        """시장 일정 및 상태 조회"""
+        try:
+            self.console.print(Panel("[bold blue]🏛️ 시장 일정 및 상태[/bold blue]", border_style="blue"))
+            
+            # 현재 상태 표시
+            self.auto_mode_controller.display_status_panel()
+            
+            # 이번 주 시장 일정 표시
+            weekly_schedule = await self.market_manager.get_weekly_schedule()
+            
+            if weekly_schedule:
+                schedule_text = Text()
+                schedule_text.append("📅 이번 주 시장 일정:\n", style="bold cyan")
+                
+                for day_info in weekly_schedule:
+                    date = day_info['date']
+                    weekday = day_info['weekday_korean']
+                    is_open = day_info['is_market_open']
+                    is_today = day_info['is_today']
+                    
+                    # 오늘 표시
+                    if is_today:
+                        schedule_text.append("👉 ", style="yellow")
+                    else:
+                        schedule_text.append("   ", style="white")
+                    
+                    schedule_text.append(f"{date} ({weekday}) ", style="white")
+                    
+                    # 개장 여부
+                    if is_open:
+                        schedule_text.append("🟢 개장", style="bold green")
+                    else:
+                        schedule_text.append("🔴 휴장", style="bold red")
+                    
+                    schedule_text.append("\n")
+                
+                schedule_panel = Panel(schedule_text, title="주간 일정", border_style="cyan")
+                self.console.print(schedule_panel)
+            
+            # 다음 개장 시간
+            next_open = await self.market_manager.get_next_market_open()
+            if next_open:
+                next_text = Text()
+                next_text.append(f"⏰ 다음 개장: {next_open.strftime('%Y-%m-%d %H:%M')}", style="yellow")
+                next_panel = Panel(next_text, title="다음 개장", border_style="yellow")
+                self.console.print(next_panel)
+            
+        except Exception as e:
+            self.logger.error(f"❌ 시장 일정 조회 실패: {e}")
+            self.console.print(f"[red]시장 일정을 조회할 수 없습니다: {e}[/red]")
+
+    async def _manage_auto_modes(self):
+        """자동 모드 관리"""
+        try:
+            while True:
+                self.console.print(Panel("[bold green]🎛️ 자동 모드 관리[/bold green]", border_style="green"))
+                
+                # 현재 상태 표시
+                status_info = self.auto_mode_controller.get_all_mode_status()
+                modes = status_info.get('modes', {})
+                
+                # 모니터링 모드 상태
+                monitoring = modes.get('monitoring', {})
+                self.console.print(f"📊 모니터링 모드: {monitoring.get('status_icon', '🔴')} {monitoring.get('status_korean', '비활성화')}")
+                
+                # 매매 모드 상태
+                trading = modes.get('trading', {})
+                self.console.print(f"💰 매매 모드: {trading.get('status_icon', '🔴')} {trading.get('status_korean', '비활성화')}")
+                
+                self.console.print("\n[bold cyan]🔧 자동 모드 제어 메뉴[/bold cyan]")
+                self.console.print("1. 📊 모니터링 모드 수동 활성화")
+                self.console.print("2. 📊 모니터링 모드 수동 비활성화")
+                self.console.print("3. 💰 매매 모드 수동 활성화")
+                self.console.print("4. 💰 매매 모드 수동 비활성화")
+                self.console.print("5. 📋 상태 변경 이력 조회")
+                self.console.print("6. ⚙️ 모드 설정 변경")
+                self.console.print("0. ↩️ 이전 메뉴로")
+                
+                choice = input("\n선택하세요 (0-6): ").strip()
+                
+                if choice == '1':
+                    await self.auto_mode_controller.manual_activate_mode(AutoMode.MONITORING)
+                    self.console.print("[green]📊 모니터링 모드를 수동으로 활성화했습니다.[/green]")
+                elif choice == '2':
+                    await self.auto_mode_controller.manual_deactivate_mode(AutoMode.MONITORING)
+                    self.console.print("[red]📊 모니터링 모드를 수동으로 비활성화했습니다.[/red]")
+                elif choice == '3':
+                    await self.auto_mode_controller.manual_activate_mode(AutoMode.TRADING)
+                    self.console.print("[green]💰 매매 모드를 수동으로 활성화했습니다.[/green]")
+                elif choice == '4':
+                    await self.auto_mode_controller.manual_deactivate_mode(AutoMode.TRADING)
+                    self.console.print("[red]💰 매매 모드를 수동으로 비활성화했습니다.[/red]")
+                elif choice == '5':
+                    await self._view_mode_history()
+                elif choice == '6':
+                    await self._configure_auto_modes()
+                elif choice == '0':
+                    break
+                else:
+                    self.console.print("[red]❌ 잘못된 선택입니다.[/red]")
+                
+                input("\nEnter를 눌러 계속...")
+                
+        except Exception as e:
+            self.logger.error(f"❌ 자동 모드 관리 실패: {e}")
+            self.console.print(f"[red]자동 모드 관리 중 오류가 발생했습니다: {e}[/red]")
+
+    async def _view_mode_history(self):
+        """모드 상태 변경 이력 조회"""
+        try:
+            self.console.print(Panel("[bold cyan]📋 모드 상태 변경 이력[/bold cyan]", border_style="cyan"))
+            
+            history = await self.auto_mode_controller.get_recent_status_history(20)
+            
+            if not history:
+                self.console.print("[yellow]상태 변경 이력이 없습니다.[/yellow]")
+                return
+            
+            # 이력 테이블 생성
+            from rich.table import Table
+            
+            table = Table(show_header=True, header_style="bold magenta")
+            table.add_column("시간", style="dim", width=20)
+            table.add_column("모드", style="cyan", width=12)
+            table.add_column("이전 상태", style="red", width=12)
+            table.add_column("새 상태", style="green", width=12)
+            
+            for entry in history:
+                timestamp = entry['timestamp'].strftime('%Y-%m-%d %H:%M:%S')
+                mode = entry['mode']
+                old_status = entry['old_status']
+                new_status = entry['new_status']
+                
+                # 한글 변환
+                mode_korean = "모니터링" if mode == "monitoring" else "매매"
+                old_status_korean = self._status_to_korean(old_status)
+                new_status_korean = self._status_to_korean(new_status)
+                
+                table.add_row(timestamp, mode_korean, old_status_korean, new_status_korean)
+            
+            self.console.print(table)
+            
+        except Exception as e:
+            self.logger.error(f"❌ 모드 이력 조회 실패: {e}")
+            self.console.print(f"[red]이력을 조회할 수 없습니다: {e}[/red]")
+
+    async def _configure_auto_modes(self):
+        """자동 모드 설정 변경"""
+        try:
+            self.console.print(Panel("[bold yellow]⚙️ 자동 모드 설정[/bold yellow]", border_style="yellow"))
+            
+            self.console.print("현재 지원되는 설정:")
+            self.console.print("1. 자동 시작/중지 여부")
+            self.console.print("2. 시작 지연 시간")
+            self.console.print("3. 조기 중지 시간")
+            self.console.print("4. 주말/휴일 모드")
+            
+            # 현재 설정 표시
+            for mode in [AutoMode.MONITORING, AutoMode.TRADING]:
+                mode_name = "모니터링" if mode == AutoMode.MONITORING else "매매"
+                config = self.auto_mode_controller.mode_configs[mode]
+                
+                self.console.print(f"\n[bold cyan]{mode_name} 모드 현재 설정:[/bold cyan]")
+                self.console.print(f"  자동 시작: {'예' if config.auto_start else '아니오'}")
+                self.console.print(f"  자동 중지: {'예' if config.auto_stop else '아니오'}")
+                self.console.print(f"  시작 지연: {config.start_delay_minutes}분")
+                self.console.print(f"  조기 중지: {config.stop_early_minutes}분")
+                self.console.print(f"  주말 모드: {'허용' if config.weekend_mode else '금지'}")
+                self.console.print(f"  휴일 모드: {'허용' if config.holiday_mode else '금지'}")
+            
+            self.console.print("\n[yellow]설정 변경은 향후 업데이트에서 지원될 예정입니다.[/yellow]")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 자동 모드 설정 조회 실패: {e}")
+            self.console.print(f"[red]설정을 조회할 수 없습니다: {e}[/red]")
+
+    def _status_to_korean(self, status: str) -> str:
+        """상태를 한글로 변환"""
+        status_map = {
+            'active': '활성화',
+            'inactive': '비활성화',
+            'standby': '대기중'
+        }
+        return status_map.get(status, status)
+    
+    async def handle_auto_trading_menu(self) -> None:
+        """자동매매 메뉴 처리"""
+        while True:
+            try:
+                self._display_auto_trading_menu()
+                choice = input("\n🤖 선택하세요 (0-13): ").strip()
+                
+                if choice == '1':
+                    await self._start_monitoring()
+                    input("\n🚀 모니터링 시작 완료. Enter를 눌러 계속...")
+                elif choice == '2':
+                    await self._stop_monitoring()
+                    input("\n🛑 모니터링 중지 완료. Enter를 눌러 계속...")
+                elif choice == '3':
+                    await self._add_buy_recommendation()
+                    input("\n➕ 매수 추천 종목 추가 완료. Enter를 눌러 계속...")
+                elif choice == '4':
+                    await self._remove_monitoring()
+                    input("\n🗑️ 모니터링 종목 제거 완료. Enter를 눌러 계속...")
+                elif choice == '5':
+                    await self._view_monitoring_status()
+                    input("\n📊 모니터링 현황 조회 완료. Enter를 눌러 계속...")
+                elif choice == '6':
+                    await self._configure_trading_settings()
+                    input("\n⚙️ 매매 설정 변경 완료. Enter를 눌러 계속...")
+                elif choice == '7':
+                    await self._manual_trade()
+                    input("\n🖐️ 수동 매매 완료. Enter를 눌러 계속...")
+                elif choice == '8':
+                    await self._start_removal_scheduler()
+                    input("\n🗑️ 제거 스케줄러 시작 완료. Enter를 눌러 계속...")
+                elif choice == '9':
+                    await self._stop_removal_scheduler()
+                    input("\n🛑 제거 스케줄러 중지 완료. Enter를 눌러 계속...")
+                elif choice == '10':
+                    await self._view_removal_scheduler_status()
+                    input("\n📋 제거 스케줄러 상태 조회 완료. Enter를 눌러 계속...")
+                elif choice == '11':
+                    await self._manage_monitoring_stocks()
+                    input("\n📊 모니터링 종목 관리 완료. Enter를 눌러 계속...")
+                elif choice == '12':
+                    await self._view_market_schedule()
+                    input("\n📅 시장 일정 조회 완료. Enter를 눌러 계속...")
+                elif choice == '13':
+                    await self._manage_auto_modes()
+                    input("\n🤖 자동 모드 관리 완료. Enter를 눌러 계속...")
+                elif choice == '0':
+                    break
+                else:
+                    self.console.print("❌ 잘못된 선택입니다. 다시 선택해주세요.")
+                    
+            except KeyboardInterrupt:
+                self.console.print("\n\nExiting auto trading menu...")
+                break
+            except Exception as e:
+                self.logger.error(f"❌ 자동매매 메뉴 처리 오류: {e}")
+                self.console.print(f"❌ 오류가 발생했습니다: {e}")
+    
+    def _display_auto_trading_menu(self):
+        """자동매매 메뉴 표시"""
+        # DB에서 상태 정보 가져오기
+        with self.db_manager.get_session() as session:
+            # 매매 모니터링 종목 수
+            trading_count = session.query(MonitoringStock).filter(
+                MonitoringStock.monitoring_type == MonitoringType.TRADING,
+                MonitoringStock.status == MonitoringStatus.ACTIVE,
+                MonitoringStock.monitoring_active == True
+            ).count()
+            
+            # 감시 제거 모니터링 종목 수
+            removal_count = session.query(MonitoringStock).filter(
+                MonitoringStock.monitoring_type == MonitoringType.REMOVAL_WATCH,
+                MonitoringStock.status == MonitoringStatus.ACTIVE
+            ).count()
+            
+            # 스케줄러 상태 (세션 내에서 값 추출)
+            removal_scheduler_state = MonitoringSchedulerState.get_scheduler_state(
+                session, "removal_scheduler"
+            )
+            # 세션 내에서 is_running 값 추출
+            scheduler_is_running = removal_scheduler_state.is_running if removal_scheduler_state else False
+        
+        status = "RUNNING" if self.auto_trader.is_monitoring else "STOPPED"
+        trading_mode = "ENABLED" if self.executor.is_trading_enabled() else "DISABLED"
+        
+        # 감시 제거 스케줄러 상태
+        removal_status = "RUNNING" if scheduler_is_running else "STOPPED"
+        
+        # 자동 모드 상태 정보
+        auto_status = self.auto_mode_controller.get_all_mode_status()
+        market_info = auto_status.get('market_info', {})
+        modes = auto_status.get('modes', {})
+        
+        self.console.print(Panel("[bold blue]🤖 자동매매 & 감시 관리 시스템[/bold blue]", border_style="blue"))
+        
+        # 시장 상태 표시
+        market_status_korean = market_info.get('market_status_korean', '알 수 없음')
+        if market_info.get('is_market_open', False):
+            self.console.print(f"🏛️ 시장 상태: [bold green]🟢 {market_status_korean}[/bold green]")
+        else:
+            self.console.print(f"🏛️ 시장 상태: [bold red]🔴 {market_status_korean}[/bold red]")
+        
+        # 자동 모드 상태 표시
+        monitoring_mode = modes.get('monitoring', {})
+        monitoring_icon = monitoring_mode.get('status_icon', '🔴')
+        monitoring_korean = monitoring_mode.get('status_korean', '비활성화')
+        self.console.print(f"📊 매매 모니터링: [bold]{'[green]' if monitoring_mode.get('is_active', False) else '[red]'}{monitoring_icon} {monitoring_korean}[/bold][/]")
+        
+        trading_mode = modes.get('trading', {})
+        trading_icon = trading_mode.get('status_icon', '🔴')
+        trading_korean = trading_mode.get('status_korean', '비활성화')
+        self.console.print(f"💰 매매 모드: [bold]{'[green]' if trading_mode.get('is_active', False) else '[red]'}{trading_icon} {trading_korean}[/bold][/]")
+        
+        self.console.print(f"📋 모니터링 종목: [yellow]{trading_count}[/yellow]개")
+        self.console.print(f"🕐 감시 제거 스케줄러: {'[green]🟢 실행중[/green]' if scheduler_is_running else '[red]🔴 중지[/red]'} (30분 간격)")
+        self.console.print(f"👀 감시 제거 종목: [cyan]{removal_count}[/cyan]개")
+        
+        self.console.print("="*80)
+        self.console.print("📈 [bold green]매매 모니터링 (실시간)[/bold green]")
+        self.console.print("1. 📍 자동매매 모니터링 시작")
+        self.console.print("2. 🛑 자동매매 모니터링 중지")
+        self.console.print("3. ➕ Buy 추천 종목 추가")
+        self.console.print("4. ➖ 모니터링 종목 제거")
+        self.console.print("5. 📊 모니터링 상태 조회")
+        self.console.print("6. ⚙️  매매 설정 변경")
+        self.console.print("7. 🎯 수동 매매 실행")
+        self.console.print("")
+        self.console.print("🔄 [bold cyan]감시 제거 시스템[/bold cyan]")
+        self.console.print("8. 🚀 감시 제거 스케줄러 시작")
+        self.console.print("9. 🛑 감시 제거 스케줄러 중지")
+        self.console.print("10. 📊 감시 제거 상태 조회")
+        self.console.print("11. 📝 모니터링 종목 관리")
+        self.console.print("")
+        self.console.print("🎛️ [bold yellow]자동 모드 제어[/bold yellow]")
+        self.console.print("12. 🏛️ 시장 일정 및 상태 조회")
+        self.console.print("13. 🎛️ 자동 모드 관리")
+        self.console.print("")
+        self.console.print("0. 🔙 메인 메뉴로 돌아가기")
+        self.console.print("="*80)
+    
+    async def _start_monitoring(self):
+        """자동매매 모니터링 시작"""
+        try:
+            if self.auto_trader.is_monitoring:
+                self.console.print("WARNING: Monitoring is already running.")
+                return
+            
+            # DB에서 모니터링 종목 확인
+            with self.db_manager.get_session() as session:
+                trading_stocks = session.query(MonitoringStock).filter(
+                    MonitoringStock.status == MonitoringStatus.ACTIVE,
+                    MonitoringStock.monitoring_active == True,
+                    MonitoringStock.monitoring_type == MonitoringType.TRADING
+                ).order_by(MonitoringStock.recommendation_time.asc()).all()
+                
+            if not trading_stocks:
+                self.logger.info("모니터링할 종목이 없습니다. 먼저 종목을 추가해주세요.")
+                return
+            
+            self.logger.info(f"자동매매 모니터링을 시작합니다... ({len(trading_stocks)}개 종목)")
+            self.logger.info("중지하려면 '2. 모니터링 중지'를 선택하세요.")
+            
+            # 백그라운드 태스크로 모니터링 시작 (논블로킹)
+            if not hasattr(self, 'monitoring_task') or self.monitoring_task is None:
+                self.monitoring_task = asyncio.create_task(self.auto_trader.start_monitoring())
+                self.logger.info("✅ 자동매매 모니터링이 백그라운드에서 시작되었습니다.")
+                await asyncio.sleep(0.5)  # 짧은 대기 후 메뉴로 복귀
+            else:
+                self.logger.info("⚠️ 모니터링이 이미 실행 중입니다.")
+                
+        except Exception as e:
+            self.logger.error(f"모니터링 시작 실패: {e}")
+            raise e
+    
+    async def _stop_monitoring(self):
+        """자동매매 모니터링 중지"""
+        try:
+            # 백그라운드 태스크 중지
+            if hasattr(self, 'monitoring_task') and self.monitoring_task:
+                self.monitoring_task.cancel()
+                self.monitoring_task = None
+                self.logger.info("🛑 백그라운드 모니터링 태스크를 중지했습니다.")
+            
+            # 자동매매 중지
+            if not self.auto_trader.is_monitoring:
+                self.console.print("WARNING: Monitoring is not currently running.")
+                return
+            
+            self.console.print("Stopping auto trading monitoring...")
+            
+            await self.auto_trader.stop_monitoring()
+            
+            # 모니터링 태스크 취소
+            if self.monitoring_task and not self.monitoring_task.done():
+                self.monitoring_task.cancel()
+                try:
+                    await self.monitoring_task
+                except asyncio.CancelledError:
+                    pass
+            
+            self.console.print("✅ 자동매매 모니터링이 중지되었습니다.")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 모니터링 중지 실패: {e}")
+            self.console.print(f"❌ 모니터링 중지 실패: {e}")
+    
+    async def _add_buy_recommendation(self):
+        """Buy 추천 종목 추가 (개선된 UX)"""
+        try:
+            self.console.print("\nAdd Buy Recommendation Stock")
+            self.console.print("-" * 50)
+            self.console.print("💡 종목 코드(6자리) 또는 종목명을 입력하세요")
+            self.console.print("   예: 005930, 삼성전자, 네이버, SK하이닉스")
+            
+            # 종목 검색 입력
+            query = input("🔍 종목 코드 또는 종목명: ").strip()
+            if not query:
+                self.console.print("❌ 검색어를 입력해주세요.")
+                return
+            
+            self.console.print("🔍 종목 검색 중...")
+            stock_result = await self.stock_search.interactive_stock_selection(query)
+            
+            if not stock_result:
+                self.console.print("❌ 종목을 찾을 수 없거나 선택이 취소되었습니다.")
+                return
+            
+            symbol, name = stock_result
+            
+            # 중복 체크
+            with self.db_manager.get_session() as session:
+                existing = MonitoringStock.get_by_symbol_and_type(
+                    session, symbol, MonitoringType.TRADING
+                )
+                if existing:
+                    self.console.print(f"WARNING: {symbol}({name}) is already being monitored.")
+                    return
+            
+            # 전략명 입력
+            strategy = input("🎯 전략명 (예: momentum, breakout): ").strip()
+            if not strategy:
+                strategy = "manual"
+            
+            # 목표가 입력 (선택사항)
+            target_input = input("💰 목표가 (선택사항, Enter로 스킵): ").strip()
+            target_price = None
+            if target_input:
+                try:
+                    target_price = int(target_input)
+                except ValueError:
+                    self.console.print("WARNING: Target price must be a number. Proceeding with default.")
+            
+            # DB에 종목 추가
+            with self.db_manager.get_session() as session:
+                try:
+                    monitoring_stock = MonitoringStock.add_monitoring_stock(
+                        session=session,
+                        symbol=symbol,
+                        name=name,
+                        monitoring_type=MonitoringType.TRADING,
+                        strategy_name=strategy,
+                        target_price=target_price,
+                        add_reason="수동 추가"
+                    )
+                    
+                    self.console.print(f"✅ {symbol}({name})을 모니터링 리스트에 추가했습니다.")
+                    self.console.print(f"   전략: {strategy}")
+                    if target_price:
+                        self.console.print(f"   목표가: {target_price:,}원")
+                    self.console.print(f"   DB ID: {monitoring_stock.id}")
+                    
+                except Exception as e:
+                    self.logger.error(f"DB 저장 오류: {e}")
+                    self.console.print(f"❌ DB 저장 실패: {e}")
+                
+        except Exception as e:
+            self.logger.error(f"❌ 종목 추가 실패: {e}")
+            self.console.print(f"❌ 종목 추가 실패: {e}")
+    
+    async def _remove_monitoring(self):
+        """모니터링 종목 제거"""
+        try:
+            with self.db_manager.get_session() as session:
+                trading_stocks = session.query(MonitoringStock).filter(
+                    MonitoringStock.status == MonitoringStatus.ACTIVE,
+                    MonitoringStock.monitoring_active == True,
+                    MonitoringStock.monitoring_type == MonitoringType.TRADING
+                ).order_by(MonitoringStock.recommendation_time.asc()).all()
+                
+            if not trading_stocks:
+                self.console.print("WARNING: No stocks currently being monitored.")
+                return
+            
+            self.console.print("\nCurrently Monitored Stocks:")
+            self.console.print("-" * 50)
+            
+            for i, stock in enumerate(trading_stocks, 1):
+                status_emoji = "🟢" if stock.monitoring_active else "🔴"
+                self.console.print(f"{i}. {status_emoji} {stock.symbol} ({stock.name}) - {stock.strategy_name}")
+            
+            self.console.print("-" * 50)
+            choice = input("제거할 종목 번호를 입력하세요 (취소: Enter): ").strip()
+            
+            if not choice:
+                return
+            
+            try:
+                choice_num = int(choice)
+                
+                if 1 <= choice_num <= len(trading_stocks):
+                    selected_stock = trading_stocks[choice_num - 1]
+                    
+                    # DB에서 제거
+                    with self.db_manager.get_session() as session:
+                        db_stock = session.query(MonitoringStock).filter(
+                            MonitoringStock.id == selected_stock.id
+                        ).first()
+                        
+                        if db_stock:
+                            db_stock.remove_monitoring("사용자 수동 제거")
+                            session.commit()
+                            self.console.print(f"✅ {selected_stock.symbol}({selected_stock.name}) 종목을 모니터링에서 제거했습니다.")
+                        else:
+                            self.console.print("❌ 종목을 찾을 수 없습니다.")
+                else:
+                    self.console.print("❌ 잘못된 번호입니다.")
+                    
+            except ValueError:
+                self.console.print("❌ 숫자를 입력해주세요.")
+                
+        except Exception as e:
+            self.logger.error(f"❌ 종목 제거 실패: {e}")
+            self.console.print(f"❌ 종목 제거 실패: {e}")
+    
+    async def _view_monitoring_status(self):
+        """모니터링 상태 조회 - KIS API 기반 실시간 데이터"""
+        try:
+            # 1단계: DB에서 모니터링 대상 종목 목록만 조회 (종목명 + 전략명만)
+            with self.db_manager.get_session() as session:
+                db_stocks = session.query(MonitoringStock).filter(
+                    MonitoringStock.status == MonitoringStatus.ACTIVE,
+                    MonitoringStock.monitoring_active == True,
+                    MonitoringStock.monitoring_type == MonitoringType.TRADING
+                ).order_by(MonitoringStock.recommendation_time.asc()).all()
+                
+                # DB에서는 종목명과 전략명만 가져옴
+                monitoring_symbols = {}
+                for stock in db_stocks:
+                    monitoring_symbols[stock.symbol] = {
+                        'name': stock.name,
+                        'strategy_name': stock.strategy_name,
+                        'recommendation_time': stock.recommendation_time
+                    }
+                
+                self.logger.info(f"📊 DB 모니터링 종목: {len(monitoring_symbols)}개 발견")
+            
+            # 2단계: KIS API에서 실시간 보유종목 데이터 조회
+            self.logger.info("💰 KIS API 실시간 보유종목 조회...")
+            holdings = await asyncio.wait_for(self.kis_collector.get_holdings(), timeout=20.0) or {}
+            
+            if holdings:
+                self.logger.info(f"✅ KIS에서 보유종목 {len(holdings)}개 조회 성공")
+                for symbol, info in list(holdings.items())[:3]:
+                    self.logger.info(f"  📈 {symbol}: {info.get('name', '')} - {info.get('quantity', 0)}주 @ {info.get('avg_price', 0):,}원")
+            else:
+                self.logger.warning("⚠️ KIS에서 보유종목 조회 실패 또는 빈 결과")
+                holdings = {}
+            
+            # 3단계: KIS 보유종목과 DB 모니터링 종목을 결합
+            combined_stocks = []
+            
+            # KIS 보유종목 기반으로 처리
+            for symbol, holding_info in holdings.items():
+                # DB에 해당 종목이 모니터링 대상인지 확인
+                if symbol in monitoring_symbols:
+                    # DB에서 전략명 가져옴
+                    strategy_name = monitoring_symbols[symbol]['strategy_name']
+                    stock_name = monitoring_symbols[symbol]['name']
+                    recommendation_time = monitoring_symbols[symbol]['recommendation_time']
+                else:
+                    # DB에 없는 보유종목 - 기본 전략으로 분류
+                    strategy_name = 'PORTFOLIO_HOLD'
+                    stock_name = holding_info.get('name', f'종목{symbol}')
+                    recommendation_time = None
+                
+                combined_stocks.append({
+                    'symbol': symbol,
+                    'name': stock_name,
+                    'strategy_name': strategy_name,
+                    'kis_data': holding_info,
+                    'recommendation_time': recommendation_time
+                })
+            
+            # 상태 정보
+            is_monitoring = self.auto_trader.is_monitoring
+            trading_enabled = self.executor.is_trading_enabled()
+            total_count = len(combined_stocks)
+            
+            self.logger.info(f"📊 최종 표시 종목: {total_count}개 (KIS 보유종목 기반)")
+            
+            # 메인 헤더 패널
+            header_text = Text()
+            header_text.append("📊 자동매매 모니터링 상태", style="bold blue")
+            header_panel = Panel(header_text, border_style="blue", expand=False)
+            self.console.print(header_panel)
+            
+            # KIS 기반 실시간 데이터 테이블 생성
+            if combined_stocks:
+                table = Table(show_header=True, header_style="bold magenta", 
+                            title="[bold]📋 실시간 보유종목 현황 (KIS API)[/bold]", 
+                            title_style="bold white", border_style="magenta")
+                
+                table.add_column("종목명", style="cyan", min_width=12, no_wrap=True)
+                table.add_column("전략", style="green", min_width=15)
+                table.add_column("현재가", style="white", justify="right", min_width=10)
+                table.add_column("매수가", style="yellow", justify="right", min_width=10)
+                table.add_column("수량", style="bright_yellow", justify="right", min_width=8)
+                table.add_column("수익률", justify="right", min_width=10)
+                table.add_column("평가손익", style="magenta", justify="right", min_width=12)
+                
+                for stock in combined_stocks:
+                    kis_data = stock['kis_data']
+                    
+                    # KIS 데이터에서 실시간 정보 추출
+                    current_price = kis_data.get('current_price', 0)
+                    avg_price = kis_data.get('avg_price', 0)
+                    quantity = kis_data.get('quantity', 0)
+                    profit_rate = kis_data.get('profit_rate', 0.0)
+                    profit_loss = kis_data.get('profit_loss', 0)
+                    
+                    # 표시 형식 정리
+                    current_price_display = f"[green]{current_price:,}원[/green]" if current_price > 0 else "조회실패"
+                    avg_price_display = f"{avg_price:,.0f}원" if avg_price > 0 else "N/A"
+                    quantity_display = f"{quantity:,}주" if quantity > 0 else "0주"
+                    
+                    # 수익률 색상 처리
+                    if profit_rate > 0:
+                        profit_rate_display = f"[green]▲{profit_rate:.2f}%[/green]"
+                    elif profit_rate < 0:
+                        profit_rate_display = f"[red]▼{abs(profit_rate):.2f}%[/red]"
+                    else:
+                        profit_rate_display = f"[white]0.00%[/white]"
+                    
+                    # 평가손익 색상 처리
+                    if profit_loss > 0:
+                        profit_loss_display = f"[green]+{profit_loss:,}원[/green]"
+                    elif profit_loss < 0:
+                        profit_loss_display = f"[red]{profit_loss:,}원[/red]"
+                    else:
+                        profit_loss_display = f"[white]0원[/white]"
+                    
+                    table.add_row(
+                        stock['name'],
+                        stock['strategy_name'],
+                        current_price_display,
+                        avg_price_display,
+                        quantity_display,
+                        profit_rate_display,
+                        profit_loss_display
+                    )
+                
+                self.console.print(table)
+            else:
+                self.console.print("[yellow]⚠️ 보유 중인 종목이 없습니다.[/yellow]")
+            
+            # 간단한 상태 정보 표시
+            status_info = Text()
+            status_info.append(f"📊 모니터링: {'활성' if is_monitoring else '비활성'} | ", style="cyan")
+            status_info.append(f"💰 매매: {'활성' if trading_enabled else '비활성'} | ", style="yellow")
+            status_info.append(f"🔢 보유종목: {total_count}개", style="white")
+            
+            status_panel = Panel(status_info, title="[bold]시스템 상태[/bold]", 
+                               border_style="green", expand=False)
+            self.console.print(status_panel)
+                    
+        except Exception as e:
+            self.logger.error(f"❌ 모니터링 상태 조회 실패: {e}")
+            
+            # 에러 패널
+            error_text = Text()
+            error_text.append("❌ KIS API 기반 모니터링 조회 실패: ", style="bold red")
+            error_text.append(str(e), style="red")
+            
+            error_panel = Panel(error_text, title="[bold red]오류[/bold red]", 
+                              border_style="red", expand=False)
+            self.console.print(error_panel)
+                market_info = auto_status.get('market_info', {})
+                modes = auto_status.get('modes', {})
+                
+                # 시장 상태
+                status_text.append("🏛️ 시장 상태: ", style="white")
+                market_status_korean = market_info.get('market_status_korean', '알 수 없음')
+                if market_info.get('is_market_open', False):
+                    status_text.append(f"🟢 {market_status_korean}", style="bold green")
+                else:
+                    status_text.append(f"🔴 {market_status_korean}", style="bold red")
+                status_text.append("\n")
+                
+                # 자동 모니터링 상태
+                monitoring_mode = modes.get('monitoring', {})
+                status_text.append("📊 매매 모니터링: ", style="white")
+                monitoring_icon = monitoring_mode.get('status_icon', '🔴')
+                monitoring_korean = monitoring_mode.get('status_korean', '비활성화')
+                if monitoring_mode.get('is_active', False):
+                    status_text.append(f"{monitoring_icon} {monitoring_korean}", style="bold green")
+                else:
+                    status_text.append(f"{monitoring_icon} {monitoring_korean}", style="bold red")
+                status_text.append("\n")
+                
+                # 자동 매매 모드
+                trading_mode = modes.get('trading', {})
+                status_text.append("💰 매매 모드: ", style="white")
+                trading_icon = trading_mode.get('status_icon', '🔴')
+                trading_korean = trading_mode.get('status_korean', '비활성화')
+                if trading_mode.get('is_active', False):
+                    status_text.append(f"{trading_icon} {trading_korean}", style="bold green")
+                else:
+                    status_text.append(f"{trading_icon} {trading_korean}", style="bold red")
+                status_text.append("\n")
+                
+                # 현재 시간
+                current_time = market_info.get('current_time', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                status_text.append(f"🕐 현재 시간: {current_time}", style="dim white")
+                status_text.append("\n")
+                
+                # 종목 수 정보
+                status_text.append("📋 전체 종목 수: ", style="white")
+                status_text.append(f"{total_count}", style="bold yellow")
+                status_text.append("개\n")
+                
+                status_text.append("📈 활성 종목 수: ", style="white")
+                status_text.append(f"{active_count}", style="bold green")
+                status_text.append("개")
+                
+                status_panel = Panel(status_text, title="[bold cyan]시스템 상태[/bold cyan]", 
+                                   border_style="cyan", expand=False, padding=(1, 2))
+                self.console.print(status_panel)
+                
+                # 모니터링 종목과 보유종목 통합 처리
+                # 1. 모니터링 테이블의 종목들
+                # 2. 보유종목 중 모니터링 테이블에 없는 종목들도 추가
+                monitoring_symbols = {stock['symbol'] for stock in trading_stocks}
+                portfolio_only_stocks = []
+                
+                if holdings:
+                    for symbol, holding_info in holdings.items():
+                        if symbol not in monitoring_symbols and holding_info.get('quantity', 0) > 0:
+                            # 보유종목이지만 모니터링 테이블에 없는 종목
+                            portfolio_only_stocks.append({
+                                'symbol': symbol,
+                                'name': holding_info.get('name', f'종목{symbol}'),
+                                'strategy_name': 'PORTFOLIO',
+                                'current_price': holding_info.get('current_price', 0),
+                                'avg_price': holding_info.get('avg_price', 0),
+                                'quantity': holding_info.get('quantity', 0),
+                                'is_portfolio_only': True
+                            })
+                
+                total_display_count = len(trading_stocks) + len(portfolio_only_stocks)
+                self.logger.info(f"📊 표시할 종목: 모니터링 {len(trading_stocks)}개 + 보유전용 {len(portfolio_only_stocks)}개 = 총 {total_display_count}개")
+                
+                if trading_stocks or portfolio_only_stocks:
+                    table = Table(show_header=True, header_style="bold magenta", 
+                                title="[bold]📋 모니터링 중인 종목 목록[/bold]", 
+                                title_style="bold white", border_style="magenta")
+                    
+                    table.add_column("종목명", style="cyan", min_width=12, no_wrap=True)
+                    table.add_column("전략", style="green", min_width=15)
+                    table.add_column("현재가", style="white", justify="right", min_width=10)
+                    table.add_column("매수가", style="yellow", justify="right", min_width=10)
+                    table.add_column("수량", style="bright_yellow", justify="right", min_width=8)
+                    table.add_column("수익률", justify="right", min_width=10)
+                    table.add_column("목표가", style="purple", justify="right", min_width=10)
+                    table.add_column("손절가", style="red", justify="right", min_width=10)
+                    table.add_column("등록일", style="dim", min_width=12)
+                    
+                    for stock in trading_stocks:
+                        # 종목명만 표시
+                        display_name = stock['name']
+                        
+                        # 실시간 현재가 조회 (KIS API에서 직접 가져오기)
+                        display_price = None
+                        current_price = None
+                        
+                        # 실시간 KIS API에서 현재가 조회 (충분한 타임아웃으로 반드시 성공)
+                        max_retries = 3
+                        retry_count = 0
+                        
+                        while retry_count < max_retries and not display_price:
+                            try:
+                                timeout_duration = 3.0 + (retry_count * 2.0)  # 3초, 5초, 7초로 증가
+                                self.logger.debug(f"🔄 {stock['symbol']} 실시간 가격 조회 시도 {retry_count + 1}/{max_retries} (타임아웃: {timeout_duration}초)")
+                                
+                                fresh_price = await asyncio.wait_for(
+                                    self.kis_collector.get_current_price(stock['symbol']), 
+                                    timeout=timeout_duration
+                                )
+                                
+                                if fresh_price and fresh_price > 0:
+                                    display_price = fresh_price
+                                    current_price = f"[green]{fresh_price:,}원[실시간][/green]"
+                                    
+                                    # 백그라운드에서 DB 업데이트 (기록용만)
+                                    async def update_db_price():
+                                        try:
+                                            with self.db_manager.get_session() as update_session:
+                                                db_stock = update_session.query(MonitoringStock).filter(
+                                                    MonitoringStock.symbol == stock['symbol'],
+                                                    MonitoringStock.status == MonitoringStatus.ACTIVE
+                                                ).first()
+                                                if db_stock:
+                                                    db_stock.current_price = fresh_price
+                                                    db_stock.last_check_time = datetime.now()
+                                                    update_session.commit()
+                                        except Exception as e:
+                                            self.logger.debug(f"DB 업데이트 실패: {e}")
+                                    
+                                    # 백그라운드 태스크로 실행
+                                    asyncio.create_task(update_db_price())
+                                    break
+                                    
+                            except asyncio.TimeoutError:
+                                retry_count += 1
+                                if retry_count < max_retries:
+                                    self.logger.warning(f"⚠️ {stock['symbol']} 가격 조회 타임아웃, {retry_count + 1}번째 재시도...")
+                                    await asyncio.sleep(0.5)  # 짧은 대기 후 재시도
+                                else:
+                                    self.logger.error(f"❌ {stock['symbol']} 실시간 가격 조회 최종 실패")
+                                    
+                            except Exception as e:
+                                retry_count += 1
+                                self.logger.warning(f"⚠️ {stock['symbol']} 가격 조회 오류 (시도 {retry_count}/{max_retries}): {e}")
+                                if retry_count < max_retries:
+                                    await asyncio.sleep(0.5)
+                        
+                        # 모든 재시도 실패 시 오류 표시 (fallback 없음)
+                        if not display_price:
+                            display_price = 0
+                            current_price = f"[red]조회실패[/red]"
+                            self.logger.error(f"❌ {stock['symbol']} 실시간 가격을 가져올 수 없어 매매 불가")
+                        
+                        # 매수가 및 수량 계산 (보유 종목 우선, 없으면 추천시점 가격)
+                        buy_price = None
+                        quantity = None
+                        profit_rate = None
+                        
+                        # 1. 먼저 실제 보유종목에서 확인 (해당 종목만)
+                        if stock['symbol'] in holdings:
+                            holding_info = holdings[stock['symbol']]
+                            avg_price = holding_info.get('avg_price', 0)
+                            qty = holding_info.get('quantity', 0)
+                            real_time_price = holding_info.get('current_price', 0)  # HTS에서 가져온 실시간 현재가
+                            
+                            self.logger.debug(f"🔍 {stock['symbol']} 보유정보 - 매수가: {avg_price}, 수량: {qty}, 현재가: {real_time_price}")
+                            
+                            if avg_price > 0:
+                                buy_price = avg_price
+                                quantity = qty
+                                
+                                # 실시간 현재가로 수익률 계산 (HTS 잔고의 실시간 가격 사용)
+                                if real_time_price and buy_price:
+                                    profit_rate = ((real_time_price - buy_price) / buy_price) * 100
+                                    # 모니터링 테이블의 현재가도 업데이트 (실시간 반영)
+                                    stock['current_price'] = real_time_price
+                                    self.logger.debug(f"📊 {stock['symbol']} 수익률 계산: {profit_rate:.2f}%")
+                        else:
+                            # 2. 보유종목에 없으면 모든 값을 None으로 설정
+                            buy_price = None
+                            quantity = None
+                            profit_rate = None
+                        
+                        # 매수가 포매팅 (실제 매수한 경우만 표시)
+                        if buy_price and quantity and quantity > 0:
+                            buy_price_display = f"{int(buy_price):,}원"
+                        else:
+                            buy_price_display = ""
+                        
+                        # 수량 포매팅 (실제 보유한 경우만 표시)
+                        if quantity and quantity > 0:
+                            quantity_display = f"{quantity:,}주"
+                        else:
+                            quantity_display = ""
+                        
+                        # 수익률 포매팅 (실제 보유한 경우만 표시)
+                        if profit_rate is not None and quantity and quantity > 0:
+                            if profit_rate >= 5.0:
+                                profit_rate_display = f"[bold green]▲{profit_rate:.2f}%[/bold green]"
+                            elif profit_rate > 0:
+                                profit_rate_display = f"[green]▲{profit_rate:.2f}%[/green]"
+                            elif profit_rate <= -5.0:
+                                profit_rate_display = f"[bold red]▼{abs(profit_rate):.2f}%[/bold red]"
+                            else:
+                                profit_rate_display = f"[red]▼{abs(profit_rate):.2f}%[/red]"
+                        else:
+                            profit_rate_display = ""
+                        
+                        # 목표가 표시
+                        if stock.get('target_price') and stock['target_price'] > 0:
+                            target_price = f"{stock['target_price']:,}원"
+                        else:
+                            target_price = "N/A"
+                        
+                        # 손절가: 실시간 현재가 기준으로 계산해서 표시
+                        if display_price and display_price > 0:
+                            # 전략별 손절가 계산
+                            if 'portfolio' in stock['strategy_name'].lower():
+                                # 보유 종목: 매수가 기준 (더 보수적)
+                                if buy_price and buy_price > 0:
+                                    calculated_stop_loss = int(buy_price * 0.95)  # -5%
+                                    stop_loss_price = f"{calculated_stop_loss:,}원"
+                                else:
+                                    # 보유종목인데 매수가 없으면 현재가의 3% 손절
+                                    calculated_stop_loss = int(display_price * 0.97)
+                                    stop_loss_price = f"{calculated_stop_loss:,}원"
+                            else:
+                                # AI_ANALYSIS 종목: 진입 예정가(현재가) 기준 손절가
+                                if stock.get('stop_loss_price') and stock['stop_loss_price'] > 0:
+                                    # DB에 저장된 손절가 우선 사용
+                                    stop_loss_price = f"{stock['stop_loss_price']:,}원"
+                                else:
+                                    # 실시간 현재가 기준 2% 손절가 계산
+                                    calculated_stop_loss = int(display_price * 0.98)
+                                    stop_loss_price = f"{calculated_stop_loss:,}원"
+                        else:
+                            stop_loss_price = "N/A"
+                        
+                        # 등록일 포매팅 (딕셔너리 기반)
+                        reg_date = stock['recommendation_time'].strftime('%m-%d %H:%M') if stock['recommendation_time'] else 'N/A'
+
+                        table.add_row(
+                            display_name,
+                            stock['strategy_name'],
+                            current_price,
+                            buy_price_display,
+                            quantity_display,
+                            profit_rate_display,
+                            target_price,
+                            stop_loss_price,
+                            reg_date
+                        )
+                    
+                    # 보유전용 종목들 추가 (모니터링 테이블에 없는 보유종목들)
+                    for portfolio_stock in portfolio_only_stocks:
+                        # 종목명과 코드
+                        display_name = f"{portfolio_stock['name']}\n[dim]({portfolio_stock['symbol']})[/dim]"
+                        
+                        # 현재가
+                        current_price = f"{portfolio_stock['current_price']:,}원" if portfolio_stock['current_price'] else '[dim]N/A[/dim]'
+                        
+                        # 매수가 (실제 보유)
+                        buy_price = portfolio_stock['avg_price']
+                        buy_price_display = f"{int(buy_price):,}원" if buy_price else '[dim]N/A[/dim]'
+                        
+                        # 수량 (실제 보유)
+                        quantity = portfolio_stock['quantity']
+                        quantity_display = f"{quantity:,}주" if quantity else '[dim]N/A[/dim]'
+                        
+                        # 수익률 계산
+                        profit_rate = None
+                        if buy_price > 0 and portfolio_stock['current_price'] > 0:
+                            profit_rate = ((portfolio_stock['current_price'] - buy_price) / buy_price) * 100
+                        
+                        if profit_rate is not None:
+                            if profit_rate >= 5.0:
+                                profit_rate_display = f"[bold green]▲{profit_rate:.2f}%[/bold green]"
+                            elif profit_rate > 0:
+                                profit_rate_display = f"[green]▲{profit_rate:.2f}%[/green]"
+                            elif profit_rate <= -5.0:
+                                profit_rate_display = f"[bold red]▼{abs(profit_rate):.2f}%[/bold red]"
+                            else:
+                                profit_rate_display = f"[red]▼{abs(profit_rate):.2f}%[/red]"
+                        else:
+                            profit_rate_display = '[dim]N/A[/dim]'
+                        
+                        # 보유전용 종목은 목표가/손절가 없음
+                        target_price = '[dim]보유전용[/dim]'
+                        stop_loss_price = '[dim]보유전용[/dim]'
+                        reg_date = '[dim]보유전용[/dim]'
+                        
+                        table.add_row(
+                            display_name,
+                            "[dim]PORTFOLIO[/dim]",  # 전략명
+                            current_price,
+                            buy_price_display,
+                            quantity_display,
+                            profit_rate_display,
+                            target_price,
+                            stop_loss_price,
+                            reg_date
+                        )
+                    
+                    # 테이블 직접 출력 (패널 없이)
+                    self.console.print(table)
+                    
+                else:
+                    # 빈 상태 메시지 패널
+                    empty_text = Text()
+                    empty_text.append("⚠️ 현재 모니터링 중인 종목이 없습니다.", style="bold yellow")
+                    empty_text.append("\n\n💡 ", style="white")
+                    empty_text.append("'3. Buy 추천 종목 추가'", style="bold cyan")
+                    empty_text.append("를 선택하여 종목을 추가해보세요.", style="white")
+                    
+                    empty_panel = Panel(empty_text, title="[bold yellow]모니터링 종목[/bold yellow]", 
+                                      border_style="yellow", expand=False, padding=(1, 2))
+                    self.console.print(empty_panel)
+                
+                # 푸터 패널
+                footer_text = Text()
+                footer_text.append("🔄 ", style="white")
+                footer_text.append("실시간 모니터링", style="bold blue")
+                if is_monitoring:
+                    footer_text.append(" 중", style="bold green")
+                else:
+                    footer_text.append(" 중지됨", style="bold red")
+                    
+                footer_panel = Panel(footer_text, border_style="blue", expand=False)
+                self.console.print(footer_panel)
+            
+        except Exception as e:
+            self.logger.error(f"❌ 상태 조회 실패: {e}")
+            
+            # 에러 패널
+            error_text = Text()
+            error_text.append("❌ 상태 조회 실패: ", style="bold red")
+            error_text.append(str(e), style="red")
+            
+            error_panel = Panel(error_text, title="[bold red]오류[/bold red]", 
+                              border_style="red", expand=False)
+            self.console.print(error_panel)
+    
+    async def _configure_trading_settings(self):
+        """매매 설정 변경"""
+        self.console.print("\nConfigure Trading Settings")
+        self.console.print("=" * 50)
+        
+        # 현재 매매 모드 상태 확인
+        current_status = "ENABLED" if self.executor.is_trading_enabled() else "DISABLED"
+        self.console.print(f"Current Trading Mode: {current_status}")
+        
+        self.console.print("\n1. Enable Trading Mode")
+        self.console.print("2. Disable Trading Mode") 
+        self.console.print("3. View Trading Settings")
+        self.console.print("0. Back to Menu")
+        self.console.print("-" * 50)
+        
+        choice = input("Select option (0-3): ").strip()
+        
+        if choice == '1':
+            try:
+                if hasattr(self.executor, 'enable_trading'):
+                    self.executor.enable_trading()
+                    self.console.print("SUCCESS: Trading mode enabled")
+                else:
+                    # 직접 internal flag 설정
+                    self.executor._trading_enabled = True
+                    self.console.print("SUCCESS: Trading mode enabled")
+            except Exception as e:
+                self.console.print(f"ERROR: Failed to enable trading: {e}")
+                
+        elif choice == '2':
+            try:
+                if hasattr(self.executor, 'disable_trading'):
+                    self.executor.disable_trading()
+                    self.console.print("SUCCESS: Trading mode disabled")
+                else:
+                    # 직접 internal flag 설정
+                    self.executor._trading_enabled = False
+                    self.console.print("SUCCESS: Trading mode disabled") 
+            except Exception as e:
+                self.console.print(f"ERROR: Failed to disable trading: {e}")
+                
+        elif choice == '3':
+            self.console.print("\nCurrent Trading Settings:")
+            self.console.print(f"Trading Mode: {'ENABLED' if self.executor.is_trading_enabled() else 'DISABLED'}")
+            self.console.print(f"Risk Management: ACTIVE")
+            self.console.print(f"Position Management: ACTIVE")
+            
+        elif choice == '0':
+            return
+        else:
+            self.console.print("ERROR: Invalid selection")
+    
+    async def _manual_trade(self):
+        """수동 매매 실행"""
+        self.console.print("\nManual Trading Execution")
+        self.console.print("🔄 구현 예정 - 지정가/시장가 주문 등")
+    
+    async def _start_removal_scheduler(self):
+        """감시 제거 스케줄러 시작"""
+        try:
+            self.console.print("Starting removal scheduler...")
+            
+            success = await self.removal_scheduler.start_scheduler()
+            if success:
+                self.console.print("Removal scheduler started successfully. (30min interval)")
+            else:
+                self.console.print("ERROR: Failed to start scheduler.")
+                
+        except Exception as e:
+            self.logger.error(f"ERROR: Scheduler start failed: {e}")
+            self.console.print(f"ERROR: Scheduler start failed: {e}")
+    
+    async def _stop_removal_scheduler(self):
+        """감시 제거 스케줄러 중지"""
+        try:
+            self.console.print("🛑 감시 제거 스케줄러를 중지합니다...")
+            
+            success = await self.removal_scheduler.stop_scheduler()
+            if success:
+                self.console.print("✅ 감시 제거 스케줄러가 중지되었습니다.")
+            else:
+                self.console.print("❌ 스케줄러 중지에 실패했습니다.")
+                
+        except Exception as e:
+            self.logger.error(f"❌ 스케줄러 중지 실패: {e}")
+            self.console.print(f"❌ 스케줄러 중지 실패: {e}")
+    
+    async def _view_removal_scheduler_status(self):
+        """감시 제거 스케줄러 상태"""
+        try:
+            # 세션 내에서 모든 필요한 값 추출
+            with self.db_manager.get_session() as session:
+                scheduler_state = MonitoringSchedulerState.get_scheduler_state(
+                    session, "removal_scheduler"
+                )
+                
+                removal_stocks = MonitoringStock.get_active_monitoring(
+                    session, MonitoringType.REMOVAL_WATCH
+                )
+                removal_count = len(removal_stocks)
+                
+                # 스케줄러 상태 정보 추출
+                if scheduler_state:
+                    is_running = scheduler_state.is_running
+                    interval_seconds = scheduler_state.interval_seconds
+                    total_runs = scheduler_state.total_runs
+                    success_rate = scheduler_state.get_success_rate()
+                    last_run_time = scheduler_state.last_run_time
+                    next_run_time = scheduler_state.next_run_time
+                    last_error = scheduler_state.last_error
+                else:
+                    is_running = interval_seconds = total_runs = success_rate = None
+                    last_run_time = next_run_time = last_error = None
+            
+            self.console.print("\n📊 감시 제거 스케줄러 상태")
+            self.console.print("=" * 50)
+            
+            if scheduler_state:
+                status = "🟢 실행중" if is_running else "🔴 중지"
+                self.console.print(f"상태: {status}")
+                self.console.print(f"실행 간격: {interval_seconds}초 (30분)")
+                self.console.print(f"총 실행 횟수: {total_runs}회")
+                self.console.print(f"성공률: {success_rate:.1f}%")
+                
+                if last_run_time:
+                    self.console.print(f"마지막 실행: {last_run_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                if next_run_time:
+                    self.console.print(f"다음 실행: {next_run_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                if last_error:
+                    self.console.print(f"마지막 오류: {last_error}")
+            else:
+                self.console.print("스케줄러가 초기화되지 않았습니다.")
+            
+            self.console.print(f"\n감시 제거 대상 종목: {removal_count}개")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 스케줄러 상태 조회 실패: {e}")
+            self.console.print(f"❌ 스케줄러 상태 조회 실패: {e}")
+    
+    async def _manage_monitoring_stocks(self):
+        """감시 종목 관리 (추가/제거)"""
+        while True:
+            try:
+                with self.db_manager.get_session() as session:
+                    removal_stocks = MonitoringStock.get_active_monitoring(
+                        session, MonitoringType.REMOVAL_WATCH
+                    )
+                
+                self.console.print("\n📋 감시 제거 종목 관리")
+                self.console.print("=" * 50)
+                self.console.print(f"현재 감시 중인 종목: {len(removal_stocks)}개")
+                self.console.print("")
+                self.console.print("1. 감시 종목 추가")
+                self.console.print("2. 감시 종목 제거")
+                self.console.print("3. 감시 종목 목록 보기")
+                self.console.print("0. 돌아가기")
+                self.console.print("=" * 50)
+                
+                choice = input("선택하세요 (0-3): ").strip()
+                
+                if choice == '1':
+                    await self._add_removal_watch_stock()
+                elif choice == '2':
+                    await self._remove_removal_watch_stock()
+                elif choice == '3':
+                    await self._view_removal_watch_stocks()
+                elif choice == '0':
+                    break
+                else:
+                    self.console.print("❌ 잘못된 선택입니다.")
+                    
+            except Exception as e:
+                self.logger.error(f"❌ 감시 종목 관리 오류: {e}")
+                self.console.print(f"❌ 오류가 발생했습니다: {e}")
+    
+    async def _add_removal_watch_stock(self):
+        """감시 제거 종목 추가"""
+        try:
+            self.console.print("\n📋 감시 제거 종목 추가")
+            self.console.print("-" * 30)
+            
+            # 종목 검색
+            query = input("🔍 종목 코드 또는 종목명: ").strip()
+            if not query:
+                self.console.print("❌ 검색어를 입력해주세요.")
+                return
+            
+            stock_result = await self.stock_search.interactive_stock_selection(query)
+            if not stock_result:
+                self.console.print("❌ 종목을 찾을 수 없거나 선택이 취소되었습니다.")
+                return
+            
+            symbol, name = stock_result
+            
+            # 중복 체크
+            with self.db_manager.get_session() as session:
+                existing = MonitoringStock.get_by_symbol_and_type(
+                    session, symbol, MonitoringType.REMOVAL_WATCH
+                )
+                if existing:
+                    self.console.print(f"⚠️ {symbol}({name})은 이미 감시 중입니다.")
+                    return
+                
+                # 감시 종목 추가
+                monitoring_stock = MonitoringStock.add_monitoring_stock(
+                    session=session,
+                    symbol=symbol,
+                    name=name,
+                    monitoring_type=MonitoringType.REMOVAL_WATCH,
+                    strategy_name="removal_watch",
+                    add_reason="수동 감시 추가"
+                )
+                
+                self.console.print(f"✅ {symbol}({name})을 감시 제거 리스트에 추가했습니다.")
+                
+        except Exception as e:
+            self.logger.error(f"❌ 감시 종목 추가 실패: {e}")
+            self.console.print(f"❌ 감시 종목 추가 실패: {e}")
+    
+    async def _remove_removal_watch_stock(self):
+        """감시 제거 종목 제거"""
+        try:
+            with self.db_manager.get_session() as session:
+                removal_stocks = MonitoringStock.get_active_monitoring(
+                    session, MonitoringType.REMOVAL_WATCH
+                )
+                
+            if not removal_stocks:
+                self.console.print("⚠️ 감시 중인 종목이 없습니다.")
+                return
+            
+            self.console.print("\n📋 현재 감시 중인 종목:")
+            self.console.print("-" * 40)
+            
+            for i, stock in enumerate(removal_stocks, 1):
+                self.console.print(f"{i}. {stock.symbol} ({stock.name})")
+            
+            self.console.print("-" * 40)
+            choice = input("제거할 종목 번호 (취소: Enter): ").strip()
+            
+            if not choice:
+                return
+            
+            choice_num = int(choice)
+            if 1 <= choice_num <= len(removal_stocks):
+                selected_stock = removal_stocks[choice_num - 1]
+                
+                with self.db_manager.get_session() as session:
+                    db_stock = session.query(MonitoringStock).filter(
+                        MonitoringStock.id == selected_stock.id
+                    ).first()
+                    
+                    if db_stock:
+                        db_stock.remove_monitoring("사용자 수동 제거")
+                        session.commit()
+                        self.console.print(f"✅ {selected_stock.symbol}({selected_stock.name}) 감시를 중지했습니다.")
+            else:
+                self.console.print("❌ 잘못된 번호입니다.")
+                
+        except Exception as e:
+            self.logger.error(f"❌ 감시 종목 제거 실패: {e}")
+            self.console.print(f"❌ 감시 종목 제거 실패: {e}")
+    
+    async def _view_removal_watch_stocks(self):
+        """감시 제거 종목 목록 보기"""
+        try:
+            with self.db_manager.get_session() as session:
+                removal_stocks = MonitoringStock.get_active_monitoring(
+                    session, MonitoringType.REMOVAL_WATCH
+                )
+            
+            self.console.print(f"\n📋 감시 제거 대상 종목 ({len(removal_stocks)}개)")
+            self.console.print("=" * 60)
+            
+            if removal_stocks:
+                self.console.print(f"{'번호':<4} {'종목코드':<8} {'종목명':<15} {'등록일':<12} {'마지막체크':<12}")
+                self.console.print("-" * 60)
+                
+                for i, stock in enumerate(removal_stocks, 1):
+                    reg_date = stock.recommendation_time.strftime('%m-%d %H:%M') if stock.recommendation_time else "N/A"
+                    last_check = stock.last_check_time.strftime('%m-%d %H:%M') if stock.last_check_time else "없음"
+                    
+                    self.console.print(f"{i:<4} {stock.symbol:<8} {stock.name:<15} {reg_date:<12} {last_check:<12}")
+            else:
+                self.console.print("감시 중인 종목이 없습니다.")
+                
+        except Exception as e:
+            self.logger.error(f"❌ 감시 종목 목록 조회 실패: {e}")
+            self.console.print(f"❌ 감시 종목 목록 조회 실패: {e}")

@@ -1,0 +1,1002 @@
+[
+  {
+    "timestamp": "2025-09-15T11:35:19.798141",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:35:50.835689",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:36:21.871202",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:36:52.903133",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:37:23.954244",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:37:54.983156",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:38:26.022409",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:38:57.058070",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:39:28.089953",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:39:59.118660",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:40:30.150381",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:41:01.184128",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:41:32.214607",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:42:03.439688",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:42:34.472544",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:43:05.506921",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:43:36.531629",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:44:07.567564",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:44:38.597124",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:45:09.627827",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:45:40.783267",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:46:11.818063",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:46:42.846420",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:47:13.878881",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:47:44.909976",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:48:15.937616",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:48:46.972726",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:49:18.009898",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:49:49.047129",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:50:20.084242",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:50:51.118585",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:51:22.149488",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:51:53.180672",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:52:24.208955",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:52:55.240102",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:53:26.274789",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:53:57.300898",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:54:29.319099",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:55:00.351484",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:55:31.391125",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:56:02.581718",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:56:34.578664",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:57:05.609981",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:57:36.800127",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:58:07.829519",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:58:38.856441",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:59:09.885194",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T11:59:40.914895",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:00:11.949956",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:00:42.984942",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:01:14.014809",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:01:45.049288",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:02:16.090830",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:02:47.122485",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:03:18.758620",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:04:30.315193",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:05:04.156508",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:05:35.189513",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:06:12.076274",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:06:43.112603",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:07:18.771686",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:07:49.802009",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:08:20.842519",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:08:56.087711",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:09:28.551768",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:09:59.581875",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:10:37.808257",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:11:09.149891",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:11:47.093323",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:12:18.910464",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:12:49.944375",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:13:23.448329",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:13:54.489014",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:14:33.803657",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:15:11.652431",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:15:42.684946",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:16:16.810750",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:16:47.856447",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:17:22.896567",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:17:54.766007",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:18:25.992346",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:18:57.018290",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:19:33.259467",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:20:06.401105",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:20:39.320086",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:21:10.358323",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:21:48.424720",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:22:20.759146",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:22:51.944247",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:23:28.098902",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:24:05.193288",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:24:36.230229",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:25:15.258311",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:25:52.840058",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:26:24.083837",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:40:52.461550",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:41:29.263062",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:42:07.130497",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:42:38.168620",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  },
+  {
+    "timestamp": "2025-09-15T12:43:09.206597",
+    "active_strategies": 0,
+    "monitored_stocks": 0,
+    "pending_orders": 0,
+    "db_connections": 1,
+    "api_calls_per_minute": 0,
+    "error_count": 0,
+    "response_time_ms": 0.0
+  }
+]
