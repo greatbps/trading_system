@@ -40,45 +40,85 @@ class TradingFlowManager:
         self.logger.info("매매 플로우 관리자 초기화 완료")
     
     async def check_buy_signals(self) -> List[Dict[str, Any]]:
-        """매수 신호 체크 - 모니터링 종목 중 매수 조건 확인"""
+        """매수 신호 체크 - 모니터링 종목 중 기술적 분석 기반 매수 조건 확인"""
         try:
             buy_candidates = []
-            
+
             with self.db_manager.get_session() as session:
                 # 활성 모니터링 종목 중 아직 매수하지 않은 종목들
                 monitoring_stocks = session.query(MonitoringStock).filter(
                     MonitoringStock.status == MonitoringStatus.ACTIVE.value,
                     MonitoringStock.buy_price.is_(None)  # 아직 매수하지 않은 종목
                 ).all()
-                
+
                 print(f"매수 신호 체크: {len(monitoring_stocks)}개 모니터링 종목")
-                
+
                 for stock in monitoring_stocks:
+                    print(f"📊 {stock.symbol}({stock.name}) 매수 시그널 분석 중...")
+
                     # 현재가 조회
                     current_price = await self.kis_collector.get_current_price(stock.symbol)
                     if not current_price:
+                        print(f"  ❌ 현재가 조회 실패")
                         continue
-                    
-                    # 매수가능수량 조회
-                    orderable_qty = await self.kis_collector.get_orderable_quantity(stock.symbol)
-                    if not orderable_qty or orderable_qty <= 0:
+
+                    # 기술적 분석을 위한 차트 데이터 수집
+                    try:
+                        from data_collectors.chart_data_collector import ChartDataCollector
+                        chart_collector = ChartDataCollector(self.config, self.kis_collector)
+                        chart_data = await chart_collector.get_chart_data(stock.symbol, period="D", count=60)
+
+                        if not chart_data or len(chart_data) < 20:
+                            print(f"  ❌ 차트 데이터 부족 (최소 20일 필요)")
+                            continue
+
+                        # 기술적 분석 수행
+                        from analyzers.trading_signals import TradingSignalAnalyzer
+                        signal_analyzer = TradingSignalAnalyzer()
+
+                        # 매수 신호 확인
+                        signals_df = signal_analyzer.check_buy_signals(chart_data.copy())
+                        latest_signals = signal_analyzer.get_latest_signals(signals_df)
+
+                        # 매수 조건 확인: 신호 강도 60% 이상 또는 신호 개수 3개 이상
+                        signal_strength = latest_signals.get('signal_strength', 0)
+                        signal_count = latest_signals.get('signal_count', 0)
+
+                        print(f"  📈 시그널 강도: {signal_strength}%, 신호 개수: {signal_count}/5")
+
+                        if signal_strength >= 60 or signal_count >= 3:  # 60% 이상 또는 3개 이상 신호시 매수
+                            # 매수가능수량 조회
+                            orderable_qty = await self.kis_collector.get_orderable_quantity(stock.symbol)
+                            if not orderable_qty or orderable_qty <= 0:
+                                print(f"  ❌ 매수 가능 수량 없음")
+                                continue
+
+                            # 매수 수량 계산 (기본 금액 기준)
+                            target_quantity = min(self.default_buy_amount // current_price, orderable_qty)
+                            if target_quantity <= 0:
+                                print(f"  ❌ 매수 수량 계산 오류")
+                                continue
+
+                            buy_candidates.append({
+                                'stock': stock,
+                                'current_price': current_price,
+                                'target_quantity': target_quantity,
+                                'estimated_amount': current_price * target_quantity,
+                                'signal_strength': signal_strength,
+                                'signal_details': latest_signals
+                            })
+
+                            print(f"  ✅ 매수 후보 추가 - 강도: {signal_strength}%, 수량: {target_quantity:,}주")
+                        else:
+                            print(f"  📊 매수 조건 미충족 - 강도: {signal_strength}% < 60% 또는 신호개수 {signal_count} < 3개")
+
+                    except Exception as e:
+                        print(f"  ❌ 기술적 분석 실패: {e}")
                         continue
-                    
-                    # 매수 수량 계산 (기본 금액 기준)
-                    target_quantity = min(self.default_buy_amount // current_price, orderable_qty)
-                    if target_quantity <= 0:
-                        continue
-                    
-                    buy_candidates.append({
-                        'stock': stock,
-                        'current_price': current_price,
-                        'target_quantity': target_quantity,
-                        'estimated_amount': current_price * target_quantity
-                    })
-                    
+
                 print(f"매수 후보: {len(buy_candidates)}개 종목")
                 return buy_candidates
-                
+
         except Exception as e:
             self.logger.error(f"매수 신호 체크 중 오류: {e}")
             return []

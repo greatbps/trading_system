@@ -28,7 +28,7 @@ async def update_stock_names():
         
         with db_manager.get_session() as session:
             monitoring_stocks = session.query(MonitoringStock).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE
+                MonitoringStock.status == 'ACTIVE'
             ).all()
             
             print(f"업데이트 대상: {len(monitoring_stocks)}개 종목")

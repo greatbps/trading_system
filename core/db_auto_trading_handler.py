@@ -62,7 +62,24 @@ class DatabaseAutoTradingHandler:
         # 설정 파일 경로
         self.settings_file = Path("D:/trading_system/configs/trading_settings.json")
         self._setup_auto_mode_callbacks()
-        self.logger.info("🤖 DatabaseAutoTradingHandler 초기화 완료 - DB 연동")
+
+    def _safe_get_profit_rate(self, data, key='profit_rate', default=0.0):
+        """profit_rate 값을 안전하게 추출하는 유틸리티 함수"""
+        try:
+            value = data.get(key, default) if isinstance(data, dict) else default
+
+            # dict인 경우 기본값 반환
+            if isinstance(value, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"profit_rate가 dict 형태입니다: {value}, 기본값 {default} 사용")
+                return default
+
+            # 숫자로 변환 가능한지 확인
+            return float(value) if value is not None else default
+        except (ValueError, TypeError):
+            if hasattr(self, 'logger'):
+                self.logger.warning(f"profit_rate 변환 실패: {value}, 기본값 {default} 사용")
+            return default
 
     def _setup_auto_mode_callbacks(self):
         try:
@@ -311,35 +328,46 @@ class DatabaseAutoTradingHandler:
         """실시간 동적 손절가 계산 (트레일링 스톱 방식)"""
         if current_price <= 0:
             return "N/A"
-        
+
         try:
+            # profit_rate 안전성 검사
+            safe_profit_rate = profit_rate
+            if isinstance(profit_rate, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"트레일링스톱 계산에서 profit_rate가 dict: {profit_rate}, 0으로 처리")
+                safe_profit_rate = 0.0
+            elif not isinstance(profit_rate, (int, float)):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"트레일링스톱 계산에서 profit_rate 타입 오류: {type(profit_rate)}, 0으로 처리")
+                safe_profit_rate = 0.0
+
             # 최고가 기록 관리 (메모리에 임시 저장)
             if not hasattr(self, '_highest_prices'):
                 self._highest_prices = {}
-            
+
             # 현재 가격이 최고가 경신 시 업데이트
             if symbol not in self._highest_prices or current_price > self._highest_prices[symbol]:
                 self._highest_prices[symbol] = current_price
-            
+
             highest_price = self._highest_prices[symbol]
-            
+
             # 수익률 구간별 트레일링 스톱 전략
-            if profit_rate >= 15:  # 15% 이상 대박 수익
+            if safe_profit_rate >= 15:  # 15% 이상 대박 수익
                 # 보수적 트레일링: 최고가 대비 -8% 
                 trailing_stop = int(highest_price * 0.92)
                 return f"{trailing_stop:,}"
                 
-            elif profit_rate >= 10:  # 10% 이상 좋은 수익
+            elif safe_profit_rate >= 10:  # 10% 이상 좋은 수익
                 # 표준 트레일링: 최고가 대비 -10%
                 trailing_stop = int(highest_price * 0.90)
                 return f"{trailing_stop:,}"
-                
-            elif profit_rate >= 5:  # 5% 이상 약간 수익
+
+            elif safe_profit_rate >= 5:  # 5% 이상 약간 수익
                 # 적극적 트레일링: 최고가 대비 -12%
                 trailing_stop = int(highest_price * 0.88)
                 return f"{trailing_stop:,}"
-                
-            elif profit_rate >= 0:  # 0~5% 소폭 수익
+
+            elif safe_profit_rate >= 0:  # 0~5% 소폭 수익
                 # 보호 손절: 평단가 대비 -2%
                 if avg_price > 0:
                     protection_stop = int(avg_price * 0.98)
@@ -369,23 +397,34 @@ class DatabaseAutoTradingHandler:
         """보유종목 상태 판단"""
         if current_price <= 0:
             return "[yellow]정보없음[/yellow]"
-        
+
         try:
+            # profit_rate 안전성 검사
+            safe_profit_rate = profit_rate
+            if isinstance(profit_rate, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"보유상태 판단2에서 profit_rate가 dict: {profit_rate}, 0으로 처리")
+                safe_profit_rate = 0.0
+            elif not isinstance(profit_rate, (int, float)):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"보유상태 판단2에서 profit_rate 타입 오류: {type(profit_rate)}, 0으로 처리")
+                safe_profit_rate = 0.0
+
             if stop_loss_price != "N/A":
                 stop_loss_value = float(stop_loss_price.replace(',', ''))
                 if current_price <= stop_loss_value:
                     return "[red]손절신호[/red]"
-            
+
             # 수익률 기반 상태 표시
-            if profit_rate >= 15:
+            if safe_profit_rate >= 15:
                 return "[bold green]대박수익[/bold green]"
-            elif profit_rate >= 10:
+            elif safe_profit_rate >= 10:
                 return "[green]좋은수익[/green]"
-            elif profit_rate >= 5:
+            elif safe_profit_rate >= 5:
                 return "[green]수익중[/green]"
-            elif profit_rate >= 0:
+            elif safe_profit_rate >= 0:
                 return "[yellow]소폭수익[/yellow]"
-            elif profit_rate >= -5:
+            elif safe_profit_rate >= -5:
                 return "[yellow]소폭손실[/yellow]"
             else:
                 return "[red]손실주의[/red]"
@@ -841,16 +880,37 @@ class DatabaseAutoTradingHandler:
                     
                     # 실시간 계산 과정 표시 (매초)
                     if countdown > 0:
-                        # 실제 매매로직 계산 과정을 동적으로 표시
+                        # 실제 매매로직 계산 과정을 동적으로 표시 (종목별 분석 포함)
+
+                        # 현재 활성 모니터링 종목 목록 가져오기
+                        current_stocks = []
+                        try:
+                            with self.db_manager.get_session() as session:
+                                monitoring_stocks = session.query(MonitoringStock).filter(
+                                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
+                                ).limit(5).all()  # 최대 5개만 표시
+                                current_stocks = [(stock.symbol, stock.name) for stock in monitoring_stocks]
+                        except:
+                            current_stocks = [("000000", "종목정보없음")]
+
+                        # 현재 단계에서 분석 중인 종목 선택
+                        if current_stocks:
+                            current_step_num = (60 - countdown) // (60 // 8)  # 8단계로 나누기
+                            stock_index = current_step_num % len(current_stocks)
+                            current_symbol, current_name = current_stocks[stock_index]
+                            stock_info = f"{current_symbol}({current_name})"
+                        else:
+                            stock_info = "분석대상 종목 없음"
+
                         analysis_steps = [
-                            ("📊 실시간 주가 데이터 수집 중...", "KIS API를 통한 현재가 및 OHLCV 데이터 조회"),
-                            ("📈 RSI 상대강도지수 계산 중...", "14일 기준 과매수/과매도 상태 분석"),
-                            ("🔄 골든크로스 분석 중...", "5일선과 20일선 교차 패턴 검출"),
-                            ("📊 대량거래 패턴 분석 중...", "평균 거래량 대비 급증/감소 상태 평가"),
-                            ("⚡ 모멘텀 지표 계산 중...", "5일간 가격 변화율 및 추세 강도 측정"),
-                            ("🧮 종합 점수 산출 중...", "4개 전략 가중평균으로 최종 점수 계산"),
-                            ("🏦 보유종목 손익 갱신 중...", "실시간 수익률 및 손절가 비교 분석"),
-                            ("🎯 매매신호 생성 중...", "BUY/SELL/HOLD 신호 최종 결정")
+                            ("📊 실시간 주가 데이터 수집 중...", f"KIS API를 통한 현재가 및 OHLCV 데이터 조회 - {stock_info}"),
+                            ("📈 RSI 상대강도지수 계산 중...", f"14일 기준 과매수/과매도 상태 분석 - {stock_info}"),
+                            ("🔄 골든크로스 분석 중...", f"5일선과 20일선 교차 패턴 검출 - {stock_info}"),
+                            ("📊 대량거래 패턴 분석 중...", f"평균 거래량 대비 급증/감소 상태 평가 - {stock_info}"),
+                            ("⚡ 모멘텀 지표 계산 중...", f"5일간 가격 변화율 및 추세 강도 측정 - {stock_info}"),
+                            ("🧮 종합 점수 산출 중...", f"4개 전략 가중평균으로 최종 점수 계산 - {stock_info}"),
+                            ("🏦 보유종목 손익 갱신 중...", f"실시간 수익률 및 손절가 비교 분석 - {len(current_stocks)}개 종목"),
+                            ("🎯 매매신호 생성 중...", f"BUY/SELL/HOLD 신호 최종 결정 - {len(current_stocks)}개 종목")
                         ]
 
                         # 60초를 8단계로 나누어 각 단계별 메시지 표시
@@ -1054,7 +1114,7 @@ class DatabaseAutoTradingHandler:
                 momentum_result = await self._calculate_momentum_analysis(symbol)
 
                 # 종합점수 계산
-                total_score = self._calculate_total_score(rsi_result, golden_cross_result, volume_result, momentum_result)
+                total_score_result = self._calculate_total_score(rsi_result, golden_cross_result, volume_result, momentum_result)
 
                 table.add_row(
                     f"{symbol}\n({stock_name})",
@@ -1062,7 +1122,7 @@ class DatabaseAutoTradingHandler:
                     self._format_golden_cross_result(golden_cross_result),
                     self._format_volume_result(volume_result),
                     self._format_momentum_result(momentum_result),
-                    self._format_total_score(total_score)
+                    self._format_total_score(total_score_result)
                 )
 
             return table
@@ -1204,12 +1264,12 @@ class DatabaseAutoTradingHandler:
                 momentum_result = await self._calculate_momentum_analysis(symbol)
 
                 # 종합점수 계산
-                total_score = self._calculate_total_score(rsi_result, golden_cross_result, volume_result, momentum_result)
+                total_score_result = self._calculate_total_score(rsi_result, golden_cross_result, volume_result, momentum_result)
+                total_score = total_score_result["score"]
+                grade = total_score_result["grade"]
 
                 # 종합 그레이드 A 이상이면 자동 매수 대상
                 if total_score >= 70:  # A 그레이드
-                    grade = "A+" if total_score >= 80 else "A"
-
                     # 자동 매수 비율 계산
                     buy_ratio = await self._calculate_auto_buy_ratio(total_score, symbol)
 
@@ -1281,6 +1341,24 @@ class DatabaseAutoTradingHandler:
     def _calculate_total_score(self, rsi_result, golden_cross_result, volume_result, momentum_result):
         """종합점수 계산"""
         try:
+            # 각 결과의 안전성 검사
+            def safe_get_score(result, name):
+                if not isinstance(result, dict):
+                    if hasattr(self, 'logger'):
+                        self.logger.warning(f"{name} 결과가 dict가 아님: {type(result)} - {result}")
+                    return 50
+                score = result.get("score", 50)
+                if isinstance(score, dict):
+                    if hasattr(self, 'logger'):
+                        self.logger.warning(f"{name} score가 dict: {score}")
+                    return 50
+                try:
+                    return float(score)
+                except (ValueError, TypeError):
+                    if hasattr(self, 'logger'):
+                        self.logger.warning(f"{name} score 변환 실패: {score}")
+                    return 50
+
             # 가중평균으로 종합점수 계산
             weights = {
                 "rsi": 0.25,
@@ -1289,11 +1367,16 @@ class DatabaseAutoTradingHandler:
                 "momentum": 0.20
             }
 
+            rsi_score = safe_get_score(rsi_result, "RSI")
+            golden_cross_score = safe_get_score(golden_cross_result, "골든크로스")
+            volume_score = safe_get_score(volume_result, "볼륨")
+            momentum_score = safe_get_score(momentum_result, "모멘텀")
+
             total = (
-                rsi_result["score"] * weights["rsi"] +
-                golden_cross_result["score"] * weights["golden_cross"] +
-                volume_result["score"] * weights["volume"] +
-                momentum_result["score"] * weights["momentum"]
+                rsi_score * weights["rsi"] +
+                golden_cross_score * weights["golden_cross"] +
+                volume_score * weights["volume"] +
+                momentum_score * weights["momentum"]
             )
 
             if total >= 80:
@@ -1313,93 +1396,180 @@ class DatabaseAutoTradingHandler:
 
     def _format_rsi_result(self, result):
         """RSI 결과 포맷팅"""
-        value = result["value"]
-        signal = result["signal"]
+        try:
+            if not isinstance(result, dict):
+                return "[gray]계산실패[/gray]"
 
-        if signal == "매수강":
-            return f"[green bold]{value:.1f}\n{signal}[/green bold]"
-        elif signal == "매수":
-            return f"[green]{value:.1f}\n{signal}[/green]"
-        elif signal == "매도":
-            return f"[red]{value:.1f}\n{signal}[/red]"
-        else:
-            return f"[yellow]{value:.1f}\n{signal}[/yellow]"
+            value = result.get("value", 50)
+            signal = result.get("signal", "중립")
+
+            # value 안전성 검사
+            if isinstance(value, dict):
+                value = 50
+            try:
+                value = float(value)
+            except (ValueError, TypeError):
+                value = 50
+
+            if signal == "매수강":
+                return f"[green bold]{value:.1f}\n{signal}[/green bold]"
+            elif signal == "매수":
+                return f"[green]{value:.1f}\n{signal}[/green]"
+            elif signal == "매도":
+                return f"[red]{value:.1f}\n{signal}[/red]"
+            else:
+                return f"[yellow]{value:.1f}\n{signal}[/yellow]"
+        except Exception:
+            return "[gray]포맷오류[/gray]"
 
     def _format_golden_cross_result(self, result):
         """골든크로스 결과 포맷팅"""
-        signal = result["signal"]
-        strength = result["strength"]
+        try:
+            if not isinstance(result, dict):
+                return "[gray]계산실패[/gray]"
 
-        if signal == "골든크로스":
-            return f"[green bold]{signal}\n{strength:.1f}배[/green bold]"
-        elif signal == "상승돌파":
-            return f"[green]{signal}\n{strength:.1f}배[/green]"
-        elif signal == "데드크로스":
-            return f"[red]{signal}\n{strength:.1f}배[/red]"
-        else:
-            return f"[yellow]{signal}\n{strength:.1f}배[/yellow]"
+            signal = result.get("signal", "횡보")
+            strength = result.get("strength", 1.0)
+
+            if isinstance(strength, dict):
+                strength = 1.0
+            try:
+                strength = float(strength)
+            except (ValueError, TypeError):
+                strength = 1.0
+
+            if signal == "골든크로스":
+                return f"[green bold]{signal}\n{strength:.1f}배[/green bold]"
+            elif signal == "상승돌파":
+                return f"[green]{signal}\n{strength:.1f}배[/green]"
+            elif signal == "데드크로스":
+                return f"[red]{signal}\n{strength:.1f}배[/red]"
+            else:
+                return f"[yellow]{signal}\n{strength:.1f}배[/yellow]"
+        except Exception:
+            return "[gray]포맷오류[/gray]"
 
     def _format_volume_result(self, result):
         """대량거래 결과 포맷팅"""
-        signal = result["signal"]
-        ratio = result["ratio"]
+        try:
+            if not isinstance(result, dict):
+                return "[gray]계산실패[/gray]"
 
-        if signal == "급등량":
-            return f"[red bold]{signal}\n{ratio:.1f}배[/red bold]"
-        elif signal == "증가량":
-            return f"[yellow bold]{signal}\n{ratio:.1f}배[/yellow bold]"
-        elif signal == "평균상":
-            return f"[green]{signal}\n{ratio:.1f}배[/green]"
-        else:
-            return f"[white]{signal}\n{ratio:.1f}배[/white]"
+            signal = result.get("signal", "평균")
+            ratio = result.get("ratio", 1.0)
+
+            if isinstance(ratio, dict):
+                ratio = 1.0
+            try:
+                ratio = float(ratio)
+            except (ValueError, TypeError):
+                ratio = 1.0
+
+            if signal == "급등량":
+                return f"[red bold]{signal}\n{ratio:.1f}배[/red bold]"
+            elif signal == "증가량":
+                return f"[yellow bold]{signal}\n{ratio:.1f}배[/yellow bold]"
+            elif signal == "평균상":
+                return f"[green]{signal}\n{ratio:.1f}배[/green]"
+            else:
+                return f"[white]{signal}\n{ratio:.1f}배[/white]"
+        except Exception:
+            return "[gray]포맷오류[/gray]"
 
     def _format_momentum_result(self, result):
         """모멘텀 결과 포맷팅"""
-        signal = result["signal"]
-        momentum = result["momentum"]
+        try:
+            if not isinstance(result, dict):
+                return "[gray]계산실패[/gray]"
 
-        if signal == "강세":
-            return f"[green bold]{signal}\n{momentum:+.1f}[/green bold]"
-        elif signal == "상승":
-            return f"[green]{signal}\n{momentum:+.1f}[/green]"
-        elif signal == "하락":
-            return f"[red]{signal}\n{momentum:+.1f}[/red]"
-        elif signal == "약세":
-            return f"[red bold]{signal}\n{momentum:+.1f}[/red bold]"
-        else:
-            return f"[yellow]{signal}\n{momentum:+.1f}[/yellow]"
+            signal = result.get("signal", "중립")
+            momentum = result.get("momentum", 0.0)
+
+            if isinstance(momentum, dict):
+                momentum = 0.0
+            try:
+                momentum = float(momentum)
+            except (ValueError, TypeError):
+                momentum = 0.0
+
+            if signal == "강세":
+                return f"[green bold]{signal}\n{momentum:+.1f}[/green bold]"
+            elif signal == "상승":
+                return f"[green]{signal}\n{momentum:+.1f}[/green]"
+            elif signal == "하락":
+                return f"[red]{signal}\n{momentum:+.1f}[/red]"
+            elif signal == "약세":
+                return f"[red bold]{signal}\n{momentum:+.1f}[/red bold]"
+            else:
+                return f"[yellow]{signal}\n{momentum:+.1f}[/yellow]"
+        except Exception:
+            return "[gray]포맷오류[/gray]"
 
     def _format_total_score(self, result):
         """종합점수 결과 포맷팅"""
-        score = result["score"]
-        grade = result["grade"]
+        try:
+            if not isinstance(result, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"종합점수 포맷팅에서 result가 dict가 아님: {type(result)} - {result}")
+                return "[gray]계산실패[/gray]"
 
-        if grade == "A+":
-            return f"[green bold]{score:.0f}점\n{grade}[/green bold]"
-        elif grade == "A":
-            return f"[green]{score:.0f}점\n{grade}[/green]"
-        elif grade == "B":
-            return f"[yellow]{score:.0f}점\n{grade}[/yellow]"
-        elif grade == "C":
-            return f"[white]{score:.0f}점\n{grade}[/white]"
-        else:
-            return f"[red]{score:.0f}점\n{grade}[/red]"
+            score = result.get("score", 50)
+            grade = result.get("grade", "C")
+
+            # score 안전성 검사
+            if isinstance(score, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"종합점수 포맷팅에서 score가 dict: {score}")
+                score = 50
+
+            try:
+                score = float(score)
+            except (ValueError, TypeError):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"종합점수 포맷팅에서 score 변환 실패: {score}")
+                score = 50
+
+            if grade == "A+":
+                return f"[green bold]{score:.0f}점\n{grade}[/green bold]"
+            elif grade == "A":
+                return f"[green]{score:.0f}점\n{grade}[/green]"
+            elif grade == "B":
+                return f"[yellow]{score:.0f}점\n{grade}[/yellow]"
+            elif grade == "C":
+                return f"[white]{score:.0f}점\n{grade}[/white]"
+            else:
+                return f"[red]{score:.0f}점\n{grade}[/red]"
+        except Exception as e:
+            if hasattr(self, 'logger'):
+                self.logger.warning(f"종합점수 포맷팅 오류: {e}")
+            return "[gray]포맷오류[/gray]"
 
     async def _calculate_sell_conditions(self, symbol, current_price, avg_price, profit_rate):
         """매도 조건 계산 (보유종목용) - 실제 기술적 지표 활용"""
         try:
             conditions = []
 
+            # profit_rate 안전성 검사
+            safe_profit_rate = profit_rate
+            if isinstance(profit_rate, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"매도조건 계산에서 profit_rate가 dict: {profit_rate}, 0으로 처리")
+                safe_profit_rate = 0.0
+            elif not isinstance(profit_rate, (int, float)):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"매도조건 계산에서 profit_rate 타입 오류: {type(profit_rate)}, 0으로 처리")
+                safe_profit_rate = 0.0
+
             # 1. 손절 조건 (우선순위 1)
-            if profit_rate <= -5.0:
+            if safe_profit_rate <= -5.0:
                 conditions.append("[red]🚨 긴급손절 (-5%)[/red]")
-            elif profit_rate <= -3.0:
+            elif safe_profit_rate <= -3.0:
                 conditions.append("[red]⚠️ 손절신호 (-3%)[/red]")
 
             # 2. 익절 조건
-            if profit_rate >= 10.0:
+            if safe_profit_rate >= 10.0:
                 conditions.append("[green]💰 고수익 익절 (+10%)[/green]")
-            elif profit_rate >= 5.0:
+            elif safe_profit_rate >= 5.0:
                 conditions.append("[green]✅익절신호 (+5%)[/green]")
 
             # 3. 실제 기술적 지표 계산
@@ -1719,7 +1889,8 @@ class DatabaseAutoTradingHandler:
                 if avg_price > 0 and current_price > 0:
                     real_profit_rate = ((current_price - avg_price) / avg_price) * 100
                 else:
-                    real_profit_rate = holding.get('profit_rate', 0)
+                    # 안전한 profit_rate 추출
+                    real_profit_rate = self._safe_get_profit_rate(holding, 'profit_rate', 0.0)
                 
                 color = "green" if real_profit_rate >= 0 else "red"
                 
@@ -2217,16 +2388,27 @@ class DatabaseAutoTradingHandler:
         try:
             if not current_price or not avg_price:
                 return "N/A"
-            
+
+            # profit_rate 안전성 검사
+            safe_profit_rate = profit_rate
+            if isinstance(profit_rate, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"손절가 계산에서 profit_rate가 dict: {profit_rate}, 0으로 처리")
+                safe_profit_rate = 0.0
+            elif not isinstance(profit_rate, (int, float)):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"손절가 계산에서 profit_rate 타입 오류: {type(profit_rate)}, 0으로 처리")
+                safe_profit_rate = 0.0
+
             # 기본 손절 비율 (5%)
             basic_stop_loss_rate = 0.05
-            
+
             # 수익률에 따른 트레일링 스톱
-            if profit_rate >= 20:  # 20% 이상 수익
+            if safe_profit_rate >= 20:  # 20% 이상 수익
                 stop_loss_rate = 0.10  # 10% 손실까지 허용
-            elif profit_rate >= 10:  # 10% 이상 수익
+            elif safe_profit_rate >= 10:  # 10% 이상 수익
                 stop_loss_rate = 0.07  # 7% 손실까지 허용
-            elif profit_rate >= 5:   # 5% 이상 수익
+            elif safe_profit_rate >= 5:   # 5% 이상 수익
                 stop_loss_rate = 0.05  # 5% 손실까지 허용
             else:
                 stop_loss_rate = basic_stop_loss_rate
@@ -2273,16 +2455,27 @@ class DatabaseAutoTradingHandler:
         try:
             if stop_loss_price == "N/A" or current_price <= 0:
                 return "[gray]확인중[/gray]"
-            
+
+            # profit_rate 안전성 검사
+            safe_profit_rate = profit_rate
+            if isinstance(profit_rate, dict):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"보유상태 판단에서 profit_rate가 dict: {profit_rate}, 0으로 처리")
+                safe_profit_rate = 0.0
+            elif not isinstance(profit_rate, (int, float)):
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"보유상태 판단에서 profit_rate 타입 오류: {type(profit_rate)}, 0으로 처리")
+                safe_profit_rate = 0.0
+
             stop_loss_value = int(stop_loss_price.replace(',', '').replace('원', ''))
-            
+
             if current_price <= stop_loss_value:
                 return "[red]손절신호[/red]"
-            elif profit_rate >= 10:
+            elif safe_profit_rate >= 10:
                 return "[green]수익[/green]"
-            elif profit_rate >= 0:
+            elif safe_profit_rate >= 0:
                 return "[yellow]소폭수익[/yellow]"
-            elif profit_rate >= -3:
+            elif safe_profit_rate >= -3:
                 return "[orange1]소폭손실[/orange1]"
             else:
                 return "[red]손실[/red]"

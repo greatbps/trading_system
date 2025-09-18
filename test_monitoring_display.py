@@ -31,24 +31,15 @@ async def test_monitoring_display():
         # 실제 모니터링 표시 로직 시뮬레이션
         with Session() as session:
             active_stocks = session.query(MonitoringStock).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE
+                MonitoringStock.status == 'ACTIVE'
             ).order_by(MonitoringStock.recommendation_time.desc()).limit(30).all()
             
             print(f"활성 모니터링 종목: {len(active_stocks)}개")
             print()
             
             for monitoring in active_stocks:
-                # 실제 표시 로직과 동일한 방식으로 종목명 조회
-                raw_name = "N/A"
-                try:
-                    stock_info = session.query(Stock).filter(Stock.symbol == monitoring.symbol).first()
-                    if stock_info and stock_info.name:
-                        raw_name = stock_info.name
-                    elif monitoring.name:
-                        raw_name = monitoring.name
-                except Exception:
-                    if monitoring.name:
-                        raw_name = monitoring.name
+                # MonitoringStock의 name 필드를 직접 사용
+                raw_name = monitoring.name if monitoring.name else "N/A"
                 
                 # 결과 표시
                 if raw_name.startswith('종목'):
