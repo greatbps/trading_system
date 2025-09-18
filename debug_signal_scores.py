@@ -24,8 +24,7 @@ async def debug_signal_scores():
         from database.database_manager import DatabaseManager
         from database.models import MonitoringStock, MonitoringStatus
         from data_collectors.kis_collector import KISCollector
-        from data_collectors.chart_data_collector import ChartDataCollector
-        from analyzers.trading_signals import TradingSignalAnalyzer
+        from analyzers.technical_analyzer import TechnicalAnalyzer
 
         # 초기화
         config = Config()
@@ -33,64 +32,69 @@ async def debug_signal_scores():
         kis_collector = KISCollector(config)
         await kis_collector.initialize()
 
-        # 모니터링 종목 조회
+        technical_analyzer = TechnicalAnalyzer(config)
+
+        # A등급 종목들 우선 분석
+        a_grade_symbols = ['025890', '071050', '130740', '097800', '069140']
+
         with db_manager.get_session() as session:
             monitoring_stocks = session.query(MonitoringStock).filter(
                 MonitoringStock.status == MonitoringStatus.ACTIVE.value,
-                MonitoringStock.buy_price.is_(None)
-            ).limit(5).all()  # 최대 5개만 테스트
+                MonitoringStock.symbol.in_(a_grade_symbols)
+            ).all()  # A등급 종목 전체
 
-            print(f"분석 대상: {len(monitoring_stocks)}개 종목")
-
-            chart_collector = ChartDataCollector(kis_collector)
-            signal_analyzer = TradingSignalAnalyzer()
+            print(f"A등급 종목 분석 대상: {len(monitoring_stocks)}개")
 
             for i, stock in enumerate(monitoring_stocks, 1):
                 print(f"\n{i}. {stock.symbol}({stock.name}) 분석 중...")
 
                 try:
-                    # 차트 데이터 수집 (일봉 60일)
-                    chart_data_list = await chart_collector.get_daily_chart_data(stock.symbol, days=60)
-
-                    # DataFrame으로 변환
-                    if chart_data_list:
-                        chart_data = pd.DataFrame([{
-                            'Date': item.timestamp,
-                            'Open': item.open,
-                            'High': item.high,
-                            'Low': item.low,
-                            'Close': item.close,
-                            'Volume': item.volume
-                        } for item in chart_data_list])
-                        chart_data.set_index('Date', inplace=True)
-                    else:
-                        chart_data = None
-
-                    if chart_data is None or chart_data.empty or len(chart_data) < 20:
-                        print(f"   차트 데이터 부족: {len(chart_data) if chart_data is not None else 0}개")
+                    # 1. 종목 정보 조회
+                    stock_info = await kis_collector.get_stock_info(stock.symbol)
+                    if not stock_info:
+                        print(f"   {stock.symbol} 정보 조회 실패")
                         continue
 
-                    # 매수 신호 확인
-                    signals_df = signal_analyzer.check_buy_signals(chart_data.copy())
-                    latest_signals = signal_analyzer.get_latest_signals(signals_df)
+                    # 2. 일봉 데이터 조회 (최근 50일)
+                    daily_data = await kis_collector.get_ohlcv_data(stock.symbol, period="D", count=50)
+                    if not daily_data or len(daily_data) < 15:
+                        print(f"   {stock.symbol} 일봉 데이터 부족 ({len(daily_data) if daily_data else 0}개)")
+                        continue
+
+                    # OHLCV 데이터를 기술적 분석기가 이해할 수 있는 형태로 변환
+                    formatted_data = []
+                    for ohlcv in daily_data:
+                        formatted_data.append({
+                            'date': ohlcv.date,
+                            'open': float(ohlcv.open_price),
+                            'high': float(ohlcv.high_price),
+                            'low': float(ohlcv.low_price),
+                            'close': float(ohlcv.close_price),
+                            'volume': int(ohlcv.volume)
+                        })
+
+                    # 3. 기술적 분석 수행 (formatted_data 사용)
+                    analysis_result = await technical_analyzer.analyze_stock(stock.symbol, formatted_data)
+                    indicators = analysis_result['indicators']
 
                     # 결과 표시
-                    signal_strength = latest_signals.get('signal_strength', 0)
-                    signal_count = latest_signals.get('signal_count', 0)
-                    signals = latest_signals.get('signals', {})
+                    signal_strength = analysis_result['technical_score']
+                    current_price = stock_info.current_price
 
-                    print(f"   신호 강도: {signal_strength}%")
-                    print(f"   신호 개수: {signal_count}/5")
-                    print(f"   RSI 신호: {signals.get('RSI_signal', False)}")
-                    print(f"   볼륨 신호: {signals.get('VOL_signal', False)}")
-                    print(f"   MACD 신호: {signals.get('MACD_signal', False)}")
-                    print(f"   캔들 신호: {signals.get('CANDLE_signal', False)}")
-                    print(f"   골든크로스: {signals.get('GOLDEN_signal', False)}")
+                    print(f"   현재가: {current_price:,}원")
+                    print(f"   기술적 점수: {signal_strength:.1f}점")
+                    print(f"   RSI: {indicators.get('rsi', 50):.1f}")
+                    print(f"   MACD 추세: {indicators.get('macd_trend', 'NEUTRAL')}")
+                    print(f"   이동평균 신호: {indicators.get('ma_signal', 'HOLD')}")
+                    print(f"   슈퍼트렌드: {indicators.get('supertrend_signal', 'HOLD')}")
+                    print(f"   거래량 신호: {indicators.get('volume_signal', 'NORMAL')}")
 
-                    if signal_strength >= 60 or signal_count >= 3:
-                        print(f"   -> 매수 조건 충족! ✅")
+                    if signal_strength >= 70:
+                        print(f"   -> A등급 (70점 이상) 매수 추천!")
+                    elif signal_strength >= 50:
+                        print(f"   -> B등급 (50-69점) 매수 검토")
                     else:
-                        print(f"   -> 매수 조건 미충족 (강도 60% 이상 또는 3개 이상 필요)")
+                        print(f"   -> C등급 (50점 미만) 관망")
 
                 except Exception as e:
                     print(f"   분석 실패: {e}")

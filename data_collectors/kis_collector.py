@@ -2123,7 +2123,8 @@ class KISCollector:
                 if result.get('rt_cd') == '0':
                     # 예수금 정보 추출
                     output2 = result.get('output2', [{}])[0]
-                    available_cash = int(output2.get('PRVS_RCDL_EXCC_AMT', '0'))
+                    # dnca_tot_amt: 예수금총금액 (실제 사용 가능한 금액)
+                    available_cash = int(output2.get('dnca_tot_amt', '0'))
 
                     self.logger.info(f"✅ 계좌 잔고 조회 성공: {available_cash:,}원")
                     return {

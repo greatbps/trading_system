@@ -74,7 +74,7 @@ def clear_and_create():
                 symbol=stock_data['symbol'],
                 name=stock_data['name'], 
                 strategy_name=stock_data['strategy'],
-                status=MonitoringStatus.ACTIVE,
+                status=MonitoringStatus.ACTIVE.value,
                 created_at=datetime.now(),
                 updated_at=datetime.now()
             )

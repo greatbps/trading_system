@@ -1166,7 +1166,7 @@ class MonitoringStock(BaseModel):
     current_price = Column(Integer, comment="현재가")
 
     # 상태 정보
-    status = Column(String(20), nullable=False, default=MonitoringStatus.ACTIVE, index=True, comment="모니터링 상태")
+    status = Column(String(20), nullable=False, default=MonitoringStatus.ACTIVE.value, index=True, comment="모니터링 상태")
     monitoring_active = Column(Boolean, default=True, nullable=False, index=True, comment="활성화 여부")
     
     # 매수 관련 정보
@@ -1227,20 +1227,20 @@ class MonitoringStock(BaseModel):
             cls.monitoring_active == True
         )
         if monitoring_type:
-            query = query.filter(cls.monitoring_type == monitoring_type)
+            query = query.filter(cls.monitoring_type == monitoring_type.value)
         return query.order_by(cls.recommendation_time.asc()).all()
-    
+
     @classmethod
     def get_by_symbol_and_type(cls, session: Session, symbol: str, monitoring_type: MonitoringType) -> Optional['MonitoringStock']:
         """종목코드와 타입으로 조회"""
         return session.query(cls).filter(
             cls.symbol == symbol,
-            cls.monitoring_type == monitoring_type,
+            cls.monitoring_type == monitoring_type.value,
             cls.status == MonitoringStatus.ACTIVE.value
         ).first()
     
     @classmethod
-    def add_monitoring_stock(cls, session: Session, symbol: str, name: str, 
+    def add_monitoring_stock(cls, session: Session, symbol: str, name: str,
                            monitoring_type: MonitoringType, strategy_name: str,
                            target_price: int = None, stop_loss_price: int = None,
                            add_reason: str = None) -> 'MonitoringStock':
@@ -1248,7 +1248,7 @@ class MonitoringStock(BaseModel):
         monitoring_stock = cls(
             symbol=symbol,
             name=name,
-            monitoring_type=monitoring_type,
+            monitoring_type=monitoring_type.value,  # Convert enum to string value
             strategy_name=strategy_name,
             target_price=target_price,
             stop_loss_price=stop_loss_price,
@@ -1263,7 +1263,7 @@ class MonitoringStock(BaseModel):
     
     def complete_monitoring(self, reason: str = None):
         """모니터링 완료 처리"""
-        self.status = MonitoringStatus.COMPLETED
+        self.status = MonitoringStatus.COMPLETED.value
         self.monitoring_active = False
         self.completed_time = datetime.now()
         if reason:
@@ -1271,7 +1271,7 @@ class MonitoringStock(BaseModel):
     
     def remove_monitoring(self, reason: str = None):
         """모니터링 제거 처리"""
-        self.status = MonitoringStatus.REMOVED
+        self.status = MonitoringStatus.REMOVED.value
         self.monitoring_active = False
         self.completed_time = datetime.now()
         if reason:
@@ -1279,14 +1279,14 @@ class MonitoringStock(BaseModel):
     
     def is_trading_type(self) -> bool:
         """매매용 모니터링인지 확인"""
-        return self.monitoring_type == MonitoringType.TRADING
-    
+        return self.monitoring_type == MonitoringType.TRADING.value
+
     def is_removal_watch_type(self) -> bool:
         """감시 제거용 모니터링인지 확인"""
-        return self.monitoring_type == MonitoringType.REMOVAL_WATCH
-    
+        return self.monitoring_type == MonitoringType.REMOVAL_WATCH.value
+
     def __repr__(self):
-        return f"<MonitoringStock(symbol='{self.symbol}', name='{self.name}', type='{self.monitoring_type.value}', status='{self.status.value}')>"
+        return f"<MonitoringStock(symbol='{self.symbol}', name='{self.name}', type='{self.monitoring_type}', status='{self.status}')>"
 
 
 

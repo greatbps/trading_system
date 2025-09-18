@@ -88,7 +88,7 @@ def complete_system_reset():
                         name=stock_name,  # 실제 종목명 저장
                         strategy_name=strategy_name,  # 실제 전략명 저장
                         monitoring_type=MonitoringType.TRADING,
-                        status=MonitoringStatus.ACTIVE,
+                        status=MonitoringStatus.ACTIVE.value,
                         monitoring_active=True,
                         recommendation_time=datetime.now(),
                         add_reason=f"{strategy_name} 전략 기반 추천"

@@ -86,7 +86,7 @@ def reset_and_populate_data():
                         name=stock_name,
                         strategy_name=strategy_name,
                         monitoring_type=MonitoringType.TRADING,
-                        status=MonitoringStatus.ACTIVE,
+                        status=MonitoringStatus.ACTIVE.value,
                         monitoring_active=True,
                         recommendation_time=datetime.now(),
                         add_reason=f"{strategy_name} 전략 추천"

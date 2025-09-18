@@ -1098,8 +1098,11 @@ class DatabaseAutoTradingHandler:
             table.add_column("모멘텀", style="green", width=10)
             table.add_column("종합점수", style="red bold", width=10)
 
-            # 모든 모니터링 종목에 대해 계산 (24개)
-            for stock in monitoring_stocks[:24]:  # 24개 종목 표시
+            # 점수 계산을 위한 데이터 준비
+            stock_scores = []
+
+            # 모든 모니터링 종목에 대해 점수 계산
+            for stock in monitoring_stocks[:24]:  # 24개 종목 분석
                 symbol = stock.symbol
                 stock_name = stock.name
 
@@ -1116,13 +1119,38 @@ class DatabaseAutoTradingHandler:
                 # 종합점수 계산
                 total_score_result = self._calculate_total_score(rsi_result, golden_cross_result, volume_result, momentum_result)
 
+                # 점수 추출 (안전성 검사 포함)
+                score = 50  # 기본값
+                if isinstance(total_score_result, dict) and 'score' in total_score_result:
+                    try:
+                        score = float(total_score_result['score'])
+                    except (ValueError, TypeError):
+                        score = 50
+
+                stock_scores.append({
+                    'stock': stock,
+                    'symbol': symbol,
+                    'stock_name': stock_name,
+                    'rsi_result': rsi_result,
+                    'golden_cross_result': golden_cross_result,
+                    'volume_result': volume_result,
+                    'momentum_result': momentum_result,
+                    'total_score_result': total_score_result,
+                    'score': score
+                })
+
+            # 점수순으로 정렬 (높은 점수부터)
+            stock_scores.sort(key=lambda x: x['score'], reverse=True)
+
+            # 정렬된 순서로 테이블에 추가
+            for stock_data in stock_scores:
                 table.add_row(
-                    f"{symbol}\n({stock_name})",
-                    self._format_rsi_result(rsi_result),
-                    self._format_golden_cross_result(golden_cross_result),
-                    self._format_volume_result(volume_result),
-                    self._format_momentum_result(momentum_result),
-                    self._format_total_score(total_score_result)
+                    f"{stock_data['symbol']}\n({stock_data['stock_name']})",
+                    self._format_rsi_result(stock_data['rsi_result']),
+                    self._format_golden_cross_result(stock_data['golden_cross_result']),
+                    self._format_volume_result(stock_data['volume_result']),
+                    self._format_momentum_result(stock_data['momentum_result']),
+                    self._format_total_score(stock_data['total_score_result'])
                 )
 
             return table
@@ -1136,7 +1164,7 @@ class DatabaseAutoTradingHandler:
         try:
             # 임시 RSI 계산 로직 (실제로는 기술적 분석 엔진 사용)
             import random
-            await asyncio.sleep(0.1)  # 계산 시뮬레이션
+            await asyncio.sleep(0.1)
 
             rsi_value = random.uniform(20, 80)
             if rsi_value < 30:
@@ -1160,7 +1188,7 @@ class DatabaseAutoTradingHandler:
         """골든크로스 분석 계산"""
         try:
             import random
-            await asyncio.sleep(0.1)  # 계산 시뮬레이션
+            await asyncio.sleep(0.1)
 
             # MA5와 MA20 비교
             ma5_above = random.choice([True, False])
@@ -1187,7 +1215,7 @@ class DatabaseAutoTradingHandler:
         """대량거래 분석 계산"""
         try:
             import random
-            await asyncio.sleep(0.1)  # 계산 시뮬레이션
+            await asyncio.sleep(0.1)
 
             volume_ratio = random.uniform(0.5, 5.0)
 
@@ -1212,7 +1240,7 @@ class DatabaseAutoTradingHandler:
         """모멘텀 분석 계산"""
         try:
             import random
-            await asyncio.sleep(0.1)  # 계산 시뮬레이션
+            await asyncio.sleep(0.1)
 
             momentum_score = random.uniform(-10, 10)
 
@@ -1265,8 +1293,18 @@ class DatabaseAutoTradingHandler:
 
                 # 종합점수 계산
                 total_score_result = self._calculate_total_score(rsi_result, golden_cross_result, volume_result, momentum_result)
-                total_score = total_score_result["score"]
-                grade = total_score_result["grade"]
+
+                # 점수 안전성 검사
+                if isinstance(total_score_result, dict) and 'score' in total_score_result:
+                    try:
+                        total_score = float(total_score_result["score"])
+                        grade = total_score_result["grade"]
+                    except (ValueError, TypeError):
+                        total_score = 50
+                        grade = "C"
+                else:
+                    total_score = 50
+                    grade = "C"
 
                 # 종합 그레이드 A 이상이면 자동 매수 대상
                 if total_score >= 70:  # A 그레이드
@@ -1284,8 +1322,14 @@ class DatabaseAutoTradingHandler:
                     # 실제 자동 매수 실행
                     await self._execute_auto_buy(symbol, stock_name, buy_ratio, grade, total_score)
 
+            # 매수 신호를 점수순으로 정렬 (높은 점수부터)
+            buy_signals.sort(key=lambda x: x['score'], reverse=True)
+
             if not buy_signals:
                 return Text("🟡 자동 매수 대상 없음 (A 그레이드 이상 필요)", style="yellow")
+
+            # 점수 높은 순으로 정렬
+            buy_signals.sort(key=lambda x: x['score'], reverse=True)
 
             # 자동 매수 신호 테이블 생성
             table = Table(show_header=True, header_style="bold red", box=None, padding=(0, 1))
@@ -1333,7 +1377,27 @@ class DatabaseAutoTradingHandler:
     async def _execute_auto_buy(self, symbol: str, stock_name: str, buy_ratio: float, grade: str, score: float):
         """자동 매수 실행"""
         try:
-            self.logger.info(f"🚀 [데모] 자동 매수 시뮬레이션: {symbol}({stock_name}) 그레이드={grade} 점수={score:.1f} 비율={buy_ratio:.1f}%")
+            # 실제 매수 로직 실행
+            if hasattr(self, 'auto_trader') and self.auto_trader:
+                # 가용 자금의 buy_ratio% 만큼 매수
+                current_balance = await self.auto_trader.get_available_balance()
+                if current_balance > 0:
+                    buy_amount = int(current_balance * (buy_ratio / 100))
+
+                    if buy_amount >= 10000:  # 최소 매수 금액 체크
+                        # 실제 매수 주문 실행
+                        result = await self.auto_trader.place_buy_order(symbol, buy_amount)
+
+                        if result and result.get('success'):
+                            self.logger.info(f"✅ 자동매수 성공: {symbol}({stock_name}) {buy_amount:,}원 매수 - 그레이드={grade} 점수={score:.1f}")
+                        else:
+                            self.logger.warning(f"⚠️ 자동매수 실패: {symbol}({stock_name}) - {result.get('message', '알 수 없는 오류')}")
+                    else:
+                        self.logger.info(f"⚠️ 매수금액 부족: {symbol}({stock_name}) 필요금액={buy_amount:,}원 (최소 10,000원)")
+                else:
+                    self.logger.info(f"⚠️ 가용자금 부족: {symbol}({stock_name}) 잔고={current_balance:,}원")
+            else:
+                self.logger.warning(f"⚠️ 자동매매 시스템 미연결: {symbol}({stock_name})")
 
         except Exception as e:
             self.logger.error(f"자동 매수 실행 오류: {symbol} - {e}")

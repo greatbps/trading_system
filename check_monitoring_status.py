@@ -34,14 +34,14 @@ async def check_monitoring_status():
             print(f"모니터링 실행 중: {db_auto_trader.is_monitoring}")
             
             # 상세 상태 정보
-            status = db_auto_trader.get_monitoring_status()
-            print(f"활성 종목 수: {len(status.get('monitoring_stocks', []))}")
+            status = await db_auto_trader.get_monitoring_status()
+            print(f"활성 종목 수: {len(status.get('monitoring_stocks', {}))}")
             print(f"거래 활성화: {status.get('trading_enabled', False)}")
-            
+
             if status.get('monitoring_stocks'):
                 print("\n활성 모니터링 종목:")
-                for stock in status['monitoring_stocks'][:5]:  # 처음 5개만
-                    print(f"  - {stock['symbol']}({stock['name']}) 현재가: {stock['current_price']:,}")
+                for symbol, stock_data in list(status['monitoring_stocks'].items())[:5]:  # 처음 5개만
+                    print(f"  - {symbol}({stock_data['name']}) 현재가: {stock_data.get('current_price', 0):,}원")
         else:
             print("DB Auto Trader 없음")
             

@@ -20,7 +20,8 @@ from database.models import (
 )
 from .executor import TradingExecutor, OrderSide, ExecutionResult
 from data_collectors.chart_data_collector import ChartDataCollector
-from analyzers.technical_indicators import RealTechnicalIndicators, PriceData
+from analyzers.technical_analyzer import TechnicalAnalyzer
+from analyzers.technical_indicators import PriceData
 from utils.pattern_detector import PatternDetector
 
 
@@ -49,7 +50,7 @@ class DatabaseAutoTrader:
         
         # 실제 기술적 지표 계산 시스템
         self.chart_data_collector = ChartDataCollector(kis_collector)
-        self.technical_indicators = RealTechnicalIndicators()
+        self.technical_analyzer = TechnicalAnalyzer(config)
         self.pattern_detector = PatternDetector(config) # Instantiate PatternDetector
         
         # 스마트 리밸런서 (DB 연동)
@@ -319,24 +320,54 @@ class DatabaseAutoTrader:
             
             # 기술적 분석 (타임아웃 및 오류 방지)
             try:
+                # OHLCV 데이터를 기술적 분석기가 이해할 수 있는 형태로 변환
+                formatted_data = []
+                for price_data in chart_data:
+                    formatted_data.append({
+                        'date': price_data.timestamp,
+                        'open': float(price_data.open),
+                        'high': float(price_data.high),
+                        'low': float(price_data.low),
+                        'close': float(price_data.close),
+                        'volume': int(price_data.volume)
+                    })
+
                 # 기술적 지표 계산에 타임아웃 적용
                 technical_analysis_task = asyncio.create_task(
-                    asyncio.to_thread(self.technical_indicators.calculate_all_indicators, symbol, chart_data)
+                    self.technical_analyzer.analyze_stock(symbol, formatted_data)
                 )
                 technical_data = await asyncio.wait_for(technical_analysis_task, timeout=5.0)
             except asyncio.TimeoutError:
                 self.logger.warning(f"⚠️ {symbol} 기술적 분석 타임아웃 (5초) - 기본값 사용")
                 technical_data = {
-                    'signals': {'composite_signal': 'hold'},
-                    'indicators': {},
-                    'patterns': []
+                    'technical_score': 30,  # 기본 점수
+                    'indicators': {
+                        'rsi': 50,
+                        'ma5': current_price,
+                        'ma20': current_price,
+                        'ma_signal': 'HOLD',
+                        'macd_trend': 'NEUTRAL',
+                        'macd_signal': 0,
+                        'macd_histogram': 0,
+                        'volume': 0,
+                        'avg_volume': 0
+                    }
                 }
             except Exception as e:
                 self.logger.warning(f"⚠️ {symbol} 기술적 분석 실패: {e} - 기본값 사용")
                 technical_data = {
-                    'signals': {'composite_signal': 'hold'},
-                    'indicators': {},
-                    'patterns': []
+                    'technical_score': 30,  # 기본 점수
+                    'indicators': {
+                        'rsi': 50,
+                        'ma5': current_price,
+                        'ma20': current_price,
+                        'ma_signal': 'HOLD',
+                        'macd_trend': 'NEUTRAL',
+                        'macd_signal': 0,
+                        'macd_histogram': 0,
+                        'volume': 0,
+                        'avg_volume': 0
+                    }
                 }
             
             # DB에서 최신 모니터링 정보 조회 및 매매 신호 생성
@@ -468,16 +499,20 @@ class DatabaseAutoTrader:
                 self.logger.error(f"❌ {symbol} 보유 정보 조회 실패: {e}")
                 is_held = False
 
-            # 기술적 지표 추출
-            signals = technical_data.get('signals', {})
-            composite_signal = signals.get('composite_signal', 'hold')
-            composite_confidence = signals.get('composite_confidence', 0.0)
-            
-            rsi = technical_data.get('rsi', 50)
-            ema_5 = technical_data.get('ema_5', current_price)
-            ema_20 = technical_data.get('ema_20', current_price)
-            volume = technical_data.get('volume', 0)
-            volume_avg = technical_data.get('volume_avg', 0)
+            # 기술적 지표 추출 (실제 키 이름에 맞게 수정)
+            indicators = technical_data.get('indicators', {})
+
+            rsi = indicators.get('rsi', 50)
+            ma5 = indicators.get('ma5', current_price)
+            ma20 = indicators.get('ma20', current_price)
+            volume = indicators.get('volume', 0)
+            avg_volume = indicators.get('avg_volume', 0)
+
+            # 신호들
+            ma_signal = indicators.get('ma_signal', 'HOLD')
+            macd_trend = indicators.get('macd_trend', 'NEUTRAL')
+            macd_signal_val = indicators.get('macd_signal', 0)
+            macd_histogram_val = indicators.get('macd_histogram', 0)
 
             # --- 캔들 패턴 분석 ---
             ohlcv_dicts = []
@@ -501,24 +536,28 @@ class DatabaseAutoTrader:
             pattern_overall_score = pattern_analysis_result.get('overall_score', 50.0)
             # --- 캔들 패턴 분석 끝 ---
             
-            # 매수 조건 확인
+            # 매수 조건 확인 (실제 지표에 맞게 수정)
             buy_conditions = []
-            
-            # 1. 종합 신호가 매수이고 신뢰도가 높음
-            if composite_signal == 'buy' and composite_confidence >= 0.6:
-                buy_conditions.append("종합신호_매수")
-            
-            # 2. 골든크로스 (5일 EMA > 20일 EMA)
-            if ema_5 > ema_20 * 1.01:  # 1% 이상 상회
+
+            # 1. MA 신호가 매수
+            if ma_signal == 'BUY':
+                buy_conditions.append("MA_매수신호")
+
+            # 2. 골든크로스 (5일 MA > 20일 MA)
+            if ma5 > ma20 * 1.01:  # 1% 이상 상회
                 buy_conditions.append("골든크로스")
-            
-            # 3. RSI 과매도 구간 반등
-            if 25 <= rsi <= 35:
+
+            # 3. RSI 과매도 구간 반등 (범위 확대)
+            if 30 <= rsi <= 45:  # 범위 확대
                 buy_conditions.append("RSI_과매도반등")
-            
-            # 4. 거래량 급증
-            if volume_avg > 0 and volume > volume_avg * 1.5:
+
+            # 4. 거래량 급증 (조건 완화)
+            if avg_volume > 0 and volume > avg_volume * 1.2:  # 1.5배 → 1.2배로 완화
                 buy_conditions.append("거래량_급증")
+
+            # 5. MACD 상승 추세
+            if macd_trend == 'BULLISH':
+                buy_conditions.append("MACD_상승추세")
 
             # --- 캔들 패턴 매수 조건 추가 ---
             for pattern in detected_patterns:
@@ -527,15 +566,9 @@ class DatabaseAutoTrader:
             # --- 캔들 패턴 매수 조건 추가 끝 ---
 
             # --- MACD 매수 조건 추가 ---
-            macd_line_val = technical_data.get('macd_line', 0)
-            macd_signal_val = technical_data.get('macd_signal', 0) # This is the signal line value, not the signal type
-            macd_histogram_val = technical_data.get('macd_histogram', 0)
-            macd_composite_signal = technical_data['signals'].get('macd_signal') # This is the signal type ('buy', 'sell', 'hold')
-
-            # 매매조건.md: MACD 골든크로스 발생
-            # technical_indicators.py의 _generate_macd_signal 로직을 따름
-            if macd_composite_signal == 'buy' and macd_histogram_val > 0:
-                buy_conditions.append("MACD_골든크로스_히스토그램_양수")
+            # MACD 히스토그램이 양수이고 상승 추세일 때
+            if macd_histogram_val > 0 and macd_trend == 'BULLISH':
+                buy_conditions.append("MACD_골든크로스")
             # --- MACD 매수 조건 추가 끝 ---
             
             # 매도 조건 확인
@@ -543,12 +576,12 @@ class DatabaseAutoTrader:
 
             # [BUG FIX] 실제 보유한 종목에 대해서만 매도 조건 검사
             if is_held:
-                # 1. 종합 신호가 매도이고 신뢰도가 높음
-                if composite_signal == 'sell' and composite_confidence >= 0.6:
-                    sell_conditions.append("종합신호_매도")
-                
-                # 2. 데드크로스 (5일 EMA < 20일 EMA)
-                if ema_5 < ema_20 * 0.99:  # 1% 이상 하회
+                # 1. MA 신호가 매도
+                if ma_signal == 'SELL':
+                    sell_conditions.append("MA_매도신호")
+
+                # 2. 데드크로스 (5일 MA < 20일 MA)
+                if ma5 < ma20 * 0.99:  # 1% 이상 하회
                     sell_conditions.append("데드크로스")
                 
                 # 3. RSI 과매수 구간 (기준 75 → 70으로 하향)
@@ -573,9 +606,9 @@ class DatabaseAutoTrader:
                 # --- 캔들 패턴 매도 조건 추가 끝 ---
 
                 # --- MACD 매도 조건 추가 ---
-                # 매매조건.md: MACD 데드크로스 발생
-                if macd_composite_signal == 'sell' and macd_histogram_val < 0:
-                    sell_conditions.append("MACD_데드크로스_히스토그램_음수")
+                # MACD 히스토그램이 음수이고 하락 추세일 때
+                if macd_histogram_val < 0 and macd_trend == 'BEARISH':
+                    sell_conditions.append("MACD_데드크로스")
                 # --- MACD 매도 조건 추가 끝 ---
             
             # 신호 결정
@@ -616,16 +649,23 @@ class DatabaseAutoTrader:
                 confidence = 0.85  # 높은 신뢰도로 수익 실현
                 reason = f"수익실현: {', '.join(sell_conditions)}"
                 self.logger.info(f"💰 {symbol} 수익실현 신호 발생: {reason}")
-                
-            elif len(buy_conditions) >= 2:  # 2개 이상 조건 충족시 매수 (원래 조건으로 복구)
-                signal_type = 'BUY'
-                confidence = min(0.9, len(buy_conditions) * 0.3 + composite_confidence + pattern_confidence_boost)
-                reason = f"매수조건: {', '.join(buy_conditions)}"
-                
-            elif len(sell_conditions) >= 2:  # 2개 이상 조건 충족시 매도
-                signal_type = 'SELL'
-                confidence = min(0.9, len(sell_conditions) * 0.3 + composite_confidence + pattern_confidence_boost)
-                reason = f"매도조건: {', '.join(sell_conditions)}"
+
+            else:
+                # 기술적 점수 추출
+                technical_score = technical_data.get('technical_score', 50)
+
+                # 70점 이상 종목은 1개 조건만으로도 매수 (강화된 매수 조건)
+                if (len(buy_conditions) >= 1 and technical_score >= 70) or len(buy_conditions) >= 2:
+                    signal_type = 'BUY'
+                    confidence = min(0.9, len(buy_conditions) * 0.3 + 0.5 + pattern_confidence_boost)  # composite_confidence 대신 기본값 사용
+                    reason = f"매수조건: {', '.join(buy_conditions)}"
+                    if technical_score >= 70:
+                        reason += f" (고점수:{technical_score:.0f}점)"
+
+                elif len(sell_conditions) >= 2:  # 2개 이상 조건 충족시 매도
+                    signal_type = 'SELL'
+                    confidence = min(0.9, len(sell_conditions) * 0.3 + 0.5 + pattern_confidence_boost)  # composite_confidence 대신 기본값 사용
+                    reason = f"매도조건: {', '.join(sell_conditions)}"
             
             return TradingSignal(
                 symbol=symbol,
@@ -1472,7 +1512,7 @@ class DatabaseAutoTrader:
                     MonitoringStock.symbol == symbol,
                     MonitoringStock.status == MonitoringStatus.ACTIVE
                 ).first()
-                
+
                 if monitoring_stock:
                     # 모니터링 완료 처리
                     monitoring_stock.status = MonitoringStatus.COMPLETED.value
@@ -1480,10 +1520,52 @@ class DatabaseAutoTrader:
                     monitoring_stock.removal_reason = "emergency_sell"
                     monitoring_stock.removal_details = f"응급 매도 완료: {reason} (주문번호: {sell_result.get('order_id', 'N/A')})"
                     session.commit()
-                    
+
                     self.logger.info(f"📊 {symbol} 응급 매도 후 모니터링 완료 처리")
                 else:
                     self.logger.warning(f"⚠️ {symbol} 모니터링 정보를 찾을 수 없음")
-                    
+
         except Exception as e:
             self.logger.error(f"❌ {symbol} 응급 매도 후 모니터링 업데이트 실패: {e}")
+
+    async def get_available_balance(self) -> int:
+        """가용 자금 조회"""
+        try:
+            account_info = await self.executor.get_account_info()
+            if account_info:
+                available_cash = account_info.get('available_cash', 0)
+                self.logger.debug(f"💰 가용 자금 조회: {available_cash:,}원")
+                return available_cash
+            else:
+                self.logger.error("❌ 계좌 정보 조회 실패")
+                return 0
+        except Exception as e:
+            self.logger.error(f"❌ 가용 자금 조회 실패: {e}")
+            return 0
+
+    async def place_buy_order(self, symbol: str, amount: int) -> Dict[str, Any]:
+        """자동 매수 주문 실행"""
+        try:
+            # 현재가 조회
+            current_price = await self.kis_collector.get_current_price(symbol)
+            if not current_price:
+                return {"success": False, "message": "현재가 조회 실패"}
+
+            # 매수 수량 계산
+            quantity = amount // current_price
+            if quantity <= 0:
+                return {"success": False, "message": "매수 수량 부족"}
+
+            # 매수 주문 실행
+            result = await self.executor.execute_buy_order(
+                symbol=symbol,
+                quantity=quantity,
+                price=current_price,
+                order_type=OrderType.LIMIT
+            )
+
+            return result if result else {"success": False, "message": "매수 주문 실행 실패"}
+
+        except Exception as e:
+            self.logger.error(f"❌ {symbol} 자동 매수 주문 실패: {e}")
+            return {"success": False, "message": str(e)}

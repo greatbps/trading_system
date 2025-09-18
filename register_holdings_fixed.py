@@ -65,7 +65,7 @@ def register_holdings_to_db():
                         symbol=symbol,
                         name=name,
                         strategy_name=strategy,
-                        status=MonitoringStatus.ACTIVE,
+                        status=MonitoringStatus.ACTIVE.value,
                         monitoring_type=MonitoringType.TRADING,
                         monitoring_active=True,
                         recommendation_time=datetime.now()
