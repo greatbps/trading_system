@@ -987,7 +987,9 @@ class DatabaseAutoTradingHandler:
             # 2. 모니터링 종목 매매 조건 계산 표시 (24개 전체)
             monitoring_calc = await self._get_monitoring_calculation_display()
             if monitoring_calc:
-                content_items.append(Text(f"🎯 모니터링 종목 매매 조건 계산 ({current_time}) - 24개 전체", style="bold blue"))
+                # 실제 모니터링 종목 개수 계산 (보유종목 제외)
+                monitoring_count = await self._get_actual_monitoring_count()
+                content_items.append(Text(f"🎯 모니터링 종목 매매 조건 계산 ({current_time}) - {monitoring_count}개 (보유종목 제외)", style="bold blue"))
                 content_items.append(monitoring_calc)
 
             # 3. 자동 매수 신호 감지 및 처리
@@ -1025,7 +1027,7 @@ class DatabaseAutoTradingHandler:
             table.add_column("매도조건", style="yellow", width=35)
             table.add_column("추매조건", style="green", width=35)
 
-            for symbol, holding in list(holdings.items())[:3]:  # 최대 3개만 표시
+            for symbol, holding in holdings.items():  # 모든 보유 종목 표시
                 quantity = getattr(holding, 'quantity', 0) if hasattr(holding, 'quantity') else holding.get('quantity', 0)
                 if quantity <= 0:
                     continue
@@ -1074,8 +1076,131 @@ class DatabaseAutoTradingHandler:
             self.logger.error(f"보유종목 계산 표시 오류: {e}")
             return None
 
+    async def _remove_holdings_overlap(self, monitoring_stocks):
+        """보유종목과 중복되는 모니터링 종목 제거"""
+        try:
+            # 보유종목 심볼 목록 가져오기
+            holdings = await self.kis_collector.get_holdings()
+            if not holdings:
+                return monitoring_stocks
+
+            # holdings는 딕셔너리이므로 키가 symbol입니다
+            holdings_symbols = set(holdings.keys())
+
+            # 중복 제거된 모니터링 종목 반환
+            filtered_stocks = []
+            removed_count = 0
+
+            for stock in monitoring_stocks:
+                if stock.symbol not in holdings_symbols:
+                    filtered_stocks.append(stock)
+                else:
+                    removed_count += 1
+                    # 중복된 종목은 데이터베이스에서 제거
+                    await self._remove_monitoring_stock_from_db(stock.symbol)
+
+            if removed_count > 0:
+                self.logger.info(f"보유종목과 중복된 {removed_count}개 모니터링 종목을 제거했습니다.")
+
+            return filtered_stocks
+
+        except Exception as e:
+            self.logger.error(f"보유종목 중복 제거 실패: {e}")
+            return monitoring_stocks
+
+    async def _remove_monitoring_stock_from_db(self, symbol):
+        """감시종목 데이터베이스에서 삭제"""
+        try:
+            if not self.db_manager:
+                return
+
+            from database.models import MonitoringStock, MonitoringStatus
+            with self.db_manager.get_session() as session:
+                stock = session.query(MonitoringStock).filter(
+                    MonitoringStock.symbol == symbol
+                ).first()
+
+                if stock:
+                    stock.status = MonitoringStatus.REMOVED.value
+                    session.commit()
+                    self.logger.debug(f"모니터링 종목 {symbol} 삭제 완료")
+
+        except Exception as e:
+            self.logger.error(f"모니터링 종목 {symbol} 삭제 실패: {e}")
+
+    async def _get_actual_monitoring_count(self):
+        """실제 모니터링 종목 개수 계산 (보유종목 제외)"""
+        try:
+            monitoring_stocks = await self._get_active_monitoring_stocks()
+            if not monitoring_stocks:
+                return 0
+
+            filtered_stocks = await self._remove_holdings_overlap(monitoring_stocks)
+            return len(filtered_stocks)
+
+        except Exception as e:
+            self.logger.error(f"모니터링 종목 개수 계산 실패: {e}")
+            return 0
+
+    async def _check_holdings_sell_signals(self):
+        """보유종목 매도 신호 체크 - 최우선 처리"""
+        from rich.table import Table
+        from rich.text import Text
+
+        try:
+            holdings = await self.kis_collector.get_holdings()
+            if not holdings:
+                return None
+
+            sell_signals = []
+
+            for symbol, holding_data in holdings.items():
+                name = holding_data.get('name', '')
+                profit_rate = self._safe_get_profit_rate(holding_data)
+
+                # 손익률 기반 매도 신호 체크
+                if profit_rate >= 10.0:  # 10% 이상 수익시 매도 고려
+                    sell_signals.append({
+                        'symbol': symbol,
+                        'name': name[:8] + ".." if len(name) > 8 else name,
+                        'profit_rate': profit_rate,
+                        'signal': '수익실현',
+                        'action': 'sell'
+                    })
+                elif profit_rate <= -5.0:  # 5% 이상 손실시 손절 고려
+                    sell_signals.append({
+                        'symbol': symbol,
+                        'name': name[:8] + ".." if len(name) > 8 else name,
+                        'profit_rate': profit_rate,
+                        'signal': '손절매',
+                        'action': 'sell'
+                    })
+
+            if sell_signals:
+                table = Table(show_header=True, header_style="bold red", box=None)
+                table.add_column("종목", style="white", width=10)
+                table.add_column("수익률", style="cyan", width=8)
+                table.add_column("신호", style="red", width=8)
+                table.add_column("액션", style="yellow", width=8)
+
+                for signal in sell_signals:
+                    table.add_row(
+                        signal['name'],
+                        f"{signal['profit_rate']:.1f}%",
+                        signal['signal'],
+                        signal['action']
+                    )
+
+                return table
+
+            return Text("보유종목 매도 신호 없음", style="green")
+
+        except Exception as e:
+            self.logger.error(f"보유종목 매도 신호 체크 실패: {e}")
+            return None
+
     async def _get_monitoring_calculation_display(self):
-        """모니터링 종목 분석 계산 과정 표시"""
+        """모니터링 종목 분석 계산 과정 표시 - 보유종목 중복 제거"""
         from rich.table import Table
         from rich.progress import Progress, SpinnerColumn, TextColumn
         from rich.text import Text
@@ -1090,6 +1215,11 @@ class DatabaseAutoTradingHandler:
             if not monitoring_stocks:
                 return None
 
+            # 보유종목과 중복 제거
+            filtered_monitoring_stocks = await self._remove_holdings_overlap(monitoring_stocks)
+            if not filtered_monitoring_stocks:
+                return Text("모든 모니터링 종목이 보유종목과 중복됩니다.", style="yellow")
+
             table = Table(show_header=True, header_style="bold blue", box=None, padding=(0, 1))
             table.add_column("종목", style="white", width=12)
             table.add_column("RSI", style="cyan", width=10)
@@ -1101,8 +1231,8 @@ class DatabaseAutoTradingHandler:
             # 점수 계산을 위한 데이터 준비
             stock_scores = []
 
-            # 모든 모니터링 종목에 대해 점수 계산
-            for stock in monitoring_stocks[:24]:  # 24개 종목 분석
+            # 필터링된 모니터링 종목에 대해 점수 계산
+            for stock in filtered_monitoring_stocks:
                 symbol = stock.symbol
                 stock_name = stock.name
 
@@ -1265,7 +1395,7 @@ class DatabaseAutoTradingHandler:
             return {"momentum": 0, "signal": "중립", "score": 50}
 
     async def _check_auto_buy_signals(self):
-        """종합 그레이드 A 자동 매수 신호 감지"""
+        """종합 그레이드 A 자동 매수 신호 감지 - 보유종목 우선 처리"""
         from rich.table import Table
         from rich.console import Group
         from rich.text import Text
@@ -1274,14 +1404,20 @@ class DatabaseAutoTradingHandler:
             if not self.db_manager:
                 return None
 
-            # 모니터링 종목 중 자동 매수 대상 찾기
+            # 1. 보유종목 먼저 처리
+            holdings_signals = await self._check_holdings_sell_signals()
+
+            # 2. 모니터링 종목 중 자동 매수 대상 찾기 (보유종목 제외)
             monitoring_stocks = await self._get_active_monitoring_stocks()
             if not monitoring_stocks:
-                return None
+                return holdings_signals
+
+            # 보유종목과 중복 제거
+            filtered_monitoring_stocks = await self._remove_holdings_overlap(monitoring_stocks)
 
             buy_signals = []
 
-            for stock in monitoring_stocks:
+            for stock in filtered_monitoring_stocks:
                 symbol = stock.symbol
                 stock_name = stock.name
 
@@ -1331,28 +1467,51 @@ class DatabaseAutoTradingHandler:
             # 점수 높은 순으로 정렬
             buy_signals.sort(key=lambda x: x['score'], reverse=True)
 
-            # 자동 매수 신호 테이블 생성
-            table = Table(show_header=True, header_style="bold red", box=None, padding=(0, 1))
-            table.add_column("종목", style="white", width=12)
-            table.add_column("그레이드", style="red bold", width=8)
-            table.add_column("점수", style="cyan", width=8)
-            table.add_column("매수비율", style="green", width=10)
-            table.add_column("상태", style="yellow", width=10)
-
-            for signal in buy_signals:
-                table.add_row(
-                    f"{signal['symbol']}\n({signal['name']})",
-                    signal['grade'],
-                    f"{signal['score']:.1f}",
-                    f"{signal['buy_ratio']:.1f}%",
-                    "✅ 매수실행"
+            # 결과 통합 (보유종목 신호 + 모니터링 신호)
+            if holdings_signals and buy_signals:
+                from rich.console import Group
+                return Group(
+                    Text("🏦 보유종목 매도 신호 (최우선)", style="bold red"),
+                    holdings_signals,
+                    Text(""),
+                    Text("🎯 모니터링 종목 매수 신호", style="bold green"),
+                    self._create_buy_signals_table(buy_signals)
                 )
-
-            return table
+            elif holdings_signals:
+                return Group(
+                    Text("🏦 보유종목 매도 신호 (최우선)", style="bold red"),
+                    holdings_signals
+                )
+            elif buy_signals:
+                return self._create_buy_signals_table(buy_signals)
+            else:
+                return None
 
         except Exception as e:
             self.logger.error(f"자동 매수 신호 감지 오류: {e}")
             return Text(f"[오류] 자동 매수 신호 감지 실패: {e}", style="red")
+
+    def _create_buy_signals_table(self, buy_signals):
+        """매수 신호 테이블 생성"""
+        from rich.table import Table
+
+        table = Table(show_header=True, header_style="bold green", box=None, padding=(0, 1))
+        table.add_column("종목", style="white", width=12)
+        table.add_column("그레이드", style="green bold", width=8)
+        table.add_column("점수", style="cyan", width=8)
+        table.add_column("매수비율", style="green", width=10)
+        table.add_column("상태", style="yellow", width=10)
+
+        for signal in buy_signals:
+            table.add_row(
+                f"{signal['symbol']}\n({signal['name']})",
+                signal['grade'],
+                f"{signal['score']:.1f}",
+                f"{signal['buy_ratio']:.1f}%",
+                "✅ 매수실행"
+            )
+
+        return table
 
     async def _calculate_auto_buy_ratio(self, total_score: float, symbol: str) -> float:
         """자동 매수 비율 계산"""
@@ -2045,7 +2204,7 @@ class DatabaseAutoTradingHandler:
             with self.db_manager.get_session() as session:
                 active_stocks = session.query(MonitoringStock).filter(
                     MonitoringStock.status == MonitoringStatus.ACTIVE.value
-                ).order_by(MonitoringStock.recommendation_time.desc()).limit(24).all()
+                ).order_by(MonitoringStock.recommendation_time.desc()).all()
 
                 if not active_stocks:
                     return "[yellow]전략 추출 감시 종목 없음[/yellow]"

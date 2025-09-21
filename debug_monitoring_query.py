@@ -40,20 +40,20 @@ def debug_monitoring_query():
             
             # 2. 활성 상태만 조회
             active_stocks = session.query(MonitoringStock).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE
+                MonitoringStock.status == MonitoringStatus.ACTIVE.value
             ).all()
             console.print(f"[yellow]활성 상태 종목 수: {len(active_stocks)}[/yellow]")
             
             # 3. 활성 + monitoring_active = True 조회
             active_monitoring = session.query(MonitoringStock).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE,
+                MonitoringStock.status == MonitoringStatus.ACTIVE.value,
                 MonitoringStock.monitoring_active == True
             ).all()
             console.print(f"[yellow]활성 모니터링 종목 수: {len(active_monitoring)}[/yellow]")
             
             # 4. TRADING 타입만 조회
             trading_stocks = session.query(MonitoringStock).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE,
+                MonitoringStock.status == MonitoringStatus.ACTIVE.value,
                 MonitoringStock.monitoring_active == True,
                 MonitoringStock.monitoring_type == MonitoringType.TRADING
             ).all()

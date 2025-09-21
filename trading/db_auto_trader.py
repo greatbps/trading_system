@@ -8,10 +8,13 @@ DB 연동 자동매매 시스템 - 영구 저장/복원 지원
 
 import asyncio
 import json
+import time
+import statistics
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from sqlalchemy.orm import Session
 from utils.logger import get_logger
@@ -64,6 +67,13 @@ class DatabaseAutoTrader:
         # 모니터링 상태
         self.is_monitoring = False
         self.monitoring_interval = 30  # 30초마다 체크
+
+        # 성능 추적을 위한 변수들
+        self.analysis_times = []  # 각 종목 분석 시간 저장
+        self.cycle_times = []     # 전체 사이클 시간 저장
+        self.parallel_enabled = False  # 병렬 처리 활성화 여부
+        self.optimal_workers = 4  # 최적 워커 수
+        self.max_concurrent_analysis = 8  # 동시 분석 최대 개수
         
         # 매매 설정
         self.max_positions = getattr(config.trading, 'MAX_POSITIONS', 5)
@@ -133,7 +143,10 @@ class DatabaseAutoTrader:
             
             # 전략 자동 실행 시스템 초기화 (모니터링 시작 시 한 번)
             await self.initialize_strategy_auto_executor()
-            
+
+            # 성능 모니터링 초기화
+            await self.start_performance_monitoring()
+
             self.is_monitoring = True
             # 백그라운드 로그만 기록
             pass  # 자동매매 모니터링 시작 메시지 제거
@@ -174,8 +187,97 @@ class DatabaseAutoTrader:
         except Exception as e:
             self.logger.error(f"❌ 모니터링 중지 오류: {e}")
     
+    def calculate_performance_metrics(self) -> Dict[str, Any]:
+        """성능 메트릭 계산"""
+        if not self.analysis_times:
+            return {
+                'avg_analysis_time': 0,
+                'total_stocks': 0,
+                'parallel_recommended': False,
+                'optimal_interval': 30
+            }
+
+        avg_analysis_time = statistics.mean(self.analysis_times)
+        total_stocks = len(self.analysis_times)
+        max_analysis_time = max(self.analysis_times)
+
+        # 병렬 처리 권장 여부 결정
+        parallel_recommended = avg_analysis_time > 2.0 or total_stocks > 10
+
+        # 최적 갱신 주기 계산
+        if parallel_recommended:
+            # 병렬 처리시 예상 시간 (워커 수 고려)
+            estimated_parallel_time = max_analysis_time + (total_stocks / self.optimal_workers) * 0.5
+            optimal_interval = max(15, int(estimated_parallel_time * 1.5))
+        else:
+            # 순차 처리시 시간
+            total_time = sum(self.analysis_times)
+            optimal_interval = max(20, int(total_time * 1.2))
+
+        return {
+            'avg_analysis_time': round(avg_analysis_time, 2),
+            'max_analysis_time': round(max_analysis_time, 2),
+            'total_analysis_time': round(sum(self.analysis_times), 2),
+            'total_stocks': total_stocks,
+            'parallel_recommended': parallel_recommended,
+            'optimal_interval': optimal_interval,
+            'current_interval': self.monitoring_interval,
+            'parallel_enabled': self.parallel_enabled
+        }
+
+    def adjust_monitoring_settings(self, force_parallel: bool = None):
+        """모니터링 설정 자동 조정"""
+        metrics = self.calculate_performance_metrics()
+
+        if force_parallel is not None:
+            self.parallel_enabled = force_parallel
+        else:
+            self.parallel_enabled = metrics['parallel_recommended']
+
+        # 갱신 주기 조정
+        old_interval = self.monitoring_interval
+        self.monitoring_interval = metrics['optimal_interval']
+
+        if old_interval != self.monitoring_interval:
+            self.logger.info(f"⚡ 모니터링 주기 조정: {old_interval}초 → {self.monitoring_interval}초")
+
+        if self.parallel_enabled:
+            self.logger.info(f"🚀 병렬 처리 활성화: 최대 {self.optimal_workers}개 워커")
+        else:
+            self.logger.info("🔄 순차 처리 유지")
+
+    async def _analyze_stocks_parallel(self, stock_list: List) -> List:
+        """병렬 종목 분석"""
+        semaphore = asyncio.Semaphore(self.max_concurrent_analysis)
+
+        async def analyze_with_semaphore(stock_data):
+            async with semaphore:
+                start_time = time.time()
+                try:
+                    await self._analyze_stock_by_id(stock_data.id, stock_data.symbol, stock_data.name)
+                    analysis_time = time.time() - start_time
+                    self.analysis_times.append(analysis_time)
+                    return {'symbol': stock_data.symbol, 'success': True, 'time': analysis_time}
+                except Exception as e:
+                    analysis_time = time.time() - start_time
+                    self.analysis_times.append(analysis_time)
+                    self.logger.error(f"❌ {stock_data.symbol} 병렬 분석 실패: {e}")
+                    return {'symbol': stock_data.symbol, 'success': False, 'error': str(e), 'time': analysis_time}
+
+        # 병렬 실행
+        tasks = [analyze_with_semaphore(stock) for stock in stock_list]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        # 결과 요약
+        successful = len([r for r in results if isinstance(r, dict) and r.get('success')])
+        failed = len(results) - successful
+
+        self.logger.info(f"📊 병렬 분석 완료: 성공 {successful}개, 실패 {failed}개")
+        return results
+
     async def _monitoring_cycle(self):
         """모니터링 사이클 실행"""
+        cycle_start_time = time.time()
         try:
             # [추가] 시장 시간 확인
             if not self.market_manager.is_monitoring_allowed_now():
@@ -225,27 +327,319 @@ class DatabaseAutoTrader:
             if not filtered_monitoring_data:
                 self.logger.debug("분석 대상 모니터링 종목이 없습니다.")
                 return
-            
+
             # 백그라운드 로그만 기록
             pass  # 모니터링 실행 메시지 제거
-            
-            # 각 종목 분석 (개별 종목 타임아웃 적용 - 안정성 우선)
-            for i, stock_data in enumerate(filtered_monitoring_data, 1):
-                try:
-                    self.logger.debug(f"📊 [{i}/{len(filtered_monitoring_data)}] {stock_data.symbol}({stock_data.name}) 분석 중...")
-                    # 개별 종목 분석에 타임아웃 적용 (15초로 단축)
-                    analyze_task = asyncio.create_task(
-                        self._analyze_stock_by_id(stock_data.id, stock_data.symbol, stock_data.name)
-                    )
-                    await asyncio.wait_for(analyze_task, timeout=15.0)
-                    
-                except asyncio.TimeoutError:
-                    self.logger.warning(f"⚠️ {stock_data.symbol} 분석 타임아웃 (15초) - 다음 종목으로 넘어감")
-                except Exception as e:
-                    self.logger.error(f"❌ {stock_data.symbol} 분석 오류: {e} - 계속 진행")
+
+            # 병렬 처리 vs 순차 처리 결정
+            if self.parallel_enabled and len(filtered_monitoring_data) > 3:
+                # 병렬 처리 실행
+                self.logger.info(f"🚀 병렬 분석 시작: {len(filtered_monitoring_data)}개 종목")
+                await self._analyze_stocks_parallel(filtered_monitoring_data)
+            else:
+                # 순차 처리 (기존 방식 + 성능 측정)
+                for i, stock_data in enumerate(filtered_monitoring_data, 1):
+                    start_time = time.time()
+                    try:
+                        self.logger.debug(f"📊 [{i}/{len(filtered_monitoring_data)}] {stock_data.symbol}({stock_data.name}) 분석 중...")
+                        # 개별 종목 분석에 타임아웃 적용 (15초로 단축)
+                        analyze_task = asyncio.create_task(
+                            self._analyze_stock_by_id(stock_data.id, stock_data.symbol, stock_data.name)
+                        )
+                        await asyncio.wait_for(analyze_task, timeout=15.0)
+
+                        # 성능 측정 기록
+                        analysis_time = time.time() - start_time
+                        self.analysis_times.append(analysis_time)
+
+                    except asyncio.TimeoutError:
+                        analysis_time = time.time() - start_time
+                        self.analysis_times.append(analysis_time)
+                        self.logger.warning(f"⚠️ {stock_data.symbol} 분석 타임아웃 (15초) - 다음 종목으로 넘어감")
+                    except Exception as e:
+                        analysis_time = time.time() - start_time
+                        self.analysis_times.append(analysis_time)
+                        self.logger.error(f"❌ {stock_data.symbol} 분석 오류: {e} - 계속 진행")
+
+            # 사이클 완료 후 성능 분석 및 설정 조정
+            cycle_time = time.time() - cycle_start_time
+            self.cycle_times.append(cycle_time)
+
+            # 10회 사이클마다 성능 분석 및 최적화
+            if len(self.cycle_times) % 10 == 0:
+                metrics = self.calculate_performance_metrics()
+                self.logger.info(f"📈 성능 분석 결과:")
+                self.logger.info(f"   평균 종목당 분석 시간: {metrics['avg_analysis_time']:.2f}초")
+                self.logger.info(f"   전체 분석 시간: {metrics['total_analysis_time']:.2f}초")
+                self.logger.info(f"   병렬 처리 권장: {'Yes' if metrics['parallel_recommended'] else 'No'}")
+                self.logger.info(f"   최적 갱신 주기: {metrics['optimal_interval']}초")
+
+                # 설정 자동 조정
+                if not self.parallel_enabled and metrics['parallel_recommended']:
+                    self.adjust_monitoring_settings()
+                elif self.parallel_enabled and not metrics['parallel_recommended'] and len(filtered_monitoring_data) <= 5:
+                    self.adjust_monitoring_settings(force_parallel=False)
+
+                # 성능 데이터 정리 (최근 100개만 유지)
+                if len(self.analysis_times) > 100:
+                    self.analysis_times = self.analysis_times[-50:]
+                if len(self.cycle_times) > 50:
+                    self.cycle_times = self.cycle_times[-25:]
             
         except Exception as e:
             self.logger.error(f"❌ 모니터링 사이클 오류: {e}")
+
+    def get_optimal_monitoring_count(self) -> Dict[str, Any]:
+        """최적 감시 종목 수 분석"""
+        try:
+            metrics = self.calculate_performance_metrics()
+
+            # 현재 성능 기반 권장 종목 수 계산
+            if metrics['avg_analysis_time'] == 0:
+                return {
+                    'current_count': 0,
+                    'recommended_count': 20,
+                    'max_safe_count': 24,
+                    'reason': '성능 데이터 부족 - 기본값 사용'
+                }
+
+            avg_time = metrics['avg_analysis_time']
+            target_cycle_time = self.monitoring_interval * 0.8  # 갱신 주기의 80% 내에 완료
+
+            if self.parallel_enabled:
+                # 병렬 처리시 권장 종목 수
+                parallel_efficiency = self.optimal_workers * 0.7  # 70% 효율
+                recommended_count = int((target_cycle_time * parallel_efficiency) / avg_time)
+                max_safe_count = int(recommended_count * 1.2)
+            else:
+                # 순차 처리시 권장 종목 수
+                recommended_count = int(target_cycle_time / avg_time)
+                max_safe_count = int(recommended_count * 1.1)
+
+            # 최소/최대 제한
+            recommended_count = max(5, min(recommended_count, 30))
+            max_safe_count = max(recommended_count, min(max_safe_count, 40))
+
+            return {
+                'current_count': metrics['total_stocks'],
+                'recommended_count': recommended_count,
+                'max_safe_count': max_safe_count,
+                'avg_analysis_time': avg_time,
+                'target_cycle_time': target_cycle_time,
+                'parallel_enabled': self.parallel_enabled,
+                'performance_status': self._get_performance_status(metrics),
+                'optimization_suggestions': self._get_optimization_suggestions(metrics, recommended_count)
+            }
+
+        except Exception as e:
+            self.logger.error(f"❌ 최적 감시 종목 수 계산 실패: {e}")
+            return {
+                'current_count': 0,
+                'recommended_count': 20,
+                'max_safe_count': 24,
+                'reason': f'계산 오류: {str(e)}'
+            }
+
+    def _get_performance_status(self, metrics: Dict) -> str:
+        """성능 상태 평가"""
+        if metrics['total_stocks'] == 0:
+            return "대기중"
+
+        if metrics['parallel_recommended'] and not metrics['parallel_enabled']:
+            return "병렬처리 권장"
+        elif metrics['total_analysis_time'] > metrics['current_interval'] * 0.9:
+            return "과부하 위험"
+        elif metrics['total_analysis_time'] < metrics['current_interval'] * 0.3:
+            return "여유있음"
+        else:
+            return "적정"
+
+    def _get_optimization_suggestions(self, metrics: Dict, recommended_count: int) -> List[str]:
+        """최적화 제안"""
+        suggestions = []
+        current_count = metrics['total_stocks']
+
+        if current_count > recommended_count:
+            suggestions.append(f"감시 종목 수를 {recommended_count}개로 줄이는 것을 권장합니다")
+        elif current_count < recommended_count * 0.7:
+            suggestions.append(f"감시 종목을 {recommended_count}개까지 늘릴 수 있습니다")
+
+        if metrics['parallel_recommended'] and not metrics['parallel_enabled']:
+            suggestions.append("병렬 처리를 활성화하면 더 많은 종목을 효율적으로 분석할 수 있습니다")
+
+        if metrics['avg_analysis_time'] > 3.0:
+            suggestions.append("개별 종목 분석 시간이 길어서 타임아웃 설정을 검토해보세요")
+
+        if metrics['optimal_interval'] != metrics['current_interval']:
+            suggestions.append(f"갱신 주기를 {metrics['optimal_interval']}초로 조정하는 것을 권장합니다")
+
+        return suggestions
+
+    async def optimize_monitoring_performance(self) -> Dict[str, Any]:
+        """모니터링 성능 종합 최적화"""
+        try:
+            # 현재 성능 분석
+            performance_metrics = self.calculate_performance_metrics()
+            optimal_count = self.get_optimal_monitoring_count()
+
+            optimization_applied = []
+
+            # 1. 갱신 주기 최적화
+            if performance_metrics['optimal_interval'] != self.monitoring_interval:
+                old_interval = self.monitoring_interval
+                self.monitoring_interval = performance_metrics['optimal_interval']
+                optimization_applied.append(f"갱신 주기: {old_interval}초 → {self.monitoring_interval}초")
+
+            # 2. 병렬 처리 최적화
+            if performance_metrics['parallel_recommended'] and not self.parallel_enabled:
+                self.parallel_enabled = True
+                optimization_applied.append("병렬 처리 활성화")
+            elif not performance_metrics['parallel_recommended'] and self.parallel_enabled:
+                self.parallel_enabled = False
+                optimization_applied.append("순차 처리로 전환")
+
+            # 3. 동시 실행 수 조정
+            current_stocks = performance_metrics['total_stocks']
+            if current_stocks > 15:
+                self.max_concurrent_analysis = min(12, current_stocks // 2)
+                optimization_applied.append(f"동시 분석 수: {self.max_concurrent_analysis}개")
+
+            result = {
+                'success': True,
+                'current_performance': performance_metrics,
+                'optimal_settings': optimal_count,
+                'optimizations_applied': optimization_applied,
+                'recommendations': optimal_count.get('optimization_suggestions', [])
+            }
+
+            if optimization_applied:
+                self.logger.info(f"⚡ 성능 최적화 적용: {', '.join(optimization_applied)}")
+            else:
+                self.logger.info("✅ 현재 설정이 이미 최적화되어 있습니다")
+
+            return result
+
+        except Exception as e:
+            self.logger.error(f"❌ 모니터링 성능 최적화 실패: {e}")
+            return {
+                'success': False,
+                'error': str(e)
+            }
+
+    def get_performance_report(self) -> Dict[str, Any]:
+        """성능 분석 리포트 생성"""
+        try:
+            metrics = self.calculate_performance_metrics()
+            optimal_count = self.get_optimal_monitoring_count()
+
+            # 성능 등급 계산
+            performance_grade = self._calculate_performance_grade(metrics)
+
+            # 메모리 사용량 계산
+            memory_usage = {
+                'analysis_times_count': len(self.analysis_times),
+                'cycle_times_count': len(self.cycle_times),
+                'estimated_memory_kb': (len(self.analysis_times) + len(self.cycle_times)) * 8 / 1024
+            }
+
+            report = {
+                'timestamp': datetime.now().isoformat(),
+                'performance_metrics': metrics,
+                'optimal_monitoring': optimal_count,
+                'performance_grade': performance_grade,
+                'memory_usage': memory_usage,
+                'system_health': {
+                    'parallel_processing': self.parallel_enabled,
+                    'max_concurrent': self.max_concurrent_analysis,
+                    'optimal_workers': self.optimal_workers,
+                    'monitoring_interval': self.monitoring_interval
+                },
+                'recommendations': optimal_count.get('optimization_suggestions', [])
+            }
+
+            return report
+
+        except Exception as e:
+            self.logger.error(f"❌ 성능 리포트 생성 실패: {e}")
+            return {
+                'timestamp': datetime.now().isoformat(),
+                'error': str(e),
+                'status': 'report_generation_failed'
+            }
+
+    def _calculate_performance_grade(self, metrics: Dict) -> str:
+        """성능 등급 계산 (A~F)"""
+        if metrics['total_stocks'] == 0:
+            return "N/A"
+
+        score = 100
+
+        # 분석 시간 평가 (40점)
+        if metrics['avg_analysis_time'] > 4.0:
+            score -= 40
+        elif metrics['avg_analysis_time'] > 3.0:
+            score -= 25
+        elif metrics['avg_analysis_time'] > 2.0:
+            score -= 15
+        elif metrics['avg_analysis_time'] > 1.0:
+            score -= 5
+
+        # 병렬 처리 효율성 (30점)
+        if metrics['parallel_recommended'] and not metrics['parallel_enabled']:
+            score -= 30
+        elif not metrics['parallel_recommended'] and metrics['parallel_enabled']:
+            score -= 15
+
+        # 갱신 주기 적정성 (20점)
+        interval_diff = abs(metrics['optimal_interval'] - metrics['current_interval'])
+        if interval_diff > 20:
+            score -= 20
+        elif interval_diff > 10:
+            score -= 10
+        elif interval_diff > 5:
+            score -= 5
+
+        # 전체 처리 시간 (10점)
+        if metrics['total_analysis_time'] > metrics['current_interval']:
+            score -= 10
+        elif metrics['total_analysis_time'] > metrics['current_interval'] * 0.8:
+            score -= 5
+
+        # 등급 부여
+        if score >= 90:
+            return "A"
+        elif score >= 80:
+            return "B"
+        elif score >= 70:
+            return "C"
+        elif score >= 60:
+            return "D"
+        else:
+            return "F"
+
+    async def start_performance_monitoring(self):
+        """성능 모니터링 시작 시 초기 설정"""
+        try:
+            # 초기 성능 기준점 설정
+            self.analysis_times = []
+            self.cycle_times = []
+
+            # 첫 실행이므로 기본 설정으로 시작
+            initial_settings = {
+                'parallel_enabled': False,
+                'monitoring_interval': 30,
+                'max_concurrent_analysis': 8
+            }
+
+            self.logger.info("📊 성능 모니터링 시작")
+            self.logger.info(f"   초기 설정: 순차처리, 갱신주기 {self.monitoring_interval}초")
+            self.logger.info("   10회 사이클 후 성능 분석 및 자동 최적화 시작")
+
+            return True
+
+        except Exception as e:
+            self.logger.error(f"❌ 성능 모니터링 초기화 실패: {e}")
+            return False
     
     async def _analyze_stock_by_id(self, stock_id: int, symbol: str, name: str):
         """개별 종목 분석 및 매매 신호 생성 - ID 기반"""
@@ -997,7 +1391,7 @@ class DatabaseAutoTrader:
 
                 # 3. 현재 활성 포지션 수 확인 및 리밸런싱 (기존 로직 유지)
                 active_count = session.query(MonitoringStock).filter(
-                    MonitoringStock.status == MonitoringStatus.ACTIVE
+                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).count()
 
                 if active_count >= self.max_positions:
@@ -1059,7 +1453,7 @@ class DatabaseAutoTrader:
             with self.db_manager.get_session() as session:
                 monitoring_stock = session.query(MonitoringStock).filter(
                     MonitoringStock.symbol == symbol,
-                    MonitoringStock.status == MonitoringStatus.ACTIVE
+                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).first()
                 
                 if not monitoring_stock:
@@ -1245,7 +1639,7 @@ class DatabaseAutoTrader:
         try:
             with self.db_manager.get_session() as session:
                 trading_stocks = session.query(MonitoringStock).filter(
-                    MonitoringStock.status == MonitoringStatus.ACTIVE
+                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).all()
                 
                 status_info = {
@@ -1310,7 +1704,7 @@ class DatabaseAutoTrader:
             with self.db_manager.get_session() as session:
                 count = session.query(MonitoringStock).filter(
                     MonitoringStock.monitoring_type == MonitoringType.TRADING,
-                    MonitoringStock.status == MonitoringStatus.ACTIVE
+                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).count()
                 return count
         except Exception as e:
@@ -1510,7 +1904,7 @@ class DatabaseAutoTrader:
             with self.db_manager.get_session() as session:
                 monitoring_stock = session.query(MonitoringStock).filter(
                     MonitoringStock.symbol == symbol,
-                    MonitoringStock.status == MonitoringStatus.ACTIVE
+                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).first()
 
                 if monitoring_stock:
@@ -1551,10 +1945,17 @@ class DatabaseAutoTrader:
             if not current_price:
                 return {"success": False, "message": "현재가 조회 실패"}
 
+            # 최소 투자금액 체크 (현재가 + 수수료 고려)
+            min_investment = current_price * 1.01  # 1% 수수료 여유
+            if amount < min_investment:
+                self.logger.warning(f"⚠️ 투자금액 부족: {symbol} - 필요 {min_investment:,.0f}원, 가용 {amount:,}원")
+                return {"success": False, "message": f"최소 투자금액 부족 (필요: {min_investment:,.0f}원, 가용: {amount:,}원)"}
+
             # 매수 수량 계산
             quantity = amount // current_price
             if quantity <= 0:
-                return {"success": False, "message": "매수 수량 부족"}
+                self.logger.warning(f"⚠️ 매수 수량 부족: {symbol} - 투자금액 {amount:,}원, 현재가 {current_price:,}원")
+                return {"success": False, "message": f"매수 수량 부족 (필요금액: {current_price:,}원, 가용금액: {amount:,}원)"}
 
             # 매수 주문 실행
             result = await self.executor.execute_buy_order(

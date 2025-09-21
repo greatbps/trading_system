@@ -4,7 +4,7 @@
   "use_atr_stop_loss": true,
   "atr_multiplier": 2.0,
   "min_order_quantity": 1,
-  "max_order_amount": 200000,
+  "max_order_amount": 500000,
   "trading_enabled": true,
   "updated_at": "2025-09-02 21:34:25"
 }

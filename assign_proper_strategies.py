@@ -50,7 +50,7 @@ def assign_strategies_to_holdings():
                 # DB에서 해당 종목 찾기
                 stock = session.query(MonitoringStock).filter(
                     MonitoringStock.symbol == symbol,
-                    MonitoringStock.status == MonitoringStatus.ACTIVE
+                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).first()
                 
                 if stock:

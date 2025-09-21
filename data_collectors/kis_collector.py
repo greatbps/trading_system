@@ -1902,8 +1902,8 @@ class KISCollector:
             
             # DB가 연결되지 않은 경우 기본 허용 (개발환경)
             if not hasattr(self, 'db_manager') or not self.db_manager:
-                self.logger.warning("DB 매니저가 없어서 일일 손실 한도 체크를 건너뜁니다.")
-                return {'allowed': True, 'reason': 'DB 연결 없음'}
+                self.logger.info("DB 매니저가 없어서 일일 손실 한도 체크를 건너뜁니다. (개발 모드)")
+                return {'allowed': True, 'reason': 'DB 연결 없음 - 개발 모드'}
             
             max_daily_loss = getattr(self.config.risk, 'HARD_MAX_DAILY_LOSS', 100000)
             today = datetime.now().date()
@@ -2153,66 +2153,98 @@ class KISCollector:
                 raise KISAPIError(f"계좌 잔고 조회 실패: {e}")
 
     async def get_holdings(self) -> Dict[str, Any]:
-        """보유 종목 조회"""
+        """보유 종목 조회 (연속조회 지원, 보유수량 0 포함)"""
         try:
             # Ensure KIS collector is initialized before making API calls
             if not self.is_initialized:
                 self.logger.info("🔄 KIS collector 초기화 중...")
                 await self.initialize()
-                
+
             await self.ensure_valid_token()
-            
+
             account_number = getattr(self.config.api, 'KIS_ACCOUNT_NUMBER', '')
             if not account_number:
                 raise KISAPIError("KIS 계좌번호가 설정되지 않았습니다. .env 파일에 KIS_ACCOUNT_NUMBER를 추가하세요.")
-            
+
             # 계좌번호 파싱: "12345678-01" -> CANO="12345678", ACNT_PRDT_CD="01"
             if '-' in account_number:
                 cano, acnt_prdt_cd = account_number.split('-', 1)
             else:
                 raise KISAPIError(f"계좌번호 형식이 올바르지 않습니다. 형식: 12345678-01, 입력값: {account_number}")
-            
-            params = {
-                'CANO': cano,
-                'ACNT_PRDT_CD': acnt_prdt_cd,
-                'AFHR_FLPR_YN': 'N',
-                'OFL_YN': '',
-                'INQR_DVSN': '01',  # 보유종목 조회
-                'UNPR_DVSN': '01',
-                'FUND_STTL_ICLD_YN': 'N',
-                'FNCG_AMT_AUTO_RDPT_YN': 'N',
-                'PRCS_DVSN': '01',
-                'CTX_AREA_FK100': '',
-                'CTX_AREA_NK100': ''
-            }
-            
-            result = await self._make_api_request(
-                method="GET",
-                endpoint="/uapi/domestic-stock/v1/trading/inquire-balance",
-                params=params,
-                tr_id="TTTC8434R"
-            )
-            
+
             holdings = {}
-            if result.get('rt_cd') == '0':
+            ctx_area_fk100 = ''
+            ctx_area_nk100 = ''
+            page_count = 0
+            max_pages = 5  # 최대 5페이지까지 조회
+
+            while page_count < max_pages:
+                params = {
+                    'CANO': cano,
+                    'ACNT_PRDT_CD': acnt_prdt_cd,
+                    'AFHR_FLPR_YN': 'N',
+                    'OFL_YN': '',
+                    'INQR_DVSN': '02',  # 01: 대출일별, 02: 종목별 (더 많은 데이터)
+                    'UNPR_DVSN': '01',
+                    'FUND_STTL_ICLD_YN': 'N',
+                    'FNCG_AMT_AUTO_RDPT_YN': 'N',
+                    'PRCS_DVSN': '00',  # 00: 전일매매포함, 01: 전일매매미포함 (더 포괄적)
+                    'CTX_AREA_FK100': ctx_area_fk100,
+                    'CTX_AREA_NK100': ctx_area_nk100
+                }
+
+                result = await self._make_api_request(
+                    method="GET",
+                    endpoint="/uapi/domestic-stock/v1/trading/inquire-balance",
+                    params=params,
+                    tr_id="TTTC8434R"
+                )
+
+                if result.get('rt_cd') != '0':
+                    break
+
+                # 현재 페이지 데이터 처리
+                page_items = 0
                 for item in result.get('output1', []):
-                    # 필드명은 소문자로 되어 있음
                     symbol = item.get('pdno', '')
                     quantity = int(item.get('hldg_qty', '0'))
-                    
-                    if symbol and quantity > 0:
-                        holdings[symbol] = {
-                            'name': item.get('prdt_name', ''),
-                            'quantity': quantity,
-                            'avg_price': float(item.get('pchs_avg_pric', '0')),
-                            'current_price': int(item.get('prpr', '0')),
-                            'evaluation': int(item.get('evlu_amt', '0')),
-                            'profit_loss': int(item.get('evlu_pfls_amt', '0')),
-                            'profit_rate': float(item.get('evlu_pfls_rt', '0'))
-                        }
-            
+
+                    # 보유수량이 0인 종목도 포함 (당일 매도, D-2일까지 보이는 종목)
+                    if symbol:
+                        avg_price = float(item.get('pchs_avg_pric', '0'))
+                        current_price = int(item.get('prpr', '0'))
+                        evaluation = int(item.get('evlu_amt', '0'))
+
+                        # 의미있는 데이터가 있는 종목만 포함
+                        if quantity > 0 or avg_price > 0 or evaluation > 0:
+                            holdings[symbol] = {
+                                'name': item.get('prdt_name', ''),
+                                'quantity': quantity,
+                                'avg_price': avg_price,
+                                'current_price': current_price,
+                                'evaluation': evaluation,
+                                'profit_loss': int(item.get('evlu_pfls_amt', '0')),
+                                'profit_rate': float(item.get('evlu_pfls_rt', '0')),
+                                'trade_type': item.get('trad_dvsn_name', ''),  # 매매구분
+                                'today_buy_qty': int(item.get('thdt_buyqty', '0')),  # 당일매수수량
+                                'today_sell_qty': int(item.get('thdt_sll_qty', '0'))  # 당일매도수량
+                            }
+                            page_items += 1
+
+                self.logger.info(f"📊 보유종목 조회 페이지 {page_count + 1}: {page_items}개 종목")
+
+                # 연속조회 확인
+                tr_cont = result.get('tr_cont', '')
+                if tr_cont in ['F', 'M']:  # 다음 데이터 있음
+                    ctx_area_fk100 = result.get('ctx_area_fk100', '')
+                    ctx_area_nk100 = result.get('ctx_area_nk100', '')
+                    page_count += 1
+                else:
+                    break  # 마지막 데이터
+
+            self.logger.info(f"✅ 총 보유종목 조회 완료: {len(holdings)}개 종목 ({page_count + 1}페이지)")
             return holdings
-                    
+
         except Exception as e:
             self.logger.error(f"❌ 보유 종목 조회 실패: {e}")
             return {}

@@ -39,7 +39,7 @@ async def debug_buy_signals():
                 MonitoringStock.name,
                 MonitoringStock.strategy_name
             ).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE,
+                MonitoringStock.status == MonitoringStatus.ACTIVE.value,
                 MonitoringStock.monitoring_type == MonitoringType.TRADING
             ).limit(5).all()
         

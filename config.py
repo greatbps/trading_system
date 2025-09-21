@@ -76,18 +76,18 @@ class TradingConfig:
     TRADING_ENABLED = True          # 실거래 활성화 (False로 설정 시 시뮬레이션 모드)
 
     # 비율 기반 설정 (실제 잔고에서 계산됨)
-    MAX_POSITION_SIZE_PCT = 0.2     # 최대 포지션 크기 비율 (20%)
+    MAX_POSITION_SIZE_PCT = 1.2     # 최대 포지션 크기 비율 (120% - 소액 계좌 극한 최적화, 신용 활용)
     MAX_DAILY_LOSS_PCT = 0.05       # 일일 최대 손실률 (5%)
     COMMISSION_RATE = 0.00015       # 수수료율 (0.015%)
 
     # 하드 리미트 (안전 장치)
-    HARD_MAX_POSITION = 200000      # 절대 최대 포지션 (20만원)
+    HARD_MAX_POSITION = 100000      # 절대 최대 포지션 (10만원 - 소액 계좌용 여유 설정)
     HARD_MAX_DAILY_LOSS = 50000     # 절대 최대 일일손실 (5만원)
 
-    # 리스크 관리
-    STOP_LOSS_RATIO = 0.05      # 기본 손절률 (5%)
-    TAKE_PROFIT_RATIO = 0.10    # 기본 익절률 (10%)
-    MAX_POSITIONS = 10          # 최대 동시 보유 종목수
+    # 리스크 관리 (단타/스윙 최적화)
+    STOP_LOSS_RATIO = 0.03      # 단타용 타이트 손절률 (3%)
+    TAKE_PROFIT_RATIO = 0.06    # 단타용 익절률 (6% = 손절 × 2배)
+    MAX_POSITIONS = 4           # 최대 동시 보유 종목수 (집중 투자)
 
     # 필터링 조건
     MIN_PRICE = 1000           # 최소 주가

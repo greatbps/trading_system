@@ -272,7 +272,7 @@ class AutoTrader:
                     
                     with Session(self.db_manager.engine) as session:
                         active_positions = session.query(DBMonitoringStock).filter(
-                            DBMonitoringStock.status == MonitoringStatus.ACTIVE,
+                            DBMonitoringStock.status == MonitoringStatus.ACTIVE.value,
                             DBMonitoringStock.monitoring_active == True,
                             DBMonitoringStock.monitoring_type == MonitoringType.TRADING
                         ).count()
@@ -361,7 +361,7 @@ class AutoTrader:
                 with self.db_manager.get_session() as session:
                     db_stock = DbMonitoringStock.get_by_symbol_and_type(session, symbol, MonitoringType.TRADING)
                     if db_stock:
-                        db_stock.status = MonitoringStatus.REMOVED
+                        db_stock.status = MonitoringStatus.REMOVED.value
                         db_stock.monitoring_active = False
                         db_stock.completed_time = datetime.now()
                         db_stock.remove_reason = reason
@@ -899,7 +899,7 @@ class AutoTrader:
                 db_stock = session.query(DbMonitoringStock).filter(
                     DbMonitoringStock.symbol == symbol,
                     DbMonitoringStock.monitoring_type == MonitoringType.TRADING,
-                    DbMonitoringStock.status == MonitoringStatus.ACTIVE
+                    DbMonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).first()
 
                 if not db_stock or not db_stock.holding_quantity or db_stock.holding_quantity <= 0:
@@ -930,7 +930,7 @@ class AutoTrader:
                     profit_loss = (current_price - buy_price) * quantity_to_sell
                     profit_rate = ((current_price - buy_price) / buy_price) * 100 if buy_price > 0 else 0
                     
-                    db_stock.status = MonitoringStatus.COMPLETED
+                    db_stock.status = MonitoringStatus.COMPLETED.value
                     db_stock.monitoring_active = False
                     db_stock.sell_time = datetime.now()
                     db_stock.completed_time = datetime.now()

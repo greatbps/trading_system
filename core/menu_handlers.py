@@ -97,6 +97,8 @@ class MenuHandlers:
     29. 데이터베이스 상태
     30. 종목 데이터 조회
     31. 실시간 시스템 모니터
+    32. 200개 종목 실시간 모니터링
+    33. 보유종목 조회
 
     [bold red]0. 종료[/bold red]"""
         
@@ -148,6 +150,8 @@ class MenuHandlers:
                 "29": self._database_status,
                 "30": self._symbol_data_query,
                 "31": self._real_time_system_monitor,
+                "32": self._realtime_monitoring_system,
+                "33": self._portfolio_holdings,
             }
             
             handler = menu_map.get(choice)
@@ -1732,12 +1736,13 @@ class MenuHandlers:
             return False
 
     async def _view_monitoring_status(self) -> bool:
-        """모니터링 현황 - HTS 홀딩 종목과 전략 추출 종목 표시"""
+        """모니터링 현황 - HTS 홀딩 종목과 전략 추출 종목 통합 표시"""
         try:
             console.print(Panel("[bold cyan]📊 실시간 모니터링 현황[/bold cyan]", border_style="cyan"))
-            
-            # 1. HTS 홀딩 종목 (실제 보유 종목) 조회
-            console.print("\n[bold green]🏦 HTS 보유 종목[/bold green]")
+
+            # 1. HTS 홀딩 종목 (실제 보유 종목) 조회 및 실시간 손익 계산
+            console.print("\n[bold green]🏦 실제 보유 종목 (실시간 손익)[/bold green]")
+            holdings_data = {}
             try:
                 # KIS Collector 찾기 - 여러 경로 시도
                 kis_collector = None
@@ -1748,22 +1753,40 @@ class MenuHandlers:
                         kis_collector = self.system.data_collector.kis_collector
                     elif hasattr(self.system.data_collector, 'get_holdings'):
                         kis_collector = self.system.data_collector
-                
+
                 if kis_collector:
-                    console.print("[green]🔧 KIS API 연결 확인됨[/green]")
+                    console.print("[green]🔧 KIS API 연결 확인됨, 실시간 데이터 조회 중...[/green]")
                     holdings = await kis_collector.get_holdings()
                     if holdings:
-                        console.print("─" * 80)
-                        console.print(f"{'종목코드':<8} {'종목명':<15} {'보유수량':<8} {'평단가':<10} {'현재가':<10} {'수익률':<8}")
-                        console.print("─" * 80)
+                        console.print("─" * 90)
+                        console.print(f"{'종목코드':<8} {'종목명':<12} {'보유수량':<8} {'평단가':<10} {'현재가':<10} {'수익률':<8} {'평가금액':<12}")
+                        console.print("─" * 90)
+
+                        total_value = 0
+                        total_profit_loss = 0
+
                         for symbol, holding in holdings.items():
                             profit_rate = holding.get('profit_rate', 0)
+                            evaluation = holding.get('evaluation', 0)
+                            profit_loss = holding.get('profit_loss', 0)
+
+                            total_value += evaluation
+                            total_profit_loss += profit_loss
+
+                            holdings_data[symbol] = holding  # 나중에 통합 표시에 사용
+
                             color = "green" if profit_rate >= 0 else "red"
-                            console.print(f"{symbol:<8} {holding.get('name', '')[0:15]:<15} "
-                                        f"{holding.get('quantity', 0):<8} "
-                                        f"{holding.get('avg_price', 0):,}원 "
-                                        f"{holding.get('current_price', 0):,}원 "
-                                        f"[{color}]{profit_rate:+.1f}%[/{color}]")
+                            console.print(f"{symbol:<8} {holding.get('name', '')[0:12]:<12} "
+                                        f"{holding.get('quantity', 0):<8,} "
+                                        f"{holding.get('avg_price', 0):<10,.0f} "
+                                        f"{holding.get('current_price', 0):<10,} "
+                                        f"[{color}]{profit_rate:+.1f}%[/{color}] "
+                                        f"{evaluation:<12,}")
+
+                        console.print("─" * 90)
+                        total_profit_color = "green" if total_profit_loss >= 0 else "red"
+                        console.print(f"[bold]총 평가금액: {total_value:,}원, "
+                                    f"총 손익: [{total_profit_color}]{total_profit_loss:+,}원[/{total_profit_color}][/bold]")
                     else:
                         console.print("[yellow]⚠️ 보유 종목 없음[/yellow]")
                 else:
@@ -1772,8 +1795,8 @@ class MenuHandlers:
             except Exception as e:
                 console.print(f"[red]❌ 보유 종목 조회 실패: {e}[/red]")
             
-            # 2. 전략에서 추출된 감시 종목
-            console.print("\n[bold blue]타겟 전략 추출 감시 종목[/bold blue]")
+            # 2. 전략에서 추출된 감시 종목 + 보유 종목과의 매칭 상태
+            console.print("\n[bold blue]🎯 감시중인 종목 (보유 상태 포함)[/bold blue]")
             try:
                 if hasattr(self.system, 'db_manager') and self.system.db_manager:
                     from database.models import MonitoringStock, MonitoringStatus, Stock
@@ -1782,17 +1805,39 @@ class MenuHandlers:
                             Stock, MonitoringStock.symbol == Stock.symbol
                         ).filter(
                             MonitoringStock.status == MonitoringStatus.ACTIVE
-                        ).order_by(MonitoringStock.recommendation_time.desc()).limit(10).all()
-                        
+                        ).order_by(MonitoringStock.recommendation_time.desc()).all()
+
                         if active_stocks:
-                            console.print("─" * 80)
-                            console.print(f"{'종목코드':<8} {'종목명':<15} {'전략':<12} {'신뢰도':<6} {'등록일':<10}")
-                            console.print("─" * 80)
+                            console.print("─" * 100)
+                            console.print(f"{'종목코드':<8} {'종목명':<12} {'전략':<12} {'신뢰도':<6} {'등록일':<10} {'보유상태':<12} {'수익률':<8}")
+                            console.print("─" * 100)
+
                             for monitoring, stock in active_stocks:
-                                console.print(f"{monitoring.symbol:<8} {stock.name[:15]:<15} "
+                                # 보유 종목인지 확인
+                                holding_status = "보유중" if monitoring.symbol in holdings_data else "미보유"
+                                profit_display = ""
+
+                                if monitoring.symbol in holdings_data:
+                                    holding = holdings_data[monitoring.symbol]
+                                    profit_rate = holding.get('profit_rate', 0)
+                                    color = "green" if profit_rate >= 0 else "red"
+                                    profit_display = f"[{color}]{profit_rate:+.1f}%[/{color}]"
+                                    holding_status = f"[bold green]{holding_status}[/bold green]"
+                                else:
+                                    profit_display = "-"
+                                    holding_status = f"[dim]{holding_status}[/dim]"
+
+                                console.print(f"{monitoring.symbol:<8} {stock.name[:12]:<12} "
                                             f"{monitoring.strategy_name:<12} "
                                             f"{monitoring.confidence:.1f}% "
-                                            f"{monitoring.added_at.strftime('%m-%d'):<10}")
+                                            f"{monitoring.added_at.strftime('%m-%d'):<10} "
+                                            f"{holding_status:<20} {profit_display:<15}")
+
+                            # 요약 정보
+                            console.print("─" * 100)
+                            total_monitored = len(active_stocks)
+                            held_monitored = sum(1 for monitoring, _ in active_stocks if monitoring.symbol in holdings_data)
+                            console.print(f"[bold]감시 종목: {total_monitored}개, 보유중인 감시 종목: {held_monitored}개[/bold]")
                         else:
                             console.print("[yellow]⚠️ 감시 종목 없음[/yellow]")
                 else:
@@ -2067,7 +2112,7 @@ class MenuHandlers:
                     Stock, MonitoringStock.symbol == Stock.symbol
                 ).filter(
                     MonitoringStock.status == MonitoringStatus.ACTIVE
-                ).order_by(MonitoringStock.recommendation_time.desc()).limit(20).all()
+                ).order_by(MonitoringStock.recommendation_time.desc()).all()
                 
                 if active_stocks:
                     console.print(f"\n📊 총 {len(active_stocks)}개 종목 감시중:")
@@ -2873,3 +2918,230 @@ class MenuHandlers:
                 
         except Exception as e:
             self.logger.warning(f"백그라운드 분석 재개 실패: {e}")
+
+    async def _realtime_monitoring_system(self) -> bool:
+        """200개 종목 실시간 모니터링 시스템"""
+        console.print(Panel("[bold green]🚀 200개 종목 실시간 모니터링 시스템[/bold green]", border_style="green"))
+
+        try:
+            # 필요한 모듈 동적 임포트
+            try:
+                from monitoring.realtime_monitoring_handler import RealtimeMonitoringHandler
+                from utils.realtime_display import RealtimeDisplay, DisplayMode, UpdateFrequency
+                from data_collectors.bulk_realtime_collector import CollectionMode
+            except ImportError as e:
+                console.print(f"[red]❌ 필요한 모듈을 가져올 수 없습니다: {e}[/red]")
+                console.print("[yellow]💡 실시간 모니터링 시스템 파일이 존재하는지 확인해주세요.[/yellow]")
+                return False
+
+            # 시스템 초기화 확인
+            if not hasattr(self.system, 'data_collector') or not self.system.data_collector:
+                console.print("[red]❌ 데이터 수집기가 초기화되지 않았습니다.[/red]")
+                return False
+
+            console.print("[yellow]🔧 실시간 모니터링 시스템을 초기화하는 중...[/yellow]")
+
+            # 실시간 모니터링 핸들러 생성
+            monitoring_handler = RealtimeMonitoringHandler(
+                config=self.system.config,
+                kis_collector=self.system.data_collector,
+                db_manager=self.system.db_manager
+            )
+
+            # 디스플레이 시스템 생성
+            display = RealtimeDisplay(monitoring_handler)
+
+            # 모니터링 종목 로드
+            console.print("[yellow]📊 모니터링 종목을 로드하는 중...[/yellow]")
+            await display.load_monitoring_stocks()
+
+            console.print("[green]✅ 시스템 초기화 완료[/green]")
+
+            # 모니터링 모드 선택
+            mode_options = {
+                "1": ("하이브리드 모드", CollectionMode.HYBRID, DisplayMode.DASHBOARD),
+                "2": ("실시간 모드", CollectionMode.REALTIME, DisplayMode.COMPACT),
+                "3": ("배치 모드", CollectionMode.BATCH, DisplayMode.DASHBOARD)
+            }
+
+            console.print("\n[bold]📋 모니터링 모드 선택:[/bold]")
+            for key, (name, _, _) in mode_options.items():
+                console.print(f"  {key}. {name}")
+
+            choice = console.input("\n선택하세요 (1-3, 기본값: 1): ").strip() or "1"
+
+            if choice not in mode_options:
+                console.print("[yellow]⚠️ 잘못된 선택입니다. 하이브리드 모드로 시작합니다.[/yellow]")
+                choice = "1"
+
+            mode_name, collection_mode, display_mode = mode_options[choice]
+
+            console.print(f"\n[green]🚀 {mode_name}로 실시간 모니터링을 시작합니다...[/green]")
+            console.print("[dim]Ctrl+C를 눌러 종료할 수 있습니다.[/dim]")
+
+            # 실시간 모니터링 시작
+            if await monitoring_handler.start_monitoring(collection_mode):
+                try:
+                    # 실시간 디스플레이 시작
+                    await display.start_display(
+                        mode=display_mode,
+                        frequency=UpdateFrequency.NORMAL
+                    )
+                except KeyboardInterrupt:
+                    console.print("\n[yellow]사용자에 의해 모니터링이 중단되었습니다.[/yellow]")
+                finally:
+                    # 정리 작업
+                    console.print("[yellow]🔄 시스템을 정리하는 중...[/yellow]")
+                    await display.stop_display()
+                    await monitoring_handler.stop_monitoring()
+                    console.print("[green]✅ 실시간 모니터링 시스템이 정상적으로 종료되었습니다.[/green]")
+            else:
+                console.print("[red]❌ 실시간 모니터링 시작에 실패했습니다.[/red]")
+                return False
+
+            return True
+
+        except Exception as e:
+            console.print(f"[red]❌ 실시간 모니터링 시스템 오류: {e}[/red]")
+            self.logger.error(f"Realtime monitoring system error: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
+
+    async def _portfolio_holdings(self) -> bool:
+        """보유종목 조회 및 표시 (실시간 업데이트 옵션 포함)"""
+        console.print(Panel("[bold blue]📈 실제 계좌 보유종목 조회[/bold blue]", border_style="blue"))
+
+        try:
+            # 데이터 수집기가 초기화되어 있는지 확인
+            if not hasattr(self.system, 'data_collector') or not self.system.data_collector:
+                console.print("[red]❌ 데이터 수집기가 초기화되지 않았습니다.[/red]")
+                return False
+
+            console.print("[yellow]📊 실제 계좌 보유종목 정보를 조회하는 중...[/yellow]")
+
+            # KIS API를 통해 실제 계좌 보유종목 조회
+            holdings = await self.system.data_collector.get_holdings()
+            balance = await self.system.data_collector.get_account_balance()
+
+            if not holdings:
+                console.print("[yellow]⚠️ 현재 보유 중인 종목이 없습니다.[/yellow]")
+                return True
+
+            # 보유종목 테이블 생성
+            table = Table(title="💰 보유종목 현황")
+            table.add_column("종목코드", style="cyan", no_wrap=True)
+            table.add_column("종목명", style="white")
+            table.add_column("보유수량", style="green", justify="right")
+            table.add_column("평균단가", style="blue", justify="right")
+            table.add_column("현재가", style="white", justify="right")
+            table.add_column("평가금액", style="green", justify="right")
+            table.add_column("손익금액", style="red", justify="right")
+            table.add_column("수익률", style="red", justify="right")
+
+            total_evaluation = 0
+            total_profit_loss = 0
+
+            # 각 보유종목 정보 추가
+            for symbol, info in holdings.items():
+                name = info.get('name', 'N/A')
+                quantity = info.get('quantity', 0)
+                avg_price = info.get('avg_price', 0)
+                current_price = info.get('current_price', 0)
+                evaluation = info.get('evaluation', 0)
+                profit_loss = info.get('profit_loss', 0)
+                profit_rate = info.get('profit_rate', 0)
+
+                # 수익/손실에 따른 색상 적용
+                profit_color = "green" if profit_loss >= 0 else "red"
+                profit_symbol = "+" if profit_loss >= 0 else ""
+
+                table.add_row(
+                    symbol,
+                    name[:10] + "..." if len(name) > 10 else name,
+                    f"{quantity:,}",
+                    f"{avg_price:,.0f}원",
+                    f"{current_price:,}원",
+                    f"{evaluation:,}원",
+                    f"[{profit_color}]{profit_symbol}{profit_loss:,}원[/{profit_color}]",
+                    f"[{profit_color}]{profit_symbol}{profit_rate:.2f}%[/{profit_color}]"
+                )
+
+                total_evaluation += evaluation
+                total_profit_loss += profit_loss
+
+            console.print(table)
+
+            # 총합계 표시
+            total_profit_rate = (total_profit_loss / (total_evaluation - total_profit_loss) * 100) if (total_evaluation - total_profit_loss) > 0 else 0
+            total_color = "green" if total_profit_loss >= 0 else "red"
+            total_symbol = "+" if total_profit_loss >= 0 else ""
+
+            summary_table = Table(title="📊 보유종목 요약")
+            summary_table.add_column("항목", style="cyan")
+            summary_table.add_column("금액", style="white", justify="right")
+
+            summary_table.add_row("총 평가금액", f"{total_evaluation:,}원")
+            summary_table.add_row("총 손익금액", f"[{total_color}]{total_symbol}{total_profit_loss:,}원[/{total_color}]")
+            summary_table.add_row("총 수익률", f"[{total_color}]{total_symbol}{total_profit_rate:.2f}%[/{total_color}]")
+            summary_table.add_row("보유종목 수", f"{len(holdings)}개")
+
+            # 계좌 잔고 정보 추가
+            if balance:
+                available_cash = balance.get('available_cash', 0)
+                total_assets = total_evaluation + available_cash
+                summary_table.add_row("사용가능 현금", f"{available_cash:,}원")
+                summary_table.add_row("총 자산", f"[bold green]{total_assets:,}원[/bold green]")
+
+            console.print(summary_table)
+
+            # 실시간 모니터링 옵션 제공
+            if Confirm.ask("\n[bold cyan]실시간 모니터링을 시작하시겠습니까? (30초마다 갱신)[/bold cyan]"):
+                await self._run_real_time_holdings_monitor()
+            elif Confirm.ask("\n[bold cyan]보유종목에 대한 상세 분석을 실행하시겠습니까?[/bold cyan]"):
+                await self._analyze_holdings_details(holdings)
+
+            return True
+
+        except Exception as e:
+            console.print(f"[red]❌ 보유종목 조회 실패: {e}[/red]")
+            self.logger.error(f"보유종목 조회 오류: {e}")
+            return False
+
+    async def _analyze_holdings_details(self, holdings: dict):
+        """보유종목 상세 분석"""
+        try:
+            console.print("\n[yellow]📈 보유종목 상세 분석 중...[/yellow]")
+
+            for symbol, info in holdings.items():
+                name = info.get('name', 'N/A')
+                console.print(f"\n[bold cyan]🔍 {symbol} ({name}) 분석 중...[/bold cyan]")
+
+                # 개별 종목 분석 실행
+                if hasattr(self.system, 'run_specific_analysis'):
+                    try:
+                        analysis_result = await self.system.run_specific_analysis(symbol, strategy="momentum")
+                        if analysis_result:
+                            recommendation = analysis_result.get('recommendation', 'HOLD')
+                            confidence = analysis_result.get('confidence', 0)
+
+                            # 추천 등급에 따른 색상
+                            rec_color = {
+                                'STRONG_BUY': 'bright_green',
+                                'BUY': 'green',
+                                'HOLD': 'yellow',
+                                'SELL': 'red',
+                                'STRONG_SELL': 'bright_red'
+                            }.get(recommendation, 'white')
+
+                            console.print(f"  추천: [{rec_color}]{recommendation}[/{rec_color}] (신뢰도: {confidence:.1f}%)")
+                        else:
+                            console.print("  분석 데이터 없음")
+                    except Exception as e:
+                        console.print(f"  [red]분석 실패: {e}[/red]")
+                else:
+                    console.print("  [yellow]분석 엔진 사용 불가[/yellow]")
+
+        except Exception as e:
+            console.print(f"[red]❌ 상세 분석 실패: {e}[/red]")
+            self.logger.error(f"보유종목 상세 분석 오류: {e}")

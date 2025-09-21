@@ -42,7 +42,7 @@ async def update_stock_names():
         with db_manager.get_session() as session:
             # '종목XXXXXX' 형태의 종목들 조회
             stocks_to_update = session.query(MonitoringStock).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE,
+                MonitoringStock.status == MonitoringStatus.ACTIVE.value,
                 MonitoringStock.name.like('종목%')
             ).all()
             

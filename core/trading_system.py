@@ -663,7 +663,7 @@ class TradingSystem:
                 with self.auto_trading_handler.db_manager.get_session() as session:
                     from database.models import MonitoringStock, MonitoringStatus
                     monitoring_count = session.query(MonitoringStock).filter(
-                        MonitoringStock.status == MonitoringStatus.ACTIVE
+                        MonitoringStock.status == MonitoringStatus.ACTIVE.value
                     ).count()
                 print(f"감시 {monitoring_count}개 종목 감시 중...")
             except Exception as e:

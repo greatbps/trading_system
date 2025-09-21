@@ -21,7 +21,7 @@ async def check_stop_loss():
         
         with db_manager.get_session() as session:
             stocks = session.query(MonitoringStock).filter(
-                MonitoringStock.status == MonitoringStatus.ACTIVE,
+                MonitoringStock.status == MonitoringStatus.ACTIVE.value,
                 MonitoringStock.monitoring_active == True,
                 MonitoringStock.monitoring_type == MonitoringType.TRADING
             ).all()
