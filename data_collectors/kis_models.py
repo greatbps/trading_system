@@ -174,8 +174,32 @@ class StockData(BaseKISModel):
     def __post_init__(self):
         """Validate data after initialization"""
         # Validate symbol format
-        if not self.symbol or len(self.symbol) != 6 or not self.symbol.isdigit():
+        if not self.symbol:
             raise ValueError(f"Invalid symbol format: {self.symbol}")
+
+        # Korean stock symbols should be 6 digits, but allow some flexibility for edge cases
+        if len(self.symbol) != 6:
+            raise ValueError(f"Invalid symbol format: {self.symbol}")
+
+        # Check if it's a valid Korean stock symbol (6 digits) or handle special cases
+        if not self.symbol.isdigit():
+            # Log warning for non-standard symbols but don't fail completely
+            import logging
+            logger = logging.getLogger("KISData")
+            logger.warning(f"⚠️ Non-standard symbol format detected: {self.symbol} - attempting to process anyway")
+
+            # For symbols like "0023A0", check if it might be a legitimate special security type
+            # Special securities can have letters (e.g., rights, warrants, ETNs)
+            # Pattern: NNNNXX where N=digit, X=digit or letter
+            if not (len(self.symbol) == 6 and self.symbol[:4].isdigit()):
+                raise ValueError(f"Invalid symbol format: {self.symbol}")
+
+            # Additional validation for 5th and 6th characters - can be digit or letter
+            pos_5_6 = self.symbol[4:6]
+            if not all(c.isalnum() for c in pos_5_6):
+                raise ValueError(f"Invalid symbol format: {self.symbol}")
+
+            logger.info(f"✅ Special security symbol validated: {self.symbol}")
         
         # Validate price data
         if self.current_price <= 0:
@@ -722,16 +746,16 @@ class PerformanceMetrics(BaseKISModel):
 def validate_korean_symbol(symbol: str) -> bool:
     """
     Validate Korean stock symbol format
-    
+
     Args:
         symbol: Stock symbol to validate
-        
+
     Returns:
         True if valid, False otherwise
     """
-    return (isinstance(symbol, str) and 
-            len(symbol) == 6 and 
-            symbol.isdigit())
+    return (isinstance(symbol, str) and
+            len(symbol) == 6 and
+            symbol.isalnum())  # 숫자와 문자 모두 허용 (ETF 등 특수 종목 지원)
 
 
 def parse_kis_datetime(date_str: str, time_str: Optional[str] = None) -> datetime:

@@ -144,11 +144,34 @@ async def run_fallback_analysis():
             print()
             print("✅ 78점 완화 기준이 효과적으로 작동하고 있습니다!")
             
-            # 모니터링 추가 여부 확인
+            # 자동으로 모니터링에 추가
             print()
-            response = input("이 종목들을 모니터링에 추가하시겠습니까? [y/n]: ").lower().strip()
-            if response in ['y', 'yes', '']:
-                print("모니터링에 추가되었습니다.")
+            print("🔄 자동으로 모니터링에 추가 중...")
+            try:
+                from core.analysis_handlers import AnalysisHandlers
+                analysis_handler = AnalysisHandlers(system)
+
+                # buy_candidates를 analysis_results 형식으로 변환
+                analysis_results_for_monitoring = []
+                for candidate in buy_candidates:
+                    analysis_results_for_monitoring.append({
+                        'symbol': candidate['symbol'],
+                        'name': candidate['name'],
+                        'recommendation': candidate['recommendation'],
+                        'strategy': 'momentum',
+                        'current_price': 0,  # 실제 가격은 API에서 조회됨
+                        'score': candidate['score']
+                    })
+
+                added_count = await analysis_handler.auto_add_buy_recommendations_to_monitoring(analysis_results_for_monitoring)
+                print(f"✅ {added_count}개 종목이 자동매매 모니터링에 추가되었습니다!")
+                print("💡 리밸런싱 과정을 통해 포트폴리오에 반영됩니다.")
+
+                return buy_candidates
+
+            except Exception as e:
+                print(f"⚠️ 자동 추가 중 오류 발생: {e}")
+                print("   수동으로 모니터링 메뉴에서 추가해주세요.")
                 return buy_candidates
         else:
             print("   현재 매수 기준을 충족하는 종목이 없습니다.")

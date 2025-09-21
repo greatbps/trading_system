@@ -94,6 +94,41 @@ class KISDataValidationError(KISAPIError):
     """Data validation errors"""
     pass
 
+def validate_symbol_format(symbol: str) -> bool:
+    """
+    종목 코드 형식 검증 공통 함수
+
+    Args:
+        symbol: 6자리 종목 코드
+
+    Returns:
+        bool: 유효한 형식이면 True
+
+    Raises:
+        KISDataValidationError: 잘못된 형식
+    """
+    if not symbol or len(symbol) != 6:
+        raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+
+    # Check if it's a valid Korean stock symbol (6 digits) or handle special cases
+    if not symbol.isdigit():
+        # For symbols like "0023A0", check if it might be a legitimate special security type
+        # Special securities can have letters (e.g., rights, warrants, ETNs)
+        # Pattern: NNNNXX where N=digit, X=digit or letter
+        if not (len(symbol) == 6 and symbol[:4].isdigit()):
+            raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+
+        # Additional validation for 5th and 6th characters - can be digit or letter
+        pos_5_6 = symbol[4:6]
+        if not all(c.isalnum() for c in pos_5_6):
+            raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+
+        import logging
+        logger = logging.getLogger("KISCollector")
+        logger.info(f"✅ Special security symbol validated: {symbol}")
+
+    return True
+
 # Data models with comprehensive validation
 @dataclass
 class StockData:
@@ -123,8 +158,26 @@ class StockData:
     
     def __post_init__(self):
         """Validate data after initialization"""
-        if len(self.symbol) != 6 or not self.symbol.isdigit():
+        # Validate symbol format - allow special securities like 0023A0
+        if not self.symbol or len(self.symbol) != 6:
             raise ValueError(f"Invalid symbol format: {self.symbol}")
+
+        # Check if it's a valid Korean stock symbol (6 digits) or handle special cases
+        if not self.symbol.isdigit():
+            # For symbols like "0023A0", check if it might be a legitimate special security type
+            # Special securities can have letters (e.g., rights, warrants, ETNs)
+            # Pattern: NNNNXX where N=digit, X=digit or letter
+            if not (len(self.symbol) == 6 and self.symbol[:4].isdigit()):
+                raise ValueError(f"Invalid symbol format: {self.symbol}")
+
+            # Additional validation for 5th and 6th characters - can be digit or letter
+            pos_5_6 = self.symbol[4:6]
+            if not all(c.isalnum() for c in pos_5_6):
+                raise ValueError(f"Invalid symbol format: {self.symbol}")
+
+            import logging
+            logger = logging.getLogger("KISCollector")
+            logger.info(f"✅ Special security symbol validated: {self.symbol}")
         if self.current_price <= 0:
             raise ValueError(f"Invalid price: {self.current_price}")
         if self.volume < 0:
@@ -960,8 +1013,7 @@ class KISCollector:
     async def get_stock_info(self, symbol: str) -> Optional[StockData]:
         """주식 정보 조회"""
         try:
-            if not symbol or len(symbol) != 6 or not symbol.isdigit():
-                raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+            validate_symbol_format(symbol)
             
             # Ensure KIS collector is initialized before making API calls
             if not self.is_initialized:
@@ -1208,8 +1260,7 @@ class KISCollector:
     async def get_ohlcv_data(self, symbol: str, period: str = "D", count: int = 100) -> List[OHLCVData]:
         """OHLCV 데이터 조회 (페이지네이션 지원)"""
         try:
-            if not symbol or len(symbol) != 6 or not symbol.isdigit():
-                raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+            validate_symbol_format(symbol)
 
             # 세션 상태 확인 및 재초기화
             if not await self.ensure_session_ready():
@@ -1312,8 +1363,7 @@ class KISCollector:
             원시 차트 데이터 딕셔너리 리스트
         """
         try:
-            if not symbol or len(symbol) != 6 or not symbol.isdigit():
-                raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+            validate_symbol_format(symbol)
             
             self.logger.debug(f"📊 {symbol} 차트 데이터 조회 ({period}, {start_date}-{end_date})")
             
@@ -1767,8 +1817,7 @@ class KISCollector:
     async def get_investor_trading_data(self, symbol: str) -> Optional[Dict[str, Any]]:
         """특정 종목의 투자자별 매매 동향 조회"""
         try:
-            if not symbol or len(symbol) != 6 or not symbol.isdigit():
-                raise KISDataValidationError(f"Invalid symbol format: {symbol}")
+            validate_symbol_format(symbol)
             
             self.logger.debug(f"⚠️ {symbol} 투자자별 매매 동향 API는 현재 KIS API의 응답 문제로 일시 비활성화되었습니다.")
             return self._get_default_investor_data()

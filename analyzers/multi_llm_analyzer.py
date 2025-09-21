@@ -29,6 +29,7 @@ from concurrent.futures import ThreadPoolExecutor
 from analyzers.gemini_analyzer import GeminiAnalyzer
 from analyzers.gpt_analyzer import GPTAnalyzer
 from analyzers.technical_indicators import PriceData
+from analyzers.api_quota_manager import get_quota_manager, QuotaStatus
 from utils.logger import get_logger
 
 

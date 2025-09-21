@@ -22,6 +22,7 @@ except ImportError:
 
 from utils.logger import get_logger
 from config import Config
+from analyzers.api_quota_manager import get_quota_manager, QuotaStatus
 
 
 class GPTAnalyzer:
@@ -32,17 +33,18 @@ class GPTAnalyzer:
         self.logger = get_logger("GPTAnalyzer")
         self.client = None
         self.api_available = False
-        
+        self.quota_manager = get_quota_manager(config)
+
         # OpenAI 모듈 사용 가능성 체크
         if not OPENAI_AVAILABLE:
             self.logger.warning("⚠️ OpenAI 모듈이 설치되지 않음")
             self.api_available = False
             return
-        
+
         # GPT API 키 설정 - .env 파일 강제 재로드
         from dotenv import load_dotenv
         load_dotenv(override=True)  # 강제로 환경변수 다시 로드
-        
+
         api_key = os.getenv('CHATGPT_API_KEY') or os.getenv('OPENAI_API_KEY')
         if api_key and api_key.startswith('sk-'):
             try:
@@ -57,10 +59,16 @@ class GPTAnalyzer:
             self.api_available = False
 
     async def _call_gpt_api(self, prompt: str, max_tokens: int = 2000) -> str:
-        """GPT API 호출"""
+        """GPT API 호출 (쿼터 체크 포함)"""
         if not self.api_available:
             raise Exception("GPT API를 사용할 수 없습니다")
-        
+
+        # 쿼터 상태 확인
+        if self.quota_manager:
+            should_fallback = await self.quota_manager.should_use_fallback("openai")
+            if should_fallback:
+                raise Exception("OpenAI API 쿼터 초과 - 백업 분석기 사용 권장")
+
         try:
             response = await self.client.chat.completions.create(
                 model="gpt-3.5-turbo",
@@ -71,11 +79,18 @@ class GPTAnalyzer:
                 max_tokens=max_tokens,
                 temperature=0.3
             )
-            
+
             return response.choices[0].message.content.strip()
-            
+
+        except openai.RateLimitError as e:
+            # 쿼터 초과 에러 특별 처리
+            self.logger.error(f"❌ OpenAI API 쿼터 초과: {e}")
+            if self.quota_manager:
+                await self.quota_manager.handle_quota_exceeded("openai")
+            raise Exception(f"OpenAI API 쿼터 초과: {e}")
+
         except Exception as e:
-            self.logger.error(f"GPT API 호출 실패: {e}")
+            self.logger.error(f"❌ GPT API 호출 실패: {e}")
             raise
 
     async def analyze_market_impact(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:

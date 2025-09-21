@@ -49,13 +49,13 @@ class ChartDataCollector:
         self.data_cache = {}
         self.cache_ttl = 300  # 5분 캐시
         
-    async def get_daily_chart_data(self, symbol: str, days: int = 100) -> List[PriceData]:
+    async def get_daily_chart_data(self, symbol: str, days: int = 200) -> List[PriceData]:
         """
         일봉 차트 데이터 수집
         
         Args:
             symbol: 종목 코드 (예: '005930')
-            days: 수집할 일수 (기본 100일)
+            days: 수집할 일수 (기본 200일)
             
         Returns:
             PriceData 리스트 (과거 -> 현재 순서)
@@ -105,14 +105,14 @@ class ChartDataCollector:
             self.logger.error(f"{symbol}: 일봉 데이터 수집 오류 - {e}")
             return []
     
-    async def get_minute_chart_data(self, symbol: str, minutes: int = 60, periods: int = 100) -> List[PriceData]:
+    async def get_minute_chart_data(self, symbol: str, minutes: int = 60, periods: int = 200) -> List[PriceData]:
         """
         분봉 차트 데이터 수집
         
         Args:
             symbol: 종목 코드
             minutes: 분봉 주기 (1, 5, 15, 60)
-            periods: 수집할 봉 개수
+            periods: 수집할 봉 개수 (기본 200개)
             
         Returns:
             PriceData 리스트 (과거 -> 현재 순서)
