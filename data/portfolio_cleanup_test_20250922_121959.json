@@ -1,0 +1,64 @@
+{
+  "timestamp": "2025-09-22T12:19:59.333798",
+  "summary": {
+    "total_holdings": 6,
+    "active_holdings": 5,
+    "hardcoded_holdings": 1,
+    "profit_candidates": 2,
+    "loss_candidates": 2,
+    "total_profit_loss": -42000.0,
+    "hardcoded_list": [
+      "삼성전자(005930)"
+    ],
+    "cleanup_needed": true
+  },
+  "signals": [
+    {
+      "symbol": "123456",
+      "action": "profit_taking",
+      "priority": 1,
+      "quantity_ratio": 1.0,
+      "profit_rate": 6.000000000000005,
+      "reason": "익절 (+6.0%)",
+      "price": 10600.0
+    },
+    {
+      "symbol": "234567",
+      "action": "profit_taking",
+      "priority": 1,
+      "quantity_ratio": 0.7,
+      "profit_rate": 4.0000000000000036,
+      "reason": "익절 (+4.0%)",
+      "price": 20800.0
+    },
+    {
+      "symbol": "345678",
+      "action": "loss_cutting",
+      "priority": 2,
+      "quantity_ratio": 0.8,
+      "profit_rate": -4.0000000000000036,
+      "reason": "손절 (-4.0%)",
+      "price": 14400.0
+    },
+    {
+      "symbol": "456789",
+      "action": "loss_cutting",
+      "priority": 2,
+      "quantity_ratio": 0.8,
+      "profit_rate": -4.0000000000000036,
+      "reason": "손절 (-4.0%)",
+      "price": 24000.0
+    }
+  ],
+  "execution_plan": {
+    "step1_profit_taking": [
+      "CleanupSignal(symbol='123456', action='profit_taking', priority=1, quantity_ratio=1.0, profit_rate=6.000000000000005, reason='익절 (+6.0%)', price=10600.0)",
+      "CleanupSignal(symbol='234567', action='profit_taking', priority=1, quantity_ratio=0.7, profit_rate=4.0000000000000036, reason='익절 (+4.0%)', price=20800.0)"
+    ],
+    "step2_loss_cutting": [
+      "CleanupSignal(symbol='345678', action='loss_cutting', priority=2, quantity_ratio=0.8, profit_rate=-4.0000000000000036, reason='손절 (-4.0%)', price=14400.0)",
+      "CleanupSignal(symbol='456789', action='loss_cutting', priority=2, quantity_ratio=0.8, profit_rate=-4.0000000000000036, reason='손절 (-4.0%)', price=24000.0)"
+    ],
+    "step3_position_mgmt": []
+  }
+}

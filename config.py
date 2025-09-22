@@ -95,14 +95,8 @@ class TradingConfig:
     MIN_VOLUME = 1000     # 최소 거래량
     MIN_MARKET_CAP = 100       # 최소 시가총액 (억원)
 
-    # 기본 종목 리스트 (API 실패 시 폴백용 - 시가총액 상위)
-    DEFAULT_STOCKS = [
-        "005930",  # 삼성전자 (시가총액 1위)
-        "000660",  # SK하이닉스
-        "035420",  # 네이버
-        "005490",  # POSCO홀딩스
-        "051910"   # LG화학
-    ]
+    # 기본 종목 리스트 (API 실패 시 폴백용 - 동적 스크리닝 기반)
+    DEFAULT_STOCKS = []  # 빈 리스트로 변경, 동적 스크리닝 사용
 
     # 전략별 HTS 조건검색식 이름 매핑 (실제 HTS 조건식 이름과 일치)
     HTS_CONDITION_NAMES = {

@@ -1,0 +1,193 @@
+{
+  "timestamp": "2025-09-21T17:26:06.354859",
+  "test_symbols": [
+    "005930",
+    "000660",
+    "035420",
+    "051910",
+    "006400"
+  ],
+  "results": {
+    "current_price": {
+      "operation": "current_price",
+      "total_symbols": 5,
+      "success_rate": 100.0,
+      "avg_time": 0.031756591796875,
+      "max_time": 0.04864335060119629,
+      "min_time": 0.024846792221069336,
+      "total_time": 0.158782958984375,
+      "results": [
+        {
+          "symbol": "005930",
+          "price": 79700,
+          "time": 0.04864335060119629,
+          "success": true
+        },
+        {
+          "symbol": "000660",
+          "price": 353000,
+          "time": 0.029354572296142578,
+          "success": true
+        },
+        {
+          "symbol": "035420",
+          "price": 234000,
+          "time": 0.028611183166503906,
+          "success": true
+        },
+        {
+          "symbol": "051910",
+          "price": 291000,
+          "time": 0.02732706069946289,
+          "success": true
+        },
+        {
+          "symbol": "006400",
+          "price": 203000,
+          "time": 0.024846792221069336,
+          "success": true
+        }
+      ]
+    },
+    "chart_data": {
+      "operation": "chart_data",
+      "total_symbols": 3,
+      "success_rate": 100.0,
+      "avg_time": 0.012372493743896484,
+      "max_time": 0.01296544075012207,
+      "min_time": 0.011774063110351562,
+      "total_time": 0.03711748123168945,
+      "results": [
+        {
+          "symbol": "005930",
+          "data_points": 30,
+          "time": 0.01237797737121582,
+          "success": true
+        },
+        {
+          "symbol": "000660",
+          "data_points": 30,
+          "time": 0.011774063110351562,
+          "success": true
+        },
+        {
+          "symbol": "035420",
+          "data_points": 30,
+          "time": 0.01296544075012207,
+          "success": true
+        }
+      ]
+    },
+    "technical_analysis": {
+      "operation": "technical_analysis",
+      "total_symbols": 3,
+      "success_rate": 100.0,
+      "avg_time": 0.010060548782348633,
+      "max_time": 0.011863946914672852,
+      "min_time": 0.009000062942504883,
+      "total_time": 0.0301816463470459,
+      "results": [
+        {
+          "symbol": "005930",
+          "data_points": 30,
+          "analysis_result": true,
+          "time": 0.011863946914672852,
+          "success": true
+        },
+        {
+          "symbol": "000660",
+          "data_points": 30,
+          "analysis_result": true,
+          "time": 0.009317636489868164,
+          "success": true
+        },
+        {
+          "symbol": "035420",
+          "data_points": 30,
+          "analysis_result": true,
+          "time": 0.009000062942504883,
+          "success": true
+        }
+      ]
+    },
+    "full_cycle": {
+      "operation": "full_cycle",
+      "total_symbols": 3,
+      "success_rate": 100.0,
+      "avg_time": 0.0364537239074707,
+      "max_time": 0.04054379463195801,
+      "min_time": 0.03432297706604004,
+      "total_time": 0.10936117172241211,
+      "avg_steps": {
+        "current_price": {
+          "avg": 0.026889642079671223,
+          "max": 0.030944347381591797,
+          "min": 0.024710655212402344
+        },
+        "chart_data": {
+          "avg": 7.708867390950521e-06,
+          "max": 8.344650268554688e-06,
+          "min": 7.152557373046875e-06
+        },
+        "technical_analysis": {
+          "avg": 0.009552558263142904,
+          "max": 0.009773731231689453,
+          "min": 0.009297609329223633
+        },
+        "signal_generation": {
+          "avg": 1.986821492513021e-06,
+          "max": 2.6226043701171875e-06,
+          "min": 9.5367431640625e-07
+        }
+      },
+      "results": [
+        {
+          "symbol": "005930",
+          "total_time": 0.03432297706604004,
+          "steps": {
+            "current_price": 0.02501392364501953,
+            "chart_data": 7.152557373046875e-06,
+            "technical_analysis": 0.009297609329223633,
+            "signal_generation": 2.6226043701171875e-06
+          },
+          "success": true
+        },
+        {
+          "symbol": "000660",
+          "total_time": 0.04054379463195801,
+          "steps": {
+            "current_price": 0.030944347381591797,
+            "chart_data": 8.344650268554688e-06,
+            "technical_analysis": 0.009586334228515625,
+            "signal_generation": 2.384185791015625e-06
+          },
+          "success": true
+        },
+        {
+          "symbol": "035420",
+          "total_time": 0.03449440002441406,
+          "steps": {
+            "current_price": 0.024710655212402344,
+            "chart_data": 7.62939453125e-06,
+            "technical_analysis": 0.009773731231689453,
+            "signal_generation": 9.5367431640625e-07
+          },
+          "success": true
+        }
+      ]
+    }
+  },
+  "total_analysis_time": 0.3365790843963623,
+  "summary": {
+    "bottlenecks": [],
+    "recommendations": [
+      "현재 성능 수준 양호"
+    ],
+    "performance_rating": "GOOD",
+    "estimated_capacity": {
+      "sequential_processing": 685,
+      "parallel_processing": 100,
+      "recommended_monitoring_interval": 30
+    }
+  }
+}

@@ -21,6 +21,9 @@ import gc
 from enum import Enum
 
 from utils.logger import get_logger
+import psutil
+import statistics
+from typing import Tuple
 
 
 class TaskPriority(Enum):
@@ -139,11 +142,13 @@ class AsyncEngine:
         self.config = config
         self.logger = get_logger("AsyncEngine")
         
-        # 엔진 설정
-        self.max_workers = 8
+        # 엔진 설정 - 병렬 처리 개선
+        self.max_workers = min(16, max(8, psutil.cpu_count() * 2))  # CPU 기반 동적 조정
         self.task_timeout = 300  # 5분
-        self.heartbeat_interval = 30  # 30초
-        self.cleanup_interval = 600  # 10분
+        self.heartbeat_interval = 15  # 15초로 단축
+        self.cleanup_interval = 300  # 5분으로 단축
+        self.batch_size = 50  # 배치 처리 크기
+        self.load_balancing_enabled = True  # 로드 밸런싱 활성화
         
         # 비동기 구성 요소
         self.task_queue = AsyncTaskQueue()
@@ -151,9 +156,12 @@ class AsyncEngine:
         self.completed_tasks = {}  # task_id -> AsyncTask
         self.task_groups = {}  # group_id -> AsyncTaskGroup
         
-        # 워커 관리
+        # 워커 관리 - 향상된 로드 밸런싱
         self.workers = {}  # worker_id -> WorkerStats
         self.worker_tasks = {}  # worker_id -> asyncio.Task
+        self.worker_loads = {}  # worker_id -> current_load_score
+        self.worker_queues = {f"worker_{i}": asyncio.Queue() for i in range(self.max_workers)}
+        self.round_robin_index = 0
         
         # 모니터링
         self.task_history = deque(maxlen=1000)
@@ -173,9 +181,11 @@ class AsyncEngine:
             'on_worker_error': []
         }
         
-        # 의존성 그래프
+        # 의존성 그래프 - 병렬 처리 최적화
         self.dependency_graph = defaultdict(set)  # task_id -> dependent_tasks
         self.reverse_dependencies = defaultdict(set)  # task_id -> dependency_tasks
+        self.independent_tasks_queue = AsyncTaskQueue()  # 독립적인 작업들을 위한 전용 큐
+        self.batch_processor = None  # 배치 처리기
         
         # 메모리 관리
         self.weak_refs = set()
@@ -208,8 +218,13 @@ class AsyncEngine:
         asyncio.create_task(self._heartbeat_loop(), name="AsyncHeartbeat")
         asyncio.create_task(self._cleanup_loop(), name="AsyncCleanup")
         asyncio.create_task(self._dependency_resolver_loop(), name="DependencyResolver")
-        
-        self.logger.info(f"🚀 비동기 엔진 시작 (워커 {self.max_workers}개)")
+        asyncio.create_task(self._load_balancer_loop(), name="LoadBalancer")
+
+        # 배치 프로세서 시작
+        if self.batch_size > 1:
+            self.batch_processor = asyncio.create_task(self._batch_processor_loop(), name="BatchProcessor")
+
+        self.logger.info(f"🚀 비동기 엔진 시작 (워커 {self.max_workers}개, 배치 크기: {self.batch_size})")
     
     async def stop(self):
         """엔진 중지"""
@@ -648,3 +663,275 @@ class AsyncEngine:
                 for worker_id, worker in self.workers.items()
             }
         }
+
+    # === 병렬 처리 개선 메서드들 ===
+
+    async def _load_balancer_loop(self):
+        """로드 밸런서 루프"""
+        while self.is_running:
+            try:
+                await asyncio.sleep(5)  # 5초마다 로드 밸런싱
+
+                if not self.is_running:
+                    break
+
+                await self._balance_worker_loads()
+
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                self.logger.error(f"로드 밸런서 에러: {e}")
+
+    async def _balance_worker_loads(self):
+        """워커 로드 밸런싱"""
+        if not self.load_balancing_enabled:
+            return
+
+        try:
+            # 각 워커의 로드 계산
+            for worker_id, worker in self.workers.items():
+                queue_size = self.worker_queues[worker_id].qsize()
+                processing_time = worker.avg_processing_time
+                load_score = queue_size * 0.7 + processing_time * 0.3
+                self.worker_loads[worker_id] = load_score
+
+            # 가장 바쁜 워커와 가장 여유로운 워커 찾기
+            if len(self.worker_loads) < 2:
+                return
+
+            busiest_worker = max(self.worker_loads.items(), key=lambda x: x[1])
+            least_busy_worker = min(self.worker_loads.items(), key=lambda x: x[1])
+
+            # 로드 차이가 임계값을 초과하면 작업 재배치
+            load_difference = busiest_worker[1] - least_busy_worker[1]
+            if load_difference > 5.0:  # 임계값
+                await self._redistribute_tasks(busiest_worker[0], least_busy_worker[0])
+
+        except Exception as e:
+            self.logger.error(f"로드 밸런싱 실패: {e}")
+
+    async def _redistribute_tasks(self, from_worker: str, to_worker: str):
+        """작업 재배치"""
+        try:
+            from_queue = self.worker_queues[from_worker]
+            to_queue = self.worker_queues[to_worker]
+
+            # 가장 바쁜 워커에서 작업 1개를 가장 여유로운 워커로 이동
+            if not from_queue.empty():
+                task = await from_queue.get()
+                await to_queue.put(task)
+                self.logger.debug(f"작업 재배치: {from_worker} -> {to_worker}")
+
+        except Exception as e:
+            self.logger.error(f"작업 재배치 실패: {e}")
+
+    async def _batch_processor_loop(self):
+        """배치 처리 루프"""
+        batch = []
+        while self.is_running:
+            try:
+                # 독립적인 작업들을 배치로 수집
+                try:
+                    task = await asyncio.wait_for(
+                        self.independent_tasks_queue.get(),
+                        timeout=1.0
+                    )
+                    batch.append(task)
+
+                    # 배치 크기에 도달하거나 타임아웃이면 처리
+                    if len(batch) >= self.batch_size:
+                        await self._process_batch(batch)
+                        batch = []
+
+                except asyncio.TimeoutError:
+                    # 타임아웃 시 현재 배치 처리
+                    if batch:
+                        await self._process_batch(batch)
+                        batch = []
+
+            except asyncio.CancelledError:
+                # 종료 시 남은 배치 처리
+                if batch:
+                    await self._process_batch(batch)
+                break
+            except Exception as e:
+                self.logger.error(f"배치 프로세서 에러: {e}")
+
+    async def _process_batch(self, batch: List[AsyncTask]):
+        """배치 작업 처리"""
+        if not batch:
+            return
+
+        try:
+            # 배치를 워커들에게 병렬 분배
+            batch_tasks = []
+            for i, task in enumerate(batch):
+                worker_id = self._select_best_worker()
+                batch_tasks.append(
+                    asyncio.create_task(
+                        self._execute_task_on_worker(task, worker_id),
+                        name=f"BatchTask_{task.task_id}"
+                    )
+                )
+
+            # 모든 배치 작업 완료 대기
+            await asyncio.gather(*batch_tasks, return_exceptions=True)
+
+            self.logger.debug(f"배치 처리 완료: {len(batch)}개 작업")
+
+        except Exception as e:
+            self.logger.error(f"배치 처리 실패: {e}")
+
+    def _select_best_worker(self) -> str:
+        """최적의 워커 선택"""
+        if not self.load_balancing_enabled:
+            # 라운드 로빈 방식
+            worker_id = f"worker_{self.round_robin_index}"
+            self.round_robin_index = (self.round_robin_index + 1) % self.max_workers
+            return worker_id
+
+        # 로드 기반 선택
+        if self.worker_loads:
+            return min(self.worker_loads.items(), key=lambda x: x[1])[0]
+        else:
+            return f"worker_0"
+
+    async def _execute_task_on_worker(self, task: AsyncTask, worker_id: str):
+        """특정 워커에서 작업 실행"""
+        try:
+            # 워커 큐에 작업 추가
+            await self.worker_queues[worker_id].put(task)
+
+        except Exception as e:
+            self.logger.error(f"워커 {worker_id}에서 작업 실행 실패: {e}")
+
+    async def submit_batch_tasks(self, tasks: List[AsyncTask]) -> List[str]:
+        """배치 작업 제출"""
+        task_ids = []
+
+        for task in tasks:
+            # 의존성이 없는 작업은 독립적인 작업 큐로
+            if not task.dependencies:
+                await self.independent_tasks_queue.put(task)
+            else:
+                await self.task_queue.put(task)
+
+            task_ids.append(task.task_id)
+
+        self.logger.info(f"배치 작업 제출: {len(tasks)}개 작업")
+        return task_ids
+
+    async def get_worker_statistics(self) -> Dict[str, Any]:
+        """워커 통계 정보"""
+        stats = {}
+
+        for worker_id, worker in self.workers.items():
+            queue_size = self.worker_queues[worker_id].qsize()
+            load_score = self.worker_loads.get(worker_id, 0)
+
+            stats[worker_id] = {
+                'tasks_processed': worker.tasks_processed,
+                'tasks_failed': worker.tasks_failed,
+                'avg_processing_time': worker.avg_processing_time,
+                'current_task': worker.current_task,
+                'queue_size': queue_size,
+                'load_score': load_score,
+                'efficiency': worker.tasks_processed / max(1, worker.tasks_processed + worker.tasks_failed)
+            }
+
+        return stats
+
+    async def optimize_performance(self):
+        """성능 최적화 실행"""
+        try:
+            # 1. 가비지 컬렉션
+            import gc
+            collected = gc.collect()
+
+            # 2. 워커 수 동적 조정
+            current_load = sum(self.worker_loads.values()) / len(self.worker_loads) if self.worker_loads else 0
+
+            if current_load > 8.0 and self.max_workers < 32:
+                # 부하가 높으면 워커 추가
+                await self._add_worker()
+            elif current_load < 2.0 and self.max_workers > 4:
+                # 부하가 낮으면 워커 제거
+                await self._remove_worker()
+
+            # 3. 메모리 사용량 체크
+            memory_percent = psutil.virtual_memory().percent
+            if memory_percent > 85:
+                self.logger.warning(f"⚠️ 높은 메모리 사용률: {memory_percent:.1f}%")
+                # 정리 작업 강제 실행
+                await self._emergency_cleanup()
+
+            self.logger.info(f"성능 최적화 완료: GC {collected}개 객체, 평균 로드 {current_load:.2f}")
+
+        except Exception as e:
+            self.logger.error(f"성능 최적화 실패: {e}")
+
+    async def _add_worker(self):
+        """워커 추가"""
+        new_worker_id = f"worker_{self.max_workers}"
+
+        # 새 워커 생성
+        worker_stats = WorkerStats(new_worker_id)
+        self.workers[new_worker_id] = worker_stats
+        self.worker_loads[new_worker_id] = 0.0
+        self.worker_queues[new_worker_id] = asyncio.Queue()
+
+        # 워커 태스크 시작
+        worker_task = asyncio.create_task(
+            self._worker_loop(new_worker_id),
+            name=f"AsyncWorker_{new_worker_id}"
+        )
+        self.worker_tasks[new_worker_id] = worker_task
+
+        self.max_workers += 1
+        self.logger.info(f"워커 추가: {new_worker_id} (총 {self.max_workers}개)")
+
+    async def _remove_worker(self):
+        """워커 제거"""
+        if self.max_workers <= 4:
+            return
+
+        # 가장 적게 사용되는 워커 찾기
+        least_used_worker = min(
+            self.workers.items(),
+            key=lambda x: x[1].tasks_processed
+        )[0]
+
+        # 워커 중지
+        worker_task = self.worker_tasks.get(least_used_worker)
+        if worker_task and not worker_task.done():
+            worker_task.cancel()
+
+        # 워커 정보 제거
+        self.workers.pop(least_used_worker, None)
+        self.worker_loads.pop(least_used_worker, None)
+        self.worker_tasks.pop(least_used_worker, None)
+        self.worker_queues.pop(least_used_worker, None)
+
+        self.max_workers -= 1
+        self.logger.info(f"워커 제거: {least_used_worker} (총 {self.max_workers}개)")
+
+    async def _emergency_cleanup(self):
+        """응급 정리 작업"""
+        # 1. 완료된 작업 정리
+        cutoff_time = datetime.now() - timedelta(minutes=30)
+        old_tasks = [
+            task_id for task_id, task in self.completed_tasks.items()
+            if task.completed_at and task.completed_at < cutoff_time
+        ]
+
+        for task_id in old_tasks:
+            del self.completed_tasks[task_id]
+
+        # 2. 메모리 정리
+        import gc
+        collected = gc.collect()
+
+        # 3. 약한 참조 정리
+        self.weak_refs.clear()
+
+        self.logger.warning(f"🧹 응급 정리 완료: 작업 {len(old_tasks)}개, GC {collected}개 객체")

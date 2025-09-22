@@ -1143,7 +1143,277 @@ class DatabaseAutoTradingHandler:
             return 0
 
     async def _check_holdings_sell_signals(self):
-        """보유종목 매도 신호 체크 - 최우선 처리"""
+        """보유종목 고도화된 매도 신호 체크 - 최우선 처리"""
+        from rich.table import Table
+        from rich.text import Text
+
+        try:
+            holdings = await self.kis_collector.get_holdings()
+            if not holdings:
+                return None
+
+            # 고도화된 매도 전략 초기화
+            if not hasattr(self, 'advanced_exit_strategy'):
+                from strategies.advanced_exit_strategy import AdvancedExitStrategy
+                self.advanced_exit_strategy = AdvancedExitStrategy(self.config)
+
+            sell_signals = []
+
+            for symbol, holding_data in holdings.items():
+                name = holding_data.get('name', '')
+                profit_rate = self._safe_get_profit_rate(holding_data)
+
+                # 고도화된 전략에 포지션 정보 업데이트
+                await self.advanced_exit_strategy.update_position(symbol, {
+                    'current_price': holding_data.get('current_price', 0),
+                    'avg_price': holding_data.get('avg_price', 0),
+                    'quantity': holding_data.get('quantity', 0),
+                })
+
+                # 시장 데이터 준비 (실제로는 차트 데이터에서 가져와야 함)
+                market_data = await self._get_market_data_for_exit(symbol)
+
+                # 고도화된 매도 신호 분석
+                exit_signals = await self.advanced_exit_strategy.analyze_exit_signals(symbol, market_data)
+
+                for exit_signal in exit_signals:
+                    # 부분 매도인지 전량 매도인지 구분
+                    quantity_text = "전량" if exit_signal.quantity_ratio >= 1.0 else f"{exit_signal.quantity_ratio*100:.0f}%"
+
+                    sell_signals.append({
+                        'symbol': symbol,
+                        'name': name[:8] + ".." if len(name) > 8 else name,
+                        'profit_rate': profit_rate,
+                        'signal': exit_signal.signal_type,
+                        'action': f'{quantity_text} 매도',
+                        'reason': exit_signal.reason,
+                        'confidence': exit_signal.confidence,
+                        'quantity_ratio': exit_signal.quantity_ratio
+                    })
+
+            # 백업: 기존 단순 로직도 유지 (고도화 전략 실패시)
+            if not sell_signals:
+                sell_signals = await self._check_simple_sell_signals(holdings)
+
+            if sell_signals:
+                table = Table(show_header=True, header_style="bold red", box=None)
+                table.add_column("종목", style="white", width=10)
+                table.add_column("수익률", style="cyan", width=8)
+                table.add_column("신호유형", style="yellow", width=12)
+                table.add_column("매도액션", style="red", width=10)
+                table.add_column("신뢰도", style="magenta", width=8)
+
+                for signal in sell_signals:
+                    confidence_color = "green" if signal.get('confidence', 0) >= 0.8 else "yellow"
+                    table.add_row(
+                        signal['name'],
+                        f"{signal['profit_rate']:.1f}%",
+                        signal['signal'],
+                        signal['action'],
+                        f"[{confidence_color}]{signal.get('confidence', 0)*100:.0f}%[/{confidence_color}]"
+                    )
+
+                return table
+
+            return Text("보유종목 매도 신호 없음", style="green")
+
+        except Exception as e:
+            self.logger.error(f"보유종목 매도 신호 체크 실패: {e}")
+            return None
+
+    async def _check_simple_sell_signals(self, holdings):
+        """기존 단순 매도 신호 (백업용)"""
+        sell_signals = []
+
+        for symbol, holding_data in holdings.items():
+            name = holding_data.get('name', '')
+            profit_rate = self._safe_get_profit_rate(holding_data)
+
+            # 기존 단순 로직 유지
+            if profit_rate >= 6.0:  # 6% 이상 수익시 매도 고려
+                sell_signals.append({
+                    'symbol': symbol,
+                    'name': name[:8] + ".." if len(name) > 8 else name,
+                    'profit_rate': profit_rate,
+                    'signal': '수익실현',
+                    'action': '전량 매도',
+                    'confidence': 0.7,
+                    'quantity_ratio': 1.0
+                })
+            elif profit_rate <= -3.0:  # 3% 이상 손실시 손절 고려
+                sell_signals.append({
+                    'symbol': symbol,
+                    'name': name[:8] + ".." if len(name) > 8 else name,
+                    'profit_rate': profit_rate,
+                    'signal': '손절매',
+                    'action': '전량 매도',
+                    'confidence': 0.8,
+                    'quantity_ratio': 1.0
+                })
+
+        return sell_signals
+
+    async def _get_market_data_for_exit(self, symbol: str) -> dict:
+        """매도 분석용 시장 데이터 수집"""
+        try:
+            # 실제 구현시에는 차트 데이터 API 호출
+            # 여기서는 기본값 설정
+            market_data = {
+                'ema5': 0,  # 5기간 EMA
+                'volume': 0,  # 현재 거래량
+                'avg_volume': 1,  # 평균 거래량
+                'vwap': 0,  # VWAP
+            }
+
+            # 3분봉 5기간 평균 계산 시도
+            try:
+                ema5 = await self._get_3min_5bar_average(symbol)
+                if ema5 > 0:
+                    market_data['ema5'] = ema5
+            except Exception:
+                pass
+
+            return market_data
+
+        except Exception as e:
+            self.logger.error(f"시장 데이터 수집 실패 {symbol}: {e}")
+            return {}
+
+    async def _get_3min_5bar_average(self, symbol: str) -> float:
+        """3분봉 최근 5봉 평균가 계산 (3분봉 지원 안되면 1분봉으로 대체)"""
+        try:
+            # 먼저 3분봉 데이터 시도
+            chart_data = None
+            try:
+                chart_data = await self.kis_collector.get_chart_data(
+                    symbol=symbol,
+                    period="3",  # 3분봉
+                    start_date="",  # 최근 데이터
+                    end_date=""
+                )
+            except Exception as e:
+                self.logger.warning(f"{symbol} 3분봉 조회 실패, 1분봉으로 대체: {e}")
+
+            # 3분봉이 안되면 1분봉 데이터로 3분봉 구성
+            if not chart_data or len(chart_data) < 5:
+                self.logger.info(f"{symbol} 1분봉 데이터로 3분봉 평균 계산 시도")
+                try:
+                    # 1분봉 데이터 조회 (15분치 = 5개 3분봉)
+                    min_data = await self.kis_collector.get_chart_data(
+                        symbol=symbol,
+                        period="1",  # 1분봉
+                        start_date="",
+                        end_date=""
+                    )
+
+                    if min_data and len(min_data) >= 15:
+                        # 1분봉 데이터를 3분봉으로 변환
+                        chart_data = self._convert_1min_to_3min(min_data)
+                        self.logger.debug(f"{symbol} 1분봉 -> 3분봉 변환 완료: {len(chart_data)}개 봉")
+                    else:
+                        self.logger.warning(f"{symbol} 1분봉 데이터도 부족: {len(min_data) if min_data else 0}개")
+                        return 0.0
+                except Exception as e:
+                    self.logger.error(f"{symbol} 1분봉 데이터 조회 실패: {e}")
+                    return 0.0
+
+            if not chart_data or len(chart_data) < 5:
+                self.logger.warning(f"{symbol} 최종 차트 데이터 부족: {len(chart_data) if chart_data else 0}개")
+                return 0.0
+
+            # 최근 5봉의 종가 추출
+            recent_5_bars = chart_data[-5:]  # 최근 5봉
+            close_prices = []
+
+            for bar in recent_5_bars:
+                if isinstance(bar, dict):
+                    # 종가 추출 (여러 필드명 시도)
+                    close_price = bar.get('close') or bar.get('stck_clpr') or bar.get('close_price', 0)
+                    if isinstance(close_price, str):
+                        close_price = float(close_price)
+                    close_prices.append(close_price)
+
+            if len(close_prices) < 5:
+                self.logger.warning(f"{symbol} 유효한 종가 데이터 부족: {len(close_prices)}개")
+                return 0.0
+
+            # 5봉 평균 계산
+            average_price = sum(close_prices) / len(close_prices)
+
+            self.logger.debug(f"{symbol} 3분봉 5봉 평균: {average_price:.2f}원 (종가들: {close_prices})")
+            return average_price
+
+        except Exception as e:
+            self.logger.error(f"{symbol} 3분봉 5봉 평균 계산 실패: {e}")
+            return 0.0
+
+    def _convert_1min_to_3min(self, min_data: list) -> list:
+        """1분봉 데이터를 3분봉으로 변환"""
+        try:
+            if not min_data or len(min_data) < 3:
+                return []
+
+            # 최근 데이터부터 역순으로 3분씩 묶어서 변환
+            three_min_bars = []
+
+            # 최신 데이터부터 3개씩 묶기
+            for i in range(len(min_data) - 1, -1, -3):
+                start_idx = max(0, i - 2)  # 3개 봉의 시작 인덱스
+                group = min_data[start_idx:i + 1]
+
+                if len(group) >= 3:  # 완전한 3분봉만 생성
+                    # 3분봉 OHLC 계산
+                    open_price = self._extract_price(group[0], 'open')
+                    close_price = self._extract_price(group[-1], 'close')
+                    high_price = max([self._extract_price(bar, 'high') for bar in group])
+                    low_price = min([self._extract_price(bar, 'low') for bar in group])
+
+                    three_min_bar = {
+                        'open': open_price,
+                        'high': high_price,
+                        'low': low_price,
+                        'close': close_price,
+                        'date': group[-1].get('date', ''),
+                        'time': group[-1].get('time', '')
+                    }
+                    three_min_bars.append(three_min_bar)
+
+            # 시간순으로 정렬 (오래된 것부터)
+            three_min_bars.reverse()
+
+            return three_min_bars
+
+        except Exception as e:
+            self.logger.error(f"1분봉 -> 3분봉 변환 실패: {e}")
+            return []
+
+    def _extract_price(self, bar: dict, price_type: str) -> float:
+        """차트 데이터에서 가격 추출 (여러 필드명 지원)"""
+        try:
+            # price_type에 따른 필드명 매핑
+            field_mapping = {
+                'open': ['open', 'stck_oprc', 'open_price'],
+                'high': ['high', 'stck_hgpr', 'high_price'],
+                'low': ['low', 'stck_lwpr', 'low_price'],
+                'close': ['close', 'stck_clpr', 'close_price']
+            }
+
+            fields = field_mapping.get(price_type, [price_type])
+
+            for field in fields:
+                price = bar.get(field, 0)
+                if price:
+                    if isinstance(price, str):
+                        price = float(price)
+                    return price
+
+            return 0.0
+
+        except Exception:
+            return 0.0
+
+    async def _check_holdings_sell_signals_enhanced(self):
+        """보유종목 향상된 매도 신호 체크 - 6% 이상 수익시 모니터링, 5봉 평균 아래 손절"""
         from rich.table import Table
         from rich.text import Text
 
@@ -1157,23 +1427,50 @@ class DatabaseAutoTradingHandler:
             for symbol, holding_data in holdings.items():
                 name = holding_data.get('name', '')
                 profit_rate = self._safe_get_profit_rate(holding_data)
+                current_price = holding_data.get('current_price', 0)
 
-                # 손익률 기반 매도 신호 체크
-                if profit_rate >= 10.0:  # 10% 이상 수익시 매도 고려
-                    sell_signals.append({
-                        'symbol': symbol,
-                        'name': name[:8] + ".." if len(name) > 8 else name,
-                        'profit_rate': profit_rate,
-                        'signal': '수익실현',
-                        'action': 'sell'
-                    })
-                elif profit_rate <= -5.0:  # 5% 이상 손실시 손절 고려
+                # 기존 손절매 조건 (-5% 이하)
+                if profit_rate <= -5.0:
                     sell_signals.append({
                         'symbol': symbol,
                         'name': name[:8] + ".." if len(name) > 8 else name,
                         'profit_rate': profit_rate,
                         'signal': '손절매',
-                        'action': 'sell'
+                        'action': 'sell',
+                        'reason': f'{profit_rate:.1f}% 손실'
+                    })
+
+                # 새로운 조건: 6% 이상 10% 미만 수익시 모니터링
+                elif 6.0 <= profit_rate < 10.0:
+                    # 3분봉 5봉 평균 계산
+                    avg_5bars = await self._get_3min_5bar_average(symbol)
+
+                    if avg_5bars > 0 and current_price < avg_5bars:
+                        # 현재가가 5봉 평균 아래로 떨어짐 - 즉시 손절
+                        sell_signals.append({
+                            'symbol': symbol,
+                            'name': name[:8] + ".." if len(name) > 8 else name,
+                            'profit_rate': profit_rate,
+                            'signal': '추세손절',
+                            'action': 'sell',
+                            'reason': f'{current_price:.0f}원 < 5봉평균 {avg_5bars:.0f}원'
+                        })
+
+                        # 추세손절 조건 충족 시 즉시 매도 실행
+                        await self._trigger_trend_stop_sell(symbol, current_price, avg_5bars, profit_rate, holding_data)
+                    else:
+                        # 아직 5봉 평균 위에 있음 - 모니터링 중
+                        self.logger.info(f"{symbol} 모니터링 중: 수익률 {profit_rate:.1f}%, 현재가 {current_price:.0f}원, 5봉평균 {avg_5bars:.0f}원")
+
+                # 기존 수익실현 조건 (10% 이상)
+                elif profit_rate >= 10.0:
+                    sell_signals.append({
+                        'symbol': symbol,
+                        'name': name[:8] + ".." if len(name) > 8 else name,
+                        'profit_rate': profit_rate,
+                        'signal': '수익실현',
+                        'action': 'sell',
+                        'reason': f'{profit_rate:.1f}% 수익'
                     })
 
             if sell_signals:
@@ -1181,14 +1478,14 @@ class DatabaseAutoTradingHandler:
                 table.add_column("종목", style="white", width=10)
                 table.add_column("수익률", style="cyan", width=8)
                 table.add_column("신호", style="red", width=8)
-                table.add_column("액션", style="yellow", width=8)
+                table.add_column("사유", style="yellow", width=20)
 
                 for signal in sell_signals:
                     table.add_row(
                         signal['name'],
                         f"{signal['profit_rate']:.1f}%",
                         signal['signal'],
-                        signal['action']
+                        signal['reason']
                     )
 
                 return table
@@ -1196,8 +1493,96 @@ class DatabaseAutoTradingHandler:
             return Text("보유종목 매도 신호 없음", style="green")
 
         except Exception as e:
-            self.logger.error(f"보유종목 매도 신호 체크 실패: {e}")
+            self.logger.error(f"향상된 보유종목 매도 신호 체크 실패: {e}")
             return None
+
+    async def _trigger_trend_stop_sell(self, symbol: str, current_price: float, avg_5bars: float, profit_rate: float, holding: dict):
+        """추세손절 조건 충족 시 자동 매도 신호 트리거 (3분봉 5봉 평균 아래 돌파)"""
+        try:
+            # ⚡ 장 시간 및 거래일 확인 - MarketScheduleManager 사용
+            if hasattr(self, 'market_manager') and self.market_manager:
+                await self.market_manager.update_market_status()
+
+                if not self.market_manager.is_trading_allowed_now():
+                    market_status = self.market_manager.current_status.value
+                    market_status_korean = self.market_manager._get_status_korean(self.market_manager.current_status)
+                    if hasattr(self, 'logger'):
+                        self.logger.info(f"장시간외 {symbol} 추세손절 신호 차단 - 현재 상태: {market_status_korean} ({market_status})")
+                    return False
+            else:
+                # 백업 로직: 기본 시간 체크
+                from datetime import datetime, time
+                now = datetime.now().time()
+                weekday = datetime.now().weekday()
+
+                if weekday >= 5:  # 주말
+                    if hasattr(self, 'logger'):
+                        self.logger.info(f"주말 {symbol} 추세손절 신호 차단")
+                    return False
+
+                # 거래 시간 체크
+                morning_start = time(9, 0)
+                lunch_start = time(12, 0)
+                lunch_end = time(13, 0)
+                market_close = time(15, 30)
+
+                is_trading_time = (morning_start <= now < lunch_start) or (lunch_end <= now <= market_close)
+
+                if not is_trading_time:
+                    if hasattr(self, 'logger'):
+                        self.logger.info(f"거래시간외 {symbol} 추세손절 신호 차단 (현재 시각: {now.strftime('%H:%M:%S')})")
+                    return False
+
+            if hasattr(self, 'logger'):
+                self.logger.warning(f"🔥 {symbol} 추세손절 신호 발생! 현재가: {current_price:,}원, 5봉평균: {avg_5bars:,}원, 수익률: {profit_rate:+.1f}%")
+
+            # ⚡ 실제 KIS API 보유종목 재검증
+            if hasattr(self, 'kis_collector') and self.kis_collector:
+                actual_holdings = await self.kis_collector.get_holdings()
+                if not actual_holdings or symbol not in actual_holdings:
+                    if hasattr(self, 'logger'):
+                        self.logger.warning(f"보안 {symbol} 추세손절 차단: KIS API에서 실제 보유종목이 아님")
+                    return False
+
+                # 실제 보유 수량 재확인
+                actual_holding = actual_holdings[symbol]
+                actual_quantity = getattr(actual_holding, 'quantity', 0) if hasattr(actual_holding, 'quantity') else actual_holding.get('quantity', 0)
+                if actual_quantity <= 0:
+                    if hasattr(self, 'logger'):
+                        self.logger.warning(f"보안 {symbol} 추세손절 차단: 실제 보유수량 {actual_quantity}주 (이미 매도완료)")
+                    return False
+
+                if hasattr(self, 'logger'):
+                    self.logger.info(f"승인 {symbol} 실제 보유종목 확인: {actual_quantity}주 보유 중 - 추세손절 실행 승인")
+            else:
+                if hasattr(self, 'logger'):
+                    self.logger.error(f"❌ {symbol} 추세손절 차단: KIS API 연결 불가 - 보유종목 검증 실패")
+                return False
+
+            # 자동매매 시스템을 통한 추세손절 매도 실행
+            if hasattr(self, 'auto_trader') and self.auto_trader:
+                if hasattr(self, 'logger'):
+                    self.logger.info(f"✅ {symbol} 추세손절 시스템 활성화됨 - 응급 매도 실행")
+                    self.logger.error(f"🔍 [TREND STOP] {symbol} 3분봉 5봉 평균 아래 돌파 - 즉시 매도!")
+                    self.logger.error(f"   📊 현재가: {current_price:,}원 < 5봉평균: {avg_5bars:,}원 (수익률: {profit_rate:+.1f}%)")
+
+                # 추세손절 매도 실행 ("trend_stop" 사유로 구분)
+                result = await self.auto_trader._execute_emergency_sell_order(symbol, current_price, "trend_stop", holding_info=holding)
+                if hasattr(self, 'logger'):
+                    if result:
+                        self.logger.info(f"✅ {symbol} 추세손절 매도 완료")
+                    else:
+                        self.logger.error(f"❌ {symbol} 추세손절 매도 실패")
+                return result
+            else:
+                if hasattr(self, 'logger'):
+                    self.logger.error(f"❌ {symbol} 추세손절 차단: 자동매매 시스템 비활성화")
+                return False
+
+        except Exception as e:
+            if hasattr(self, 'logger'):
+                self.logger.error(f"❌ {symbol} 추세손절 처리 실패: {e}")
+            return False
 
     async def _get_monitoring_calculation_display(self):
         """모니터링 종목 분석 계산 과정 표시 - 보유종목 중복 제거"""
@@ -1404,8 +1789,8 @@ class DatabaseAutoTradingHandler:
             if not self.db_manager:
                 return None
 
-            # 1. 보유종목 먼저 처리
-            holdings_signals = await self._check_holdings_sell_signals()
+            # 1. 보유종목 먼저 처리 (향상된 매도 로직: 6% 이상 모니터링, 5봉 평균 아래 손절)
+            holdings_signals = await self._check_holdings_sell_signals_enhanced()
 
             # 2. 모니터링 종목 중 자동 매수 대상 찾기 (보유종목 제외)
             monitoring_stocks = await self._get_active_monitoring_stocks()

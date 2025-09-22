@@ -1,0 +1,241 @@
+{
+  "timestamp": "2025-09-21T17:28:16.656572",
+  "current_performance": {
+    "종목당_평균_처리시간": {
+      "현재가_조회": 31.76,
+      "차트_데이터": 12.37,
+      "기술적_분석": 10.06,
+      "전체_사이클": 36.45
+    },
+    "성공률": {
+      "현재가_조회": 100.0,
+      "차트_데이터": 100.0,
+      "기술적_분석": 100.0
+    },
+    "처리_용량": {
+      "순차_처리": 685,
+      "병렬_처리": 100
+    }
+  },
+  "bottlenecks": [],
+  "optimization_strategies": [
+    {
+      "strategy": "API 호출 최적화",
+      "priority": "HIGH",
+      "techniques": [
+        {
+          "name": "배치 API 호출",
+          "description": "여러 종목의 현재가를 한 번에 조회",
+          "implementation": "KIS API의 batch 엔드포인트 활용",
+          "expected_improvement": "API 호출 수 80% 감소"
+        },
+        {
+          "name": "비동기 병렬 처리",
+          "description": "asyncio.gather()를 활용한 동시 API 호출",
+          "implementation": "현재 순차 처리를 병렬 처리로 변경",
+          "expected_improvement": "처리 시간 60% 단축"
+        },
+        {
+          "name": "API 연결 풀링",
+          "description": "HTTP 연결 재사용으로 오버헤드 감소",
+          "implementation": "aiohttp.ClientSession의 connector 최적화",
+          "expected_improvement": "연결 오버헤드 50% 감소"
+        }
+      ]
+    },
+    {
+      "strategy": "데이터 캐싱 시스템",
+      "priority": "MEDIUM",
+      "techniques": [
+        {
+          "name": "메모리 캐싱",
+          "description": "자주 조회되는 데이터의 메모리 캐싱",
+          "implementation": "Redis 또는 in-memory cache 구현",
+          "expected_improvement": "반복 조회 95% 속도 향상"
+        },
+        {
+          "name": "스마트 캐시 무효화",
+          "description": "시간 기반 및 이벤트 기반 캐시 갱신",
+          "implementation": "TTL 및 실시간 업데이트 감지",
+          "expected_improvement": "데이터 일관성 + 성능 유지"
+        },
+        {
+          "name": "차트 데이터 프리로딩",
+          "description": "백그라운드에서 미리 데이터 수집",
+          "implementation": "스케줄러 기반 백그라운드 작업",
+          "expected_improvement": "실시간 조회 시간 90% 단축"
+        }
+      ]
+    },
+    {
+      "strategy": "알고리즘 최적화",
+      "priority": "MEDIUM",
+      "techniques": [
+        {
+          "name": "기술적 지표 계산 최적화",
+          "description": "NumPy/Pandas 벡터화 연산 활용",
+          "implementation": "반복문을 벡터 연산으로 변경",
+          "expected_improvement": "계산 속도 40% 향상"
+        },
+        {
+          "name": "점진적 계산",
+          "description": "전체 재계산 대신 증분 업데이트",
+          "implementation": "이동평균 등의 점진적 계산 방식",
+          "expected_improvement": "계산 복잡도 70% 감소"
+        },
+        {
+          "name": "불필요한 계산 제거",
+          "description": "조건부 계산으로 연산량 최소화",
+          "implementation": "early exit 패턴 적용",
+          "expected_improvement": "불필요한 연산 50% 제거"
+        }
+      ]
+    },
+    {
+      "strategy": "시스템 아키텍처 개선",
+      "priority": "LOW",
+      "techniques": [
+        {
+          "name": "마이크로서비스 분리",
+          "description": "데이터 수집, 분석, 실행 모듈 분리",
+          "implementation": "독립적인 서비스로 분리 및 메시지 큐 연동",
+          "expected_improvement": "확장성 및 안정성 향상"
+        },
+        {
+          "name": "이벤트 기반 아키텍처",
+          "description": "실시간 데이터 스트리밍 처리",
+          "implementation": "WebSocket 또는 Server-Sent Events",
+          "expected_improvement": "실시간성 향상"
+        },
+        {
+          "name": "로드 밸런싱",
+          "description": "다중 인스턴스 기반 분산 처리",
+          "implementation": "종목별 샤딩 및 인스턴스 분산",
+          "expected_improvement": "처리 용량 N배 확장"
+        }
+      ]
+    }
+  ],
+  "implementation_roadmap": {
+    "Phase_1_즉시_적용": {
+      "기간": "1-2주",
+      "우선순위": "HIGH",
+      "작업_목록": [
+        {
+          "task": "비동기 병렬 처리 구현",
+          "description": "현재 순차 처리를 asyncio.gather()로 변경",
+          "effort": "Medium",
+          "impact": "High",
+          "implementation_file": "trading/db_auto_trader.py",
+          "code_changes": [
+            "_analyze_stocks_parallel() 메서드 개선",
+            "asyncio.gather() 최적화",
+            "세마포어 기반 동시성 제어"
+          ]
+        },
+        {
+          "task": "API 호출 최적화",
+          "description": "불필요한 재시도 로직 제거 및 타임아웃 조정",
+          "effort": "Low",
+          "impact": "Medium",
+          "implementation_file": "data_collectors/kis_collector.py",
+          "code_changes": [
+            "API 타임아웃 최적화 (15초 → 5초)",
+            "효율적인 재시도 로직",
+            "연결 풀 크기 조정"
+          ]
+        }
+      ],
+      "예상_성능_향상": "종목당 처리시간 40-50% 단축"
+    },
+    "Phase_2_중기_개선": {
+      "기간": "3-4주",
+      "우선순위": "MEDIUM",
+      "작업_목록": [
+        {
+          "task": "메모리 캐싱 시스템 구현",
+          "description": "Redis 기반 캐싱 레이어 추가",
+          "effort": "High",
+          "impact": "High",
+          "implementation_file": "새로운 caching/ 모듈",
+          "code_changes": [
+            "Redis 연동 캐시 매니저",
+            "스마트 캐시 무효화",
+            "캐시 히트율 모니터링"
+          ]
+        },
+        {
+          "task": "백그라운드 데이터 프리로딩",
+          "description": "스케줄러 기반 사전 데이터 수집",
+          "effort": "Medium",
+          "impact": "Medium",
+          "implementation_file": "background_services/",
+          "code_changes": [
+            "백그라운드 스케줄러",
+            "데이터 프리로딩 로직",
+            "캐시와 연동"
+          ]
+        }
+      ],
+      "예상_성능_향상": "반복 조회 80-90% 속도 향상"
+    },
+    "Phase_3_장기_혁신": {
+      "기간": "2-3개월",
+      "우선순위": "LOW",
+      "작업_목록": [
+        {
+          "task": "실시간 스트리밍 아키텍처",
+          "description": "WebSocket 기반 실시간 데이터 처리",
+          "effort": "Very High",
+          "impact": "Very High",
+          "implementation_file": "streaming/ 모듈",
+          "code_changes": [
+            "WebSocket 클라이언트",
+            "실시간 이벤트 처리",
+            "스트림 데이터 파이프라인"
+          ]
+        },
+        {
+          "task": "ML 기반 성능 예측",
+          "description": "머신러닝으로 시장 상황별 최적 파라미터",
+          "effort": "Very High",
+          "impact": "Medium",
+          "implementation_file": "ml_optimization/",
+          "code_changes": [
+            "성능 예측 모델",
+            "동적 파라미터 조정",
+            "A/B 테스트 프레임워크"
+          ]
+        }
+      ],
+      "예상_성능_향상": "전체 시스템 효율성 2-3배 개선"
+    }
+  },
+  "expected_improvements": {
+    "현재_성능": {
+      "종목당_처리시간_ms": 36.45,
+      "30초_주기_최대_종목수": 685
+    },
+    "Phase_1_적용후": {
+      "종목당_처리시간_ms": 18.23,
+      "30초_주기_최대_종목수": 1370,
+      "개선율": "100% 향상"
+    },
+    "Phase_2_적용후": {
+      "종목당_처리시간_ms": 7.29,
+      "30초_주기_최대_종목수": 3425,
+      "개선율": "500% 향상"
+    },
+    "Phase_3_적용후": {
+      "종목당_처리시간_ms": "실시간 스트리밍 (즉시 반응)",
+      "30초_주기_최대_종목수": "무제한 (이벤트 기반)",
+      "개선율": "실시간 처리 체계로 전환"
+    }
+  },
+  "code_samples": {
+    "병렬_처리_최적화": "\n# trading/db_auto_trader.py - 개선된 병렬 처리\n\nasync def _analyze_stocks_parallel_optimized(self, stock_list: List) -> List:\n    \"\"\"최적화된 병렬 종목 분석\"\"\"\n    # 동적 세마포어 - 시스템 리소스에 따라 조정\n    optimal_concurrent = min(len(stock_list), self.max_concurrent_analysis)\n    semaphore = asyncio.Semaphore(optimal_concurrent)\n\n    async def analyze_with_optimized_semaphore(stock_data):\n        async with semaphore:\n            start_time = time.time()\n            try:\n                # 타임아웃을 더 짧게 설정하여 빠른 실패\n                analyze_task = asyncio.create_task(\n                    self._analyze_stock_by_id(stock_data.id, stock_data.symbol, stock_data.name)\n                )\n                await asyncio.wait_for(analyze_task, timeout=10.0)  # 15초 → 10초\n\n                analysis_time = time.time() - start_time\n                self.analysis_times.append(analysis_time)\n                return {'symbol': stock_data.symbol, 'success': True, 'time': analysis_time}\n\n            except asyncio.TimeoutError:\n                analysis_time = time.time() - start_time\n                self.analysis_times.append(analysis_time)\n                self.logger.warning(f\"⏰ {stock_data.symbol} 분석 타임아웃 (10초)\")\n                return {'symbol': stock_data.symbol, 'success': False, 'error': 'timeout', 'time': analysis_time}\n            except Exception as e:\n                analysis_time = time.time() - start_time\n                self.analysis_times.append(analysis_time)\n                return {'symbol': stock_data.symbol, 'success': False, 'error': str(e), 'time': analysis_time}\n\n    # 청크 단위로 처리하여 메모리 사용량 제어\n    chunk_size = 10\n    all_results = []\n\n    for i in range(0, len(stock_list), chunk_size):\n        chunk = stock_list[i:i + chunk_size]\n        chunk_tasks = [analyze_with_optimized_semaphore(stock) for stock in chunk]\n        chunk_results = await asyncio.gather(*chunk_tasks, return_exceptions=True)\n        all_results.extend(chunk_results)\n\n        # 청크 간 짧은 휴식으로 시스템 부하 분산\n        if i + chunk_size < len(stock_list):\n            await asyncio.sleep(0.1)\n\n    return all_results\n            ",
+    "API_배치_호출": "\n# data_collectors/kis_collector.py - 배치 API 호출\n\nasync def get_multiple_current_prices(self, symbols: List[str]) -> Dict[str, Optional[int]]:\n    \"\"\"여러 종목 현재가 배치 조회\"\"\"\n    if not symbols:\n        return {}\n\n    # 10개씩 청크로 나누어 처리 (API 한도 고려)\n    chunk_size = 10\n    all_results = {}\n\n    for i in range(0, len(symbols), chunk_size):\n        chunk_symbols = symbols[i:i + chunk_size]\n\n        # 병렬 API 호출 (하지만 rate limit 준수)\n        await self.rate_limiter.acquire()\n\n        tasks = []\n        for symbol in chunk_symbols:\n            task = asyncio.create_task(self.get_current_price(symbol))\n            tasks.append((symbol, task))\n\n        # 배치 실행\n        for symbol, task in tasks:\n            try:\n                price = await asyncio.wait_for(task, timeout=3.0)  # 짧은 타임아웃\n                all_results[symbol] = price\n            except Exception as e:\n                self.logger.warning(f\"❌ {symbol} 현재가 조회 실패: {e}\")\n                all_results[symbol] = None\n\n        # API rate limit 준수를 위한 대기\n        if i + chunk_size < len(symbols):\n            await asyncio.sleep(0.1)  # 100ms 대기\n\n    return all_results\n            ",
+    "캐싱_시스템": "\n# caching/cache_manager.py - Redis 캐싱 시스템\n\nimport redis.asyncio as redis\nimport json\nfrom datetime import timedelta\n\nclass TradingCacheManager:\n    \"\"\"매매 시스템용 캐싱 매니저\"\"\"\n\n    def __init__(self, redis_url: str = \"redis://localhost:6379\"):\n        self.redis = redis.from_url(redis_url)\n\n        # 캐시 TTL 설정\n        self.cache_ttl = {\n            'current_price': 5,      # 현재가: 5초\n            'chart_data': 300,       # 차트 데이터: 5분\n            'technical_analysis': 60, # 기술적 분석: 1분\n            'market_status': 30      # 시장 상태: 30초\n        }\n\n    async def get_current_price(self, symbol: str) -> Optional[int]:\n        \"\"\"캐시된 현재가 조회\"\"\"\n        cache_key = f\"current_price:{symbol}\"\n        try:\n            cached_data = await self.redis.get(cache_key)\n            if cached_data:\n                data = json.loads(cached_data)\n                return data['price']\n        except Exception as e:\n            self.logger.warning(f\"캐시 조회 실패: {e}\")\n        return None\n\n    async def set_current_price(self, symbol: str, price: int):\n        \"\"\"현재가 캐시 저장\"\"\"\n        cache_key = f\"current_price:{symbol}\"\n        data = {\n            'price': price,\n            'timestamp': datetime.now().isoformat()\n        }\n        try:\n            await self.redis.setex(\n                cache_key,\n                self.cache_ttl['current_price'],\n                json.dumps(data, default=str)\n            )\n        except Exception as e:\n            self.logger.warning(f\"캐시 저장 실패: {e}\")\n\n    async def get_or_fetch_current_price(self, symbol: str, fetch_func) -> Optional[int]:\n        \"\"\"캐시 우선 조회, 없으면 API 호출\"\"\"\n        # 1. 캐시에서 조회\n        cached_price = await self.get_current_price(symbol)\n        if cached_price is not None:\n            return cached_price\n\n        # 2. API에서 조회\n        try:\n            fresh_price = await fetch_func(symbol)\n            if fresh_price:\n                # 3. 캐시에 저장\n                await self.set_current_price(symbol, fresh_price)\n                return fresh_price\n        except Exception as e:\n            self.logger.error(f\"API 조회 실패: {e}\")\n\n        return None\n            ",
+    "성능_모니터링": "\n# monitoring/performance_monitor.py - 실시간 성능 모니터링\n\nimport time\nimport statistics\nfrom collections import deque\nfrom dataclasses import dataclass\nfrom typing import Dict, List\n\n@dataclass\nclass PerformanceMetrics:\n    \"\"\"성능 메트릭\"\"\"\n    operation: str\n    avg_time: float\n    max_time: float\n    min_time: float\n    success_rate: float\n    throughput: float  # 초당 처리량\n\nclass RealTimePerformanceMonitor:\n    \"\"\"실시간 성능 모니터링\"\"\"\n\n    def __init__(self, window_size: int = 100):\n        self.window_size = window_size\n        self.metrics = {\n            'current_price': deque(maxlen=window_size),\n            'chart_data': deque(maxlen=window_size),\n            'technical_analysis': deque(maxlen=window_size),\n            'full_cycle': deque(maxlen=window_size)\n        }\n        self.start_time = time.time()\n\n    def record_execution(self, operation: str, execution_time: float, success: bool):\n        \"\"\"실행 기록\"\"\"\n        self.metrics[operation].append({\n            'time': execution_time,\n            'success': success,\n            'timestamp': time.time()\n        })\n\n    def get_current_metrics(self) -> Dict[str, PerformanceMetrics]:\n        \"\"\"현재 성능 메트릭 계산\"\"\"\n        current_metrics = {}\n\n        for operation, records in self.metrics.items():\n            if not records:\n                continue\n\n            times = [r['time'] for r in records]\n            successes = [r['success'] for r in records]\n\n            # 처리량 계산 (최근 1분간)\n            now = time.time()\n            recent_records = [r for r in records if now - r['timestamp'] <= 60]\n            throughput = len(recent_records) / 60.0 if recent_records else 0\n\n            current_metrics[operation] = PerformanceMetrics(\n                operation=operation,\n                avg_time=statistics.mean(times),\n                max_time=max(times),\n                min_time=min(times),\n                success_rate=sum(successes) / len(successes) * 100,\n                throughput=throughput\n            )\n\n        return current_metrics\n\n    def should_enable_parallel_processing(self) -> bool:\n        \"\"\"병렬 처리 활성화 여부 결정\"\"\"\n        metrics = self.get_current_metrics()\n        full_cycle = metrics.get('full_cycle')\n\n        if not full_cycle:\n            return False\n\n        # 평균 처리시간이 50ms 이상이거나 처리량이 낮으면 병렬 처리 권장\n        return full_cycle.avg_time > 0.05 or full_cycle.throughput < 10\n\n    def get_optimization_recommendations(self) -> List[str]:\n        \"\"\"최적화 권장사항\"\"\"\n        metrics = self.get_current_metrics()\n        recommendations = []\n\n        for operation, metric in metrics.items():\n            if metric.avg_time > 0.1:  # 100ms 이상\n                recommendations.append(f\"{operation} 처리시간 최적화 필요 ({metric.avg_time*1000:.1f}ms)\")\n\n            if metric.success_rate < 95:\n                recommendations.append(f\"{operation} 성공률 개선 필요 ({metric.success_rate:.1f}%)\")\n\n            if metric.throughput < 5:  # 초당 5개 미만\n                recommendations.append(f\"{operation} 처리량 증대 필요 ({metric.throughput:.1f}/sec)\")\n\n        return recommendations\n            "
+  }
+}

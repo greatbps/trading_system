@@ -1,0 +1,62 @@
+{
+  "analysis_timestamp": "2025-09-22T12:07:53.258292",
+  "test_summary": {
+    "total_stocks_tested": 10,
+    "sequential_success_rate": 100.0,
+    "parallel_success_rate": 100.0
+  },
+  "performance_metrics": {
+    "sequential_processing": {
+      "avg_time_per_stock_ms": 0.09020999787026085,
+      "median_time_ms": 0.08525000157533213,
+      "max_time_ms": 0.12159999459981918,
+      "min_time_ms": 0.059499994677025825,
+      "std_deviation_ms": 0.02853288374237902,
+      "stocks_per_second": 11085.245799896707
+    },
+    "parallel_processing": {
+      "avg_time_per_stock_ms": 0.006810000922996551,
+      "median_time_ms": 0.006199999916134402,
+      "max_time_ms": 0.011299998732283711,
+      "min_time_ms": 0.005400004738476127,
+      "parallel_efficiency": 1.0
+    }
+  },
+  "capacity_analysis": {
+    "소규모": {
+      "stock_count": 50,
+      "estimated_processing_time_sec": 0.0045104998935130425,
+      "feasible_for_realtime": true,
+      "cycles_per_minute": 60.0,
+      "recommendation": "✅ 실시간 처리 최적 (50종목, 0.0초)"
+    },
+    "중규모": {
+      "stock_count": 100,
+      "estimated_processing_time_sec": 0.009020999787026085,
+      "feasible_for_realtime": true,
+      "cycles_per_minute": 60.0,
+      "recommendation": "✅ 실시간 처리 최적 (100종목, 0.0초)"
+    },
+    "대규모": {
+      "stock_count": 200,
+      "estimated_processing_time_sec": 0.01804199957405217,
+      "feasible_for_realtime": true,
+      "cycles_per_minute": 60.0,
+      "recommendation": "✅ 실시간 처리 최적 (200종목, 0.0초)"
+    },
+    "초대규모": {
+      "stock_count": 500,
+      "estimated_processing_time_sec": 0.045104998935130425,
+      "feasible_for_realtime": true,
+      "cycles_per_minute": 60.0,
+      "recommendation": "✅ 실시간 처리 최적 (500종목, 0.0초)"
+    }
+  },
+  "optimization_recommendations": [
+    "📺 모니터링 화면 최적화:",
+    "   - 상세 정보 숨김, 성능 지표 중심 표시",
+    "   - 업데이트 주기 조정 (3-5초)",
+    "   - 중요 알림만 실시간 표시"
+  ],
+  "performance_grade": "A+ (우수)"
+}

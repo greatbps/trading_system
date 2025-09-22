@@ -99,6 +99,7 @@ class MenuHandlers:
     31. 실시간 시스템 모니터
     32. 200개 종목 실시간 모니터링
     33. 보유종목 조회
+    34. 포트폴리오 정리 (익절/손절)
 
     [bold red]0. 종료[/bold red]"""
         
@@ -152,6 +153,7 @@ class MenuHandlers:
                 "31": self._real_time_system_monitor,
                 "32": self._realtime_monitoring_system,
                 "33": self._portfolio_holdings,
+                "34": self._portfolio_cleanup,
             }
             
             handler = menu_map.get(choice)
@@ -3145,3 +3147,116 @@ class MenuHandlers:
         except Exception as e:
             console.print(f"[red]❌ 상세 분석 실패: {e}[/red]")
             self.logger.error(f"보유종목 상세 분석 오류: {e}")
+
+    async def _portfolio_cleanup(self) -> bool:
+        """포트폴리오 정리 (익절/손절)"""
+        console.print(Panel("[bold blue]🧹 포트폴리오 정리 시스템[/bold blue]", border_style="blue"))
+
+        try:
+            from core.portfolio_manager import PortfolioManager
+
+            # 포트폴리오 매니저 초기화
+            portfolio_manager = PortfolioManager(
+                trading_handler=getattr(self.system, 'auto_trading_handler', None),
+                config=self.system.config
+            )
+
+            console.print("[yellow]📊 현재 포트폴리오 상태 분석 중...[/yellow]")
+
+            # 1. 포트폴리오 상태 확인
+            status = await portfolio_manager.get_portfolio_status()
+
+            if status['status'] == 'empty':
+                console.print("[yellow]⚠️ 현재 보유 중인 종목이 없습니다.[/yellow]")
+                return True
+            elif status['status'] == 'error':
+                console.print(f"[red]❌ 포트폴리오 상태 조회 실패: {status.get('message', 'Unknown error')}[/red]")
+                return False
+
+            # 2. 포트폴리오 요약 표시
+            summary = status.get('summary', {})
+            console.print("\n[bold cyan]📋 포트폴리오 현황[/bold cyan]")
+
+            summary_table = Table(title="포트폴리오 요약")
+            summary_table.add_column("항목", style="cyan")
+            summary_table.add_column("개수/금액", style="white")
+
+            summary_table.add_row("전체 보유 종목", f"{summary.get('total_holdings', 0)}개")
+            summary_table.add_row("활성 종목 (하드코딩 제외)", f"{summary.get('active_holdings', 0)}개")
+            summary_table.add_row("하드코딩 종목", f"{summary.get('hardcoded_holdings', 0)}개")
+            summary_table.add_row("익절 후보", f"{summary.get('profit_candidates', 0)}개")
+            summary_table.add_row("손절 후보", f"{summary.get('loss_candidates', 0)}개")
+            summary_table.add_row("총 손익", f"{summary.get('total_profit_loss', 0):,.0f}원")
+
+            console.print(summary_table)
+
+            # 하드코딩 제외 종목 표시
+            if summary.get('hardcoded_list'):
+                console.print(f"\n[yellow]🔒 하드코딩 제외 종목: {', '.join(summary['hardcoded_list'])}[/yellow]")
+
+            # 3. 정리가 필요한지 확인
+            if not summary.get('cleanup_needed', False):
+                console.print("\n[green]✅ 현재 포트폴리오는 정리가 필요하지 않습니다.[/green]")
+                return True
+
+            # 4. 사용자 확인
+            if not Confirm.ask("\n[bold yellow]포트폴리오 정리를 실행하시겠습니까?[/bold yellow]"):
+                console.print("[cyan]정리를 취소했습니다.[/cyan]")
+                return True
+
+            # 5. 정리 실행
+            console.print("\n[yellow]🔄 포트폴리오 정리 실행 중...[/yellow]")
+
+            result = await portfolio_manager.analyze_and_cleanup_portfolio()
+
+            if result['status'] == 'error':
+                console.print(f"[red]❌ 포트폴리오 정리 실패: {result.get('message', 'Unknown error')}[/red]")
+                return False
+
+            # 6. 결과 표시
+            console.print(f"\n[green]✅ 포트폴리오 정리 완료 (상태: {result['status']})[/green]")
+
+            if result.get('executable_signals', 0) > 0:
+                console.print(f"실행 가능한 신호: {result['executable_signals']}개")
+
+                # 실행 결과 표시
+                execution_results = result.get('execution_results', [])
+                if execution_results:
+                    console.print("\n[bold cyan]📈 실행 결과[/bold cyan]")
+
+                    results_table = Table(title="매도 주문 결과")
+                    results_table.add_column("종목", style="cyan")
+                    results_table.add_column("수량", style="white")
+                    results_table.add_column("결과", style="white")
+                    results_table.add_column("사유", style="yellow")
+
+                    for exec_result in execution_results:
+                        signal = exec_result['signal']
+                        result_data = exec_result['execution_result']
+
+                        status_color = "green" if result_data.get('success') else "red"
+                        status_text = "성공" if result_data.get('success') else "실패"
+
+                        results_table.add_row(
+                            signal['symbol'],
+                            f"{result_data.get('quantity', 0)}주",
+                            f"[{status_color}]{status_text}[/{status_color}]",
+                            signal['reason']
+                        )
+
+                    console.print(results_table)
+
+            # 7. 후속 작업 제안
+            if Confirm.ask("\n[bold cyan]정리 후 보유종목 현황을 다시 확인하시겠습니까?[/bold cyan]"):
+                await asyncio.sleep(2)  # API 호출 간격
+                await self._portfolio_holdings()
+
+            return True
+
+        except ImportError:
+            console.print("[red]❌ 포트폴리오 매니저 모듈을 찾을 수 없습니다.[/red]")
+            return False
+        except Exception as e:
+            console.print(f"[red]❌ 포트폴리오 정리 실패: {e}[/red]")
+            self.logger.error(f"포트폴리오 정리 오류: {e}")
+            return False

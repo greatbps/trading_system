@@ -1604,7 +1604,7 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
             await self._display_analysis_results(results)
             return len(results) > 0
         elif choice == "5":
-            symbols = Prompt.ask("종목 코드 (쉼표 구분)", default="005930")
+            symbols = Prompt.ask("종목 코드 (쉼표 구분)", default="")
             symbol_list = [s.strip() for s in symbols.split(',')]
             results = await self.analyze_symbols(symbol_list)
             await self._display_analysis_results(results)
@@ -1621,14 +1621,23 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
             if not await self.initialize_components():
                 return False
             
+            # 동적 종목 검색으로 테스트
+            search_results = await self.data_collector.search_stocks("테스트", limit=1)
+            if not search_results:
+                console.print("[red]❌ 종목 검색 실패[/red]")
+                return False
+
+            test_symbol = search_results[0]['symbol']
+            test_name = search_results[0]['name']
+
             # 데이터 수집 테스트
-            stock_data = await self.data_collector.get_stock_info("005930")
+            stock_data = await self.data_collector.get_stock_info(test_symbol)
             if not stock_data:
                 console.print("[red]❌ 데이터 수집 실패[/red]")
                 return False
-            
+
             # 분석 테스트
-            result = await self.analyze_symbol("005930", "삼성전자", "momentum")
+            result = await self.analyze_symbol(test_symbol, test_name, "momentum")
             if not result:
                 console.print("[red]❌ 분석 실패[/red]")
                 return False
@@ -2185,9 +2194,14 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
             start_dt = datetime.strptime(start_date, '%Y-%m-%d')
             end_dt = datetime.strptime(end_date, '%Y-%m-%d')
             
-            # 심볼이 지정되지 않은 경우 기본 종목 사용
+            # 심볼이 지정되지 않은 경우 동적 검색 사용
             if not symbols:
-                symbols = ['005930', '000660', '035420', '005490', '051910']  # 삼성전자, SK하이닉스, NAVER, POSCO, LG화학
+                console.print("[yellow]종목이 지정되지 않아 동적 검색을 수행합니다...[/yellow]")
+                search_results = await self.data_collector.search_stocks("", limit=5)
+                symbols = [result['symbol'] for result in search_results[:5]] if search_results else []
+                if not symbols:
+                    console.print("[red]❌ 백테스팅할 종목을 찾지 못했습니다.[/red]")
+                    return {}
             
             # 백테스팅 실행
             result = await self.backtesting_engine.run_backtest(

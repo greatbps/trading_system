@@ -1,0 +1,10 @@
+[
+  {
+    "alert_type": "exceeded",
+    "api_name": "openai",
+    "message": "openai API 쿼터가 초과되었습니다",
+    "timestamp": "2025-09-21T17:06:10.720279",
+    "usage_percentage": null,
+    "recommendation": "백업 분석기로 전환하거나 플랜을 업그레이드하세요"
+  }
+]

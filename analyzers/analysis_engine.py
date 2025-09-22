@@ -25,6 +25,7 @@ from analyzers.consensus_engine import ConsensusEngine
 from analyzers.multi_llm_analyzer import MultiLLMAnalyzer, LLMModel
 from analyzers.multi_strategy_analyzer import MultiStrategyAnalyzer, StrategyWeight
 from analyzers.technical_indicators import PriceData
+from analyzers.quota_monitoring import get_quota_monitor
 
 class AnalysisEngine:
     """종합 분석 엔진 (2차 필터링)"""
@@ -42,6 +43,9 @@ class AnalysisEngine:
         self.mtf_analyzer = MTFAnalyzer(config, data_collector=self.data_collector)
         self.consensus_engine = ConsensusEngine(config)
         
+        # 쿼터 모니터 초기화
+        self.quota_monitor = get_quota_monitor(config)
+
         try:
             self.multi_llm_analyzer = MultiLLMAnalyzer(config)
             self.multi_llm_enabled = True

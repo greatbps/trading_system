@@ -21,6 +21,12 @@ import sys
 import os
 
 from utils.logger import get_logger
+from typing import Tuple
+import statistics
+import numpy as np
+from scipy import stats
+import warnings
+warnings.filterwarnings('ignore')
 
 
 @dataclass
@@ -80,13 +86,15 @@ class PerformanceMonitor:
         self.history_size = 1000        # 최대 1000개 메트릭 보관
         self.alert_cooldown = 300       # 5분 알림 쿨다운
         
-        # 성능 임계값
+        # 성능 임계값 - 강화된 모니터링
         self.thresholds = {
-            'cpu_percent': {'medium': 70, 'high': 85, 'critical': 95},
-            'memory_percent': {'medium': 75, 'high': 90, 'critical': 95},
-            'response_time_ms': {'medium': 1000, 'high': 3000, 'critical': 5000},
-            'error_rate_percent': {'medium': 1, 'high': 5, 'critical': 10},
-            'disk_io_mb_per_sec': {'medium': 50, 'high': 100, 'critical': 200}
+            'cpu_percent': {'medium': 60, 'high': 75, 'critical': 90},  # 더 엄격하게
+            'memory_percent': {'medium': 70, 'high': 85, 'critical': 95},
+            'response_time_ms': {'medium': 500, 'high': 1500, 'critical': 3000},  # 더 빠르게
+            'error_rate_percent': {'medium': 0.5, 'high': 2, 'critical': 5},  # 더 엄격하게
+            'disk_io_mb_per_sec': {'medium': 30, 'high': 60, 'critical': 100},
+            'network_latency_ms': {'medium': 100, 'high': 300, 'critical': 500},
+            'concurrent_connections': {'medium': 100, 'high': 200, 'critical': 300}
         }
         
         # 데이터 저장
@@ -100,10 +108,13 @@ class PerformanceMonitor:
         self.monitor_thread = None
         self.last_alert_time = {}    # alert_type -> timestamp
         
-        # 성능 카운터
+        # 성능 카운터 - 강화된 추적
         self.operation_counters = defaultdict(int)
         self.operation_times = defaultdict(list)
         self.start_times = {}        # operation_id -> start_time
+        self.trend_analyzer = TrendAnalyzer()  # 트렌드 분석기
+        self.anomaly_detector = AnomalyDetector()  # 이상 탐지기
+        self.predictive_alerts = PredictiveAlerts()  # 예측 알림
         
         # 메모리 추적
         self.memory_tracker_enabled = False

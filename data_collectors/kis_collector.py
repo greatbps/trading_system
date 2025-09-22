@@ -1386,16 +1386,19 @@ class KISCollector:
                 output_key = 'output2'
             else:
                 # 분봉 데이터 (1, 5, 15, 30, 60분)
+                # 현재 시간을 기준으로 당일 분봉 데이터 조회
+                current_time = datetime.now().strftime("%H%M%S")
                 result = await self._make_api_request(
                     method="GET",
                     endpoint="/uapi/domestic-stock/v1/quotations/inquire-time-itemchartprice",
                     params={
                         "FID_COND_MRKT_DIV_CODE": "J",
                         "FID_INPUT_ISCD": symbol,
-                        "FID_INPUT_HOUR_1": period,  # 분봉 간격
-                        "FID_PW_DATA_INCU_YN": "Y"
+                        "FID_INPUT_HOUR_1": current_time,  # 현재 시간 HHMMSS
+                        "FID_PW_DATA_INCU_YN": "Y",
+                        "FID_ETC_CLS_CODE": ""  # 기타 구분 코드 (빈 문자열)
                     },
-                    tr_id="FHKST03020200"
+                    tr_id="FHKST03010200"
                 )
                 output_key = 'output2'
             
