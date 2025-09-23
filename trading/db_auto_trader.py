@@ -1940,6 +1940,11 @@ class DatabaseAutoTrader:
     async def place_buy_order(self, symbol: str, amount: int) -> Dict[str, Any]:
         """자동 매수 주문 실행"""
         try:
+            # 보유종목 수 제한 확인 및 자동 정리
+            cleanup_result = await self._check_and_cleanup_portfolio_for_buy(symbol)
+            if not cleanup_result['can_proceed']:
+                return {"success": False, "message": cleanup_result['reason']}
+
             # 현재가 조회
             current_price = await self.kis_collector.get_current_price(symbol)
             if not current_price:
@@ -1970,3 +1975,147 @@ class DatabaseAutoTrader:
         except Exception as e:
             self.logger.error(f"❌ {symbol} 자동 매수 주문 실패: {e}")
             return {"success": False, "message": str(e)}
+
+    async def _check_and_cleanup_portfolio_for_buy(self, symbol: str) -> Dict[str, Any]:
+        """매수 전 보유종목 수 체크 및 자동 정리"""
+        try:
+            max_positions = getattr(self.config, 'MAX_POSITIONS', 5)
+
+            # 현재 보유종목 조회
+            holdings_data = await self.kis_collector.get_holdings()
+            if not holdings_data:
+                return {'can_proceed': True, 'reason': '보유종목 없음'}
+
+            # 실제 보유 중인 종목 (수량 > 0) 필터링
+            actual_holdings = []
+            if isinstance(holdings_data, list):
+                actual_holdings = [h for h in holdings_data if int(h.get('hldg_qty', 0)) > 0]
+            elif isinstance(holdings_data, dict):
+                actual_holdings = [v for v in holdings_data.values() if int(v.get('quantity', 0)) > 0]
+
+            current_count = len(actual_holdings)
+
+            # 이미 보유 중인 종목이면 추가 매수 허용
+            already_holding = False
+            if isinstance(holdings_data, list):
+                already_holding = any(h.get('pdno') == symbol and int(h.get('hldg_qty', 0)) > 0 for h in holdings_data)
+            elif isinstance(holdings_data, dict):
+                already_holding = symbol in holdings_data and int(holdings_data[symbol].get('quantity', 0)) > 0
+
+            if already_holding:
+                return {'can_proceed': True, 'reason': f'{symbol} 기존 보유종목 추가 매수'}
+
+            # 보유종목 수가 한도 내라면 매수 가능
+            if current_count < max_positions:
+                available_slots = max_positions - current_count
+                self.logger.info(f"💰 새 종목 매수 가능: {symbol} (현재 {current_count}/{max_positions}개, 여유 {available_slots}개)")
+                return {'can_proceed': True, 'reason': f'매수 가능 (여유 {available_slots}개)'}
+
+            # 보유종목 수가 한도에 도달했으면 자동 정리 시도
+            self.logger.warning(f"⚠️ 보유종목 한도 도달: {current_count}/{max_positions}개. 자동 정리 시도 중...")
+
+            cleanup_success = await self._auto_cleanup_worst_performing_stock(actual_holdings)
+
+            if cleanup_success:
+                self.logger.info(f"✅ 자동 정리 완료. {symbol} 매수 진행 가능")
+                return {'can_proceed': True, 'reason': '자동 정리 후 매수 가능'}
+            else:
+                return {
+                    'can_proceed': False,
+                    'reason': f'보유종목 한도 초과 ({current_count}/{max_positions}개) 및 자동 정리 실패'
+                }
+
+        except Exception as e:
+            self.logger.error(f"❌ 매수 전 포트폴리오 체크 실패: {e}")
+            return {'can_proceed': False, 'reason': f'포트폴리오 체크 실패: {str(e)}'}
+
+    async def _auto_cleanup_worst_performing_stock(self, holdings: List[Dict[str, Any]]) -> bool:
+        """수익률이 가장 낮은 종목 자동 매도"""
+        try:
+            if not holdings:
+                return False
+
+            # 설정에서 보호 대상 종목 가져오기
+            protected_symbols = getattr(self.config, 'PROTECTED_SYMBOLS', {
+                '005930',  # 삼성전자 (기본값)
+                '035420',  # NAVER
+                '000660',  # SK하이닉스
+                '373220',  # LG에너지솔루션
+                '207940',  # 삼성바이오로직스
+            })
+
+            # 자동 매도 최소 손실률 설정
+            min_loss_rate = getattr(self.config, 'AUTO_SELL_MIN_LOSS_RATE', -10.0)
+
+            # 현재가 조회 및 수익률 계산
+            evaluated_holdings = []
+            for holding in holdings:
+                try:
+                    symbol = holding.get('pdno') if 'pdno' in holding else holding.get('symbol')
+                    quantity = int(holding.get('hldg_qty', 0) if 'hldg_qty' in holding else holding.get('quantity', 0))
+                    avg_price = float(holding.get('pchs_avg_pric', 0) if 'pchs_avg_pric' in holding else holding.get('avg_price', 0))
+
+                    # 보호 대상 종목이면 제외
+                    if symbol in protected_symbols or quantity <= 0 or avg_price <= 0:
+                        continue
+
+                    # 현재가 조회
+                    current_price = await self.kis_collector.get_current_price(symbol)
+                    if not current_price or current_price <= 0:
+                        continue
+
+                    # 수익률 계산
+                    profit_rate = ((current_price - avg_price) / avg_price) * 100
+
+                    evaluated_holdings.append({
+                        'symbol': symbol,
+                        'quantity': quantity,
+                        'avg_price': avg_price,
+                        'current_price': current_price,
+                        'profit_rate': profit_rate,
+                        'market_value': current_price * quantity
+                    })
+
+                except Exception as e:
+                    self.logger.error(f"❌ 보유종목 평가 실패 {holding}: {e}")
+                    continue
+
+            if not evaluated_holdings:
+                self.logger.warning("⚠️ 매도 가능한 보유종목이 없습니다")
+                return False
+
+            # 수익률이 가장 낮은 종목 선택 (손실이 가장 큰 종목)
+            worst_stock = min(evaluated_holdings, key=lambda x: x['profit_rate'])
+
+            # 최소 손실률 조건 확인 (예: -10% 이상 손실 시에만 자동 매도)
+            if worst_stock['profit_rate'] > min_loss_rate:
+                self.logger.info(f"⚠️ 자동 매도 조건 미충족: {worst_stock['symbol']} "
+                               f"(수익률: {worst_stock['profit_rate']:.2f}% > 임계값: {min_loss_rate}%)")
+                return False
+
+            self.logger.info(f"🎯 자동 매도 대상: {worst_stock['symbol']} "
+                           f"(수익률: {worst_stock['profit_rate']:.2f}%, 수량: {worst_stock['quantity']}주)")
+
+            # 매도 주문 실행
+            sell_result = await self.executor.execute_sell_order(
+                symbol=worst_stock['symbol'],
+                quantity=worst_stock['quantity'],
+                price=worst_stock['current_price'],
+                order_type=OrderType.LIMIT
+            )
+
+            if sell_result and sell_result.get('success'):
+                self.logger.info(f"✅ 자동 매도 성공: {worst_stock['symbol']} {worst_stock['quantity']}주")
+
+                # 모니터링 상태 업데이트 (매도 완료로 변경)
+                await self._update_monitoring_after_sell(worst_stock['symbol'], "자동 정리 매도")
+
+                return True
+            else:
+                error_msg = sell_result.get('error') if sell_result else '알 수 없는 오류'
+                self.logger.error(f"❌ 자동 매도 실패: {worst_stock['symbol']} - {error_msg}")
+                return False
+
+        except Exception as e:
+            self.logger.error(f"❌ 자동 정리 실행 실패: {e}")
+            return False

@@ -64,7 +64,7 @@ class PortfolioCleanupStrategy:
         self.cleanup_params = {
             'profit_threshold': 0.02,    # +2% 이상 익절 대상
             'loss_threshold': -0.02,     # -2% 이하 손절 대상
-            'max_positions': 10,         # 최대 보유 종목 수
+            'max_positions': 5,          # 최대 보유 종목 수
             'exclude_hardcoded': True,   # 하드코딩 종목 제외
         }
 
@@ -106,18 +106,30 @@ class PortfolioCleanupStrategy:
     def _update_holdings(self, holdings_data: List[Dict[str, Any]]) -> None:
         """보유 종목 정보 업데이트"""
         self.holdings.clear()
+        self.logger.info(f"보유종목 업데이트 시작: {len(holdings_data)}개 데이터")
 
         for holding in holdings_data:
             try:
-                symbol = holding.get('pdno', '')
-                name = holding.get('prdt_name', '')
-                quantity = int(holding.get('hldg_qty', 0))
-                avg_price = float(holding.get('pchs_avg_pric', 0))
-                current_price = float(holding.get('prpr', 0))
+                # KIS API 원본 형태와 변환된 형태 모두 지원
+                symbol = holding.get('pdno', holding.get('symbol', ''))
+                name = holding.get('prdt_name', holding.get('name', ''))
+
+# 디버깅 완료로 주석 처리
+                # self.logger.info(f"원본 데이터: symbol키들={list(holding.keys())}, pdno={holding.get('pdno')}, symbol={holding.get('symbol')}, name={name}")
+                quantity = int(holding.get('hldg_qty', holding.get('quantity', 0)))
+                avg_price = float(holding.get('pchs_avg_pric', holding.get('avg_price', 0)))
+                current_price = float(holding.get('prpr', holding.get('current_price', 0)))
+
+                # profit_loss와 profit_rate도 직접 가져올 수 있다면 사용
+                profit_loss = holding.get('profit_loss')
+                profit_rate = holding.get('profit_rate')
 
                 if quantity > 0 and avg_price > 0 and current_price > 0:
-                    profit_loss = (current_price - avg_price) * quantity
-                    profit_rate = (current_price / avg_price - 1) * 100
+                    # profit_loss와 profit_rate가 없으면 계산
+                    if profit_loss is None:
+                        profit_loss = (current_price - avg_price) * quantity
+                    if profit_rate is None:
+                        profit_rate = (current_price / avg_price - 1) * 100
 
                     self.holdings[symbol] = HoldingInfo(
                         symbol=symbol,
@@ -129,8 +141,12 @@ class PortfolioCleanupStrategy:
                         profit_rate=profit_rate
                     )
 
+                    self.logger.info(f"종목 '{symbol}'({name}) 업데이트: 수량={quantity}, 평균가={avg_price}, 현재가={current_price}, 수익률={profit_rate:.2f}%")
+
             except Exception as e:
                 self.logger.error(f"보유 종목 데이터 처리 실패 {holding}: {e}")
+
+        self.logger.info(f"보유종목 업데이트 완료: {len(self.holdings)}개 종목")
 
     def _mark_hardcoded_stocks(self) -> None:
         """하드코딩된 종목 마킹"""

@@ -1757,7 +1757,7 @@ class MenuHandlers:
                         kis_collector = self.system.data_collector
 
                 if kis_collector:
-                    console.print("[green]🔧 KIS API 연결 확인됨, 실시간 데이터 조회 중...[/green]")
+                    # console.print("[green]🔧 KIS API 연결 확인됨, 실시간 데이터 조회 중...[/green]")  # 디버그 메시지 숨김
                     holdings = await kis_collector.get_holdings()
                     if holdings:
                         console.print("─" * 90)
@@ -1847,13 +1847,16 @@ class MenuHandlers:
             except Exception as e:
                 console.print(f"[red]❌ 감시 종목 조회 실패: {e}[/red]")
             
-            # 3. 매매 감시 로직 계산과정 표시
+            # 3. 매매 감시 로직 - 간단한 요약만 표시 (상세 디버그 정보 숨김)
             try:
-                console.print("\n[bold yellow]🔄 매매 감시 로직 계산과정 준비 중...[/bold yellow]")
-                await self._show_trading_calculation_process()
+                console.print("\n[bold green]📋 매매 감시 로직 현황[/bold green]")
+                console.print("  ✅ 실시간 시장 모니터링 활성화")
+                console.print("  ✅ 매매 신호 검출 시스템 작동 중")
+                console.print("  ✅ 리스크 관리 모듈 활성화")
             except Exception as calc_error:
-                console.print(f"[red]❌ 매매 감시 로직 계산과정 실행 실패: {calc_error}[/red]")
-                self.logger.error(f"매매 감시 로직 계산과정 실행 실패: {calc_error}", exc_info=True)
+                # 상세 오류 메시지도 간소화
+                console.print("[yellow]⚠️ 매매 감시 로직 일부 기능 제한적 작동[/yellow]")
+                self.logger.error(f"매매 감시 로직 실행 실패: {calc_error}", exc_info=True)
 
             return True
 

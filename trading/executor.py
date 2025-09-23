@@ -14,6 +14,7 @@ from enum import Enum
 
 from utils.logger import get_logger
 from database.models import Trade, TradeExecution, OrderStatus, OrderType, TradeType
+from trading.trade_history_manager import TradeHistoryManager
 
 
 class OrderSide(Enum):
@@ -38,16 +39,19 @@ class TradingExecutor:
         self.kis_collector = kis_collector
         self.db_manager = db_manager
         self.logger = get_logger("TradingExecutor")
-        
+
+        # 거래 이력 관리자 초기화
+        self.trade_history_manager = TradeHistoryManager()
+
         # 동적 계산을 위한 초기값 (실제 잔고로 업데이트됨)
         self._current_balance = 0
         self._max_position_size = 0
         self._max_daily_loss = 0
         self.trading_enabled = getattr(config.trading, 'TRADING_ENABLED', True)  # 실제 거래 활성화
-        
+
         # 단일 주문 최대 한도 초기화 (config.py의 HARD_MAX_POSITION 사용)
         self.max_single_order = getattr(config.trading, 'HARD_MAX_POSITION', 200000) # 기본값 20만원
-        
+
         self.logger.info(f"[OK] TradingExecutor 초기화 완료 (매매 {'활성화' if self.trading_enabled else '비활성화'})")
     
     async def update_dynamic_limits(self) -> Dict[str, int]:
@@ -246,11 +250,16 @@ class TradingExecutor:
             if not balance_check['sufficient']:
                 return {'valid': False, 'reason': f'잔고 부족: 필요 {order_amount:,}원, 보유 {balance_check["available"]:,}원'}
             
-            # 6. 포지션 크기 확인
+            # 6. 보유종목 수 제한 확인
+            holdings_check = await self._check_holdings_limit(symbol)
+            if not holdings_check['within_limit']:
+                return {'valid': False, 'reason': holdings_check['reason']}
+
+            # 7. 포지션 크기 확인
             position_check = await self._check_position_limit(symbol, order_amount)
             if not position_check['within_limit']:
                 return {'valid': False, 'reason': f'포지션 한도 초과: {position_check["reason"]}'}
-            
+
             return {
                 'valid': True,
                 'order_amount': order_amount,
@@ -499,10 +508,40 @@ class TradingExecutor:
                 # DB에 저장
                 if self.db_manager:
                     trade_obj = await self._save_order_to_db(
-                        order_id, symbol, quantity, price, side, 
+                        order_id, symbol, quantity, price, side,
                         OrderStatus.FILLED if filled_quantity == quantity else OrderStatus.PARTIAL,
                         filled_quantity, average_price
                     )
+
+                # 거래 이력 자동 저장
+                if filled_quantity == quantity:  # 완전 체결된 경우만
+                    try:
+                        if side == OrderSide.BUY:
+                            success = self.trade_history_manager.record_buy_trade(
+                                symbol=symbol,
+                                quantity=filled_quantity,
+                                price=average_price or price,
+                                order_id=order_id,
+                                strategy_name="auto_trading",
+                                trigger_reason="system_signal"
+                            )
+                        else:  # SELL
+                            success = self.trade_history_manager.record_sell_trade(
+                                symbol=symbol,
+                                quantity=filled_quantity,
+                                price=average_price or price,
+                                order_id=order_id,
+                                strategy_name="auto_trading",
+                                trigger_reason="system_signal"
+                            )
+
+                        if success:
+                            self.logger.info(f"✅ 거래 이력 자동 저장 완료: {side.value} {symbol}")
+                        else:
+                            self.logger.warning(f"⚠️ 거래 이력 저장 실패: {side.value} {symbol}")
+
+                    except Exception as e:
+                        self.logger.error(f"❌ 거래 이력 저장 중 오류: {e}")
                 
                 return {
                     'success': True,
@@ -914,4 +953,73 @@ class TradingExecutor:
                 'success': False,
                 'emergency_fallback_failed': True,
                 'error': f'응급 시스템마저 실패: {str(e)}'
+            }
+
+    async def _check_holdings_limit(self, symbol: str) -> Dict[str, Any]:
+        """보유종목 수 제한 확인"""
+        try:
+            # 설정에서 최대 보유종목 수 가져오기
+            max_positions = getattr(self.config, 'MAX_POSITIONS', 5)
+
+            # 현재 보유종목 조회
+            holdings_data = await self.kis_collector.get_holdings()
+
+            if not holdings_data:
+                # 보유종목이 없으면 매수 가능
+                return {
+                    'within_limit': True,
+                    'current_count': 0,
+                    'max_positions': max_positions,
+                    'available_slots': max_positions
+                }
+
+            # 실제 보유중인 종목 필터링 (수량 > 0)
+            actual_holdings = []
+            if isinstance(holdings_data, list):
+                actual_holdings = [h for h in holdings_data if int(h.get('hldg_qty', 0)) > 0]
+            elif isinstance(holdings_data, dict):
+                actual_holdings = [v for v in holdings_data.values() if int(v.get('quantity', 0)) > 0]
+
+            current_count = len(actual_holdings)
+
+            # 이미 보유 중인 종목인지 확인
+            already_holding = False
+            if isinstance(holdings_data, list):
+                already_holding = any(h.get('pdno') == symbol and int(h.get('hldg_qty', 0)) > 0 for h in holdings_data)
+            elif isinstance(holdings_data, dict):
+                already_holding = symbol in holdings_data and int(holdings_data[symbol].get('quantity', 0)) > 0
+
+            # 이미 보유 중인 종목이면 추가 매수 허용
+            if already_holding:
+                return {
+                    'within_limit': True,
+                    'current_count': current_count,
+                    'max_positions': max_positions,
+                    'available_slots': max_positions - current_count,
+                    'reason': f'{symbol} 기존 보유종목 추가 매수'
+                }
+
+            # 새로운 종목 매수 시 한도 확인
+            if current_count >= max_positions:
+                return {
+                    'within_limit': False,
+                    'current_count': current_count,
+                    'max_positions': max_positions,
+                    'available_slots': 0,
+                    'reason': f'최대 보유종목 수 초과: {current_count}/{max_positions}개. 기존 종목을 매도 후 매수하세요.'
+                }
+
+            return {
+                'within_limit': True,
+                'current_count': current_count,
+                'max_positions': max_positions,
+                'available_slots': max_positions - current_count
+            }
+
+        except Exception as e:
+            self.logger.error(f"❌ 보유종목 수 제한 확인 실패: {e}")
+            # 에러 발생 시 안전을 위해 매수 차단
+            return {
+                'within_limit': False,
+                'reason': f'보유종목 확인 실패: {str(e)}'
             }

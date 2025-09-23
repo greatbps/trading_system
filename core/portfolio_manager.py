@@ -180,6 +180,8 @@ class PortfolioManager:
                     ]
                 }
 
+            # cleanup_strategy에 holdings 데이터를 먼저 분석시켜서 summary를 생성
+            await self.cleanup_strategy.analyze_portfolio(holdings)
             summary = self.cleanup_strategy.get_portfolio_summary()
 
             return {

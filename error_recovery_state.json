@@ -4,13 +4,13 @@
   "last_system_restart": null,
   "system_health": {
     "cpu_usage": 1.0,
-    "memory_usage": 65.2,
+    "memory_usage": 66.4,
     "disk_usage": 43.5,
     "error_rate": 0.0,
     "response_time": 0,
     "active_errors": 0,
     "total_errors_1h": 0,
     "system_load": 0.0,
-    "health_score": 103.8
+    "health_score": 102.6
   }
 }

@@ -87,7 +87,18 @@ class TradingConfig:
     # 리스크 관리 (단타/스윙 최적화)
     STOP_LOSS_RATIO = 0.03      # 단타용 타이트 손절률 (3%)
     TAKE_PROFIT_RATIO = 0.06    # 단타용 익절률 (6% = 손절 × 2배)
-    MAX_POSITIONS = 4           # 최대 동시 보유 종목수 (집중 투자)
+    MAX_POSITIONS = 5           # 최대 동시 보유 종목수
+
+    # 포트폴리오 관리 설정
+    PORTFOLIO_AUTO_CLEANUP = True   # 자동 포트폴리오 정리 활성화
+    PROTECTED_SYMBOLS = {           # 자동 매도 제외 종목 (주요 대형주)
+        '005930',  # 삼성전자
+        '035420',  # NAVER
+        '000660',  # SK하이닉스
+        '373220',  # LG에너지솔루션
+        '207940',  # 삼성바이오로직스
+    }
+    AUTO_SELL_MIN_LOSS_RATE = -10.0  # 자동 매도 최소 손실률 (-10% 이상 손실 시에만 자동 매도)
 
     # 필터링 조건
     MIN_PRICE = 1000           # 최소 주가

@@ -130,7 +130,7 @@ class DatabaseManager:
             )
             
             self._engines_initialized = True
-            self.logger.info("✅ 데이터베이스 엔진 초기화 완료")
+            self.logger.debug("✅ 데이터베이스 엔진 초기화 완료")
 
         except Exception as e:
             self.logger.error(f"❌ 데이터베이스 엔진 초기화 실패: {e}")

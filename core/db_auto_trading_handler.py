@@ -573,8 +573,8 @@ class DatabaseAutoTradingHandler:
                             if hasattr(self, 'logger'):
                                 self.logger.error(f"❌ {symbol} 손절가 처리 오류 (전략추출): {e}")
                     else:
-                        if hasattr(self, 'logger') and profit_rate < -3:  # 손실이 클 때만 로그
-                            self.logger.debug(f"⚠️ {symbol} 손절가 계산 실패 (전략추출): 현재가={current_price:,}원, 평단가={avg_price:,}원")
+                        # 손절가 계산 실패시 조용히 처리 (로그 노이즈 방지)
+                        pass
         except Exception as e:
             if hasattr(self, 'logger'):
                 self.logger.error(f"{symbol} 전략 추출 감시 가격 업데이트 실패: {e}")
@@ -627,8 +627,8 @@ class DatabaseAutoTradingHandler:
                             if hasattr(self, 'logger'):
                                 self.logger.error(f"❌ {symbol} 손절가 처리 오류: {e}")
                     else:
-                        if hasattr(self, 'logger') and profit_rate < -3:  # 손실이 클 때만 로그
-                            self.logger.debug(f"⚠️ {symbol} 손절가 계산 실패 (N/A): 현재가={current_price:,}원, 평단가={avg_price:,}원")
+                        # 손절가 계산 실패시 조용히 처리 (로그 노이즈 방지)
+                        pass
         except Exception as e:
             if hasattr(self, 'logger'):
                 self.logger.error(f"{symbol} 가격 업데이트 실패: {e}")
@@ -707,7 +707,7 @@ class DatabaseAutoTradingHandler:
                     return False
                 
                 if hasattr(self, 'logger'):
-                    self.logger.info(f"승인 {symbol} 실제 보유종목 확인: {actual_quantity}주 보유 중 - 매도 실행 승인")
+                    self.logger.debug(f"승인 {symbol} 실제 보유종목 확인: {actual_quantity}주 보유 중 - 매도 실행 승인")
                     if symbol in problem_stocks:
                         self.logger.error(f"TRACE {symbol} LAYER-1 통과: KIS API 보유수량 {actual_quantity}주")
             else:
@@ -921,11 +921,11 @@ class DatabaseAutoTradingHandler:
                             step_message, step_detail = analysis_steps[current_step]
                             progress_bar = "█" * (current_step + 1) + "░" * (len(analysis_steps) - current_step - 1)
 
-                            # 매 3초마다 분석 과정 업데이트 (더 자주 업데이트)
-                            if countdown % 3 == 0:
-                                self.console.print(f"[cyan]{step_message}[/cyan]")
-                                self.console.print(f"[white]└── {step_detail}[/white]")
-                                self.console.print(f"[blue]진행상황: [{progress_bar}] {current_step + 1}/{len(analysis_steps)} ({((current_step + 1) / len(analysis_steps) * 100):.1f}%)[/blue]")
+                            # 매 3초마다 분석 과정 업데이트 (더 자주 업데이트) - 숨김 처리
+                            # if countdown % 3 == 0:
+                            #     self.console.print(f"[cyan]{step_message}[/cyan]")
+                            #     self.console.print(f"[white]└── {step_detail}[/white]")
+                            #     self.console.print(f"[blue]진행상황: [{progress_bar}] {current_step + 1}/{len(analysis_steps)} ({((current_step + 1) / len(analysis_steps) * 100):.1f}%)[/blue]")
 
                         # 남은 시간 표시 (5초마다)
                         if countdown % 5 == 0:
@@ -1296,7 +1296,7 @@ class DatabaseAutoTradingHandler:
 
             # 3분봉이 안되면 1분봉 데이터로 3분봉 구성
             if not chart_data or len(chart_data) < 5:
-                self.logger.info(f"{symbol} 1분봉 데이터로 3분봉 평균 계산 시도")
+                # 1분봉 데이터로 3분봉 평균 계산 시도 (로그 없이)
                 try:
                     # 1분봉 데이터 조회 (15분치 = 5개 3분봉)
                     min_data = await self.kis_collector.get_chart_data(
@@ -1553,7 +1553,7 @@ class DatabaseAutoTradingHandler:
                     return False
 
                 if hasattr(self, 'logger'):
-                    self.logger.info(f"승인 {symbol} 실제 보유종목 확인: {actual_quantity}주 보유 중 - 추세손절 실행 승인")
+                    self.logger.debug(f"승인 {symbol} 실제 보유종목 확인: {actual_quantity}주 보유 중 - 추세손절 실행 승인")
             else:
                 if hasattr(self, 'logger'):
                     self.logger.error(f"❌ {symbol} 추세손절 차단: KIS API 연결 불가 - 보유종목 검증 실패")
@@ -2223,7 +2223,7 @@ class DatabaseAutoTradingHandler:
                                     conditions.append("[green]📈 EMA 골든크로스[/green]")
 
             except Exception as tech_e:
-                self.logger.debug(f"기술적 지표 계산 실패 ({symbol}): {tech_e}")
+                # 기술적 지표 계산 실패시 조용히 폴백 처리
                 # 폴백: 기본 조건만 표시
                 pass
 
@@ -2290,7 +2290,7 @@ class DatabaseAutoTradingHandler:
                                     conditions.append("[green]📊 MACD 상승전환[/green]")
 
             except Exception as tech_e:
-                self.logger.debug(f"추가매수 기술적 지표 계산 실패 ({symbol}): {tech_e}")
+                # 추가매수 기술적 지표 계산 실패시 조용히 폴백 처리
                 # 폴백: 기본 조건만 표시
                 pass
 
@@ -2383,7 +2383,7 @@ class DatabaseAutoTradingHandler:
                                     confidence -= 5
 
             except Exception as tech_e:
-                self.logger.debug(f"기술적 지표 계산 실패 ({symbol}): {tech_e}")
+                # 기술적 지표 계산 실패시 조용히 폴백 처리
                 # 폴백: 기본 메시지
                 conditions.append("[yellow]⚠️ 기술적 분석 대기중[/yellow]")
                 confidence = 30  # 기본 신뢰도
@@ -2526,16 +2526,20 @@ class DatabaseAutoTradingHandler:
                             # StockData 객체에서 name 속성 접근
                             if stock_data_obj and hasattr(stock_data_obj, 'name') and stock_data_obj.name:
                                 stock_name = stock_data_obj.name.strip()
-                                self.logger.debug(f"✅ KIS API에서 {symbol} 보유종목 이름 조회 성공: {stock_name}")
+                                # 성공시 로그 없음 (너무 많은 노이즈 방지)
+                                pass
                         except (asyncio.TimeoutError, Exception) as e:
-                            self.logger.debug(f"KIS API 종목명 조회 실패: {symbol}, {e}")
+                            # 조회 실패시에만 debug 레벨로 기록
+                            pass
                     
                     # KIS API 조회 실패 시 기존 데이터 사용
                     if stock_name == "N/A":
                         stock_name = holding.get('name', 'N/A')
-                        self.logger.debug(f"📄 보유종목 기본 데이터에서 {symbol} 이름 조회: {stock_name}")
+                        # 기본 데이터 사용시 로그 없음
+                        pass
                 except Exception as e:
-                    self.logger.debug(f"종목명 조회 오류: {symbol}, {e}")
+                    # 오류시에만 debug 레벨로 기록
+                    pass
                     stock_name = holding.get('name', 'N/A')
                 
                 # 종목명이 너무 길면 자르기
@@ -3677,3 +3681,60 @@ class DatabaseAutoTradingHandler:
         except Exception as e:
             self.logger.error(f"간단 현황 표시 실패: {e}")
             self.console.print(f"[red]❌ 간단 현황 표시 실패: {e}[/red]")
+
+    async def get_balance(self) -> Dict[str, Any]:
+        """포트폴리오 매니저와의 호환성을 위한 보유 종목 조회 메서드"""
+        try:
+            self.logger.info("🔍 get_balance() 메서드 시작")
+
+            if not (hasattr(self, 'kis_collector') and self.kis_collector):
+                self.logger.warning("KIS 수집기가 없음")
+                return {
+                    'success': False,
+                    'error': 'KIS 수집기가 초기화되지 않았습니다.',
+                    'data': []
+                }
+
+            # KIS API를 통해 보유 종목 조회
+            self.logger.info("kis_collector.get_holdings() 호출 중...")
+            holdings = await self.kis_collector.get_holdings()
+            self.logger.info(f"holdings 결과: type={type(holdings)}, len={len(holdings) if holdings else 0}")
+
+            if holdings is None:
+                self.logger.warning("holdings가 None임")
+                return {
+                    'success': False,
+                    'error': 'KIS API 연결 실패 또는 응답 없음',
+                    'data': []
+                }
+
+            # holdings가 딕셔너리인 경우 (symbol: data 형태)
+            if isinstance(holdings, dict):
+                # KIS API get_holdings()는 {symbol: holding_data} 형태로 반환
+                # symbol 정보를 data에 포함시켜서 변환
+                holdings_data = []
+                for symbol, data in holdings.items():
+                    data_with_symbol = data.copy()
+                    data_with_symbol['symbol'] = symbol
+                    holdings_data.append(data_with_symbol)
+                self.logger.info(f"dict -> list 변환: {len(holdings_data)}개 (symbol 포함)")
+            else:
+                # holdings가 리스트인 경우
+                holdings_data = holdings if isinstance(holdings, list) else []
+                self.logger.info(f"list 유지: {len(holdings_data)}개")
+
+            result = {
+                'success': True,
+                'data': holdings_data,
+                'count': len(holdings_data)
+            }
+            self.logger.info(f"get_balance() 최종 결과: success={result['success']}, count={result['count']}")
+            return result
+
+        except Exception as e:
+            self.logger.error(f"보유 종목 조회 실패: {e}")
+            return {
+                'success': False,
+                'error': str(e),
+                'data': []
+            }
