@@ -21,6 +21,15 @@ except ImportError:
     genai = None
 
 from utils.logger import get_logger
+
+def safe_get_data(data, key: str, default=None):
+    """객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+    if hasattr(data, key):
+        return getattr(data, key, default)
+    elif isinstance(data, dict):
+        return data.get(key, default)
+    else:
+        return default
 from config import Config
 
 
@@ -32,6 +41,11 @@ class GeminiAnalyzer:
         self.logger = get_logger("GeminiAnalyzer")
         self.model = None
         self.api_available = False
+
+        # 할당량 추적 변수 추가
+        self.quota_exhausted = False
+        self.last_quota_check = 0
+        self.quota_check_interval = 86400  # 24시간마다 체크 (일일 할당량)
 
         # Gemini API 모듈 사용 가능성 체크
         if not GEMINI_AVAILABLE:
@@ -58,9 +72,22 @@ class GeminiAnalyzer:
             self.api_available = False
 
     async def _call_gemini_api(self, prompt: str) -> str:
-        """Gemini API 호출"""
+        """Gemini API 호출 (할당량 추적 포함)"""
         if not self.api_available:
             raise Exception("Gemini API를 사용할 수 없습니다")
+
+        # 할당량 소진 확인
+        import time
+        current_time = time.time()
+        if self.quota_exhausted:
+            # 24시간 경과했으면 재시도
+            if current_time - self.last_quota_check > self.quota_check_interval:
+                self.logger.info("🔄 Gemini API 할당량 재체크 시간 - 상태 초기화하여 재시도")
+                self.quota_exhausted = False
+            else:
+                remaining_hours = int((self.quota_check_interval - (current_time - self.last_quota_check)) / 3600)
+                remaining_minutes = int(((self.quota_check_interval - (current_time - self.last_quota_check)) % 3600) / 60)
+                raise Exception(f"Gemini API 할당량 소진됨 (다음 재시도: {remaining_hours}시간 {remaining_minutes}분 후)")
 
         try:
             # 비동기 처리를 위해 ThreadPoolExecutor 사용
@@ -77,6 +104,15 @@ class GeminiAnalyzer:
                 return result
 
         except Exception as e:
+            error_msg = str(e).lower()
+            # 할당량 관련 에러 감지 및 더 구체적인 메시지 추가
+            if any(keyword in error_msg for keyword in ['quota', 'limit', 'exceeded', 'rate', 'usage', '429', 'billing']):
+                self.logger.warning(f"⚠️ Gemini API 할당량 소진 감지: {e}")
+                self.quota_exhausted = True
+                self.last_quota_check = current_time
+                # 할당량 소진 시 즉시 대안 사용 안내
+                self.logger.info("💡 Gemini 분석 대신 GPT 또는 기본 분석을 사용합니다")
+
             self.logger.error(f"❌ Gemini API 호출 실패: {e}")
             raise
 
@@ -84,6 +120,11 @@ class GeminiAnalyzer:
         """시장 영향도 분석 수행"""
         if not news_data:
             self.logger.debug(f"📰 {symbol} 뉴스 데이터 없음 - 기본 시장 영향도 분석 사용")
+            return self._get_default_market_impact()
+
+        # 할당량 소진 시 즉시 기본값 반환
+        if self.quota_exhausted:
+            self.logger.warning(f"⚠️ Gemini API 할당량 소진으로 기본 분석 사용: {symbol}")
             return self._get_default_market_impact()
 
         try:
@@ -109,13 +150,18 @@ class GeminiAnalyzer:
             return result
 
         except Exception as e:
-            self.logger.error(f"❌ Gemini 시장 영향도 분석 실패 ({symbol}): {e}")
+            self.logger.warning(f"⚠️ Gemini 시장 영향도 분석 실패 ({symbol}): {e}")
             return self._get_default_market_impact()
 
     async def analyze_news_sentiment(self, symbol: str, company_name: str, news_data: List[Dict]) -> Dict[str, Any]:
         """뉴스 감성 분석"""
         if not news_data:
             self.logger.debug(f"📰 {symbol} 뉴스 데이터 없음 - 기본 분석 사용")
+            return self._get_default_sentiment()
+
+        # 할당량 소진 시 즉시 기본값 반환
+        if self.quota_exhausted:
+            self.logger.warning(f"⚠️ Gemini API 할당량 소진으로 기본 분석 사용: {symbol}")
             return self._get_default_sentiment()
 
         try:
@@ -138,7 +184,7 @@ class GeminiAnalyzer:
             return result
 
         except Exception as e:
-            self.logger.error(f"❌ Gemini 통합 감성 분석 실패 ({symbol}): {e}")
+            self.logger.warning(f"⚠️ Gemini 통합 감성 분석 실패 ({symbol}): {e}")
             return self._get_default_sentiment()
 
     def _build_market_impact_prompt(self, symbol: str, company_name: str, news_content: str) -> str:
@@ -298,7 +344,7 @@ Respond with ONLY the JSON object above, no additional text.
         try:
             self.logger.info(f"🤖 Gemini 종합 분석 시작: {symbol}({name})")
 
-            if not self.api_available:
+            if not self.api_available or self.quota_exhausted:
                 return self._get_fallback_comprehensive_analysis(symbol, name, stock_data)
 
             # 종합 분석 프롬프트 생성
@@ -315,7 +361,7 @@ Respond with ONLY the JSON object above, no additional text.
                 return self._get_fallback_comprehensive_analysis(symbol, name, stock_data)
 
         except Exception as e:
-            self.logger.error(f"❌ Gemini 종합 분석 실패: {symbol} - {e}")
+            self.logger.warning(f"⚠️ Gemini 종합 분석 실패: {symbol} - {e}")
             return self._get_fallback_comprehensive_analysis(symbol, name, stock_data)
 
     def _create_comprehensive_prompt(
@@ -336,9 +382,9 @@ Respond with ONLY the JSON object above, no additional text.
             market_cap = float(stock_data.market_cap or 0)
         else:
             # Dict인 경우
-            current_price = float(stock_data.get('current_price', 0) or 0)
-            volume = int(stock_data.get('volume', 0) or 0)
-            market_cap = float(stock_data.get('market_cap', 0) or 0)
+            current_price = float(safe_get_data(stock_data,'current_price', 0) or 0)
+            volume = int(safe_get_data(stock_data,'volume', 0) or 0)
+            market_cap = float(safe_get_data(stock_data,'market_cap', 0) or 0)
 
         # 가격 데이터 요약
         price_summary = ""
@@ -378,44 +424,75 @@ Respond with ONLY the JSON object above, no additional text.
         return prompt.strip()
 
     def _get_default_market_impact(self) -> Dict[str, Any]:
-        """기본 시장 영향도 분석 결과"""
+        """기본 시장 영향도 분석 결과 (개선된 백업 분석)"""
+        from datetime import datetime
+        current_hour = datetime.now().hour
+
+        # 시간대별 보정
+        if 9 <= current_hour <= 15:  # 장중
+            impact_score = 38.0  # 보수적 접근
+            volatility = 'NORMAL'
+            recommendation = 'WATCH'
+        else:
+            impact_score = 40.0
+            volatility = 'LOW'
+            recommendation = 'HOLD'
+
         return {
             'impact_level': 'LOW',
-            'impact_score': 40.0,
+            'impact_score': impact_score,
             'duration': 'SHORT_TERM',
             'price_direction': 'NEUTRAL',
-            'volatility_expected': 'LOW',
+            'volatility_expected': volatility,
             'trading_volume_impact': 'NORMAL',
-            'sector_impact': 'Gemini 분석 불가',
-            'key_risks': [],
+            'sector_impact': 'Gemini API 할당량 소진으로 분석 불가',
+            'key_risks': ['API 제한으로 인한 분석 제한'],
             'catalysts': [],
             'target_price_change': '0%',
-            'recommendation': 'HOLD'
+            'recommendation': recommendation,
+            'fallback_analysis': True,
+            'analysis_limitation': 'Gemini API 할당량 초과로 기본 분석 사용'
         }
 
     def _get_default_sentiment(self) -> Dict[str, Any]:
-        """기본 감성 분석 결과"""
+        """기본 감성 분석 결과 (개선된 백업 분석)"""
+        from datetime import datetime
+        current_hour = datetime.now().hour
+
+        # 시간대별 보정된 점수
+        if 9 <= current_hour <= 15:  # 장중
+            base_score = 48  # 약간 보수적
+            time_context = "장중"
+        elif 8 <= current_hour <= 9 or 15 <= current_hour <= 16:  # 장 전후
+            base_score = 49
+            time_context = "장 전후"
+        else:
+            base_score = 50
+            time_context = "장외"
+
         return {
             'short_term': {
-                'score': 50,
-                'summary': '뉴스 데이터 부족으로 중립적 전망 (Gemini 분석 미실시)',
-                'positive_factors': ['시장 평균 수준의 기본 전망'],
-                'negative_factors': ['충분한 뉴스 정보 부족']
+                'score': base_score,
+                'summary': f'Gemini API 할당량 소진 - 보수적 중립 분석 ({time_context})',
+                'positive_factors': ['시장 평균 기준 분석'],
+                'negative_factors': ['API 제한으로 상세 분석 불가', '보수적 접근 필요']
             },
             'mid_term': {
-                'score': 50,
-                'summary': '뉴스 데이터 부족으로 중립적 전망 (Gemini 분석 미실시)',
-                'positive_factors': ['시장 평균 수준의 기본 전망'],
-                'negative_factors': ['충분한 뉴스 정보 부족']
+                'score': base_score,
+                'summary': f'Gemini API 할당량 소진 - 보수적 중립 분석 ({time_context})',
+                'positive_factors': ['기본 시장 동향 반영'],
+                'negative_factors': ['상세 뉴스 분석 불가']
             },
             'long_term': {
-                'score': 50,
-                'summary': '뉴스 데이터 부족으로 중립적 전망 (Gemini 분석 미실시)',
-                'positive_factors': ['시장 평균 수준의 기본 전망'],
-                'negative_factors': ['충분한 뉴스 정보 부족']
+                'score': base_score,
+                'summary': f'Gemini API 할당량 소진 - 보수적 중립 분석 ({time_context})',
+                'positive_factors': ['장기 기본 전망'],
+                'negative_factors': ['충분한 정보 부족으로 보수적 접근']
             },
-            'key_keywords': ['기본분석', '중립전망'],
-            'overall_summary': 'Gemini 분석 불가 시 기본 중립 분석 사용'
+            'key_keywords': ['API제한', '보수적분석', '기본전망', time_context],
+            'overall_summary': f'Gemini API 할당량 초과로 백업 분석 사용 - {time_context} 보정 적용',
+            'fallback_analysis': True,
+            'analysis_limitation': 'Gemini API 할당량 초과로 기본 분석 사용'
         }
 
     def _get_fallback_comprehensive_analysis(
@@ -430,7 +507,7 @@ Respond with ONLY the JSON object above, no additional text.
         if hasattr(stock_data, 'current_price'):
             current_price = stock_data.current_price or 0
         else:
-            current_price = stock_data.get('current_price', 0)
+            current_price = safe_get_data(stock_data,'current_price', 0)
 
         fallback_analysis = {
             "buy_score": 50,
@@ -455,6 +532,32 @@ Respond with ONLY the JSON object above, no additional text.
         }
 
         return json.dumps(fallback_analysis, ensure_ascii=False, indent=2)
+
+    def reset_quota_status(self):
+        """할당량 상태를 수동으로 리셋"""
+        self.quota_exhausted = False
+        self.last_quota_check = 0
+        self.logger.info("🔄 Gemini API 할당량 상태가 수동으로 리셋되었습니다")
+
+    def get_quota_status(self) -> Dict[str, Any]:
+        """할당량 상태 정보 반환"""
+        import time
+        current_time = time.time()
+
+        if self.quota_exhausted:
+            remaining_hours = int((self.quota_check_interval - (current_time - self.last_quota_check)) / 3600)
+            remaining_minutes = int(((self.quota_check_interval - (current_time - self.last_quota_check)) % 3600) / 60)
+        else:
+            remaining_hours = 0
+            remaining_minutes = 0
+
+        return {
+            "api_available": self.api_available,
+            "quota_exhausted": self.quota_exhausted,
+            "remaining_hours": max(0, remaining_hours),
+            "remaining_minutes": max(0, remaining_minutes),
+            "last_check": datetime.fromtimestamp(self.last_quota_check) if self.last_quota_check else None
+        }
 
     @property
     def model_name(self):

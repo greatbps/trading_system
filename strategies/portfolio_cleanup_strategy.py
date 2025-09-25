@@ -142,6 +142,9 @@ class PortfolioCleanupStrategy:
                     )
 
                     self.logger.info(f"종목 '{symbol}'({name}) 업데이트: 수량={quantity}, 평균가={avg_price}, 현재가={current_price}, 수익률={profit_rate:.2f}%")
+                else:
+                    # 조건을 만족하지 않는 종목 로깅 (디버깅용)
+                    self.logger.warning(f"❌ 종목 '{symbol}'({name}) 제외: quantity={quantity}, avg_price={avg_price}, current_price={current_price}")
 
             except Exception as e:
                 self.logger.error(f"보유 종목 데이터 처리 실패 {holding}: {e}")

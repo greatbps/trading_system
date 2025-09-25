@@ -516,29 +516,34 @@ class TradingExecutor:
                 # 거래 이력 자동 저장
                 if filled_quantity == quantity:  # 완전 체결된 경우만
                     try:
-                        if side == OrderSide.BUY:
-                            success = self.trade_history_manager.record_buy_trade(
-                                symbol=symbol,
-                                quantity=filled_quantity,
-                                price=average_price or price,
-                                order_id=order_id,
-                                strategy_name="auto_trading",
-                                trigger_reason="system_signal"
-                            )
-                        else:  # SELL
-                            success = self.trade_history_manager.record_sell_trade(
-                                symbol=symbol,
-                                quantity=filled_quantity,
-                                price=average_price or price,
-                                order_id=order_id,
-                                strategy_name="auto_trading",
-                                trigger_reason="system_signal"
-                            )
-
-                        if success:
-                            self.logger.info(f"✅ 거래 이력 자동 저장 완료: {side.value} {symbol}")
+                        # 가격 안전성 검사
+                        final_price = average_price or price
+                        if final_price is None or final_price <= 0:
+                            self.logger.warning(f"⚠️ 거래 이력 저장 건너뜀: 유효하지 않은 가격 (average_price={average_price}, price={price})")
                         else:
-                            self.logger.warning(f"⚠️ 거래 이력 저장 실패: {side.value} {symbol}")
+                            if side == OrderSide.BUY:
+                                success = self.trade_history_manager.record_buy_trade(
+                                    symbol=symbol,
+                                    quantity=filled_quantity,
+                                    price=final_price,
+                                    order_id=order_id,
+                                    strategy_name="auto_trading",
+                                    trigger_reason="system_signal"
+                                )
+                            else:  # SELL
+                                success = self.trade_history_manager.record_sell_trade(
+                                    symbol=symbol,
+                                    quantity=filled_quantity,
+                                    price=final_price,
+                                    order_id=order_id,
+                                    strategy_name="auto_trading",
+                                    trigger_reason="system_signal"
+                                )
+
+                            if success:
+                                self.logger.info(f"✅ 거래 이력 자동 저장 완료: {side.value} {symbol}")
+                            else:
+                                self.logger.warning(f"⚠️ 거래 이력 저장 실패: {side.value} {symbol}")
 
                     except Exception as e:
                         self.logger.error(f"❌ 거래 이력 저장 중 오류: {e}")
@@ -732,16 +737,25 @@ class TradingExecutor:
                 'trade_object': None
             }
     
-    async def sell_stock(self, symbol: str, quantity: int, price: int, order_type: str = 'LIMIT') -> Dict[str, Any]:
-        """주식 매도 (간단한 래퍼) - Trade 객체를 포함한 딕셔너리 반환"""
+    async def sell_stock(self, symbol: str, quantity: int, price: int = None, order_type: str = 'LIMIT') -> Dict[str, Any]:
+        """주식 매도 (강화된 래퍼) - Trade 객체를 포함한 딕셔너리 반환"""
         try:
-            # OrderType 변환
-            if order_type == 'MARKET':
+            # ✅ 입력 검증 강화
+            if not symbol or not str(symbol).strip():
+                return {'success': False, 'message': '종목코드가 유효하지 않습니다', 'trade_object': None}
+
+            if quantity <= 0:
+                return {'success': False, 'message': f'매도 수량이 유효하지 않습니다: {quantity}', 'trade_object': None}
+
+            # OrderType 변환 (시장가 주문 지원 강화)
+            if order_type == 'MARKET' or price is None:
                 ot = OrderType.MARKET
                 exec_price = None
             else:
                 ot = OrderType.LIMIT
                 exec_price = price
+                if price <= 0:
+                    return {'success': False, 'message': f'지정가 주문 시 가격이 유효하지 않습니다: {price}', 'trade_object': None}
             
             result = await self.execute_sell_order(symbol, quantity, exec_price, ot)
             

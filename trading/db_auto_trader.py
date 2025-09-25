@@ -1800,18 +1800,14 @@ class DatabaseAutoTrader:
                         holding_info = None
                 
                 if not holding_info or quantity <= 0:
-                    # KIS API에서 실시간 보유 정보 재조회
+                    # KIS API에서 실시간 보유 정보 재조회 (강화된 필드 접근)
                     try:
                         holdings = await asyncio.wait_for(self.kis_collector.get_holdings(), timeout=10.0)
                         if holdings and symbol in holdings:
                             holding = holdings[symbol]
-                            # 안전한 속성 접근
-                            if hasattr(holding, 'quantity'):
-                                quantity = holding.quantity
-                                avg_price = holding.avg_price
-                            else:
-                                quantity = getattr(holding, 'quantity', 0)
-                                avg_price = getattr(holding, 'avg_price', 0)
+                            # ✅ 강화된 속성 접근 - 다양한 필드명 지원
+                            quantity = self._extract_quantity_from_holding(holding)
+                            avg_price = self._extract_avg_price_from_holding(holding)
                         else:
                             self.logger.warning(f"⚠️ {symbol} KIS API에서 보유 종목을 찾을 수 없음")
                     except asyncio.TimeoutError:
@@ -1897,6 +1893,78 @@ class DatabaseAutoTrader:
         # 모든 재시도 실패
         self.logger.error(f"💀 {symbol} {max_retries}회 시도 후 응급 매도 완전 실패")
         return False
+
+    def _extract_quantity_from_holding(self, holding) -> int:
+        """보유 종목에서 수량 안전하게 추출"""
+        quantity_fields = ['quantity', 'hldg_qty', 'qty', 'holding_qty', 'ord_psbl_qty', 'sellable_qty']
+
+        # 객체 속성 우선 시도
+        if hasattr(holding, 'quantity'):
+            try:
+                return int(holding.quantity)
+            except (ValueError, TypeError):
+                pass
+
+        # 딕셔너리 필드 시도
+        if isinstance(holding, dict):
+            for field in quantity_fields:
+                if field in holding:
+                    try:
+                        qty_val = holding[field]
+                        if isinstance(qty_val, str):
+                            qty_val = qty_val.replace(',', '').strip()
+                        qty = int(float(qty_val))
+                        if qty > 0:
+                            return qty
+                    except (ValueError, TypeError):
+                        continue
+
+        # 백업: getattr 시도
+        for field in quantity_fields:
+            try:
+                qty_val = getattr(holding, field, 0)
+                if qty_val and qty_val > 0:
+                    return int(qty_val)
+            except (ValueError, TypeError, AttributeError):
+                continue
+
+        return 0
+
+    def _extract_avg_price_from_holding(self, holding) -> float:
+        """보유 종목에서 평단가 안전하게 추출"""
+        price_fields = ['avg_price', 'pchs_avg_pric', 'average_price', 'buy_price', 'purchase_price']
+
+        # 객체 속성 우선 시도
+        if hasattr(holding, 'avg_price'):
+            try:
+                return float(holding.avg_price)
+            except (ValueError, TypeError):
+                pass
+
+        # 딕셔너리 필드 시도
+        if isinstance(holding, dict):
+            for field in price_fields:
+                if field in holding:
+                    try:
+                        price_val = holding[field]
+                        if isinstance(price_val, str):
+                            price_val = price_val.replace(',', '').strip()
+                        price = float(price_val)
+                        if price > 0:
+                            return price
+                    except (ValueError, TypeError):
+                        continue
+
+        # 백업: getattr 시도
+        for field in price_fields:
+            try:
+                price_val = getattr(holding, field, 0)
+                if price_val and price_val > 0:
+                    return float(price_val)
+            except (ValueError, TypeError, AttributeError):
+                continue
+
+        return 0.0
     
     async def _update_monitoring_after_emergency_sell(self, symbol: str, reason: str, sell_result: Dict):
         """응급 매도 후 모니터링 상태 업데이트"""
@@ -2051,11 +2119,32 @@ class DatabaseAutoTrader:
             evaluated_holdings = []
             for holding in holdings:
                 try:
-                    symbol = holding.get('pdno') if 'pdno' in holding else holding.get('symbol')
-                    quantity = int(holding.get('hldg_qty', 0) if 'hldg_qty' in holding else holding.get('quantity', 0))
-                    avg_price = float(holding.get('pchs_avg_pric', 0) if 'pchs_avg_pric' in holding else holding.get('avg_price', 0))
+                    # 다양한 필드에서 symbol 추출 시도
+                    symbol = (holding.get('pdno') or
+                             holding.get('symbol') or
+                             holding.get('code') or
+                             holding.get('stock_code'))
+                    # 수량 추출 (다양한 필드 지원)
+                    quantity_raw = (holding.get('hldg_qty') or
+                                  holding.get('quantity') or
+                                  holding.get('ord_psbl_qty') or
+                                  holding.get('sellable_qty') or
+                                  holding.get('pchs_qty') or '0')
+                    quantity = int(float(str(quantity_raw).replace(',', '').replace(' ', '').strip() or '0'))
 
-                    # 보호 대상 종목이면 제외
+                    # 평균가 추출 (다양한 필드 지원)
+                    avg_price_raw = (holding.get('pchs_avg_pric') or
+                                   holding.get('avg_price') or
+                                   holding.get('buy_avg_price') or '0')
+                    avg_price = float(str(avg_price_raw).replace(',', '').replace(' ', '').strip() or '0')
+
+                    # symbol이 None이거나 빈 문자열이면 제외
+                    if not symbol:
+                        self.logger.debug(f"⚠️ 종목코드가 없는 보유종목 제외:")
+                        self.logger.debug(f"   원본 데이터: {holding}")
+                        self.logger.debug(f"   추출 시도한 symbol 값들: pdno={holding.get('pdno')}, symbol={holding.get('symbol')}, code={holding.get('code')}, stock_code={holding.get('stock_code')}")
+                        continue
+
                     if symbol in protected_symbols or quantity <= 0 or avg_price <= 0:
                         continue
 

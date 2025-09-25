@@ -180,8 +180,9 @@ async def main():
         try:
             logger.info("🚀 백그라운드 모니터링 서비스 자동 시작 중...")
             from background_monitoring_service import BackgroundMonitoringService
-            
-            background_service = BackgroundMonitoringService()
+
+            # 기존 TradingSystem 인스턴스를 전달하여 중복 초기화 방지
+            background_service = BackgroundMonitoringService(trading_system)
             success = await background_service.initialize()
             
             if success:

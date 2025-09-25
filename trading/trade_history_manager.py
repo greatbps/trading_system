@@ -73,6 +73,11 @@ class TradeHistoryManager:
                         trigger_reason: str = "manual_order") -> bool:
         """매수 거래 기록"""
         try:
+            # price와 quantity 유효성 검사
+            if price is None or quantity is None:
+                self.logger.error(f"❌ 매수 거래 기록 실패: price={price}, quantity={quantity}")
+                return False
+
             # 종목 ID 조회
             stock_id = self._get_stock_id(symbol)
             if not stock_id:
@@ -111,6 +116,11 @@ class TradeHistoryManager:
                          trigger_reason: str = "manual_order") -> bool:
         """매도 거래 기록"""
         try:
+            # price와 quantity 유효성 검사
+            if price is None or quantity is None:
+                self.logger.error(f"❌ 매도 거래 기록 실패: price={price}, quantity={quantity}")
+                return False
+
             # 종목 ID 조회
             stock_id = self._get_stock_id(symbol)
             if not stock_id:
@@ -224,14 +234,39 @@ class TradeHistoryManager:
             return False
 
     def _get_stock_id(self, symbol: str) -> Optional[int]:
-        """종목 코드로 stock_id 조회"""
+        """종목 코드로 stock_id 조회, 없으면 생성"""
         try:
             with self.get_session() as session:
+                # 기존 종목 조회
                 query = text("SELECT id FROM stocks WHERE symbol = :symbol")
                 result = session.execute(query, {'symbol': symbol}).fetchone()
+
+                if result:
+                    return result.id
+
+                # 종목이 없으면 새로 추가
+                self.logger.info(f"📝 새 종목 추가: {symbol}")
+                insert_query = text("""
+                INSERT INTO stocks (symbol, name, market_type, created_at, updated_at)
+                VALUES (:symbol, :name, :market_type, :created_at, :updated_at)
+                """)
+
+                now = datetime.now()
+                session.execute(insert_query, {
+                    'symbol': symbol,
+                    'name': f'Stock_{symbol}',  # 임시 이름
+                    'market_type': 'KOSPI',
+                    'created_at': now,
+                    'updated_at': now
+                })
+                session.commit()
+
+                # 다시 조회
+                result = session.execute(query, {'symbol': symbol}).fetchone()
                 return result.id if result else None
+
         except Exception as e:
-            self.logger.error(f"❌ 종목 ID 조회 실패: {e}")
+            self.logger.error(f"❌ 종목 ID 조회/생성 실패: {e}")
             return None
 
     def get_recent_trades(self, limit: int = 10) -> list:

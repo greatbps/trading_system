@@ -1,0 +1,321 @@
+PS D:\trading_system> python main.py
+UTF-8 인코딩 테스트: 한글 출력 정상
+
+==============================================================
+                   AI Trading System v4.0
+                   Phase 4: Advanced AI Features
+
+ * 5개 영역 통합 분석: 기술적 + 펀더멘털 + 뉴스 + 수급 + 패턴
+ * AI 고급 기능: 예측 + 리스크 관리 + 체제 감지 + 전략 최적화
+ * KIS HTS 조건검색 연동 + 실시간 정밀 매매
+ * PostgreSQL 기반 데이터 관리 + 안정성 강화
+
+==============================================================
+
+시작 시간: 2025-09-25 16:43:56
+작업 디렉토리: D:\trading_system
+
+시스템 초기화 중...
+[PASS] Config 임포트 성공
+[PASS] Logger 임포트 성공
+16:43:56 | Main         | INFO     | 설정 초기화 완료
+16:43:57 | Main         | INFO     | [PASS] TradingSystem 임포트 성공
+16:43:57 | TradingSystem | WARNING | ⚠️ 성능 모니터링 초기화 실패: name 'TrendAnalyzer' is not defined
+16:43:57 | ErrorRecoverySystem | INFO     | ✅ 에러 처리 및 복구 시스템 초기화 완료
+16:43:57 | TradingSystem | INFO | ✅ 에러 복구 시스템 활성화
+16:43:57 | Main         | INFO     | 컴포넌트 초기화 중...
+16:43:57 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:43:57 | ErrorRecoverySystem | INFO     | 상태 복원 완료
+16:43:57 | ErrorRecoverySystem | INFO     | 🔄 에러 복구 시스템 시작
+16:43:57 | TradingSystem | INFO | 🔧 에러 복구 시스템 시작
+16:43:58 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:43:58 | AIPredictor  | INFO     | ✅ AI 예측 분석기 초기화 완료
+16:43:58 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:43:58 | AIRiskManager | INFO     | ✅ AI 리스크 관리자 초기화 완료
+16:43:58 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:43:58 | AdaptivePositionSizing | INFO     | ✅ 적응형 포지션 사이징 시스템 초기화 완료
+16:43:58 | MarketRegimeDetector | INFO     | ✅ 시장 체제 감지기 초기화 완료
+16:43:58 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:43:58 | StrategyOptimizer | INFO     | ✅ 전략 최적화 엔진 초기화 완료
+16:43:58 | AdvancedAI   | INFO     | 🚀 고급 AI 기능 초기화 완료
+16:43:58 | AIController | INFO     | ✅ AI 통합 컨트롤러 초기화 완료
+16:43:58 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+SUCCESS: PyKis Api imported successfully
+16:43:59 | TradingSystem | INFO | ✅ PyKis API 초기화 성공
+16:43:59 | KISCollector | INFO     | KISCollector 초기화 완료 (실거래 모드)
+16:43:59 | KISCollector | INFO     | 🚀 KIS API collector 초기화 중...
+16:43:59 | KISCollector | INFO     | 캐시된 토큰 로드 완료
+16:43:59 | KISCollector | INFO     | ✅ KIS API collector 초기화 성공
+16:43:59 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:43:59 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:43:59 | ChartPatternAnalyzer | INFO     | ✅ 패턴 감지기 초기화 완료
+16:43:59 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:43:59 | MTFAnalyzer  | INFO     | ✅ MTF 분석기 초기화 완료
+16:43:59 | ConsensusEngine | INFO     | ✅ Consensus Engine 초기화 완료
+16:44:00 | QuotaMonitor | INFO     | 📚 쿼터 이력 1개 로드 완료
+16:44:00 | QuotaMonitor | INFO     | 🔔 쿼터 알림 1개 로드 완료
+16:44:00 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:00 | GPTAnalyzer  | INFO     | ✅ GPT API 클라이언트 초기화 완료
+16:44:00 | MultiLLMAnalyzer | INFO     | 🧠 Multi-LLM Analyzer 초기화 완료 (Primary: gemini, Fallback: gpt)
+16:44:00 | AnalysisEngine | INFO     | 🧠 Multi-LLM 분석기 초기화 완료
+16:44:00 | AnalysisEngine | INFO     | ✅ 모든 하위 분석기 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:44:00 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:44:00 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:00 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:44:00 | Strategy_BreakoutStrategy | INFO     | 📈 돌파 매매 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:44:00 | Strategy_EodStrategy | INFO     | 📈 EOD 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:44:00 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:44:00 | Strategy_VwapStrategy | INFO     | 📈 VWAP 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:44:00 | Strategy_Scalping3mStrategy | INFO     | ✅ 3분봉 스캘핑 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:44:00 | Strategy_RsiStrategy | INFO     | ✅ RSI 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:44:00 | AIMomentumStrategy | INFO     | 🚀 AI 기반 고급 모멘텀 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ AI 모멘텀 전략 등록 완료
+16:44:00 | Strategy_SqueezeMomentumProStrategy | INFO     | 📈 Squeeze Momentum Pro 전략 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ Squeeze Momentum Pro 전략 등록 완료
+16:44:00 | AdaptivePositionSizing | INFO     | 📊 적응형 포지션 사이징 시스템 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ 적응형 포지션 사이징 시스템 초기화 완료
+16:44:00 | MultiTimeframeAnalyzer | INFO     | 📊 다중 시간대 분석기 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ 다중 시간대 분석기 초기화 완료
+16:44:00 | TradingScheduler | INFO     | ✅ TradingScheduler 초기화 완료
+16:44:00 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | AIPredictor  | INFO     | ✅ AI 예측 분석기 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | AIRiskManager | INFO     | ✅ AI 리스크 관리자 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | AdaptivePositionSizing | INFO     | ✅ 적응형 포지션 사이징 시스템 초기화 완료
+16:44:01 | MarketRegimeDetector | INFO     | ✅ 시장 체제 감지기 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | StrategyOptimizer | INFO     | ✅ 전략 최적화 엔진 초기화 완료
+16:44:01 | AdvancedAI   | INFO     | 🚀 고급 AI 기능 초기화 완료
+16:44:01 | AIController | INFO     | ✅ AI 통합 컨트롤러 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:01 | Strategy_BreakoutStrategy | INFO     | 📈 돌파 매매 전략 초기화 완료
+16:44:01 | Strategy_EodStrategy | INFO     | 📈 EOD 전략 초기화 완료
+16:44:01 | Strategy_VwapStrategy | INFO     | 📈 VWAP 전략 초기화 완료
+16:44:01 | Strategy_Scalping3mStrategy | INFO     | ✅ 3분봉 스캘핑 전략 초기화 완료
+16:44:01 | Strategy_RsiStrategy | INFO     | ✅ RSI 전략 초기화 완료
+16:44:01 | TradingSystem | INFO | ✅ 백테스팅 엔진 초기화 완료
+16:44:01 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:44:01 | TradingExecutor | INFO     | [OK] TradingExecutor 초기화 완료 (매매 활성화)
+16:44:01 | PositionManager | INFO     | ✅ PositionManager 초기화 완료
+16:44:01 | RiskManager  | INFO     | ✅ RiskManager 초기화 완료
+16:44:01 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:44:01 | TradingExecutor | INFO     | [OK] TradingExecutor 초기화 완료 (매매 활성화)
+16:44:01 | MarketScheduleManager | INFO     | 🕒 시장 일정 관리자 초기화 완료
+16:44:01 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:44:01 | SmartRebalancer | INFO     | ✅ 스마트 리밸런서 초기화 완료 (최대 5개 포지션)
+16:44:01 | SmartRebalancer | INFO     | 📊 평가 가중치: {'recommendation': 0.15, 'technical': 0.15, 'fundamental': 0.1, 'momentum': 0.15, 'risk': 0.1, 'trading_signal': 0.35}
+16:44:01 | TradingExecutor | INFO     | 🟢 매매 모드 활성화
+16:44:01 | DatabaseAutoTrader | INFO     | ✅ 매매 기능이 자동으로 활성화되었습니다.
+16:44:01 | DatabaseAutoTrader | INFO     | 🤖 DatabaseAutoTrader 초기화 완료 - DB 연동
+16:44:01 | DatabaseMonitoringRemovalScheduler | INFO     | 📊 DatabaseMonitoringRemovalScheduler 초기화 완료
+16:44:01 | Strategy_EnhancedMultiTimeframeStrategy | INFO     | 🚀 향상된 다중 시간대 전략 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:01 | Strategy_EodStrategy | INFO     | 📈 EOD 전략 초기화 완료
+16:44:01 | Strategy_Scalping3mStrategy | INFO     | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-09-25 16:44:01,711 | StrategyManager | INFO | ✅ Phase 1 신호 품질 개선 시스템 초기화 완료
+2025-09-25 16:44:01,711 | StrategyManager | INFO | 🎯 전략 통합 관리자 초기화 완료
+16:44:01 | AutoModeController | INFO     | 🎛️ 자동 모드 제어기 초기화 완료
+16:44:01 | DatabaseAutoTradingHandler | INFO     | ✅ 자동 모드 콜백 설정 완료
+16:44:01 | TradingSystem | INFO | ✅ DB 연동 자동매매 핸들러 초기화 완료
+16:44:01 | MarketScheduleManager | INFO     | 🕒 시장 일정 관리자 초기화 완료
+16:44:01 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:44:01 | SmartRebalancer | INFO     | ✅ 스마트 리밸런서 초기화 완료 (최대 5개 포지션)
+16:44:01 | SmartRebalancer | INFO     | 📊 평가 가중치: {'recommendation': 0.15, 'technical': 0.15, 'fundamental': 0.1, 'momentum': 0.15, 'risk': 0.1, 'trading_signal': 0.35}
+16:44:01 | TradingExecutor | INFO     | 🟢 매매 모드 활성화
+16:44:01 | DatabaseAutoTrader | INFO     | ✅ 매매 기능이 자동으로 활성화되었습니다.
+16:44:01 | DatabaseAutoTrader | INFO     | 🤖 DatabaseAutoTrader 초기화 완료 - DB 연동
+16:44:01 | TradingSystem | INFO | ✅ DB 자동매매 시스템 (DatabaseAutoTrader) 초기화 완료
+16:44:01 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:01 | TelegramNotifier | INFO     | ✅ 텔레그램 알림기 초기화 완료
+16:44:01 | NotificationManager | INFO     | ✅ 알림 관리자 초기화 완료
+16:44:01 | NotificationManager | INFO     | 🟢 이벤트 처리 시작
+16:44:01 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:44:01 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:44:01 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:44:02 | MarketScheduleManager | INFO     | ✅ 시장 일정 관리자 초기화 완료 - 현재 상태: closed
+16:44:02 | AutoModeController | INFO     | 🔄 자동 모드 제어 태스크 시작
+16:44:02 | AutoModeController | INFO     | ✅ 자동 모드 제어기 초기화 완료
+16:44:02 | MarketScheduleManager | INFO     | 🔄 시장 상태 모니터링 시작
+16:44:02 | TradingExecutor | INFO     | 🟢 매매 모드 활성화
+16:44:02 | DatabaseAutoTradingHandler | INFO     | 🟢 매매 모드 활성화
+16:44:02 | DatabaseAutoTradingHandler | INFO     | 🚀 모든 시스템 초기화 완료
+16:44:02 | TradingSystem | INFO | ✅ 시장 일정 및 자동 모드 시스템 초기화 완료
+16:44:02 | TradingSystem | INFO | 시작 자동매매 시스템 자동 시작 절차 개시...
+16:44:02 | TradingSystem | INFO | 승인 트레이딩 모드 이미 활성화됨
+16:44:02 | TradingSystem | INFO | 승인 자동매매 모니터링 백그라운드 시작 요청
+시장 운영 시간이 아닙니다. 현재 상태: 휴장
+16:44:03 | TradingSystem | INFO | 한도 실시간 한도 정보:
+16:44:03 | TradingSystem | INFO |   잔고 현재 잔고: 336,828원
+16:44:03 | TradingSystem | INFO |   최대 종목당 최대: 100,000원
+16:44:03 | TradingSystem | INFO |   손실 일일 손실 한도: 16,841원
+
+시작 자동매매 시스템이 자동으로 시작되었습니다!
+모니터링: 활성화
+트레이딩: 활성화
+감시 7개 종목 감시 중...
+시간 16:44:03 시작
+
+메뉴 메인 메뉴로 이동합니다...
+16:44:04 | TradingSystem | INFO | ✅ 모든 컴포넌트 초기화 완료
+16:44:04 | Main         | INFO     | [PASS] 컴포넌트 초기화 완료!
+16:44:04 | Main         | INFO     | [PASS] 자동매매 시스템이 TradingSystem에서 자동 시작됨
+16:44:04 | Main         | INFO     | 🚀 백그라운드 모니터링 서비스 자동 시작 중...
+16:44:04 | BackgroundService | INFO     | 🚀 백그라운드 모니터링 서비스 초기화 시작...
+16:44:04 | TradingSystem | WARNING | ⚠️ 성능 모니터링 초기화 실패: name 'TrendAnalyzer' is not defined
+16:44:04 | ErrorRecoverySystem | INFO     | ✅ 에러 처리 및 복구 시스템 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 에러 복구 시스템 활성화
+16:44:04 | TradingSystem | INFO | 🚀 컴포넌트 초기화 시작...
+16:44:04 | ErrorRecoverySystem | INFO     | 상태 복원 완료
+16:44:04 | ErrorRecoverySystem | INFO     | 🔄 에러 복구 시스템 시작
+16:44:04 | TradingSystem | INFO | 🔧 에러 복구 시스템 시작
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | AIPredictor  | INFO     | ✅ AI 예측 분석기 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | AIRiskManager | INFO     | ✅ AI 리스크 관리자 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | AdaptivePositionSizing | INFO     | ✅ 적응형 포지션 사이징 시스템 초기화 완료
+16:44:04 | MarketRegimeDetector | INFO     | ✅ 시장 체제 감지기 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | StrategyOptimizer | INFO     | ✅ 전략 최적화 엔진 초기화 완료
+16:44:04 | AdvancedAI   | INFO     | 🚀 고급 AI 기능 초기화 완료
+16:44:04 | AIController | INFO     | ✅ AI 통합 컨트롤러 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ AI 컨트롤러 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ PyKis API 초기화 성공
+16:44:04 | KISCollector | INFO     | KISCollector 초기화 완료 (실거래 모드)
+16:44:04 | KISCollector | INFO     | 🚀 KIS API collector 초기화 중...
+16:44:04 | KISCollector | INFO     | 캐시된 토큰 로드 완료
+16:44:04 | KISCollector | INFO     | ✅ KIS API collector 초기화 성공
+16:44:04 | TradingSystem | INFO | ✅ 데이터 수집기 초기화 완료
+16:44:04 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:44:04 | ChartPatternAnalyzer | INFO     | ✅ 패턴 감지기 초기화 완료
+16:44:04 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:44:04 | MTFAnalyzer  | INFO     | ✅ MTF 분석기 초기화 완료
+16:44:04 | ConsensusEngine | INFO     | ✅ Consensus Engine 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | GPTAnalyzer  | INFO     | ✅ GPT API 클라이언트 초기화 완료
+16:44:04 | MultiLLMAnalyzer | INFO     | 🧠 Multi-LLM Analyzer 초기화 완료 (Primary: gemini, Fallback: gpt)
+16:44:04 | AnalysisEngine | INFO     | 🧠 Multi-LLM 분석기 초기화 완료
+16:44:04 | AnalysisEngine | INFO     | ✅ 모든 하위 분석기 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 분석 엔진 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 뉴스 수집기 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ Momentum 전략 등록 완료
+16:44:04 | Strategy_BreakoutStrategy | INFO     | 📈 돌파 매매 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ Breakout 전략 등록 완료
+16:44:04 | Strategy_EodStrategy | INFO     | 📈 EOD 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ EOD 전략 등록 완료
+16:44:04 | TradingSystem | INFO | ✅ Supertrend EMA RSI 전략 등록 완료
+16:44:04 | Strategy_VwapStrategy | INFO     | 📈 VWAP 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ VWAP 전략 등록 완료
+16:44:04 | Strategy_Scalping3mStrategy | INFO     | ✅ 3분봉 스캘핑 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 3분봉 스캘핑 전략 등록 완료
+16:44:04 | Strategy_RsiStrategy | INFO     | ✅ RSI 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ RSI 전략 등록 완료
+16:44:04 | AIMomentumStrategy | INFO     | 🚀 AI 기반 고급 모멘텀 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ AI 모멘텀 전략 등록 완료
+16:44:04 | Strategy_SqueezeMomentumProStrategy | INFO     | 📈 Squeeze Momentum Pro 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ Squeeze Momentum Pro 전략 등록 완료
+16:44:04 | AdaptivePositionSizing | INFO     | 📊 적응형 포지션 사이징 시스템 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 적응형 포지션 사이징 시스템 초기화 완료
+16:44:04 | MultiTimeframeAnalyzer | INFO     | 📊 다중 시간대 분석기 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 다중 시간대 분석기 초기화 완료
+16:44:04 | TradingScheduler | INFO     | ✅ TradingScheduler 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 실시간 스케줄러 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | AIPredictor  | INFO     | ✅ AI 예측 분석기 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | AIRiskManager | INFO     | ✅ AI 리스크 관리자 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | AdaptivePositionSizing | INFO     | ✅ 적응형 포지션 사이징 시스템 초기화 완료
+16:44:04 | MarketRegimeDetector | INFO     | ✅ 시장 체제 감지기 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | StrategyOptimizer | INFO     | ✅ 전략 최적화 엔진 초기화 완료
+16:44:04 | AdvancedAI   | INFO     | 🚀 고급 AI 기능 초기화 완료
+16:44:04 | AIController | INFO     | ✅ AI 통합 컨트롤러 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:04 | Strategy_BreakoutStrategy | INFO     | 📈 돌파 매매 전략 초기화 완료
+16:44:04 | Strategy_EodStrategy | INFO     | 📈 EOD 전략 초기화 완료
+16:44:04 | Strategy_VwapStrategy | INFO     | 📈 VWAP 전략 초기화 완료
+16:44:04 | Strategy_Scalping3mStrategy | INFO     | ✅ 3분봉 스캘핑 전략 초기화 완료
+16:44:04 | Strategy_RsiStrategy | INFO     | ✅ RSI 전략 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 백테스팅 엔진 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 데이터베이스 초기화 완료
+16:44:04 | TradingExecutor | INFO     | [OK] TradingExecutor 초기화 완료 (매매 활성화)
+16:44:04 | PositionManager | INFO     | ✅ PositionManager 초기화 완료
+16:44:04 | RiskManager  | INFO     | ✅ RiskManager 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ Trading 모듈들 초기화 완료
+16:44:04 | TradingExecutor | INFO     | [OK] TradingExecutor 초기화 완료 (매매 활성화)
+16:44:04 | MarketScheduleManager | INFO     | 🕒 시장 일정 관리자 초기화 완료
+16:44:04 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:44:04 | SmartRebalancer | INFO     | ✅ 스마트 리밸런서 초기화 완료 (최대 5개 포지션)
+16:44:04 | SmartRebalancer | INFO     | 📊 평가 가중치: {'recommendation': 0.15, 'technical': 0.15, 'fundamental': 0.1, 'momentum': 0.15, 'risk': 0.1, 'trading_signal': 0.35}
+16:44:04 | TradingExecutor | INFO     | 🟢 매매 모드 활성화
+16:44:04 | DatabaseAutoTrader | INFO     | ✅ 매매 기능이 자동으로 활성화되었습니다.
+16:44:04 | DatabaseAutoTrader | INFO     | 🤖 DatabaseAutoTrader 초기화 완료 - DB 연동
+16:44:04 | DatabaseMonitoringRemovalScheduler | INFO     | 📊 DatabaseMonitoringRemovalScheduler 초기화 완료
+16:44:04 | Strategy_EnhancedMultiTimeframeStrategy | INFO     | 🚀 향상된 다중 시간대 전략 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | MomentumStrategy | INFO | 📈 AI-강화 모멘텀 전략 초기화 완료
+16:44:04 | Strategy_EodStrategy | INFO     | 📈 EOD 전략 초기화 완료
+16:44:04 | Strategy_Scalping3mStrategy | INFO     | ✅ 3분봉 스캘핑 전략 초기화 완료
+2025-09-25 16:44:04,841 | StrategyManager | INFO | ✅ Phase 1 신호 품질 개선 시스템 초기화 완료
+2025-09-25 16:44:04,841 | StrategyManager | INFO | 🎯 전략 통합 관리자 초기화 완료
+16:44:04 | AutoModeController | INFO     | 🎛️ 자동 모드 제어기 초기화 완료
+16:44:04 | DatabaseAutoTradingHandler | INFO     | ✅ 자동 모드 콜백 설정 완료
+16:44:04 | TradingSystem | INFO | ✅ DB 연동 자동매매 핸들러 초기화 완료
+16:44:04 | MarketScheduleManager | INFO     | 🕒 시장 일정 관리자 초기화 완료
+16:44:04 | TechnicalAnalyzer | INFO     | ✅ 기술적 분석기 초기화 완료
+16:44:04 | SmartRebalancer | INFO     | ✅ 스마트 리밸런서 초기화 완료 (최대 5개 포지션)
+16:44:04 | SmartRebalancer | INFO     | 📊 평가 가중치: {'recommendation': 0.15, 'technical': 0.15, 'fundamental': 0.1, 'momentum': 0.15, 'risk': 0.1, 'trading_signal': 0.35}
+16:44:04 | TradingExecutor | INFO     | 🟢 매매 모드 활성화
+16:44:04 | DatabaseAutoTrader | INFO     | ✅ 매매 기능이 자동으로 활성화되었습니다.
+16:44:04 | DatabaseAutoTrader | INFO     | 🤖 DatabaseAutoTrader 초기화 완료 - DB 연동
+16:44:04 | TradingSystem | INFO | ✅ DB 자동매매 시스템 (DatabaseAutoTrader) 초기화 완료
+16:44:04 | GeminiAnalyzer | INFO     | ✅ Gemini API 클라이언트 초기화 완료
+16:44:04 | TelegramNotifier | INFO     | ✅ 텔레그램 알림기 초기화 완료
+16:44:04 | NotificationManager | INFO     | ✅ 알림 관리자 초기화 완료
+16:44:04 | NotificationManager | INFO     | 🟢 이벤트 처리 시작
+16:44:04 | TradingSystem | INFO | ✅ 알림 관리자 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 분석 핸들러 초기화 완료
+16:44:04 | TradingSystem | INFO | ✅ 메뉴 핸들러 초기화 완료
+16:44:05 | MarketScheduleManager | INFO     | ✅ 시장 일정 관리자 초기화 완료 - 현재 상태: closed
+16:44:05 | AutoModeController | INFO     | 🔄 자동 모드 제어 태스크 시작
+16:44:05 | AutoModeController | INFO     | ✅ 자동 모드 제어기 초기화 완료
+16:44:05 | MarketScheduleManager | INFO     | 🔄 시장 상태 모니터링 시작
+16:44:05 | TradingExecutor | INFO     | 🟢 매매 모드 활성화
+16:44:05 | DatabaseAutoTradingHandler | INFO     | 🟢 매매 모드 활성화
+16:44:05 | DatabaseAutoTradingHandler | INFO     | 🚀 모든 시스템 초기화 완료
+16:44:05 | TradingSystem | INFO | ✅ 시장 일정 및 자동 모드 시스템 초기화 완료
+16:44:05 | TradingSystem | INFO | 시작 자동매매 시스템 자동 시작 절차 개시...
+16:44:05 | TradingSystem | INFO | 승인 트레이딩 모드 이미 활성화됨
+16:44:05 | TradingSystem | INFO | 승인 자동매매 모니터링 백그라운드 시작 요청
+시장 운영 시간이 아닙니다. 현재 상태: 휴장
+16:44:06 | TradingSystem | INFO | 한도 실시간 한도 정보:
+16:44:06 | TradingSystem | INFO |   잔고 현재 잔고: 336,828원
+16:44:06 | TradingSystem | INFO |   최대 종목당 최대: 100,000원
+16:44:06 | TradingSystem | INFO |   손실 일일 손실 한도: 16,841원
+
+시작 자동매매 시스템이 자동으로 시작되었습니다!
+모니터링: 활성화
+트레이딩: 활성화
+감시 7개 종목 감시 중...
+시간 16:44:06 시작

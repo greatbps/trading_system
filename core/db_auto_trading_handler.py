@@ -10,6 +10,7 @@ import asyncio
 import copy
 import json
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Any
@@ -80,6 +81,52 @@ class DatabaseAutoTradingHandler:
             if hasattr(self, 'logger'):
                 self.logger.warning(f"profit_rate 변환 실패: {value}, 기본값 {default} 사용")
             return default
+
+    def _extract_quantity_safely(self, holding: Dict[str, Any]) -> int:
+        """안전하게 보유수량을 추출하는 헬퍼 메서드 - portfolio_manager 로직 적용"""
+        # 이미 정규화된 수량이 있으면 우선 사용
+        if '_normalized_quantity' in holding:
+            return holding['_normalized_quantity']
+
+        # KIS API 표준 필드명 목록 (우선순위 순)
+        quantity_fields = [
+            'hldg_qty',          # 보유수량 (KIS API 주요)
+            'ord_psbl_qty',      # 주문가능수량 (실제 매도 가능)
+            'sellable_qty',      # 매도가능수량
+            'pchs_qty',          # 매수수량
+            'psbl_qty',          # 가능수량
+            'quantity',          # 일반 수량
+            'qty',               # 축약 수량
+            'holding_qty',       # 보유 수량
+            'balance_qty',       # 잔고 수량
+            'own_qty',           # 보유 수량 (다른 표현)
+            'current_qty',       # 현재 수량
+            'stock_qty',         # 주식 수량
+        ]
+
+        for field in quantity_fields:
+            if field in holding:
+                try:
+                    qty_val = holding[field]
+
+                    # None 체크
+                    if qty_val is None:
+                        continue
+
+                    # 문자열인 경우 숫자 변환 시도 (쉼표, 공백 제거)
+                    if isinstance(qty_val, str):
+                        qty_val = qty_val.replace(',', '').replace(' ', '').strip()
+                        if not qty_val or qty_val == '' or qty_val == '0':
+                            continue
+
+                    quantity = int(float(qty_val))
+                    if quantity > 0:
+                        return quantity
+
+                except (ValueError, TypeError, AttributeError):
+                    continue
+
+        return 0  # 모든 필드에서 유효한 수량을 찾지 못한 경우
 
     def _setup_auto_mode_callbacks(self):
         try:
@@ -479,7 +526,9 @@ class DatabaseAutoTradingHandler:
                         zero_quantity_stocks = []
                         
                         for symbol, holding in all_holdings.items():
-                            quantity = getattr(holding, 'quantity', 0) if hasattr(holding, 'quantity') else holding.get('quantity', 0)
+                            # 헬퍼 메소드를 사용하여 수량 추출
+                            quantity = self._extract_quantity_safely(holding)
+
                             if quantity > 0:
                                 actual_holdings[symbol] = holding  # 실제 보유 종목만
                             else:
@@ -698,7 +747,8 @@ class DatabaseAutoTradingHandler:
                 
                 # 실제 보유 수량 재확인
                 actual_holding = actual_holdings[symbol]
-                actual_quantity = getattr(actual_holding, 'quantity', 0) if hasattr(actual_holding, 'quantity') else actual_holding.get('quantity', 0)
+                # 헬퍼 메소드를 사용하여 수량 추출
+                actual_quantity = self._extract_quantity_safely(actual_holding)
                 if actual_quantity <= 0:
                     if hasattr(self, 'logger'):
                         self.logger.warning(f"보안 {symbol} 매도 차단: 실제 보유수량 {actual_quantity}주 (이미 매도완료)")
@@ -1546,7 +1596,8 @@ class DatabaseAutoTradingHandler:
 
                 # 실제 보유 수량 재확인
                 actual_holding = actual_holdings[symbol]
-                actual_quantity = getattr(actual_holding, 'quantity', 0) if hasattr(actual_holding, 'quantity') else actual_holding.get('quantity', 0)
+                # 헬퍼 메소드를 사용하여 수량 추출
+                actual_quantity = self._extract_quantity_safely(actual_holding)
                 if actual_quantity <= 0:
                     if hasattr(self, 'logger'):
                         self.logger.warning(f"보안 {symbol} 추세손절 차단: 실제 보유수량 {actual_quantity}주 (이미 매도완료)")
@@ -2592,7 +2643,9 @@ class DatabaseAutoTradingHandler:
             from database.models import MonitoringStock, MonitoringStatus, Stock
             with self.db_manager.get_session() as session:
                 active_stocks = session.query(MonitoringStock).filter(
-                    MonitoringStock.status == MonitoringStatus.ACTIVE.value
+                    MonitoringStock.status == MonitoringStatus.ACTIVE.value,
+                    MonitoringStock.symbol.isnot(None),  # symbol이 None이 아닌 것만
+                    MonitoringStock.symbol != '',        # 빈 문자열도 제외
                 ).order_by(MonitoringStock.recommendation_time.desc()).all()
 
                 if not active_stocks:
@@ -2698,6 +2751,11 @@ class DatabaseAutoTradingHandler:
         stock_name = "N/A"
 
         try:
+            # symbol 검증
+            if not monitoring.symbol or monitoring.symbol is None:
+                self.logger.warning(f"⚠️ symbol이 None인 모니터링 데이터 제외: {monitoring}")
+                return current_price, stock_name
+
             # 현재가 조회
             if hasattr(self, 'kis_collector') and self.kis_collector:
                 current_price = await asyncio.wait_for(
@@ -3685,7 +3743,17 @@ class DatabaseAutoTradingHandler:
     async def get_balance(self) -> Dict[str, Any]:
         """포트폴리오 매니저와의 호환성을 위한 보유 종목 조회 메서드"""
         try:
-            self.logger.info("🔍 get_balance() 메서드 시작")
+            # 캐시 확인 (60초간 유효 - 중복 호출 방지)
+            cache_key = 'balance_data'
+            cache_expiry = 60  # 60초로 증가
+
+            if hasattr(self, '_balance_cache') and self._balance_cache:
+                cache_time = self._balance_cache.get('timestamp', 0)
+                if time.time() - cache_time < cache_expiry:
+                    self.logger.debug("🔄 캐시된 보유 종목 데이터 반환")
+                    return self._balance_cache['data']
+
+            self.logger.debug("🔍 get_balance() 메서드 시작 - 새로운 데이터 조회")
 
             if not (hasattr(self, 'kis_collector') and self.kis_collector):
                 self.logger.warning("KIS 수집기가 없음")
@@ -3716,19 +3784,64 @@ class DatabaseAutoTradingHandler:
                 for symbol, data in holdings.items():
                     data_with_symbol = data.copy()
                     data_with_symbol['symbol'] = symbol
+                    # pdno 필드가 없으면 추가 (portfolio_manager에서 사용)
+                    if 'pdno' not in data_with_symbol:
+                        data_with_symbol['pdno'] = symbol
+
+                    # hldg_qty 필드가 없으면 quantity에서 복사 (portfolio_manager 호환성)
+                    if 'hldg_qty' not in data_with_symbol and 'quantity' in data_with_symbol:
+                        data_with_symbol['hldg_qty'] = data_with_symbol['quantity']
+
+                    # 매도 가능 수량 정보 추가
+                    if 'ord_psbl_qty' not in data_with_symbol and 'quantity' in data_with_symbol:
+                        data_with_symbol['ord_psbl_qty'] = data_with_symbol['quantity']
+
                     holdings_data.append(data_with_symbol)
+
+                    # 디버깅: 각 종목의 수량 정보 로깅
+                    quantity = data.get('hldg_qty', data.get('quantity', 0))
+                    self.logger.debug(f"종목 {symbol}: 수량={quantity}, 데이터키={list(data.keys())}")
+
                 self.logger.info(f"dict -> list 변환: {len(holdings_data)}개 (symbol 포함)")
             else:
                 # holdings가 리스트인 경우
                 holdings_data = holdings if isinstance(holdings, list) else []
                 self.logger.info(f"list 유지: {len(holdings_data)}개")
 
+                # 리스트 형태일 때도 디버깅 정보 추가
+                for i, item in enumerate(holdings_data[:3]):  # 첫 3개만 로깅
+                    symbol = item.get('pdno', item.get('symbol', f'item_{i}'))
+                    quantity = item.get('hldg_qty', item.get('quantity', 0))
+                    self.logger.debug(f"리스트 아이템 {i}: 종목={symbol}, 수량={quantity}")
+
+            # 전체 데이터 중 실제 보유수량이 있는 종목 개수 확인
+            non_zero_count = 0
+            for item in holdings_data:
+                quantity = item.get('hldg_qty', item.get('quantity', 0))
+                try:
+                    if int(quantity) > 0:
+                        non_zero_count += 1
+                except (ValueError, TypeError):
+                    pass
+
+            self.logger.info(f"📊 전체 {len(holdings_data)}개 중 실제 보유수량 > 0인 종목: {non_zero_count}개")
+
             result = {
                 'success': True,
                 'data': holdings_data,
                 'count': len(holdings_data)
             }
-            self.logger.info(f"get_balance() 최종 결과: success={result['success']}, count={result['count']}")
+
+            # 결과를 캐시에 저장
+            if not hasattr(self, '_balance_cache'):
+                self._balance_cache = {}
+
+            self._balance_cache = {
+                'data': result,
+                'timestamp': time.time()
+            }
+
+            self.logger.info(f"get_balance() 최종 결과: success={result['success']}, count={result['count']} (캐시 저장됨)")
             return result
 
         except Exception as e:
@@ -3737,4 +3850,70 @@ class DatabaseAutoTradingHandler:
                 'success': False,
                 'error': str(e),
                 'data': []
+            }
+
+    def clear_balance_cache(self):
+        """보유 종목 캐시 무효화 (거래 후 호출)"""
+        if hasattr(self, '_balance_cache'):
+            self._balance_cache = None
+            self.logger.debug("💾 보유 종목 캐시가 무효화되었습니다")
+
+    async def place_sell_order(self, symbol: str, quantity: int, price: float = None, order_type: str = "market") -> Dict[str, Any]:
+        """포트폴리오 정리를 위한 매도 주문 실행"""
+        try:
+            self.logger.info(f"📤 {symbol} 매도 주문 시작: {quantity}주, 주문타입={order_type}")
+
+            # TradingExecutor가 있는지 확인
+            if not hasattr(self, 'auto_trader') or not self.auto_trader or not hasattr(self.auto_trader, 'executor') or not self.auto_trader.executor:
+                return {
+                    'success': False,
+                    'error': 'TradingExecutor가 초기화되지 않았습니다',
+                    'order_id': None
+                }
+
+            # 실제 매도 주문 실행
+            result = await asyncio.wait_for(
+                self.auto_trader.executor.sell_stock(
+                    symbol=symbol,
+                    quantity=quantity,
+                    price=price,  # None이면 시장가
+                    order_type='MARKET' if order_type.lower() == 'market' else 'LIMIT'
+                ),
+                timeout=15.0  # 15초 타임아웃
+            )
+
+            if result and result.get('success'):
+                self.logger.info(f"✅ {symbol} 매도 주문 성공: {quantity}주")
+                self.logger.info(f"   📋 주문번호: {result.get('order_id')}")
+
+                # 캐시 무효화 (거래 후 보유 종목 정보 갱신)
+                self.clear_balance_cache()
+
+                return {
+                    'success': True,
+                    'order_id': result.get('order_id'),
+                    'message': f"{symbol} {quantity}주 매도 주문 완료"
+                }
+            else:
+                error_msg = result.get('message', 'Unknown error') if result else 'No response from executor'
+                self.logger.error(f"❌ {symbol} 매도 주문 실패: {error_msg}")
+                return {
+                    'success': False,
+                    'error': error_msg,
+                    'order_id': None
+                }
+
+        except asyncio.TimeoutError:
+            self.logger.error(f"❌ {symbol} 매도 주문 타임아웃 (15초)")
+            return {
+                'success': False,
+                'error': '매도 주문 타임아웃',
+                'order_id': None
+            }
+        except Exception as e:
+            self.logger.error(f"❌ {symbol} 매도 주문 실행 중 오류: {e}")
+            return {
+                'success': False,
+                'error': str(e),
+                'order_id': None
             }

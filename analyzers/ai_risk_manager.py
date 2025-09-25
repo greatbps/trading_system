@@ -17,6 +17,15 @@ from dataclasses import dataclass
 from utils.logger import get_logger
 from analyzers.gemini_analyzer import GeminiAnalyzer
 
+def safe_get_data(data, key: str, default=None):
+    """객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+    if hasattr(data, key):
+        return getattr(data, key, default)
+    elif isinstance(data, dict):
+        return data.get(key, default)
+    else:
+        return default
+
 
 @dataclass
 class PositionSizingRecommendation:
@@ -951,9 +960,9 @@ class AIRiskManager:
                                     portfolio_data: Dict) -> RiskMetrics:
         """리스크 메트릭 계산"""
         try:
-            current_price = stock_data.get('current_price', 0)
-            change_rate = stock_data.get('change_rate', 0)
-            volume = stock_data.get('volume', 0)
+            current_price = safe_get_data(stock_data,'current_price', 0)
+            change_rate = safe_get_data(stock_data,'change_rate', 0)
+            volume = safe_get_data(stock_data,'volume', 0)
             
             # 기본 변동성 계산 (임시)
             volatility = abs(change_rate) / 100 if change_rate != 0 else 0.02

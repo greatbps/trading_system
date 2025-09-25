@@ -984,6 +984,11 @@ class KISCollector:
     async def get_current_price(self, symbol: str) -> Optional[int]:
         """현재가만 간단히 조회"""
         try:
+            # symbol 검증 먼저
+            if not symbol or symbol is None:
+                self.logger.error(f"❌ None 현재가 조회 실패: Invalid symbol format: {symbol}")
+                return None
+
             # HTTP session 상태 체크 및 복구
             if not self.is_initialized or not hasattr(self, 'http_session') or not self.http_session:
                 self.logger.info("🔄 KIS collector 재초기화 중...")
@@ -1929,6 +1934,98 @@ class KISCollector:
             self.logger.error(f"❌ KIS 주문 중 예외 발생: {e}")
             return {'success': False, 'error': f'주문 실행 중 오류: {str(e)}'}
 
+    async def get_daily_trades(self, start_date: str = None, end_date: str = None) -> Dict[str, Any]:
+        """일별 주문체결내역 조회 - KIS API"""
+        try:
+            # 기본값: 오늘 날짜
+            if not start_date:
+                from datetime import datetime
+                start_date = datetime.now().strftime('%Y%m%d')
+            if not end_date:
+                end_date = start_date
+
+            # 1. 계좌번호 처리
+            account_number = getattr(self.config.api, 'KIS_ACCOUNT_NUMBER', '')
+            if not account_number:
+                raise KISAPIError("KIS 계좌번호가 설정되지 않았습니다.")
+
+            if '-' in account_number:
+                cano, acnt_prdt_cd = account_number.split('-', 1)
+            else:
+                raise KISAPIError("계좌번호 형식이 올바르지 않습니다.")
+
+            # 2. TR_ID 설정 (3개월 이내)
+            tr_id = "TTTC0081R" if hasattr(self.config.api, 'KIS_REAL_ACCOUNT') and self.config.api.KIS_REAL_ACCOUNT else "VTTC0081R"
+
+            # 3. Request Parameters 구성
+            params = {
+                "CANO": cano,
+                "ACNT_PRDT_CD": acnt_prdt_cd,
+                "INQR_STRT_DT": start_date,
+                "INQR_END_DT": end_date,
+                "SLL_BUY_DVSN_CD": "00",  # 00: 전체, 01: 매도, 02: 매수
+                "INQR_DVSN": "01",  # 01: 역순, 02: 정순
+                "PDNO": "",  # 전체 종목
+                "CCLD_DVSN": "01",  # 01: 체결, 02: 미체결
+                "ORD_GNO_BRNO": "",
+                "ODNO": "",
+                "INQR_DVSN_3": "00",
+                "INQR_DVSN_1": "",
+                "CTX_AREA_FK100": "",
+                "CTX_AREA_NK100": ""
+            }
+
+            self.logger.info(f"📤 KIS 거래내역 조회 요청: {start_date} ~ {end_date}")
+
+            # 4. API 호출 제한 체크
+            await self.rate_limiter.acquire()
+
+            # 5. 중앙 API 요청 메소드 사용
+            result = await self._make_api_request(
+                method="GET",
+                endpoint="/uapi/domestic-stock/v1/trading/inquire-daily-ccld",
+                params=params,
+                tr_id=tr_id
+            )
+
+            # 6. 결과 처리
+            if result.get('rt_cd') == '0':
+                trade_data = result.get('output1', [])
+                self.logger.info(f"✅ KIS 거래내역 조회 성공: {len(trade_data)}건")
+
+                # 거래내역 정보 파싱
+                parsed_trades = []
+                for trade in trade_data:
+                    parsed_trade = {
+                        'date': trade.get('ord_dt', ''),  # 주문일자
+                        'time': trade.get('ord_tmd', ''),  # 주문시각
+                        'symbol': trade.get('pdno', ''),  # 종목코드
+                        'name': trade.get('prdt_name', ''),  # 종목명
+                        'side': '매도' if trade.get('sll_buy_dvsn_cd') == '01' else '매수',  # 매도매수구분
+                        'quantity': int(trade.get('ccld_qty', '0')),  # 체결수량
+                        'price': int(float(trade.get('ccld_unpr', '0'))),  # 체결단가
+                        'amount': int(float(trade.get('ccld_amt', '0'))),  # 체결금액
+                        'order_id': trade.get('odno', ''),  # 주문번호
+                        'ccld_cndt_name': trade.get('ccld_cndt_name', ''),  # 체결조건명
+                        'raw_data': trade  # 원본 데이터
+                    }
+                    parsed_trades.append(parsed_trade)
+
+                return {
+                    'success': True,
+                    'trades': parsed_trades,
+                    'count': len(parsed_trades),
+                    'raw_response': result
+                }
+            else:
+                error_msg = result.get('msg1', '거래내역 조회 실패')
+                self.logger.error(f"❌ KIS 거래내역 조회 실패: {error_msg}")
+                return {'success': False, 'error': error_msg, 'kis_response': result}
+
+        except Exception as e:
+            self.logger.error(f"❌ KIS 거래내역 조회 중 예외 발생: {e}")
+            return {'success': False, 'error': f'거래내역 조회 중 오류: {str(e)}'}
+
     def _validate_korean_price_unit(self, price: int) -> int:
         """한국 주식 호가단위 검증 및 조정"""
         if price < 1000:
@@ -2267,9 +2364,18 @@ class KISCollector:
                         current_price = int(item.get('prpr', '0'))
                         evaluation = int(item.get('evlu_amt', '0'))
 
-                        # 의미있는 데이터가 있는 종목만 포함
-                        if quantity > 0 or avg_price > 0 or evaluation > 0:
+                        # 보유수량 로깅 (디버깅용)
+                        if quantity == 0:
+                            self.logger.debug(f"🔍 수량 0인 종목 제외: {symbol}({item.get('prdt_name', '')}) - qty={quantity}")
+
+                        # 실제 보유수량이 있는 종목만 포함 (수량 > 0)
+                        if quantity > 0:
+                            self.logger.debug(f"✅ 보유 종목 추가: {symbol}({item.get('prdt_name', '')}) - qty={quantity}")
                             holdings[symbol] = {
+                                'pdno': symbol,  # 종목코드 추가 (KIS API 표준)
+                                'symbol': symbol,  # 종목코드 (일반적)
+                                'code': symbol,   # 종목코드 (백업)
+                                'stock_code': symbol,  # 종목코드 (추가 백업)
                                 'name': item.get('prdt_name', ''),
                                 'quantity': quantity,
                                 'avg_price': avg_price,
@@ -2283,7 +2389,7 @@ class KISCollector:
                             }
                             page_items += 1
 
-                self.logger.info(f"📊 보유종목 조회 페이지 {page_count + 1}: {page_items}개 종목")
+                self.logger.debug(f"📊 보유종목 조회 페이지 {page_count + 1}: {page_items}개 종목")
 
                 # 연속조회 확인
                 tr_cont = result.get('tr_cont', '')
@@ -2294,7 +2400,7 @@ class KISCollector:
                 else:
                     break  # 마지막 데이터
 
-            self.logger.info(f"✅ 총 보유종목 조회 완료: {len(holdings)}개 종목 ({page_count + 1}페이지)")
+            self.logger.debug(f"✅ 총 보유종목 조회 완료: {len(holdings)}개 종목 ({page_count + 1}페이지)")
             return holdings
 
         except Exception as e:

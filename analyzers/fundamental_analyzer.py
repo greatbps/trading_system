@@ -10,6 +10,15 @@ import numpy as np
 from typing import Dict, Any, Optional
 from utils.logger import get_logger
 
+def safe_get_data(data, key: str, default=None):
+    """객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+    if hasattr(data, key):
+        return getattr(data, key, default)
+    elif isinstance(data, dict):
+        return data.get(key, default)
+    else:
+        return default
+
 class FundamentalAnalyzer:
     """펀더멘털 분석기"""
     
@@ -20,7 +29,7 @@ class FundamentalAnalyzer:
     async def analyze(self, stock_data: Any) -> Dict[str, Any]:
         """펀더멘털 분석 실행 - 실제 재무 데이터 기반"""
         try:
-            symbol = getattr(stock_data, 'symbol', 'UNKNOWN') if hasattr(stock_data, 'symbol') else stock_data.get('symbol', 'UNKNOWN') if isinstance(stock_data, dict) else 'UNKNOWN'
+            symbol = safe_get_data(stock_data, 'symbol', 'UNKNOWN')
             
             # 실제 재무 데이터 조회 시도
             financial_data = await self._get_financial_data(symbol, stock_data)

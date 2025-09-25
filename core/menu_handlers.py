@@ -3123,29 +3123,27 @@ class MenuHandlers:
                 console.print(f"\n[bold cyan]🔍 {symbol} ({name}) 분석 중...[/bold cyan]")
 
                 # 개별 종목 분석 실행
-                if hasattr(self.system, 'run_specific_analysis'):
-                    try:
-                        analysis_result = await self.system.run_specific_analysis(symbol, strategy="momentum")
-                        if analysis_result:
-                            recommendation = analysis_result.get('recommendation', 'HOLD')
-                            confidence = analysis_result.get('confidence', 0)
+                try:
+                    analysis_result = await self.system.analyze_symbol(symbol, name, strategy="momentum")
+                    if analysis_result:
+                        recommendation = getattr(analysis_result, 'final_grade', 'HOLD')
+                        confidence = getattr(analysis_result, 'total_score', 0)
 
-                            # 추천 등급에 따른 색상
-                            rec_color = {
-                                'STRONG_BUY': 'bright_green',
-                                'BUY': 'green',
-                                'HOLD': 'yellow',
-                                'SELL': 'red',
-                                'STRONG_SELL': 'bright_red'
-                            }.get(recommendation, 'white')
+                        # 추천 등급에 따른 색상
+                        rec_color = {
+                            'STRONG_BUY': 'bright_green',
+                            'BUY': 'green',
+                            'HOLD': 'yellow',
+                            'SELL': 'red',
+                            'STRONG_SELL': 'bright_red'
+                        }.get(recommendation, 'white')
 
-                            console.print(f"  추천: [{rec_color}]{recommendation}[/{rec_color}] (신뢰도: {confidence:.1f}%)")
-                        else:
-                            console.print("  분석 데이터 없음")
-                    except Exception as e:
-                        console.print(f"  [red]분석 실패: {e}[/red]")
-                else:
-                    console.print("  [yellow]분석 엔진 사용 불가[/yellow]")
+                        console.print(f"  추천: [{rec_color}]{recommendation}[/{rec_color}] (점수: {confidence:.1f})")
+                    else:
+                        console.print("  분석 데이터 없음")
+                except Exception as e:
+                    console.print(f"  [red]분석 실패: {e}[/red]")
+                    self.logger.error(f"종목 {symbol} 분석 실패: {e}")
 
         except Exception as e:
             console.print(f"[red]❌ 상세 분석 실패: {e}[/red]")
@@ -3240,9 +3238,12 @@ class MenuHandlers:
                         status_color = "green" if result_data.get('success') else "red"
                         status_text = "성공" if result_data.get('success') else "실패"
 
+                        # 수량 정보는 execution_result에서 가져옴 (sell_qty가 저장됨)
+                        quantity = result_data.get('quantity', 0)
+
                         results_table.add_row(
                             signal['symbol'],
-                            f"{result_data.get('quantity', 0)}주",
+                            f"{quantity}주",
                             f"[{status_color}]{status_text}[/{status_color}]",
                             signal['reason']
                         )

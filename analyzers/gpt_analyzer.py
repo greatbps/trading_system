@@ -24,6 +24,15 @@ from utils.logger import get_logger
 from config import Config
 from analyzers.api_quota_manager import get_quota_manager, QuotaStatus
 
+def safe_get_data(data, key: str, default=None):
+    """객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+    if hasattr(data, key):
+        return getattr(data, key, default)
+    elif isinstance(data, dict):
+        return data.get(key, default)
+    else:
+        return default
+
 
 class GPTAnalyzer:
     """OpenAI GPT를 활용한 뉴스 및 감성 분석기"""
@@ -349,9 +358,9 @@ Respond with ONLY the JSON object above, no additional text.
             market_cap = float(stock_data.market_cap or 0)
         else:
             # Dict인 경우
-            current_price = float(stock_data.get('current_price', 0) or 0)
-            volume = int(stock_data.get('volume', 0) or 0)
-            market_cap = float(stock_data.get('market_cap', 0) or 0)
+            current_price = float(safe_get_data(stock_data,'current_price', 0) or 0)
+            volume = int(safe_get_data(stock_data,'volume', 0) or 0)
+            market_cap = float(safe_get_data(stock_data,'market_cap', 0) or 0)
         
         # 가격 데이터 요약
         price_summary = ""
@@ -443,7 +452,7 @@ Respond with ONLY the JSON object above, no additional text.
         if hasattr(stock_data, 'current_price'):
             current_price = stock_data.current_price or 0
         else:
-            current_price = stock_data.get('current_price', 0)
+            current_price = safe_get_data(stock_data,'current_price', 0)
         
         fallback_analysis = {
             "buy_score": 50,

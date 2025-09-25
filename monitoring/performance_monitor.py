@@ -112,9 +112,11 @@ class PerformanceMonitor:
         self.operation_counters = defaultdict(int)
         self.operation_times = defaultdict(list)
         self.start_times = {}        # operation_id -> start_time
-        self.trend_analyzer = TrendAnalyzer()  # 트렌드 분석기
-        self.anomaly_detector = AnomalyDetector()  # 이상 탐지기
-        self.predictive_alerts = PredictiveAlerts()  # 예측 알림
+
+        # TODO: 고급 분석 기능 구현 예정
+        # self.trend_analyzer = TrendAnalyzer()  # 트렌드 분석기
+        # self.anomaly_detector = AnomalyDetector()  # 이상 탐지기
+        # self.predictive_alerts = PredictiveAlerts()  # 예측 알림
         
         # 메모리 추적
         self.memory_tracker_enabled = False

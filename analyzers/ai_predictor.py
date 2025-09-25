@@ -16,6 +16,15 @@ from dataclasses import dataclass
 from utils.logger import get_logger
 from analyzers.gemini_analyzer import GeminiAnalyzer
 
+def safe_get_stock_data(stock_data, key: str, default=None):
+    """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+    if hasattr(stock_data, key):
+        return getattr(stock_data, key, default)
+    elif isinstance(stock_data, dict):
+        return stock_data.get(key, default)
+    else:
+        return default
+
 
 @dataclass
 class MarketPrediction:
@@ -141,7 +150,13 @@ class AIPredictor:
                 time_horizons = ['short_term', 'medium_term', 'long_term']
             
             predictions = {}
-            current_price = stock_data.get('current_price', 0)
+            # StockData 객체는 dataclass이므로 속성으로 접근
+            if hasattr(stock_data, 'current_price'):
+                current_price = stock_data.current_price
+            elif isinstance(stock_data, dict):
+                current_price = safe_get_stock_data(stock_data,'current_price', 0)
+            else:
+                current_price = 0
             
             for horizon in time_horizons:
                 # 시간대별 예측 로직
@@ -268,7 +283,13 @@ class AIPredictor:
     async def optimize_news_timing(self, news_data: List[Dict], stock_data: Dict) -> Dict[str, Any]:
         """뉴스 임팩트 타이밍 최적화"""
         try:
-            symbol = stock_data.get('symbol', 'Unknown')
+            # StockData 객체 또는 dict에서 symbol 추출
+            if hasattr(stock_data, 'symbol'):
+                symbol = stock_data.symbol
+            elif isinstance(stock_data, dict):
+                symbol = safe_get_stock_data(stock_data,'symbol', 'Unknown')
+            else:
+                symbol = 'Unknown'
             self.logger.info(f"📰 {symbol} 뉴스 타이밍 최적화 시작")
             
             # 1. 뉴스 임팩트 분석
@@ -307,9 +328,9 @@ class AIPredictor:
                                     historical_data: List[Dict]) -> Dict:
         """기술적 분석 기반 예측"""
         try:
-            current_price = stock_data.get('current_price', 0)
-            change_rate = stock_data.get('change_rate', 0)
-            volume = stock_data.get('volume', 0)
+            current_price = safe_get_stock_data(stock_data,'current_price', 0)
+            change_rate = safe_get_stock_data(stock_data,'change_rate', 0)
+            volume = safe_get_stock_data(stock_data,'volume', 0)
             
             # 기본 기술적 분석
             technical_score = 0
@@ -330,7 +351,7 @@ class AIPredictor:
                 factors.append("하락 압력")
             
             # 거래량 분석
-            avg_volume = stock_data.get('avg_volume', volume)
+            avg_volume = safe_get_stock_data(stock_data,'avg_volume', volume)
             if volume > avg_volume * 2:
                 technical_score += 15
                 factors.append("거래량 급증")
@@ -376,8 +397,8 @@ class AIPredictor:
             news_prompt = f"""
             주식 {symbol}에 대한 최신 뉴스와 시장 감정을 분석하여 향후 주가 움직임을 예측해주세요.
             
-            현재 주가: {stock_data.get('current_price', 0):,}원
-            변동률: {stock_data.get('change_rate', 0):.2f}%
+            현재 주가: {safe_get_stock_data(stock_data,'current_price', 0):,}원
+            변동률: {safe_get_stock_data(stock_data,'change_rate', 0):.2f}%
             
             다음 형식으로 답변해주세요:
             {{
@@ -569,7 +590,7 @@ class AIPredictor:
                 key_factors.extend(model_factors[:2])  # 각 모델에서 상위 2개 요인
             
             # 6. 가격 타겟 계산
-            current_price = stock_data.get('current_price', 50000)
+            current_price = safe_get_stock_data(stock_data,'current_price', 50000)
             price_range = self._calculate_ensemble_price_target(
                 current_price, consensus_direction, final_confidence, predictions_detail
             )
@@ -605,10 +626,10 @@ class AIPredictor:
     async def _predict_from_technical_enhanced(self, symbol: str, stock_data: Dict, historical_data: List[Dict]) -> Dict:
         """Phase 4.1: 강화된 기술적 분석 예측"""
         try:
-            current_price = stock_data.get('current_price', 0)
-            change_rate = stock_data.get('change_rate', 0)
-            volume = stock_data.get('volume', 0)
-            trading_value = stock_data.get('trading_value', 0)
+            current_price = safe_get_stock_data(stock_data,'current_price', 0)
+            change_rate = safe_get_stock_data(stock_data,'change_rate', 0)
+            volume = safe_get_stock_data(stock_data,'volume', 0)
+            trading_value = safe_get_stock_data(stock_data,'trading_value', 0)
             
             score = 50  # 기본 점수
             factors = []
@@ -637,7 +658,7 @@ class AIPredictor:
                 factors.append(f"하락 압력 ({change_rate:.1f}%)")
             
             # 2. 거래량 분석 (강화)
-            avg_volume = stock_data.get('avg_volume', volume) or volume
+            avg_volume = safe_get_stock_data(stock_data,'avg_volume', volume) or volume
             if avg_volume > 0:
                 volume_ratio = volume / avg_volume
                 if volume_ratio > 3:
@@ -662,7 +683,7 @@ class AIPredictor:
                 factors.append("양호한 유동성")
             
             # 4. 시가총액 기반 안정성 (신규)
-            market_cap = stock_data.get('market_cap', 0)
+            market_cap = safe_get_stock_data(stock_data,'market_cap', 0)
             if market_cap > 1000:  # 1조원 이상
                 confidence += 10
                 factors.append("대형주 안정성")
@@ -703,7 +724,7 @@ class AIPredictor:
                 analysis_engine = AnalysisEngine(self.config)
                 
                 # 간단한 뉴스 임팩트 분석 수행
-                name = stock_data.get('name', symbol)
+                name = safe_get_stock_data(stock_data,'name', symbol)
                 news_data = []  # 실제로는 뉴스 데이터를 가져와야 함
                 
                 # 기존 뉴스 가중치 계산 로직 활용
@@ -767,8 +788,8 @@ class AIPredictor:
             confidence = 55
             
             # 외국인/기관 매매 데이터 활용 (mock data)
-            foreign_buy_ratio = stock_data.get('foreign_buy_ratio', 0)
-            institutional_buy_ratio = stock_data.get('institutional_buy_ratio', 0)
+            foreign_buy_ratio = safe_get_stock_data(stock_data,'foreign_buy_ratio', 0)
+            institutional_buy_ratio = safe_get_stock_data(stock_data,'institutional_buy_ratio', 0)
             
             # 외국인 매매 분석
             if foreign_buy_ratio > 60:
@@ -791,8 +812,8 @@ class AIPredictor:
                 factors.append(f"기관 순매도 ({institutional_buy_ratio}%)")
             
             # 유통주식 수 및 시가총액 고려
-            shares_outstanding = stock_data.get('shares_outstanding', 0)
-            market_cap = stock_data.get('market_cap', 0)
+            shares_outstanding = safe_get_stock_data(stock_data,'shares_outstanding', 0)
+            market_cap = safe_get_stock_data(stock_data,'market_cap', 0)
             
             if shares_outstanding > 0 and market_cap > 0:
                 # 유동성 분석
@@ -834,9 +855,9 @@ class AIPredictor:
             factors = []
             confidence = 50
             
-            current_price = stock_data.get('current_price', 0)
-            high_52w = stock_data.get('high_52w', current_price)
-            low_52w = stock_data.get('low_52w', current_price)
+            current_price = safe_get_stock_data(stock_data,'current_price', 0)
+            high_52w = safe_get_stock_data(stock_data,'high_52w', current_price)
+            low_52w = safe_get_stock_data(stock_data,'low_52w', current_price)
             
             # 52주 고점/저점 대비 위치 분석
             if high_52w > 0 and low_52w > 0 and high_52w > low_52w:
@@ -868,7 +889,7 @@ class AIPredictor:
                     factors.append("고가주 안정성")
             
             # PE ratio 기반 패턴 분석
-            pe_ratio = stock_data.get('pe_ratio', 0)
+            pe_ratio = safe_get_stock_data(stock_data,'pe_ratio', 0)
             if pe_ratio > 0:
                 if pe_ratio < 10:
                     score += 10
@@ -909,7 +930,7 @@ class AIPredictor:
             confidence = 45
             
             # 변동률 기반 변동성 분석
-            change_rate = abs(stock_data.get('change_rate', 0))
+            change_rate = abs(safe_get_stock_data(stock_data,'change_rate', 0))
             
             if change_rate > 5:
                 score += 0  # 고변동성은 중립
@@ -925,8 +946,8 @@ class AIPredictor:
                 factors.append("저변동성")
             
             # 거래량 기반 시장 참여도 분석
-            volume = stock_data.get('volume', 0)
-            avg_volume = stock_data.get('avg_volume', volume) or volume
+            volume = safe_get_stock_data(stock_data,'volume', 0)
+            avg_volume = safe_get_stock_data(stock_data,'avg_volume', volume) or volume
             
             if avg_volume > 0:
                 volume_ratio = volume / avg_volume
@@ -939,7 +960,7 @@ class AIPredictor:
                     factors.append("시장 관심 저조")
             
             # 섹터 기반 분석 (mock)
-            sector = stock_data.get('sector', '기타')
+            sector = safe_get_stock_data(stock_data,'sector', '기타')
             if sector in ['IT', '바이오', '2차전지', '반도체']:
                 score += 10
                 confidence += 5

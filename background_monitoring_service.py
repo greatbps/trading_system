@@ -28,10 +28,10 @@ from datetime import datetime, time
 
 class BackgroundMonitoringService:
     """백그라운드 모니터링 서비스"""
-    
-    def __init__(self):
+
+    def __init__(self, trading_system=None):
         self.logger = get_logger("BackgroundService")
-        self.trading_system = None
+        self.trading_system = trading_system  # 기존 TradingSystem 인스턴스 재사용
         self.running = False
         self.service_state_file = Path("D:/trading_system/data/service_state.json")
         
@@ -56,18 +56,22 @@ class BackgroundMonitoringService:
         """서비스 초기화"""
         try:
             self.logger.info("🚀 백그라운드 모니터링 서비스 초기화 시작...")
-            
-            # Trading System 초기화
-            self.trading_system = TradingSystem()
-            success = await self.trading_system.initialize_components()
-            
-            if not success:
-                self.logger.error("❌ Trading System 초기화 실패")
-                return False
-            
+
+            # 기존 TradingSystem 인스턴스가 없으면 새로 생성
+            if self.trading_system is None:
+                self.logger.info("새로운 TradingSystem 인스턴스 생성...")
+                self.trading_system = TradingSystem()
+                success = await self.trading_system.initialize_components()
+
+                if not success:
+                    self.logger.error("❌ Trading System 초기화 실패")
+                    return False
+            else:
+                self.logger.info("✅ 기존 초기화된 TradingSystem 재사용 - 중복 초기화 방지")
+
             self.logger.info("✅ 백그라운드 모니터링 서비스 초기화 완료")
             return True
-            
+
         except Exception as e:
             self.logger.error(f"❌ 백그라운드 서비스 초기화 실패: {e}")
             return False
