@@ -33,10 +33,10 @@ class AnalysisHandlers:
     async def debug_data_collector(self):
         """데이터 수집기 디버깅"""
         try:
-            console.print("[bold]🔍 데이터 수집기 상태 확인[/bold]")
+            console.print("[bold][SEARCH] 데이터 수집기 상태 확인[/bold]")
             
             if not hasattr(self.system, 'data_collector'):
-                console.print("[red]❌ data_collector 속성이 없습니다[/red]")
+                console.print("[red][ERROR] data_collector 속성이 없습니다[/red]")
                 return False
             
             collector = self.system.data_collector
@@ -55,7 +55,7 @@ class AnalysisHandlers:
                 if hasattr(collector, method):
                     console.print(f"[green]  ✅ {method} 메서드 존재[/green]")
                 else:
-                    console.print(f"[red]  ❌ {method} 메서드 없음[/red]")
+                    console.print(f"[red]  [ERROR] {method} 메서드 없음[/red]")
             
             # 디버깅 메서드가 있으면 호출
             if hasattr(collector, 'debug_methods'):
@@ -64,7 +64,7 @@ class AnalysisHandlers:
             return True
             
         except Exception as e:
-            console.print(f"[red]❌ 데이터 수집기 디버깅 실패: {e}[/red]")
+            console.print(f"[red][ERROR] 데이터 수집기 디버깅 실패: {e}[/red]")
             return False
     
     async def auto_add_buy_recommendations_to_monitoring(self, analysis_results: List[Dict]) -> int:
@@ -167,7 +167,7 @@ class AnalysisHandlers:
             
             if stocks is None:
                 # KISCollector에서 설정 오류(None)를 반환한 경우
-                console.print(f"[bold red]❌ 설정 오류: '{strategy}' 전략에 대한 HTS 조건식 '{self.system.config.trading.HTS_CONDITION_NAMES.get(strategy)}'을(를) 찾을 수 없습니다.[/bold red]")
+                console.print(f"[bold red][ERROR] 설정 오류: '{strategy}' 전략에 대한 HTS 조건식 '{self.system.config.trading.HTS_CONDITION_NAMES.get(strategy)}'을(를) 찾을 수 없습니다.[/bold red]")
                 
                 available_conditions = await self.system.data_collector.get_hts_condition_list()
                 if available_conditions:
@@ -189,18 +189,18 @@ class AnalysisHandlers:
             return stocks
             
         except Exception as e:
-            self.logger.error(f"❌ 종목 조회 중 심각한 오류 발생: {e}")
-            console.print(f"[red]❌ 종목 조회 실패: {e}[/red]")
+            self.logger.error(f"[ERROR] 종목 조회 중 심각한 오류 발생: {e}")
+            console.print(f"[red][ERROR] 종목 조회 실패: {e}[/red]")
             return None
     
     
     async def comprehensive_analysis(self) -> bool:
         """종합 분석 (5개 영역 통합) - 44번 메뉴 전용 (DB 저장 안함)"""
-        console.print("[bold]🔍 종합 분석 (5개 영역 통합: 기술적+펀더멘털+뉴스+수급+패턴)[/bold]")
+        console.print("[bold][SEARCH] 종합 분석 (5개 영역 통합: 기술적+펀더멘털+뉴스+수급+패턴)[/bold]")
         console.print("[dim]ℹ️ 이 분석은 실시간 확인용으로 데이터베이스에 저장되지 않습니다.[/dim]")
         
         if not await self.system.initialize_components():
-            console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
+            console.print("[red][ERROR] 컴포넌트 초기화 실패[/red]")
             return False
         
         try:
@@ -231,13 +231,13 @@ class AnalysisHandlers:
             if stocks is None: # 설정 오류
                 return False
             if not stocks: # 검색 결과 없음
-                console.print("[red]❌ 분석할 종목이 없습니다.[/red]")
+                console.print("[red][ERROR] 분석할 종목이 없습니다.[/red]")
                 return False
             
             console.print(f"[green]✅ {len(stocks)}개 종목 조회 완료[/green]")
             
             # 4. 각 종목에 대해 5개 영역 분석 수행
-            self.logger.info(f"🔍 {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 → 전체 2차 필터링 시작")
+            self.logger.info(f"[SEARCH] {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 -> 전체 2차 필터링 시작")
             analysis_results = []
             
             with Progress() as progress:
@@ -261,7 +261,7 @@ class AnalysisHandlers:
                         await asyncio.sleep(0.2)
                         
                     except Exception as e:
-                        self.logger.error(f"❌ {symbol} 분석 실패: {e}")
+                        self.logger.error(f"[ERROR] {symbol} 분석 실패: {e}")
                         continue
                     
                     progress.update(task, advance=1)
@@ -281,17 +281,17 @@ class AnalysisHandlers:
             return True
             
         except Exception as e:
-            self.logger.error(f"❌ 종합 분석 실패: {e}")
-            console.print(f"[red]❌ 종합 분석 실패: {e}[/red]")
+            self.logger.error(f"[ERROR] 종합 분석 실패: {e}")
+            console.print(f"[red][ERROR] 종합 분석 실패: {e}[/red]")
             return False
     
     async def comprehensive_analysis_with_strategy(self, selected_strategy: str) -> bool:
         """전략이 이미 선택된 종합 분석 (전략 재선택 없음)"""
-        console.print("[bold]🔍 종합 분석 (5개 영역 통합: 기술적+펀더멘털+뉴스+수급+패턴)[/bold]")
+        console.print("[bold][SEARCH] 종합 분석 (5개 영역 통합: 기술적+펀더멘털+뉴스+수급+패턴)[/bold]")
         console.print("[dim]ℹ️ 이 분석은 실시간 확인용으로 데이터베이스에 저장되지 않습니다.[/dim]")
         
         if not await self.system.initialize_components():
-            console.print("[red]❌ 컴포넌트 초기화 실패[/red]")
+            console.print("[red][ERROR] 컴포넌트 초기화 실패[/red]")
             return False
         
         try:
@@ -304,13 +304,13 @@ class AnalysisHandlers:
             if stocks is None: # 설정 오류
                 return False
             if not stocks: # 검색 결과 없음
-                console.print("[red]❌ 분석할 종목이 없습니다.[/red]")
+                console.print("[red][ERROR] 분석할 종목이 없습니다.[/red]")
                 return False
             
             console.print(f"[green]✅ {len(stocks)}개 종목 조회 완료 - 전체 2차 필터링 진행[/green]")
             
             # 각 종목에 대해 5개 영역 분석 수행
-            self.logger.info(f"🔍 {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 → 전체 2차 필터링 시작")
+            self.logger.info(f"[SEARCH] {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 -> 전체 2차 필터링 시작")
             analysis_results = []
             
             with Progress() as progress:
@@ -334,7 +334,7 @@ class AnalysisHandlers:
                         await asyncio.sleep(0.1)  # 더 짧은 간격으로 수정
                         
                     except Exception as e:
-                        self.logger.error(f"❌ {symbol} 분석 실패: {e}")
+                        self.logger.error(f"[ERROR] {symbol} 분석 실패: {e}")
                         continue
                     
                     progress.update(task, advance=1)
@@ -383,8 +383,8 @@ class AnalysisHandlers:
             return True
             
         except Exception as e:
-            self.logger.error(f"❌ 종합 분석 실패: {e}")
-            console.print(f"[red]❌ 종합 분석 실패: {e}[/red]")
+            self.logger.error(f"[ERROR] 종합 분석 실패: {e}")
+            console.print(f"[red][ERROR] 종합 분석 실패: {e}[/red]")
             return False
     
     async def _add_buy_recommendations_to_auto_trading(self, analysis_results: List[Dict]):
@@ -452,10 +452,10 @@ class AnalysisHandlers:
                         added_count += 1
                         console.print(f"[green]✅ {rec['symbol']}({rec['name']}) 모니터링 추가 성공[/green]")
                     else:
-                        console.print(f"[red]❌ {rec['symbol']}({rec['name']}) 모니터링 추가 실패[/red]")
+                        console.print(f"[red][ERROR] {rec['symbol']}({rec['name']}) 모니터링 추가 실패[/red]")
                         
                 except Exception as e:
-                    console.print(f"[red]❌ {rec['symbol']} 추가 중 오류: {e}[/red]")
+                    console.print(f"[red][ERROR] {rec['symbol']} 추가 중 오류: {e}[/red]")
                     continue
             
             console.print(f"\n[bold green]타겟 총 {added_count}개 종목이 자동매매 모니터링에 추가되었습니다[/bold green]")
@@ -480,8 +480,8 @@ class AnalysisHandlers:
             print(f"예외 타입: {type(e).__name__}")
             import traceback
             print(f"전체 스택 트레이스:\n{traceback.format_exc()}")
-            self.logger.error(f"❌ Buy 추천 종목 자동매매 추가 실패: {e}")
-            console.print(f"[red]❌ 자동매매 연동 실패: {e}[/red]")
+            self.logger.error(f"[ERROR] Buy 추천 종목 자동매매 추가 실패: {e}")
+            console.print(f"[red][ERROR] 자동매매 연동 실패: {e}[/red]")
             return 0
     
     async def _analyze_single_stock(self, symbol: str, name: str, strategy: str) -> Optional[Dict]:
@@ -524,7 +524,7 @@ class AnalysisHandlers:
             return analysis_result
             
         except Exception as e:
-            self.logger.error(f"❌ {symbol} 단일 분석 실패: {e}")
+            self.logger.error(f"[ERROR] {symbol} 단일 분석 실패: {e}")
             return None
     
     async def _get_stock_data_for_analysis(self, symbol: str, name: str, strategy: str) -> Optional[Dict]:
@@ -570,7 +570,7 @@ class AnalysisHandlers:
             return stock_data
             
         except Exception as e:
-            self.logger.error(f"❌ {symbol} 종목 데이터 수집 실패: {e}")
+            self.logger.error(f"[ERROR] {symbol} 종목 데이터 수집 실패: {e}")
             return None
     
     # analysis_handlers.py에 추가할 병렬 처리 최적화 코드
@@ -628,7 +628,7 @@ class AnalysisHandlers:
                         
                         return True
                     except Exception as e:
-                        self.logger.error(f"❌ {symbol} 뉴스 분석 실패: {e}")
+                        self.logger.error(f"[ERROR] {symbol} 뉴스 분석 실패: {e}")
                         return False
             
             # 배치 처리로 병렬 실행
@@ -655,7 +655,7 @@ class AnalysisHandlers:
                 return False
             
         except Exception as e:
-            console.print(f"[red]❌ 뉴스 분석 실패: {e}[/red]")
+            console.print(f"[red][ERROR] 뉴스 분석 실패: {e}[/red]")
             return False
     
     async def _analyze_news_for_stock(self, symbol: str, name: str) -> Optional[Dict]:
@@ -696,7 +696,7 @@ class AnalysisHandlers:
             return news_summary
             return None
         except Exception as e:
-            self.logger.error(f"❌ {symbol} 뉴스 분석 실패: {e}")
+            self.logger.error(f"[ERROR] {symbol} 뉴스 분석 실패: {e}")
             return None
 
     def _process_real_news_data(self, news_data: List[Dict], symbol: str, name: str) -> Dict:
@@ -767,7 +767,7 @@ class AnalysisHandlers:
             }
             
         except Exception as e:
-            self.logger.error(f"❌ 뉴스 데이터 처리 실패 {symbol}: {e}")
+            self.logger.error(f"[ERROR] 뉴스 데이터 처리 실패 {symbol}: {e}")
             return {
                 'symbol': symbol,
                 'name': name,
@@ -818,7 +818,7 @@ class AnalysisHandlers:
             )
             
             if not stocks:
-                console.print("[red]❌ 종목 조회 실패[/red]")
+                console.print("[red][ERROR] 종목 조회 실패[/red]")
                 return False
             
             supply_results = []
@@ -840,7 +840,7 @@ class AnalysisHandlers:
                         
                         await asyncio.sleep(0.15)
                     except Exception as e:
-                        self.logger.error(f"❌ {symbol} 수급 분석 실패: {e}")
+                        self.logger.error(f"[ERROR] {symbol} 수급 분석 실패: {e}")
                     
                     progress.update(task, advance=1)
             
@@ -853,7 +853,7 @@ class AnalysisHandlers:
                 return False
             
         except Exception as e:
-            console.print(f"[red]❌ 수급 분석 실패: {e}[/red]")
+            console.print(f"[red][ERROR] 수급 분석 실패: {e}[/red]")
             return False
     
     async def _analyze_supply_demand_for_stock(self, symbol: str, name: str) -> Optional[Dict]:
@@ -891,7 +891,7 @@ class AnalysisHandlers:
                 }
             return None
         except Exception as e:
-            self.logger.error(f"❌ {symbol} 수급 분석 실패: {e}")
+            self.logger.error(f"[ERROR] {symbol} 수급 분석 실패: {e}")
             return None
     
     async def _basic_supply_demand_analysis(self, symbol: str, stock_data) -> Dict:
@@ -939,7 +939,7 @@ class AnalysisHandlers:
             )
             
             if not stocks:
-                console.print("[red]❌ 종목 조회 실패[/red]")
+                console.print("[red][ERROR] 종목 조회 실패[/red]")
                 return False
             
             pattern_results = []
@@ -961,7 +961,7 @@ class AnalysisHandlers:
                         
                         await asyncio.sleep(0.15)
                     except Exception as e:
-                        self.logger.error(f"❌ {symbol} 패턴 분석 실패: {e}")
+                        self.logger.error(f"[ERROR] {symbol} 패턴 분석 실패: {e}")
                     
                     progress.update(task, advance=1)
             
@@ -974,7 +974,7 @@ class AnalysisHandlers:
                 return False
             
         except Exception as e:
-            console.print(f"[red]❌ 차트패턴 분석 실패: {e}[/red]")
+            console.print(f"[red][ERROR] 차트패턴 분석 실패: {e}[/red]")
             return False
     
     async def _analyze_chart_pattern_for_stock(self, symbol: str, name: str) -> Optional[Dict]:
@@ -1020,7 +1020,7 @@ class AnalysisHandlers:
                 return await self._basic_chart_pattern_analysis(symbol, stock_info)
             return None
         except Exception as e:
-            self.logger.error(f"❌ {symbol} 차트패턴 분석 실패: {e}")
+            self.logger.error(f"[ERROR] {symbol} 차트패턴 분석 실패: {e}")
             return None
 
     async def _advanced_chart_pattern_analysis(self, symbol: str, stock_data, ohlcv_data: list) -> Dict:
@@ -1106,7 +1106,7 @@ class AnalysisHandlers:
             }
             
         except Exception as e:
-            self.logger.error(f"❌ {symbol} 고급 패턴 분석 실패: {e}")
+            self.logger.error(f"[ERROR] {symbol} 고급 패턴 분석 실패: {e}")
             return await self._basic_chart_pattern_analysis(symbol, stock_data)
     
     async def _basic_chart_pattern_analysis(self, symbol: str, stock_data) -> Dict:
@@ -1210,7 +1210,8 @@ class AnalysisHandlers:
     async def run_analysis_for_strategy(self, strategy_name: str, limit: int = 20) -> List[Dict]:
         """특정 전략으로 분석 실행"""
         try:
-            self.logger.info(f"전략별 분석 시작: {strategy_name}")
+            from utils.encoding_fix import safe_format
+            self.logger.info(safe_format(f"전략별 분석 시작: {strategy_name}"))
             
             # "all" 전략인 경우 8개 전략 순차 실행
             if strategy_name == "all":
@@ -1219,10 +1220,10 @@ class AnalysisHandlers:
             # 전략에 맞는 종목 조회
             stocks = await self._safe_get_stocks(strategy_name, limit=999)  # HTS 추출 전체 종목
             if not stocks:
-                self.logger.warning(f"{strategy_name} 전략으로 조회된 종목 없음")
+                self.logger.warning(safe_format(f"{strategy_name} 전략으로 조회된 종목 없음"))
                 return []
             
-            self.logger.info(f"🔍 {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 → 전체 2차 필터링 시작")
+            self.logger.info(f"[SEARCH] {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 -> 전체 2차 필터링 시작")
             analysis_results = []
             
             # 각 종목에 대해 실제 분석 수행
@@ -1410,7 +1411,7 @@ class AnalysisHandlers:
                         self.logger.warning(f"⚠️ {strategy}: 추출된 종목 없음")
                         
                 except Exception as e:
-                    self.logger.error(f"❌ {strategy} 전략 실행 실패: {e}")
+                    self.logger.error(f"[ERROR] {strategy} 전략 실행 실패: {e}")
                     strategy_results[strategy] = 0
                     continue
             
@@ -1426,11 +1427,11 @@ class AnalysisHandlers:
                 self.logger.info(f"   {strategy}: {count}개")
             
             if not all_stocks:
-                self.logger.warning("❌ 모든 전략에서 종목 추출 실패")
+                self.logger.warning("[ERROR] 모든 전략에서 종목 추출 실패")
                 return []
             
             # 3. 통합 종목에 대해 2차 필터링 (7개 분석 영역) 수행
-            self.logger.info(f"🔍 {total_unique_stocks}개 통합 종목 → 전체 2차 필터링 시작")
+            self.logger.info(f"[SEARCH] {total_unique_stocks}개 통합 종목 -> 전체 2차 필터링 시작")
             
             analysis_results = []
             processed_count = 0

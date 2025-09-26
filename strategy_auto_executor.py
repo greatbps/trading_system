@@ -43,6 +43,8 @@ class StrategyAutoExecutor:
                     self.config = config
                     self.db_manager = db_manager
                     self.logger = logging.getLogger('MockTradingSystem')
+                    # data_collector 속성 추가
+                    self.data_collector = None
                     
             mock_system = MockTradingSystem(self.config, self.db_manager)
             self.analysis_handlers = AnalysisHandlers(mock_system)
