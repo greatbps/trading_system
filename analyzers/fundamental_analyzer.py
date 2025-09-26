@@ -174,7 +174,8 @@ class FundamentalAnalyzer:
             
         except Exception as e:
             self.logger.error(f"❌ 재무 지표 분석 실패: {e}")
-            return self._get_default_analysis(financial_data.get('symbol', 'UNKNOWN'))
+            symbol = safe_get_data(financial_data, 'symbol', 'UNKNOWN')
+            return self._get_default_analysis(symbol)
     
     def _get_default_analysis(self, symbol: str) -> Dict[str, Any]:
         """기본 분석 결과 반환 (데이터 없을 때)"""

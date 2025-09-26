@@ -68,6 +68,15 @@ class MarketRegimeDetector:
         self.config = config
         self.logger = get_logger("MarketRegimeDetector")
         self.gemini_analyzer = GeminiAnalyzer(config)
+
+    def _safe_get(self, data, key, default=None):
+        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+        if hasattr(data, key):
+            return getattr(data, key, default)
+        elif isinstance(data, dict):
+            return data.get(key, default)
+        else:
+            return default
         
         # 체제 분류 임계값
         self.regime_thresholds = {
@@ -440,7 +449,7 @@ class MarketRegimeDetector:
             if not individual_stocks:
                 return {'breadth_score': 50, 'advancing_ratio': 0.5}
             
-            advancing_stocks = len([s for s in individual_stocks if s.get('change_rate', 0) > 0])
+            advancing_stocks = len([s for s in individual_stocks if self._safe_get(s, 'change_rate', 0) > 0])
             total_stocks = len(individual_stocks)
             
             advancing_ratio = advancing_stocks / total_stocks if total_stocks > 0 else 0.5

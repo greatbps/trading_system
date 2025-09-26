@@ -3,14 +3,14 @@
   "component_restarts": {},
   "last_system_restart": null,
   "system_health": {
-    "cpu_usage": 1.0,
-    "memory_usage": 63.9,
+    "cpu_usage": 6.4,
+    "memory_usage": 73.7,
     "disk_usage": 43.5,
     "error_rate": 0.0,
     "response_time": 0,
     "active_errors": 0,
     "total_errors_1h": 0,
     "system_load": 0.0,
-    "health_score": 105.1
+    "health_score": 89.89999999999999
   }
 }

@@ -31,11 +31,21 @@ class RsiStrategy(BaseStrategy):
         self.trend_confirmation_days = 5  # 추세 확인 기간
         
         self.logger.info("✅ RSI 전략 초기화 완료")
-    
+
+    def _safe_get(self, data, key, default=None):
+        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+        if hasattr(data, key):
+            return getattr(data, key, default)
+        elif isinstance(data, dict):
+            return data.get(key, default)
+        else:
+            return default
+
     async def generate_signals(self, stock_data: Dict[str, Any]) -> Dict[str, Any]:
         """RSI 기반 신호 생성"""
         try:
-            symbol = stock_data.get('symbol', 'Unknown')
+            # StockData 객체 또는 dict에서 안전하게 symbol을 가져옴
+            symbol = self._safe_get(stock_data, 'symbol', 'Unknown')
             
             # 1. 기본 데이터 검증
             if not self._validate_basic_data(stock_data):
@@ -68,19 +78,19 @@ class RsiStrategy(BaseStrategy):
         """실제 RSI 계산 및 분석"""
         try:
             # 실제 RSI 값이 있는지 확인 (기술적 지표 엔진에서 계산된 값)
-            technical_data = stock_data.get('technical_indicators', {})
-            actual_rsi = technical_data.get('rsi', None)
-            
+            technical_data = self._safe_get(stock_data, 'technical_indicators', {})
+            actual_rsi = technical_data.get('rsi', None) if isinstance(technical_data, dict) else None
+
             if actual_rsi is not None:
                 # 실제 계산된 RSI 사용
                 estimated_rsi = actual_rsi
                 self.logger.debug(f"✅ 실제 RSI 값 사용: {estimated_rsi:.1f}")
             else:
                 # 폴백: 기존 추정 방식 사용
-                change_rate = stock_data.get('change_rate', 0)
-                current_price = stock_data.get('current_price', 0)
-                high_52w = stock_data.get('high_52w', current_price)
-                low_52w = stock_data.get('low_52w', current_price)
+                change_rate = self._safe_get(stock_data, 'change_rate', 0)
+                current_price = self._safe_get(stock_data, 'current_price', 0)
+                high_52w = self._safe_get(stock_data, 'high_52w', current_price)
+                low_52w = self._safe_get(stock_data, 'low_52w', current_price)
                 
                 # 52주 고저점 기준 RSI 근사치 계산
                 if high_52w > low_52w:
@@ -204,8 +214,8 @@ class RsiStrategy(BaseStrategy):
     async def _analyze_volume_confirmation(self, stock_data: Dict[str, Any]) -> Dict[str, Any]:
         """거래량 확인"""
         try:
-            current_volume = stock_data.get('volume', 0)
-            avg_volume = stock_data.get('avg_volume_30d', current_volume)
+            current_volume = self._safe_get(stock_data, 'volume', 0)
+            avg_volume = self._safe_get(stock_data, 'avg_volume_30d', current_volume)
             
             volume_ratio = current_volume / avg_volume if avg_volume > 0 else 1.0
             

@@ -82,13 +82,22 @@ class AIController:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("AIController")
-        
+
         # AI 모듈들 초기화
         self.predictor = AIPredictor(config)
         self.risk_manager = AIRiskManager(config)
         self.regime_detector = MarketRegimeDetector(config)
         self.strategy_optimizer = StrategyOptimizer(config)
         self.advanced_features = AdvancedAIFeatures(config)
+
+    def _safe_get(self, data, key, default=None):
+        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+        if hasattr(data, key):
+            return getattr(data, key, default)
+        elif isinstance(data, dict):
+            return data.get(key, default)
+        else:
+            return default
         
         # AI 시스템 설정
         self.ai_config = {
@@ -129,7 +138,7 @@ class AIController:
             # 2. 개별 종목 예측 분석
             stock_predictions = {}
             for stock in individual_stocks:  # 전체 종목 분석
-                symbol = stock.get('symbol', '')
+                symbol = self._safe_get(stock, 'symbol', '')
                 if symbol:
                     prediction = await self.predictor.predict_market_trend(
                         symbol, stock, market_data
@@ -290,7 +299,7 @@ class AIController:
             optimized_decisions = []
             
             for opportunity in trade_opportunities:
-                symbol = opportunity.get('symbol', '')
+                symbol = self._safe_get(opportunity, 'symbol', '')
                 if not symbol:
                     continue
                 
@@ -775,7 +784,7 @@ class AIController:
         if len(data) < 2:
             return 0.0
         
-        prices = [float(d.get('price', 0)) for d in data[-20:] if d.get('price')]
+        prices = [float(self._safe_get(d, 'price', 0)) for d in data[-20:] if self._safe_get(d, 'price')]
         if len(prices) < 2:
             return 0.0
         
@@ -788,7 +797,7 @@ class AIController:
             return 'NEUTRAL'
         
         recent_data = data[-10:]
-        up_days = sum(1 for d in recent_data if float(d.get('price', 0)) > float(d.get('prev_price', 0)))
+        up_days = sum(1 for d in recent_data if float(self._safe_get(d, 'price', 0)) > float(self._safe_get(d, 'prev_price', 0)))
         
         if up_days >= 7:
             return 'BULLISH'

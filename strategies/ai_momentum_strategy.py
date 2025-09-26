@@ -65,7 +65,13 @@ class AIMomentumStrategy(BaseStrategy):
     
     async def generate_signals(self, stock_data: Any, analysis_result: Dict) -> Dict[str, Any]:
         """매매 신호 생성 (추상 메서드 구현) - BaseStrategy의 generate_signals를 구현"""
-        symbol = stock_data.get('symbol')
+        # StockData 객체 또는 dict에서 안전하게 symbol을 가져옴
+        if hasattr(stock_data, 'symbol'):
+            symbol = stock_data.symbol
+        elif isinstance(stock_data, dict):
+            symbol = stock_data.get('symbol')
+        else:
+            symbol = None
         if not symbol:
             self.logger.error("Symbol not found in stock_data for generate_signals.")
             return {"signal_type": SignalType.HOLD.value, "confidence": 0.0, "metadata": {"error": "Symbol missing"}}

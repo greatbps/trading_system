@@ -235,9 +235,10 @@ class TradingSystem:
         self.non_interactive = non_interactive  # EOF 에러 방지
         self.is_running = False
         self.last_analysis_time = None
-        
+
+
         self.logger = create_logger("TradingSystem")
-        
+
         # 성능 모니터링 시스템 초기화
         self.performance_monitor = None
         if PerformanceMonitor:
@@ -246,7 +247,7 @@ class TradingSystem:
                 self.logger.info("✅ 성능 모니터링 시스템 활성화")
             except Exception as e:
                 self.logger.warning(f"⚠️ 성능 모니터링 초기화 실패: {e}")
-        
+
         # 비동기 처리 시스템 초기화
         self.async_engine = None
         self.task_scheduler = None
@@ -257,7 +258,7 @@ class TradingSystem:
                 self.logger.info("✅ 비동기 처리 시스템 활성화")
             except Exception as e:
                 self.logger.warning(f"⚠️ 비동기 처리 시스템 초기화 실패: {e}")
-        
+
         # 에러 복구 시스템 초기화
         self.error_recovery = None
         if ErrorRecoverySystem:
@@ -266,7 +267,7 @@ class TradingSystem:
                 self.logger.info("✅ 에러 복구 시스템 활성화")
             except Exception as e:
                 self.logger.warning(f"⚠️ 에러 복구 시스템 초기화 실패: {e}")
-        
+
         # 컴포넌트들
         self.config = None
         self.data_collector = None
@@ -280,8 +281,17 @@ class TradingSystem:
         self.db_manager = None
         self.menu_handlers = None
         self.auto_trading_handler = None
-        
+
         # 데이터베이스 연결이 안정적이므로 메모리 캐시 불필요
+
+    def _safe_get(self, data, key, default=None):
+        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+        if hasattr(data, key):
+            return getattr(data, key, default)
+        elif isinstance(data, dict):
+            return data.get(key, default)
+        else:
+            return default
     
     async def initialize_components(self):
         """컴포넌트 초기화"""
@@ -1201,11 +1211,11 @@ class TradingSystem:
             final_name = name
             
             # 1. 전달받은 name이 문제가 있으면 stock_data에서 가져오기
-            if (not final_name or 
-                final_name.isdigit() or 
-                final_name.startswith('종목') or 
+            if (not final_name or
+                final_name.isdigit() or
+                final_name.startswith('종목') or
                 len(final_name) <= 2):
-                final_name = stock_data.get('name', '')
+                final_name = self._safe_get(stock_data, 'name', '')
             
             # 2. stock_data의 name도 문제가 있으면 pykrx 시도
             if (not final_name or 

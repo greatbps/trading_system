@@ -61,9 +61,22 @@ class GeminiAnalyzer:
         if api_key:
             try:
                 genai.configure(api_key=api_key)
-                self.model = genai.GenerativeModel('gemini-1.5-flash')
-                self.api_available = True
-                self.logger.info("✅ Gemini API 클라이언트 초기화 완료")
+                # 사용 가능한 모델들을 순서대로 시도
+                models_to_try = ['gemini-1.5-pro', 'gemini-1.5-flash', 'gemini-pro']
+
+                for model_name in models_to_try:
+                    try:
+                        self.model = genai.GenerativeModel(model_name)
+                        self.api_available = True
+                        self.logger.info(f"✅ Gemini API 클라이언트 초기화 완료 (모델: {model_name})")
+                        break
+                    except Exception as model_error:
+                        self.logger.warning(f"⚠️ {model_name} 모델 초기화 실패: {model_error}")
+                        continue
+
+                if not self.api_available:
+                    self.logger.error("❌ 모든 Gemini 모델 초기화 실패")
+
             except Exception as e:
                 self.logger.error(f"❌ Gemini API 클라이언트 초기화 실패: {e}")
                 self.api_available = False
@@ -105,13 +118,25 @@ class GeminiAnalyzer:
 
         except Exception as e:
             error_msg = str(e).lower()
+
+            # API 키 관련 에러 감지 및 처리
+            if any(keyword in error_msg for keyword in ['api_key_invalid', 'expired', 'api key', 'invalid']):
+                self.logger.error(f"❌ Gemini API 키 문제 감지: {e}")
+                self.logger.error("🔑 Google API 키를 확인하거나 갱신해주세요.")
+                self.api_available = False  # API 사용 불가능으로 표시
+
             # 할당량 관련 에러 감지 및 더 구체적인 메시지 추가
-            if any(keyword in error_msg for keyword in ['quota', 'limit', 'exceeded', 'rate', 'usage', '429', 'billing']):
+            elif any(keyword in error_msg for keyword in ['quota', 'limit', 'exceeded', 'rate', 'usage', '429', 'billing']):
                 self.logger.warning(f"⚠️ Gemini API 할당량 소진 감지: {e}")
                 self.quota_exhausted = True
                 self.last_quota_check = current_time
                 # 할당량 소진 시 즉시 대안 사용 안내
                 self.logger.info("💡 Gemini 분석 대신 GPT 또는 기본 분석을 사용합니다")
+
+            # 모델 접근 권한 문제
+            elif any(keyword in error_msg for keyword in ['not found', '404', 'access', 'permission']):
+                self.logger.error(f"❌ Gemini 모델 접근 권한 문제: {e}")
+                self.logger.info("💡 다른 Gemini 모델 또는 대안 분석을 사용합니다")
 
             self.logger.error(f"❌ Gemini API 호출 실패: {e}")
             raise
