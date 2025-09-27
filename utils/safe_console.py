@@ -47,6 +47,52 @@ class SafeConsole:
             except:
                 print("[Encoding Error] Unable to display message")
     
+    def ask_with_timeout(self, prompt: str, default: str = "", timeout: int = 30) -> str:
+        """타임아웃이 있는 사용자 입력"""
+        import signal
+        import threading
+        import time
+
+        result = [default]  # 결과를 저장할 리스트
+
+        def timeout_handler():
+            time.sleep(timeout)
+            if not result[0] or result[0] == default:
+                print(f"\n[Timeout after {timeout}s] Using default: {default}")
+
+        def input_handler():
+            try:
+                if hasattr(self, 'console'):
+                    user_input = Prompt.ask(prompt, default=default)
+                else:
+                    user_input = input(f"{prompt} [{default}]: ") or default
+                result[0] = user_input
+            except (KeyboardInterrupt, EOFError):
+                result[0] = default
+            except Exception:
+                result[0] = default
+
+        # 입력 스레드 시작
+        input_thread = threading.Thread(target=input_handler)
+        input_thread.daemon = True
+        input_thread.start()
+
+        # 타임아웃 스레드 시작
+        timeout_thread = threading.Thread(target=timeout_handler)
+        timeout_thread.daemon = True
+        timeout_thread.start()
+
+        # 입력 대기 (최대 timeout초)
+        input_thread.join(timeout)
+
+        return result[0]
+
+    def confirm_with_timeout(self, prompt: str, default: bool = False, timeout: int = 30) -> bool:
+        """타임아웃이 있는 확인 입력"""
+        default_str = "y" if default else "n"
+        response = self.ask_with_timeout(f"{prompt} [y/n]", default_str, timeout)
+        return response.lower() in ['y', 'yes', 'true', '1']
+
     def print_panel(self, content: str, title: str = "", style: str = "cyan"):
         """안전한 패널 출력"""
         try:
@@ -134,6 +180,14 @@ def safe_print_table(table_data: list, headers: list, title: str = ""):
 def safe_ask(question: str, default: str = "") -> str:
     """전역 안전 입력 함수"""
     return safe_console.ask(question, default)
+
+def safe_ask_with_timeout(question: str, default: str = "", timeout: int = 30) -> str:
+    """전역 타임아웃 입력 함수"""
+    return safe_console.ask_with_timeout(question, default, timeout)
+
+def safe_confirm_with_timeout(question: str, default: bool = False, timeout: int = 30) -> bool:
+    """전역 타임아웃 확인 함수"""
+    return safe_console.confirm_with_timeout(question, default, timeout)
 
 if __name__ == "__main__":
     # 테스트

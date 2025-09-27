@@ -26,7 +26,7 @@ from rich import print as rprint
 
 # 안전한 콘솔 출력 (UTF-8 인코딩 문제 해결)
 try:
-    from utils.safe_console import SafeConsole, safe_print, safe_ask
+    from utils.safe_console import SafeConsole, safe_print, safe_ask, safe_ask_with_timeout, safe_confirm_with_timeout
     console = SafeConsole()
     use_safe_console = True
 except ImportError:
@@ -106,10 +106,10 @@ class MenuHandlers:
         console.print(Panel.fit(menu, title="📋 메인 메뉴", border_style="cyan"))
 
     def get_user_choice(self) -> str:
-        """사용자 입력"""
+        """사용자 입력 (타임아웃 10초)"""
         try:
             if use_safe_console:
-                return safe_ask("메뉴 선택", "0")
+                return safe_ask_with_timeout("메뉴 선택", "0", timeout=10)
             else:
                 return Prompt.ask("[bold yellow]메뉴 선택[/bold yellow]", default="0").strip()
         except (KeyboardInterrupt, EOFError):
@@ -187,7 +187,13 @@ class MenuHandlers:
         console.print(Panel("[bold cyan]설정 관리[/bold cyan]", border_style="cyan"))
         try:
             await self._display_current_config()
-            change_config = Confirm.ask("\n설정을 변경하시겠습니까?")
+            try:
+                if use_safe_console:
+                    change_config = safe_confirm_with_timeout("\n설정을 변경하시겠습니까?", default=False, timeout=10)
+                else:
+                    change_config = Confirm.ask("\n설정을 변경하시겠습니까?", default=False)
+            except (EOFError, KeyboardInterrupt):
+                change_config = False
             if change_config:
                 await self._modify_config()
             return True

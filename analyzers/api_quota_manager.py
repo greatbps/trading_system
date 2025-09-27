@@ -15,7 +15,13 @@ from typing import Dict, Any, Optional
 from dataclasses import dataclass
 from enum import Enum
 
-import openai
+try:
+    import openai
+    OPENAI_AVAILABLE = True
+except ImportError:
+    OPENAI_AVAILABLE = False
+    openai = None
+
 from utils.logger import get_logger
 
 
@@ -53,6 +59,13 @@ class APIQuotaManager:
         self.check_interval = 300  # 5분
 
         # OpenAI 클라이언트 초기화
+        self.client = None
+        self.api_available = False
+
+        if not OPENAI_AVAILABLE:
+            self.logger.warning("⚠️ OpenAI 모듈이 설치되지 않음")
+            return
+
         from dotenv import load_dotenv
         load_dotenv(override=True)
 
@@ -102,26 +115,28 @@ class APIQuotaManager:
             self.logger.info("✅ OpenAI API 쿼터 상태 정상")
             return quota_info
 
-        except openai.RateLimitError as e:
-            quota_info = QuotaInfo(
-                status=QuotaStatus.EXCEEDED,
-                error_message=str(e)
-            )
-            self.quota_cache['openai'] = quota_info
-            self.last_check = datetime.now()
+        except Exception as rate_limit_e:
+            # OpenAI RateLimitError 체크 (openai 모듈이 있는 경우에만)
+            if OPENAI_AVAILABLE and hasattr(openai, 'RateLimitError') and isinstance(rate_limit_e, openai.RateLimitError):
+                quota_info = QuotaInfo(
+                    status=QuotaStatus.EXCEEDED,
+                    error_message=str(rate_limit_e)
+                )
+                self.quota_cache['openai'] = quota_info
+                self.last_check = datetime.now()
 
-            self.logger.error(f"❌ OpenAI API 쿼터 초과: {e}")
-            return quota_info
+                self.logger.error(f"❌ OpenAI API 쿼터 초과: {rate_limit_e}")
+                return quota_info
 
-        except Exception as e:
+            # 일반적인 예외로 처리
             quota_info = QuotaInfo(
                 status=QuotaStatus.UNKNOWN,
-                error_message=str(e)
+                error_message=str(rate_limit_e)
             )
             self.quota_cache['openai'] = quota_info
             self.last_check = datetime.now()
 
-            self.logger.error(f"❌ OpenAI API 쿼터 확인 실패: {e}")
+            self.logger.error(f"❌ OpenAI API 호출 실패: {rate_limit_e}")
             return quota_info
 
     async def should_use_fallback(self, api_name: str = "openai") -> bool:

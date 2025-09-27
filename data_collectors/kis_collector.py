@@ -2681,6 +2681,137 @@ class KISCollector:
             self.logger.error(f"KOSPI 200 종목 조회 실패: {e}")
             return None
 
+    async def search_stocks(self, query: str, limit: int = 10) -> List[Dict[str, Any]]:
+        """종목 검색"""
+        try:
+            # 빈 쿼리인 경우 인기 종목 반환
+            if not query or query.strip() == "":
+                popular_stocks = await self._get_popular_stocks(limit)
+                return popular_stocks
+
+            # 종목 코드로 직접 검색하는 경우
+            if query.isdigit() and len(query) == 6:
+                stock_info = await self.get_stock_info(query)
+                if stock_info:
+                    return [{
+                        'symbol': query,
+                        'name': stock_info.name,
+                        'current_price': stock_info.current_price,
+                        'change_rate': stock_info.change_rate
+                    }]
+                return []
+
+            # 키워드로 검색 (임시로 인기 종목 반환)
+            popular_stocks = await self._get_popular_stocks(limit)
+            # 쿼리와 부분 매칭되는 종목 필터링
+            filtered_stocks = []
+            for stock in popular_stocks:
+                if query.lower() in stock.get('name', '').lower():
+                    filtered_stocks.append(stock)
+                    if len(filtered_stocks) >= limit:
+                        break
+
+            # 매칭되는 것이 없으면 인기 종목 반환
+            if not filtered_stocks:
+                return popular_stocks[:limit]
+
+            return filtered_stocks
+
+        except Exception as e:
+            self.logger.error(f"종목 검색 실패: {e}")
+            # 실패 시 기본 종목들 반환
+            return await self._get_default_stocks(limit)
+
+    async def _get_popular_stocks(self, limit: int = 10) -> List[Dict[str, Any]]:
+        """인기 종목 조회"""
+        try:
+            # 거래량 상위 종목 조회
+            headers = await self._get_auth_headers()
+            if not headers:
+                return await self._get_default_stocks(limit)
+
+            url = f"{self.base_url}/uapi/domestic-stock/v1/ranking/volume"
+            params = {
+                "FID_COND_MRKT_DIV_CODE": "J",
+                "FID_COND_SCR_DIV_CODE": "20171",
+                "FID_INPUT_ISCD": "0000",
+                "FID_DIV_CLS_CODE": "0",
+                "FID_BLNG_CLS_CODE": "0",
+                "FID_TRGT_CLS_CODE": "111111111",
+                "FID_TRGT_EXLS_CLS_CODE": "000000",
+                "FID_INPUT_PRICE_1": "",
+                "FID_INPUT_PRICE_2": "",
+                "FID_VOL_CNT": "",
+                "FID_INPUT_DATE_1": ""
+            }
+
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url, headers=headers, params=params) as response:
+                    if response.status == 200:
+                        data = await response.json()
+                        if data.get('rt_cd') == '0':
+                            stocks = []
+                            for item in data.get('output', [])[:limit]:
+                                symbol = item.get('mksc_shrn_iscd', '').strip()
+                                name = item.get('hts_kor_isnm', '').strip()
+                                price = int(item.get('stck_prpr', 0)) if item.get('stck_prpr') else 0
+                                change_rate = float(item.get('prdy_ctrt', 0)) if item.get('prdy_ctrt') else 0.0
+
+                                if symbol and name:
+                                    stocks.append({
+                                        'symbol': symbol,
+                                        'name': name,
+                                        'current_price': price,
+                                        'change_rate': change_rate
+                                    })
+
+                            if stocks:
+                                return stocks
+
+            return await self._get_default_stocks(limit)
+
+        except Exception as e:
+            self.logger.error(f"인기 종목 조회 실패: {e}")
+            return await self._get_default_stocks(limit)
+
+    async def _get_default_stocks(self, limit: int = 10) -> List[Dict[str, Any]]:
+        """기본 종목 리스트"""
+        default_symbols = ["005930", "000660", "035420", "005490", "068270",
+                          "207940", "005380", "051910", "035720", "006400"]
+
+        stocks = []
+        for symbol in default_symbols[:limit]:
+            try:
+                stock_info = await self.get_stock_info(symbol)
+                if stock_info:
+                    stocks.append({
+                        'symbol': symbol,
+                        'name': stock_info.name,
+                        'current_price': stock_info.current_price,
+                        'change_rate': stock_info.change_rate
+                    })
+            except:
+                continue
+
+        # 정보를 가져올 수 없는 경우 최소한의 정보로 반환
+        if not stocks:
+            stock_names = {
+                "005930": "삼성전자",
+                "000660": "SK하이닉스",
+                "035420": "NAVER",
+                "005490": "POSCO홀딩스",
+                "068270": "셀트리온"
+            }
+            for symbol in list(stock_names.keys())[:limit]:
+                stocks.append({
+                    'symbol': symbol,
+                    'name': stock_names[symbol],
+                    'current_price': 0,
+                    'change_rate': 0.0
+                })
+
+        return stocks
+
     async def cleanup(self):
         """리소스 정리"""
         await self.close()

@@ -619,7 +619,11 @@ class TradingSystem:
             return True
             
         except Exception as e:
+            import traceback
+            error_details = traceback.format_exc()
             self.logger.error(f"❌ 컴포넌트 초기화 실패: {e}")
+            self.logger.error(f"상세 오류: {error_details}")
+            print(f"DETAILED_COMPONENT_INIT_ERROR: {error_details}")
             return False
     
     async def _auto_start_trading_system(self):
@@ -1610,7 +1614,7 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
         if choice == "1":
             return await self._run_system_test()
         elif choice == "4":
-            results = await self.run_market_analysis()
+            results = await self.run_market_analysis(strategy="momentum")
             await self._display_analysis_results(results)
             return len(results) > 0
         elif choice == "5":
@@ -1625,7 +1629,7 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
     
     async def _run_system_test(self) -> bool:
         """시스템 테스트"""
-        console.print("[yellow]🔧 시스템 테스트 중...[/yellow]")
+        console.print("[yellow]시스템 테스트 중...[/yellow]")
         
         try:
             if not await self.initialize_components():

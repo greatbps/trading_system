@@ -62,7 +62,7 @@ class GeminiAnalyzer:
             try:
                 genai.configure(api_key=api_key)
                 # 사용 가능한 모델들을 순서대로 시도
-                models_to_try = ['gemini-1.5-pro', 'gemini-1.5-flash', 'gemini-pro']
+                models_to_try = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro', 'models/gemini-1.5-flash', 'models/gemini-1.5-pro']
 
                 for model_name in models_to_try:
                     try:
