@@ -1,0 +1,40 @@
+==============================================================
+                   AI Trading System v4.0
+                   Phase 4: Advanced AI Features
+
+ * 5개 영역 통합 분석: 기술적 + 펀더멘털 + 뉴스 + 수급 + 패턴
+ * AI 고급 기능: 예측 + 리스크 관리 + 체제 감지 + 전략 최적화
+ * KIS HTS 조건검색 연동 + 실시간 정밀 매매
+ * PostgreSQL 기반 데이터 관리 + 안정성 강화
+
+==============================================================
+
+시작 시간: 2025-09-30 08:10:06
+작업 디렉토리: D:\trading_system
+
+시스템 초기화 중...
+[PASS] Config 임포트 성공
+[PASS] Logger 임포트 성공
+08:10:06 | Main         | INFO     | 설정 초기화 완료
+[ERROR] 치명적 오류: Console.__init__() got an unexpected keyword argument 'encoding'
+Traceback (most recent call last):
+  File "D:\trading_system\core\trading_system.py", line 53, in <module>
+    console = Console(
+        force_terminal=True,
+    ...<3 lines>...
+        encoding='utf-8'
+    )
+TypeError: Console.__init__() got an unexpected keyword argument 'encoding'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\trading_system\main.py", line 137, in main
+    from core.trading_system import TradingSystem
+  File "D:\trading_system\core\trading_system.py", line 62, in <module>
+    console = Console(
+        legacy_windows=True,
+    ...<2 lines>...
+        encoding='cp949'
+    )
+TypeError: Console.__init__() got an unexpected keyword argument 'encoding'

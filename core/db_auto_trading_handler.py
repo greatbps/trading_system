@@ -59,6 +59,10 @@ class DatabaseAutoTradingHandler:
         self.auto_mode_controller = AutoModeController(config, self.market_manager)
         self.monitoring_task = None
         self.removal_scheduler_task = None
+
+        # 자동 손절 시스템 통합
+        from .auto_stop_loss_system import AutoStopLossSystem
+        self.auto_stop_loss = AutoStopLossSystem(config, self)
         
         # 설정 파일 경로
         self.settings_file = Path("D:/trading_system/configs/trading_settings.json")
@@ -231,7 +235,7 @@ class DatabaseAutoTradingHandler:
         while True:
             try:
                 self._display_auto_trading_menu()
-                choice = Prompt.ask("\n🤖 선택하세요", choices=[str(i) for i in range(14)], default="0").strip()
+                choice = Prompt.ask("\n>> 선택하세요", choices=[str(i) for i in range(14)], default="0").strip()
                 
                 if choice == '0':
                     self.console.print("[green]✅ 자동매매 메뉴를 종료합니다.[/green]")
@@ -282,7 +286,7 @@ class DatabaseAutoTradingHandler:
     
     [bold red]0. 메인 메뉴로 돌아가기[/bold red]"""
         
-        self.console.print(Panel.fit(menu, title="🤖 자동매매 시스템", border_style="cyan"))
+        self.console.print(Panel.fit(menu, title="[AUTO] 자동매매 시스템", border_style="cyan"))
     
     # 주요 메서드 구현
     async def _start_monitoring(self):
@@ -668,7 +672,12 @@ class DatabaseAutoTradingHandler:
                             if current_price <= stop_loss_value:
                                 if hasattr(self, 'logger'):
                                     self.logger.warning(f"🚨 {symbol} 손절 조건 충족! 매도 신호 전송 중...")
+
+                                # 기존 손절 로직 실행
                                 await self._trigger_stop_loss_sell(symbol, current_price, stop_loss_value, profit_rate, holding)
+
+                                # 자동 손절 시스템을 통한 즉시 실행 (강화)
+                                await self._execute_immediate_stop_loss(symbol, current_price, holding)
                             else:
                                 if hasattr(self, 'logger') and profit_rate < -3:  # 손실이 클 때만 로그
                                     self.logger.debug(f"⏳ {symbol} 손절 대기중: 현재가({current_price:,}) > 손절가({stop_loss_value:,})")
@@ -681,6 +690,97 @@ class DatabaseAutoTradingHandler:
         except Exception as e:
             if hasattr(self, 'logger'):
                 self.logger.error(f"{symbol} 가격 업데이트 실패: {e}")
+
+    async def _execute_immediate_stop_loss(self, symbol: str, current_price: float, holding: dict):
+        """즉시 손절 실행 (강화된 자동매도)"""
+        try:
+            # 보유 수량 확인
+            quantity = self._extract_quantity_safely(holding)
+            if quantity <= 0:
+                if hasattr(self, 'logger'):
+                    self.logger.warning(f"⚠️ {symbol} 보유 수량이 0이므로 손절 실행하지 않음")
+                return False
+
+            if hasattr(self, 'logger'):
+                self.logger.error(f"🚨 {symbol} 즉시 손절 실행 시작 - 수량: {quantity}주, 현재가: {current_price:,}원")
+
+            # 거래 가능 시간 확인
+            if hasattr(self, 'market_manager') and self.market_manager:
+                await self.market_manager.update_market_status()
+                if not self.market_manager.is_trading_allowed_now():
+                    if hasattr(self, 'logger'):
+                        self.logger.warning(f"⚠️ 장시간 외로 {symbol} 손절 실행을 장 시작 시까지 연기")
+                    return False
+
+            # 시장가 매도 주문 실행
+            try:
+                if hasattr(self, 'executor') and self.executor:
+                    # 시장가 매도 주문
+                    sell_result = await self.executor.execute_sell_order(
+                        stock_code=symbol,
+                        quantity=quantity,
+                        order_type="MARKET",  # 시장가
+                        reason="자동손절"
+                    )
+
+                    if sell_result and sell_result.get('success'):
+                        order_id = sell_result.get('order_id', 'Unknown')
+                        if hasattr(self, 'logger'):
+                            self.logger.error(f"✅ {symbol} 손절 매도 주문 완료 - 주문번호: {order_id}")
+
+                        # 성공한 손절 실행 기록
+                        await self._record_stop_loss_execution(symbol, current_price, quantity, order_id, "SUCCESS")
+
+                        return True
+                    else:
+                        error_msg = sell_result.get('message', '알 수 없는 오류')
+                        if hasattr(self, 'logger'):
+                            self.logger.error(f"❌ {symbol} 손절 매도 주문 실패: {error_msg}")
+
+                        await self._record_stop_loss_execution(symbol, current_price, quantity, None, "FAILED", error_msg)
+                        return False
+
+                else:
+                    if hasattr(self, 'logger'):
+                        self.logger.error(f"❌ {symbol} 거래 실행기가 초기화되지 않아 손절 실행 불가")
+                    return False
+
+            except Exception as e:
+                if hasattr(self, 'logger'):
+                    self.logger.error(f"❌ {symbol} 손절 주문 실행 중 오류: {e}")
+                await self._record_stop_loss_execution(symbol, current_price, quantity, None, "ERROR", str(e))
+                return False
+
+        except Exception as e:
+            if hasattr(self, 'logger'):
+                self.logger.error(f"❌ {symbol} 즉시 손절 실행 실패: {e}")
+            return False
+
+    async def _record_stop_loss_execution(self, symbol: str, price: float, quantity: int, order_id: str, status: str, error_msg: str = None):
+        """손절 실행 기록"""
+        try:
+            record = {
+                "timestamp": datetime.now().isoformat(),
+                "symbol": symbol,
+                "price": price,
+                "quantity": quantity,
+                "order_id": order_id,
+                "status": status,
+                "error_message": error_msg
+            }
+
+            # 로그에 기록
+            if hasattr(self, 'logger'):
+                self.logger.info(f"📝 손절 실행 기록: {symbol} - {status}")
+
+            # 자동 손절 시스템에도 기록 (있다면)
+            if hasattr(self, 'auto_stop_loss') and self.auto_stop_loss:
+                # 자동 손절 시스템의 실행 기록에 추가할 수 있음
+                pass
+
+        except Exception as e:
+            if hasattr(self, 'logger'):
+                self.logger.error(f"❌ 손절 실행 기록 실패: {e}")
     
     async def _trigger_stop_loss_sell(self, symbol: str, current_price: float, stop_loss_price: float, profit_rate: float, holding: dict):
         """손절가 도달 시 자동 매도 신호 트리거"""
@@ -3857,6 +3957,64 @@ class DatabaseAutoTradingHandler:
         if hasattr(self, '_balance_cache'):
             self._balance_cache = None
             self.logger.debug("💾 보유 종목 캐시가 무효화되었습니다")
+
+    async def update_dynamic_settings(self) -> Dict[str, Any]:
+        """동적 설정 관리자와 연동하여 잔고 변화에 따른 설정 조정"""
+        try:
+            # 메인 시스템의 동적 설정 관리자 확인
+            if not (hasattr(self, 'auto_trader') and self.auto_trader and
+                    hasattr(self.auto_trader, 'dynamic_settings_manager') and
+                    self.auto_trader.dynamic_settings_manager):
+                self.logger.debug("동적 설정 관리자가 없음")
+                return {'success': False, 'error': '동적 설정 관리자가 없습니다'}
+
+            # 현재 잔고 정보 조회
+            balance_data = await self.get_balance()
+            if not balance_data.get('success', False):
+                return {'success': False, 'error': '잔고 정보 조회 실패'}
+
+            # 잔고 정보 추출
+            holdings = balance_data.get('data', [])
+            total_value = 0
+            cash_balance = 0
+            stock_value = 0
+
+            for holding in holdings:
+                if isinstance(holding, dict):
+                    eval_amt = holding.get('eval_amt', 0)
+                    if eval_amt:
+                        total_value += float(eval_amt)
+                        stock_value += float(eval_amt)
+
+            # 현금 잔고는 별도 API로 조회 필요하지만 임시로 추정
+            if total_value > 0:
+                cash_balance = max(0, total_value * 0.1)  # 임시로 10% 추정
+
+            # 동적 설정 관리자에 업데이트
+            dynamic_manager = self.auto_trader.dynamic_settings_manager
+            updated_settings, metrics = await dynamic_manager.update_balance_and_adjust_settings(
+                current_balance=total_value,
+                cash_balance=cash_balance,
+                stock_value=stock_value,
+                trading_handler=self
+            )
+
+            self.logger.info(f"💡 동적 설정 업데이트 완료: 총자산={total_value:,.0f}원, "
+                           f"위험도={updated_settings.risk_level}, "
+                           f"포지션크기={updated_settings.position_size_multiplier:.2f}")
+
+            return {
+                'success': True,
+                'total_value': total_value,
+                'cash_balance': cash_balance,
+                'stock_value': stock_value,
+                'updated_settings': updated_settings.__dict__,
+                'metrics': metrics
+            }
+
+        except Exception as e:
+            self.logger.error(f"❌ 동적 설정 업데이트 실패: {e}")
+            return {'success': False, 'error': str(e)}
 
     async def place_sell_order(self, symbol: str, quantity: int, price: float = None, order_type: str = "market") -> Dict[str, Any]:
         """포트폴리오 정리를 위한 매도 주문 실행"""

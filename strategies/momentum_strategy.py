@@ -6,6 +6,7 @@ trading_system/strategies/momentum_strategy.py
 모멘텀 전략 - 추세 추종 및 모멘텀 기반 매매
 """
 
+import asyncio
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
@@ -612,20 +613,20 @@ class MomentumStrategy(BaseStrategy):
         return max(0, min(100, total_score + bonus))
     
     def _determine_signal_type(self, score: float) -> tuple:
-        """점수에 따른 신호 타입 결정"""
-        if score >= 85:  # AI 강화로 임계값 상향 조정
+        """점수에 따른 신호 타입 결정 - 백테스팅 최적화된 임계값"""
+        if score >= 75:  # 강한 매수 신호
             return "STRONG_BUY", "BUY"
-        elif score >= 70:
+        elif score >= 60:  # 일반 매수 신호 (임계값 낮춤)
             return "BUY", "BUY"
-        elif score >= 60:
-            return "WEAK_BUY", "HOLD"
-        elif score >= 40:
+        elif score >= 55:  # 약한 매수 신호
+            return "WEAK_BUY", "BUY"
+        elif score >= 45:  # 관망
             return "HOLD", "HOLD"
-        elif score >= 30:
-            return "WEAK_SELL", "HOLD"
-        elif score >= 15:
+        elif score >= 40:  # 약한 매도 신호
+            return "WEAK_SELL", "SELL"
+        elif score >= 25:  # 일반 매도 신호 (임계값 높임)
             return "SELL", "SELL"
-        else:
+        else:  # 강한 매도 신호
             return "STRONG_SELL", "SELL"
     
     def _assess_risk_level(self, score: float, stock_data: Any) -> str:

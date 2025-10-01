@@ -90,15 +90,6 @@ class AIController:
         self.strategy_optimizer = StrategyOptimizer(config)
         self.advanced_features = AdvancedAIFeatures(config)
 
-    def _safe_get(self, data, key, default=None):
-        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
-        if hasattr(data, key):
-            return getattr(data, key, default)
-        elif isinstance(data, dict):
-            return data.get(key, default)
-        else:
-            return default
-        
         # AI 시스템 설정
         self.ai_config = {
             'confidence_threshold': 0.70,
@@ -121,6 +112,15 @@ class AIController:
         self.insight_history = []
         
         self.logger.info("✅ AI 통합 컨트롤러 초기화 완료")
+
+    def _safe_get(self, data, key, default=None):
+        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+        if hasattr(data, key):
+            return getattr(data, key, default)
+        elif isinstance(data, dict):
+            return data.get(key, default)
+        else:
+            return default
     
     async def comprehensive_market_analysis(self, market_data: List[Dict],
                                           individual_stocks: List[Dict],

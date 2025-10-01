@@ -33,14 +33,25 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 # Windows Unicode 문제 해결
 import os
+
 if os.name == 'nt':  # Windows
     try:
         # UTF-8 콘솔 설정
         os.system("chcp 65001 > nul 2>&1")
+
+        # Python stdout/stderr 인코딩 강제 설정
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+            sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
+        # 환경 변수 설정
+        os.environ['PYTHONIOENCODING'] = 'utf-8'
+
         console = Console(force_terminal=True, legacy_windows=False)
     except:
         console = Console(legacy_windows=True)
 else:
+    # Unix 계열 시스템
     console = Console()
 
 # 성능 모니터링 시스템 임포트
@@ -48,6 +59,13 @@ try:
     from monitoring.performance_monitor import PerformanceMonitor, monitor_performance, monitor_async_performance
 except ImportError:
     PerformanceMonitor = None
+
+# 동적 설정 관리자 임포트
+try:
+    from core.dynamic_settings_manager import DynamicSettingsManager, TradingSettings
+except ImportError:
+    DynamicSettingsManager = None
+    TradingSettings = None
 
 # 비동기 처리 시스템 임포트
 try:
@@ -268,6 +286,15 @@ class TradingSystem:
             except Exception as e:
                 self.logger.warning(f"⚠️ 에러 복구 시스템 초기화 실패: {e}")
 
+        # 동적 설정 관리자 초기화
+        self.dynamic_settings_manager = None
+        if DynamicSettingsManager:
+            try:
+                self.dynamic_settings_manager = DynamicSettingsManager()
+                self.logger.info("✅ 동적 설정 관리자 활성화")
+            except Exception as e:
+                self.logger.warning(f"⚠️ 동적 설정 관리자 초기화 실패: {e}")
+
         # 컴포넌트들
         self.config = None
         self.data_collector = None
@@ -391,6 +418,19 @@ class TradingSystem:
                 self.logger.warning(f"⚠️ 뉴스 수집기 초기화 실패: {e}")
                 self.news_collector = None
             
+            # 백테스팅 최적화 시스템
+            try:
+                from backtesting.holding_sell_optimizer import HoldingSellOptimizer
+                from backtesting.watch_buy_optimizer import WatchBuyOptimizer
+
+                self.sell_optimizer = HoldingSellOptimizer(self.config, self.data_collector, self.data_collector)
+                self.buy_optimizer = WatchBuyOptimizer(self.config, self.data_collector, self.data_collector)
+                self.logger.info("✅ 백테스팅 최적화 시스템 초기화 완료")
+            except Exception as e:
+                self.logger.warning(f"⚠️ 백테스팅 최적화 시스템 초기화 실패: {e}")
+                self.sell_optimizer = None
+                self.buy_optimizer = None
+
             # 전략
             try:
                 from strategies.momentum_strategy import MomentumStrategy
@@ -2235,12 +2275,12 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
                 'period': f"{start_date} ~ {end_date}",
                 'symbols': symbols,
                 'performance': {
-                    'total_return': result.performance_metrics.total_return,
-                    'annual_return': result.performance_metrics.annual_return,
-                    'sharpe_ratio': result.performance_metrics.sharpe_ratio,
-                    'max_drawdown': result.performance_metrics.max_drawdown,
-                    'win_rate': result.performance_metrics.win_rate,
-                    'total_trades': result.performance_metrics.total_trades
+                    'total_return': result.metrics.total_return,
+                    'annual_return': result.metrics.annual_return,
+                    'sharpe_ratio': result.metrics.sharpe_ratio,
+                    'max_drawdown': result.metrics.max_drawdown,
+                    'win_rate': result.metrics.win_rate,
+                    'total_trades': result.metrics.total_trades
                 },
                 'backtest_result': result
             }
@@ -2249,7 +2289,148 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
             self.logger.error(f"❌ 백테스팅 실행 실패: {e}")
             console.print(f"[red]❌ 백테스팅 실행 실패: {e}[/red]")
             return {'success': False, 'error': str(e)}
-    
+
+    async def run_holding_sell_optimization(self) -> Dict[str, Any]:
+        """보유 종목 매도 최적화 실행"""
+        try:
+            if not self.sell_optimizer:
+                console.print("[yellow]⚠️ 매도 최적화 시스템이 초기화되지 않았습니다.[/yellow]")
+                return {'success': False, 'error': '매도 최적화 시스템 미초기화'}
+
+            console.print("[cyan]🎯 보유 종목 매도 최적화 실행 중...[/cyan]")
+
+            results = await self.sell_optimizer.optimize_all_holdings()
+
+            if results:
+                console.print(f"[green]✅ 매도 최적화 완료 - {len(results)}개 종목 최적화됨[/green]")
+
+                # 결과 테이블 생성
+                table = Table(title="🎯 보유 종목 매도 최적화 결과")
+                table.add_column("종목", style="cyan")
+                table.add_column("예상 수익률", style="green")
+                table.add_column("승률", style="yellow")
+                table.add_column("최대 손실", style="red")
+                table.add_column("거래 횟수", style="blue")
+
+                for result in results[:10]:  # 상위 10개만 표시
+                    table.add_row(
+                        result.symbol,
+                        f"{result.expected_return:.2f}%",
+                        f"{result.win_rate:.1f}%",
+                        f"{result.max_drawdown:.2f}%",
+                        str(result.total_trades)
+                    )
+
+                console.print(table)
+
+                return {
+                    'success': True,
+                    'optimized_count': len(results),
+                    'results': results
+                }
+            else:
+                console.print("[yellow]⚠️ 최적화할 보유 종목이 없습니다.[/yellow]")
+                return {'success': False, 'error': '최적화할 보유 종목 없음'}
+
+        except Exception as e:
+            self.logger.error(f"❌ 보유 종목 매도 최적화 실패: {e}")
+            console.print(f"[red]❌ 보유 종목 매도 최적화 실패: {e}[/red]")
+            return {'success': False, 'error': str(e)}
+
+    async def run_watch_buy_optimization(self) -> Dict[str, Any]:
+        """감시 종목 매수 시그널 최적화 실행"""
+        try:
+            if not self.buy_optimizer:
+                console.print("[yellow]⚠️ 매수 최적화 시스템이 초기화되지 않았습니다.[/yellow]")
+                return {'success': False, 'error': '매수 최적화 시스템 미초기화'}
+
+            console.print("[cyan]🎯 감시 종목 매수 시그널 최적화 실행 중...[/cyan]")
+
+            results = await self.buy_optimizer.optimize_all_watch_list()
+
+            if results:
+                console.print(f"[green]✅ 매수 최적화 완료 - {len(results)}개 종목 최적화됨[/green]")
+
+                # 결과 테이블 생성
+                table = Table(title="🎯 감시 종목 매수 시그널 최적화 결과")
+                table.add_column("종목", style="cyan")
+                table.add_column("예상 수익률", style="green")
+                table.add_column("시그널 정확도", style="yellow")
+                table.add_column("평균 보유기간", style="blue")
+                table.add_column("최적 조합", style="magenta")
+
+                for result in results[:10]:  # 상위 10개만 표시
+                    table.add_row(
+                        result.symbol,
+                        f"{result.expected_return:.2f}%",
+                        f"{result.signal_accuracy:.1f}%",
+                        f"{result.avg_holding_period:.1f}일",
+                        result.best_combination.name
+                    )
+
+                console.print(table)
+
+                return {
+                    'success': True,
+                    'optimized_count': len(results),
+                    'results': results
+                }
+            else:
+                console.print("[yellow]⚠️ 최적화할 감시 종목이 없습니다.[/yellow]")
+                return {'success': False, 'error': '최적화할 감시 종목 없음'}
+
+        except Exception as e:
+            self.logger.error(f"❌ 감시 종목 매수 최적화 실패: {e}")
+            console.print(f"[red]❌ 감시 종목 매수 최적화 실패: {e}[/red]")
+            return {'success': False, 'error': str(e)}
+
+    async def run_full_optimization(self) -> Dict[str, Any]:
+        """전체 최적화 실행 (매도 + 매수)"""
+        try:
+            console.print("[cyan]🚀 전체 백테스팅 최적화 실행 중...[/cyan]")
+
+            results = {
+                'sell_optimization': None,
+                'buy_optimization': None,
+                'success': False
+            }
+
+            # 1. 보유 종목 매도 최적화
+            console.print("[yellow]1️⃣ 보유 종목 매도 최적화...[/yellow]")
+            sell_result = await self.run_holding_sell_optimization()
+            results['sell_optimization'] = sell_result
+
+            # 2. 감시 종목 매수 최적화
+            console.print("[yellow]2️⃣ 감시 종목 매수 시그널 최적화...[/yellow]")
+            buy_result = await self.run_watch_buy_optimization()
+            results['buy_optimization'] = buy_result
+
+            # 전체 결과 판정
+            if sell_result.get('success') or buy_result.get('success'):
+                results['success'] = True
+                console.print("[green]🎉 전체 최적화 완료![/green]")
+
+                # 요약 표시
+                summary = Panel(
+                    f"📊 최적화 요약\n"
+                    f"• 매도 최적화: {'✅ 성공' if sell_result.get('success') else '❌ 실패'} "
+                    f"({sell_result.get('optimized_count', 0)}개 종목)\n"
+                    f"• 매수 최적화: {'✅ 성공' if buy_result.get('success') else '❌ 실패'} "
+                    f"({buy_result.get('optimized_count', 0)}개 종목)",
+                    title="🎯 백테스팅 최적화 결과",
+                    border_style="green"
+                )
+                console.print(summary)
+            else:
+                console.print("[red]❌ 전체 최적화 실패[/red]")
+
+            return results
+
+        except Exception as e:
+            self.logger.error(f"❌ 전체 최적화 실패: {e}")
+            console.print(f"[red]❌ 전체 최적화 실패: {e}[/red]")
+            return {'success': False, 'error': str(e)}
+
     async def generate_ai_daily_report(self, period: str = 'daily') -> Dict[str, Any]:
         """AI 보고서 생성"""
         try:
@@ -2510,6 +2691,118 @@ AI 컨트롤러: {'[green]초기화됨[/green]' if hasattr(self, 'ai_controller'
     #         self.logger.warning(f"⚠️ Gemini 토큰 상태 체크 중 오류: {e}")
     #         # 에러가 발생해도 시스템 초기화는 계속 진행
     
+    async def _display_backtest_results(self, results: Dict[str, Any]):
+        """백테스트 결과 표시"""
+        from rich.console import Console
+        from rich.table import Table
+        from rich.panel import Panel
+
+        console = Console()
+
+        try:
+            if not results or not results.get('success', False):
+                console.print("[red]❌ 백테스트 결과가 없거나 실패했습니다.[/red]")
+                return
+
+            backtest_result = results.get('backtest_result')
+            performance = results.get('performance', {})
+
+            # 백테스트 기본 정보
+            console.print(Panel.fit(
+                f"""[bold green]백테스트 결과[/bold green]
+
+전략: {results.get('strategy', 'N/A')}
+기간: {results.get('period', 'N/A')}
+대상 종목: {results.get('symbols', ['전체']) if results.get('symbols') else ['전체']}
+
+초기 자본: {backtest_result.initial_capital:,.0f}원
+최종 자본: {backtest_result.final_capital:,.0f}원
+총 수익률: {backtest_result.total_return_pct:.2f}%""",
+                title="백테스트 요약",
+                border_style="green"
+            ))
+
+            # 성과 지표 테이블
+            table = Table(title="성과 지표", show_header=True, header_style="bold magenta")
+            table.add_column("지표", style="cyan", width=20)
+            table.add_column("값", style="white", width=15)
+            table.add_column("설명", style="dim white", width=30)
+
+            # 성과 지표 추가
+            metrics_data = [
+                ("총 수익률", f"{performance.get('total_return', 0):.2f}%", "전체 기간 동안의 수익률"),
+                ("연환산 수익률", f"{performance.get('annual_return', 0):.2f}%", "1년 기준 환산 수익률"),
+                ("샤프 비율", f"{performance.get('sharpe_ratio', 0):.2f}", "위험 대비 수익률 (높을수록 좋음)"),
+                ("최대 낙폭", f"{performance.get('max_drawdown', 0):.2f}%", "최대 손실폭 (낮을수록 좋음)"),
+                ("승률", f"{performance.get('win_rate', 0):.1f}%", "수익 거래의 비율"),
+                ("총 거래 수", f"{performance.get('total_trades', 0)}", "백테스트 기간 중 총 거래 횟수")
+            ]
+
+            for metric, value, desc in metrics_data:
+                # 수익률에 따른 색상 설정
+                if "수익률" in metric:
+                    try:
+                        val_num = float(value.replace('%', ''))
+                        if val_num > 0:
+                            value = f"[green]{value}[/green]"
+                        elif val_num < 0:
+                            value = f"[red]{value}[/red]"
+                    except:
+                        pass
+
+                table.add_row(metric, value, desc)
+
+            console.print(table)
+
+            # 거래 내역이 있으면 표시
+            if backtest_result and hasattr(backtest_result, 'trades') and backtest_result.trades:
+                trades_table = Table(title=f"거래 내역 (최근 10건)", show_header=True, header_style="bold blue")
+                trades_table.add_column("날짜", style="cyan", width=12)
+                trades_table.add_column("종목", style="white", width=8)
+                trades_table.add_column("구분", style="yellow", width=6)
+                trades_table.add_column("가격", style="white", width=10)
+                trades_table.add_column("수량", style="white", width=8)
+                trades_table.add_column("수익률", style="white", width=10)
+
+                # 최근 10건만 표시
+                for trade in backtest_result.trades[-10:]:
+                    trade_date = trade.get('date', 'N/A')
+                    if isinstance(trade_date, str) and len(trade_date) > 10:
+                        trade_date = trade_date[:10]  # YYYY-MM-DD 형식으로
+
+                    symbol = trade.get('symbol', 'N/A')
+                    action = trade.get('action', 'N/A')
+                    price = trade.get('price', 0)
+                    quantity = trade.get('quantity', 0)
+                    profit_pct = trade.get('profit_pct', 0)
+
+                    # 수익률 색상
+                    profit_display = f"{profit_pct:.2f}%"
+                    if profit_pct > 0:
+                        profit_display = f"[green]{profit_display}[/green]"
+                    elif profit_pct < 0:
+                        profit_display = f"[red]{profit_display}[/red]"
+
+                    trades_table.add_row(
+                        str(trade_date),
+                        str(symbol),
+                        str(action),
+                        f"{price:,.0f}",
+                        f"{quantity:,}",
+                        profit_display
+                    )
+
+                console.print(trades_table)
+
+            # 추가 정보
+            console.print("\n[dim]💡 팁: 상세한 분석을 위해서는 백테스팅 보고서 생성 메뉴를 이용하세요.[/dim]")
+
+        except Exception as e:
+            console.print(f"[red]❌ 백테스트 결과 표시 중 오류: {e}[/red]")
+            # 기본 결과라도 표시
+            if results:
+                console.print(f"[yellow]기본 결과: {results}[/yellow]")
+
     async def cleanup(self):
         """리소스 정리"""
         try:

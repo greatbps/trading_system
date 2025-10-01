@@ -51,6 +51,10 @@ class ErrorHandler:
         elif isinstance(error, KeyboardInterrupt):
             self._handle_keyboard_interrupt(error, context)
             return False  # 프로그램 종료 신호
+        elif "api" in str(error).lower() or "404" in str(error) or "quota" in str(error).lower():
+            self._handle_api_error(error, context)
+        elif "timeout" in str(error).lower():
+            self._handle_timeout_error(error, context)
         
         return True  # 계속 실행
     
@@ -77,6 +81,43 @@ class ErrorHandler:
     def _handle_keyboard_interrupt(self, error: KeyboardInterrupt, context: str):
         """키보드 인터럽트 처리"""
         self.logger.info(f"User interruption in {context}. Initiating graceful shutdown.")
+
+    def _handle_api_error(self, error: Exception, context: str):
+        """API 에러 처리"""
+        error_msg = str(error).lower()
+
+        if "404" in error_msg or "not found" in error_msg:
+            self.logger.warning(f"API endpoint not found in {context}. 모델명 또는 API 경로를 확인하세요.")
+            self._display_user_message("🔍 API 모델명이나 경로를 확인해주세요. 설정을 점검하겠습니다.")
+        elif "quota" in error_msg or "rate limit" in error_msg:
+            self.logger.warning(f"API quota exceeded in {context}. 대체 서비스로 전환합니다.")
+            self._display_user_message("⏱️ API 사용량 한도에 도달했습니다. 24시간 후 다시 시도하거나 대체 서비스를 사용합니다.")
+        elif "auth" in error_msg or "permission" in error_msg:
+            self.logger.warning(f"API authentication failed in {context}. API 키를 확인하세요.")
+            self._display_user_message("🔐 API 인증에 실패했습니다. API 키 설정을 확인해주세요.")
+        else:
+            self.logger.warning(f"General API error in {context}. 잠시 후 재시도합니다.")
+            self._display_user_message("📡 API 서비스에 일시적인 문제가 발생했습니다. 잠시 후 자동으로 재시도됩니다.")
+
+    def _handle_timeout_error(self, error: Exception, context: str):
+        """타임아웃 에러 처리"""
+        self.logger.warning(f"Timeout error in {context}. 네트워크 연결을 확인합니다.")
+        self._display_user_message("🌐 네트워크 연결 시간이 초과되었습니다. 잠시 후 다시 시도합니다.")
+
+    def _display_user_message(self, message: str):
+        """사용자에게 친화적인 메시지 표시"""
+        try:
+            # Rich Console이 사용 가능한 경우
+            from rich.console import Console
+            from rich.panel import Panel
+            console = Console()
+            console.print(Panel(message, border_style="yellow"))
+        except ImportError:
+            # Rich가 없는 경우 일반 출력
+            print(f"💡 {message}")
+        except Exception:
+            # 출력 실패 시 로그만 기록
+            self.logger.info(f"User message: {message}")
     
     def get_error_stats(self) -> dict:
         """에러 통계 반환"""

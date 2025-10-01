@@ -62,7 +62,7 @@ class GeminiAnalyzer:
             try:
                 genai.configure(api_key=api_key)
                 # 사용 가능한 모델들을 순서대로 시도
-                models_to_try = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro', 'models/gemini-1.5-flash', 'models/gemini-1.5-pro']
+                models_to_try = ['gemini-1.5-flash-latest', 'gemini-1.5-flash-001', 'gemini-1.5-flash-002', 'gemini-1.5-pro-latest', 'gemini-1.5-pro-001', 'gemini-1.5-pro-002', 'gemini-pro', 'models/gemini-1.5-flash-latest', 'models/gemini-1.5-flash-001', 'models/gemini-1.5-pro-latest']
 
                 for model_name in models_to_try:
                     try:
@@ -587,4 +587,23 @@ Respond with ONLY the JSON object above, no additional text.
     @property
     def model_name(self):
         """호환성을 위한 model 속성"""
-        return "gemini-1.5-flash" if self.api_available else None
+        return "gemini-1.5-flash-latest" if self.api_available else None
+
+    async def analyze_with_custom_prompt(self, prompt: str) -> str:
+        """커스텀 프롬프트로 Gemini API 호출"""
+        try:
+            if self.quota_exhausted:
+                self.logger.warning("⚠️ Gemini API 할당량 소진으로 인해 스킵")
+                return "할당량 소진으로 인해 분석을 수행할 수 없습니다."
+
+            # Gemini API를 통해 분석 요청
+            result = await self._call_gemini_api(prompt)
+
+            if result:
+                return result
+            else:
+                return "Gemini 분석을 수행할 수 없습니다."
+
+        except Exception as e:
+            self.logger.error(f"❌ Gemini 커스텀 분석 실패: {e}")
+            return "분석 중 오류가 발생했습니다."

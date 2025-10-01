@@ -42,6 +42,7 @@ class AIMomentumStrategy(BaseStrategy):
     
     def __init__(self, config, data_collector, ai_controller=None):
         super().__init__(config)
+        self.data_collector = data_collector
         self.ai_controller = ai_controller
         self.logger = get_logger(f"AIMomentumStrategy")
         
@@ -95,8 +96,8 @@ class AIMomentumStrategy(BaseStrategy):
             self.logger.debug(f"🔍 {symbol} AI 모멘텀 분석 시작 ({timeframe})")
             
             # 1. 기본 가격 데이터 수집
-            price_data = await self.data_collector.get_historical_data(
-                symbol, period='3M', interval=timeframe
+            price_data = await self.data_collector.get_ohlcv_data(
+                symbol, period=timeframe, count=90
             )
             
             if not price_data or len(price_data) < self.momentum_period + 10:
@@ -145,13 +146,14 @@ class AIMomentumStrategy(BaseStrategy):
             # AI 예측 모델 실행
             try:
                 # 현재 가격과 기술적 지표를 AI 모델에 입력
-                current_price = price_data[-1]['close']
-                prices = [float(item['close']) for item in price_data[-30:]]
-                volumes = [float(item['volume']) for item in price_data[-30:]]
+                current_price = price_data[-1].close
+                prices = [float(item.close) for item in price_data[-30:]]
+                volumes = [float(item.volume) for item in price_data[-30:]]
                 
                 # AI 예측 요청
-                prediction_result = await self.ai_controller.predictor.predict_price_movement(
-                    symbol, prices, volumes, timeframe
+                prediction_result = await self.ai_controller.predictor.predict_market_direction(
+                    historical_data=price_data,
+                    market_context={}
                 )
                 
                 if prediction_result and prediction_result.confidence > 0.5:
@@ -191,9 +193,9 @@ class AIMomentumStrategy(BaseStrategy):
             market_data = [
                 {
                     'symbol': symbol,
-                    'price': item['close'],
-                    'change_rate': item.get('change_rate', 0),
-                    'volume': item['volume']
+                    'price': item.close,
+                    'change_rate': item.change_rate if hasattr(item, 'change_rate') else 0,
+                    'volume': item.volume
                 }
                 for item in price_data[-50:]  # 최근 50일 데이터
             ]
@@ -224,9 +226,8 @@ class AIMomentumStrategy(BaseStrategy):
             
             for tf in self.timeframes:
                 try:
-                    # 각 시간대별 모멘텀 점수 계산
-                    tf_data = await self.data_collector.get_historical_data(
-                        symbol, period='1M', interval=tf
+                    tf_data = await self.data_collector.get_ohlcv_data(
+                        symbol, period=tf, count=30
                     )
                     
                     if tf_data and len(tf_data) >= self.momentum_period:
@@ -246,8 +247,8 @@ class AIMomentumStrategy(BaseStrategy):
     async def _calculate_technical_momentum(self, price_data: List[Dict]) -> Dict[str, float]:
         """기술적 모멘텀 지표 계산"""
         try:
-            closes = np.array([float(item['close']) for item in price_data])
-            volumes = np.array([float(item['volume']) for item in price_data])
+            closes = np.array([float(item.close) for item in price_data])
+            volumes = np.array([float(item.volume) for item in price_data])
             
             # RSI 계산
             rsi = self._calculate_rsi(closes, 14)
@@ -356,7 +357,7 @@ class AIMomentumStrategy(BaseStrategy):
                 'strategy_type': 'ai_momentum'
             }
             
-            return Signal(signal_type, confidence, metadata)
+            return Signal(signal_type, confidence, risk_level, metadata, datetime.now())
             
         except Exception as e:
             self.logger.error(f"❌ 리스크 관리 적용 실패: {e}")
@@ -374,7 +375,7 @@ class AIMomentumStrategy(BaseStrategy):
     
     def _generate_fallback_signals(self, price_data: List[Dict], timeframe: str) -> List[AISignal]:
         """AI 없을 때 폴백 신호"""
-        closes = [float(item['close']) for item in price_data[-20:]]
+        closes = [float(item.close) for item in price_data[-20:]]
         momentum = (closes[-1] - closes[-10]) / closes[-10]
         
         if momentum > 0.02:
@@ -399,7 +400,7 @@ class AIMomentumStrategy(BaseStrategy):
     
     def _generate_fallback_regime(self, price_data: List[Dict]) -> MarketRegimeSignal:
         """폴백 시장 체제"""
-        closes = [float(item['close']) for item in price_data[-30:]]
+        closes = [float(item.close) for item in price_data[-30:]]
         volatility = np.std(closes) / np.mean(closes)
         
         if volatility > 0.03:
@@ -448,7 +449,7 @@ class AIMomentumStrategy(BaseStrategy):
     
     def _calculate_momentum_score(self, price_data: List[Dict]) -> float:
         """모멘텀 점수 계산"""
-        closes = [float(item['close']) for item in price_data]
+        closes = [float(item.close) for item in price_data]
         if len(closes) < self.momentum_period:
             return 0.0
         

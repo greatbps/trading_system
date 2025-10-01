@@ -781,6 +781,40 @@ class ReportGenerator:
         self.output_dir.mkdir(exist_ok=True)
         self.visualizer = PerformanceVisualizer(output_dir)
         self.logger = logging.getLogger(__name__)
+
+    async def display_market_regime_report(self, regime_analyses: List[Any]):
+        """시장 체제 분석 결과를 Rich 테이블로 표시"""
+        try:
+            if not regime_analyses:
+                print("\n--- Market Regime Analysis Report ---")
+                print("No market regime analysis results found.")
+                print("--- End of Report ---\n")
+                return
+
+            print("\n--- Market Regime Analysis Report ---")
+            
+            for analysis in regime_analyses:
+                period_str = f"{analysis.period_start.strftime('%Y-%m-%d')} ~ {analysis.period_end.strftime('%Y-%m-%d')}"
+                regime_str = analysis.regime.value
+                
+                avg_return_str = f"{analysis.avg_return:.2f}"
+                volatility_str = f"{analysis.volatility:.2f}"
+                max_drawdown_str = f"{analysis.max_drawdown:.2f}"
+                ai_accuracy_str = f"{analysis.ai_accuracy:.2f}" if analysis.ai_prediction_count > 0 else "N/A"
+
+                print(f"\n[Period: {period_str}]")
+                print(f"  - Regime: {regime_str}")
+                print(f"  - Average Return: {avg_return_str}%")
+                print(f"  - Volatility: {volatility_str}%")
+                print(f"  - Max Drawdown: {max_drawdown_str}%")
+                print(f"  - AI Accuracy: {ai_accuracy_str}")
+
+            print("--- End of Report ---\n")
+            await asyncio.sleep(0.1)
+
+        except Exception as e:
+            self.logger.error(f"❌ 시장 체제 보고서 표시 오류: {e}")
+            console.print(f"[red]❌ 시장 체제 보고서 표시에 실패했습니다: {e}[/red]")
     
     async def generate_comprehensive_report(
         self,
@@ -1223,6 +1257,40 @@ class ReportGenerator:
             self.logger.error(f"❌ 검증 섹션 생성 오류: {e}")
             return f"<div class='section'><h2>검증 섹션 오류</h2><p>{e}</p></div>"
     
+    async def display_market_regime_report(self, regime_analyses: List[Any]):
+        """시장 체제 분석 결과를 Rich 테이블로 표시"""
+        try:
+            if not regime_analyses:
+                print("\n--- Market Regime Analysis Report ---")
+                print("No market regime analysis results found.")
+                print("--- End of Report ---\n")
+                return
+
+            print("\n--- Market Regime Analysis Report ---")
+            
+            for analysis in regime_analyses:
+                period_str = f"{analysis.period_start.strftime('%Y-%m-%d')} ~ {analysis.period_end.strftime('%Y-%m-%d')}"
+                regime_str = analysis.regime.value
+                
+                avg_return_str = f"{analysis.avg_return:.2f}"
+                volatility_str = f"{analysis.volatility:.2f}"
+                max_drawdown_str = f"{analysis.max_drawdown:.2f}"
+                ai_accuracy_str = f"{analysis.ai_accuracy:.2f}" if analysis.ai_prediction_count > 0 else "N/A"
+
+                print(f"\n[Period: {period_str}]")
+                print(f"  - Regime: {regime_str}")
+                print(f"  - Average Return: {avg_return_str}%")
+                print(f"  - Volatility: {volatility_str}%")
+                print(f"  - Max Drawdown: {max_drawdown_str}%")
+                print(f"  - AI Accuracy: {ai_accuracy_str}")
+
+            print("--- End of Report ---\n")
+            await asyncio.sleep(0.1)
+
+        except Exception as e:
+            self.logger.error(f"❌ 시장 체제 보고서 표시 오류: {e}")
+            console.print(f"[red]❌ 시장 체제 보고서 표시에 실패했습니다: {e}[/red]")
+
     async def _generate_conclusion_section(
         self,
         backtest_results: List[BacktestResult],

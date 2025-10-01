@@ -70,13 +70,14 @@ class HistoricalAnalyzer:
         """과거 데이터 분석기 초기화"""
         try:
             if config:
-                self.ai_controller = AIController(config)
+                self.config = config
             else:
                 # 기본 설정으로 초기화
                 from config import Config
-                default_config = Config()
-                self.ai_controller = AIController(default_config)
-            self.gemini_analyzer = GeminiAnalyzer()
+                self.config = Config()
+            
+            self.ai_controller = AIController(self.config)
+            self.gemini_analyzer = GeminiAnalyzer(self.config)
             self.logger = logging.getLogger(__name__)
         except Exception as e:
             self.logger = logging.getLogger(__name__)

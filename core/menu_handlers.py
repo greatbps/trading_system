@@ -85,21 +85,30 @@ class MenuHandlers:
     21. 시장 체제별 성과 분석
     22. 백테스팅 보고서 생성
 
+    [bold magenta]최적화 시스템 (New)[/bold magenta]
+    23. 보유 종목 매도 최적화
+    24. 감시 종목 매수 최적화
+    25. 전체 백테스팅 최적화
+
     [bold cyan]고급 AI 전략 (Phase 8+)[/bold cyan]
-    23. AI 모멘텀 전략 분석
-    24. 적응형 포지션 사이징
-    25. 다중 시간대 분석
-    26. 종합 전략 분석 (통합)
-    27. 고급 전략 백테스트
-    28. 다중 전략 조합 분석
+    26. AI 모멘텀 전략 분석
+    27. 적응형 포지션 사이징
+    28. 다중 시간대 분석
+    29. 종합 전략 분석 (통합)
+    30. 고급 전략 백테스트
+    31. 다중 전략 조합 분석
 
     [bold blue]데이터 & 모니터링[/bold blue]
-    29. 데이터베이스 상태
-    30. 종목 데이터 조회
-    31. 실시간 시스템 모니터
-    32. 200개 종목 실시간 모니터링
-    33. 보유종목 조회
-    34. 포트폴리오 정리 (익절/손절)
+    32. 데이터베이스 상태
+    33. 종목 데이터 조회
+    34. 실시간 시스템 모니터
+    35. 200개 종목 실시간 모니터링
+    36. 보유종목 조회
+    37. 포트폴리오 정리 (익절/손절)
+    38. 통합 모니터링 대시보드
+    39. 동적 설정 관리
+    40. 향상된 백테스팅 시각화
+    41. 손절매 관리
 
     [bold red]0. 종료[/bold red]"""
         
@@ -142,18 +151,22 @@ class MenuHandlers:
                 "20": self._ai_prediction_accuracy_analysis,
                 "21": self._market_regime_performance,
                 "22": self._backtesting_report_generation,
-                "23": self._ai_momentum_strategy_analysis,
-                "24": self._adaptive_position_sizing,
-                "25": self._multi_timeframe_analysis,
-                "26": self._comprehensive_strategy_analysis,
-                "27": self._advanced_strategy_backtest,
-                "28": self._multi_strategy_analysis,
-                "29": self._database_status,
-                "30": self._symbol_data_query,
-                "31": self._real_time_system_monitor,
-                "32": self._realtime_monitoring_system,
-                "33": self._portfolio_holdings,
-                "34": self._portfolio_cleanup,
+                "23": self._holding_sell_optimization,
+                "24": self._watch_buy_optimization,
+                "25": self._full_optimization,
+                "26": self._ai_momentum_strategy_analysis,
+                "27": self._adaptive_position_sizing,
+                "28": self._multi_timeframe_analysis,
+                "29": self._comprehensive_strategy_analysis,
+                "30": self._advanced_strategy_backtest,
+                "31": self._multi_strategy_analysis,
+                "32": self._database_status,
+                "33": self._symbol_data_query,
+                "34": self._real_time_system_monitor,
+                "35": self._realtime_monitoring_system,
+                "36": self._portfolio_holdings,
+                "37": self._portfolio_cleanup,
+                "41": self._stop_loss_management,
             }
             
             handler = menu_map.get(choice)
@@ -491,20 +504,122 @@ class MenuHandlers:
             return False
 
     async def _backtest(self) -> bool:
-        console.print(Panel("[bold green]백테스트 실행[/bold green]", border_style="green"))
+        """백테스트 메뉴 - 서브메뉴 제공"""
+        console.print(Panel("[bold green]백테스트 시스템[/bold green]", border_style="green"))
+
+        while True:
+            console.print("\n[bold]백테스트 메뉴:[/bold]")
+            console.print("1. 기간 설정 백테스트")
+            console.print("2. 빠른 백테스트 (최근 3개월)")
+            console.print("3. 전략 비교 백테스트")
+            console.print("4. 백테스트 기록 조회")
+            console.print("0. 메인 메뉴로 돌아가기")
+
+            choice = Prompt.ask("선택하세요", choices=["0", "1", "2", "3", "4"], default="1")
+
+            if choice == "0":
+                return True
+            elif choice == "1":
+                return await self._period_backtest()
+            elif choice == "2":
+                return await self._quick_backtest()
+            elif choice == "3":
+                return await self._strategy_comparison_backtest()
+            elif choice == "4":
+                return await self._backtest_history()
+
+    async def _period_backtest(self) -> bool:
+        """기간 설정 백테스트"""
+        console.print(Panel("[bold cyan]기간 설정 백테스트[/bold cyan]", border_style="cyan"))
         try:
+            # 백테스팅 엔진이 없으면 초기화 시도
+            if not hasattr(self.system, 'backtesting_engine') or not self.system.backtesting_engine:
+                console.print("[yellow]⚠️ 백테스팅 엔진이 초기화되지 않았습니다. 초기화를 시도합니다...[/yellow]")
+                if not await self.system.initialize_components():
+                    console.print("[red]❌ 시스템 초기화 실패[/red]")
+                    return False
+
+                # 여전히 백테스팅 엔진이 없으면 수동 초기화
+                if not hasattr(self.system, 'backtesting_engine') or not self.system.backtesting_engine:
+                    try:
+                        from backtesting.backtesting_engine import BacktestingEngine
+                        self.system.backtesting_engine = BacktestingEngine(self.system.config)
+                        console.print("[green]✅ 백테스팅 엔진 수동 초기화 완료[/green]")
+                    except Exception as e:
+                        console.print(f"[red]❌ 백테스팅 엔진 초기화 실패: {e}[/red]")
+                        return False
+
+            # 전략 선택
             strategy = await self._get_strategy_choice()
+            if not strategy:
+                return False
+
+            # 기간 설정
             console.print("\n[bold]백테스트 기간 설정[/bold]")
             start_date = Prompt.ask("시작 날짜 (YYYY-MM-DD)", default="2024-01-01")
             end_date = Prompt.ask("종료 날짜 (YYYY-MM-DD)", default="2024-12-31")
+
+            # 종목 선택
             symbols_input = Prompt.ask("특정 종목 (전체는 Enter)", default="")
             symbols = [s.strip() for s in symbols_input.split(',')] if symbols_input else None
+
+            console.print(f"\n[yellow]🔄 백테스트 실행 중... (전략: {strategy}, 기간: {start_date} ~ {end_date})[/yellow]")
+
+            # 백테스트 실행
             results = await self.system.run_backtest(strategy, start_date, end_date, symbols)
+
+            # 결과 표시
             await self.system._display_backtest_results(results)
             return True
+
         except Exception as e:
             console.print(f"[red]❌ 백테스트 실행 실패: {e}[/red]")
+            self.logger.error(f"백테스트 실행 실패: {e}", exc_info=True)
             return False
+
+    async def _quick_backtest(self) -> bool:
+        """빠른 백테스트 (최근 3개월)"""
+        console.print(Panel("[bold yellow]빠른 백테스트[/bold yellow]", border_style="yellow"))
+        from datetime import datetime, timedelta
+
+        try:
+            # 기간 자동 설정 (최근 3개월)
+            end_date = datetime.now().strftime("%Y-%m-%d")
+            start_date = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
+
+            console.print(f"📅 자동 설정된 기간: {start_date} ~ {end_date}")
+
+            # 전략 선택
+            strategy = await self._get_strategy_choice()
+            if not strategy:
+                return False
+
+            console.print(f"\n[yellow]🔄 빠른 백테스트 실행 중... (전략: {strategy})[/yellow]")
+
+            # 백테스트 실행 (전체 종목 대상)
+            results = await self.system.run_backtest(strategy, start_date, end_date, None)
+
+            # 결과 표시
+            await self.system._display_backtest_results(results)
+            return True
+
+        except Exception as e:
+            console.print(f"[red]❌ 빠른 백테스트 실패: {e}[/red]")
+            return False
+
+    async def _strategy_comparison_backtest(self) -> bool:
+        """전략 비교 백테스트"""
+        console.print(Panel("[bold magenta]전략 비교 백테스트[/bold magenta]", border_style="magenta"))
+        console.print("[yellow]⚠️ 이 기능은 개발 중입니다.[/yellow]")
+        console.print("💡 여러 전략을 동일한 조건으로 백테스트하여 성과를 비교할 수 있습니다.")
+        return True
+
+    async def _backtest_history(self) -> bool:
+        """백테스트 기록 조회"""
+        console.print(Panel("[bold blue]백테스트 기록[/bold blue]", border_style="blue"))
+        console.print("[yellow]⚠️ 이 기능은 개발 중입니다.[/yellow]")
+        console.print("💡 과거에 실행한 백테스트 결과를 조회하고 비교할 수 있습니다.")
+        return True
 
     async def _scheduler(self) -> bool:
         console.print(Panel("[bold green]실시간 매매 스케줄러[/bold green]", border_style="green"))
@@ -784,22 +899,6 @@ class MenuHandlers:
             self.logger.error(f"❌ AI 보고서 저장 실패: {e}", exc_info=True)
             return False
 
-    async def _real_time_system_monitor(self) -> bool:
-        console.print(Panel("[bold blue]실시간 시스템 모니터[/bold blue]", border_style="blue"))
-        try:
-            from utils.system_monitor import SystemMonitor
-            monitor = SystemMonitor(self.system)
-            console.print("[yellow]📊 실시간 시스템 모니터 시작[/yellow]")
-            console.print("[dim]종료: Ctrl+C[/dim]")
-            await monitor.start_dashboard(refresh_interval=3)
-            return True
-        except KeyboardInterrupt:
-            console.print("\n[yellow]시스템 모니터를 종료합니다[/yellow]")
-            return True
-        except Exception as e:
-            console.print(f"[red]❌ 시스템 모니터 실행 실패: {e}[/red]")
-            self.logger.error(f"❌ 시스템 모니터 실행 실패: {e}", exc_info=True)
-            return False
 
     async def _database_status(self) -> bool:
         console.print(Panel("[bold blue]데이터베이스 상태 확인[/bold blue]", border_style="blue"))
@@ -807,13 +906,19 @@ class MenuHandlers:
             if not self.system.db_manager:
                 console.print("[yellow]⚠️ 데이터베이스 매니저가 초기화되지 않았습니다.[/yellow]")
                 return False
-            connection_status = await self.system.db_manager.check_connection()
-            if connection_status:
-                db_info = await self.system.db_manager.get_database_info()
-                await self._display_database_info(db_info)
-            else:
-                console.print("[red]❌ 데이터베이스 연결 실패[/red]")
-            return connection_status
+            # 간단한 연결 테스트
+            try:
+                async with self.system.db_manager.get_async_session() as session:
+                    # 간단한 쿼리로 연결 확인
+                    result = await session.execute("SELECT 1")
+                    console.print("[green]✅ 데이터베이스 연결 정상[/green]")
+
+                    # 데이터베이스 정보 표시
+                    await self._display_database_info()
+                    return True
+            except Exception as e:
+                console.print(f"[red]❌ 데이터베이스 연결 실패: {e}[/red]")
+                return False
         except Exception as e:
             console.print(f"[red]❌ 데이터베이스 상태 확인 실패: {e}[/red]")
             self.logger.error(f"❌ 데이터베이스 상태 확인 실패: {e}", exc_info=True)
@@ -919,11 +1024,53 @@ class MenuHandlers:
     async def _system_monitoring(self) -> bool:
         console.print(Panel("[bold magenta]시스템 상태 모니터링[/bold magenta]", border_style="magenta"))
         try:
-            console.print("[yellow]실시간 모니터링을 시작합니다. Ctrl+C로 중단하세요.[/yellow]")
-            while True:
-                status = await self.system.get_system_status()
-                await self._display_realtime_status(status)
-                await asyncio.sleep(5)
+            # 모니터링 옵션 선택
+            monitoring_options = {
+                "1": "실시간 시스템 상태",
+                "2": "성능 대시보드",
+                "3": "API 쿼터 대시보드"
+            }
+
+            console.print("\n[bold]모니터링 옵션:[/bold]")
+            for key, value in monitoring_options.items():
+                console.print(f"  {key}. {value}")
+
+            choice = Prompt.ask("모니터링 유형을 선택하세요", choices=list(monitoring_options.keys()), default="1")
+
+            if choice == "1":
+                # 기존 실시간 모니터링
+                console.print("[yellow]실시간 모니터링을 시작합니다. Ctrl+C로 중단하세요.[/yellow]")
+                while True:
+                    status = await self.system.get_system_status()
+                    await self._display_realtime_status(status)
+                    await asyncio.sleep(5)
+
+            elif choice == "2":
+                # 성능 대시보드
+                try:
+                    from monitoring.performance_dashboard import show_performance_menu
+                    from monitoring.performance_monitor import PerformanceMonitor
+
+                    performance_monitor = PerformanceMonitor(self.config)
+                    show_performance_menu(performance_monitor)
+                except ImportError as e:
+                    console.print(f"[red]❌ 성능 대시보드 모듈을 찾을 수 없습니다: {e}[/red]")
+                    return False
+
+            elif choice == "3":
+                # API 쿼터 대시보드
+                try:
+                    from quota_dashboard import QuotaDashboard
+
+                    quota_dashboard = QuotaDashboard(self.config)
+                    console.print("[yellow]API 쿼터 대시보드를 시작합니다...[/yellow]")
+                    await quota_dashboard.run_dashboard()
+                except ImportError as e:
+                    console.print(f"[red]❌ 쿼터 대시보드 모듈을 찾을 수 없습니다: {e}[/red]")
+                    return False
+
+            return True
+
         except KeyboardInterrupt:
             console.print("\n[yellow]🛑 모니터링 중단[/yellow]")
             return True
@@ -1419,10 +1566,23 @@ class MenuHandlers:
             period_choice = Prompt.ask("분석 기간을 선택하세요", choices=list(period_options.keys()), default="2")
             start_date = end_date - timedelta(days=period_options[period_choice])
             console.print("[yellow]🔄 AI 전략과 전통 전략의 성능을 비교 분석합니다...[/yellow]")
-            comparison_results = await validator.compare_strategies(ai_strategy_name="ai_momentum_strategy", traditional_strategy_name=selected_strategy, start_date=start_date.strftime('%Y-%m-%d'), end_date=end_date.strftime('%Y-%m-%d'))
+            
+            # 종목 선택 (선택적)
+            symbols_input = Prompt.ask("분석할 특정 종목 코드를 입력하세요 (전체는 Enter)", default="")
+            symbols = [s.strip() for s in symbols_input.split(',')] if symbols_input else None
+
+            comparison_results = await validator.compare_ai_vs_traditional(
+                strategy_name=selected_strategy,
+                start_date=start_date,
+                end_date=end_date,
+                symbols=symbols,
+                initial_capital=10000000.0 # 1천만원
+            )
             if comparison_results:
                 visualizer = PerformanceVisualizer()
-                visualizer.plot_comparison(comparison_results)
+                # The visualizer expects a dictionary of comparisons, so wrap the single result
+                comparison_dict = {selected_strategy: comparison_results}
+                await visualizer.create_strategy_comparison_chart(comparison_dict)
                 console.print("[green]✅ 비교 분석 완료. 결과가 차트로 표시되었습니다.[/green]")
             else:
                 console.print("[red]❌ 비교 분석에 실패했습니다.[/red]")
@@ -1440,13 +1600,33 @@ class MenuHandlers:
                 return False
             validator = StrategyValidator(self.config)
             strategy_name = await self._get_strategy_choice()
-            console.print("\n[bold]검증 기준 선택:[/bold]")
-            criteria_options = {"1": (ValidationCriteria.PROFITABILITY, "수익성"), "2": (ValidationCriteria.RISK_MANAGEMENT, "리스크 관리"), "3": (ValidationCriteria.CONSISTENCY, "일관성"), "4": (ValidationCriteria.EFFICIENCY, "효율성")}
-            for key, (_, desc) in criteria_options.items(): console.print(f"  {key}. {desc}")
-            criteria_choice = Prompt.ask("검증 기준을 선택하세요", choices=list(criteria_options.keys()), default="1")
-            selected_criteria = criteria_options[criteria_choice][0]
-            console.print(f"[yellow]🔄 {strategy_name} 전략의 {selected_criteria.value}을(를) 검증합니다...[/yellow]")
-            validation_result = await validator.validate_strategy(strategy_name=strategy_name, criteria=selected_criteria)
+            
+            # 기간 설정
+            console.print("\n[bold]백테스트 기간 설정 (검증용):[/bold]")
+            end_date = datetime.now()
+            start_date_str = Prompt.ask("시작 날짜 (YYYY-MM-DD)", default=(end_date - timedelta(days=90)).strftime('%Y-%m-%d'))
+            end_date_str = Prompt.ask("종료 날짜 (YYYY-MM-DD)", default=end_date.strftime('%Y-%m-%d'))
+            
+            # 종목 선택
+            symbols_input = Prompt.ask("검증할 특정 종목 코드를 입력하세요 (전체는 Enter)", default="")
+            symbols = [s.strip() for s in symbols_input.split(',')] if symbols_input else None
+
+            # 백테스트 실행
+            console.print(f"[yellow]🔄 '{strategy_name}' 전략 백테스트 실행 중...[/yellow]")
+            backtest_result = await validator.backtesting_engine.run_backtest(
+                strategy_name, start_date_str, end_date_str, symbols=symbols
+            )
+
+            if not backtest_result or not backtest_result.metrics:
+                console.print("[red]❌ 백테스트 데이터가 없어 검증을 진행할 수 없습니다.[/red]")
+                return False
+
+            console.print(f"[yellow]🔄 {strategy_name} 전략을 검증합니다...[/yellow]")
+            # 기본 ValidationCriteria 사용
+            validation_result = await validator.validate_strategy(
+                strategy_name=strategy_name, 
+                backtest_result=backtest_result
+            )
             if validation_result:
                 await self._display_validation_result(validation_result)
                 console.print("[green]✅ 전략 검증 완료[/green]")
@@ -1461,10 +1641,31 @@ class MenuHandlers:
     async def _ai_prediction_accuracy_analysis(self) -> bool:
         console.print(Panel("[bold purple]과거 AI 예측 정확도 분석[/bold purple]", border_style="purple"))
         try:
-            historical_analyzer = HistoricalAnalyzer(self.config, self.system.db_manager)
-            days_ago = IntPrompt.ask("최근 며칠간의 예측을 분석하시겠습니까?", default=30)
-            console.print(f"[yellow]🔄 최근 {days_ago}일간의 AI 예측 정확도를 분석합니다...[/yellow]")
-            accuracy_report = await historical_analyzer.analyze_prediction_accuracy(days_ago=days_ago)
+            historical_analyzer = HistoricalAnalyzer(self.config)
+            
+            # 기간 설정
+            console.print("\n[bold]분석 기간 설정:[/bold]")
+            end_date = datetime.now()
+            start_date_str = Prompt.ask("시작 날짜 (YYYY-MM-DD)", default=(end_date - timedelta(days=30)).strftime('%Y-%m-%d'))
+            end_date_str = Prompt.ask("종료 날짜 (YYYY-MM-DD)", default=end_date.strftime('%Y-%m-%d'))
+            start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+            end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+
+            # 종목 선택
+            symbols_input = Prompt.ask("분석할 특정 종목 코드를 입력하세요 (전체는 Enter)", default="")
+            symbols = [s.strip() for s in symbols_input.split(',')] if symbols_input else None
+            if not symbols:
+                console.print("[yellow]⚠️ 종목이 선택되지 않아, 대표 종목으로 분석합니다.[/yellow]")
+                symbols = ['005930', '000660', '035420'] # 삼성전자, SK하이닉스, NAVER
+
+            console.print(f"[yellow]🔄 {start_date_str} ~ {end_date_str} 기간의 AI 예측 정확도를 분석합니다...[/yellow]")
+            
+            accuracy_report = await historical_analyzer.analyze_ai_prediction_accuracy(
+                start_date=start_date,
+                end_date=end_date,
+                symbols=symbols
+            )
+
             if accuracy_report:
                 await self._display_accuracy_report(accuracy_report)
                 console.print("[green]✅ 예측 정확도 분석 완료[/green]")
@@ -1476,17 +1677,69 @@ class MenuHandlers:
             self.logger.error(f"❌ 예측 정확도 분석 실패: {e}", exc_info=True)
             return False
 
+    async def _display_accuracy_report(self, accuracy_report: Dict[str, Any]):
+        """AI 예측 정확도 분석 보고서를 Rich UI로 표시"""
+        try:
+            print("\n--- AI Prediction Accuracy Report ---")
+
+            # 1. 종합 정확도
+            overall_accuracy = accuracy_report.get('overall_accuracy', 0)
+            confidence_correlation = accuracy_report.get('confidence_correlation', 0)
+            
+            print("\n[Overall Results]")
+            print(f"  Overall Accuracy: {overall_accuracy:.2f}%")
+            print(f"  Confidence-Accuracy Correlation: {confidence_correlation:.3f}")
+
+            # 2. 종목별 정확도
+            symbol_accuracy = accuracy_report.get('symbol_accuracy', {})
+            if symbol_accuracy:
+                print("\n[Accuracy by Symbol]")
+                for symbol, data in symbol_accuracy.items():
+                    print(f"  - {symbol}: {data.get('accuracy', 0):.2f}% ({data.get('total_predictions', 0)} predictions)")
+
+            # 3. 예측 유형별 정확도
+            prediction_types = accuracy_report.get('prediction_types', {})
+            if prediction_types:
+                print("\n[Accuracy by Prediction Type]")
+                for pred_type, data in prediction_types.items():
+                    print(f"  - {pred_type}: {data.get('accuracy', 0):.2f}% ({data.get('sample_count', 0)} samples)")
+            
+            print("--- End of Report ---\n")
+            await asyncio.sleep(0.1) # Ensure time for render
+
+        except Exception as e:
+            self.logger.error(f"❌ 정확도 보고서 표시 오류: {e}")
+            console.print(f"[red]❌ 정확도 보고서 표시에 실패했습니다: {e}[/red]")
+
     async def _market_regime_performance(self) -> bool:
         console.print(Panel("[bold purple]시장 체제별 성과 분석[/bold purple]", border_style="purple"))
         try:
-            historical_analyzer = HistoricalAnalyzer(self.config, self.system.db_manager)
-            days_ago = IntPrompt.ask("최근 며칠간의 성과를 분석하시겠습니까?", default=90)
-            console.print(f"[yellow]🔄 최근 {days_ago}일간의 시장 체제별 성과를 분석합니다...[/yellow]")
-            performance_report = await historical_analyzer.analyze_performance_by_regime(days_ago=days_ago)
+            historical_analyzer = HistoricalAnalyzer(self.config)
+
+            # 기간 설정
+            console.print("\n[bold]분석 기간 설정:[/bold]")
+            end_date = datetime.now()
+            start_date_str = Prompt.ask("시작 날짜 (YYYY-MM-DD)", default=(end_date - timedelta(days=365)).strftime('%Y-%m-%d'))
+            end_date_str = Prompt.ask("종료 날짜 (YYYY-MM-DD)", default=end_date.strftime('%Y-%m-%d'))
+            start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+            end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+
+            console.print(f"[yellow]🔄 {start_date_str} ~ {end_date_str} 기간의 시장 체제를 분석합니다...[/yellow]")
+            
+            # 시장 지수 선택 (선택적)
+            market_index = Prompt.ask("분석할 시장 지수 (예: KOSPI, KOSDAQ)", default="KOSPI")
+
+            performance_report = await historical_analyzer.identify_market_regimes(
+                start_date=start_date,
+                end_date=end_date,
+                market_index=market_index
+            )
+
             if performance_report:
-                visualizer = PerformanceVisualizer()
-                visualizer.plot_performance_by_regime(performance_report)
-                console.print("[green]✅ 시장 체제별 성과 분석 완료. 결과가 차트로 표시되었습니다.[/green]")
+                from backtesting.performance_visualizer import ReportGenerator
+                report_generator = ReportGenerator()
+                await report_generator.display_market_regime_report(performance_report)
+                console.print("[green]✅ 시장 체제별 성과 분석 완료.[/green]")
             else:
                 console.print("[red]❌ 시장 체제별 성과 분석 실패[/red]")
             return True
@@ -1498,9 +1751,47 @@ class MenuHandlers:
     async def _backtesting_report_generation(self) -> bool:
         console.print(Panel("[bold purple]백테스팅 보고서 생성[/bold purple]", border_style="purple"))
         try:
-            historical_analyzer = HistoricalAnalyzer(self.config, self.system.db_manager)
+            from backtesting.performance_visualizer import ReportGenerator
+            report_generator = ReportGenerator()
+
+            # 1. Get strategies to test
+            console.print("\n[bold]보고서에 포함할 전략을 선택하세요.[/bold]")
+            strategy1 = await self._get_strategy_choice()
+            
+            more_strategies = Confirm.ask("다른 전략을 추가하여 비교하시겠습니까?", default=False)
+            strategies_to_test = [strategy1]
+            if more_strategies:
+                strategy2 = await self._get_strategy_choice()
+                if strategy2 != strategy1:
+                    strategies_to_test.append(strategy2)
+
+            # 2. Get backtest period
+            console.print("\n[bold]백테스트 기간 설정:[/bold]")
+            end_date = datetime.now()
+            start_date_str = Prompt.ask("시작 날짜 (YYYY-MM-DD)", default=(end_date - timedelta(days=365)).strftime('%Y-%m-%d'))
+            end_date_str = Prompt.ask("종료 날짜 (YYYY-MM-DD)", default=end_date.strftime('%Y-%m-%d'))
+
+            # 3. Run backtests
+            backtest_results = []
+            with Progress() as progress:
+                task = progress.add_task("[green]백테스트 실행 중...", total=len(strategies_to_test))
+                for strategy in strategies_to_test:
+                    progress.update(task, description=f"{strategy} 백테스트 중...")
+                    result = await self.system.run_backtest(strategy, start_date_str, end_date_str)
+                    if result:
+                        backtest_results.append(result)
+                    progress.advance(task)
+
+            if not backtest_results:
+                console.print("[red]❌ 보고서를 생성할 백테스트 결과가 없습니다.[/red]")
+                return False
+
+            # 4. Generate report
             console.print("[yellow]🔄 백테스팅 보고서를 생성합니다...[/yellow]")
-            report_path = await historical_analyzer.generate_full_report()
+            report_path = await report_generator.generate_comprehensive_report(
+                backtest_results=backtest_results
+            )
+            
             if report_path:
                 console.print(f"[green]✅ 백테스팅 보고서 생성 완료: {report_path}[/green]")
             else:
@@ -1509,6 +1800,70 @@ class MenuHandlers:
         except Exception as e:
             console.print(f"[red]❌ 백테스팅 보고서 생성 실패: {e}[/red]")
             self.logger.error(f"❌ 백테스팅 보고서 생성 실패: {e}", exc_info=True)
+            return False
+
+    async def _holding_sell_optimization(self) -> bool:
+        """보유 종목 매도 최적화"""
+        console.print(Panel("[bold magenta]보유 종목 매도 최적화[/bold magenta]", border_style="magenta"))
+        try:
+            result = await self.system.run_holding_sell_optimization()
+            if result.get('success'):
+                console.print(f"[green]✅ 매도 최적화 성공 - {result.get('optimized_count', 0)}개 종목[/green]")
+            else:
+                console.print(f"[yellow]⚠️ 매도 최적화 결과: {result.get('error', '알 수 없는 오류')}[/yellow]")
+            return True
+        except Exception as e:
+            console.print(f"[red]❌ 매도 최적화 실패: {e}[/red]")
+            self.logger.error(f"❌ 매도 최적화 실패: {e}", exc_info=True)
+            return False
+
+    async def _watch_buy_optimization(self) -> bool:
+        """감시 종목 매수 시그널 최적화"""
+        console.print(Panel("[bold magenta]감시 종목 매수 시그널 최적화[/bold magenta]", border_style="magenta"))
+        try:
+            result = await self.system.run_watch_buy_optimization()
+            if result.get('success'):
+                console.print(f"[green]✅ 매수 최적화 성공 - {result.get('optimized_count', 0)}개 종목[/green]")
+            else:
+                console.print(f"[yellow]⚠️ 매수 최적화 결과: {result.get('error', '알 수 없는 오류')}[/yellow]")
+            return True
+        except Exception as e:
+            console.print(f"[red]❌ 매수 최적화 실패: {e}[/red]")
+            self.logger.error(f"❌ 매수 최적화 실패: {e}", exc_info=True)
+            return False
+
+    async def _full_optimization(self) -> bool:
+        """전체 백테스팅 최적화 (매도 + 매수)"""
+        console.print(Panel("[bold magenta]전체 백테스팅 최적화[/bold magenta]", border_style="magenta"))
+
+        # 사용자 확인
+        from rich.prompt import Confirm
+        if not Confirm.ask("⚠️ 전체 최적화는 시간이 오래 걸릴 수 있습니다. 계속하시겠습니까?"):
+            console.print("[yellow]최적화가 취소되었습니다.[/yellow]")
+            return True
+
+        try:
+            result = await self.system.run_full_optimization()
+            if result.get('success'):
+                console.print("[green]🎉 전체 최적화 완료![/green]")
+
+                # 상세 결과 표시
+                sell_result = result.get('sell_optimization', {})
+                buy_result = result.get('buy_optimization', {})
+
+                console.print("\n📊 최적화 결과 상세:")
+                console.print(f"• 매도 최적화: {'✅ 성공' if sell_result.get('success') else '❌ 실패'} "
+                            f"({sell_result.get('optimized_count', 0)}개 종목)")
+                console.print(f"• 매수 최적화: {'✅ 성공' if buy_result.get('success') else '❌ 실패'} "
+                            f"({buy_result.get('optimized_count', 0)}개 종목)")
+
+                console.print("\n💡 최적화 결과는 reports/ 폴더에서 확인할 수 있습니다.")
+            else:
+                console.print(f"[red]❌ 전체 최적화 실패: {result.get('error', '알 수 없는 오류')}[/red]")
+            return True
+        except Exception as e:
+            console.print(f"[red]❌ 전체 최적화 실패: {e}[/red]")
+            self.logger.error(f"❌ 전체 최적화 실패: {e}", exc_info=True)
             return False
 
     async def _handle_auto_trading_menu(self) -> bool:
@@ -2635,25 +2990,6 @@ class MenuHandlers:
             self.logger.error(f"❌ 다중 전략 조합 분석 실패: {e}", exc_info=True)
             return False
 
-    async def _database_status(self) -> bool:
-        """데이터베이스 상태 확인"""
-        console.print(Panel("[bold cyan]데이터베이스 상태[/bold cyan]", border_style="cyan"))
-        try:
-            if hasattr(self.system, 'db_manager') and self.system.db_manager:
-                console.print("[yellow]🔄 데이터베이스 상태를 확인합니다...[/yellow]")
-                # 데이터베이스 연결 상태 확인
-                console.print("[green]✅ 데이터베이스 연결 정상[/green]")
-                console.print("[blue]💡 상세 상태 정보는 향후 구현될 예정입니다.[/blue]")
-            else:
-                console.print("[red]❌ 데이터베이스 관리자를 사용할 수 없습니다.[/red]")
-                console.print("[yellow]💡 시스템 초기화를 먼저 실행해주세요. (메뉴 3)[/yellow]")
-            
-            return True
-            
-        except Exception as e:
-            console.print(f"[red]❌ 데이터베이스 상태 확인 실패: {e}[/red]")
-            self.logger.error(f"❌ 데이터베이스 상태 확인 실패: {e}", exc_info=True)
-            return False
 
     async def _symbol_data_query(self) -> bool:
         """종목 데이터 조회"""
@@ -2719,10 +3055,6 @@ class MenuHandlers:
 
     async def _display_accuracy_report(self, report: Dict):
         pass
-
-    async def _return_to_main_menu(self) -> bool:
-        console.print("메인 메뉴로 돌아갑니다...")
-        return True
 
     async def _check_background_analysis_status(self) -> Dict:
         """백그라운드 분석 상태 확인"""
@@ -3269,4 +3601,166 @@ class MenuHandlers:
         except Exception as e:
             console.print(f"[red]❌ 포트폴리오 정리 실패: {e}[/red]")
             self.logger.error(f"포트폴리오 정리 오류: {e}")
+            return False
+
+    async def integrated_monitoring_dashboard(self):
+        """통합 모니터링 대시보드 실행"""
+        try:
+            console.print("[bold cyan]🖥️ 통합 모니터링 대시보드를 시작합니다...[/bold cyan]")
+
+            # 통합 대시보드 모듈 임포트
+            try:
+                from monitoring.integrated_dashboard import IntegratedDashboard
+            except ImportError:
+                console.print("[red]❌ 통합 대시보드 모듈을 찾을 수 없습니다.[/red]")
+                return False
+
+            # 대시보드 인스턴스 생성
+            dashboard = IntegratedDashboard(self.system)
+
+            console.print("[green]✅ 대시보드 초기화 완료[/green]")
+            console.print("[yellow]💡 대시보드 종료: Ctrl+C[/yellow]")
+
+            # 대시보드 시작
+            await dashboard.start_monitoring()
+
+            return True
+
+        except KeyboardInterrupt:
+            console.print("\n[yellow]⚠️ 사용자에 의해 대시보드가 중단되었습니다.[/yellow]")
+            return True
+        except Exception as e:
+            console.print(f"[red]❌ 통합 대시보드 실행 실패: {e}[/red]")
+            self.logger.error(f"통합 대시보드 오류: {e}")
+            return False
+
+    async def dynamic_settings_management(self):
+        """동적 설정 관리"""
+        try:
+            console.print("[bold cyan]⚙️ 동적 설정 관리[/bold cyan]")
+
+            # 동적 설정 관리자 확인
+            if not (hasattr(self.system, 'dynamic_settings_manager') and
+                    self.system.dynamic_settings_manager):
+                console.print("[red]❌ 동적 설정 관리자가 초기화되지 않았습니다.[/red]")
+                return False
+
+            dynamic_manager = self.system.dynamic_settings_manager
+
+            # 현재 설정 표시
+            console.print("\n[bold yellow]📊 현재 동적 설정[/bold yellow]")
+            current_settings = dynamic_manager.current_settings
+
+            settings_table = Table(title="현재 거래 설정")
+            settings_table.add_column("설정 항목", style="cyan")
+            settings_table.add_column("현재 값", style="green")
+
+            settings_table.add_row("위험 수준", current_settings.risk_level)
+            settings_table.add_row("포지션 크기 배수", f"{current_settings.position_size_multiplier:.2f}")
+            settings_table.add_row("최대 포지션 수", str(current_settings.max_positions))
+            settings_table.add_row("손절매 비율", f"{current_settings.stop_loss_ratio:.1%}")
+            settings_table.add_row("익절매 비율", f"{current_settings.take_profit_ratio:.1%}")
+
+            console.print(settings_table)
+
+            # 수동 업데이트 옵션
+            if Confirm.ask("\n[cyan]현재 잔고를 기반으로 설정을 업데이트하시겠습니까?[/cyan]"):
+                if (hasattr(self.system, 'auto_trading_handler') and
+                    self.system.auto_trading_handler):
+                    console.print("[yellow]💼 잔고 정보 조회 중...[/yellow]")
+                    result = await self.system.auto_trading_handler.update_dynamic_settings()
+
+                    if result.get('success', False):
+                        console.print("[green]✅ 동적 설정 업데이트 완료[/green]")
+                        console.print(f"총 자산: {result['total_value']:,.0f}원")
+                        console.print(f"주식 자산: {result['stock_value']:,.0f}원")
+                        console.print(f"현금 자산: {result['cash_balance']:,.0f}원")
+                    else:
+                        console.print(f"[red]❌ 설정 업데이트 실패: {result.get('error', '알 수 없는 오류')}[/red]")
+                else:
+                    console.print("[red]❌ 자동매매 핸들러가 초기화되지 않았습니다.[/red]")
+
+            return True
+
+        except Exception as e:
+            console.print(f"[red]❌ 동적 설정 관리 실패: {e}[/red]")
+            self.logger.error(f"동적 설정 관리 오류: {e}")
+            return False
+
+    async def enhanced_backtesting_visualization(self):
+        """향상된 백테스팅 시각화"""
+        try:
+            console.print("[bold cyan]📈 향상된 백테스팅 시각화[/bold cyan]")
+
+            # 향상된 시각화 모듈 임포트
+            try:
+                from backtesting.enhanced_visualizer import EnhancedVisualizer
+            except ImportError:
+                console.print("[red]❌ 향상된 시각화 모듈을 찾을 수 없습니다.[/red]")
+                return False
+
+            # 백테스팅 데이터 확인
+            console.print("[yellow]🔍 백테스팅 결과 검색 중...[/yellow]")
+
+            # 데모 시각화 생성
+            visualizer = EnhancedVisualizer()
+
+            # 사용자 선택
+            console.print("\n[bold yellow]📊 시각화 옵션[/bold yellow]")
+            console.print("1. 실시간 대시보드 데모")
+            console.print("2. 기존 백테스팅 결과 시각화")
+            console.print("3. 전략 비교 차트")
+            console.print("0. 메인 메뉴로 돌아가기")
+
+            choice = Prompt.ask("옵션을 선택하세요", choices=["1", "2", "3", "0"], default="0")
+
+            if choice == "0":
+                return True
+            elif choice == "1":
+                console.print("[green]🚀 실시간 대시보드 데모를 시작합니다...[/green]")
+                # 데모 대시보드 실행
+                await visualizer.create_demo_dashboard()
+                console.print("[cyan]💡 브라우저에서 대시보드를 확인하세요.[/cyan]")
+            elif choice == "2":
+                console.print("[blue]📊 기존 백테스팅 결과를 시각화합니다...[/blue]")
+                # 기존 결과 시각화 로직 (추후 구현)
+                console.print("[yellow]⚠️ 이 기능은 백테스팅 데이터가 있을 때 사용 가능합니다.[/yellow]")
+            elif choice == "3":
+                console.print("[purple]🔍 전략 비교 차트를 생성합니다...[/purple]")
+                # 전략 비교 로직 (추후 구현)
+                console.print("[yellow]⚠️ 이 기능은 여러 전략 결과가 있을 때 사용 가능합니다.[/yellow]")
+
+            return True
+
+        except Exception as e:
+            console.print(f"[red]❌ 백테스팅 시각화 실패: {e}[/red]")
+            self.logger.error(f"백테스팅 시각화 오류: {e}")
+            return False
+
+    async def _stop_loss_management(self) -> bool:
+        """손절매 관리"""
+        try:
+            console.print(Panel("[bold red]🛡️ 손절매 관리[/bold red]", border_style="red"))
+
+            # 손절매 관리자 임포트
+            try:
+                from core.stop_loss_manager import StopLossManager
+            except ImportError:
+                console.print("[red]❌ 손절매 관리 모듈을 찾을 수 없습니다.[/red]")
+                return False
+
+            # 손절매 관리자 초기화
+            stop_loss_manager = StopLossManager(
+                config=self.system.config,
+                trading_handler=getattr(self.system, 'auto_trading_handler', None)
+            )
+
+            # 메인 메뉴 실행
+            await stop_loss_manager.show_main_menu()
+
+            return True
+
+        except Exception as e:
+            console.print(f"[red]❌ 손절매 관리 실패: {e}[/red]")
+            self.logger.error(f"손절매 관리 오류: {e}")
             return False

@@ -11,10 +11,11 @@ from .backtesting_engine import BacktestingEngine, BacktestResult, PerformanceMe
 from .strategy_validator import StrategyValidator, ValidationResult, StrategyComparison
 from .historical_analyzer import HistoricalAnalyzer, HistoricalData, MarketCondition
 from .performance_visualizer import PerformanceVisualizer, ReportGenerator
+from .enhanced_visualizer import EnhancedVisualizer
 
 __all__ = [
     'BacktestingEngine', 'BacktestResult', 'PerformanceMetrics',
     'StrategyValidator', 'ValidationResult', 'StrategyComparison',
     'HistoricalAnalyzer', 'HistoricalData', 'MarketCondition',
-    'PerformanceVisualizer', 'ReportGenerator'
+    'PerformanceVisualizer', 'ReportGenerator', 'EnhancedVisualizer'
 ]

@@ -69,15 +69,7 @@ class MarketRegimeDetector:
         self.logger = get_logger("MarketRegimeDetector")
         self.gemini_analyzer = GeminiAnalyzer(config)
 
-    def _safe_get(self, data, key, default=None):
-        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
-        if hasattr(data, key):
-            return getattr(data, key, default)
-        elif isinstance(data, dict):
-            return data.get(key, default)
-        else:
-            return default
-        
+
         # 체제 분류 임계값
         self.regime_thresholds = {
             'volatility': {
@@ -123,7 +115,7 @@ class MarketRegimeDetector:
         # 과거 체제 기록 (최근 100개)
         self.regime_history = deque(maxlen=100)
         self.current_regime = None
-        
+
         self.position_sizer = AdaptivePositionSizing(config)
         self.logger.info("✅ 시장 체제 감지기 초기화 완료")
     
@@ -467,7 +459,7 @@ class MarketRegimeDetector:
             self.logger.error(f"❌ 시장 폭 분석 실패: {e}")
             return {'breadth_score': 50, 'advancing_ratio': 0.5}
     
-    async def _ai_regime_classification(self, market_state: MarketState, 
+    async def _ai_regime_classification(self, market_state: MarketState,
                                       volatility_regime: Dict, trend_regime: Dict,
                                       volume_regime: Dict, breadth_analysis: Dict) -> Dict:
         """AI 기반 체제 분류"""
@@ -475,12 +467,12 @@ class MarketRegimeDetector:
             # Gemini AI를 통한 종합 분석
             analysis_prompt = f"""
             다음 시장 데이터를 바탕으로 현재 시장 체제를 분석해주세요:
-            
+
             변동성: {volatility_regime['regime']} (신뢰도: {volatility_regime['confidence']:.1f}%)
             트렌드: {trend_regime['regime']} (강도: {trend_regime.get('strength', 0):.2f})
             거래량: {volume_regime['regime']} (비율: {volume_regime.get('volume_ratio', 1.0):.2f})
             시장 폭: {breadth_analysis.get('breadth_score', 50):.1f}점
-            
+
             다음 형식으로 답변해주세요:
             {{
                 "primary_regime": "BULL_TREND/BEAR_TREND/SIDEWAYS/HIGH_VOLATILITY/LOW_VOLATILITY",
@@ -491,11 +483,23 @@ class MarketRegimeDetector:
                 "expected_duration": 14
             }}
             """
-            
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(analysis_prompt)
-            
-            return ai_result if ai_result else self._create_default_regime_assessment()
-            
+
+            ai_result_text = await self.gemini_analyzer._call_gemini_api(analysis_prompt)
+
+            # AI 결과를 JSON으로 파싱 시도
+            if ai_result_text:
+                try:
+                    # JSON 형태의 응답 파싱 시도
+                    import json
+                    ai_result = json.loads(ai_result_text)
+                    return ai_result
+                except json.JSONDecodeError:
+                    # JSON 파싱 실패 시 기본값 사용
+                    self.logger.warning(f"⚠️ AI 응답 JSON 파싱 실패, 기본 분석 사용")
+                    return self._create_default_regime_assessment()
+            else:
+                return self._create_default_regime_assessment()
+
         except Exception as e:
             self.logger.error(f"❌ AI 체제 분류 실패: {e}")
             return self._create_default_regime_assessment()
@@ -698,3 +702,12 @@ class MarketRegimeDetector:
     
     async def _update_regime_confidence(self, regime: MarketRegime, duration: Dict, strength: Dict, signals: List[str]) -> float:
         return max(30, regime.confidence - len(signals) * 5)
+
+    def _safe_get(self, data, key, default=None):
+        """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
+        if hasattr(data, key):
+            return getattr(data, key, default)
+        elif isinstance(data, dict):
+            return data.get(key, default)
+        else:
+            return default
