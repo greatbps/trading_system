@@ -1,0 +1,48 @@
+❌ 기존 오류 발생 명령어 (사용하지 말것):
+(trading_env) ubuntu@great-vincent:/opt/trading_system$ python -c "from database.database_manager import DatabaseManager; import asyncio; asyncio.run(DatabaseManager().initialize_database())"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: DatabaseManager.__init__() missing 1 required positional argument: 'config'
+
+✅ 수정된 해결방법:
+
+1. 새로운 초기화 스크립트 사용:
+(trading_env) ubuntu@great-vincent:/opt/trading_system$ python setup_oracle_db.py --init
+
+2. Oracle 설정 가이드 확인:
+(trading_env) ubuntu@great-vincent:/opt/trading_system$ python setup_oracle_db.py --guide
+
+3. 상세 설정 가이드:
+(trading_env) ubuntu@great-vincent:/opt/trading_system$ cat com/oracle_setup_guide.md
+
+📋 주요 변경사항:
+- DatabaseManager에 config 매개변수 추가
+- Oracle 프리티어 전용 설정 클래스 생성
+- SQLite → Oracle 단계별 마이그레이션 지원
+- 자동 샘플 데이터 생성
+- 연결 테스트 및 트러블슈팅 가이드 포함
+
+🚀 빠른 시작:
+
+# 현재 Oracle 프리티어에서 실행할 명령어:
+python setup_oracle_db.py --init
+
+# 또는 자동 설치 스크립트 사용:
+# Linux/macOS:
+chmod +x install_oracle.sh
+./install_oracle.sh
+
+# Windows:
+PowerShell -ExecutionPolicy Bypass -File install_oracle.ps1
+
+📁 생성된 파일들:
+- setup_oracle_db.py: Oracle 설정 포함 DB 초기화 스크립트
+- com/oracle_setup_guide.md: 상세한 Oracle 설치 가이드
+- install_oracle.sh: Linux/macOS 자동 설치 스크립트
+- install_oracle.ps1: Windows PowerShell 자동 설치 스크립트
+- requirements.txt: Oracle 드라이버(oracledb>=2.0.0) 추가됨
+
+✅ 해결된 문제:
+- DatabaseManager config 매개변수 누락 → OracleConfig 클래스로 해결
+- Oracle 연결 오류 → SQLite 우선 사용 후 Oracle 단계적 전환
+- 설치 복잡성 → 자동 설치 스크립트로 간소화
