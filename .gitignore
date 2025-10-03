@@ -1,5 +1,88 @@
-".env" 
-logs/*.log
-logs/*.log
-logs/*.log*
+# Environment variables
 .env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+trading_env_64/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Test files and cache
+.pytest_cache/
+test_*.db
+performance_test.db
+test_optimization.db
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+del
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Reports and analysis files (temporary)
+*_report.txt
+*_analysis_report.md
+trading_system_performance_report_*.txt
+
+# Error files
+error.txt
+error_recovery_state.json
+
+# Backup files
+*.bak
+*.backup
+
+# Large data files
+data/
+results/
+
+# Empty or invalid files
+D:trading_system*

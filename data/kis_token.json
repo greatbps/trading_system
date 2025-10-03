@@ -1,9 +1,0 @@
-{
-  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b2tlbiIsImF1ZCI6IjliMzI5OTUyLTRhODAtNDgwMi04NTQ0LTViOGYyNjk1ZGJlMyIsInByZHRfY2QiOiIiLCJpc3MiOiJ1bm9ndyIsImV4cCI6MTc1NzMyODY0NCwiaWF0IjoxNzU3MjQyMjQ0LCJqdGkiOiJQU2I2dFJuVG9PZXA4T0FTT2taOWhmSzVOSEVpVzNHUVRNYmsifQ.dv2MiQOuWuTvco_w5vT2ZyZ3mLFMmxzXfMJijHfUm0kUhpbN6zMw6A7PAuhg5jNzZEA00AEXvmLRfLVj0ThN2w",
-  "expired_at": "2025-09-08T19:50:43.482022",
-  "app_key": "PSb6tRnToOep8OASOkZ9hfK5NHEiW3GQTMbk",
-  "app_secret": "HRpEQmVTUjX/cQki0XcyYrLngE6pTZJfYz+rXshlYP1+/CpV9tVi3bU6Rxz8pC0LLSaKehCqwB67UKnPAl9icWDUCGw8WO5Bb+CJODPcIZ9jo/1T9Km/Wq8Ri9RErkIbprWVCS5Zh0Vjbbv9Qt65A124rSB/rDb3mI0KxPB3qQHIgmzKbKg=",
-  "virtual_mode": true,
-  "created_at": "2025-09-07T19:50:43.482022",
-  "cache_version": "2.0"
-}
