@@ -332,35 +332,57 @@ class DatabaseAutoTrader:
             # 백그라운드 로그만 기록
             pass  # 모니터링 실행 메시지 제거
 
-            # 병렬 처리 vs 순차 처리 결정
+            # 병렬 처리 vs 개선된 순차 처리 결정
             if self.parallel_enabled and len(filtered_monitoring_data) > 3:
                 # 병렬 처리 실행
                 self.logger.info(f"🚀 병렬 분석 시작: {len(filtered_monitoring_data)}개 종목")
                 await self._analyze_stocks_parallel(filtered_monitoring_data)
             else:
-                # 순차 처리 (기존 방식 + 성능 측정)
-                for i, stock_data in enumerate(filtered_monitoring_data, 1):
-                    start_time = time.time()
-                    try:
-                        self.logger.debug(f"📊 [{i}/{len(filtered_monitoring_data)}] {stock_data.symbol}({stock_data.name}) 분석 중...")
-                        # 개별 종목 분석에 타임아웃 적용 (15초로 단축)
-                        analyze_task = asyncio.create_task(
-                            self._analyze_stock_by_id(stock_data.id, stock_data.symbol, stock_data.name)
+                # 개선된 순차 처리 (asyncio.wait with FIRST_COMPLETED)
+                tasks = []
+                for stock_data in filtered_monitoring_data:
+                    task = asyncio.create_task(
+                        self._analyze_stock_by_id(stock_data.id, stock_data.symbol, stock_data.name)
+                    )
+                    tasks.append(task)
+
+                if not tasks:
+                    return
+
+                try:
+                    # 전체 리스트를 동시에 기다리되, 먼저 완료되는 것을 순차적으로 처리
+                    pending = set(tasks)
+                    completed_count = 0
+                    while pending:
+                        done, pending = await asyncio.wait(
+                            pending,
+                            timeout=10.0,
+                            return_when=asyncio.FIRST_COMPLETED
                         )
-                        await asyncio.wait_for(analyze_task, timeout=15.0)
 
-                        # 성능 측정 기록
-                        analysis_time = time.time() - start_time
-                        self.analysis_times.append(analysis_time)
+                        if not done:
+                            # 타임아웃: 아직 완료된 작업 없음 -> 느린 작업 일부 취소
+                            slow_tasks = list(pending)[: max(1, len(pending) // 3)]  # 느린 1/3 취소
+                            for task in slow_tasks:
+                                task.cancel()
+                                pending.remove(task)
+                            self.logger.warning(f"⚠️ {len(slow_tasks)}개 느린 분석 태스크 취소 (타임아웃 10초)")
+                            continue
 
-                    except asyncio.TimeoutError:
-                        analysis_time = time.time() - start_time
-                        self.analysis_times.append(analysis_time)
-                        self.logger.warning(f"⚠️ {stock_data.symbol} 분석 타임아웃 (15초) - 다음 종목으로 넘어감")
-                    except Exception as e:
-                        analysis_time = time.time() - start_time
-                        self.analysis_times.append(analysis_time)
-                        self.logger.error(f"❌ {stock_data.symbol} 분석 오류: {e} - 계속 진행")
+                        # 완료된 태스크 처리
+                        for task in done:
+                            try:
+                                result = task.result()
+                                completed_count += 1
+                            except asyncio.CancelledError:
+                                self.logger.debug("분석 태스크가 취소됨")
+                            except Exception as e:
+                                self.logger.error(f"분석 태스크 예외: {e}")
+
+                    self.logger.info(f"✅ 순차 분석 완료: {completed_count}/{len(filtered_monitoring_data)}개")
+
+                except Exception as e:
+                    self.logger.error(f"모니터링 병렬 처리 중 오류: {e}")
 
             # 사이클 완료 후 성능 분석 및 설정 조정
             cycle_time = time.time() - cycle_start_time

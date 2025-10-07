@@ -217,39 +217,39 @@ class TradingExecutor:
     
     # === Pre-order 검증 메서드들 ===
     
-    async def _validate_buy_order(self, symbol: str, quantity: int, price: Optional[int]) -> Dict[str, Any]:
-        """매수 주문 사전 검증"""
+    async def _validate_buy_order(self, symbol: str, quantity: int, price: Optional[int], stop_loss_price: Optional[int] = None) -> Dict[str, Any]:
+        """매수 주문 사전 검증 (리스크 기반 손실한도 검사 포함)"""
         try:
             # 1. 기본 파라미터 검증
             if quantity <= 0:
                 return {'valid': False, 'reason': '주문 수량이 유효하지 않습니다'}
-            
+
             if price is not None and price <= 0:
                 return {'valid': False, 'reason': '주문 가격이 유효하지 않습니다'}
-            
+
             # 2. 종목 정보 확인
             stock_info = await self.kis_collector.get_stock_info(symbol)
             if not stock_info:
                 return {'valid': False, 'reason': f'종목 정보를 찾을 수 없습니다: {symbol}'}
-            
+
             # 3. 현재가 기준 주문 금액 계산
             current_price = price if price else (getattr(stock_info, 'current_price', 0) if hasattr(stock_info, 'current_price') else stock_info.get('current_price', 0))
             if current_price <= 0:
                 return {'valid': False, 'reason': '현재가 정보를 가져올 수 없습니다'}
-            
+
             order_amount = current_price * quantity
-            
+
             # 4. 단일 주문 한도 확인
             if order_amount > self.max_single_order:
                 reason = f"단일 주문 한도 초과: {order_amount:,}원 > {self.max_single_order:,}원"
                 self.logger.warning(f"⚠️ {reason}")
                 return {'valid': False, 'reason': reason}
-            
+
             # 5. 계좌 잔고 확인
             balance_check = await self._check_account_balance(order_amount)
             if not balance_check['sufficient']:
                 return {'valid': False, 'reason': f'잔고 부족: 필요 {order_amount:,}원, 보유 {balance_check["available"]:,}원'}
-            
+
             # 6. 보유종목 수 제한 확인
             holdings_check = await self._check_holdings_limit(symbol)
             if not holdings_check['within_limit']:
@@ -260,13 +260,52 @@ class TradingExecutor:
             if not position_check['within_limit']:
                 return {'valid': False, 'reason': f'포지션 한도 초과: {position_check["reason"]}'}
 
+            # 8. 리스크 기반 최대 손실 체크
+            # stop_loss_price가 전달되지 않으면 DB에서 조회 또는 기본값 사용
+            if stop_loss_price is None:
+                # DB에서 조회 시도
+                try:
+                    if self.db_manager:
+                        from database.models import MonitoringStock
+                        with self.db_manager.get_session() as session:
+                            db_stock = session.query(MonitoringStock).filter(
+                                MonitoringStock.symbol == symbol
+                            ).first()
+                            stop_loss_price = db_stock.stop_loss_price if db_stock and db_stock.stop_loss_price else None
+                except Exception as e:
+                    self.logger.debug(f"{symbol} DB 손절가 조회 실패: {e}")
+                    stop_loss_price = None
+
+            # fallback: 기본 손절 비율 사용
+            if stop_loss_price is None:
+                default_stop_loss_pct = getattr(self.config.trading, 'DEFAULT_STOP_LOSS_PCT', 0.05)
+                stop_loss_price = int(current_price * (1 - default_stop_loss_pct))
+
+            # 예상 최대 손실 계산
+            expected_loss = max(0, current_price - stop_loss_price) * quantity
+
+            # 계좌 대비 리스크 한도 확인
+            risk_per_trade = getattr(self.config.trading, 'RISK_PER_TRADE', 0.02)  # 기본 2%
+            current_balance = balance_check.get('available', 0)
+            max_loss_allowed = int(current_balance * risk_per_trade)
+
+            if expected_loss > max_loss_allowed:
+                return {
+                    'valid': False,
+                    'reason': f'리스크 한도 초과: 예상 최대 손실 {expected_loss:,}원 > 허용 {max_loss_allowed:,}원 (계좌의 {risk_per_trade*100:.1f}%)'
+                }
+
             return {
                 'valid': True,
                 'order_amount': order_amount,
                 'current_price': current_price,
-                'available_balance': balance_check['available']
+                'available_balance': balance_check['available'],
+                'expected_loss': expected_loss,
+                'max_loss_allowed': max_loss_allowed,
+                'stop_loss_price': stop_loss_price,
+                'risk_ratio': expected_loss / current_balance if current_balance > 0 else 0
             }
-            
+
         except Exception as e:
             self.logger.error(f"❌ 매수 주문 검증 실패: {e}")
             return {'valid': False, 'reason': f'검증 중 오류: {str(e)}'}

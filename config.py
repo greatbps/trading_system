@@ -75,6 +75,13 @@ class TradingConfig:
     STOP_LOSS_RATIO = 0.03      # 단타용 타이트 손절률 (3%)
     TAKE_PROFIT_RATIO = 0.06    # 단타용 익절률 (6% = 손절 × 2배)
     MAX_POSITIONS = 5           # 최대 동시 보유 종목수
+    RISK_PER_TRADE = 0.02       # 거래당 리스크 한도 (계좌 잔고의 2%)
+
+    # ATR (Average True Range) 기반 동적 손절/목표가 설정
+    ATR_PERIOD = 14             # ATR 계산 기간 (일)
+    ATR_SL_MULT = 1.5           # ATR 손절가 배수 (현재가 - ATR × 1.5)
+    ATR_TP_MULT = 2.5           # ATR 목표가 배수 (현재가 + ATR × 2.5)
+    DEFAULT_STOP_LOSS_PCT = 0.05  # ATR 실패 시 기본 손절 비율 (5%)
 
     # 포트폴리오 관리 설정
     PORTFOLIO_AUTO_CLEANUP = True   # 자동 포트폴리오 정리 활성화
