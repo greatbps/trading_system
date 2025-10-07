@@ -30,20 +30,7 @@ class APIConfig:
     TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
     TELEGRAM_CHAT_IDS = [id.strip() for id in os.getenv("TELEGRAM_CHAT_IDS", "").split(",") if id.strip()]
     
-    # Google Gemini API
-    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
-    # OpenAI GPT API (새로 추가)
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-
-class LLMConfig:
-    """LLM (Large Language Model) 설정"""
-    # 기본 분석기 설정 (gpt 또는 gemini)
-    PRIMARY_ANALYZER = os.getenv("PRIMARY_ANALYZER", "gpt")  # GPT를 기본값으로 설정
-    FALLBACK_ANALYZER = os.getenv("FALLBACK_ANALYZER", "gemini")  # Gemini를 백업으로 설정
-    
-    GEMINI_TIMEOUT_THRESHOLD = 30  # Gemini API 호출 타임아웃 (초)
-    GPT_TIMEOUT_THRESHOLD = 60     # GPT API 호출 타임아웃 (초)
 
 class KISAccountConfig:
     """KIS 계정 설정"""
@@ -122,17 +109,18 @@ class TradingConfig:
         'all': 'momentum'  # all 전략은 기본적으로 momentum 사용
     }
 
-    # 전략별 HTS 조건검색식 ID 매핑 (실제 HTS ID와 일치)
+    # 전략별 HTS 조건검색식 ID 매핑 (실제 HTS 등록 순서)
+    # 실제 HTS API 응답 기준: 0=3분봉, 1=Breakout, 2=EOD, 3=momentum, 4=RSI, 5=Squeeze, 6=SuperTrend, 7=VWAP
     HTS_CONDITIONAL_SEARCH_IDS = {
-        'scalping_3m': '0',
-        'breakout': '1',
-        'eod': '2',
-        'momentum': '3',
-        'rsi': '4',
-        'squeeze_momentum_pro': '5',
-        'supertrend_ema_rsi': '6',
-        'vwap': '7',
-        'all': '3'  # all 전략은 momentum ID 사용
+        'scalping_3m': '0',           # 3분봉 스캘핑 전략
+        'breakout': '1',              # Breakout
+        'eod': '2',                   # EOD
+        'momentum': '3',              # momentum (수정됨: 7->3)
+        'rsi': '4',                   # RSI (상대강도지수) 전략 (수정됨: 3->4)
+        'squeeze_momentum_pro': '5',  # Squeeze Momentum Pro (수정됨: 4->5)
+        'supertrend_ema_rsi': '6',    # SuperTrend (수정됨: 5->6)
+        'vwap': '7',                  # VWAP (수정됨: 6->7)
+        'all': '3'  # all 전략은 momentum ID 사용 (수정됨: 7->3)
     }
 
     def __init__(self):
@@ -228,7 +216,6 @@ class Config:
         self.system = SystemConfig()
         self.risk = RiskConfig()
         self.kis_account = KISAccountConfig()
-        self.llm = LLMConfig() # LLMConfig 추가
         
         
         # 실행 환경
@@ -260,8 +247,6 @@ class Config:
             errors.append("KIS_APP_KEY가 설정되지 않았습니다.")
         if not APIConfig.KIS_APP_SECRET:
             errors.append("KIS_APP_SECRET이 설정되지 않았습니다.")
-        if not APIConfig.GEMINI_API_KEY:
-            errors.append("GEMINI_API_KEY가 설정되지 않았습니다.")
             
         # 필수 디렉토리 생성
         os.makedirs("logs", exist_ok=True)

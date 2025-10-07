@@ -8,7 +8,6 @@ trading_system/core/auto_trading_handler.py
 
 import asyncio
 from datetime import datetime
-from utils.monitoring_display_updater import get_monitoring_updater
 from utils.stock_name_resolver import get_stock_name_resolver
 from utils.strategy_mapper import strategy_mapper
 from utils.status_definitions import status_definitions

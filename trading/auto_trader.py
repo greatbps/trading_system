@@ -274,7 +274,7 @@ class AutoTrader:
                         active_positions = session.query(DBMonitoringStock).filter(
                             DBMonitoringStock.status == MonitoringStatus.ACTIVE.value,
                             DBMonitoringStock.monitoring_active == True,
-                            DBMonitoringStock.monitoring_type == MonitoringType.TRADING
+                            DBMonitoringStock.monitoring_type == MonitoringType.TRADING.value
                         ).count()
                 else:
                     # DB 없을 경우 메모리 기반 확인 (폴백)
@@ -310,7 +310,7 @@ class AutoTrader:
                         # 이미 활성 상태로 존재하는지 확인
                         db_stock = session.query(DbMonitoringStock).filter(
                             DbMonitoringStock.symbol == symbol,
-                            DbMonitoringStock.monitoring_type == MonitoringType.TRADING,
+                            DbMonitoringStock.monitoring_type == MonitoringType.TRADING.value,
                             DbMonitoringStock.status == 'ACTIVE'
                         ).first()
                         
@@ -319,7 +319,7 @@ class AutoTrader:
                             new_db_stock = DbMonitoringStock(
                                 symbol=symbol,
                                 name=name,
-                                monitoring_type=MonitoringType.TRADING,
+                                monitoring_type=MonitoringType.TRADING.value,
                                 strategy_name=strategy_name,
                                 target_price=target_price,
                                 add_reason="AutoTrader recommendation",
@@ -857,7 +857,7 @@ class AutoTrader:
                         with self.db_manager.get_session() as session:
                             db_stock = session.query(DbMonitoringStock).filter(
                                 DbMonitoringStock.symbol == symbol,
-                                DbMonitoringStock.monitoring_type == MonitoringType.TRADING,
+                                DbMonitoringStock.monitoring_type == MonitoringType.TRADING.value,
                                 DbMonitoringStock.status == 'ACTIVE'
                             ).first()
                             
@@ -898,7 +898,7 @@ class AutoTrader:
             with self.db_manager.get_session() as session:
                 db_stock = session.query(DbMonitoringStock).filter(
                     DbMonitoringStock.symbol == symbol,
-                    DbMonitoringStock.monitoring_type == MonitoringType.TRADING,
+                    DbMonitoringStock.monitoring_type == MonitoringType.TRADING.value,
                     DbMonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).first()
 

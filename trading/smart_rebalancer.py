@@ -556,7 +556,7 @@ class SmartRebalancer:
                             new_monitoring = MonitoringStock(
                                 symbol=symbol,
                                 name=evaluation.name,
-                                monitoring_type=MonitoringType.TRADING,
+                                monitoring_type=MonitoringType.TRADING.value,
                                 strategy_name="smart_rebalancer",
                                 current_price=int(evaluation.current_price),
                                 status=MonitoringStatus.ACTIVE.value,

@@ -22,10 +22,8 @@ from analyzers.chart_pattern_analyzer import ChartPatternAnalyzer
 from analyzers.fundamental_analyzer import FundamentalAnalyzer
 from analyzers.mtf_analyzer import MTFAnalyzer
 from analyzers.consensus_engine import ConsensusEngine
-from analyzers.multi_llm_analyzer import MultiLLMAnalyzer, LLMModel
 from analyzers.multi_strategy_analyzer import MultiStrategyAnalyzer, StrategyWeight
 from analyzers.technical_indicators import PriceData
-from analyzers.quota_monitoring import get_quota_monitor
 
 class AnalysisEngine:
     """종합 분석 엔진 (2차 필터링)"""
@@ -42,25 +40,12 @@ class AnalysisEngine:
         self.fundamental_analyzer = FundamentalAnalyzer(config)
         self.mtf_analyzer = MTFAnalyzer(config, data_collector=self.data_collector)
         self.consensus_engine = ConsensusEngine(config)
-        
-        # 쿼터 모니터 초기화
-        self.quota_monitor = get_quota_monitor(config)
 
-        try:
-            self.multi_llm_analyzer = MultiLLMAnalyzer(config)
-            self.multi_llm_enabled = True
-            self.logger.info("🧠 Multi-LLM 분석기 초기화 완료")
-        except Exception as e:
-            self.multi_llm_analyzer = None
-            self.multi_llm_enabled = False
-            self.logger.warning(f"⚠️ Multi-LLM 분석기 초기화 실패: {e}")
-        
         self.logger.info("✅ 모든 하위 분석기 초기화 완료")
 
     async def analyze_comprehensive(self, symbol: str, name: str, stock_data: Dict, strategy: str = "momentum") -> Dict:
         start_time = time.time()
         self.logger.info(f"🚀 {symbol}({name}) 종합 분석 시작...")
-        gpt_fallback_failed = False
 
         price_data, news_data = await self._gather_initial_data(symbol, name)
         tasks = self._create_analysis_tasks(symbol, name, stock_data, price_data, news_data, strategy)
@@ -73,25 +58,10 @@ class AnalysisEngine:
         for i, task_name in enumerate(task_names):
             result = results[i]
             if isinstance(result, Exception):
-                if task_name == 'multi_llm':
-                    self.logger.warning(f"⚠️ {symbol} Gemini 분석 실패: {result} - GPT 대체 분석 시도...")
-                    try:
-                        price_data_objects = self._convert_to_price_data_objects(price_data)
-                        fallback_result = await asyncio.wait_for(
-                            self.multi_llm_analyzer.analyze_with_specific_model(
-                                model=LLMModel.GPT, symbol=symbol, name=name, stock_data=stock_data,
-                                price_data=price_data_objects, strategy=strategy
-                            ), timeout=45.0
-                        )
-                        analysis_results[task_name] = self._process_successful_result(fallback_result, task_name, symbol)
-                        self.logger.info(f"✅ {symbol} GPT 대체 분석 성공")
-                    except Exception as fallback_e:
-                        self.logger.error(f"❌ {symbol} GPT 대체 분석도 실패: {fallback_e}")
-                        gpt_fallback_failed = True
-                        analysis_results[task_name] = self._get_empty_analysis(task_name)
-                else:
-                    self.logger.warning(f"⚠️ {symbol} {task_name} 분석 실패: {result} - 해당 분석 제외")
-                    analysis_results[task_name] = self._get_empty_analysis(task_name)
+                error_type = type(result).__name__
+                error_msg = str(result) if str(result) else f"{error_type} occurred"
+                self.logger.warning(f"⚠️ {symbol} {task_name} 분석 실패 [{error_type}]: {error_msg} - 해당 분석 제외")
+                analysis_results[task_name] = self._get_empty_analysis(task_name)
             else:
                 analysis_results[task_name] = self._process_successful_result(result, task_name, symbol)
 
@@ -125,13 +95,19 @@ class AnalysisEngine:
                     price_data = [{'date': item.date.strftime('%Y-%m-%d'), 'open': int(item.open), 'high': int(item.high), 'low': int(item.low), 'close': int(item.close), 'volume': int(item.volume)} for item in results[0]]
                     self.logger.info(f"📊 {symbol} 가격 데이터 수집: {len(price_data)}개")
                 else:
-                    error_msg = str(results[0]) if isinstance(results[0], Exception) else "데이터 없음"
+                    if isinstance(results[0], Exception):
+                        error_type = type(results[0]).__name__
+                        error_msg = str(results[0]) if str(results[0]) else f"{error_type} occurred"
+                    else:
+                        error_type = "NoData"
+                        error_msg = "데이터 없음"
+
                     if "HTTP session not initialized" in error_msg:
                         self.logger.error(f"❌ {symbol} KIS API 세션 미초기화 - 데이터 수집기 재초기화 필요")
-                    elif "timeout" in error_msg.lower():
-                        self.logger.warning(f"⏰ {symbol} 가격 데이터 수집 타임아웃 (10초 초과)")
+                    elif "timeout" in error_msg.lower() or error_type == "TimeoutError":
+                        self.logger.warning(f"⏰ {symbol} 가격 데이터 수집 타임아웃 [{error_type}]: 10초 초과")
                     else:
-                        self.logger.warning(f"⚠️ {symbol} 가격 데이터 수집 실패: {error_msg}")
+                        self.logger.warning(f"⚠️ {symbol} 가격 데이터 수집 실패 [{error_type}]: {error_msg}")
                 if not isinstance(results[1], Exception) and results[1]:
                     news_data = results[1]
                     self.logger.info(f"📰 {symbol} 뉴스 데이터 수집: {len(news_data)}개")
@@ -163,13 +139,10 @@ class AnalysisEngine:
 
         tasks.append(('supply_demand', asyncio.wait_for(self.supply_demand_analyzer.analyze(stock_data), timeout=10.0)))
         tasks.append(('fundamental', asyncio.wait_for(self.fundamental_analyzer.analyze(stock_data), timeout=5.0)))
-        if self.multi_llm_enabled and self.multi_llm_analyzer:
-            price_data_objects = self._convert_to_price_data_objects(price_data)
-            tasks.append(('multi_llm', self.multi_llm_analyzer.analyze_comprehensive(symbol=symbol, name=name, stock_data=stock_data, price_data=price_data_objects, strategy=strategy)))
         return tasks
 
     def _process_successful_result(self, result: Any, task_name: str, symbol: str) -> Dict:
-        if hasattr(result, 'final_score'): # MultiLLMResult
+        if hasattr(result, 'final_score'):
             return {
                 'score': float(result.final_score),
                 'confidence': float(result.final_confidence) / 100.0,
@@ -215,11 +188,6 @@ class AnalysisEngine:
             'confidence_level': self._calculate_confidence_level(analysis_results, score_details),
             'risk_assessment': self._assess_risk_level(analysis_results, comprehensive_score)
         }
-        if self.multi_llm_enabled and 'multi_llm' in analysis_results:
-            multi_llm_data = analysis_results['multi_llm']
-            if isinstance(multi_llm_data, dict) and not multi_llm_data.get('error'):
-                result['multi_llm_score'] = self._safe_get_score(multi_llm_data, 'score', 50)
-                result['multi_llm_details'] = multi_llm_data
         return result
 
     def _determine_recommendation(self, score: float, results: Dict, score_details: Dict = None) -> str:

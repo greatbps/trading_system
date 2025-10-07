@@ -14,7 +14,6 @@ import numpy as np
 from dataclasses import dataclass
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 def safe_get_stock_data(stock_data, key: str, default=None):
     """StockData 객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
@@ -59,7 +58,6 @@ class AIPredictor:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("AIPredictor")
-        self.gemini_analyzer = GeminiAnalyzer(config)
         
         # Phase 4.1: 다중 모델 앙상블 가중치 - 동적 조정 가능
         self.prediction_weights = {
@@ -378,12 +376,11 @@ class AIPredictor:
             }}
             """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(ai_prompt)
-            
+            # LLM 제거됨
             return {
                 'technical_score': max(0, min(100, technical_score + 50)),
                 'factors': factors,
-                'ai_analysis': ai_result
+                'ai_analysis': {}
             }
             
         except Exception as e:
@@ -410,11 +407,10 @@ class AIPredictor:
             }}
             """
             
-            sentiment_result = await self.gemini_analyzer.analyze_with_custom_prompt(news_prompt)
-            
+            # LLM 제거됨
             return {
-                'sentiment_analysis': sentiment_result,
-                'sentiment_score': self._convert_sentiment_to_score(sentiment_result.get('sentiment', 'NEUTRAL'))
+                'sentiment_analysis': {},
+                'sentiment_score': 50
             }
             
         except Exception as e:

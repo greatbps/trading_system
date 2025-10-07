@@ -1223,76 +1223,51 @@ class AnalysisHandlers:
                 self.logger.warning(safe_format(f"{strategy_name} 전략으로 조회된 종목 없음"))
                 return []
             
-            self.logger.info(f"[SEARCH] {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 -> 전체 2차 필터링 시작")
-            analysis_results = []
-            
-            # 각 종목에 대해 실제 분석 수행
-            for i, (symbol, name) in enumerate(stocks):  # 모든 종목 2차 필터링
-                try:
-                    # 실제 분석 엔진 사용
-                    if hasattr(self.system, 'analysis_engine') and self.system.analysis_engine:
-                        # 종목 데이터 수집
-                        stock_data = await self._get_stock_data_for_analysis(symbol, name, strategy_name)
-                        if not stock_data:
-                            self.logger.warning(f"{symbol} 종목 데이터 수집 실패 - 스킵")
-                            continue
-                        
-                        # 실제 분석 수행
-                        result = await self.system.analysis_engine.analyze_comprehensive(
-                            symbol=symbol,
-                            name=name,
-                            stock_data=stock_data,
-                            strategy=strategy_name
-                        )
-                        
-                        if result:
-                            # 실제 분석 점수 사용 (하드코딩된 보너스 제거)
-                            original_score = result.get('overall_score', result.get('score', 50))
-                            
-                            # 다양한 보너스 계산 (종목별로 다르게)
-                            import random
-                            # 기본 전략 매칭 보너스 (5-10점 범위)
-                            base_bonus = random.uniform(5, 10)
-                            
-                            # 실제 분석 점수가 높을수록 추가 보너스
-                            if original_score > 70:
-                                performance_bonus = random.uniform(5, 15)
-                            elif original_score > 55:
-                                performance_bonus = random.uniform(2, 8)
-                            else:
-                                performance_bonus = random.uniform(0, 5)
-                            
-                            total_bonus = base_bonus + performance_bonus
-                            adjusted_score = min(95, original_score + total_bonus)
-                            
-                            # 분석 엔진의 추천 사용 (더 정확한 기준)
-                            recommendation = result.get('recommendation', 'HOLD')
-                            
-                            # 결과 업데이트
-                            result.update({
-                                'recommendation': recommendation,
-                                'overall_score': round(adjusted_score, 1),
-                                'score': round(adjusted_score, 1),
-                                'strategy_bonus': round(total_bonus, 1),
-                                'original_score': original_score,
-                                'reason': f"{strategy_name} 전략 매칭 (분석점수: {original_score:.1f} + 보너스: {total_bonus:.1f})"
-                            })
-                            
-                            analysis_results.append(result)
-                        else:
-                            self.logger.warning(f"{symbol} 분석 결과 없음")
+            self.logger.info(f"[SEARCH] {strategy_name} 전략: HTS에서 {len(stocks)}개 종목 추출 -> 병렬 2차 필터링 시작")
+
+            # 병렬 분석기 임포트 및 초기화
+            from utils.parallel_analyzer import ParallelStockAnalyzer
+
+            parallel_analyzer = ParallelStockAnalyzer(
+                data_collector=self.system.data_collector,
+                news_collector=getattr(self.system, 'news_collector', None),
+                analysis_engine=getattr(self.system, 'analysis_engine', None)
+            )
+
+            # 병렬 배치 분석 실행 (최대 동시 8개)
+            # Note: 8 stocks × 2 KIS API calls = 16 concurrent calls < 18/sec rate limit
+            analysis_results = await parallel_analyzer.analyze_stocks_batch(
+                stocks=stocks,
+                strategy=strategy_name,
+                max_concurrent=8
+            )
+
+            # 점수 보정 및 결과 업데이트
+            import random
+            for result in analysis_results:
+                if result:
+                    original_score = result.get('overall_score', result.get('score', 50))
+
+                    # 전략 매칭 보너스
+                    base_bonus = random.uniform(5, 10)
+
+                    if original_score > 70:
+                        performance_bonus = random.uniform(5, 15)
+                    elif original_score > 55:
+                        performance_bonus = random.uniform(2, 8)
                     else:
-                        # 분석 엔진이 없는 경우 기본 로직
-                        self.logger.warning("분석 엔진이 초기화되지 않음 - 기본 분석 사용")
-                        
-                        # 기본 분석 (실제 종목 데이터 기반)
-                        basic_result = await self._basic_strategy_analysis(symbol, name, strategy_name, i, len(stocks))
-                        if basic_result:
-                            analysis_results.append(basic_result)
-                        
-                except Exception as e:
-                    self.logger.error(f"{symbol} 분석 실패: {e}")
-                    continue
+                        performance_bonus = random.uniform(0, 5)
+
+                    total_bonus = base_bonus + performance_bonus
+                    adjusted_score = min(95, original_score + total_bonus)
+
+                    result.update({
+                        'overall_score': round(adjusted_score, 1),
+                        'score': round(adjusted_score, 1),
+                        'strategy_bonus': round(total_bonus, 1),
+                        'original_score': original_score,
+                        'reason': f"{strategy_name} 전략 매칭 (분석점수: {original_score:.1f} + 보너스: {total_bonus:.1f})"
+                    })
             
             # 디버깅: 추천 등급 분포 확인
             if analysis_results:

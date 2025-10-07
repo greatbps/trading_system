@@ -15,7 +15,6 @@ import numpy as np
 from dataclasses import dataclass
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 def safe_get_data(data, key: str, default=None):
     """객체 또는 dict에서 안전하게 값을 가져오는 유틸리티 함수"""
@@ -77,7 +76,6 @@ class AIRiskManager:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("AIRiskManager")
-        self.gemini_analyzer = GeminiAnalyzer(config)
         
         # Phase 4.2: 동적 리스크 매개변수 (실시간 조정 가능)
         self.risk_params = {

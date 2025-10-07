@@ -1563,7 +1563,7 @@ class KISCollector:
                         method="GET",
                         endpoint="/uapi/domestic-stock/v1/quotations/psearch-result",
                         params={
-                            "user_id": self.config.kis_account.KIS_USER_ID,
+                            "user_id": user_id,  # HTS_USER_ID 우선 사용
                             "seq": str(condition_id)  # seq는 문자열로 전달
                         },
                         tr_id="HHKST03900400",
@@ -1575,9 +1575,14 @@ class KISCollector:
                     if not output2:
                         if page_count == 0:
                             self.logger.warning(f"⚠️ 조건식 {condition_id} ({condition_name})에 해당하는 종목 없음")
+                            self.logger.info(f"📋 API 응답 키: {list(result.keys())}")
+                            self.logger.info(f"📋 msg_cd: {result.get('msg_cd')}, msg1: {result.get('msg1')}")
+                            # output1도 확인
+                            if 'output1' in result:
+                                self.logger.info(f"📋 output1: {result.get('output1')}")
                             # MCA05918 에러는 검색 결과가 0개인 경우
                             if result.get('msg_cd') == 'MCA05918':
-                                self.logger.debug(f"검색 결과 0개: {result.get('msg1')}")
+                                self.logger.info(f"검색 결과 0개: {result.get('msg1')}")
                         break
 
                     # 공식 스펙에 따른 종목 정보 변환
@@ -1618,10 +1623,11 @@ class KISCollector:
             
             if all_stocks_data:
                 self.logger.info(f"✅ 조건식 {condition_id} ({condition_name})로 {len(all_stocks_data)}개 종목 발견 ({page_count}페이지)")
-                
-                # 상위 종목들 로그 출력
-                for i, stock in enumerate(all_stocks_data[:5]):
-                    self.logger.debug(f"  {i+1}. {stock['code']} {stock['name']} - {stock['price']:,.0f}원 ({stock['chgrate']:+.2f}%)")
+
+                # 상위 종목들 로그 출력 (항상 출력하도록 변경)
+                self.logger.info(f"📋 상위 10개 종목:")
+                for i, stock in enumerate(all_stocks_data[:10]):
+                    self.logger.info(f"  {i+1}. {stock['code']} {stock['name']} - {stock['price']:,.0f}원 ({stock['chgrate']:+.2f}%)")
             else:
                 self.logger.warning(f"⚠️ 조건식 {condition_id} ({condition_name}) 결과 없음")
             
@@ -1722,7 +1728,25 @@ class KISCollector:
                     for stock_data in stocks_data:
                         symbol = stock_data.get('code')
                         name = stock_data.get('name')
+
+                        # ETF 및 우선주 필터링
                         if symbol and name:
+                            # ETF 제외 (종목코드가 숫자가 아니거나 ETF 관련 키워드 포함)
+                            if not symbol.isdigit():
+                                continue
+                            if any(keyword in name.upper() for keyword in [
+                                'ETF', 'KODEX', 'TIGER', 'KINDEX', 'KOSEF',
+                                'KBSTAR', 'ARIRANG', 'PLUS', 'SOL', 'RISE',
+                                'KIWOOM', 'KOACT', 'ACE', 'TIMEFOLIO'
+                            ]):
+                                continue
+
+                            # 우선주 제외 (종목명에 '우' 포함 또는 종목코드 6번째 자리가 5 이상)
+                            if '우' in name:
+                                continue
+                            if len(symbol) == 6 and int(symbol[5]) >= 5:
+                                continue
+
                             stock_list.append((symbol, name))
                     
                     if stock_list:

@@ -16,7 +16,6 @@ from dataclasses import dataclass
 from collections import deque
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 from risk_management.position_sizing import AdaptivePositionSizing, PositionSizingRecommendation
 
 
@@ -67,7 +66,6 @@ class MarketRegimeDetector:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("MarketRegimeDetector")
-        self.gemini_analyzer = GeminiAnalyzer(config)
 
 
         # 체제 분류 임계값
@@ -484,21 +482,8 @@ class MarketRegimeDetector:
             }}
             """
 
-            ai_result_text = await self.gemini_analyzer._call_gemini_api(analysis_prompt)
-
-            # AI 결과를 JSON으로 파싱 시도
-            if ai_result_text:
-                try:
-                    # JSON 형태의 응답 파싱 시도
-                    import json
-                    ai_result = json.loads(ai_result_text)
-                    return ai_result
-                except json.JSONDecodeError:
-                    # JSON 파싱 실패 시 기본값 사용
-                    self.logger.warning(f"⚠️ AI 응답 JSON 파싱 실패, 기본 분석 사용")
-                    return self._create_default_regime_assessment()
-            else:
-                return self._create_default_regime_assessment()
+            # LLM 제거됨 - 기본값 사용
+            return self._create_default_regime_assessment()
 
         except Exception as e:
             self.logger.error(f"❌ AI 체제 분류 실패: {e}")

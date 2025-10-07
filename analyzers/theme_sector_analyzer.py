@@ -16,7 +16,6 @@ from dataclasses import dataclass
 from collections import defaultdict, Counter
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 from data_collectors.news_collector import NewsCollector
 
 
@@ -75,7 +74,6 @@ class ThemeSectorAnalyzer:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("ThemeSectorAnalyzer")
-        self.gemini_analyzer = GeminiAnalyzer(config)
         self.news_collector = NewsCollector(config) if hasattr(self, 'news_collector') else None
         
         # 테마 키워드 매핑
@@ -338,17 +336,8 @@ class ThemeSectorAnalyzer:
 ]
 """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(analysis_prompt)
-            
+            # LLM 제거됨 - 빈 결과 반환
             themes = []
-            if ai_result and isinstance(ai_result, list):
-                for theme_data in ai_result:
-                    if isinstance(theme_data, dict):
-                        theme_info = ThemeInfo(
-                            theme_name=theme_data.get('theme_name', '알 수 없음'),
-                            theme_keywords=theme_data.get('key_keywords', []),
-                            related_stocks=[],  # AI는 종목 추천 안함
-                            leader_stock=None,
                             theme_strength=theme_data.get('theme_strength', 50),
                             momentum_score=theme_data.get('momentum_score', 50),
                             news_sentiment=1.0 if theme_data.get('investment_outlook') == 'positive' else -1.0 if theme_data.get('investment_outlook') == 'negative' else 0.0,

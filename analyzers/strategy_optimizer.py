@@ -16,7 +16,6 @@ from dataclasses import dataclass
 from collections import defaultdict
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 
 @dataclass
@@ -78,7 +77,6 @@ class StrategyOptimizer:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("StrategyOptimizer")
-        self.gemini_analyzer = GeminiAnalyzer(config)
         
         # 최적화 매개변수
         self.optimization_params = {
@@ -727,13 +725,8 @@ class StrategyOptimizer:
             }}
             """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(optimization_prompt)
-            
-            if ai_result and 'candidates' in ai_result:
-                return ai_result['candidates']
-            else:
-                # AI 결과가 없으면 기본 후보 생성
-                return self._generate_default_optimization_candidates(strategy_name, parameter_space)
+            # LLM 제거됨 - 기본 후보 생성 사용
+            return self._generate_default_optimization_candidates(strategy_name, parameter_space)
                 
         except Exception as e:
             self.logger.error(f"❌ AI 매개변수 최적화 실패: {e}")
@@ -1012,12 +1005,8 @@ class StrategyOptimizer:
             }}
             """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(pattern_prompt)
-            
-            if ai_result:
-                return ai_result
-            else:
-                return self._default_pattern_analysis()
+            # LLM 제거됨 - 기본 패턴 분석 사용
+            return self._default_pattern_analysis()
                 
         except Exception as e:
             self.logger.error(f"❌ AI 패턴 분석 실패: {e}")
@@ -1423,22 +1412,7 @@ class StrategyOptimizer:
             }}
             """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(acquisition_prompt)
-            
-            if ai_result and isinstance(ai_result, dict):
-                # reasoning 키 제거
-                next_point = {k: v for k, v in ai_result.items() if k != 'reasoning'}
-                
-                # 파라미터 범위 검증 및 조정
-                for param_name, value in next_point.items():
-                    if param_name in parameter_space:
-                        param_info = parameter_space[param_name]
-                        if isinstance(param_info, dict) and 'min' in param_info and 'max' in param_info:
-                            next_point[param_name] = np.clip(value, param_info['min'], param_info['max'])
-                
-                return next_point
-            
-            # AI 실패시 UCB(Upper Confidence Bound) 방식으로 폴백
+            # LLM 제거됨 - UCB 방식 사용
             return self._ucb_acquisition(observations, parameter_space)
             
         except Exception as e:

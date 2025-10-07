@@ -24,7 +24,6 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 # ================================
 # 재료 분류 키워드 및 가중치
@@ -167,8 +166,7 @@ class NewsCollector:
             self.naver_client_id = None
             self.naver_client_secret = None
         
-        # Gemini 분석기 초기화
-        self.gemini_analyzer = GeminiAnalyzer(config) if config else None
+        # LLM 제거됨
     
     def is_excluded_stock(self, stock_name: str, stock_code: str = "") -> bool:
         """제외 대상 종목인지 확인"""
@@ -727,9 +725,8 @@ class NewsCollector:
     async def analyze_with_gemini(self, stock_name: str, stock_code: str, news_data: List[Dict] = None) -> Dict:
         """Gemini AI를 활용한 뉴스 분석"""
         try:
-            if not self.gemini_analyzer:
-                self.logger.warning("⚠️ Gemini 분석기가 초기화되지 않았습니다. 기본 분석 사용")
-                return self._get_default_gemini_analysis()
+            # LLM 제거됨 - 기본 분석 사용
+            return self._get_default_gemini_analysis()
             
             # 뉴스 데이터가 없으면 수집
             if not news_data:

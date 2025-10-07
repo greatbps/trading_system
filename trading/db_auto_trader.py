@@ -306,11 +306,12 @@ class DatabaseAutoTrader:
             with self.db_manager.get_session() as session:
                 monitoring_data = session.query(
                     MonitoringStock.id,
-                    MonitoringStock.symbol, 
-                    MonitoringStock.name
+                    MonitoringStock.symbol,
+                    MonitoringStock.name,
+                    MonitoringStock.monitoring_type
                 ).filter(
                     MonitoringStock.status == MonitoringStatus.ACTIVE.value,
-                    MonitoringStock.monitoring_type.in_([MonitoringType.TRADING, MonitoringType.PORTFOLIO])
+                    MonitoringStock.monitoring_type.in_([MonitoringType.TRADING.value, MonitoringType.PORTFOLIO.value])
                 ).all()
             
             if not monitoring_data:
@@ -319,9 +320,9 @@ class DatabaseAutoTrader:
 
             # [FIX] TRADING 타입은 실제 보유 여부와 무관하게 분석, PORTFOLIO 타입만 보유종목 필터링
             filtered_monitoring_data = [
-                stock for stock in monitoring_data 
-                if (stock.symbol in actual_holding_symbols or 
-                    stock.monitoring_type == MonitoringType.TRADING)
+                stock for stock in monitoring_data
+                if (stock.symbol in actual_holding_symbols or
+                    stock.monitoring_type == MonitoringType.TRADING.value)
             ]
 
             if not filtered_monitoring_data:
@@ -1416,7 +1417,7 @@ class DatabaseAutoTrader:
                     strategy_name=strategy_name,
                     target_price=target_price,
                     stop_loss_price=stop_loss_price,
-                    monitoring_type=monitoring_type,
+                    monitoring_type=monitoring_type.value if isinstance(monitoring_type, MonitoringType) else monitoring_type,
                     recommendation_time=datetime.now()
                 )
                 session.add(new_monitoring)
@@ -1703,7 +1704,7 @@ class DatabaseAutoTrader:
         try:
             with self.db_manager.get_session() as session:
                 count = session.query(MonitoringStock).filter(
-                    MonitoringStock.monitoring_type == MonitoringType.TRADING,
+                    MonitoringStock.monitoring_type == MonitoringType.TRADING.value,
                     MonitoringStock.status == MonitoringStatus.ACTIVE.value
                 ).count()
                 return count

@@ -16,7 +16,6 @@ from collections import deque
 import math
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 
 @dataclass
@@ -57,7 +56,6 @@ class InstitutionalFlowAnalyzer:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger("InstitutionalFlowAnalyzer")
-        self.gemini_analyzer = GeminiAnalyzer(config)
         
         # 분석 파라미터
         self.analysis_params = {
@@ -932,12 +930,8 @@ class InstitutionalFlowAnalyzer:
 }}
 """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(analysis_prompt)
-            
-            if ai_result and isinstance(ai_result, dict):
-                return ai_result
-            else:
-                return self._get_default_ai_analysis()
+            # LLM 제거됨 - 기본 분석 사용
+            return self._get_default_ai_analysis()
                 
         except Exception as e:
             self.logger.warning(f"⚠️ AI 매집 분석 실패: {e}")

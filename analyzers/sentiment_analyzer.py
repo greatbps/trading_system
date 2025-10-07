@@ -9,7 +9,6 @@ trading_system/analyzers/sentiment_analyzer.py
 import numpy as np
 from typing import Dict, Any, Optional, List
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 from dataclasses import dataclass
 from enum import Enum
 
@@ -64,16 +63,7 @@ class MarketSentiment:
     analysis_period: str
 
 class SentimentAnalyzer:
-    """실시간 시장 감정 분석기 (Gemini AI 기반 뉴스 분석 + 실시간 감정 분석)"""
-
-    # 전역 GeminiAnalyzer 인스턴스 (토큰 상태 공유를 위해)
-    _shared_gemini_analyzer = None
-
-    # Gemini 사용 불가 플래그 (세션 전체에서 공유)
-    _gemini_unavailable = False
-
-    # Gemini 복구 체크 카운터 (24시간마다 1회 체크)
-    _last_gemini_check_time = 0
+    """실시간 시장 감정 분석기 (키워드 기반 뉴스 분석 + 실시간 감정 분석)"""
     
     def __init__(self, config):
         self.config = config
@@ -99,132 +89,33 @@ class SentimentAnalyzer:
         }
 
     async def _ensure_gemini_analyzer(self):
-        """전역 GeminiAnalyzer 인스턴스 재사용 (토큰 상태 공유)"""
-        if SentimentAnalyzer._shared_gemini_analyzer is None:
-            from analyzers.gemini_analyzer import GeminiAnalyzer
-            SentimentAnalyzer._shared_gemini_analyzer = GeminiAnalyzer(self.config)
-            self.logger.debug("🔄 새로운 GeminiAnalyzer 인스턴스 생성 (전역 공유)")
-        self.gemini_analyzer = SentimentAnalyzer._shared_gemini_analyzer
-        
-        # GPT 분석기도 초기화
-        if not hasattr(self, 'gpt_analyzer'):
-            from analyzers.gpt_analyzer import GPTAnalyzer
-            self.gpt_analyzer = GPTAnalyzer(self.config)
+        """LLM 제거됨 - 더 이상 사용하지 않음"""
+        pass
 
     async def analyze(self, symbol: str, name: str, news_data: Optional[List[Dict]] = None) -> Dict[str, Any]:
         """
-        감정 분석 실행 (재료 관점 분석)
-        순서: Gemini → OpenAI → 키워드 기반 fallback → 기본값
+        감정 분석 실행 (키워드 기반)
         """
-        await self._ensure_gemini_analyzer()
 
-        if not news_data:
+        if not news_data or len(news_data) == 0:
             self.logger.debug(f"📰 {symbol} 뉴스 데이터 없음 - 중립 분석 사용")
             return self._get_default_result()
 
-        # 설정에서 주요 분석기 확인
-        primary_analyzer = self.config.llm.PRIMARY_ANALYZER.lower() if hasattr(self.config, 'llm') else 'gemini'
-        fallback_analyzer = self.config.llm.FALLBACK_ANALYZER.lower() if hasattr(self.config, 'llm') else 'gpt'
-
-        analysis_attempts = [
-            ("Gemini", self._try_gemini_analysis),
-            ("GPT", self._try_gpt_analysis),
-            ("키워드 기반", self._try_keyword_analysis)
-        ]
-
-        # 설정에 따라 순서 조정
-        if primary_analyzer == 'gpt':
-            analysis_attempts[0], analysis_attempts[1] = analysis_attempts[1], analysis_attempts[0]
-
-        # 각 분석기 순차 시도
-        for analyzer_name, analysis_func in analysis_attempts:
-            try:
-                self.logger.info(f"🔄 {symbol} {analyzer_name} 감성 분석 시도")
-                result = await analysis_func(symbol, name, news_data)
-
-                if result:
-                    self.logger.info(f"✅ {symbol} {analyzer_name} 분석 성공 - 점수: {result['overall_score']:.1f}")
-                    return result
-
-            except Exception as e:
-                self.logger.warning(f"⚠️ {symbol} {analyzer_name} 분석 실패: {e}")
-                continue
-
-        # 모든 분석기 실패 시 기본값 반환
-        self.logger.error(f"❌ {symbol} 모든 분석 방법 실패 - 기본값 사용")
-        return self._get_default_result()
+        # 키워드 기반 분석만 사용
+        return await self._try_keyword_analysis(symbol, name, news_data)
 
     async def _try_gemini_analysis(self, symbol: str, name: str, news_data: List[Dict]) -> Optional[Dict[str, Any]]:
-        """Gemini 분석 시도"""
-        # 24시간마다 Gemini 가용성 재체크
-        import time
-        current_time = time.time()
-        if SentimentAnalyzer._gemini_unavailable:
-            if current_time - SentimentAnalyzer._last_gemini_check_time > 86400:  # 24시간
-                self.logger.info(f"🔄 {symbol} Gemini API 가용성 재체크 시간 - 상태 초기화")
-                SentimentAnalyzer._gemini_unavailable = False
-                SentimentAnalyzer._last_gemini_check_time = current_time
-                # Gemini analyzer 상태도 초기화
-                if SentimentAnalyzer._shared_gemini_analyzer:
-                    SentimentAnalyzer._shared_gemini_analyzer.reset_quota_status()
-            else:
-                remaining_hours = int((86400 - (current_time - SentimentAnalyzer._last_gemini_check_time)) / 3600)
-                self.logger.debug(f"⏭️ {symbol} Gemini 할당량 소진됨 (재시도: {remaining_hours}시간 후)")
-                return None
-
-        try:
-            analysis_result = await self.gemini_analyzer.analyze_news_sentiment(symbol, name, news_data)
-
-            # Gemini 분석이 기본값(50점)만 반환하거나 할당량 소진 상태인지 확인
-            short_score = analysis_result.get('short_term', {}).get('score', 50)
-            mid_score = analysis_result.get('mid_term', {}).get('score', 50)
-            long_score = analysis_result.get('long_term', {}).get('score', 50)
-
-            # 할당량 소진 상태이거나 모든 점수가 50점이면 실패로 간주
-            gemini_exhausted = getattr(self.gemini_analyzer, 'quota_exhausted', False)
-            all_default_scores = (short_score == 50 and mid_score == 50 and long_score == 50)
-
-            if gemini_exhausted:
-                self.logger.warning(f"⚠️ {symbol} Gemini API 할당량 소진 감지")
-                SentimentAnalyzer._gemini_unavailable = True
-                SentimentAnalyzer._last_gemini_check_time = current_time
-                return None
-
-            if all_default_scores:
-                # 기본값 반환 시 로그 레벨을 debug로 조정
-                self.logger.debug(f"⚠️ {symbol} Gemini 분석이 기본값 반환 - GPT로 대체")
-                return None
-
-            return self._compile_final_result(analysis_result, len(news_data))
-
-        except Exception as e:
-            # Gemini API 호출 자체에서 예외 발생 시 처리
-            error_msg = str(e).lower()
-            if any(keyword in error_msg for keyword in ['quota', 'limit', 'exceeded', 'rate', 'usage', '429', 'billing']):
-                self.logger.warning(f"⚠️ {symbol} Gemini API 할당량 소진 감지")
-                SentimentAnalyzer._gemini_unavailable = True
-                SentimentAnalyzer._last_gemini_check_time = current_time
-            else:
-                self.logger.warning(f"⚠️ {symbol} Gemini 분석 오류: {e}")
-            return None
+        """LLM 제거됨 - 더 이상 사용하지 않음"""
+        return None
 
     async def _try_gpt_analysis(self, symbol: str, name: str, news_data: List[Dict]) -> Optional[Dict[str, Any]]:
-        """GPT 분석 시도 (쿼터 초과 시 향상된 백업 분석 사용)"""
+        """LLM 제거됨 - 더 이상 사용하지 않음"""
         try:
-            gpt_analysis_result = await self.gpt_analyzer.analyze_news_sentiment(symbol, name, news_data)
-
-            if gpt_analysis_result:
-                return self._compile_final_result(gpt_analysis_result, len(news_data))
-            else:
-                # GPT 분석 실패시 향상된 백업 분석 사용
-                self.logger.warning(f"⚠️ {symbol} GPT 분석 실패, 향상된 백업 분석 사용")
-                return self._get_enhanced_fallback_analysis(symbol, name, news_data)
-
+            return self._get_enhanced_fallback_analysis(symbol, name, news_data)
         except Exception as e:
             error_msg = str(e).lower()
-            # API 쿼터 관련 에러 감지
             if any(keyword in error_msg for keyword in ['quota', 'limit', 'exceeded', 'rate', 'usage', '429', 'billing']):
-                self.logger.warning(f"⚠️ {symbol} GPT API 쿼터 초과, 향상된 백업 분석 사용")
+                self.logger.warning(f"⚠️ {symbol} 백업 분석 쿼터 초과")
                 return self._get_enhanced_fallback_analysis(symbol, name, news_data)
             else:
                 self.logger.warning(f"⚠️ {symbol} GPT 분석 오류: {e}")
@@ -295,27 +186,12 @@ class SentimentAnalyzer:
 
     @classmethod
     def get_gemini_status(cls) -> Dict[str, Any]:
-        """Gemini API 상태 확인 메서드 (시스템 모니터링용)"""
-        import time
-        current_time = time.time()
-
-        if cls._shared_gemini_analyzer:
-            gemini_quota_status = cls._shared_gemini_analyzer.get_quota_status()
-        else:
-            gemini_quota_status = {
-                "api_available": False,
-                "quota_exhausted": False,
-                "remaining_hours": 0,
-                "remaining_minutes": 0,
-                "last_check": None
-            }
-
+        """LLM 제거됨 - 기본 상태 반환"""
         return {
-            "gemini_analyzer_available": cls._shared_gemini_analyzer is not None,
-            "gemini_unavailable_flag": cls._gemini_unavailable,
-            "last_check_timestamp": cls._last_gemini_check_time,
-            "time_until_next_check_hours": max(0, int((86400 - (current_time - cls._last_gemini_check_time)) / 3600)) if cls._last_gemini_check_time > 0 else 0,
-            "gemini_quota_details": gemini_quota_status
+            "api_available": False,
+            "quota_exhausted": False,
+            "gemini_analyzer_available": False,
+            "gemini_unavailable_flag": True
         }
 
     def _get_enhanced_fallback_analysis(self, symbol: str, name: str, news_data: List[Dict]) -> Dict[str, Any]:
@@ -412,9 +288,5 @@ class SentimentAnalyzer:
 
     @classmethod
     def reset_gemini_status(cls):
-        """Gemini 상태 수동 초기화 (관리자 용도)"""
-        cls._gemini_unavailable = False
-        cls._last_gemini_check_time = 0
-        if cls._shared_gemini_analyzer:
-            cls._shared_gemini_analyzer.reset_quota_status()
-        return "Gemini 상태가 수동으로 초기화되었습니다."
+        """LLM 제거됨 - 더 이상 사용하지 않음"""
+        return "LLM 분석이 제거되었습니다."
