@@ -12,7 +12,7 @@ import time
 import statistics
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Tuple
 from dataclasses import dataclass
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -666,36 +666,7 @@ class DatabaseAutoTrader:
                 if db_stock:
                     db_stock.last_check_time = datetime.now()
                     
-                    # 알고리즘 기반 목표가 및 손절가 재계산
-                    # 설정 파일에서 목표 수익률 로드
-                    settings = self._load_trading_settings()
-                    take_profit_ratio = settings['target_profit_rate'] / 100  # 백분율을 비율로 변환
-                    
-                    # 목표가 재계산 (현재가 + 설정된 수익률)
-                    new_target_price = int(current_price * (1 + take_profit_ratio))
-                    
-                    # 알고리즘 기반 손절가 계산
-                    new_stop_loss_price = self.calculate_stop_loss_price(current_price, db_stock.strategy_name)
-                    self.logger.debug(f"🔍 {symbol} 손절가 계산 결과: {new_stop_loss_price}")
-
-                    # 기존 목표가/손절가가 없거나, 현재가와 너무 차이나는 경우에만 업데이트
-                    # (예: 20% 이상 차이 나면 업데이트)
-                    if db_stock.target_price is None or abs(db_stock.target_price - new_target_price) / new_target_price > 0.2:
-                        db_stock.target_price = new_target_price
-                        self.logger.debug(f"📈 {symbol} 목표가 업데이트: {new_target_price:,}원")
-                    
-                    # 손절가 업데이트 로직 개선 - 항상 업데이트하도록 수정
-                    if new_stop_loss_price:
-                        if (db_stock.stop_loss_price is None or 
-                            abs(db_stock.stop_loss_price - new_stop_loss_price) / new_stop_loss_price > 0.05):  # 5% 차이시 업데이트
-                            old_stop_loss = db_stock.stop_loss_price
-                            db_stock.stop_loss_price = new_stop_loss_price
-                            self.logger.info(f"💡 {symbol} 알고리즘 손절가 업데이트: {old_stop_loss or 0:,}원 → {new_stop_loss_price:,}원")
-                        else:
-                            self.logger.debug(f"💡 {symbol} 손절가 변화 없음: {db_stock.stop_loss_price:,}원")
-                    else:
-                        self.logger.warning(f"⚠️ {symbol} 손절가 계산 실패 - None 반환")
-
+                    # 목표가/손절가는 차트 데이터 수집 후 ATR 기반으로 재계산됨
                     session.commit()
             
             # 차트 데이터 수집 (타임아웃 및 오류 방지)
@@ -712,6 +683,52 @@ class DatabaseAutoTrader:
             except Exception as e:
                 self.logger.warning(f"⚠️ {symbol} 차트 데이터 조회 실패: {e} - 기본값 사용")
                 chart_data = []
+
+            # ATR 기반 목표가/손절가 재계산 (차트 데이터가 있을 경우)
+            if chart_data and len(chart_data) >= 14:
+                try:
+                    # PriceData 객체를 Dict로 변환
+                    price_data_dicts = [
+                        {
+                            'date': pd.timestamp,
+                            'open': float(pd.open),
+                            'high': float(pd.high),
+                            'low': float(pd.low),
+                            'close': float(pd.close),
+                            'volume': int(pd.volume)
+                        } for pd in chart_data
+                    ]
+
+                    # ATR 기반 계산
+                    new_stop_loss_price, new_target_price, used_atr = await self._calculate_atr_based_prices(
+                        symbol=symbol,
+                        price_data=price_data_dicts,
+                        current_price=current_price,
+                        atr_multiplier_sl=getattr(self.config.trading, 'ATR_SL_MULT', 1.5),
+                        atr_multiplier_tp=getattr(self.config.trading, 'ATR_TP_MULT', 2.5),
+                        atr_period=getattr(self.config.trading, 'ATR_PERIOD', 14)
+                    )
+
+                    if used_atr:
+                        self.logger.info(f"📊 {symbol} ATR({used_atr:.2f}) 기반: SL={new_stop_loss_price:,}, TP={new_target_price:,}")
+
+                        # DB 업데이트
+                        with self.db_manager.get_session() as session:
+                            db_stock = session.query(MonitoringStock).filter(MonitoringStock.id == stock_id).first()
+                            if db_stock:
+                                if db_stock.stop_loss_price != new_stop_loss_price:
+                                    old_sl = db_stock.stop_loss_price
+                                    db_stock.stop_loss_price = new_stop_loss_price
+                                    self.logger.info(f"💡 {symbol} ATR 손절가 업데이트: {old_sl or 0:,} → {new_stop_loss_price:,}")
+
+                                if db_stock.target_price != new_target_price:
+                                    old_tp = db_stock.target_price
+                                    db_stock.target_price = new_target_price
+                                    self.logger.info(f"📈 {symbol} ATR 목표가 업데이트: {old_tp or 0:,} → {new_target_price:,}")
+
+                                session.commit()
+                except Exception as e:
+                    self.logger.warning(f"⚠️ {symbol} ATR 기반 가격 계산 실패, 기본값 유지: {e}")
             
             # 기술적 분석 (타임아웃 및 오류 방지)
             try:
@@ -1712,6 +1729,50 @@ class DatabaseAutoTrader:
             self.logger.error(f"❌ 활성 포지션 수 조회 실패: {e}")
             return 0
     
+    async def _calculate_atr_based_prices(self, symbol: str, price_data: Optional[List[Dict]], current_price: float,
+                                          atr_multiplier_sl: float = 1.5, atr_multiplier_tp: float = 2.5,
+                                          atr_period: int = 14) -> Tuple[Optional[int], Optional[int], Optional[float]]:
+        """
+        ATR 기반 손절/목표가 계산 (비동기).
+        반환: (stop_loss_price:int or None, target_price:int or None, atr:float or None)
+        """
+        try:
+            atr = None
+
+            # price_data가 제공되면 직접 ATR 계산
+            if price_data and len(price_data) >= atr_period:
+                import pandas as pd
+                df = pd.DataFrame(price_data)
+
+                # DataFrame 변환 및 검증
+                if 'date' in df.columns:
+                    df['date'] = pd.to_datetime(df['date'])
+                    df.set_index('date', inplace=True)
+
+                if all(col in df.columns for col in ['high', 'low', 'close']):
+                    atr = self.technical_analyzer._calc_atr(df, period=atr_period)
+                else:
+                    self.logger.debug(f"{symbol} 가격 데이터에 필수 컬럼 누락")
+            else:
+                self.logger.debug(f"{symbol} price_data 부족 - ATR 계산 불가")
+
+            if atr is None or atr <= 0:
+                # ATR 실패 시 기본 퍼센트 fallback
+                stop_loss = int(current_price * 0.95)
+                target = int(current_price * 1.10)
+                self.logger.debug(f"{symbol} ATR 계산 실패, 기본값 사용: SL={stop_loss}, TP={target}")
+                return stop_loss, target, None
+
+            stop_loss_price = int(max(1, current_price - atr * atr_multiplier_sl))
+            target_price = int(current_price + atr * atr_multiplier_tp)
+
+            self.logger.debug(f"{symbol} ATR 기반: ATR={atr:.2f}, SL={stop_loss_price:,}, TP={target_price:,}")
+            return stop_loss_price, target_price, atr
+
+        except Exception as e:
+            self.logger.warning(f"ATR 기반 가격 계산 실패 ({symbol}): {e}")
+            return int(current_price * 0.95), int(current_price * 1.10), None
+
     def calculate_stop_loss_price(self, current_price: int, strategy_name: str = None) -> int:
         """알고리즘 기반 손절가 계산"""
         try:

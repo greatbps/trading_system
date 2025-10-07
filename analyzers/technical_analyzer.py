@@ -84,14 +84,40 @@ class TechnicalAnalyzer:
         
         return df.astype(float)
     
-    def _calc_supertrend(self, df: pd.DataFrame, period: int = 10, multiplier: float = 3.0) -> Dict:
-        """Supertrend 계산"""
+    def _calc_atr(self, df: pd.DataFrame, period: int = 14) -> float:
+        """ATR (Average True Range) 계산"""
         try:
-            # ATR 계산
             high_low = df['high'] - df['low']
             high_close = (df['high'] - df['close'].shift()).abs()
             low_close = (df['low'] - df['close'].shift()).abs()
-            
+
+            true_range = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
+            atr = true_range.rolling(window=period).mean()
+
+            return float(atr.iloc[-1]) if not atr.empty and not pd.isna(atr.iloc[-1]) else 0.0
+        except Exception as e:
+            self.logger.warning(f"⚠️ ATR 계산 실패: {e}")
+            return 0.0
+
+    async def get_atr(self, symbol: str, period: int = 14) -> Optional[float]:
+        """종목의 ATR 조회 (비동기 래퍼)"""
+        try:
+            # data_collector가 있다고 가정하고 가격 데이터 가져오기
+            # 실제로는 db_auto_trader에서 이미 가진 데이터를 전달하는 것이 좋음
+            self.logger.debug(f"ATR 계산을 위한 직접 호출은 권장하지 않음 - {symbol}")
+            return None
+        except Exception as e:
+            self.logger.error(f"ATR 조회 실패 ({symbol}): {e}")
+            return None
+
+    def _calc_supertrend(self, df: pd.DataFrame, period: int = 10, multiplier: float = 3.0) -> Dict:
+        """Supertrend 계산"""
+        try:
+            # ATR 계산 (재사용)
+            high_low = df['high'] - df['low']
+            high_close = (df['high'] - df['close'].shift()).abs()
+            low_close = (df['low'] - df['close'].shift()).abs()
+
             true_range = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
             atr = true_range.rolling(window=period).mean()
             

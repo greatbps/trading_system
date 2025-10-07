@@ -96,24 +96,35 @@ class AnalysisHandlers:
                         symbol = result.get('symbol', '')
                         name = result.get('name', '')
                         recommendation = result.get('recommendation', result.get('recommendation_grade', '')).upper()
-                        # 전략명 매핑 로직 적용
+
+                        # 1) 현재가 확인: 우선 result 내부, 없으면 데이터수집기에서 조회
+                        current_price = result.get('current_price')
+                        if current_price is None and hasattr(self.system, 'data_collector'):
+                            try:
+                                current_price = await asyncio.wait_for(
+                                    self.system.data_collector.get_current_price(symbol),
+                                    timeout=2.0
+                                )
+                            except (asyncio.TimeoutError, Exception) as e:
+                                self.logger.debug(f"{symbol} 현재가 조회 실패: {e}")
+                                current_price = None
+
+                        # 2) 전략명 매핑: current_price를 포함하여 보다 정확히 매핑
                         raw_strategy = result.get('strategy', 'AI_ANALYSIS')
                         if raw_strategy == 'AI_ANALYSIS':
                             strategy_name = strategy_mapper.get_strategy_for_stock(symbol, name, current_price)
                         else:
                             strategy_name = raw_strategy
+
                         target_price = result.get('target_price')
                         stop_loss_price = result.get('stop_loss_price')
-                        current_price = result.get('current_price')
                         
                         # 매수 추천인지 확인 (WEAK_BUY 포함)
                         if recommendation in ['BUY', 'STRONG_BUY', 'WEAK_BUY', '매수', '적극매수', '약매수']:
-                            # 목표가와 손절가 계산 (없는 경우)
-                            if not target_price and current_price:
-                                target_price = int(current_price * 1.15)  # 15% 수익률 목표
-                            
-                            if not stop_loss_price and current_price:
-                                stop_loss_price = int(current_price * 0.95)  # 5% 손절
+                            # 목표가와 손절가 계산 (없는 경우) - ATR 기반은 db_auto_trader에서 처리
+                            if (not target_price or not stop_loss_price) and current_price:
+                                target_price = target_price or int(current_price * 1.12)
+                                stop_loss_price = stop_loss_price or int(current_price * 0.95)
                             
                             # 모니터링에 추가
                             success = await self.system.db_auto_trader.add_buy_recommendation(

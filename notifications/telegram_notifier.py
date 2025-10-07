@@ -16,7 +16,6 @@ from dataclasses import dataclass
 from enum import Enum
 
 from utils.logger import get_logger
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 
 class AlertLevel(Enum):
@@ -56,11 +55,7 @@ class TelegramNotifier:
         self.bot_token = getattr(config, 'TELEGRAM_BOT_TOKEN', None) or getattr(config.api, 'TELEGRAM_BOT_TOKEN', None)
         self.chat_id = getattr(config, 'TELEGRAM_CHAT_ID', None) or getattr(config.api, 'TELEGRAM_CHAT_ID', None)
         
-        # AI 분석기 (옵셀널)
-        try:
-            self.gemini_analyzer = GeminiAnalyzer(config) if hasattr(config, 'api') else None
-        except:
-            self.gemini_analyzer = None
+        # LLM 제거됨
         
         # 메시지 포맷팅 설정
         self.emoji_map = {
@@ -169,10 +164,8 @@ class TelegramNotifier:
             # 시간 정보
             timestamp = datetime.now().strftime("%H:%M:%S")
             
-            # AI 컨텍스트 추가 (옵셀널)
+            # LLM 제거됨 - AI 컨텍스트 비활성화
             ai_context = ""
-            if add_ai_context and self.gemini_analyzer:
-                ai_context = await self._generate_ai_context(message, alert_level)
             
             # 메시지 조립
             formatted_parts = [
@@ -197,41 +190,8 @@ class TelegramNotifier:
             return f"{level_emoji} {message}\n시간 {timestamp}"
     
     async def _generate_ai_context(self, message: str, alert_level: AlertLevel) -> str:
-        """AI 컨텍스트 생성"""
-        try:
-            if not self.gemini_analyzer:
-                return ""
-            
-            # AI 분석 요청
-            context_prompt = f"""
-            다음 트레이딩 알림에 대해 간단한 컨텍스트나 설명을 제공해주세요:
-            
-            알림: {message}
-            중요도: {alert_level.value}
-            
-            요구사항:
-            - 50자 이내로 간단하게
-            - 투자자에게 도움이 되는 인사이트
-            - 한국어로 작성
-            """
-            
-            # 분석 실행 (타임아웃 5초)
-            analysis = await asyncio.wait_for(
-                self.gemini_analyzer.analyze_text(context_prompt),
-                timeout=5.0
-            )
-            
-            if analysis and 'summary' in analysis:
-                return analysis['summary'][:100]  # 최대 100자
-            
-            return ""
-            
-        except asyncio.TimeoutError:
-            self.logger.debug("⏱️ AI 컨텍스트 생성 타임아웃")
-            return ""
-        except Exception as e:
-            self.logger.debug(f"⚠️ AI 컨텍스트 생성 실패: {e}")
-            return ""
+        """LLM 제거됨 - 빈 문자열 반환"""
+        return ""
     
     def _generate_footer(self, alert_level: AlertLevel, notification_type: NotificationType) -> str:
         """푸터 생성"""

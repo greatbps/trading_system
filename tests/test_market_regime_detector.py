@@ -35,16 +35,7 @@ def mock_config():
 @pytest.fixture
 def market_regime_detector(mock_config):
     detector = MarketRegimeDetector(mock_config)
-    # Mock GeminiAnalyzer to avoid actual API calls during testing
-    detector.gemini_analyzer = AsyncMock()
-    detector.gemini_analyzer.analyze_with_custom_prompt.return_value = {
-        "primary_regime": "SIDEWAYS",
-        "secondary_regime": "MODERATE",
-        "confidence": 70,
-        "key_indicators": ["Mock Indicator"],
-        "risk_factors": [],
-        "expected_duration": 20
-    }
+    # LLM 제거됨 - Mock 제거
     return detector
 
 @pytest.fixture
@@ -162,7 +153,5 @@ async def test_ai_regime_classification_call(market_regime_detector, sample_mark
         market_state, volatility_regime, trend_regime, volume_regime, breadth_analysis
     )
     
-    market_regime_detector.gemini_analyzer.analyze_with_custom_prompt.assert_called_once()
+    # LLM 제거됨 - AI 테스트 비활성화
     assert isinstance(ai_result, dict)
-    assert "primary_regime" in ai_result
-    assert "confidence" in ai_result

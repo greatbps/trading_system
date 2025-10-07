@@ -33,7 +33,7 @@ class BackgroundMonitoringService:
         self.logger = get_logger("BackgroundService")
         self.trading_system = trading_system  # 기존 TradingSystem 인스턴스 재사용
         self.running = False
-        self.service_state_file = Path("D:/trading_system/data/service_state.json")
+        self.service_state_file = Path("data/service_state.json")
         
         # 시간대별 전략 스케줄 정의
         self.strategy_schedule = {

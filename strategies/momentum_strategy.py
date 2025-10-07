@@ -90,10 +90,6 @@ class MomentumStrategy(BaseStrategy):
         #self.logger = get_logger("MomentumStrategy")
         self.logger = create_logger("MomentumStrategy")
         
-        # Gemini AI 분석기 초기화
-        from analyzers.gemini_analyzer import GeminiAnalyzer
-        self.gemini_analyzer = GeminiAnalyzer(config)
-        
         # 모멘텀 전략 파라미터
         self.params = {
             'ma_short': 5,           # 단기 이동평균
@@ -772,27 +768,20 @@ class MomentumStrategy(BaseStrategy):
 - 강한 하락 신호: -10~-15
 """
             
-            # Gemini CLI를 통한 분석 실행
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(analysis_prompt)
-            
-            if ai_result and isinstance(ai_result, dict):
-                # 결과 검증 및 기본값 설정
-                validated_result = {
-                    'score_adjustment': max(-15, min(15, ai_result.get('score_adjustment', 0))),
-                    'confidence': max(0.0, min(1.0, ai_result.get('confidence', 0.5))),
-                    'insights': ai_result.get('insights', {
-                        'market_sentiment': 'neutral',
-                        'momentum_quality': 'mixed',
-                        'risk_assessment': 'medium',
-                        'key_factors': ['데이터 부족']
-                    })
+            # LLM 제거됨 - 기본값 사용
+            validated_result = {
+                'score_adjustment': 0,
+                'confidence': 0.5,
+                'insights': {
+                    'market_sentiment': 'neutral',
+                    'momentum_quality': 'mixed',
+                    'risk_assessment': 'medium',
+                    'key_factors': ['데이터 부족']
                 }
-                
-                self.logger.debug(f"🤖 {symbol} AI 분석 완료 - 조정점수: {validated_result['score_adjustment']}, 신뢰도: {validated_result['confidence']:.2f}")
-                return validated_result
-            else:
-                self.logger.warning(f"⚠️ {symbol} AI 분석 결과가 올바르지 않음")
-                return self._get_default_ai_result()
+            }
+
+            self.logger.debug(f"🤖 {symbol} AI 분석 완료 - 조정점수: {validated_result['score_adjustment']}, 신뢰도: {validated_result['confidence']:.2f}")
+            return validated_result
                 
         except Exception as e:
             self.logger.error(f"❌ AI 시장 분석 실패: {e}")

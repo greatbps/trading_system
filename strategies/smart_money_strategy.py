@@ -18,7 +18,6 @@ from utils.logger import get_logger
 from analyzers.institutional_flow_analyzer import InstitutionalFlowAnalyzer
 from analyzers.technical_indicators_enhanced import TechnicalIndicatorsEnhanced
 from analyzers.theme_sector_analyzer import ThemeSectorAnalyzer
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 
 @dataclass
@@ -62,7 +61,6 @@ class SmartMoneyStrategy(BaseStrategy):
         self.institutional_analyzer = InstitutionalFlowAnalyzer(config)
         self.technical_analyzer = TechnicalIndicatorsEnhanced(config)
         self.theme_analyzer = ThemeSectorAnalyzer(config)
-        self.gemini_analyzer = GeminiAnalyzer(config)
         
         # 전략 파라미터
         self.strategy_params = {
@@ -247,17 +245,14 @@ class SmartMoneyStrategy(BaseStrategy):
 - 현재 시장 환경에서의 적합성
 """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(analysis_prompt)
-            
-            if ai_result and isinstance(ai_result, dict):
-                # 결과 검증 및 기본값 설정
-                validated_result = {
-                    'overall_assessment': ai_result.get('overall_assessment', 'hold'),
-                    'score_adjustment': max(-20, min(20, ai_result.get('score_adjustment', 0))),
-                    'target_price_ratio': max(1.0, min(1.5, ai_result.get('target_price_ratio', 1.15))),
-                    'optimal_entry_timing': ai_result.get('optimal_entry_timing', 'immediate'),
-                    'hold_period_recommendation': max(5, min(60, ai_result.get('hold_period_recommendation', 14))),
-                    'key_strengths': ai_result.get('key_strengths', ['AI 분석 완료'])[:3],
+            # LLM 제거됨 - 기본값 사용
+            validated_result = {
+                'overall_assessment': 'hold',
+                'score_adjustment': 0,
+                'target_price_ratio': 1.15,
+                'optimal_entry_timing': 'immediate',
+                'hold_period_recommendation': 14,
+                'key_strengths': ['기술적 분석 완료'][:3],
                     'major_risks': ai_result.get('major_risks', ['일반적 시장 리스크'])[:3],
                     'market_timing_score': max(0, min(100, ai_result.get('market_timing_score', 60))),
                     'ai_confidence': max(0.0, min(1.0, ai_result.get('ai_confidence', 0.6)))

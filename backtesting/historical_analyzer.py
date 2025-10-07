@@ -17,7 +17,6 @@ import numpy as np
 
 # Note: Historical database functions need to be implemented for full functionality
 from analyzers.ai_controller import AIController
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 logger = logging.getLogger(__name__)
 
@@ -77,13 +76,11 @@ class HistoricalAnalyzer:
                 self.config = Config()
             
             self.ai_controller = AIController(self.config)
-            self.gemini_analyzer = GeminiAnalyzer(self.config)
             self.logger = logging.getLogger(__name__)
         except Exception as e:
             self.logger = logging.getLogger(__name__)
             self.logger.warning(f"AI 컨트롤러 초기화 실패: {e}")
             self.ai_controller = None
-            self.gemini_analyzer = None
     
     async def analyze_ai_prediction_accuracy(
         self,

@@ -14,7 +14,6 @@ from dataclasses import dataclass
 
 from utils.logger import get_logger
 from analyzers.market_regime_detector import MarketRegimeDetector, MarketRegime
-from analyzers.gemini_analyzer import GeminiAnalyzer
 
 
 @dataclass
@@ -40,7 +39,6 @@ class AIStrategySelector:
         
         # AI 분석기들
         self.market_regime_detector = MarketRegimeDetector(config)
-        self.gemini_analyzer = GeminiAnalyzer(config)
         
         # 사용 가능한 전략들
         self.available_strategies = {
@@ -344,12 +342,8 @@ class AIStrategySelector:
 }}
 """
             
-            ai_result = await self.gemini_analyzer.analyze_with_custom_prompt(market_analysis_prompt)
-            
-            if ai_result and isinstance(ai_result, dict):
-                return ai_result
-            else:
-                return self._get_default_market_insights()
+            # LLM 제거됨 - 기본값 사용
+            return self._get_default_market_insights()
                 
         except Exception as e:
             self.logger.warning(f"⚠️ AI 시장 인사이트 획득 실패: {e}")
