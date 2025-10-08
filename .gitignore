@@ -86,3 +86,6 @@ results/
 
 # Empty or invalid files
 D:trading_system*
+
+# Deprecated files
+_deprecated/
