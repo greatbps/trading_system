@@ -48,39 +48,74 @@
 trading_system/
 ├── 📁 core/                   # 핵심 비즈니스 로직
 │   ├── trading_system.py      # 메인 시스템 (3분봉 모니터링, 매매 신호 감지)
+│   ├── auto_trading_handler.py  # 자동매매 핸들러
 │   ├── scheduler.py           # 시간대별 전략 실행 스케줄러
-│   └── ...
+│   ├── portfolio_manager.py   # 포트폴리오 관리
+│   └── stop_loss_manager.py   # 손절 관리
 │
 ├── 📁 data_collectors/        # 데이터 수집 모듈
 │   ├── kis_collector.py       # KIS API (HTS 조건검색식 결과 수신 포함)
-│   └── news_collector.py      # 뉴스 수집
+│   ├── news_collector.py      # 뉴스 수집
+│   └── bulk_realtime_collector.py  # 실시간 데이터 수집
 │
 ├── 📁 analyzers/              # 분석 엔진
 │   ├── analysis_engine.py     # 2차 필터링 (뉴스, 차트, 수급) 및 점수화
 │   ├── technical_analyzer.py  # 기술적 분석 (ATR, RSI, MACD 등)
-│   ├── ai_predictor.py        # AI 기반 가격 예측 (제거 예정)
-│   └── ...
+│   ├── chart_pattern_analyzer.py  # 차트 패턴 분석
+│   ├── volume_analyzer.py     # 거래량 분석
+│   ├── market_regime_detector.py  # 시장 국면 감지
+│   ├── sentiment_analyzer.py  # 감성 분석
+│   └── consensus_engine.py    # 컨센서스 분석 엔진
 │
 ├── 📁 strategies/             # 매매 전략
+│   ├── base_strategy.py       # 기본 전략
 │   ├── momentum_strategy.py   # 모멘텀 전략
-│   └── ...
+│   ├── squeeze_momentum_pro_strategy.py  # 스퀴즈 모멘텀
+│   ├── breakout_strategy.py   # 돌파 전략
+│   └── strategy_manager.py    # 전략 관리자
 │
 ├── 📁 trading/                # 매매 실행
 │   ├── executor.py            # 매매 실행기 (리스크 검증, KIS 주문 API)
+│   ├── auto_trader.py         # 자동매매
 │   ├── db_auto_trader.py      # DB 기반 자동매매 (ATR 계산 포함)
-│   └── ...
+│   ├── risk_manager.py        # 리스크 관리
+│   └── position_manager.py    # 포지션 관리
 │
 ├── 📁 database/               # 데이터베이스 관리
 │   ├── models.py              # 데이터베이스 모델 (테이블 정의)
 │   ├── db_operations.py       # CRUD 작업
-│   └── ...
+│   └── database_manager.py    # DB 관리자
+│
+├── 📁 backtesting/            # 백테스트 시스템
+│   ├── backtesting_engine.py  # 백테스트 엔진
+│   ├── performance_visualizer.py  # 성과 시각화
+│   └── strategy_optimizer.py  # 전략 최적화
+│
+├── 📁 monitoring/             # 모니터링 시스템
+│   ├── performance_monitor.py  # 성과 모니터
+│   ├── integrated_dashboard.py  # 통합 대시보드
+│   └── notification_system.py  # 알림 시스템
 │
 ├── 📁 notifications/          # 알림 시스템
-│   ├── telegram_bot.py        # 텔레그램 봇
-│   └── ...
+│   ├── telegram_notifier.py   # 텔레그램 알림
+│   └── notification_manager.py  # 알림 관리자
 │
-└── 📁 utils/                  # 유틸리티
-    └── logger.py              # 로깅 시스템
+├── 📁 async_processing/       # 비동기 처리
+│   ├── async_engine.py        # 비동기 엔진
+│   └── task_scheduler.py      # 작업 스케줄러
+│
+├── 📁 utils/                  # 유틸리티
+│   ├── logger.py              # 로깅 시스템
+│   ├── error_handler.py       # 에러 처리
+│   ├── market_schedule_manager.py  # 시장 일정 관리
+│   └── parallel_analyzer.py   # 병렬 분석 (3.7배 성능 향상)
+│
+├── 📁 api/                    # API 서버
+│   └── web_dashboard_api.py   # 웹 대시보드 API
+│
+├── main.py                    # 메인 진입점
+├── config.py                  # 설정 파일
+└── requirements.txt           # 의존성 패키지
 ```
 
 ## 🗃️ 데이터베이스 관리
