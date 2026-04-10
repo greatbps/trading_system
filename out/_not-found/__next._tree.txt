@@ -1,3 +1,3 @@
 :HL["/trading/_next/static/chunks/0x.pxwmy6tt~x.css","style"]
-:HL["/trading/_next/static/chunks/0_m-pdv.fkkkc.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"fQ_kXiAcqaYar1EfRANfF"}
+:HL["/trading/_next/static/chunks/0.1_nk598iu4w.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"pf2BvYfiD8ZHMIOJ-qZsI"}

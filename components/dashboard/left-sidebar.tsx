@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
 import {
   TrendingUp, BarChart3, Activity,
-  AlertTriangle, CheckCircle2, XCircle,
+  AlertTriangle, CheckCircle2,
 } from "lucide-react"
 import { useTradingStore } from "@/store/trading"
 import type { Candidate } from "@/src/types/trading"
@@ -46,18 +46,18 @@ function CandidateRow({ candidate, selected, onSelect }: {
     <button
       onClick={onSelect}
       className={cn(
-        "flex flex-col gap-1 rounded-md p-1.5 text-left transition-colors w-full",
+        "flex flex-col gap-0.5 rounded-md p-1 text-left transition-colors w-full",
         selected ? "bg-accent" : "hover:bg-muted/50",
         nearMiss && "border-l-2 border-warning"
       )}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
-          <span className="font-mono text-sm font-semibold">{symbol}</span>
-          <span className="font-mono text-[11px] text-muted-foreground truncate max-w-[60px]">{name}</span>
+        <div className="flex items-center gap-1">
+          <span className="font-mono text-[12px] font-semibold">{symbol}</span>
+          <span className="font-mono text-[10px] text-muted-foreground truncate max-w-[55px]">{name}</span>
           <span className={cn(
-            "font-mono text-[11px]",
+            "font-mono text-[10px]",
             changePct >= 0 ? "text-success" : "text-destructive"
           )}>
             {changePct >= 0 ? "+" : ""}{changePct.toFixed(2)}%
@@ -66,24 +66,21 @@ function CandidateRow({ candidate, selected, onSelect }: {
         <Sparkline data={sparkline} />
       </div>
 
-      {/* Conditions */}
+      {/* Conditions — compact, no icons */}
       <div className="grid grid-cols-4 gap-0.5">
         {conditions.map((cond) => (
           <div
             key={cond.key}
             className={cn(
-              "flex flex-col items-center rounded px-0.5 py-0.5",
+              "flex flex-col items-center rounded px-0.5 py-[1px]",
               cond.pass ? "bg-success/10" : "bg-destructive/10"
             )}
           >
-            {cond.pass
-              ? <CheckCircle2 className="h-2.5 w-2.5 text-success" />
-              : <XCircle className="h-2.5 w-2.5 text-destructive" />}
-            <span className="font-mono text-[9px] uppercase text-muted-foreground truncate w-full text-center">
+            <span className="font-mono text-[9px] uppercase text-muted-foreground truncate w-full text-center leading-tight">
               {cond.label.slice(0, 5)}
             </span>
             <span className={cn(
-              "font-mono text-[10px]",
+              "font-mono text-[10px] leading-tight",
               cond.pass ? "text-success" : "text-destructive"
             )}>
               {cond.value}
@@ -93,7 +90,7 @@ function CandidateRow({ candidate, selected, onSelect }: {
       </div>
 
       {/* Scores */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <div className="flex flex-1 items-center gap-1">
           <span className="font-mono text-[10px] text-muted-foreground">ENT</span>
           <Progress
@@ -104,7 +101,7 @@ function CandidateRow({ candidate, selected, onSelect }: {
             )}
           />
           <span className={cn(
-            "w-5 font-mono text-[11px]",
+            "w-5 font-mono text-[10px]",
             entryScore >= 75 ? "text-success" : entryScore >= 50 ? "text-warning" : "text-destructive"
           )}>{entryScore}</span>
         </div>

@@ -14,7 +14,7 @@ import type { DecisionEvent, NewsItem, SimilarPattern } from "@/src/types/tradin
 
 // ─── SVG Candlestick ──────────────────────────────────────────────────────────
 
-interface Candle { o: number; h: number; l: number; c: number }
+interface Candle { o: number; h: number; l: number; c: number; time?: string }
 
 function CandlestickSvg({ candles, entryIndex, sl, tp }: {
   candles: Candle[]
@@ -28,7 +28,7 @@ function CandlestickSvg({ candles, entryIndex, sl, tp }: {
     </div>
   )
 
-  const H = 140, LW = 34
+  const H = 132, LW = 36, XH = 14  // XH = x-axis label area height
   const prices = candles.flatMap((c) => [c.l, c.h])
   const minP = Math.min(...prices, ...(sl ? [sl * 0.999] : []))
   const maxP = Math.max(...prices, ...(tp ? [tp * 1.001] : []))
@@ -37,9 +37,19 @@ function CandlestickSvg({ candles, entryIndex, sl, tp }: {
 
   const W = 430, cw = 7, gap = 2
   const ox = LW + 4
+  const totalH = H + XH
+
+  // Pick time labels every ~8 bars
+  const timeLabelIndices: number[] = []
+  candles.forEach((c, i) => {
+    if (c.time && (i === 0 || i % 8 === 0 || i === candles.length - 1)) {
+      timeLabelIndices.push(i)
+    }
+  })
 
   return (
-    <svg className="h-[155px] w-full" viewBox={`0 0 ${W} ${H + 10}`} preserveAspectRatio="none">
+    <svg className="h-[160px] w-full" viewBox={`0 0 ${W} ${totalH}`} preserveAspectRatio="none">
+      {/* Y-axis grid + price labels */}
       {[0, 0.25, 0.5, 0.75, 1].map((t, i) => {
         const p = minP + range * t
         const y = sy(p)
@@ -53,11 +63,14 @@ function CandlestickSvg({ candles, entryIndex, sl, tp }: {
           </g>
         )
       })}
+
+      {/* SL / TP lines */}
       {sl && <line x1={ox} y1={sy(sl)} x2={ox+(cw+gap)*candles.length} y2={sy(sl)} stroke="var(--destructive)" strokeWidth="1" strokeDasharray="4,2" opacity="0.8" />}
       {tp && <line x1={ox} y1={sy(tp)} x2={ox+(cw+gap)*candles.length} y2={sy(tp)} stroke="var(--success)" strokeWidth="1" strokeDasharray="4,2" opacity="0.8" />}
       {sl && <text x={ox+(cw+gap)*candles.length+2} y={sy(sl)+3} fill="var(--destructive)" fontSize="7" fontFamily="monospace">SL</text>}
       {tp && <text x={ox+(cw+gap)*candles.length+2} y={sy(tp)+3} fill="var(--success)" fontSize="7" fontFamily="monospace">TP</text>}
 
+      {/* Candles */}
       {candles.map((c, i) => {
         const x = ox + i * (cw + gap)
         const bull = c.c >= c.o
@@ -75,6 +88,25 @@ function CandlestickSvg({ candles, entryIndex, sl, tp }: {
           </g>
         )
       })}
+
+      {/* X-axis baseline */}
+      <line x1={ox} y1={H + 1} x2={ox + (cw+gap)*candles.length} y2={H + 1} stroke="var(--border)" strokeWidth="0.5" />
+
+      {/* X-axis time labels */}
+      {timeLabelIndices.map((i) => {
+        const x = ox + i * (cw + gap) + cw / 2
+        const label = candles[i].time ?? ''
+        return (
+          <g key={i}>
+            <line x1={x} y1={H + 1} x2={x} y2={H + 4} stroke="var(--border)" strokeWidth="0.5" />
+            <text
+              x={x} y={H + XH - 1}
+              fill="var(--muted-foreground)" fontSize="7" fontFamily="monospace"
+              textAnchor="middle"
+            >{label}</text>
+          </g>
+        )
+      })}
     </svg>
   )
 }
@@ -87,14 +119,14 @@ function ChartPanel() {
   const candidates = useTradingStore((s) => s.candidates)
   const candidate  = candidates.find((c) => c.symbol === symbol)
 
-  const candles = (detail?.ohlcv ?? []).map((c) => ({ o: c.open, h: c.high, l: c.low, c: c.close }))
+  const candles = (detail?.ohlcv ?? []).map((c) => ({ o: c.open, h: c.high, l: c.low, c: c.close, time: c.time }))
   const last = candles[candles.length - 1]
   const prev = candles[candles.length - 2]
   const changePct = last && prev ? ((last.c - prev.c) / prev.c) * 100 : 0
   const positive  = changePct >= 0
 
   return (
-    <Card className="flex-1 border-border bg-card py-2">
+    <Card className="shrink-0 border-border bg-card py-2">
       <CardHeader className="px-3 py-0 pb-1">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2 font-mono text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
@@ -494,14 +526,16 @@ function BottomStats() {
 export function CenterPanel() {
   return (
     <main className="flex flex-1 flex-col gap-2 overflow-hidden bg-background p-2">
-      {/* Top: Chart (left, flexible) + Research Card (right, fixed) */}
-      <div className="flex shrink-0 gap-2">
-        <ChartPanel />
+      {/* Main area: left column (Chart + SignalFeed) + right column (ResearchCard) */}
+      <div className="flex flex-1 gap-2 overflow-hidden">
+        {/* Left: Chart on top, SignalFeed below */}
+        <div className="flex flex-1 flex-col gap-2 overflow-hidden">
+          <ChartPanel />
+          <SignalFeed />
+        </div>
+        {/* Right: ResearchCard spans full height */}
         <ResearchCard />
       </div>
-
-      {/* Middle: Signal Feed */}
-      <SignalFeed />
 
       {/* Bottom: Stats row */}
       <BottomStats />

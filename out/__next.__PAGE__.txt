@@ -1,10 +1,10 @@
 1:"$Sreact.fragment"
-2:I[51887,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0gnez65eym2zx.js"],"DashboardProvider"]
-3:I[35648,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0gnez65eym2zx.js"],"TopBar"]
-4:I[9288,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0gnez65eym2zx.js"],"LeftSidebar"]
-5:I[71159,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0gnez65eym2zx.js"],"CenterPanel"]
-6:I[53031,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0gnez65eym2zx.js"],"RightPanel"]
+2:I[51887,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0pam68llt9hdh.js"],"DashboardProvider"]
+3:I[35648,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0pam68llt9hdh.js"],"TopBar"]
+4:I[9288,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0pam68llt9hdh.js"],"LeftSidebar"]
+5:I[71159,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0pam68llt9hdh.js"],"CenterPanel"]
+6:I[53031,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/0pam68llt9hdh.js"],"RightPanel"]
 7:I[46608,["/trading/_next/static/chunks/0bjfudee_658~.js","/trading/_next/static/chunks/0gkdb-6gfrq38.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":["$","div",null,{"className":"flex min-h-screen flex-col bg-background text-foreground","children":[["$","$L3",null,{}],["$","div",null,{"className":"flex flex-1 overflow-hidden","children":[["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}]]}]]}]}],[["$","script","script-0",{"src":"/trading/_next/static/chunks/0gnez65eym2zx.js","async":true}]],["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"fQ_kXiAcqaYar1EfRANfF"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":["$","div",null,{"className":"flex min-h-screen flex-col bg-background text-foreground","children":[["$","$L3",null,{}],["$","div",null,{"className":"flex flex-1 overflow-hidden","children":[["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}]]}]]}]}],[["$","script","script-0",{"src":"/trading/_next/static/chunks/0pam68llt9hdh.js","async":true}]],["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"pf2BvYfiD8ZHMIOJ-qZsI"}
 9:null
