@@ -1,0 +1,7 @@
+1:"$Sreact.fragment"
+2:I[35648,["/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/136x_eifl0g3w.js","/trading/_next/static/chunks/174-en8ggmsuc.js"],"TopBar"]
+3:I[38499,["/trading/_next/static/chunks/0gkdb-6gfrq38.js","/trading/_next/static/chunks/136x_eifl0g3w.js","/trading/_next/static/chunks/174-en8ggmsuc.js"],"OptimizeView"]
+4:I[46608,["/trading/_next/static/chunks/0gkdb-6gfrq38.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"flex min-h-screen flex-col bg-background text-foreground","children":[["$","$L2",null,{}],["$","$L3",null,{}]]}],[["$","script","script-0",{"src":"/trading/_next/static/chunks/136x_eifl0g3w.js","async":true}],["$","script","script-1",{"src":"/trading/_next/static/chunks/174-en8ggmsuc.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"8OK3x8EwErU_OF9Ff4d_2"}
+6:null

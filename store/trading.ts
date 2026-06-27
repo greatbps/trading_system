@@ -19,7 +19,7 @@ import type {
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type PanelId = 'params' | 'risk' | 'errors' | null
+type PanelId = 'params' | 'risk' | 'errors' | 'report' | null
 
 interface StrategyToggles {
   MOM: boolean
@@ -47,6 +47,8 @@ interface TradingState {
   // Positions & trades
   positions: Position[]
   trades: Trade[]
+  tradesPeriod: { days: number; from: string; to: string; label: string } | null
+  tradesDateRange: { from: string; to: string }
 
   // Performance
   periodPerf: { today: PeriodPerf; week: PeriodPerf; month: PeriodPerf } | null
@@ -63,6 +65,16 @@ interface TradingState {
   activePanel: PanelId
   strategyToggles: StrategyToggles
   goodBadView: boolean   // toggle GOOD/BAD trade comparison
+
+  // Account
+  account: {
+    deposit: number
+    holdingValue: number
+    totalAssets: number
+    dailyPnl: number
+    weeklyPnl: number
+    consecutiveLosses: number
+  } | null
 
   // Mode
   isLive: boolean
@@ -86,7 +98,8 @@ interface TradingActions {
 
   // Positions & trades
   setPositions: (positions: Position[]) => void
-  setTrades: (trades: Trade[]) => void
+  setTrades: (trades: Trade[], period?: { days: number; from: string; to: string; label: string } | null) => void
+  setTradesDateRange: (range: { from: string; to: string }) => void
 
   // Performance
   setPerformance: (data: {
@@ -103,6 +116,9 @@ interface TradingActions {
 
   // Filter stats
   setFilterStats: (stats: FilterStat[]) => void
+
+  // Account
+  setAccount: (account: NonNullable<TradingState['account']>) => void
 
   // UI
   togglePanel: (panel: Exclude<PanelId, null>) => void
@@ -127,11 +143,18 @@ export const useTradingStore = create<TradingState & TradingActions>((set) => ({
   logSearch: '',
   positions: [],
   trades: [],
+  tradesPeriod: null,
+  tradesDateRange: (() => {
+    const to   = new Date()
+    const from = new Date(to); from.setDate(from.getDate() - 6)
+    return { from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10) }
+  })(),
   periodPerf: null,
   strategyPerf: [],
   riskMetrics: [],
   params: [],
   filterStats: [],
+  account: null,
   activePanel: null,
   strategyToggles: { MOM: true, TRD: true, MRV: false, SMC: true },
   goodBadView: false,
@@ -160,7 +183,8 @@ export const useTradingStore = create<TradingState & TradingActions>((set) => ({
 
   // Positions & trades
   setPositions: (positions) => set({ positions }),
-  setTrades: (trades) => set({ trades }),
+  setTrades: (trades, period) => set({ trades, ...(period !== undefined ? { tradesPeriod: period ?? null } : {}) }),
+  setTradesDateRange: (tradesDateRange) => set({ tradesDateRange }),
 
   // Performance
   setPerformance: ({ today, week, month, strategies, riskMetrics }) =>
@@ -181,6 +205,9 @@ export const useTradingStore = create<TradingState & TradingActions>((set) => ({
 
   // Filter stats
   setFilterStats: (filterStats) => set({ filterStats }),
+
+  // Account
+  setAccount: (account) => set({ account }),
 
   // UI
   togglePanel: (panel) =>

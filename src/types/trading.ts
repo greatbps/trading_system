@@ -136,6 +136,7 @@ export interface DecisionEvent {
   time: string           // HH:MM:SS.mmm
   type: EventType
   symbol: string
+  symbolName?: string
   event: string
   params: string
   result: string

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
@@ -35,8 +36,9 @@ function CandlestickSvg({ candles, entryIndex, sl, tp }: {
   const range = maxP - minP || 1
   const sy = (p: number) => H - ((p - minP) / range) * H
 
-  const W = 430, cw = 7, gap = 2
+  const cw = 7, gap = 2
   const ox = LW + 4
+  const W = Math.max(430, ox + candles.length * (cw + gap) + 24)
   const totalH = H + XH
 
   // Pick time labels every ~8 bars
@@ -64,7 +66,29 @@ function CandlestickSvg({ candles, entryIndex, sl, tp }: {
         )
       })}
 
-      {/* SL / TP lines */}
+      {/* TP / SL zones (filled) + entry line */}
+      {(() => {
+        const entryPrice = entryIndex != null ? candles[entryIndex]?.c : undefined
+        const zoneW = (cw + gap) * candles.length
+        return (
+          <>
+            {tp && entryPrice && (
+              <rect x={ox} y={sy(tp)} width={zoneW} height={Math.max(sy(entryPrice) - sy(tp), 0)}
+                fill="var(--success)" opacity="0.07" />
+            )}
+            {sl && entryPrice && (
+              <rect x={ox} y={sy(entryPrice)} width={zoneW} height={Math.max(sy(sl) - sy(entryPrice), 0)}
+                fill="var(--destructive)" opacity="0.07" />
+            )}
+            {entryPrice && (
+              <line x1={ox} y1={sy(entryPrice)} x2={ox + zoneW} y2={sy(entryPrice)}
+                stroke="var(--success)" strokeWidth="1.5" opacity="0.85" />
+            )}
+          </>
+        )
+      })()}
+
+      {/* SL / TP dashed lines + labels */}
       {sl && <line x1={ox} y1={sy(sl)} x2={ox+(cw+gap)*candles.length} y2={sy(sl)} stroke="var(--destructive)" strokeWidth="1" strokeDasharray="4,2" opacity="0.8" />}
       {tp && <line x1={ox} y1={sy(tp)} x2={ox+(cw+gap)*candles.length} y2={sy(tp)} stroke="var(--success)" strokeWidth="1" strokeDasharray="4,2" opacity="0.8" />}
       {sl && <text x={ox+(cw+gap)*candles.length+2} y={sy(sl)+3} fill="var(--destructive)" fontSize="7" fontFamily="monospace">SL</text>}
@@ -126,8 +150,8 @@ function ChartPanel() {
   const positive  = changePct >= 0
 
   return (
-    <Card className="shrink-0 border-border bg-card py-2">
-      <CardHeader className="px-3 py-0 pb-1">
+    <Card className="shrink-0 border-border bg-card py-1 gap-0">
+      <CardHeader className="px-3 py-0 pb-0.5">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2 font-mono text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
             <CandlestickChart className="h-3 w-3" />
@@ -153,22 +177,49 @@ function ChartPanel() {
         </div>
       </CardHeader>
       <CardContent className="px-3 py-0">
+        {/* Decision overlay */}
+        {detail && last && candidate && (() => {
+          const score = detail.totalScore
+          const action: 'LONG' | 'WATCH' | 'NO TRADE' = score >= 75 ? 'LONG' : score >= 55 ? 'WATCH' : 'NO TRADE'
+          const conf = candidate.confidence
+          const confLevel = conf >= 75 ? 'HIGH' : conf >= 50 ? 'MED' : 'LOW'
+          const confColor = confLevel === 'HIGH' ? 'text-success' : confLevel === 'MED' ? 'text-warning' : 'text-destructive'
+          const tpPct = ((detail.tp - last.c) / last.c * 100).toFixed(1)
+          const slPct = ((last.c - detail.sl) / last.c * 100).toFixed(1)
+          const actionColor = action === 'LONG' ? 'text-success border-success/30 bg-success/5'
+            : action === 'WATCH' ? 'text-warning border-warning/30 bg-warning/5'
+            : 'text-muted-foreground border-border bg-muted/10'
+          return (
+            <div className={cn("mb-1.5 flex items-center justify-between rounded border px-2 py-1 font-mono", actionColor)}>
+              <div className="flex items-center gap-2">
+                <span className="text-[14px] font-bold">
+                  {action === 'LONG' ? '▲ LONG' : action === 'WATCH' ? '◆ WATCH' : '🚫 NO TRADE'}
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  Confidence: <span className={confColor}>{confLevel}</span>
+                  <span className="opacity-60"> ({conf}%)</span>
+                </span>
+                <span className="text-[11px] text-muted-foreground">Score {score}</span>
+              </div>
+              <div className="flex items-center gap-3 text-[11px]">
+                {action !== 'NO TRADE' && (
+                  <>
+                    <span className="text-muted-foreground">Entry <span className="text-foreground font-medium">{last.c.toLocaleString()}</span></span>
+                    <span className="text-success">TP +{tpPct}%</span>
+                    <span className="text-destructive">SL -{slPct}%</span>
+                    <span className="text-muted-foreground">R:R 1:{detail.rrRatio.toFixed(1)}</span>
+                  </>
+                )}
+                {action === 'NO TRADE' && (
+                  <span className="text-muted-foreground text-[10px]">진입 조건 미충족</span>
+                )}
+              </div>
+            </div>
+          )
+        })()}
+
         <CandlestickSvg candles={candles} entryIndex={detail?.entryIndex} sl={detail?.sl} tp={detail?.tp} />
-        {detail && last && (
-          <div className="mt-1 flex items-center justify-between rounded bg-muted/20 px-2 py-1 font-mono text-[11px]">
-            <div className="flex items-center gap-3">
-              <span className="text-success font-medium">ENTRY {last.c.toLocaleString()}</span>
-              <ArrowRight className="h-3 w-3 text-muted-foreground" />
-              <span className="text-destructive">SL {detail.sl.toLocaleString()}</span>
-              <span className="text-success/80">TP {detail.tp.toLocaleString()}</span>
-            </div>
-            <div className="flex items-center gap-3 text-muted-foreground">
-              <span>R:R 1:{detail.rrRatio.toFixed(1)}</span>
-              <span>SIZE {detail.positionSize}주</span>
-              <span>RISK {Math.abs((last.c - detail.sl) * detail.positionSize).toLocaleString()}원</span>
-            </div>
-          </div>
-        )}
+
       </CardContent>
     </Card>
   )
@@ -226,8 +277,8 @@ function ResearchCard() {
 
   if (!detail || !symbol) {
     return (
-      <Card className="w-[280px] shrink-0 border-border bg-card py-2">
-        <CardHeader className="px-3 py-0 pb-1">
+      <Card className="flex-1 border-border bg-card py-1 gap-0">
+        <CardHeader className="px-3 py-0 pb-0.5">
           <CardTitle className="flex items-center gap-1.5 font-mono text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
             <Target className="h-3 w-3" />
             ANALYSIS
@@ -255,8 +306,8 @@ function ResearchCard() {
     : 0
 
   return (
-    <Card className="w-[280px] shrink-0 overflow-hidden border-border bg-card py-2">
-      <CardHeader className="px-3 py-0 pb-1">
+    <Card className="flex-1 overflow-hidden border-border bg-card py-1 gap-0">
+      <CardHeader className="px-3 py-0 pb-0.5">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-1.5 font-mono text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
             <Target className="h-3 w-3" />
@@ -271,7 +322,30 @@ function ResearchCard() {
         </div>
       </CardHeader>
 
-      <CardContent className="h-[calc(100%-34px)] overflow-y-auto px-3 py-0 flex flex-col gap-2.5">
+      <CardContent className="h-[calc(100%-34px)] overflow-y-auto px-3 py-0 flex flex-col gap-2.5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-muted-foreground/30 [&::-webkit-scrollbar-track]:bg-transparent">
+
+        {/* ── 0. Analysis Summary ─────────────────────────────────── */}
+        {(() => {
+          const sc = detail.totalScore
+          const passedScores = detail.scores.filter((s) => s.score >= 65).length
+          const totalScores  = detail.scores.length
+          const weak = detail.scores.filter((s) => s.score < 50).map((s) => s.name).join('/')
+          const summaryText = sc >= 75
+            ? `진입 조건 충족 (${passedScores}/${totalScores} 항목 통과) → 진입 권장`
+            : sc >= 55
+            ? `일부 조건 미충족 (${weak || '기술'} 약함) → 관망 권장`
+            : `기술적 조건 부족 (${weak || 'Volume/Trend'} 약함) → 진입 비추천`
+          const bgColor = sc >= 75 ? 'bg-success/8 border-success/20' : sc >= 55 ? 'bg-warning/8 border-warning/20' : 'bg-muted/20 border-border'
+          const textColor = sc >= 75 ? 'text-success' : sc >= 55 ? 'text-warning' : 'text-muted-foreground'
+          return (
+            <div className={cn("rounded border px-2 py-1.5", bgColor)}>
+              <span className="font-mono text-[9px] uppercase text-muted-foreground/70 tracking-wider">ANALYSIS SUMMARY</span>
+              <div className={cn("font-mono text-[11px] font-medium leading-snug mt-0.5", textColor)}>
+                → {summaryText}
+              </div>
+            </div>
+          )
+        })()}
 
         {/* ── 1. Score Breakdown ──────────────────────────────────── */}
         <div className="flex flex-col gap-1">
@@ -410,20 +484,45 @@ const EVENT_COLOR: Record<string, string> = {
   SYSTEM: "text-muted-foreground",
 }
 
+function isHighPriority(event: DecisionEvent): boolean {
+  return event.type === 'EXEC' || event.type === 'BLOCK' ||
+    event.resultClass === 'exec' || event.resultClass === 'block' ||
+    (event.type === 'FILTER' && event.resultClass === 'pass')
+}
+
 function SignalFeed() {
   const decisionLog = useTradingStore((s) => s.decisionLog)
-  const recent = decisionLog.slice(0, 12)
+  const [sinceUpdate, setSinceUpdate] = useState(0)
+  const lastKeyRef = useRef('')
+
   const execCount   = decisionLog.filter((e) => e.type === 'EXEC').length
   const passCount   = decisionLog.filter((e) => e.resultClass === 'pass' || e.resultClass === 'exec').length
   const rejectCount = decisionLog.filter((e) => e.resultClass === 'reject' || e.resultClass === 'block').length
 
+  useEffect(() => {
+    const key = decisionLog.map((e) => e.id).join(',')
+    if (key !== lastKeyRef.current) {
+      lastKeyRef.current = key
+      setSinceUpdate(0)
+    }
+  }, [decisionLog])
+
+  useEffect(() => {
+    const iv = setInterval(() => setSinceUpdate((s) => s + 1), 1000)
+    return () => clearInterval(iv)
+  }, [])
+
   return (
-    <Card className="flex-1 overflow-hidden border-border bg-card py-2">
-      <CardHeader className="px-3 py-0 pb-1.5">
+    <Card className="flex-1 overflow-hidden border-border bg-card py-1 gap-0">
+      <CardHeader className="px-3 py-0 pb-0.5">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-1.5 font-mono text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
             <Activity className="h-3 w-3" />
             SIGNAL_FEED
+            <span className={cn(
+              "font-mono text-[10px] tabular-nums",
+              sinceUpdate <= 3 ? "text-success" : "text-muted-foreground/50"
+            )}>{sinceUpdate}s ago</span>
           </CardTitle>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1">
@@ -438,14 +537,17 @@ function SignalFeed() {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="relative h-[calc(100%-36px)] overflow-y-auto px-3 py-0">
+      <CardContent className="relative h-[calc(100%-36px)] overflow-y-auto px-3 py-0 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-muted-foreground/30 [&::-webkit-scrollbar-track]:bg-transparent">
         <div className="absolute left-[18px] top-1 h-[calc(100%-4px)] w-px bg-border/40" />
-        {recent.length === 0 ? (
+        {decisionLog.length === 0 ? (
           <div className="py-6 text-center font-mono text-[12px] text-muted-foreground">시그널 대기 중...</div>
         ) : (
           <div className="flex flex-col gap-0">
-            {recent.map((event: DecisionEvent) => (
-              <div key={event.id} className="group relative flex items-start gap-2.5 py-1">
+            {decisionLog.map((event: DecisionEvent) => (
+              <div key={event.id} className={cn(
+                "group relative flex items-start gap-2.5 py-1",
+                isHighPriority(event) ? "rounded px-1 -mx-1 bg-muted/20" : ""
+              )}>
                 <div className={cn(
                   "relative z-10 mt-1.5 h-2 w-2 shrink-0 rounded-full",
                   event.resultClass === 'exec' || event.resultClass === 'pass' ? "bg-success"
@@ -459,6 +561,9 @@ function SignalFeed() {
                     <span className={cn("font-mono text-[11px] font-medium", EVENT_COLOR[event.type] ?? "text-muted-foreground")}>{event.type}</span>
                     {event.symbol && event.symbol !== '——' && (
                       <span className="font-mono text-[11px] font-semibold text-foreground">{event.symbol}</span>
+                    )}
+                    {event.symbolName && (
+                      <span className="font-mono text-[10px] text-muted-foreground/70 truncate max-w-[80px]">{event.symbolName}</span>
                     )}
                     <span className={cn("ml-auto shrink-0 font-mono text-[11px]",
                       event.resultClass === 'exec' || event.resultClass === 'pass' ? "text-success"
@@ -492,53 +597,161 @@ function BottomStats() {
   const winCount  = trades.filter((t) => t.win).length
   const winRate   = trades.length > 0 ? Math.round((winCount / trades.length) * 100) : 0
   const todayPnl  = periodPerf?.today.pnl ?? 0
+  const todayPct  = periodPerf?.today.pct ?? 0
   const openPnl   = positions.reduce((s, p) => s + p.pnl, 0)
 
   const f1 = filterStats.find((f) => f.stage === 1)
   const f2 = filterStats.find((f) => f.stage === 2)
-  const f1Pct = f1 ? Math.round((f1.passed / f1.total) * 100) : 0
-  const f2Pct = f2 ? Math.round((f2.passed / f2.total) * 100) : 0
+  const scanCount = f1?.total ?? 0
+  const passCount = f2?.passed ?? 0
 
-  const stats = [
-    { label: "1차필터",  value: `${f1?.passed ?? 0}/${f1?.total ?? 0}`, color: "text-foreground",    sub: `${f1Pct}% 통과` },
-    { label: "2차필터",  value: `${f2?.passed ?? 0}/${f2?.total ?? 0}`, color: "text-chart-4",       sub: `${f2Pct}% 통과` },
-    { label: "EXEC",    value: String(executed),                         color: "text-success",       sub: "주문" },
-    { label: "WIN RATE", value: `${winRate}%`,                           color: winRate >= 60 ? "text-success" : "text-warning", sub: `${winCount}/${trades.length}` },
-    { label: "TODAY",   value: `${todayPnl >= 0 ? "+" : ""}${(todayPnl/10000).toFixed(0)}만`, color: todayPnl >= 0 ? "text-success" : "text-destructive", sub: `${(periodPerf?.today.pct ?? 0).toFixed(2)}%` },
-    { label: "OPEN P&L", value: `${openPnl >= 0 ? "+" : ""}${(openPnl/10000).toFixed(1)}만`,  color: openPnl >= 0 ? "text-success" : "text-destructive", sub: `${positions.length}포지션` },
-  ]
+  const todayColor = todayPnl >= 0 ? "text-success" : "text-destructive"
+  const openColor  = openPnl  >= 0 ? "text-success" : "text-destructive"
+  const winColor   = winRate  >= 55 ? "text-success" : winRate >= 40 ? "text-warning" : "text-destructive"
 
   return (
-    <div className="grid shrink-0 grid-cols-6 gap-2">
-      {stats.map(({ label, value, color, sub }) => (
-        <div key={label} className="flex flex-col items-center rounded-md border border-border bg-card px-2 py-1.5">
-          <span className="font-mono text-[10px] uppercase text-muted-foreground">{label}</span>
-          <span className={cn("font-mono text-lg font-semibold", color)}>{value}</span>
-          <span className="font-mono text-[10px] text-muted-foreground">{sub}</span>
+    <div className="grid shrink-0 grid-cols-3 gap-2">
+
+      {/* A — FUNNEL */}
+      <div className="flex items-center justify-around rounded-md border border-border bg-card px-3 py-1.5">
+        <div className="flex flex-col items-center">
+          <span className="font-mono text-[9px] uppercase text-muted-foreground">SCAN</span>
+          <span className="font-mono text-lg font-semibold text-foreground">{scanCount}</span>
         </div>
-      ))}
+        <span className="font-mono text-[14px] text-muted-foreground/40">›</span>
+        <div className="flex flex-col items-center">
+          <span className="font-mono text-[9px] uppercase text-muted-foreground">PASS</span>
+          <span className="font-mono text-lg font-semibold text-chart-4">{passCount}</span>
+        </div>
+        <span className="font-mono text-[14px] text-muted-foreground/40">›</span>
+        <div className="flex flex-col items-center">
+          <span className="font-mono text-[9px] uppercase text-muted-foreground">EXEC</span>
+          <span className="font-mono text-lg font-semibold text-success">{executed}</span>
+        </div>
+      </div>
+
+      {/* B — TODAY P&L (most prominent) + WIN% */}
+      {(() => {
+        const bestPnl = trades.length > 0 ? Math.max(...trades.map((t) => t.pnl)) : 0
+        return (
+          <div className="flex items-center justify-around rounded-md border border-border bg-card px-3 py-1.5">
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-[9px] uppercase text-muted-foreground">WIN%</span>
+              <span className={cn("font-mono text-lg font-semibold", winColor)}>{winRate}%</span>
+              <span className="font-mono text-[9px] text-muted-foreground">{winCount}/{trades.length}</span>
+            </div>
+            <div className="h-8 w-px bg-border/40" />
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-[9px] uppercase text-muted-foreground">TODAY P&L</span>
+              <span className={cn("font-mono text-2xl font-bold leading-none", todayColor)}>
+                {todayPnl >= 0 ? "+" : ""}{todayPnl.toLocaleString()}원
+              </span>
+              <span className={cn("font-mono text-[10px]", todayColor)}>
+                {todayPct >= 0 ? "+" : ""}{todayPct.toFixed(2)}%
+              </span>
+              {trades.length > 0 && (
+                <span className="font-mono text-[9px] text-muted-foreground mt-0.5">
+                  {trades.length}건 · Best +{bestPnl.toLocaleString()}원
+                </span>
+              )}
+            </div>
+          </div>
+        )
+      })()}
+
+      {/* C — OPEN P&L + POS */}
+      <div className="flex items-center justify-around rounded-md border border-border bg-card px-3 py-1.5">
+        <div className="flex flex-col items-center">
+          <span className="font-mono text-[9px] uppercase text-muted-foreground">OPEN P&L</span>
+          <span className={cn("font-mono text-lg font-semibold", openColor)}>
+            {openPnl >= 0 ? "+" : ""}{openPnl.toLocaleString()}원
+          </span>
+        </div>
+        <div className="h-8 w-px bg-border/40" />
+        <div className="flex flex-col items-center">
+          <span className="font-mono text-[9px] uppercase text-muted-foreground">POS</span>
+          <span className={cn("font-mono text-lg font-semibold", positions.length > 0 ? "text-foreground" : "text-muted-foreground")}>
+            {positions.length}
+          </span>
+          <span className="font-mono text-[9px] text-muted-foreground">포지션</span>
+        </div>
+      </div>
+
     </div>
   )
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
+function WinPnlStats() {
+  const trades     = useTradingStore((s) => s.trades)
+  const periodPerf = useTradingStore((s) => s.periodPerf)
+  const positions  = useTradingStore((s) => s.positions)
+
+  const winCount  = trades.filter((t) => t.win).length
+  const winRate   = trades.length > 0 ? Math.round((winCount / trades.length) * 100) : 0
+  const todayPnl  = periodPerf?.today.pnl ?? 0
+  const todayPct  = periodPerf?.today.pct ?? 0
+  const openPnl   = positions.reduce((s, p) => s + p.pnl, 0)
+  const bestPnl   = trades.length > 0 ? Math.max(...trades.map((t) => t.pnl)) : 0
+
+  const todayColor = todayPnl >= 0 ? "text-success" : "text-destructive"
+  const openColor  = openPnl  >= 0 ? "text-success" : "text-destructive"
+  const winColor   = winRate  >= 55 ? "text-success" : winRate >= 40 ? "text-warning" : "text-destructive"
+
+  return (
+    <div className="shrink-0 flex flex-col gap-1 rounded-md border border-border bg-card px-3 py-2">
+      {/* WIN% */}
+      <div className="flex items-center justify-between">
+        <span className="font-mono text-[9px] uppercase text-muted-foreground">WIN%</span>
+        <div className="flex items-center gap-1">
+          <span className={cn("font-mono text-[13px] font-bold", winColor)}>{winRate}%</span>
+          <span className="font-mono text-[9px] text-muted-foreground">{winCount}/{trades.length}</span>
+        </div>
+      </div>
+      {/* TODAY P&L */}
+      <div className="flex items-center justify-between">
+        <span className="font-mono text-[9px] uppercase text-muted-foreground">TODAY P&L</span>
+        <div className="flex items-center gap-1">
+          <span className={cn("font-mono text-[15px] font-bold leading-none", todayColor)}>
+            {todayPnl >= 0 ? "+" : ""}{todayPnl.toLocaleString()}원
+          </span>
+          <span className={cn("font-mono text-[10px]", todayColor)}>
+            ({todayPct >= 0 ? "+" : ""}{todayPct.toFixed(2)}%)
+          </span>
+        </div>
+      </div>
+      {/* OPEN P&L */}
+      <div className="flex items-center justify-between">
+        <span className="font-mono text-[9px] uppercase text-muted-foreground">OPEN P&L</span>
+        <span className={cn("font-mono text-[13px] font-semibold", openColor)}>
+          {openPnl >= 0 ? "+" : ""}{openPnl.toLocaleString()}원
+        </span>
+      </div>
+      {trades.length > 0 && (
+        <div className="font-mono text-[9px] text-muted-foreground text-right">
+          Best +{bestPnl.toLocaleString()}원
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function CenterPanel() {
   return (
     <main className="flex flex-1 flex-col gap-2 overflow-hidden bg-background p-2">
-      {/* Main area: left column (Chart + SignalFeed) + right column (ResearchCard) */}
       <div className="flex flex-1 gap-2 overflow-hidden">
         {/* Left: Chart on top, SignalFeed below */}
         <div className="flex flex-1 flex-col gap-2 overflow-hidden">
           <ChartPanel />
           <SignalFeed />
         </div>
-        {/* Right: ResearchCard spans full height */}
-        <ResearchCard />
+        {/* Right: ResearchCard + WIN/P&L below */}
+        <div className="flex w-[38%] min-w-[280px] flex-col gap-2 overflow-hidden">
+          <ResearchCard />
+          <WinPnlStats />
+        </div>
       </div>
-
-      {/* Bottom: Stats row */}
-      <BottomStats />
     </main>
   )
 }
